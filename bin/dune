@@ -1,0 +1,4 @@
+(executable
+ (public_name objc)
+ (name main)
+ (libraries objc))
