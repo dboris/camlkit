@@ -1,4 +1,5 @@
 (executable
  (public_name objc)
  (name main)
- (libraries objc))
+ (libraries objc)
+ (link_flags -cclib "-ObjC -framework Cocoa"))

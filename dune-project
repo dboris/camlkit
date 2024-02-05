@@ -4,23 +4,21 @@
 
 (generate_opam_files true)
 
-(source
- (github username/reponame))
+(source (github dboris/ocaml-objc))
 
-(authors "Author Name")
-
-(maintainers "Maintainer Name")
-
-(license LICENSE)
-
-(documentation https://url/to/documentation)
+(authors "Boris D.")
+(maintainers "Boris D.")
+(license ISC)
 
 (package
  (name objc)
- (synopsis "A short synopsis")
- (description "A longer description")
- (depends ocaml dune)
+ (synopsis "OCaml binding to the Objective-C runtime API and some Apple frameworks")
+ (description "TODO")
+ (depends
+  ocaml
+  dune
+  ctypes
+  ctypes-foreign
+  (alcotest :with-test))
  (tags
-  (topics "to describe" your project)))
-
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+  (objc bindings cocoa)))
