@@ -1,0 +1,3 @@
+(library
+ (name foundation)
+ (libraries objc))

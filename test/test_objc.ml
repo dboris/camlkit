@@ -44,7 +44,7 @@ let test_define_class_with_methods () =
   and imp _self _cmd x = x * 2
   and imp_enc = Objc.(encode ~args:[Int] Int)
   in
-  let methods = Objc.[{cmd; cmd_t; imp; imp_enc}]
+  let methods = Objc.[Spec {cmd; cmd_t; imp; imp_enc}]
   and x = 5
   in
   let c = Objc.define_class name ~methods in
@@ -62,11 +62,12 @@ let dealloc_spec called_flag =
     called_flag := true;
     dealloc (get_superclass self)
   in
-  { imp
-  ; cmd = selector "dealloc"
-  ; cmd_t = returning void
-  ; imp_enc = encode Void
-  }
+  Spec
+    { imp
+    ; cmd = selector "dealloc"
+    ; cmd_t = returning void
+    ; imp_enc = encode Void
+    }
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -83,16 +84,18 @@ let test_add_protocol () =
   let name = "MyClass4"
   and protocols = [Objc.get_protocol "NSCoding"]
   and methods = Objc.[
-    { cmd = selector "encodeWithCoder:"
-    ; cmd_t = obj @-> returning void
-    ; imp = (fun _self _cmd _coder -> ())
-    ; imp_enc = encode ~args:[Id] Void
-    }
-  ; { cmd = selector "initWithCoder:"
-    ; cmd_t = Obj.magic (obj @-> returning obj)
-    ; imp = (fun self _cmd _coder -> Obj.magic self)
-    ; imp_enc = encode ~args:[Id] Id
-    }
+    Spec
+      { cmd = selector "encodeWithCoder:"
+      ; cmd_t = obj @-> returning void
+      ; imp = (fun _self _cmd _coder -> ())
+      ; imp_enc = encode ~args:[Id] Void
+      }
+  ; Spec
+      { cmd = selector "initWithCoder:"
+      ; cmd_t = obj @-> returning obj
+      ; imp = (fun self _cmd _coder -> self)
+      ; imp_enc = encode ~args:[Id] Id
+      }
   ]
   in
   let c = Objc.define_class ~protocols ~methods name

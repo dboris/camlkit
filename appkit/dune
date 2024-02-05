@@ -1,0 +1,3 @@
+(library
+ (name appkit)
+ (libraries objc foundation))

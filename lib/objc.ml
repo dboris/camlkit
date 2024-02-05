@@ -2,8 +2,6 @@ include Ctypes
 include Value
 include Runtime
 
-(* [@@@warning "-32"] *)
-
 type 'a method_spec =
   { cmd : selector_t
   ; cmd_t : 'a fn
@@ -11,7 +9,7 @@ type 'a method_spec =
   ; imp_enc : string
   }
 
-let msg_send' = msg_send ~cmd_t:(returning obj)
+type method_spec' = Spec : 'a method_spec -> method_spec'
 
 let define_class
   ?(superclass = get_class "NSObject")
@@ -22,7 +20,7 @@ let define_class
   =
   let self = allocate_class ~superclass name in
   if not (is_null self) then begin
-    methods |> List.iter (fun {cmd; cmd_t; imp; imp_enc} ->
+    methods |> List.iter (fun (Spec {cmd; cmd_t; imp; imp_enc}) ->
       assert (add_method ~self ~cmd ~cmd_t ~imp ~imp_enc));
     protocols |> List.iter (fun proto ->
       assert (not (is_null proto));
@@ -31,6 +29,10 @@ let define_class
     register_class self
   end;
   self
+
+let nil = null
+
+let msg_send' = msg_send ~cmd_t:(returning obj)
 
 let alloc self = msg_send' ~self ~cmd:(selector "alloc")
 
@@ -57,3 +59,14 @@ let description self = msg_send' ~self ~cmd:(selector "description")
 
 let utf8_string self =
   msg_send ~self ~cmd:(selector "UTF8String") ~cmd_t:(returning string)
+
+let init_with_utf8_string str self =
+  msg_send ~self
+    ~cmd:(selector "initWithUTF8String:")
+    ~cmd_t:(string @-> returning obj)
+    str
+
+let new_string str =
+  get_class "NSString"
+  |> alloc
+  |> init_with_utf8_string str
