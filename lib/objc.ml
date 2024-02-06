@@ -11,6 +11,9 @@ type 'a method_spec =
 
 type method_spec' = Spec : 'a method_spec -> method_spec'
 
+let method_spec ~cmd ~cmd_t ~imp ~imp_enc =
+  Spec {cmd; cmd_t; imp; imp_enc}
+
 let define_class
   ?(superclass = get_class "NSObject")
   ?(protocols = [])

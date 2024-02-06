@@ -80,3 +80,29 @@ let activate_ignoring_other_apps flag self =
 
 let run self =
   msg_send ~self ~cmd:(selector "run") ~cmd_t:(returning void)
+
+let init_with_frame (frame : Rect.t structure) self =
+  msg_send ~self
+    ~cmd:(selector "initWithFrame:")
+    ~cmd_t:(Rect.t @-> returning obj)
+    frame
+
+let set_target target self =
+  msg_send ~self
+    ~cmd:(selector "setTarget:")
+    ~cmd_t:(obj @-> returning void)
+    target
+
+let set_action action self =
+  msg_send ~self
+    ~cmd:(selector "setAction:")
+    ~cmd_t:(sel @-> returning void)
+    action
+
+let content_view self = msg_send' ~self ~cmd:(selector "contentView")
+
+let add_subview view self =
+  msg_send ~self
+    ~cmd:(selector "addSubview:")
+    ~cmd_t:(obj @-> returning void)
+    view
