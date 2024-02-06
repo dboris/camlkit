@@ -57,19 +57,3 @@ let autorelease self = msg_send' ~self ~cmd:(selector "autorelease")
 let gc_autorelease self =
   Gc.finalise release self;
   self
-
-let description self = msg_send' ~self ~cmd:(selector "description")
-
-let utf8_string self =
-  msg_send ~self ~cmd:(selector "UTF8String") ~cmd_t:(returning string)
-
-let init_with_utf8_string str self =
-  msg_send ~self
-    ~cmd:(selector "initWithUTF8String:")
-    ~cmd_t:(string @-> returning obj)
-    str
-
-let new_string str =
-  get_class "NSString"
-  |> alloc
-  |> init_with_utf8_string str

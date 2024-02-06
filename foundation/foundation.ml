@@ -41,3 +41,38 @@ module Rect = struct
 end
 
 let combine_options = List.fold_left UInt.logor UInt.zero
+
+let description self = msg_send' ~self ~cmd:(selector "description")
+
+let utf8_string self =
+  msg_send ~self ~cmd:(selector "UTF8String") ~cmd_t:(returning string)
+
+let init_with_utf8_string str self =
+  msg_send ~self
+    ~cmd:(selector "initWithUTF8String:")
+    ~cmd_t:(string @-> returning obj)
+    str
+
+let nsstring = get_class "NSString"
+
+let new_string str =
+  nsstring
+  |> alloc
+  |> init_with_utf8_string str
+  |> gc_autorelease
+
+let url_with_string str self =
+  msg_send ~self
+    ~cmd:(selector "URLWithString:")
+    ~cmd_t:(obj @-> returning obj)
+    str
+
+let new_url str =
+  get_class "NSURL"
+  |> url_with_string (new_string str)
+
+let request_with_url url self =
+  msg_send ~self
+    ~cmd:(selector "requestWithURL:")
+    ~cmd_t:(obj @-> returning obj)
+    url

@@ -1,5 +1,5 @@
 (test
  (name test_objc)
- (libraries objc ctypes alcotest)
+ (libraries objc foundation ctypes alcotest)
 ;  (link_flags -cclib "-framework Foundation")
  )
