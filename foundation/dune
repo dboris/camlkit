@@ -1,3 +1,5 @@
 (library
  (name foundation)
- (libraries objc))
+ (public_name foundation)
+ (libraries ctypes ctypes.foreign)
+ (flags -ccopt "-framework Foundation"))

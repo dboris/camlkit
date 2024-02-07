@@ -1,4 +1,4 @@
-.PHONY: build test deps clean
+.PHONY: build test run deps clean
 
 build:
 	@dune build
@@ -8,6 +8,9 @@ test:
 
 objc.opam: dune-project
 	@dune build
+
+run:
+	@dune exec ./bin/main.exe
 
 deps: objc.opam
 	@opam install -y . --deps-only --with-test

@@ -1,5 +1,6 @@
 (executable
- (public_name objc)
  (name main)
- (libraries objc foundation appkit webkit)
+ (public_name demoapp)
+ (package appkit)
+ (libraries foundation appkit webkit)
  (link_flags -cclib "-framework Cocoa -framework WebKit"))

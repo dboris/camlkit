@@ -1,6 +1,9 @@
 open Objc
 open Unsigned
 
+module Objc = Objc
+module Synthesize = Synthesize
+
 module Point = struct
   type t
   let t : t structure typ = structure "CGPoint"
@@ -45,12 +48,12 @@ let combine_options = List.fold_left UInt.logor UInt.zero
 let description self = msg_send' ~self ~cmd:(selector "description")
 
 let utf8_string self =
-  msg_send ~self ~cmd:(selector "UTF8String") ~cmd_t:(returning string)
+  msg_send ~self ~cmd:(selector "UTF8String") ~t:(returning string)
 
 let init_with_utf8_string str self =
   msg_send ~self
     ~cmd:(selector "initWithUTF8String:")
-    ~cmd_t:(string @-> returning obj)
+    ~t:(string @-> returning obj)
     str
 
 let nsstring = get_class "NSString"
@@ -64,8 +67,12 @@ let new_string str =
 let url_with_string str self =
   msg_send ~self
     ~cmd:(selector "URLWithString:")
-    ~cmd_t:(obj @-> returning obj)
+    ~t:(obj @-> returning obj)
     str
+
+let string_of_selector s =
+  nsstring_of_selector s
+  |> utf8_string
 
 let new_url str =
   get_class "NSURL"
@@ -74,5 +81,5 @@ let new_url str =
 let request_with_url url self =
   msg_send ~self
     ~cmd:(selector "requestWithURL:")
-    ~cmd_t:(obj @-> returning obj)
+    ~t:(obj @-> returning obj)
     url

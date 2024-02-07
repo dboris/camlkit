@@ -1,5 +1,5 @@
-open Objc
 open Foundation
+open Objc
 
 module A = Alcotest
 
@@ -14,9 +14,9 @@ let test_add_method () =
     add_method
       ~self:(get_class "NSObject")
       ~cmd:(selector "addOneTo:")
-      ~cmd_t:(int @-> returning int)
+      ~t:(int @-> returning int)
       ~imp:(fun _self _cmd x -> x + 1)
-      ~imp_enc:(encode ~args:[Int] Int)
+      ~enc:(encode ~args:[Int] Int)
   in
   A.check A.bool "true result" added true
 
@@ -25,7 +25,7 @@ let test_added_method x () =
     msg_send
       ~self:(get_class "NSObject" |> new')
       ~cmd:(selector "addOneTo:")
-      ~cmd_t:(int @-> returning int)
+      ~t:(int @-> returning int)
       x
   in
   A.check A.int "x was incremented" y (x + 1)
@@ -43,16 +43,16 @@ let test_redefine_class_fails () =
 let test_define_class_with_methods () =
   let name = "MyClass2"
   and cmd = selector "doubleOf:"
-  and cmd_t = int @-> returning int
+  and t = int @-> returning int
   and imp _self _cmd x = x * 2
-  and imp_enc = encode ~args:[Int] Int
+  and enc = encode ~args:[Int] Int
   in
-  let methods = [method_spec ~cmd ~cmd_t ~imp ~imp_enc]
+  let methods = [method_spec ~cmd ~t ~imp ~enc]
   and x = 5
   in
   let c = define_class name ~methods in
   let defined = not (is_null c)
-  and y = msg_send ~self:(new' c) ~cmd ~cmd_t x
+  and y = msg_send ~self:(new' c) ~cmd ~t x
   in
   A.check A.bool "class ptr not null" defined true;
   A.check A.int "x was doubled" y (x * 2)
@@ -66,9 +66,9 @@ let dealloc_spec called_flag =
   in
   method_spec
     ~cmd:(selector "dealloc")
-    ~cmd_t:(returning void)
+    ~t:(returning void)
     ~imp
-    ~imp_enc:(encode Void)
+    ~enc:(encode Void)
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -87,14 +87,14 @@ let test_add_protocol () =
   and methods = [
     method_spec
       ~cmd:(selector "encodeWithCoder:")
-      ~cmd_t:(obj @-> returning void)
+      ~t:(obj @-> returning void)
       ~imp:(fun _self _cmd _coder -> ())
-      ~imp_enc:(encode ~args:[Id] Void)
+      ~enc:(encode ~args:[Id] Void)
   ; method_spec
       ~cmd:(selector "initWithCoder:")
-      ~cmd_t:(obj @-> returning obj)
+      ~t:(obj @-> returning obj)
       ~imp:(fun self _cmd _coder -> self)
-      ~imp_enc:(encode ~args:[Id] Id)
+      ~enc:(encode ~args:[Id] Id)
   ]
   in
   let c = define_class ~protocols ~methods name
@@ -102,6 +102,58 @@ let test_add_protocol () =
   in
   A.check A.bool "class ptr not null" (is_null c) false;
   A.check A.bool "class conforms to protocol" (conforms_to_protocol c proto) true
+
+let test_add_ivar ~name x () =
+  let ivars =
+    [ivar_spec ~name:"myVar" ~t:int ~enc:(encode ~meth:false Int)]
+  and methods =
+    [ Synthesize.getter
+        ~ivar_name:"myVar"
+        ~ivar_t:int
+        ~enc:(encode Int)
+    ; Synthesize.setter
+        ~ivar_name:"myVar"
+        ~ivar_t:int
+        ~enc:(encode ~args:[Int] Void)
+    ]
+  in
+  let o = new' (define_class name ~ivars ~methods) in
+  msg_send ~self:o
+    ~cmd:(selector "setMyVar:")
+    ~t:(int @-> returning void)
+    x;
+  let v =
+    msg_send ~self:o
+      ~cmd:(selector "myVar")
+      ~t:(returning int)
+  in
+  A.check A.int "set value and get same value" x v
+
+let test_add_obj_ivar ~name x () =
+  let ivars =
+    [ivar_spec ~name:"myVar" ~t:int ~enc:(encode ~meth:false Int)]
+  and methods =
+    [ Synthesize.getter
+        ~ivar_name:"myVar"
+        ~ivar_t:obj
+        ~enc:(encode Id)
+    ; Synthesize.setter
+        ~ivar_name:"myVar"
+        ~ivar_t:obj
+        ~enc:(encode ~args:[Id] Void)
+    ]
+  in
+  let o = new' (define_class name ~ivars ~methods) in
+  msg_send ~self:o
+    ~cmd:(selector "setMyVar:")
+    ~t:(obj @-> returning void)
+    x;
+  let v =
+    msg_send ~self:o
+      ~cmd:(selector "myVar")
+      ~t:(returning obj)
+  in
+  A.check A.string "set value and get same value" (utf8_string x) (utf8_string v)
 
 let suite =
   [ "get object description", `Quick, test_object_description
@@ -113,6 +165,10 @@ let suite =
   ; "define class with methods", `Quick, test_define_class_with_methods
   ; "gc_autorelease calls dealloc", `Quick, test_gc_autorelease
   ; "add protocol", `Quick, test_add_protocol
+  ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass5" 53
+  ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass6" 12
+  ; "set and get object ivar", `Quick,
+    test_add_obj_ivar ~name:"MyClass7" (new_string "Hello")
   ]
 
 let () = A.run "objc" [ "Objc", suite ]

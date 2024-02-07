@@ -1,6 +1,6 @@
-open Objc
 open Unsigned
 open Foundation
+open Objc
 
 module ActivationPolicy = struct
   let t = int
@@ -45,58 +45,58 @@ let shared_application self =
 let set_activation_policy policy self =
   msg_send ~self
     ~cmd:(selector "setActivationPolicy:")
-    ~cmd_t:(ActivationPolicy.t @-> returning bool)
+    ~t:(ActivationPolicy.t @-> returning bool)
     policy
 
 let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
   msg_send ~self
     ~cmd:(selector "initWithContentRect:styleMask:backing:defer:")
-    ~cmd_t:(Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning obj)
+    ~t:(Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning obj)
     rect (combine_options style_mask) backing defer
 
 let cascade_top_left_from_point pt self =
   msg_send ~self
     ~cmd:(selector "cascadeTopLeftFromPoint:")
-    ~cmd_t:(Point.t @-> returning void)
+    ~t:(Point.t @-> returning void)
     pt
 
 let set_title title self =
   msg_send ~self
     ~cmd:(selector "setTitle:")
-    ~cmd_t:(obj @-> returning void)
+    ~t:(obj @-> returning void)
     title
 
 let make_key_and_order_front ~sender self =
   msg_send ~self
     ~cmd:(selector "makeKeyAndOrderFront:")
-    ~cmd_t:(obj @-> returning void)
+    ~t:(obj @-> returning void)
     sender
 
 let activate_ignoring_other_apps flag self =
   msg_send ~self
     ~cmd:(selector "activateIgnoringOtherApps:")
-    ~cmd_t:(bool @-> returning void)
+    ~t:(bool @-> returning void)
     flag
 
 let run self =
-  msg_send ~self ~cmd:(selector "run") ~cmd_t:(returning void)
+  msg_send ~self ~cmd:(selector "run") ~t:(returning void)
 
 let init_with_frame (frame : Rect.t structure) self =
   msg_send ~self
     ~cmd:(selector "initWithFrame:")
-    ~cmd_t:(Rect.t @-> returning obj)
+    ~t:(Rect.t @-> returning obj)
     frame
 
 let set_target target self =
   msg_send ~self
     ~cmd:(selector "setTarget:")
-    ~cmd_t:(obj @-> returning void)
+    ~t:(obj @-> returning void)
     target
 
 let set_action action self =
   msg_send ~self
     ~cmd:(selector "setAction:")
-    ~cmd_t:(sel @-> returning void)
+    ~t:(sel @-> returning void)
     action
 
 let content_view self = msg_send' ~self ~cmd:(selector "contentView")
@@ -104,5 +104,5 @@ let content_view self = msg_send' ~self ~cmd:(selector "contentView")
 let add_subview view self =
   msg_send ~self
     ~cmd:(selector "addSubview:")
-    ~cmd_t:(obj @-> returning void)
+    ~t:(obj @-> returning void)
     view

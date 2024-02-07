@@ -1,6 +1,7 @@
 (lang dune 3.13)
 
-(name objc)
+(name camlkit)
+(version 0.1.1)
 
 (generate_opam_files true)
 
@@ -11,14 +12,26 @@
 (license ISC)
 
 (package
- (name objc)
- (synopsis "OCaml binding to the Objective-C runtime API and some Apple frameworks")
+ (name foundation)
+ (synopsis "OCaml bindings to the Apple Foundation framework")
  (description "TODO")
  (depends
   ocaml
   dune
   ctypes
   ctypes-foreign
+  (alcotest :with-test))
+ (tags
+  (objc bindings cocoa)))
+
+(package
+ (name appkit)
+ (synopsis "OCaml bindings to the Apple AppKit framework")
+ (description "TODO")
+ (depends
+  ocaml
+  dune
+  (foundation (= :version))
   (alcotest :with-test))
  (tags
   (objc bindings cocoa)))

@@ -1,3 +1,4 @@
 (library
  (name appkit)
- (libraries objc foundation))
+ (public_name appkit)
+ (libraries foundation))

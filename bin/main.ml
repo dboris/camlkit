@@ -1,5 +1,5 @@
-open Objc
 open Foundation
+open Objc
 open Appkit
 open Webkit
 
@@ -20,15 +20,16 @@ let app_window () =
   win |> make_key_and_order_front ~sender:nil;
   win
 
-let quit_button app frame =
+let make_button ~title ~frame ~target ~action =
   let btn =
     get_class "NSButton"
     |> alloc
     |> init_with_frame frame
+    |> gc_autorelease
   in
-  btn |> set_target app;
-  btn |> set_action (selector "terminate:");
-  btn |> set_title (new_string "Quit");
+  btn |> set_target target;
+  btn |> set_action action;
+  btn |> set_title title;
   btn
 
 let webview url frame =
@@ -52,8 +53,11 @@ let main () =
   and url = new_url "http://example.com/"
   in
   let btn =
-    quit_button app
-      (Rect.make
+    make_button
+      ~title:(new_string "Quit")
+      ~target:app
+      ~action:(selector "terminate:")
+      ~frame:(Rect.make
         ~x:10. ~y:(win_height -. 40.)
         ~width:100. ~height:30.)
   and wv =
