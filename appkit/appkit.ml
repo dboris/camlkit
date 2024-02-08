@@ -39,8 +39,46 @@ module BackingStoreType = struct
   let buffered = UInt.of_int 2
 end
 
+module AppDelegate = struct
+  module type S = sig
+    val on_started : object_t -> unit
+    val on_before_terminate : object_t -> unit
+  end
+
+  module Create (D : S) = struct
+    (** Note:
+      [get_protocol "NSApplicationDelegate"] fails since its object is not created
+      by the runtime unless referenced in ObjC code:
+      https://stackoverflow.com/questions/10212119/objc-getprotocol-returns-null-for-nsapplicationdelegate
+      But it's an informal protocol, not required for the code to function.
+    *)
+    let class' = define_class "AppDelegate"
+      ~protocols:[]
+      ~methods:
+        [ method_spec
+          ~cmd:(selector "applicationDidFinishLaunching:")
+          ~t:(obj @-> returning void)
+          ~enc:(encode ~args:[Id] Void)
+          ~imp:(fun _self _cmd notification ->
+            D.on_started notification)
+        ; method_spec
+          ~cmd:(selector "applicationWillTerminate:")
+          ~t:(obj @-> returning void)
+          ~enc:(encode ~args:[Id] Void)
+          ~imp:(fun _self _cmd notification ->
+            D.on_before_terminate notification)
+        ]
+  end
+end
+
 let shared_application self =
   msg_send' ~self ~cmd:(selector "sharedApplication")
+
+let set_delegate delegate self =
+  msg_send ~self
+    ~cmd:(selector "setDelegate:")
+    ~t:(obj @-> returning void)
+    delegate
 
 let set_activation_policy policy self =
   msg_send ~self
@@ -106,3 +144,9 @@ let add_subview view self =
     ~cmd:(selector "addSubview:")
     ~t:(obj @-> returning void)
     view
+
+(** Called by the main function to create and run the application. *)
+let application_main ~argc ~argv =
+  Foreign.foreign "NSApplicationMain"
+    (int @-> ptr string @-> returning int)
+    argc argv

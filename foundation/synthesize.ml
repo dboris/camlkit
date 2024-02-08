@@ -1,4 +1,5 @@
 open Objc
+open Util
 
 (** Getter for non-object values. *)
 let getter ~ivar_name ~ivar_t ~enc =
@@ -7,6 +8,15 @@ let getter ~ivar_name ~ivar_t ~enc =
     !@ (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t)
   in
   method_spec ~cmd ~t:(returning ivar_t) ~imp ~enc
+
+(** Setter for non-object values. *)
+let setter ~ivar_name ~ivar_t ~enc =
+  let cmd =
+    selector ("set" ^ String.capitalize_ascii ivar_name ^ ":")
+  and imp self _cmd value =
+    (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t) <-@ value
+  in
+  method_spec ~cmd ~t:(ivar_t @-> returning void) ~imp ~enc
 
 (** Getter for object values. *)
 let obj_getter ~ivar_name ~ivar_t ~enc =
@@ -31,12 +41,3 @@ let obj_setter ~ivar_name ~t ~enc =
     |> ignore
   in
   method_spec ~cmd ~t ~imp ~enc
-
-(** Setter for non-object values. *)
-let setter ~ivar_name ~ivar_t ~enc =
-  let cmd =
-    selector ("set" ^ String.capitalize_ascii ivar_name ^ ":")
-  and imp self _cmd value =
-    (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t) <-@ value
-  in
-  method_spec ~cmd ~t:(ivar_t @-> returning void) ~imp ~enc

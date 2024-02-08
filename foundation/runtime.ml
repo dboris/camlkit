@@ -2,6 +2,15 @@ open Ctypes
 open Foreign
 open Value
 
+let alignment_of_size size =
+  let open Float in
+  Unsigned.Size_t.to_int size
+  |> of_int
+  |> log2
+  |> round
+  |> to_int
+  |> Unsigned.UInt8.of_int
+
 let get_class = foreign "objc_getClass" (string @-> returning cls)
 
 (** Returns the class of an object. *)
@@ -50,24 +59,9 @@ let conforms_to_protocol =
 
 (** Adds a new instance variable to a class. *)
 let add_ivar ~self ~name ~size ~enc =
-  (* TODO alignment fn compare *)
-  let alignment =
-    Unsigned.Size_t.to_int size
-    |> Float.(of_int)
-    |> Float.log2
-    |> Float.round
-    |> Float.to_int
-    |> Unsigned.UInt8.of_int
-  in
-  (* Printf.fprintf stderr
-    "add_ivar: %s %d %d %s\n"
-    name
-    (Unsigned.Size_t.to_int size)
-    (Unsigned.UInt8.to_int alignment)
-    enc; *)
   foreign "class_addIvar"
     (cls @-> string @-> size_t @-> uint8_t @-> impl_sig @-> returning bool)
-    self name size alignment enc
+    self name size (alignment_of_size size) enc
 
 (** Returns the Ivar for a specified instance variable of a given class. *)
 let get_class_instance_variable ~self ~name =
