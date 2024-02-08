@@ -43,7 +43,40 @@ module Rect = struct
     r
 end
 
+let get_class = Objc.get_class
+
+let selector = Objc.selector
+
+let nil = Objc.nil
+
 let combine_options = List.fold_left UInt.logor UInt.zero
+
+(* NSObject *)
+
+let alloc self = msg_send' ~self ~cmd: (selector "alloc")
+
+let dealloc self =
+  msg_send ~self ~cmd: (selector "dealloc") ~t: (returning void)
+
+let init self = msg_send' ~self ~cmd: (selector "init")
+
+let new' self = msg_send' ~self ~cmd: (selector "new")
+
+let retain self = msg_send' ~self ~cmd: (selector "retain")
+
+let release self =
+  msg_send ~self ~cmd: (selector "release") ~t: (returning void)
+
+let autorelease self = msg_send' ~self ~cmd: (selector "autorelease")
+
+(** Release ObjC object when OCaml ptr is garbage collected. *)
+let gc_autorelease self =
+  Gc.finalise release self;
+  self
+
+(* NSString *)
+
+let nsstring = get_class "NSString"
 
 let description self = msg_send' ~self ~cmd: (selector "description")
 
@@ -53,11 +86,10 @@ let utf8_string self =
 let init_with_utf8_string str self =
   msg_send ~self
     ~cmd: (selector "initWithUTF8String:")
-    ~t: (string @-> returning obj)
+    ~t: (string @-> returning id)
     str
 
-let nsstring = get_class "NSString"
-
+(** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
   nsstring
   |> alloc
@@ -67,12 +99,14 @@ let new_string str =
 let url_with_string str self =
   msg_send ~self
     ~cmd: (selector "URLWithString:")
-    ~t: (obj @-> returning obj)
+    ~t: (id @-> returning id)
     str
 
 let string_of_selector s =
   nsstring_of_selector s
   |> utf8_string
+
+(* NSURL *)
 
 let new_url str =
   get_class "NSURL"
@@ -81,5 +115,5 @@ let new_url str =
 let request_with_url url self =
   msg_send ~self
     ~cmd: (selector "requestWithURL:")
-    ~t: (obj @-> returning obj)
+    ~t: (id @-> returning id)
     url

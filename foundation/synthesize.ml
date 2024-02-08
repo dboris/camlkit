@@ -24,7 +24,7 @@ let obj_getter ~ivar_name ~ivar_t ~enc =
   and imp self _cmd =
     let ivr =
       get_class_instance_variable
-        ~self:(get_object_class self)
+        ~self: (get_object_class self)
         ~name:ivar_name
     in
     ivar_value ~self ~ivar:ivr

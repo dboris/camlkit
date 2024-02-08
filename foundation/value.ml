@@ -10,17 +10,17 @@ type t =
 type class_t = unit ptr
 type object_t = unit ptr
 type selector_t = char ptr
-type impl_t = unit ptr
+type imp_t = unit ptr
 type protocol_t = unit ptr
 type ivar_t = unit ptr
 
-let cls = ptr void
-let obj = ptr void
-let sel = ptr char
-let impl = ptr void
-let impl_sig = string
-let proto = ptr void
-let ivar = ptr void
+let id = ptr void
+let _Class = ptr void
+let _SEL = ptr char
+let _IMP = ptr void
+let _IMP_enc = string
+let _Protocol = ptr void
+let _Ivar = ptr void
 
 (* See https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html *)
 let encode_t = function

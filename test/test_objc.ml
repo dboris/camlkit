@@ -12,7 +12,7 @@ let test_object_description () =
 let test_add_method () =
   let added =
     add_method
-      ~self:(get_class "NSObject")
+      ~self: (get_class "NSObject")
       ~cmd: (selector "addOneTo:")
       ~t: (int @-> returning int)
       ~imp: (fun _self _cmd x -> x + 1)
@@ -23,7 +23,7 @@ let test_add_method () =
 let test_added_method x () =
   let y =
     msg_send
-      ~self:(get_class "NSObject" |> new')
+      ~self: (get_class "NSObject" |> new')
       ~cmd: (selector "addOneTo:")
       ~t: (int @-> returning int)
       x
@@ -52,7 +52,7 @@ let test_define_class_with_methods () =
   in
   let c = define_class name ~methods in
   let defined = not (is_null c)
-  and y = msg_send ~self:(new' c) ~cmd ~t x
+  and y = msg_send ~self: (new' c) ~cmd ~t x
   in
   A.check A.bool "class ptr not null" defined true;
   A.check A.int "x was doubled" y (x * 2)
@@ -87,12 +87,12 @@ let test_add_protocol () =
   and methods = [
     method_spec
       ~cmd: (selector "encodeWithCoder:")
-      ~t: (obj @-> returning void)
+      ~t: (id @-> returning void)
       ~imp: (fun _self _cmd _coder -> ())
       ~enc: (encode ~args:[Id] Void)
   ; method_spec
       ~cmd: (selector "initWithCoder:")
-      ~t: (obj @-> returning obj)
+      ~t: (id @-> returning id)
       ~imp: (fun self _cmd _coder -> self)
       ~enc: (encode ~args:[Id] Id)
   ]
@@ -135,23 +135,23 @@ let test_add_obj_ivar ~name x () =
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
-        ~ivar_t:obj
+        ~ivar_t:id
         ~enc: (encode Id)
     ; Synthesize.setter
         ~ivar_name:"myVar"
-        ~ivar_t:obj
+        ~ivar_t:id
         ~enc: (encode ~args:[Id] Void)
     ]
   in
   let o = new' (define_class name ~ivars ~methods) in
   msg_send ~self:o
     ~cmd: (selector "setMyVar:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     x;
   let v =
     msg_send ~self:o
       ~cmd: (selector "myVar")
-      ~t: (returning obj)
+      ~t: (returning id)
   in
   A.check A.string "set value and get same value" (utf8_string x) (utf8_string v)
 

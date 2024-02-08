@@ -1,6 +1,5 @@
 open Foundation
 open Appkit
-open Objc
 
 let win_width = 300.
 let win_height = 200.

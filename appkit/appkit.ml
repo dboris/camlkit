@@ -57,13 +57,13 @@ module AppDelegate = struct
       ~methods:
         [ method_spec
           ~cmd: (selector "applicationDidFinishLaunching:")
-          ~t: (obj @-> returning void)
+          ~t: (id @-> returning void)
           ~enc: (encode ~args:[Id] Void)
           ~imp: (fun _self _cmd notification ->
             D.on_started notification)
         ; method_spec
           ~cmd: (selector "applicationWillTerminate:")
-          ~t: (obj @-> returning void)
+          ~t: (id @-> returning void)
           ~enc: (encode ~args:[Id] Void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_terminate notification)
@@ -77,7 +77,7 @@ let shared_application self =
 let set_delegate delegate self =
   msg_send ~self
     ~cmd: (selector "setDelegate:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     delegate
 
 let set_activation_policy policy self =
@@ -89,7 +89,7 @@ let set_activation_policy policy self =
 let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
   msg_send ~self
     ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
-    ~t: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning obj)
+    ~t: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
     rect (combine_options style_mask) backing defer
 
 let cascade_top_left_from_point pt self =
@@ -101,13 +101,13 @@ let cascade_top_left_from_point pt self =
 let set_title title self =
   msg_send ~self
     ~cmd: (selector "setTitle:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     title
 
 let make_key_and_order_front ~sender self =
   msg_send ~self
     ~cmd: (selector "makeKeyAndOrderFront:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     sender
 
 let activate_ignoring_other_apps flag self =
@@ -122,19 +122,19 @@ let run self =
 let init_with_frame (frame : Rect.t structure) self =
   msg_send ~self
     ~cmd: (selector "initWithFrame:")
-    ~t: (Rect.t @-> returning obj)
+    ~t: (Rect.t @-> returning id)
     frame
 
 let set_target target self =
   msg_send ~self
     ~cmd: (selector "setTarget:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     target
 
 let set_action action self =
   msg_send ~self
     ~cmd: (selector "setAction:")
-    ~t: (sel @-> returning void)
+    ~t: (_SEL @-> returning void)
     action
 
 let content_view self = msg_send' ~self ~cmd: (selector "contentView")
@@ -142,7 +142,7 @@ let content_view self = msg_send' ~self ~cmd: (selector "contentView")
 let add_subview view self =
   msg_send ~self
     ~cmd: (selector "addSubview:")
-    ~t: (obj @-> returning void)
+    ~t: (id @-> returning void)
     view
 
 let set_frame (frame : Rect.t structure) self =
@@ -176,6 +176,6 @@ module Label = struct
     msg_send
       ~self: (get_class "NSTextField")
       ~cmd: (selector "labelWithString:")
-      ~t: (obj @-> returning obj)
+      ~t: (id @-> returning id)
       title
 end

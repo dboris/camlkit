@@ -47,26 +47,3 @@ let define_class
   self
 
 let nil = null
-
-let msg_send' = msg_send ~t: (returning obj)
-
-let alloc self = msg_send' ~self ~cmd: (selector "alloc")
-
-let dealloc self =
-  msg_send ~self ~cmd: (selector "dealloc") ~t: (returning void)
-
-let init self = msg_send' ~self ~cmd: (selector "init")
-
-let new' self = msg_send' ~self ~cmd: (selector "new")
-
-let retain self = msg_send' ~self ~cmd: (selector "retain")
-
-let release self =
-  msg_send ~self ~cmd: (selector "release") ~t: (returning void)
-
-let autorelease self = msg_send' ~self ~cmd: (selector "autorelease")
-
-(** Release ObjC object when OCaml ptr is garbage collected. *)
-let gc_autorelease self =
-  Gc.finalise release self;
-  self

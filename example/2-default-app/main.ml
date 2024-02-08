@@ -1,6 +1,5 @@
 open Appkit
 open Foundation
-open Objc
 
 let main () =
   let module D = AppDelegate.Create(App_delegate) in
@@ -17,8 +16,8 @@ let main () =
   and argv =
     Sys.argv
     |> Array.to_list
-    |> CArray.of_list string
-    |> CArray.start
+    |> Objc.(CArray.of_list string)
+    |> Objc.CArray.start
   in
 
   app |> set_delegate delegate;
