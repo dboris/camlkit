@@ -5,20 +5,10 @@ open Appkit
 let win_width = 400.
 let win_height = 300.
 
-let make_button ~title ~frame ~target ~action =
-  let btn =
-    get_class "NSButton"
-    |> alloc
-    |> init_with_frame frame
-    |> gc_autorelease
-  in
-  btn |> set_target target;
-  btn |> set_action action;
-  btn |> set_title title;
-  btn
-
 let show () =
-  let app = shared_application (get_class "NSApplication")
+  let app =
+    shared_application (get_class "NSApplication")
+
   and win =
     alloc (get_class "NSWindow")
     |> init_with_content_rect
@@ -27,7 +17,7 @@ let show () =
       ~backing: BackingStoreType.buffered
   in
   let btn =
-    make_button
+    Button.create
       ~title: (new_string "Quit")
       ~target: app
       ~action: (selector "terminate:")

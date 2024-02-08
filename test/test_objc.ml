@@ -13,10 +13,10 @@ let test_add_method () =
   let added =
     add_method
       ~self:(get_class "NSObject")
-      ~cmd:(selector "addOneTo:")
-      ~t:(int @-> returning int)
-      ~imp:(fun _self _cmd x -> x + 1)
-      ~enc:(encode ~args:[Int] Int)
+      ~cmd: (selector "addOneTo:")
+      ~t: (int @-> returning int)
+      ~imp: (fun _self _cmd x -> x + 1)
+      ~enc: (encode ~args:[Int] Int)
   in
   A.check A.bool "true result" added true
 
@@ -24,8 +24,8 @@ let test_added_method x () =
   let y =
     msg_send
       ~self:(get_class "NSObject" |> new')
-      ~cmd:(selector "addOneTo:")
-      ~t:(int @-> returning int)
+      ~cmd: (selector "addOneTo:")
+      ~t: (int @-> returning int)
       x
   in
   A.check A.int "x was incremented" y (x + 1)
@@ -65,10 +65,10 @@ let dealloc_spec called_flag =
     dealloc (get_superclass self)
   in
   method_spec
-    ~cmd:(selector "dealloc")
-    ~t:(returning void)
+    ~cmd: (selector "dealloc")
+    ~t: (returning void)
     ~imp
-    ~enc:(encode Void)
+    ~enc: (encode Void)
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -86,15 +86,15 @@ let test_add_protocol () =
   and protocols = [get_protocol "NSCoding"]
   and methods = [
     method_spec
-      ~cmd:(selector "encodeWithCoder:")
-      ~t:(obj @-> returning void)
-      ~imp:(fun _self _cmd _coder -> ())
-      ~enc:(encode ~args:[Id] Void)
+      ~cmd: (selector "encodeWithCoder:")
+      ~t: (obj @-> returning void)
+      ~imp: (fun _self _cmd _coder -> ())
+      ~enc: (encode ~args:[Id] Void)
   ; method_spec
-      ~cmd:(selector "initWithCoder:")
-      ~t:(obj @-> returning obj)
-      ~imp:(fun self _cmd _coder -> self)
-      ~enc:(encode ~args:[Id] Id)
+      ~cmd: (selector "initWithCoder:")
+      ~t: (obj @-> returning obj)
+      ~imp: (fun self _cmd _coder -> self)
+      ~enc: (encode ~args:[Id] Id)
   ]
   in
   let c = define_class ~protocols ~methods name
@@ -105,53 +105,53 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc:(encode ~meth:false Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode ~meth:false Int)]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
         ~ivar_t:int
-        ~enc:(encode Int)
+        ~enc: (encode Int)
     ; Synthesize.setter
         ~ivar_name:"myVar"
         ~ivar_t:int
-        ~enc:(encode ~args:[Int] Void)
+        ~enc: (encode ~args:[Int] Void)
     ]
   in
   let o = new' (define_class name ~ivars ~methods) in
   msg_send ~self:o
-    ~cmd:(selector "setMyVar:")
-    ~t:(int @-> returning void)
+    ~cmd: (selector "setMyVar:")
+    ~t: (int @-> returning void)
     x;
   let v =
     msg_send ~self:o
-      ~cmd:(selector "myVar")
-      ~t:(returning int)
+      ~cmd: (selector "myVar")
+      ~t: (returning int)
   in
   A.check A.int "set value and get same value" x v
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc:(encode ~meth:false Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode ~meth:false Int)]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
         ~ivar_t:obj
-        ~enc:(encode Id)
+        ~enc: (encode Id)
     ; Synthesize.setter
         ~ivar_name:"myVar"
         ~ivar_t:obj
-        ~enc:(encode ~args:[Id] Void)
+        ~enc: (encode ~args:[Id] Void)
     ]
   in
   let o = new' (define_class name ~ivars ~methods) in
   msg_send ~self:o
-    ~cmd:(selector "setMyVar:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "setMyVar:")
+    ~t: (obj @-> returning void)
     x;
   let v =
     msg_send ~self:o
-      ~cmd:(selector "myVar")
-      ~t:(returning obj)
+      ~cmd: (selector "myVar")
+      ~t: (returning obj)
   in
   A.check A.string "set value and get same value" (utf8_string x) (utf8_string v)
 

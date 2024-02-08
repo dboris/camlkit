@@ -45,15 +45,15 @@ end
 
 let combine_options = List.fold_left UInt.logor UInt.zero
 
-let description self = msg_send' ~self ~cmd:(selector "description")
+let description self = msg_send' ~self ~cmd: (selector "description")
 
 let utf8_string self =
-  msg_send ~self ~cmd:(selector "UTF8String") ~t:(returning string)
+  msg_send ~self ~cmd: (selector "UTF8String") ~t: (returning string)
 
 let init_with_utf8_string str self =
   msg_send ~self
-    ~cmd:(selector "initWithUTF8String:")
-    ~t:(string @-> returning obj)
+    ~cmd: (selector "initWithUTF8String:")
+    ~t: (string @-> returning obj)
     str
 
 let nsstring = get_class "NSString"
@@ -66,8 +66,8 @@ let new_string str =
 
 let url_with_string str self =
   msg_send ~self
-    ~cmd:(selector "URLWithString:")
-    ~t:(obj @-> returning obj)
+    ~cmd: (selector "URLWithString:")
+    ~t: (obj @-> returning obj)
     str
 
 let string_of_selector s =
@@ -80,6 +80,6 @@ let new_url str =
 
 let request_with_url url self =
   msg_send ~self
-    ~cmd:(selector "requestWithURL:")
-    ~t:(obj @-> returning obj)
+    ~cmd: (selector "requestWithURL:")
+    ~t: (obj @-> returning obj)
     url

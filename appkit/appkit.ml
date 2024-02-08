@@ -56,97 +56,126 @@ module AppDelegate = struct
       ~protocols:[]
       ~methods:
         [ method_spec
-          ~cmd:(selector "applicationDidFinishLaunching:")
-          ~t:(obj @-> returning void)
-          ~enc:(encode ~args:[Id] Void)
-          ~imp:(fun _self _cmd notification ->
+          ~cmd: (selector "applicationDidFinishLaunching:")
+          ~t: (obj @-> returning void)
+          ~enc: (encode ~args:[Id] Void)
+          ~imp: (fun _self _cmd notification ->
             D.on_started notification)
         ; method_spec
-          ~cmd:(selector "applicationWillTerminate:")
-          ~t:(obj @-> returning void)
-          ~enc:(encode ~args:[Id] Void)
-          ~imp:(fun _self _cmd notification ->
+          ~cmd: (selector "applicationWillTerminate:")
+          ~t: (obj @-> returning void)
+          ~enc: (encode ~args:[Id] Void)
+          ~imp: (fun _self _cmd notification ->
             D.on_before_terminate notification)
         ]
   end
 end
 
 let shared_application self =
-  msg_send' ~self ~cmd:(selector "sharedApplication")
+  msg_send' ~self ~cmd: (selector "sharedApplication")
 
 let set_delegate delegate self =
   msg_send ~self
-    ~cmd:(selector "setDelegate:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "setDelegate:")
+    ~t: (obj @-> returning void)
     delegate
 
 let set_activation_policy policy self =
   msg_send ~self
-    ~cmd:(selector "setActivationPolicy:")
-    ~t:(ActivationPolicy.t @-> returning bool)
+    ~cmd: (selector "setActivationPolicy:")
+    ~t: (ActivationPolicy.t @-> returning bool)
     policy
 
 let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
   msg_send ~self
-    ~cmd:(selector "initWithContentRect:styleMask:backing:defer:")
-    ~t:(Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning obj)
+    ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
+    ~t: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning obj)
     rect (combine_options style_mask) backing defer
 
 let cascade_top_left_from_point pt self =
   msg_send ~self
-    ~cmd:(selector "cascadeTopLeftFromPoint:")
-    ~t:(Point.t @-> returning void)
+    ~cmd: (selector "cascadeTopLeftFromPoint:")
+    ~t: (Point.t @-> returning void)
     pt
 
 let set_title title self =
   msg_send ~self
-    ~cmd:(selector "setTitle:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "setTitle:")
+    ~t: (obj @-> returning void)
     title
 
 let make_key_and_order_front ~sender self =
   msg_send ~self
-    ~cmd:(selector "makeKeyAndOrderFront:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "makeKeyAndOrderFront:")
+    ~t: (obj @-> returning void)
     sender
 
 let activate_ignoring_other_apps flag self =
   msg_send ~self
-    ~cmd:(selector "activateIgnoringOtherApps:")
-    ~t:(bool @-> returning void)
+    ~cmd: (selector "activateIgnoringOtherApps:")
+    ~t: (bool @-> returning void)
     flag
 
 let run self =
-  msg_send ~self ~cmd:(selector "run") ~t:(returning void)
+  msg_send ~self ~cmd: (selector "run") ~t: (returning void)
 
 let init_with_frame (frame : Rect.t structure) self =
   msg_send ~self
-    ~cmd:(selector "initWithFrame:")
-    ~t:(Rect.t @-> returning obj)
+    ~cmd: (selector "initWithFrame:")
+    ~t: (Rect.t @-> returning obj)
     frame
 
 let set_target target self =
   msg_send ~self
-    ~cmd:(selector "setTarget:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "setTarget:")
+    ~t: (obj @-> returning void)
     target
 
 let set_action action self =
   msg_send ~self
-    ~cmd:(selector "setAction:")
-    ~t:(sel @-> returning void)
+    ~cmd: (selector "setAction:")
+    ~t: (sel @-> returning void)
     action
 
-let content_view self = msg_send' ~self ~cmd:(selector "contentView")
+let content_view self = msg_send' ~self ~cmd: (selector "contentView")
 
 let add_subview view self =
   msg_send ~self
-    ~cmd:(selector "addSubview:")
-    ~t:(obj @-> returning void)
+    ~cmd: (selector "addSubview:")
+    ~t: (obj @-> returning void)
     view
+
+let set_frame (frame : Rect.t structure) self =
+  msg_send ~self
+    ~cmd: (selector "setFrame:")
+    ~t: (Rect.t @-> returning void)
+    frame
 
 (** Called by the main function to create and run the application. *)
 let application_main ~argc ~argv =
   Foreign.foreign "NSApplicationMain"
     (int @-> ptr string @-> returning int)
     argc argv
+
+module Button = struct
+  let create ~title ~frame ~target ~action =
+    let btn =
+      get_class "NSButton"
+      |> alloc
+      |> init_with_frame frame
+      |> gc_autorelease
+    in
+    btn |> set_target target;
+    btn |> set_action action;
+    btn |> set_title title;
+    btn
+end
+
+module Label = struct
+  let create title =
+    msg_send
+      ~self: (get_class "NSTextField")
+      ~cmd: (selector "labelWithString:")
+      ~t: (obj @-> returning obj)
+      title
+end

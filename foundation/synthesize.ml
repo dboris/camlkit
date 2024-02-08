@@ -7,7 +7,7 @@ let getter ~ivar_name ~ivar_t ~enc =
   and imp self _cmd =
     !@ (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t)
   in
-  method_spec ~cmd ~t:(returning ivar_t) ~imp ~enc
+  method_spec ~cmd ~t: (returning ivar_t) ~imp ~enc
 
 (** Setter for non-object values. *)
 let setter ~ivar_name ~ivar_t ~enc =
@@ -16,7 +16,7 @@ let setter ~ivar_name ~ivar_t ~enc =
   and imp self _cmd value =
     (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t) <-@ value
   in
-  method_spec ~cmd ~t:(ivar_t @-> returning void) ~imp ~enc
+  method_spec ~cmd ~t: (ivar_t @-> returning void) ~imp ~enc
 
 (** Getter for object values. *)
 let obj_getter ~ivar_name ~ivar_t ~enc =
@@ -29,7 +29,7 @@ let obj_getter ~ivar_name ~ivar_t ~enc =
     in
     ivar_value ~self ~ivar:ivr
   in
-  method_spec ~cmd ~t:(returning ivar_t) ~imp ~enc
+  method_spec ~cmd ~t: (returning ivar_t) ~imp ~enc
 
 (** Setter for object values. *)
 let obj_setter ~ivar_name ~t ~enc =
