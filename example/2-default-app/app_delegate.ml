@@ -1,16 +1,21 @@
 open Foundation
 open Appkit
 
-let on_before_start _ =
-  let menu = Main_menu.create "Demo App"
-  and app = shared_application (get_class "NSApplication")
+let app_name = "2-default-app"
+
+let on_before_start notification =
+  let menu = Main_menu.create app_name
+  and app = Notification.object' notification
   in
   app |> set_main_menu menu
 ;;
 
 let on_started notification =
   let app = Notification.object' notification in
-  Main_window.create app
+  let win = Main_window.create app in
+  win |> set_title (new_string app_name);
+  win |> cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
+  win |> make_key_and_order_front ~sender: nil
 ;;
 
 let on_before_terminate _ = ()

@@ -5,15 +5,11 @@ let label = Label.create ""
 let increment_sel = selector "incrementClicked:"
 
 let update_label () =
-  let count =
-    !Model.count
-    |> string_of_int
-    |> new_string
-  in
-  label |> set_property "stringValue" count;
+  let count = Model.get_count () |> string_of_int  in
+  label |> set_property "stringValue" (new_string count)
 ;;
 
-let increment_count _self _cmd _sender =
+let increment_count_method _self _cmd _sender =
   Model.increment ();
   update_label ()
 ;;
@@ -23,10 +19,8 @@ let controller_class =
   define_class "MyController"
     ~methods:
       [ method_spec
-        ~cmd: increment_sel
-        ~t: (id @-> returning void)
-        ~enc: (encode ~args:[Id] Void)
-        ~imp: increment_count
+        ~cmd: increment_sel ~t: (id @-> returning void)
+        ~enc: (encode ~args:[Id] Void) ~imp: increment_count_method
       ]
 ;;
 
@@ -46,20 +40,14 @@ let create _app =
   let btn =
     Button.create
       ~title: (new_string "Increment")
-      ~target: controller
-      ~action: increment_sel
-      ~frame: (Rect.make
-        ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.)
+      ~target: controller ~action: increment_sel
+      ~frame: (Rect.make ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.)
   in
   update_label ();
 
-  label |> set_frame (Rect.make
-    ~x: 20. ~y: (h -. 45.) ~width: 50. ~height: 30.);
+  label |> set_frame (Rect.make ~x: 20. ~y: (h -. 45.) ~width: 50. ~height: 30.);
 
   win |> content_view |> add_subview label;
   win |> content_view |> add_subview btn;
-
-  win |> set_title (new_string "Demo App");
-  win |> cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
-  win |> make_key_and_order_front ~sender: nil
+  win
 ;;

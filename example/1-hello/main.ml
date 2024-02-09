@@ -17,21 +17,21 @@ let create_window app =
       ~title: (new_string "Quit")
       ~target: app
       ~action: (selector "terminate:")
-      ~frame: (Rect.make
-        ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
+      ~frame: (Rect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
 
   and label =
     Label.create "Hello, world!"
   in
 
-  label |> set_frame (Rect.make
-    ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+  label
+  |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
   win |> content_view |> add_subview label;
   win |> content_view |> add_subview btn;
 
   win |> set_title (new_string "1-Hello");
   win
+;;
 
 let main () =
   let app = shared_application (get_class "NSApplication") in
@@ -44,5 +44,6 @@ let main () =
   app |> activate_ignoring_other_apps true;
 
   run app
+;;
 
 let () = main ()

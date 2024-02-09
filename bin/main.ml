@@ -46,7 +46,7 @@ let webview url frame =
   webview
 
 let main () =
-  let _mempool = new' (get_class "NSAutoreleasePool")
+  let _ = new_object "NSAutoreleasePool"
   and app = get_class "NSApplication" |> shared_application
   and win = app_window ()
   and url = new_url "http://example.com/"

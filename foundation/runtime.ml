@@ -35,8 +35,6 @@ let msg_send_vo = msg_send ~t: (returning id)
 (** Shortcut for type [id @-> void] *)
 let msg_send_ov = msg_send ~t: (id @-> returning void)
 
-let msg_send' = msg_send ~t: (returning id)
-
 let add_method ~self ~cmd ~t ~imp ~enc =
   let method_t = id @-> _SEL @-> t in
   let ty =
