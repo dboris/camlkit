@@ -41,8 +41,20 @@ end
 
 module AppDelegate = struct
   module type S = sig
+
+    (** Tells the delegate that the app's initialization is about to complete. *)
+    val on_before_start : object_t -> unit
+
+    (** Tells the delegate that the launch process is almost done and the app
+        is almost ready to run. *)
     val on_started : object_t -> unit
+
+    (** Tells the delegate that the app is about to terminate. *)
     val on_before_terminate : object_t -> unit
+
+    (** Returns a Boolean value that indicates if the app terminates once
+        the last window closes.  *)
+    val terminate_on_windows_closed : object_t -> bool
   end
 
   module Create (D : S) = struct
@@ -52,32 +64,47 @@ module AppDelegate = struct
       https://stackoverflow.com/questions/10212119/objc-getprotocol-returns-null-for-nsapplicationdelegate
       But it's an informal protocol, not required for the code to function.
     *)
+
+
     let class' = define_class "AppDelegate"
-      ~protocols:[]
       ~methods:
         [ method_spec
+          ~cmd: (selector "applicationWillFinishLaunching:")
+          ~t: (id @-> returning void)
+          ~enc: (encode ~args:[Id] Void)
+          ~imp: (fun _self _cmd notification ->
+            D.on_before_start notification)
+
+        ; method_spec
           ~cmd: (selector "applicationDidFinishLaunching:")
           ~t: (id @-> returning void)
           ~enc: (encode ~args:[Id] Void)
           ~imp: (fun _self _cmd notification ->
             D.on_started notification)
+
         ; method_spec
           ~cmd: (selector "applicationWillTerminate:")
           ~t: (id @-> returning void)
           ~enc: (encode ~args:[Id] Void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_terminate notification)
+
+        ; method_spec
+          ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
+          ~t: (id @-> returning bool)
+          ~enc: (encode ~args:[Id] Bool)
+          ~imp: (fun _self _cmd notification ->
+            D.terminate_on_windows_closed notification)
         ]
   end
 end
 
 let shared_application self =
-  msg_send' ~self ~cmd: (selector "sharedApplication")
+  msg_send_vo ~self ~cmd: (selector "sharedApplication")
 
 let set_delegate delegate self =
-  msg_send ~self
+  msg_send_ov ~self
     ~cmd: (selector "setDelegate:")
-    ~t: (id @-> returning void)
     delegate
 
 let set_activation_policy policy self =
@@ -91,6 +118,9 @@ let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
     ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
     ~t: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
     rect (combine_options style_mask) backing defer
+;;
+
+(* NSWindow *)
 
 let cascade_top_left_from_point pt self =
   msg_send ~self
@@ -99,15 +129,31 @@ let cascade_top_left_from_point pt self =
     pt
 
 let set_title title self =
-  msg_send ~self
+  msg_send_ov ~self
     ~cmd: (selector "setTitle:")
-    ~t: (id @-> returning void)
     title
+;;
 
-let make_key_and_order_front ~sender self =
+(** Attempts to make a given responder the first responder for the window. *)
+let make_first_responder responder self =
   msg_send ~self
+    ~cmd: (selector "cascadeTopLeftFromPoint:")
+    ~t: (id @-> returning bool)
+    responder
+;;
+
+(* NSApplication *)
+
+let set_main_menu menu self =
+  msg_send_ov ~self menu
+    ~cmd: (selector "setMainMenu:")
+;;
+
+(** Moves the window to the front of the screen list, within its level,
+    and makes it the key window; that is, it shows the window. *)
+let make_key_and_order_front ~sender self =
+  msg_send_ov ~self
     ~cmd: (selector "makeKeyAndOrderFront:")
-    ~t: (id @-> returning void)
     sender
 
 let activate_ignoring_other_apps flag self =
@@ -126,9 +172,8 @@ let init_with_frame (frame : Rect.t structure) self =
     frame
 
 let set_target target self =
-  msg_send ~self
+  msg_send_ov ~self
     ~cmd: (selector "setTarget:")
-    ~t: (id @-> returning void)
     target
 
 let set_action action self =
@@ -137,12 +182,11 @@ let set_action action self =
     ~t: (_SEL @-> returning void)
     action
 
-let content_view self = msg_send' ~self ~cmd: (selector "contentView")
+let content_view self = msg_send_vo ~self ~cmd: (selector "contentView")
 
 let add_subview view self =
-  msg_send ~self
+  msg_send_ov ~self
     ~cmd: (selector "addSubview:")
-    ~t: (id @-> returning void)
     view
 
 let set_frame (frame : Rect.t structure) self =
@@ -156,6 +200,44 @@ let application_main ~argc ~argv =
   Foreign.foreign "NSApplicationMain"
     (int @-> ptr string @-> returning int)
     argc argv
+;;
+
+(* NSMenu *)
+
+(** Initializes and returns a menu having the specified title and with
+    autoenabling of menu items turned on. *)
+let init_with_title title self =
+  msg_send ~self
+    ~cmd: (selector "initWithTitle:")
+    ~t: (id @-> returning id)
+    (new_string title)
+;;
+
+(** Assigns a menu to be a submenu of the menu controlled by a given menu item. *)
+let set_submenu menu self ~for_item =
+  msg_send ~self
+    ~cmd: (selector "setSubmenu:forItem:")
+    ~t: (id @-> id @-> returning void)
+    menu for_item
+;;
+
+(** Adds a menu item to the end of the menu. *)
+let add_item item self =
+  msg_send_ov ~self
+    ~cmd: (selector "addItem:")
+    item
+;;
+
+(** Creates a new menu item and adds it to the end of the menu. *)
+let add_item' self ~title ~action ~key_equivalent =
+  msg_send ~self
+    ~cmd: (selector "addItemWithTitle:action:keyEquivalent:")
+    ~t: (id @-> _SEL @-> id @-> returning id)
+    (new_string title)
+    action
+    (new_string key_equivalent)
+;;
+
 
 module Button = struct
   let create ~title ~frame ~target ~action =
@@ -177,5 +259,5 @@ module Label = struct
       ~self: (get_class "NSTextField")
       ~cmd: (selector "labelWithString:")
       ~t: (id @-> returning id)
-      title
+      (new_string title)
 end

@@ -27,6 +27,13 @@ let msg_send ~self ~cmd ~t =
   foreign "objc_msgSend"
     (id @-> _SEL @-> t)
     self cmd
+;;
+
+(** Shortcut for type [void @-> id] *)
+let msg_send_vo = msg_send ~t: (returning id)
+
+(** Shortcut for type [id @-> void] *)
+let msg_send_ov = msg_send ~t: (id @-> returning void)
 
 let msg_send' = msg_send ~t: (returning id)
 

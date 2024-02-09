@@ -12,7 +12,7 @@ let getter ~ivar_name ~ivar_t ~enc =
 (** Setter for non-object values. *)
 let setter ~ivar_name ~ivar_t ~enc =
   let cmd =
-    selector ("set" ^ String.capitalize_ascii ivar_name ^ ":")
+    selector (setter_name_of_ivar ivar_name)
   and imp self _cmd value =
     (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t) <-@ value
   in
@@ -34,7 +34,7 @@ let obj_getter ~ivar_name ~ivar_t ~enc =
 (** Setter for object values. *)
 let obj_setter ~ivar_name ~t ~enc =
   let cmd =
-    selector ("set" ^ String.capitalize_ascii ivar_name ^ ":")
+    selector (setter_name_of_ivar ivar_name)
   and imp self _cmd value =
     (* TODO release old, retain new *)
     set_instance_variable ~self ~name:ivar_name ~value
