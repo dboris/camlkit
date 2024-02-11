@@ -18,11 +18,13 @@ let id = ptr void
 let _Class = ptr void
 let _SEL = ptr char
 let _IMP = ptr void
-let _IMP_enc = string
+let _Enc = string
 let _Protocol = ptr void
 let _Ivar = ptr void
 
-(* See https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html *)
+(* See
+   https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+ *)
 let encode_t = function
   | Id -> "@"
   | Class -> "#"
@@ -36,11 +38,11 @@ let encode_t = function
   | Float -> "f"
   | Double -> "d"
 
-let encode ?(args = []) ?(meth = true) ret_t =
-  begin if meth then
-    List.append [ret_t; Id; Sel] args
-  else
-    [ret_t]
-  end
-  |> List.map encode_t
-  |> String.concat ""
+let encode ?args return =
+  match args with
+  | Some args ->
+    [return; Id; Sel] @ args
+    |> List.map encode_t
+    |> String.concat ""
+  | None ->
+    encode_t return

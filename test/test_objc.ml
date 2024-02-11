@@ -105,7 +105,7 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode ~meth:false Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode Int)]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
@@ -131,7 +131,7 @@ let test_add_ivar ~name x () =
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode ~meth:false Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode Int)]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"

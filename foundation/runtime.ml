@@ -38,7 +38,7 @@ let msg_send_ov = msg_send ~t: (id @-> returning void)
 let add_method ~self ~cmd ~t ~imp ~enc =
   let method_t = id @-> _SEL @-> t in
   let ty =
-    _Class @-> _SEL @-> funptr method_t @-> _IMP_enc @-> returning bool in
+    _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
   foreign "class_addMethod" ty self cmd imp enc
 
 (** Creates a new class and metaclass.
@@ -68,7 +68,7 @@ let conforms_to_protocol =
 (** Adds a new instance variable to a class. *)
 let add_ivar ~self ~name ~size ~enc =
   foreign "class_addIvar"
-    (_Class @-> string @-> size_t @-> uint8_t @-> _IMP_enc @-> returning bool)
+    (_Class @-> string @-> size_t @-> uint8_t @-> _Enc @-> returning bool)
     self name size (alignment_of_size size) enc
 
 (** Returns the Ivar for a specified instance variable of a given class. *)

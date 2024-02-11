@@ -18,11 +18,11 @@ val id : object_t typ
 val _Class : class_t typ
 val _SEL : selector_t typ
 val _IMP : imp_t typ
-val _IMP_enc : string typ
+val _Enc : string typ
 val _Protocol : protocol_t typ
 val _Ivar : ivar_t typ
 
 val encode_t : t -> string
 
-val encode : ?args:t list -> ?meth:bool -> t -> string
-(** Encode value or method signature with args and return types. *)
+val encode : ?args:t list -> t -> string
+(** Encode a value or method signature. *)

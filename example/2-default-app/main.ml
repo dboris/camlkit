@@ -15,6 +15,7 @@ let main () =
   in
   assert (app |> set_activation_policy ActivationPolicy.regular);
   app |> set_delegate (new' Delegate.class');
+  app |> activate_ignoring_other_apps true;
   application_main ~argc ~argv |> exit
 ;;
 
