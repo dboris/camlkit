@@ -9,10 +9,10 @@ type 'a method_spec =
   ; enc : string
   }
 
-type method_spec' = MethSpec : 'a method_spec -> method_spec'
+type method_spec' = MethodSpec : 'a method_spec -> method_spec'
 
 let method_spec ~cmd ~t ~imp ~enc =
-  MethSpec {cmd; t; imp; enc}
+  MethodSpec {cmd; t; imp; enc}
 
 type 'a ivar_spec =
   { name : string
@@ -34,7 +34,7 @@ let define_class
   =
   let self = allocate_class ~superclass name in
   if not (is_null self) then begin
-    methods |> List.iter (fun (MethSpec {cmd; t; imp; enc}) ->
+    methods |> List.iter (fun (MethodSpec {cmd; t; imp; enc}) ->
       assert (add_method ~self ~cmd ~t ~imp ~enc));
     protocols |> List.iter (fun proto ->
       assert (not (is_null proto));

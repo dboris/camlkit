@@ -16,7 +16,7 @@ let test_add_method () =
       ~cmd: (selector "addOneTo:")
       ~t: (int @-> returning int)
       ~imp: (fun _self _cmd x -> x + 1)
-      ~enc: (encode ~args:[Int] Int)
+      ~enc: Encode.(method' ~args:[int] int)
   in
   A.check A.bool "true result" added true
 
@@ -45,7 +45,7 @@ let test_define_class_with_methods () =
   and cmd = selector "doubleOf:"
   and t = int @-> returning int
   and imp _self _cmd x = x * 2
-  and enc = encode ~args:[Int] Int
+  and enc = Encode.(method' ~args:[int] int)
   in
   let methods = [method_spec ~cmd ~t ~imp ~enc]
   and x = 5
@@ -68,7 +68,7 @@ let dealloc_spec called_flag =
     ~cmd: (selector "dealloc")
     ~t: (returning void)
     ~imp
-    ~enc: (encode Void)
+    ~enc: Encode.void
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -89,12 +89,12 @@ let test_add_protocol () =
       ~cmd: (selector "encodeWithCoder:")
       ~t: (id @-> returning void)
       ~imp: (fun _self _cmd _coder -> ())
-      ~enc: (encode ~args:[Id] Void)
+      ~enc: Encode.(method' ~args:[id] void)
   ; method_spec
       ~cmd: (selector "initWithCoder:")
       ~t: (id @-> returning id)
       ~imp: (fun self _cmd _coder -> self)
-      ~enc: (encode ~args:[Id] Id)
+      ~enc: Encode.(method' ~args:[id] id)
   ]
   in
   let c = define_class ~protocols ~methods name
@@ -105,16 +105,16 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: Encode.int]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
         ~ivar_t:int
-        ~enc: (encode Int)
+        ~enc: Encode.int
     ; Synthesize.setter
         ~ivar_name:"myVar"
         ~ivar_t:int
-        ~enc: (encode ~args:[Int] Void)
+        ~enc: Encode.(method' ~args:[int] void)
     ]
   in
   let o = new' (define_class name ~ivars ~methods) in
@@ -131,16 +131,16 @@ let test_add_ivar ~name x () =
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: (encode Int)]
+    [ivar_spec ~name:"myVar" ~t:int ~enc: Encode.int]
   and methods =
     [ Synthesize.getter
         ~ivar_name:"myVar"
         ~ivar_t:id
-        ~enc: (encode Id)
+        ~enc: Encode.id
     ; Synthesize.setter
         ~ivar_name:"myVar"
         ~ivar_t:id
-        ~enc: (encode ~args:[Id] Void)
+        ~enc: Encode.(method' ~args:[id] void)
     ]
   in
   let o = new' (define_class name ~ivars ~methods) in

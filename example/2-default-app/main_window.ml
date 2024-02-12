@@ -20,7 +20,8 @@ let controller_class =
     ~methods:
       [ method_spec
         ~cmd: increment_sel ~t: (id @-> returning void)
-        ~enc: (encode ~args:[Id] Void) ~imp: increment_count_method
+        ~enc: Encode.(method' ~args:[id] void)
+        ~imp: increment_count_method
       ]
 ;;
 

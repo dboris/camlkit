@@ -71,28 +71,28 @@ module AppDelegate = struct
         [ method_spec
           ~cmd: (selector "applicationWillFinishLaunching:")
           ~t: (id @-> returning void)
-          ~enc: (encode ~args:[Id] Void)
+          ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_start notification)
 
         ; method_spec
           ~cmd: (selector "applicationDidFinishLaunching:")
           ~t: (id @-> returning void)
-          ~enc: (encode ~args:[Id] Void)
+          ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_started notification)
 
         ; method_spec
           ~cmd: (selector "applicationWillTerminate:")
           ~t: (id @-> returning void)
-          ~enc: (encode ~args:[Id] Void)
+          ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_terminate notification)
 
         ; method_spec
           ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
           ~t: (id @-> returning bool)
-          ~enc: (encode ~args:[Id] Bool)
+          ~enc: Encode.(method' ~args:[id] bool)
           ~imp: (fun _self _cmd notification ->
             D.terminate_on_windows_closed notification)
         ]
