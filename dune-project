@@ -35,3 +35,15 @@
   (alcotest :with-test))
  (tags
   (objc bindings cocoa)))
+
+(package
+ (name cocoa-examples)
+ (synopsis "Cocoa applications examples")
+ (description "TODO")
+ (depends
+  ocaml
+  dune
+  (foundation (= :version))
+  (appkit (= :version)))
+ (tags
+  (objc bindings cocoa)))

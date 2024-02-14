@@ -14,6 +14,13 @@ module Encode = struct
   let short = "s"
   let float = "f"
   let double = "d"
+  let long = "l"
+  let long_long = "q"
+  let unknown = "?"
+  let ptr ty = "^" ^ ty
+  let arr ty = "[" ^ ty ^ "]"
+  let struc ty = "{" ^ ty ^ "}"
+  let union ty = "(" ^ ty ^ ")"
 
   let method' ?args return =
     match args with

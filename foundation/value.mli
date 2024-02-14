@@ -22,6 +22,13 @@ module Encode : sig
   val short : t
   val float : t
   val double : t
+  val long : t
+  val long_long : t
+  val unknown : t
+  val ptr : t -> t
+  val arr : t -> t
+  val struc : t -> t
+  val union : t -> t
 
   val method' : ?args:t list -> t -> t
 end
