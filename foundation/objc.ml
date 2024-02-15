@@ -26,24 +26,28 @@ let ivar_spec ~name ~t ~enc =
   IvarSpec {name; t; enc}
 
 let define_class
-  ?(superclass = get_class "NSObject")
-  ?(protocols = [])
-  ?(ivars = [])
-  ?(methods = [])
-  name
-  =
+?(superclass = get_class "NSObject")
+?(protocols = [])
+?(ivars = [])
+?(methods = [])
+name
+=
   let self = allocate_class ~superclass name in
-  if not (is_null self) then begin
-    methods |> List.iter (fun (MethodSpec {cmd; t; imp; enc}) ->
-      assert (add_method ~self ~cmd ~t ~imp ~enc));
-    protocols |> List.iter (fun proto ->
-      assert (not (is_null proto));
-      assert (add_protocol self proto));
-    ivars |> List.iter (fun (IvarSpec {name; t; enc}) ->
-      let size = Unsigned.Size_t.of_int (sizeof t) in
-      assert (add_ivar ~self ~name ~size ~enc));
-    register_class self
-  end;
+  if (is_null self) then failwith "Allocate class failed";
+
+  methods |> List.iter (fun (MethodSpec {cmd; t; imp; enc}) ->
+    assert (add_method ~self ~cmd ~t ~imp ~enc));
+
+  protocols |> List.iter (fun proto ->
+    assert (not (is_null proto));
+    assert (add_protocol self proto));
+
+  ivars |> List.iter (fun (IvarSpec {name; t; enc}) ->
+    let size = Unsigned.Size_t.of_int (sizeof t) in
+    assert (add_ivar ~self ~name ~size ~enc));
+
+  register_class self;
   self
+;;
 
 let nil = null

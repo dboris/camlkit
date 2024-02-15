@@ -36,9 +36,10 @@ let test_define_class () =
   A.check A.bool "class ptr not null" defined true
 
 let test_redefine_class_fails () =
-  let c = define_class "MyClass1" in
-  let defined = not (is_null c) in
-  A.check A.bool "class ptr is null" defined false
+  A.check_raises
+    "failure to allocate class"
+    (Failure "Allocate class failed")
+    (fun () -> define_class "MyClass1" |> ignore)
 
 let test_define_class_with_methods () =
   let name = "MyClass2"
