@@ -57,6 +57,32 @@ module Notification = struct
   ;;
 end
 
+module Invocation = struct
+  (** Indices 0 and 1 indicate the hidden arguments self and _cmd, respectively.
+      Use indices 2 and greater for the arguments normally passed in a message.
+    *)
+  let get_argument ~t ~init ~at_index self =
+    let arg = allocate t init in
+    let () =
+      msg_send ~self
+        ~cmd: (selector "getArgument:atIndex:")
+        ~t: (ptr void @-> int @-> returning void)
+        (to_voidp arg)
+        at_index
+    in
+    !@ arg
+  ;;
+
+  (** Sets the receiver’s return value. *)
+  let set_return_value ~t v self =
+    let result = allocate t v in
+    msg_send ~self
+      ~cmd: (selector "setReturnValue:")
+      ~t: (ptr void @-> returning void)
+      (to_voidp result)
+  ;;
+end
+
 let get_class = Objc.get_class
 
 let selector = Objc.selector

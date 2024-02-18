@@ -37,6 +37,19 @@
   (objc bindings cocoa)))
 
 (package
+ (name camlkit)
+ (synopsis "Higher-level Cocoa bindings")
+ (description "TODO")
+ (depends
+  ocaml
+  dune
+  (foundation (= :version))
+  (appkit (= :version))
+  (alcotest :with-test))
+ (tags
+  (objc bindings cocoa)))
+
+(package
  (name cocoa-examples)
  (synopsis "Cocoa applications examples")
  (description "TODO")

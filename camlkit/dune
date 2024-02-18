@@ -1,0 +1,4 @@
+(library
+ (name camlkit)
+ (public_name camlkit)
+ (libraries foundation appkit))
