@@ -18,10 +18,14 @@ let test_define_custom_class () =
       ;;
 
       let handle_invocation inv =
-        let arg =
-          inv |> Invocation.get_argument ~at_index: 2 ~t: int ~init: 0
-        in
-        inv |> Invocation.set_return_value (arg * 2) ~t: int
+        let sel = inv |> Invocation.get_selector |> string_of_selector in
+        if String.equal sel my_sel then
+          let arg =
+            inv |> Invocation.get_argument ~at_index: 2 ~t: int ~init: 0
+          in
+          inv |> Invocation.set_return_value (arg * 2) ~t: int
+        else
+          raise Not_found
       ;;
     end)
   in

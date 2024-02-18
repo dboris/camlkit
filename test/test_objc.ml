@@ -5,7 +5,9 @@ module A = Alcotest
 
 let test_object_description () =
   let desc =
-    get_class "NSObject" |> alloc |> init |> description |> utf8_string
+    get_class "NSObject" |> alloc |> init
+    |> description
+    |> NSString.utf8_string
   in
   A.check A.string "same string" (String.sub desc 0 10) "<NSObject:"
 
@@ -60,7 +62,7 @@ let test_define_class_with_methods () =
 
 let dealloc_spec called_flag =
   let imp self _cmd =
-    self |> description |> utf8_string
+    self |> description |> NSString.utf8_string
     |> Printf.fprintf stderr "Deallocating %s\n%!";
     called_flag := true;
     dealloc (get_superclass self)
@@ -154,7 +156,9 @@ let test_add_obj_ivar ~name x () =
       ~cmd: (selector "myVar")
       ~t: (returning id)
   in
-  A.check A.string "set value and get same value" (utf8_string x) (utf8_string v)
+  A.check A.string "set value and get same value"
+    (NSString.utf8_string x)
+    (NSString.utf8_string v)
 
 let suite =
   [ "get object description", `Quick, test_object_description

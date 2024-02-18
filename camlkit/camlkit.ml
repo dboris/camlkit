@@ -35,7 +35,7 @@ module CamlProxy = struct
           ~enc: Encode.(method' ~args:[_SEL] id)
           ~imp: (fun _self _cmd sel ->
             nsstring_of_selector sel
-            |> utf8_string
+            |> NSString.utf8_string
             |> D.method_signature_for_selector
             |> msg_send
                 ~self: (get_class "NSMethodSignature")

@@ -1,8 +1,10 @@
 open Objc
 open Unsigned
+include NSObject
 
 module Objc = Objc
 module Synthesize = Synthesize
+module NSString = NSString
 
 module Point = struct
   type t
@@ -73,6 +75,10 @@ module Invocation = struct
     !@ arg
   ;;
 
+  let get_selector self =
+    msg_send ~self ~cmd: (selector "selector") ~t: (returning _SEL)
+  ;;
+
   (** Sets the receiver’s return value. *)
   let set_return_value ~t v self =
     let result = allocate t v in
@@ -93,86 +99,36 @@ let nil = Objc.nil
 
 let combine_options = List.fold_left UInt.logor UInt.zero
 
-(* NSObject *)
-
-let alloc self = msg_send_vo ~self ~cmd: (selector "alloc")
-
-let alloc_object class_name = alloc (get_class class_name)
-
-let dealloc self =
-  msg_send ~self ~cmd: (selector "dealloc") ~t: (returning void)
-
-let init self = msg_send_vo ~self ~cmd: (selector "init")
-
-let new' self = msg_send_vo ~self ~cmd: (selector "new")
-
-let retain self = msg_send_vo ~self ~cmd: (selector "retain")
-
-let release self =
-  msg_send ~self ~cmd: (selector "release") ~t: (returning void)
-
-let autorelease self = msg_send_vo ~self ~cmd: (selector "autorelease")
-
-(** Release ObjC object when OCaml ptr is garbage collected. *)
-let gc_autorelease self =
-  Gc.finalise release self;
-  self
-;;
-
-(** Allocates an object and sends it "init" and "gc_autorelease". *)
-let new_object class_name =
-  alloc_object class_name |> init |> gc_autorelease
-;;
-
-let get_property ?(t = returning id) prop_name self =
-  msg_send ~self ~cmd: (selector prop_name) ~t
-;;
-
-let set_property ?(t = id @-> returning void) prop_name value self =
-  let cmd = selector (Util.setter_name_of_ivar prop_name) in
-  msg_send ~self ~cmd ~t value
-;;
-
-(* NSString *)
-
-let nsstring = get_class "NSString"
-
-let description self = msg_send_vo ~self ~cmd: (selector "description")
-
-let utf8_string self =
-  msg_send ~self ~cmd: (selector "UTF8String") ~t: (returning string)
-
-let init_with_utf8_string str self =
-  msg_send ~self
-    ~cmd: (selector "initWithUTF8String:")
-    ~t: (string @-> returning id)
-    str
-
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
-  nsstring
+  NSString.(class'
   |> alloc
   |> init_with_utf8_string str
-  |> gc_autorelease
+  |> gc_autorelease)
+;;
+
+let string_of_selector s =
+  nsstring_of_selector s
+  |> NSString.utf8_string
+;;
+
+(* NSURL *)
 
 let url_with_string str self =
   msg_send ~self
     ~cmd: (selector "URLWithString:")
     ~t: (id @-> returning id)
     str
-
-let string_of_selector s =
-  nsstring_of_selector s
-  |> utf8_string
-
-(* NSURL *)
+;;
 
 let new_url str =
   get_class "NSURL"
   |> url_with_string (new_string str)
+;;
 
 let request_with_url url self =
   msg_send ~self
     ~cmd: (selector "requestWithURL:")
     ~t: (id @-> returning id)
     url
+;;
