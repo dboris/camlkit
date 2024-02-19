@@ -2,6 +2,7 @@ open Foundation
 open Appkit
 
 let app_name = "2-default-app"
+let class_name = "MyAppDelegate"
 
 let on_before_start notification =
   let menu = Main_menu.create app_name

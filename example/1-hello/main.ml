@@ -14,7 +14,7 @@ let create_window app =
 
   and btn =
     Button.create
-      ~title: (new_string "Quit")
+      ~title: "Quit"
       ~target: app
       ~action: (selector "terminate:")
       ~frame: (Rect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
@@ -22,15 +22,14 @@ let create_window app =
   and label =
     Label.create "Hello, world!"
   in
+    label
+    |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
-  label
-  |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+    win |> content_view |> add_subview label;
+    win |> content_view |> add_subview btn;
 
-  win |> content_view |> add_subview label;
-  win |> content_view |> add_subview btn;
-
-  win |> set_title (new_string "1-Hello");
-  win
+    win |> set_title (new_string "1-Hello");
+    win
 ;;
 
 let main () =

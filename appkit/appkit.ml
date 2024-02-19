@@ -41,6 +41,7 @@ end
 
 module AppDelegate = struct
   module type S = sig
+    val class_name : string
 
     (** Tells the delegate that the app's initialization is about to complete. *)
     val on_before_start : object_t -> unit
@@ -65,8 +66,7 @@ module AppDelegate = struct
       But it's an informal protocol, not required for the code to function.
     *)
 
-
-    let class' = define_class "AppDelegate"
+    let class' = define_class D.class_name
       ~methods:
         [ method_spec
           ~cmd: (selector "applicationWillFinishLaunching:")
@@ -249,7 +249,7 @@ module Button = struct
     in
     btn |> set_target target;
     btn |> set_action action;
-    btn |> set_title title;
+    btn |> set_title (new_string title);
     btn
 end
 
@@ -260,4 +260,14 @@ module Label = struct
       ~cmd: (selector "labelWithString:")
       ~t: (id @-> returning id)
       (new_string title)
+  ;;
+end
+
+module View = struct
+  let view_with_tag tag self =
+    msg_send ~self
+      ~cmd: (selector "viewWithTag:")
+      ~t: (int @-> returning id)
+      tag
+  ;;
 end

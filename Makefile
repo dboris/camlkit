@@ -1,7 +1,7 @@
 .PHONY: build test run deps clean
 
 build:
-	@dune build
+	@dune build @default
 
 test:
 	@opam exec -- dune runtest --root .

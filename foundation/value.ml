@@ -25,7 +25,7 @@ module Encode = struct
   let method' ?args return =
     match args with
     | Some args -> String.concat "" ([return; id; _SEL] @ args)
-    | None -> return
+    | None -> String.concat "" [return; id; _SEL]
 end
 
 type class_t = unit ptr

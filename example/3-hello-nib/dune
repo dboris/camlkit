@@ -1,0 +1,10 @@
+(executable
+ (name main)
+ (public_name hello_nib)
+ (package cocoa-examples)
+ (libraries foundation appkit)
+ (link_flags -cclib "-framework Cocoa"))
+
+(alias
+ (name default)
+ (deps MainWindowController.nib))

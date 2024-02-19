@@ -40,8 +40,9 @@ let create _app =
   in
   let btn =
     Button.create
-      ~title: (new_string "Increment")
-      ~target: controller ~action: increment_sel
+      ~title: "Increment"
+      ~target: controller
+      ~action: increment_sel
       ~frame: (Rect.make ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.)
   in
   update_label ();
