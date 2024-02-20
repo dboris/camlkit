@@ -54,5 +54,5 @@ let obj_setter ?(assign = false) ~ivar_name ~ivar_t ~enc () =
     set_instance_variable ~self ~name: ivar_name ~value
     |> ignore
   in
-    method_spec ~cmd ~t:ivar_t ~imp ~enc
+    method_spec ~cmd ~t: (ivar_t @-> returning void) ~imp ~enc
 ;;

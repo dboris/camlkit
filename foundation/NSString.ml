@@ -14,3 +14,6 @@ let init_with_utf8_string str self =
     ~t: (string @-> returning id)
     str
 ;;
+
+let to_string = utf8_string
+let of_string = init_with_utf8_string

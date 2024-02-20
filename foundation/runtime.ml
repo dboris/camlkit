@@ -65,6 +65,10 @@ let add_protocol =
 let conforms_to_protocol =
   foreign "class_conformsToProtocol" (_Class @-> _Protocol @-> returning bool)
 
+(** Returns the metaclass definition of a specified class. *)
+let get_meta_class =
+  foreign "objc_getMetaClass" (string @-> returning _Class)
+
 (** Adds a new instance variable to a class. *)
 let add_ivar ~self ~name ~size ~enc =
   foreign "class_addIvar"

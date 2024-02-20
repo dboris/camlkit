@@ -30,6 +30,7 @@ let define_class
 ?(protocols = [])
 ?(ivars = [])
 ?(methods = [])
+?(class_methods = [])
 name
 =
   let self = allocate_class ~superclass name in
@@ -47,6 +48,15 @@ name
     assert (add_ivar ~self ~name ~size ~enc));
 
   register_class self;
+
+  if (List.length class_methods > 0) then
+    begin
+      let metaclass = get_meta_class name in
+      assert (not (is_null metaclass));
+      class_methods |> List.iter (fun (MethodSpec {cmd; t; imp; enc}) ->
+        assert (add_method ~self: metaclass ~cmd ~t ~imp ~enc))
+    end;
+
   self
 ;;
 
