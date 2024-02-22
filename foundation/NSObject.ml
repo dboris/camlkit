@@ -5,16 +5,18 @@ let alloc self = msg_send_vo ~self ~cmd: (selector "alloc")
 let alloc_object class_name = alloc (get_class class_name)
 
 let dealloc self =
-  msg_send ~self ~cmd: (selector "dealloc") ~t: (returning void)
+  msg_send ~self ~cmd: (selector "dealloc") ~typ: (returning void)
 
 let init self = msg_send_vo ~self ~cmd: (selector "init")
 
-let new' self = msg_send_vo ~self ~cmd: (selector "new")
+let _new_ self = msg_send_vo ~self ~cmd: (selector "new")
+
+let copy self = msg_send_vo ~self ~cmd: (selector "copy")
 
 let retain self = msg_send_vo ~self ~cmd: (selector "retain")
 
 let release self =
-  msg_send ~self ~cmd: (selector "release") ~t: (returning void)
+  msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
 let autorelease self = msg_send_vo ~self ~cmd: (selector "autorelease")
 
@@ -29,13 +31,13 @@ let new_object class_name =
   alloc_object class_name |> init |> gc_autorelease
 ;;
 
-let get_property ?(t = returning id) prop_name self =
-  msg_send ~self ~cmd: (selector prop_name) ~t
+let get_property ?(typ = returning id) prop_name self =
+  msg_send ~self ~cmd: (selector prop_name) ~typ
 ;;
 
-let set_property ?(t = id @-> returning void) prop_name value self =
+let set_property ?(typ = id @-> returning void) prop_name value self =
   let cmd = selector (Util.setter_name_of_ivar prop_name) in
-  msg_send ~self ~cmd ~t value
+  msg_send ~self ~cmd ~typ value
 ;;
 
 let description self = msg_send_vo ~self ~cmd: (selector "description")

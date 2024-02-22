@@ -14,7 +14,7 @@ let main () =
     |> Objc.CArray.start
   in
   assert (app |> set_activation_policy ActivationPolicy.regular);
-  app |> set_delegate (new' Delegate.class');
+  app |> set_delegate (_new_ Delegate._class_);
   app |> activate_ignoring_other_apps true;
   application_main ~argc ~argv |> exit
 ;;

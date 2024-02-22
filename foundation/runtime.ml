@@ -23,20 +23,20 @@ let selector = foreign "sel_registerName" (string @-> returning _SEL)
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
 
-let msg_send ~self ~cmd ~t =
+let msg_send ~self ~cmd ~typ =
   foreign "objc_msgSend"
-    (id @-> _SEL @-> t)
+    (id @-> _SEL @-> typ)
     self cmd
 ;;
 
 (** Shortcut for type [void @-> id] *)
-let msg_send_vo = msg_send ~t: (returning id)
+let msg_send_vo = msg_send ~typ: (returning id)
 
 (** Shortcut for type [id @-> void] *)
-let msg_send_ov = msg_send ~t: (id @-> returning void)
+let msg_send_ov = msg_send ~typ: (id @-> returning void)
 
-let add_method ~self ~cmd ~t ~imp ~enc =
-  let method_t = id @-> _SEL @-> t in
+let add_method ~self ~cmd ~typ ~imp ~enc =
+  let method_t = id @-> _SEL @-> typ in
   let ty =
     _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
   foreign "class_addMethod" ty self cmd imp enc
@@ -95,9 +95,9 @@ let set_ivar ~self ~ivar value =
 let ivar_offset = foreign "ivar_getOffset" (_Ivar @-> returning ptrdiff_t)
 
 (** Obtains the value of an instance variable of a class instance. *)
-let get_instance_variable ~self ~name ~value_ptr ~t =
+let get_instance_variable ~self ~name ~value_ptr ~typ =
   foreign "object_getInstanceVariable"
-    (id @-> string @-> ptr t @-> returning _Ivar)
+    (id @-> string @-> ptr typ @-> returning _Ivar)
     self name value_ptr
 
 (** Changes the value of an instance variable of a class instance. *)

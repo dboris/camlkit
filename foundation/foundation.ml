@@ -3,7 +3,8 @@ open Unsigned
 include NSObject
 
 module Objc = Objc
-module Synthesize = Synthesize
+module Property = Property
+module NSObject = NSObject
 module NSString = NSString
 
 module Point = struct
@@ -54,7 +55,7 @@ module Notification = struct
   ;;
 
   (** The object associated with the notification. *)
-  let object' self =
+  let _object_ self =
     msg_send_vo ~self ~cmd: (selector "object")
   ;;
 end
@@ -63,12 +64,12 @@ module Invocation = struct
   (** Indices 0 and 1 indicate the hidden arguments self and _cmd, respectively.
       Use indices 2 and greater for the arguments normally passed in a message.
     *)
-  let get_argument ~t ~init ~at_index self =
-    let arg = allocate t init in
+  let get_argument ~typ ~init ~at_index self =
+    let arg = allocate typ init in
     let () =
       msg_send ~self
         ~cmd: (selector "getArgument:atIndex:")
-        ~t: (ptr void @-> int @-> returning void)
+        ~typ: (ptr void @-> int @-> returning void)
         (to_voidp arg)
         at_index
     in
@@ -76,15 +77,15 @@ module Invocation = struct
   ;;
 
   let get_selector self =
-    msg_send ~self ~cmd: (selector "selector") ~t: (returning _SEL)
+    msg_send ~self ~cmd: (selector "selector") ~typ: (returning _SEL)
   ;;
 
   (** Sets the receiver’s return value. *)
-  let set_return_value ~t v self =
-    let result = allocate t v in
+  let set_return_value ~typ v self =
+    let result = allocate typ v in
     msg_send ~self
       ~cmd: (selector "setReturnValue:")
-      ~t: (ptr void @-> returning void)
+      ~typ: (ptr void @-> returning void)
       (to_voidp result)
   ;;
 end
@@ -101,7 +102,7 @@ let combine_options = List.fold_left UInt.logor UInt.zero
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
-  NSString.(class'
+  NSString.(_class_
   |> alloc
   |> init_with_utf8_string str
   |> gc_autorelease)
@@ -117,7 +118,7 @@ let string_of_selector s =
 let url_with_string str self =
   msg_send ~self
     ~cmd: (selector "URLWithString:")
-    ~t: (id @-> returning id)
+    ~typ: (id @-> returning id)
     str
 ;;
 
@@ -129,6 +130,6 @@ let new_url str =
 let request_with_url url self =
   msg_send ~self
     ~cmd: (selector "requestWithURL:")
-    ~t: (id @-> returning id)
+    ~typ: (id @-> returning id)
     url
 ;;

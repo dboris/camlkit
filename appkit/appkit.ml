@@ -66,32 +66,32 @@ module AppDelegate = struct
       But it's an informal protocol, not required for the code to function.
     *)
 
-    let class' = define_class D.class_name
+    let _class_ = define_class D.class_name
       ~methods:
         [ method_spec
           ~cmd: (selector "applicationWillFinishLaunching:")
-          ~t: (id @-> returning void)
+          ~typ: (id @-> returning void)
           ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_start notification)
 
         ; method_spec
           ~cmd: (selector "applicationDidFinishLaunching:")
-          ~t: (id @-> returning void)
+          ~typ: (id @-> returning void)
           ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_started notification)
 
         ; method_spec
           ~cmd: (selector "applicationWillTerminate:")
-          ~t: (id @-> returning void)
+          ~typ: (id @-> returning void)
           ~enc: Encode.(method' ~args:[id] void)
           ~imp: (fun _self _cmd notification ->
             D.on_before_terminate notification)
 
         ; method_spec
           ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
-          ~t: (id @-> returning bool)
+          ~typ: (id @-> returning bool)
           ~enc: Encode.(method' ~args:[id] bool)
           ~imp: (fun _self _cmd notification ->
             D.terminate_on_windows_closed notification)
@@ -110,13 +110,13 @@ let set_delegate delegate self =
 let set_activation_policy policy self =
   msg_send ~self
     ~cmd: (selector "setActivationPolicy:")
-    ~t: (ActivationPolicy.t @-> returning bool)
+    ~typ: (ActivationPolicy.t @-> returning bool)
     policy
 
 let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
   msg_send ~self
     ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
-    ~t: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
+    ~typ: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
     rect (combine_options style_mask) backing defer
 ;;
 
@@ -125,7 +125,7 @@ let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
 let cascade_top_left_from_point pt self =
   msg_send ~self
     ~cmd: (selector "cascadeTopLeftFromPoint:")
-    ~t: (Point.t @-> returning void)
+    ~typ: (Point.t @-> returning void)
     pt
 
 let set_title title self =
@@ -138,7 +138,7 @@ let set_title title self =
 let make_first_responder responder self =
   msg_send ~self
     ~cmd: (selector "cascadeTopLeftFromPoint:")
-    ~t: (id @-> returning bool)
+    ~typ: (id @-> returning bool)
     responder
 ;;
 
@@ -159,16 +159,16 @@ let make_key_and_order_front ~sender self =
 let activate_ignoring_other_apps flag self =
   msg_send ~self
     ~cmd: (selector "activateIgnoringOtherApps:")
-    ~t: (bool @-> returning void)
+    ~typ: (bool @-> returning void)
     flag
 
 let run self =
-  msg_send ~self ~cmd: (selector "run") ~t: (returning void)
+  msg_send ~self ~cmd: (selector "run") ~typ: (returning void)
 
 let init_with_frame (frame : Rect.t structure) self =
   msg_send ~self
     ~cmd: (selector "initWithFrame:")
-    ~t: (Rect.t @-> returning id)
+    ~typ: (Rect.t @-> returning id)
     frame
 
 let set_target target self =
@@ -179,7 +179,7 @@ let set_target target self =
 let set_action action self =
   msg_send ~self
     ~cmd: (selector "setAction:")
-    ~t: (_SEL @-> returning void)
+    ~typ: (_SEL @-> returning void)
     action
 
 let content_view self = msg_send_vo ~self ~cmd: (selector "contentView")
@@ -192,7 +192,7 @@ let add_subview view self =
 let set_frame (frame : Rect.t structure) self =
   msg_send ~self
     ~cmd: (selector "setFrame:")
-    ~t: (Rect.t @-> returning void)
+    ~typ: (Rect.t @-> returning void)
     frame
 
 (** Called by the main function to create and run the application. *)
@@ -209,7 +209,7 @@ let application_main ~argc ~argv =
 let init_with_title title self =
   msg_send ~self
     ~cmd: (selector "initWithTitle:")
-    ~t: (id @-> returning id)
+    ~typ: (id @-> returning id)
     (new_string title)
 ;;
 
@@ -217,7 +217,7 @@ let init_with_title title self =
 let set_submenu menu self ~for_item =
   msg_send ~self
     ~cmd: (selector "setSubmenu:forItem:")
-    ~t: (id @-> id @-> returning void)
+    ~typ: (id @-> id @-> returning void)
     menu for_item
 ;;
 
@@ -232,7 +232,7 @@ let add_item item self =
 let add_item' self ~title ~action ~key_equivalent =
   msg_send ~self
     ~cmd: (selector "addItemWithTitle:action:keyEquivalent:")
-    ~t: (id @-> _SEL @-> id @-> returning id)
+    ~typ: (id @-> _SEL @-> id @-> returning id)
     (new_string title)
     action
     (new_string key_equivalent)
@@ -258,7 +258,7 @@ module Label = struct
     msg_send
       ~self: (get_class "NSTextField")
       ~cmd: (selector "labelWithString:")
-      ~t: (id @-> returning id)
+      ~typ: (id @-> returning id)
       (new_string title)
   ;;
 end
@@ -267,7 +267,7 @@ module View = struct
   let view_with_tag tag self =
     msg_send ~self
       ~cmd: (selector "viewWithTag:")
-      ~t: (int @-> returning id)
+      ~typ: (int @-> returning id)
       tag
   ;;
 end

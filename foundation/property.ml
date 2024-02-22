@@ -2,27 +2,30 @@ open Objc
 open Util
 open NSObject
 
+let get = get_property
+let set = set_property
+
 (** Getter for non-object values. *)
-let getter ~ivar_name ~ivar_t ~enc =
+let getter ~ivar_name ~typ ~enc =
   let cmd = selector ivar_name
   and imp self _cmd =
-    !@ (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t)
+    !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
   in
-    method_spec ~cmd ~t: (returning ivar_t) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
 ;;
 
 (** Setter for non-object values. *)
-let setter ~ivar_name ~ivar_t ~enc =
+let setter ~ivar_name ~typ ~enc =
   let cmd =
     selector (setter_name_of_ivar ivar_name)
   and imp self _cmd value =
-    (ivar_ptr ~self ~ivar_name |> from_voidp ivar_t) <-@ value
+    (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
   in
-    method_spec ~cmd ~t: (ivar_t @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;
 
 (** Getter for object values. *)
-let obj_getter ~ivar_name ~ivar_t ~enc =
+let obj_getter ~ivar_name ~typ ~enc =
   let cmd = selector ivar_name
   and imp self _cmd =
     let ivar =
@@ -32,15 +35,22 @@ let obj_getter ~ivar_name ~ivar_t ~enc =
     in
       ivar_value ~self ~ivar
   in
-    method_spec ~cmd ~t: (returning ivar_t) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
 ;;
 
 (** Setter for object values. *)
-let obj_setter ?(assign = false) ~ivar_name ~ivar_t ~enc () =
+let obj_setter
+?(assign = false)
+?(copy = false)
+~ivar_name
+~typ
+~enc
+()
+=
   let cmd =
     selector (setter_name_of_ivar ivar_name)
   and imp self _cmd value =
-    if not assign then
+    if not assign && not copy then
       value |> retain |> ignore;
 
     (* release old object *)
@@ -51,8 +61,10 @@ let obj_setter ?(assign = false) ~ivar_name ~ivar_t ~enc () =
     in
       ivar_value ~self ~ivar |> release;
 
-    set_instance_variable ~self ~name: ivar_name ~value
+    set_instance_variable ~self
+      ~name: ivar_name
+      ~value: (if copy then NSObject.copy value else value)
     |> ignore
   in
-    method_spec ~cmd ~t: (ivar_t @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;

@@ -19,7 +19,7 @@ let setup_ui self _cmd =
   button |> set_property "target" app;
   Objc.(msg_send ~self: button
     ~cmd: (selector "setAction:")
-    ~t: (_SEL @-> returning void)
+    ~typ: (_SEL @-> returning void)
     (selector "terminate:"));
   win |> set_title (new_string "3-Hello-NIB")
 ;;
@@ -31,7 +31,7 @@ let main () =
       ~methods: [
         method_spec
           ~cmd: (selector "windowDidLoad")
-          ~t: (returning void)
+          ~typ: (returning void)
           ~enc: Encode.(method' void)
           ~imp: setup_ui
       ])
@@ -39,7 +39,7 @@ let main () =
   let wc =
     Objc.(msg_send ~self: (wc_class |> alloc)
       ~cmd: (selector "initWithWindowNibName:")
-      ~t: (NSString.t @-> returning id)
+      ~typ: (NSString.t @-> returning id)
       (new_string "MainWindowController"))
   in
   Objc.(msg_send_ov ~self: wc ~cmd: (selector "showWindow:") nil);

@@ -16,7 +16,7 @@ let test_add_method () =
     add_method
       ~self: (get_class "NSObject")
       ~cmd: (selector "addOneTo:")
-      ~t: (int @-> returning int)
+      ~typ: (int @-> returning int)
       ~imp: (fun _self _cmd x -> x + 1)
       ~enc: Encode.(method' ~args:[int] int)
   in
@@ -25,9 +25,9 @@ let test_add_method () =
 let test_added_method x () =
   let y =
     msg_send
-      ~self: (get_class "NSObject" |> new')
+      ~self: (get_class "NSObject" |> _new_)
       ~cmd: (selector "addOneTo:")
-      ~t: (int @-> returning int)
+      ~typ: (int @-> returning int)
       x
   in
   A.check A.int "x was incremented" y (x + 1)
@@ -46,16 +46,16 @@ let test_redefine_class_fails () =
 let test_define_class_with_methods () =
   let name = "MyClass2"
   and cmd = selector "doubleOf:"
-  and t = int @-> returning int
+  and typ = int @-> returning int
   and imp _self _cmd x = x * 2
   and enc = Encode.(method' ~args:[int] int)
   in
-  let methods = [method_spec ~cmd ~t ~imp ~enc]
+  let methods = [method_spec ~cmd ~typ ~imp ~enc]
   and x = 5
   in
   let c = define_class name ~methods in
   let defined = not (is_null c)
-  and y = msg_send ~self: (new' c) ~cmd ~t x
+  and y = msg_send ~self: (_new_ c) ~cmd ~typ x
   in
   A.check A.bool "class ptr not null" defined true;
   A.check A.int "x was doubled" y (x * 2)
@@ -69,7 +69,7 @@ let dealloc_spec called_flag =
   in
   method_spec
     ~cmd: (selector "dealloc")
-    ~t: (returning void)
+    ~typ: (returning void)
     ~imp
     ~enc: Encode.void
 
@@ -79,7 +79,7 @@ let test_gc_autorelease () =
   and methods = [dealloc_spec dealloc_called]
   in
   let c = define_class name ~methods in
-  new' c |> gc_autorelease |> ignore;
+  _new_ c |> gc_autorelease |> ignore;
   Gc.full_major ();
   A.check A.bool "dealloc was called after gc" !dealloc_called true
 
@@ -90,12 +90,12 @@ let test_add_protocol () =
   and methods = [
     method_spec
       ~cmd: (selector "encodeWithCoder:")
-      ~t: (id @-> returning void)
+      ~typ: (id @-> returning void)
       ~imp: (fun _self _cmd _coder -> ())
       ~enc: Encode.(method' ~args:[id] void)
   ; method_spec
       ~cmd: (selector "initWithCoder:")
-      ~t: (id @-> returning id)
+      ~typ: (id @-> returning id)
       ~imp: (fun self _cmd _coder -> self)
       ~enc: Encode.(method' ~args:[id] id)
   ]
@@ -108,53 +108,53 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: Encode.int]
+    [ivar_spec ~name:"myVar" ~typ:int ~enc: Encode.int]
   and methods =
-    [ Synthesize.getter
+    [ Property.getter
         ~ivar_name:"myVar"
-        ~ivar_t:int
+        ~typ:int
         ~enc: Encode.int
-    ; Synthesize.setter
+    ; Property.setter
         ~ivar_name:"myVar"
-        ~ivar_t:int
+        ~typ:int
         ~enc: Encode.(method' ~args:[int] void)
     ]
   in
-  let o = new' (define_class name ~ivars ~methods) in
+  let o = _new_ (define_class name ~ivars ~methods) in
   msg_send ~self:o
     ~cmd: (selector "setMyVar:")
-    ~t: (int @-> returning void)
+    ~typ: (int @-> returning void)
     x;
   let v =
     msg_send ~self:o
       ~cmd: (selector "myVar")
-      ~t: (returning int)
+      ~typ: (returning int)
   in
   A.check A.int "set value and get same value" x v
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~t:int ~enc: Encode.int]
+    [ivar_spec ~name:"myVar" ~typ:int ~enc: Encode.int]
   and methods =
-    [ Synthesize.getter
+    [ Property.getter
         ~ivar_name:"myVar"
-        ~ivar_t:id
+        ~typ:id
         ~enc: Encode.id
-    ; Synthesize.setter
+    ; Property.setter
         ~ivar_name:"myVar"
-        ~ivar_t:id
+        ~typ:id
         ~enc: Encode.(method' ~args:[id] void)
     ]
   in
-  let o = new' (define_class name ~ivars ~methods) in
+  let o = _new_ (define_class name ~ivars ~methods) in
   msg_send ~self:o
     ~cmd: (selector "setMyVar:")
-    ~t: (id @-> returning void)
+    ~typ: (id @-> returning void)
     x;
   let v =
     msg_send ~self:o
       ~cmd: (selector "myVar")
-      ~t: (returning id)
+      ~typ: (returning id)
   in
   A.check A.string "set value and get same value"
     (NSString.utf8_string x)

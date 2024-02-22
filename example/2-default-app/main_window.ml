@@ -19,7 +19,7 @@ let controller_class =
   define_class "MyController"
     ~methods:
       [ method_spec
-        ~cmd: increment_sel ~t: (id @-> returning void)
+        ~cmd: increment_sel ~typ: (id @-> returning void)
         ~enc: Encode.(method' ~args:[id] void)
         ~imp: increment_count_method
       ]
@@ -36,7 +36,7 @@ let create _app =
       ~style_mask: StyleMask.[titled; closable; resizable]
       ~backing: BackingStoreType.buffered
 
-  and controller = new' controller_class
+  and controller = _new_ controller_class
   in
   let btn =
     Button.create

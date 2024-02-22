@@ -21,20 +21,20 @@ let test_define_custom_class () =
         let sel = inv |> Invocation.get_selector |> string_of_selector in
         if String.equal sel my_sel then
           let arg =
-            inv |> Invocation.get_argument ~at_index: 2 ~t: int ~init: 0
+            inv |> Invocation.get_argument ~at_index: 2 ~typ: int ~init: 0
           in
-          inv |> Invocation.set_return_value (arg * 2) ~t: int
+          inv |> Invocation.set_return_value (arg * 2) ~typ: int
         else
           raise Not_found
       ;;
     end)
   in
-  let obj = MyCustomClass.class' |> alloc |> init in
+  let obj = MyCustomClass._class_ |> alloc |> init in
   let expected = 5 * 2
   and actual =
     msg_send ~self: obj
       ~cmd: (selector my_sel)
-      ~t: (int @-> returning int)
+      ~typ: (int @-> returning int)
       5
   in
   A.check A.int "same int" expected actual
@@ -57,22 +57,22 @@ let test_define_CamlObjectProxy_class () =
         match inv |> Invocation.get_selector |> string_of_selector with
         | "multByThree:" ->
           let arg =
-            inv |> Invocation.get_argument ~at_index: 2 ~t: int ~init: 0
+            inv |> Invocation.get_argument ~at_index: 2 ~typ: int ~init: 0
           in
-          inv |> Invocation.set_return_value (arg * 3) ~t: int
+          inv |> Invocation.set_return_value (arg * 3) ~typ: int
         | _ -> raise Not_found
     end)
   in
   let str = "Hello" in
   let obj =
-    NSStringCamlProxy.(alloc class' |> init_with_target_object (new_string str))
+    NSStringCamlProxy.(alloc _class_ |> init_with_target_object (new_string str))
   in
   let x = 5 in
   let expected = x * 3
   and actual =
     msg_send ~self: obj
       ~cmd: (selector "multByThree:")
-      ~t: (int @-> returning int)
+      ~typ: (int @-> returning int)
       x
   in
   A.check A.int "caml method called" expected actual;
