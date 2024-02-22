@@ -12,7 +12,7 @@ let test_define_custom_class () =
 
       let method_signature_for_selector sel =
         if String.equal sel my_sel then
-          Encode.(method' ~args:[int] int)
+          Encode.(_method_ ~args: [int] int)
         else
           Encode.unknown
       ;;
@@ -50,7 +50,7 @@ let test_define_CamlObjectProxy_class () =
       | _ -> false
 
       let method_signature_for_selector = function
-      | "multByThree:" -> Encode.(method' ~args:[int] int)
+      | "multByThree:" -> Encode.(_method_ ~args: [int] int)
       | _ -> Encode.unknown
 
       let handle_invocation inv =

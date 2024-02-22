@@ -7,10 +7,10 @@ let create_window app =
   in
   let win =
     alloc (get_class "NSWindow")
-    |> init_with_content_rect
+    |> NSWindow.(init_with_content_rect
       (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable]
-      ~backing: BackingStoreType.buffered
+      ~backing: BackingStoreType.buffered)
 
   and btn =
     Button.create
@@ -33,16 +33,16 @@ let create_window app =
 ;;
 
 let main () =
-  let app = shared_application (get_class "NSApplication") in
+  let app = NSApplication.shared in
   let win = create_window app in
 
-  win |> cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
-  win |> make_key_and_order_front ~sender: nil;
+  win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
+  win |> NSWindow.make_key_and_order_front ~sender: nil;
 
-  assert (app |> set_activation_policy ActivationPolicy.regular);
-  app |> activate_ignoring_other_apps true;
+  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
+  app |> NSApplication.activate_ignoring_other_apps true;
 
-  run app
+  NSApplication.run app
 ;;
 
 let () = main ()

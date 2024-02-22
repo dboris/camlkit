@@ -20,7 +20,7 @@ let controller_class =
     ~methods:
       [ method_spec
         ~cmd: increment_sel ~typ: (id @-> returning void)
-        ~enc: Encode.(method' ~args:[id] void)
+        ~enc: Encode.(_method_ ~args: [id] void)
         ~imp: increment_count_method
       ]
 ;;
@@ -31,10 +31,10 @@ let create _app =
   in
   let win =
     alloc (get_class "NSWindow")
-    |> init_with_content_rect
+    |> NSWindow.(init_with_content_rect
       (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable; resizable]
-      ~backing: BackingStoreType.buffered
+      ~backing: BackingStoreType.buffered)
 
   and controller = _new_ controller_class
   in

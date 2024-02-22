@@ -18,7 +18,7 @@ let test_add_method () =
       ~cmd: (selector "addOneTo:")
       ~typ: (int @-> returning int)
       ~imp: (fun _self _cmd x -> x + 1)
-      ~enc: Encode.(method' ~args:[int] int)
+      ~enc: Encode.(_method_ ~args: [int] int)
   in
   A.check A.bool "true result" added true
 
@@ -48,7 +48,7 @@ let test_define_class_with_methods () =
   and cmd = selector "doubleOf:"
   and typ = int @-> returning int
   and imp _self _cmd x = x * 2
-  and enc = Encode.(method' ~args:[int] int)
+  and enc = Encode.(_method_ ~args: [int] int)
   in
   let methods = [method_spec ~cmd ~typ ~imp ~enc]
   and x = 5
@@ -92,12 +92,12 @@ let test_add_protocol () =
       ~cmd: (selector "encodeWithCoder:")
       ~typ: (id @-> returning void)
       ~imp: (fun _self _cmd _coder -> ())
-      ~enc: Encode.(method' ~args:[id] void)
+      ~enc: Encode.(_method_ ~args: [id] void)
   ; method_spec
       ~cmd: (selector "initWithCoder:")
       ~typ: (id @-> returning id)
       ~imp: (fun self _cmd _coder -> self)
-      ~enc: Encode.(method' ~args:[id] id)
+      ~enc: Encode.(_method_ ~args: [id] id)
   ]
   in
   let c = define_class ~protocols ~methods name
@@ -117,7 +117,7 @@ let test_add_ivar ~name x () =
     ; Property.setter
         ~ivar_name:"myVar"
         ~typ:int
-        ~enc: Encode.(method' ~args:[int] void)
+        ~enc: Encode.(_method_ ~args: [int] void)
     ]
   in
   let o = _new_ (define_class name ~ivars ~methods) in
@@ -143,7 +143,7 @@ let test_add_obj_ivar ~name x () =
     ; Property.setter
         ~ivar_name:"myVar"
         ~typ:id
-        ~enc: Encode.(method' ~args:[id] void)
+        ~enc: Encode.(_method_ ~args: [id] void)
     ]
   in
   let o = _new_ (define_class name ~ivars ~methods) in

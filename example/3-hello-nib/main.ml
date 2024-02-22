@@ -7,7 +7,7 @@ open Appkit
 *)
 
 let setup_ui self _cmd =
-  let app = shared_application (get_class "NSApplication")
+  let app = NSApplication.shared
   and win = get_property "window" self in
   let cv = get_property "contentView" win in
 
@@ -27,12 +27,12 @@ let setup_ui self _cmd =
 let main () =
   let wc_class =
     Objc.(define_class "MainWindowController"
-      ~superclass: (get_class "NSWindowController")
+      ~superclass: "NSWindowController"
       ~methods: [
         method_spec
           ~cmd: (selector "windowDidLoad")
           ~typ: (returning void)
-          ~enc: Encode.(method' void)
+          ~enc: Encode.(_method_ void)
           ~imp: setup_ui
       ])
   in
@@ -44,11 +44,11 @@ let main () =
   in
   Objc.(msg_send_ov ~self: wc ~cmd: (selector "showWindow:") nil);
 
-  let app = shared_application (get_class "NSApplication") in
-  assert (app |> set_activation_policy ActivationPolicy.regular);
-  app |> activate_ignoring_other_apps true;
+  let app = NSApplication.shared in
+  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
+  app |> NSApplication.activate_ignoring_other_apps true;
 
-  run app
+  NSApplication.run app
 ;;
 
 let () = main ()

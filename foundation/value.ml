@@ -22,7 +22,7 @@ module Encode = struct
   let struc ty = "{" ^ ty ^ "}"
   let union ty = "(" ^ ty ^ ")"
 
-  let method' ?args return =
+  let _method_ ?args return =
     match args with
     | Some args -> String.concat "" ([return; id; _SEL] @ args)
     | None -> String.concat "" [return; id; _SEL]

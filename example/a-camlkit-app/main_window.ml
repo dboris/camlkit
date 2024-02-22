@@ -14,10 +14,10 @@ let create app_ctrl =
   in
   let win =
     alloc (get_class "NSWindow")
-    |> init_with_content_rect
+    |> NSWindow.(init_with_content_rect
       (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable; resizable]
-      ~backing: BackingStoreType.buffered
+      ~backing: BackingStoreType.buffered)
 
   in
   let btn =

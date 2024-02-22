@@ -9,15 +9,15 @@ let on_before_start notification =
   let menu = Main_menu.create app_name
   and app = Notification._object_ notification
   in
-  app |> set_main_menu menu
+  app |> NSApplication.set_main_menu menu
 ;;
 
 let on_started _notification =
   let module AC = CamlProxy.Create (App_controller) in
   let win = Main_window.create (_new_ AC._class_) in
   win |> set_title (new_string app_name);
-  win |> cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
-  win |> make_key_and_order_front ~sender: nil
+  win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
+  win |> NSWindow.make_key_and_order_front ~sender: nil
 ;;
 
 let on_before_terminate _ = ()

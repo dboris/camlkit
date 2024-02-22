@@ -26,14 +26,14 @@ let ivar_spec ~name ~typ ~enc =
   IvarSpec {name; typ; enc}
 
 let define_class
-?(superclass = get_class "NSObject")
+?(superclass = "NSObject")
 ?(protocols = [])
 ?(ivars = [])
 ?(methods = [])
 ?(class_methods = [])
 name
 =
-  let self = allocate_class ~superclass name in
+  let self = allocate_class ~superclass: (get_class superclass) name in
   if (is_null self) then failwith "Allocate class failed";
 
   methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->

@@ -4,7 +4,7 @@ open Objc
 let class_name = "MainAppController"
 
 let method_signature_for_selector = function
-  | "incrementClicked:" -> Encode.(method' ~args:[id] void)
+  | "incrementClicked:" -> Encode.(_method_ ~args: [id] void)
   | _ -> Encode.unknown
 ;;
 

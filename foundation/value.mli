@@ -30,7 +30,7 @@ module Encode : sig
   val struc : t -> t
   val union : t -> t
 
-  val method' : ?args:t list -> t -> t
+  val _method_ : ?args:t list -> t -> t
 end
 
 type class_t = unit ptr
