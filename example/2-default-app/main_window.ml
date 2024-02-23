@@ -30,11 +30,11 @@ let create _app =
   and h = 300.
   in
   let win =
-    alloc (get_class "NSWindow")
-    |> NSWindow.(init_with_content_rect
-      (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
-      ~style_mask: StyleMask.[titled; closable; resizable]
-      ~backing: BackingStoreType.buffered)
+    NSWindow.(create
+      ~content_rect: (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+      ~style_mask: StyleMask.[titled; closable]
+      ~backing: BackingStoreType.buffered
+      ())
 
   and controller = _new_ controller_class
   in

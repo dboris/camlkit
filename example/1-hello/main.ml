@@ -6,11 +6,11 @@ let create_window app =
   and h = 200.
   in
   let win =
-    alloc (get_class "NSWindow")
-    |> NSWindow.(init_with_content_rect
-      (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+    NSWindow.(create
+      ~content_rect: (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable]
-      ~backing: BackingStoreType.buffered)
+      ~backing: BackingStoreType.buffered
+      ())
 
   and btn =
     Button.create
@@ -19,8 +19,7 @@ let create_window app =
       ~action: (selector "terminate:")
       ~frame: (Rect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
 
-  and label =
-    Label.create "Hello, world!"
+  and label = Label.create "Hello, world!"
   in
     label
     |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);

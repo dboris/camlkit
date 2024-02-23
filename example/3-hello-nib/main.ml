@@ -2,7 +2,7 @@ open Foundation
 open Appkit
 
 (* This example demonstrates how to access view objects from a NIB file.
-   The UI was layed out in Interface Builder and saved as a NIB file
+   The UI was laid out in Interface Builder and saved as a NIB file
    `MainWindowController.nib`.
 *)
 

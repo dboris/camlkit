@@ -33,6 +33,11 @@ let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
     rect (combine_options style_mask) backing defer
 ;;
 
+let create ~content_rect ~style_mask ~backing ?(defer = false) () =
+  alloc (get_class "NSWindow")
+  |> init_with_content_rect content_rect ~style_mask ~backing ~defer
+;;
+
 let cascade_top_left_from_point pt self =
   msg_send ~self
     ~cmd: (selector "cascadeTopLeftFromPoint:")

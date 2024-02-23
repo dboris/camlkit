@@ -113,6 +113,20 @@ let string_of_selector s =
   |> NSString.utf8_string
 ;;
 
+let value_for_key key self =
+  msg_send ~self
+    ~cmd: (selector "valueForKey:")
+    ~typ: (NSString.t @-> returning id)
+    (new_string key)
+;;
+
+let set_value v ~for_key self =
+  msg_send ~self
+    ~cmd: (selector "setValue:forKey:")
+    ~typ: (id @-> NSString.t @-> returning void)
+    v (new_string for_key)
+;;
+
 (* NSURL *)
 
 let url_with_string str self =

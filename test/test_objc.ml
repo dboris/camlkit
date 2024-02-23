@@ -159,6 +159,17 @@ let test_add_obj_ivar ~name x () =
   A.check A.string "set value and get same value"
     (NSString.utf8_string x)
     (NSString.utf8_string v)
+;;
+
+let test_kvc ~class_name x () =
+  let ivars =
+    [ivar_spec ~name: "myVar" ~typ: id ~enc: Encode.id]
+  in
+  let obj = _new_ (define_class class_name ~ivars) in
+  obj |> set_value (new_string x) ~for_key: "myVar";
+  let v = obj |> value_for_key "myVar" in
+  A.check A.string "set value and get same value" x (NSString.to_string v)
+;;
 
 let suite =
   [ "get object description", `Quick, test_object_description
@@ -174,6 +185,7 @@ let suite =
   ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass6" 12
   ; "set and get object ivar", `Quick,
     test_add_obj_ivar ~name:"MyClass7" (new_string "Hello")
+  ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass8" "Test"
   ]
 
 let () = A.run "objc" [ "Objc", suite ]
