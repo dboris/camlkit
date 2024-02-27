@@ -13,6 +13,14 @@ type method_spec' = MethodSpec : 'a method_spec -> method_spec'
 
 let method_spec ~cmd ~typ ~imp ~enc =
   MethodSpec {cmd; typ; imp; enc}
+;;
+
+let method_imp imp ~cmd ~args ~return =
+  let typ = Objc_type.method_typ ~args return
+  and enc = Objc_type.method_enc ~args return
+  in
+  MethodSpec {cmd; typ; imp; enc}
+;;
 
 type 'a ivar_spec =
   { name : string

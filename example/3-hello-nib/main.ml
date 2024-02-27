@@ -29,11 +29,8 @@ let main () =
     Objc.(define_class "MainWindowController"
       ~superclass: "NSWindowController"
       ~methods: [
-        method_spec
-          ~cmd: (selector "windowDidLoad")
-          ~typ: (returning void)
-          ~enc: Encode.(_method_ void)
-          ~imp: setup_ui
+        method_imp setup_ui ~cmd: (selector "windowDidLoad")
+          ~args: Objc_type.[] ~return: Objc_type.void
       ])
   in
   let wc =

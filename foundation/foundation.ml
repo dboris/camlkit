@@ -4,8 +4,14 @@ include NSObject
 
 module Objc = Objc
 module Property = Property
+module Objc_type = Objc_type
 module NSObject = NSObject
 module NSString = NSString
+
+let msg_send' cmd ~self ~args ~return =
+  let typ = Objc_type.method_typ ~args return in
+  msg_send ~self ~cmd ~typ
+;;
 
 module Point = struct
   type t
@@ -67,25 +73,23 @@ module Invocation = struct
   let get_argument ~typ ~init ~at_index self =
     let arg = allocate typ init in
     let () =
-      msg_send ~self
-        ~cmd: (selector "getArgument:atIndex:")
-        ~typ: (ptr void @-> int @-> returning void)
-        (to_voidp arg)
-        at_index
+      msg_send' ~self (selector "getArgument:atIndex:")
+        ~args: Objc_type.[ptr void; int] ~return: Objc_type.void
+        (to_voidp arg) at_index
     in
     !@ arg
   ;;
 
   let get_selector self =
-    msg_send ~self ~cmd: (selector "selector") ~typ: (returning _SEL)
+    msg_send' ~self (selector "selector")
+      ~args: Objc_type.[] ~return: Objc_type._SEL
   ;;
 
   (** Sets the receiver’s return value. *)
   let set_return_value ~typ v self =
     let result = allocate typ v in
-    msg_send ~self
-      ~cmd: (selector "setReturnValue:")
-      ~typ: (ptr void @-> returning void)
+    msg_send' ~self (selector "setReturnValue:")
+      ~args: Objc_type.[ptr void] ~return: Objc_type.void
       (to_voidp result)
   ;;
 end

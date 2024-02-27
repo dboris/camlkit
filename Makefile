@@ -9,8 +9,11 @@ test:
 objc.opam: dune-project
 	@dune build
 
-run:
-	@dune exec ./bin/main.exe
+run-demo:
+	@dune exec demoapp
+
+run-hello:
+	@dune exec hello
 
 deps: objc.opam
 	@opam install -y . --deps-only --with-test

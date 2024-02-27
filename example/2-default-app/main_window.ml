@@ -18,10 +18,8 @@ let controller_class =
   let open Objc in
   define_class "MyController"
     ~methods:
-      [ method_spec
-        ~cmd: increment_sel ~typ: (id @-> returning void)
-        ~enc: Encode.(_method_ ~args: [id] void)
-        ~imp: increment_count_method
+      [ method_imp increment_count_method
+        ~cmd: increment_sel ~args: Objc_type.[id] ~return: Objc_type.void
       ]
 ;;
 

@@ -10,23 +10,22 @@ module CamlProxy = struct
 
   module Create (D : S) = struct
     let methods =
-      [ method_spec
+      [ method_imp (fun self _cmd -> self)
         ~cmd: (selector "init")
-        ~typ: (returning id)
-        ~enc: Encode.(_method_ id)
-        ~imp: (fun self _cmd -> self)
+        ~args: Objc_type.[]
+        ~return: Objc_type.id
 
-      ; method_spec
+      ; method_imp
+        (fun _self _cmd invocation -> D.handle_invocation invocation)
         ~cmd: (selector "forwardInvocation:")
-        ~typ: (id @-> returning void)
-        ~enc: Encode.(_method_ ~args: [id] void)
-        ~imp: (fun _self _cmd invocation -> D.handle_invocation invocation)
+        ~args: Objc_type.[id]
+        ~return: Objc_type.void
 
-      ; method_spec
+      ; method_imp
         ~cmd: (selector "methodSignatureForSelector:")
-        ~typ: (_SEL @-> returning id)
-        ~enc: Encode.(_method_ ~args: [_SEL] id)
-        ~imp: (fun _self _cmd sel ->
+        ~args: Objc_type.[_SEL]
+        ~return: Objc_type.id
+        (fun _self _cmd sel ->
           msg_send
             ~self: (get_class "NSMethodSignature")
             ~cmd: (selector "signatureWithObjCTypes:")
@@ -97,32 +96,32 @@ module CamlObjectProxy = struct
         [ Property.obj_getter ~ivar_name ~typ: id ~enc: Encode.id
         ; Property.obj_setter ~ivar_name ~typ: id ~enc: Encode.id ()
 
-        ; method_spec
+        ; method_imp
           ~cmd: (selector "initWithTargetObject:")
-          ~typ: (id @-> returning id)
-          ~enc: Encode.(_method_ ~args: [id] id)
-          ~imp: (fun self _cmd target ->
+          ~args: Objc_type.[id]
+          ~return: Objc_type.id
+          (fun self _cmd target ->
             self |> set_property ivar_name target;
             self)
 
-        ; method_spec
+        ; method_imp
           ~cmd: (selector "forwardInvocation:")
-          ~typ: (id @-> returning void)
-          ~enc: Encode.(_method_ ~args: [id] void)
-          ~imp: forward_invocation_imp
+          ~args: Objc_type.[id]
+          ~return: Objc_type.void
+          forward_invocation_imp
 
-        ; method_spec
+        ; method_imp
           ~cmd: (selector "methodSignatureForSelector:")
-          ~typ: (_SEL @-> returning id)
-          ~enc: Encode.(_method_ ~args: [_SEL] id)
-          ~imp: method_signature_for_selector_imp
+          ~args: Objc_type.[_SEL]
+          ~return: Objc_type.id
+          method_signature_for_selector_imp
         ]
       and class_methods =
-        [ method_spec
+        [ method_imp
           ~cmd: (selector "respondsToSelector:")
-          ~typ: (_SEL @-> returning bool)
-          ~enc: Encode.(_method_ ~args: [_SEL] bool)
-          ~imp: responds_to_selector_imp
+          ~args: Objc_type.[_SEL]
+          ~return: Objc_type.bool
+          responds_to_selector_imp
         ]
       and ivars =
         [ ivar_spec ~name: ivar_name ~typ: id ~enc: Encode.id ]

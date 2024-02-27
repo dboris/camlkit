@@ -29,32 +29,32 @@ module Create (D : S) = struct
 
   let _class_ = define_class D.class_name
     ~methods:
-      [ method_spec
+      [ method_imp
         ~cmd: (selector "applicationWillFinishLaunching:")
-        ~typ: (id @-> returning void)
-        ~enc: Encode.(_method_ ~args: [id] void)
-        ~imp: (fun _self _cmd notification ->
+        ~args: Objc_type.[id]
+        ~return: Objc_type.void
+        (fun _self _cmd notification ->
           D.on_before_start notification)
 
-      ; method_spec
+      ; method_imp
         ~cmd: (selector "applicationDidFinishLaunching:")
-        ~typ: (id @-> returning void)
-        ~enc: Encode.(_method_ ~args: [id] void)
-        ~imp: (fun _self _cmd notification ->
+        ~args: Objc_type.[id]
+        ~return: Objc_type.void
+        (fun _self _cmd notification ->
           D.on_started notification)
 
-      ; method_spec
+      ; method_imp
         ~cmd: (selector "applicationWillTerminate:")
-        ~typ: (id @-> returning void)
-        ~enc: Encode.(_method_ ~args: [id] void)
-        ~imp: (fun _self _cmd notification ->
+        ~args: Objc_type.[id]
+        ~return: Objc_type.void
+        (fun _self _cmd notification ->
           D.on_before_terminate notification)
 
-      ; method_spec
+      ; method_imp
         ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
-        ~typ: (id @-> returning bool)
-        ~enc: Encode.(_method_ ~args: [id] bool)
-        ~imp: (fun _self _cmd notification ->
+        ~args: Objc_type.[id]
+        ~return: Objc_type.bool
+        (fun _self _cmd notification ->
           D.terminate_on_windows_closed notification)
       ]
 end
