@@ -171,6 +171,13 @@ let test_kvc ~class_name x () =
   A.check A.string "set value and get same value" x (NSString.to_string v)
 ;;
 
+let test_string_of_selector () =
+  let expected = "myVar"
+  and actual = string_of_selector (selector "myVar")
+  in
+  A.check A.string "same string" expected actual
+;;
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -186,6 +193,7 @@ let suite =
   ; "set and get object ivar", `Quick,
     test_add_obj_ivar ~name:"MyClass7" (new_string "Hello")
   ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass8" "Test"
+  ; "get selector name as string", `Quick, test_string_of_selector
   ]
 
 let () = A.run "objc" [ "Objc", suite ]

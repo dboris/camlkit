@@ -20,6 +20,9 @@ let get_superclass = foreign "class_getSuperclass" (_Class @-> returning _Class)
 
 let selector = foreign "sel_registerName" (string @-> returning _SEL)
 
+(** Returns the name of the method specified by a given selector. *)
+let string_of_selector = foreign "sel_getName" (_SEL @-> returning string)
+
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
 

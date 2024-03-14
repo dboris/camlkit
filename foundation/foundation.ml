@@ -112,10 +112,7 @@ let new_string str =
   |> gc_autorelease)
 ;;
 
-let string_of_selector s =
-  nsstring_of_selector s
-  |> NSString.utf8_string
-;;
+let string_of_selector = Objc.string_of_selector
 
 let value_for_key key self =
   msg_send ~self
