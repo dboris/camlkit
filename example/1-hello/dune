@@ -2,5 +2,4 @@
  (name main)
  (public_name hello)
  (package cocoa-examples)
- (libraries foundation appkit)
- (link_flags -cclib "-framework Cocoa"))
+ (libraries foundation appkit))

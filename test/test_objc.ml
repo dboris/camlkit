@@ -81,7 +81,7 @@ let test_gc_autorelease () =
   let c = define_class name ~methods in
   _new_ c |> gc_autorelease |> ignore;
   Gc.full_major ();
-  A.check A.bool "dealloc was called after gc" !dealloc_called true
+  A.check A.bool "dealloc was called after gc" true !dealloc_called
 
 
 let test_add_protocol () =

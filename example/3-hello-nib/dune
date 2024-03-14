@@ -2,8 +2,7 @@
  (name main)
  (public_name hello_nib)
  (package cocoa-examples)
- (libraries foundation appkit)
- (link_flags -cclib "-framework Cocoa"))
+ (libraries foundation appkit))
 
 (alias
  (name default)

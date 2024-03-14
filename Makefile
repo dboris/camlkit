@@ -1,4 +1,4 @@
-.PHONY: build test run deps clean
+.PHONY: build test run-demo run-hello deps clean
 
 build:
 	@dune build @default
@@ -6,16 +6,13 @@ build:
 test:
 	@opam exec -- dune runtest --root .
 
-objc.opam: dune-project
-	@dune build
-
 run-demo:
 	@dune exec demoapp
 
 run-hello:
 	@dune exec hello
 
-deps: objc.opam
+deps:
 	@opam install -y . --deps-only --with-test
 
 clean:

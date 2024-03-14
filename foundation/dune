@@ -2,4 +2,15 @@
  (name foundation)
  (public_name foundation)
  (libraries ctypes ctypes.foreign)
- (flags -ccopt "-framework Foundation"))
+ (c_library_flags :standard (:include flags.txt)))
+
+(rule
+ (enabled_if (= %{system} macosx))
+ (target flags.txt)
+ (action (with-stdout-to %{target} (echo "\"-framework Cocoa\""))))
+
+(rule
+ (enabled_if (= %{system} linux))
+ (target flags.txt)
+ (action (with-stdout-to %{target}
+  (echo "\"-L/usr/GNUstep/Local/Library/Libraries -lgnustep-gui -lgnustep-base -lobjc\""))))

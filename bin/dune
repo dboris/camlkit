@@ -2,5 +2,4 @@
  (name main)
  (public_name demoapp)
  (package cocoa-examples)
- (libraries foundation appkit webkit)
- (link_flags -cclib "-framework Cocoa -framework WebKit"))
+ (libraries foundation appkit webkit))

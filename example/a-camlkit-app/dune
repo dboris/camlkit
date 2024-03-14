@@ -2,5 +2,4 @@
  (name main)
  (public_name camlkit_app)
  (package cocoa-examples)
- (libraries foundation appkit camlkit)
- (link_flags -cclib "-framework Cocoa"))
+ (libraries foundation appkit camlkit))

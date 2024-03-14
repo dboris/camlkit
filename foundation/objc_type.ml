@@ -69,8 +69,8 @@ let rec ctype_of_t
 | Unknown -> ptr void
 | Ptr ty -> ptr (ctype_of_t ty)
 | Arr ty -> array 0 (ctype_of_t ty)
-| Struc ty -> structure ""  (* FIXME *)
-| Union ty -> union ""  (* FIXME *)
+| Struc _ty -> structure ""  (* FIXME *)
+| Union _ty -> union ""  (* FIXME *)
 | Imp -> ptr void
 | Enc -> string
 | Proto -> ptr void
