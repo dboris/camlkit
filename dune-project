@@ -5,10 +5,10 @@
 
 (generate_opam_files true)
 
-(source (github dboris/ocaml-objc))
+(source (github dboris/camlkit))
 
-(authors "Boris D.")
-(maintainers "Boris D.")
+(authors "Boris D. <borisd@gmx.com>")
+(maintainers "Boris D. <borisd@gmx.com>")
 (license ISC)
 
 (package
@@ -22,7 +22,7 @@
   ctypes-foreign
   (alcotest :with-test))
  (tags
-  (objc bindings cocoa)))
+  (objc bindings cocoa gnustep)))
 
 (package
  (name appkit)

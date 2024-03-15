@@ -16,7 +16,9 @@ let on_started _notification =
   let module AC = CamlProxy.Create (App_controller) in
   let win = Main_window.create (_new_ AC._class_) in
   win |> set_title (new_string app_name);
-  win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
+  win
+  |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
+  |> ignore;
   win |> NSWindow.make_key_and_order_front ~sender: nil
 ;;
 

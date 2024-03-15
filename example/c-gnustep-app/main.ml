@@ -19,10 +19,22 @@ let create_window app =
       ~action: (selector "terminate:")
       ~frame: (Rect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
 
-  and label = Label.create "Hello, world!"
+  and label = new_object "NSTextField"
   in
     label
     |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+
+    label |> set_property "stringValue" (new_string "Hello");
+
+    Objc.(msg_send ~self: label
+      ~cmd: (selector "setBezeled:")
+      ~typ: (bool @-> returning void)
+      false);
+
+    Objc.(msg_send ~self: label
+      ~cmd: (selector "setDrawsBackground:")
+      ~typ: (bool @-> returning void)
+      false);
 
     win |> content_view |> add_subview label;
     win |> content_view |> add_subview btn;
@@ -36,11 +48,9 @@ let main () =
   let win = create_window app in
 
   win
-  |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
+  |> NSWindow.cascade_top_left_from_point (Point.make ~x: 50. ~y: 1000.)
   |> ignore;
   win |> NSWindow.make_key_and_order_front ~sender: nil;
-
-  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
   app |> NSApplication.activate_ignoring_other_apps true;
 
   NSApplication.run app

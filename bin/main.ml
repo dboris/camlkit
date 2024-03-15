@@ -14,7 +14,9 @@ let app_window () =
         ~style_mask:StyleMask.[titled; closable; resizable]
         ~backing:BackingStoreType.buffered)
   in
-  win |> NSWindow.cascade_top_left_from_point (Point.make ~x:20. ~y:20.);
+  win
+  |> NSWindow.cascade_top_left_from_point (Point.make ~x:20. ~y:20.)
+  |> ignore;
   win |> set_title (new_string "Hello Caml");
   win |> NSWindow.make_key_and_order_front ~sender:nil;
   win

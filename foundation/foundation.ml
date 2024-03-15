@@ -7,6 +7,7 @@ module Property = Property
 module Objc_type = Objc_type
 module NSObject = NSObject
 module NSString = NSString
+module Platform = Platform
 
 let msg_send' cmd ~self ~args ~return =
   let typ = Objc_type.method_typ ~args return in
@@ -16,13 +17,15 @@ let msg_send' cmd ~self ~args ~return =
 module Point = struct
   type t
   let t : t structure typ = structure "CGPoint"
-  let x = field t "x" double
-  let y = field t "y" double
+  let xf = field t "x" double
+  let yf = field t "y" double
   let () = seal t
-  let make ~x:x' ~y:y' =
+  let x p = getf p xf
+  let y p = getf p yf
+  let make ~x ~y =
     let p = make t in
-    setf p x x';
-    setf p y y';
+    setf p xf x;
+    setf p yf y;
     p
 end
 

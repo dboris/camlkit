@@ -2,15 +2,24 @@
  (name foundation)
  (public_name foundation)
  (libraries ctypes ctypes.foreign)
- (c_library_flags :standard (:include flags.txt)))
+ (c_library_flags :standard %{read-lines:flags.txt}))
 
 (rule
  (enabled_if (= %{system} macosx))
  (target flags.txt)
- (action (with-stdout-to %{target} (echo "\"-framework Cocoa\""))))
+ (action (copy flags.macos %{target})))
 
 (rule
  (enabled_if (= %{system} linux))
  (target flags.txt)
- (action (with-stdout-to %{target}
-  (echo "\"-L/usr/GNUstep/Local/Library/Libraries -lgnustep-gui -lgnustep-base -lobjc\""))))
+ (action (copy flags.gnustep %{target})))
+
+(rule
+ (enabled_if (= %{system} macosx))
+ (target platform.ml)
+ (action (copy platform.macos %{target})))
+
+(rule
+ (enabled_if (= %{system} linux))
+ (target platform.ml)
+ (action (copy platform.gnustep %{target})))

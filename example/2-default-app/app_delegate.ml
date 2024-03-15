@@ -15,7 +15,9 @@ let on_started notification =
   let app = Notification._object_ notification in
   let win = Main_window.create app in
   win |> set_title (new_string app_name);
-  win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.);
+  win
+  |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
+  |> ignore;
   win |> NSWindow.make_key_and_order_front ~sender: nil
 ;;
 

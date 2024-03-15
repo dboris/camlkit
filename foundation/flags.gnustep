@@ -1,0 +1,4 @@
+-L/usr/GNUstep/Local/Library/Libraries
+-lgnustep-gui
+-lgnustep-base
+-lobjc

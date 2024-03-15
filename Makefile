@@ -12,6 +12,9 @@ run-demo:
 run-hello:
 	@dune exec hello
 
+run-gs:
+	@dune exec hello_gnustep
+
 deps:
 	@opam install -y . --deps-only --with-test
 
