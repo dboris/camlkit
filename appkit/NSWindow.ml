@@ -43,7 +43,8 @@ let create ~content_rect ~style_mask ~backing ?(defer = false) () =
     in screen coordinates. *)
 let cascade_top_left_from_point pt self =
   match Platform.current with
-  | MacOS ->
+  | MacOS
+  (* ->
     let return_ptr = allocate Point.t (Point.make ~x: 0. ~y: 0.) in
     msg_send_stret ~self
       ~cmd: (selector "cascadeTopLeftFromPoint:")
@@ -52,7 +53,7 @@ let cascade_top_left_from_point pt self =
       ~return_ptr
       pt;
     assert (not (is_null return_ptr));
-    !@ return_ptr
+    !@ return_ptr *)
   | GNUstep ->
     (* XXX *)
     msg_send ~self
