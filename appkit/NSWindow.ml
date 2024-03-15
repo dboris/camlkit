@@ -42,24 +42,13 @@ let create ~content_rect ~style_mask ~backing ?(defer = false) () =
     Return value: The point shifted from top left of the window
     in screen coordinates. *)
 let cascade_top_left_from_point pt self =
-  match Platform.current with
-  | MacOS
-  (* ->
-    let return_ptr = allocate Point.t (Point.make ~x: 0. ~y: 0.) in
-    msg_send_stret ~self
-      ~cmd: (selector "cascadeTopLeftFromPoint:")
-      ~typ: (Point.t @-> returning void)
-      ~return_type: Point.t
-      ~return_ptr
-      pt;
-    assert (not (is_null return_ptr));
-    !@ return_ptr *)
-  | GNUstep ->
-    (* XXX *)
-    msg_send ~self
-      ~cmd: (selector "cascadeTopLeftFromPoint:")
-      ~typ: (Point.t @-> returning Point.t)
-      pt
+  let stret_addr = allocate Point.t (Point.make ~x: 0. ~y: 0.) in
+  msg_send_stret ~self
+    ~cmd: (selector "cascadeTopLeftFromPoint:")
+    ~typ: (Point.t @-> returning Point.t)
+    ~return_type: Point.t
+    ~stret_addr
+    pt
 ;;
 
 (** Attempts to make a given responder the first responder for the window. *)

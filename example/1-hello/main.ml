@@ -35,9 +35,10 @@ let main () =
   let app = NSApplication.shared in
   let win = create_window app in
 
-  win
-  |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
-  |> ignore;
+  let pt =
+    win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
+  in
+  Printf.eprintf "Cascaded point: %.0f %.0f\n%!" (Point.x pt) (Point.y pt);
   win |> NSWindow.make_key_and_order_front ~sender: nil;
 
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
