@@ -1,6 +1,6 @@
 (library
  (name foundation)
- (public_name foundation)
+ (public_name camlkit-base.foundation)
  (libraries ctypes ctypes.foreign)
  (c_library_flags :standard %{read-lines:flags.txt}))
 

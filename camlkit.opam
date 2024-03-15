@@ -2,18 +2,18 @@
 opam-version: "2.0"
 version: "0.1.1"
 synopsis: "Higher-level Cocoa bindings"
-description: "TODO"
+description: "Higher-level Cocoa bindings"
 maintainer: ["Boris D. <borisd@gmx.com>"]
 authors: ["Boris D. <borisd@gmx.com>"]
 license: "ISC"
-tags: ["objc" "bindings" "cocoa"]
+tags: ["objc" "bindings" "cocoa" "gnustep"]
 homepage: "https://github.com/dboris/camlkit"
 bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.13"}
-  "foundation" {= version}
-  "appkit" {= version}
+  "camlkit-base" {= version}
+  "camlkit-gui" {= version}
   "alcotest" {with-test}
   "odoc" {with-doc}
 ]

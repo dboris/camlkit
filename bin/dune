@@ -1,5 +1,5 @@
 (executable
  (name main)
  (public_name demoapp)
- (package cocoa-examples)
+ (package camlkit-examples)
  (libraries foundation appkit webkit))

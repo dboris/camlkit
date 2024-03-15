@@ -4,8 +4,8 @@ open Objc
 let class_name = "MainAppController"
 
 let method_signature_for_selector = function
-  | "incrementClicked:" -> Encode.(_method_ ~args: [id] void)
-  | _ -> Encode.unknown
+  | "incrementClicked:" -> Objc_type.(Encode._method_ ~args: [id] void)
+  | _ -> Objc_type.(Encode.value unknown)
 ;;
 
 let handle_invocation inv =

@@ -4,7 +4,7 @@ open Objc
 module CamlProxy = struct
   module type S = sig
     val class_name : string
-    val method_signature_for_selector : string -> Encode.t
+    val method_signature_for_selector : string -> Objc_type._Enc
     val handle_invocation : object_t -> unit
   end
 
@@ -41,7 +41,7 @@ end
 module CamlObjectProxy = struct
   module type S = sig
     val class_name : string
-    val method_signature_for_selector : string -> Encode.t
+    val method_signature_for_selector : string -> Objc_type._Enc
     val handle_invocation : object_t -> unit
     val responds_to_selector : string -> bool
   end
@@ -93,8 +93,8 @@ module CamlObjectProxy = struct
             sel
       in
       let methods =
-        [ Property.obj_getter ~ivar_name ~typ: id ~enc: Encode.id
-        ; Property.obj_setter ~ivar_name ~typ: id ~enc: Encode.id ()
+        [ Property.obj_getter ~ivar_name ~typ: id ~enc: Objc_type.(Encode.value id)
+        ; Property.obj_setter ~ivar_name ~typ: id ~enc: Objc_type.(Encode.value id) ()
 
         ; method_imp
           ~cmd: (selector "initWithTargetObject:")
@@ -124,7 +124,7 @@ module CamlObjectProxy = struct
           responds_to_selector_imp
         ]
       and ivars =
-        [ ivar_spec ~name: ivar_name ~typ: id ~enc: Encode.id ]
+        [ ivar_spec ~name: ivar_name ~typ: id ~enc: Objc_type.(Encode.value id) ]
       in
         define_class D.class_name
           ~superclass: "NSProxy" ~ivars ~methods ~class_methods

@@ -1,4 +1,4 @@
 (library
  (name appkit)
- (public_name appkit)
+ (public_name camlkit-gui.appkit)
  (libraries foundation))

@@ -12,51 +12,48 @@
 (license ISC)
 
 (package
- (name foundation)
- (synopsis "OCaml bindings to the Apple Foundation framework")
- (description "TODO")
+ (name camlkit-base)
+ (synopsis "OCaml bindings to the Objective-C runtime and Foundation framework")
+ (description "OCaml bindings to the Objective-C runtime and Foundation framework")
  (depends
   ocaml
   dune
   ctypes
   ctypes-foreign
   (alcotest :with-test))
- (tags
-  (objc bindings cocoa gnustep)))
+ (tags (objc bindings cocoa gnustep)))
 
 (package
- (name appkit)
- (synopsis "OCaml bindings to the Apple AppKit framework")
- (description "TODO")
+ (name camlkit-gui)
+ (synopsis "OCaml bindings to the AppKit framework")
+ (description "OCaml bindings to the AppKit framework")
  (depends
   ocaml
   dune
-  (foundation (= :version))
+  (camlkit-base (= :version))
   (alcotest :with-test))
- (tags
-  (objc bindings cocoa)))
+ (tags (objc bindings cocoa gnustep)))
 
 (package
  (name camlkit)
  (synopsis "Higher-level Cocoa bindings")
- (description "TODO")
+ (description "Higher-level Cocoa bindings")
  (depends
   ocaml
   dune
-  (foundation (= :version))
-  (appkit (= :version))
+  (camlkit-base (= :version))
+  (camlkit-gui (= :version))
   (alcotest :with-test))
- (tags
-  (objc bindings cocoa)))
+ (tags (objc bindings cocoa gnustep)))
 
 (package
- (name cocoa-examples)
+ (name camlkit-examples)
  (synopsis "Cocoa applications examples")
- (description "TODO")
+ (description "Cocoa applications examples")
  (depends
   ocaml
   dune
-  (foundation (= :version))
-  (appkit (= :version)))
- (tags
-  (objc bindings cocoa)))
+  (camlkit-base (= :version))
+  (camlkit-gui (= :version))
+  (camlkit (= :version)))
+ (tags (objc bindings cocoa gnustep)))

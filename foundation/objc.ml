@@ -17,7 +17,7 @@ let method_spec ~cmd ~typ ~imp ~enc =
 
 let method_imp imp ~cmd ~args ~return =
   let typ = Objc_type.method_typ ~args return
-  and enc = Objc_type.method_enc ~args return
+  and enc = Objc_type.Encode._method_ ~args return
   in
   MethodSpec {cmd; typ; imp; enc}
 ;;

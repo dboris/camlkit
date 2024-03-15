@@ -1,6 +1,7 @@
 (executable
  (name main)
  (libraries foundation appkit camlkit)
+ (package camlkit)
  (link_flags -cclib "-framework Cocoa"))
 
 (subdir ToDo.app/Contents

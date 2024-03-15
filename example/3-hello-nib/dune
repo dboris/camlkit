@@ -1,7 +1,7 @@
 (executable
  (name main)
  (public_name hello_nib)
- (package cocoa-examples)
+ (package camlkit-examples)
  (libraries foundation appkit))
 
 (alias
