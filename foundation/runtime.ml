@@ -1,6 +1,8 @@
 open Ctypes
 open Foreign
-open Value
+
+include C.Types
+include C.Functions
 
 let alignment_of_size size =
   let open Float in
@@ -11,17 +13,7 @@ let alignment_of_size size =
   |> to_int
   |> Unsigned.UInt8.of_int
 
-let get_class = foreign "objc_getClass" (string @-> returning _Class)
-
-(** Returns the class of an object. *)
-let get_object_class = foreign "object_getClass" (id @-> returning _Class)
-
-let get_superclass = foreign "class_getSuperclass" (_Class @-> returning _Class)
-
-let selector = foreign "sel_registerName" (string @-> returning _SEL)
-
-(** Returns the name of the method specified by a given selector. *)
-let string_of_selector = foreign "sel_getName" (_SEL @-> returning string)
+(* The following bindings are generated dynamically. *)
 
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
@@ -68,22 +60,6 @@ let allocate_class
     (_Class @-> string @-> size_t @-> returning _Class)
     superclass name extra_bytes
 
-(** Registers a class that was allocated using [allocate_class]. *)
-let register_class =
-  foreign "objc_registerClassPair" (_Class @-> returning void)
-
-let get_protocol = foreign "objc_getProtocol" (string @-> returning _Protocol)
-
-let add_protocol =
-  foreign "class_addProtocol" (_Class @-> _Protocol @-> returning bool)
-
-let conforms_to_protocol =
-  foreign "class_conformsToProtocol" (_Class @-> _Protocol @-> returning bool)
-
-(** Returns the metaclass definition of a specified class. *)
-let get_meta_class =
-  foreign "objc_getMetaClass" (string @-> returning _Class)
-
 (** Adds a new instance variable to a class. *)
 let add_ivar ~self ~name ~size ~enc =
   foreign "class_addIvar"
@@ -105,9 +81,6 @@ let ivar_value ~self ~ivar =
 let set_ivar ~self ~ivar value =
   foreign "object_setIvar" (id @-> _Ivar @-> id @-> returning void)
   self ivar value
-
-(** Returns the offset of an instance variable. *)
-let ivar_offset = foreign "ivar_getOffset" (_Ivar @-> returning ptrdiff_t)
 
 (** Obtains the value of an instance variable of a class instance. *)
 let get_instance_variable ~self ~name ~value_ptr ~typ =

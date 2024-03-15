@@ -1,4 +1,5 @@
 (lang dune 3.13)
+(using ctypes 0.3)
 
 (name camlkit)
 (version 0.1.1)

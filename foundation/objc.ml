@@ -1,5 +1,4 @@
 include Ctypes
-include Value
 include Runtime
 
 type 'a method_spec =

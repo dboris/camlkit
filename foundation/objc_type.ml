@@ -1,11 +1,11 @@
 open Ctypes
 
-type _Enc = string
+type _Enc = Runtime._Enc
 
 type _ t =
   Id : unit ptr t
 | Class : unit ptr t
-| Sel : char ptr t
+| Sel : Runtime.selector_t t
 | Void : unit t
 | Str : string t
 | Char : char t
@@ -23,8 +23,8 @@ type _ t =
 | Union : 'a t -> 'a union t
 | Imp : unit ptr t
 | Enc : _Enc t
-| Proto : unit ptr t
-| Ivar : unit ptr t
+| Proto : Runtime.protocol_t t
+| Ivar : Runtime.ivar_t t
 
 type (_, _) hlist =
   [] : ('r, 'r) hlist
@@ -101,10 +101,11 @@ let rec ctype_of_t
 : type a. a t -> a typ
 =
   let open Ctypes in
+  let open Runtime in
   function
-    Id -> ptr void
-  | Class -> ptr void
-  | Sel -> ptr char
+    Id -> id
+  | Class -> _Class
+  | Sel -> _SEL
   | Void -> void
   | Str -> string
   | Char -> char
@@ -120,10 +121,10 @@ let rec ctype_of_t
   | Arr ty -> array 0 (ctype_of_t ty)
   | Struc _ty -> structure ""  (* FIXME *)
   | Union _ty -> union ""  (* FIXME *)
-  | Imp -> ptr void
-  | Enc -> string
-  | Proto -> ptr void
-  | Ivar -> ptr void
+  | Imp -> _IMP
+  | Enc -> _Enc
+  | Proto -> _Protocol
+  | Ivar -> _Ivar
 
 let rec fold_fn
 : type a b. b fn -> (a, b) hlist -> a fn
