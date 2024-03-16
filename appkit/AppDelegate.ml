@@ -31,29 +31,29 @@ module Create (D : S) = struct
     ~methods:
       [ method_imp
         ~cmd: (selector "applicationWillFinishLaunching:")
-        ~args: Objc_type.[id]
-        ~return: Objc_type.void
+        ~args: Objc_t.[id]
+        ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_before_start notification)
 
       ; method_imp
         ~cmd: (selector "applicationDidFinishLaunching:")
-        ~args: Objc_type.[id]
-        ~return: Objc_type.void
+        ~args: Objc_t.[id]
+        ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_started notification)
 
       ; method_imp
         ~cmd: (selector "applicationWillTerminate:")
-        ~args: Objc_type.[id]
-        ~return: Objc_type.void
+        ~args: Objc_t.[id]
+        ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_before_terminate notification)
 
       ; method_imp
         ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
-        ~args: Objc_type.[id]
-        ~return: Objc_type.bool
+        ~args: Objc_t.[id]
+        ~return: Objc_t.bool
         (fun _self _cmd notification ->
           D.terminate_on_windows_closed notification)
       ]

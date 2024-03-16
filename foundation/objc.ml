@@ -15,8 +15,8 @@ let method_spec ~cmd ~typ ~imp ~enc =
 ;;
 
 let method_imp imp ~cmd ~args ~return =
-  let typ = Objc_type.method_typ ~args return
-  and enc = Objc_type.Encode._method_ ~args return
+  let typ = Objc_t.method_typ ~args return
+  and enc = Objc_t.Encode._method_ ~args return
   in
   MethodSpec {cmd; typ; imp; enc}
 ;;
@@ -29,8 +29,13 @@ type 'a ivar_spec =
 
 type ivar_spec' = IvarSpec : 'a ivar_spec -> ivar_spec'
 
-let ivar_spec ~name ~typ ~enc =
-  IvarSpec {name; typ; enc}
+let ivar_spec ~name ~typ ~enc = IvarSpec {name; typ; enc}
+
+let ivar name typ =
+  let typ = Objc_t.(value_typ typ)
+  and enc = Objc_t.(Encode.value typ)
+  in ivar_spec ~name ~typ ~enc
+;;
 
 let define_class
 ?(superclass = "NSObject")

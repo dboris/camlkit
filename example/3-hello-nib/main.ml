@@ -30,7 +30,7 @@ let main () =
       ~superclass: "NSWindowController"
       ~methods: [
         method_imp setup_ui ~cmd: (selector "windowDidLoad")
-          ~args: Objc_type.[] ~return: Objc_type.void
+          ~args: Objc_t.[] ~return: Objc_t.void
       ])
   in
   let wc =

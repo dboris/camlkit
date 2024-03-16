@@ -19,7 +19,7 @@ let controller_class =
   define_class "MyController"
     ~methods:
       [ method_imp increment_count_method
-        ~cmd: increment_sel ~args: Objc_type.[id] ~return: Objc_type.void
+        ~cmd: increment_sel ~args: Objc_t.[id] ~return: Objc_t.void
       ]
 ;;
 

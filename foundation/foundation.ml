@@ -4,13 +4,13 @@ include NSObject
 
 module Objc = Objc
 module Property = Property
-module Objc_type = Objc_type
+module Objc_t = Objc_t
 module NSObject = NSObject
 module NSString = NSString
 module Platform = Platform
 
 let msg_send' cmd ~self ~args ~return =
-  let typ = Objc_type.method_typ ~args return in
+  let typ = Objc_t.method_typ ~args return in
   msg_send ~self ~cmd ~typ
 ;;
 
@@ -77,7 +77,7 @@ module Invocation = struct
     let arg = allocate typ init in
     let () =
       msg_send' ~self (selector "getArgument:atIndex:")
-        ~args: Objc_type.[ptr void; int] ~return: Objc_type.void
+        ~args: Objc_t.[ptr void; int] ~return: Objc_t.void
         (to_voidp arg) at_index
     in
     !@ arg
@@ -85,14 +85,14 @@ module Invocation = struct
 
   let get_selector self =
     msg_send' ~self (selector "selector")
-      ~args: Objc_type.[] ~return: Objc_type._SEL
+      ~args: Objc_t.[] ~return: Objc_t._SEL
   ;;
 
   (** Sets the receiver’s return value. *)
   let set_return_value ~typ v self =
     let result = allocate typ v in
     msg_send' ~self (selector "setReturnValue:")
-      ~args: Objc_type.[ptr void] ~return: Objc_type.void
+      ~args: Objc_t.[ptr void] ~return: Objc_t.void
       (to_voidp result)
   ;;
 end

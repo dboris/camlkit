@@ -68,3 +68,29 @@ let obj_setter
   in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;
+
+(* Accessors *)
+
+let value ivar_name typ =
+  let typ = Objc_t.(value_typ typ)
+  and enc = Objc_t.(Encode.value typ)
+  in
+  [ getter ~ivar_name ~typ ~enc
+  ; setter ~ivar_name ~typ ~enc
+  ]
+;;
+
+let _object_
+?(assign = false)
+?(copy = false)
+ivar_name
+typ
+()
+=
+  let typ = Objc_t.(value_typ typ)
+  and enc = Objc_t.(Encode.value typ)
+  in
+  [ obj_getter ~ivar_name ~typ ~enc
+  ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
+  ]
+;;
