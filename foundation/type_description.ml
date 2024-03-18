@@ -3,6 +3,10 @@ open Ctypes
 module Types (F : Ctypes.TYPE) = struct
   open F
 
+  (* type objc_object
+  let objc_object : objc_object structure typ = structure "objc_object"
+  let id = ptr objc_object *)
+
   type objc_selector
   let objc_selector : objc_selector structure typ = structure "objc_selector"
 
@@ -27,10 +31,6 @@ module Types (F : Ctypes.TYPE) = struct
   let _Enc = string
   let _Protocol = ptr objc_protocol
   let _Ivar = ptr objc_ivar
-
-  (* type objc_object
-  let objc_object : objc_object structure typ = structure "objc_object"
-  let id = ptr objc_object *)
 
   let c_id = constant "_C_ID" char
 end

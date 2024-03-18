@@ -37,15 +37,15 @@
 
 (package
  (name camlkit)
- (synopsis "Higher-level Cocoa bindings")
- (description "Higher-level Cocoa bindings")
+ (synopsis "Higher-level wrappers for Cocoa APIs")
+ (description "Higher-level wrappers for Cocoa APIs")
  (depends
   ocaml
   dune
   (camlkit-base (= :version))
   (camlkit-gui (= :version))
   (alcotest :with-test))
- (tags (objc bindings cocoa gnustep)))
+ (tags (objc cocoa gnustep)))
 
 (package
  (name camlkit-examples)

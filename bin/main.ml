@@ -40,7 +40,7 @@ let webview url frame =
     |> init_with_frame frame
   and req =
     get_class "NSURLRequest"
-    |> request_with_url url
+    |> NSURL.request_with_url url
   in
   webview
   |> main_frame
@@ -51,7 +51,7 @@ let main () =
   let _ = new_object "NSAutoreleasePool"
   and app = NSApplication.shared
   and win = app_window ()
-  and url = new_url "http://example.com/"
+  and url = NSURL.new_url "http://example.com/"
   in
   let btn =
     make_button

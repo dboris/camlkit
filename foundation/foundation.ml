@@ -1,17 +1,25 @@
 open Objc
 open Unsigned
+
 include NSObject
 
 module Objc = Objc
-module Property = Property
 module Objc_t = Objc_t
+module Property = Property
+module Platform = Platform
+
 module NSObject = NSObject
 module NSString = NSString
-module Platform = Platform
+module NSURL = NSURL
 
 let msg_send' cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   msg_send ~self ~cmd ~typ
+;;
+
+let msg_send_super' cmd ~self ~args ~return =
+  let typ = Objc_t.method_typ ~args return in
+  msg_send_super ~self ~cmd ~typ
 ;;
 
 module Point = struct
@@ -108,12 +116,7 @@ let nil = Objc.nil
 let combine_options = List.fold_left UInt.logor UInt.zero
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
-let new_string str =
-  NSString.(_class_
-  |> alloc
-  |> init_with_utf8_string str
-  |> gc_autorelease)
-;;
+let new_string = NSString.new_string
 
 let string_of_selector = Objc.string_of_selector
 
@@ -129,25 +132,4 @@ let set_value v ~for_key self =
     ~cmd: (selector "setValue:forKey:")
     ~typ: (id @-> NSString.t @-> returning void)
     v (new_string for_key)
-;;
-
-(* NSURL *)
-
-let url_with_string str self =
-  msg_send ~self
-    ~cmd: (selector "URLWithString:")
-    ~typ: (id @-> returning id)
-    str
-;;
-
-let new_url str =
-  get_class "NSURL"
-  |> url_with_string (new_string str)
-;;
-
-let request_with_url url self =
-  msg_send ~self
-    ~cmd: (selector "requestWithURL:")
-    ~typ: (id @-> returning id)
-    url
 ;;

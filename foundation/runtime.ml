@@ -18,8 +18,19 @@ let alignment_of_size size =
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
 
+let create_instance ?(extra_bytes = Unsigned.Size_t.of_int 0) cls =
+  create_instance cls extra_bytes
+
 let msg_send ~self ~cmd ~typ =
   foreign "objc_msgSend"
+    (id @-> _SEL @-> typ)
+    self cmd
+;;
+
+(** Sends a message with a simple return value to the superclass
+    of an instance of a class. *)
+let msg_send_super ~self ~cmd ~typ =
+  foreign "objc_msgSendSuper"
     (id @-> _SEL @-> typ)
     self cmd
 ;;
@@ -42,23 +53,25 @@ let msg_send_stret ~self ~cmd ~typ ~return_type ~stret_addr =
       stret_addr self cmd
 ;;
 
+(** Creates a new class and metaclass.
+    extra_bytes: the number of bytes to allocate for indexed ivars at the end
+    of the class and metaclass objects. *)
+let allocate_class
+?(extra_bytes = Unsigned.Size_t.of_int 0)
+~superclass
+name
+=
+  foreign "objc_allocateClassPair"
+    (_Class @-> string @-> size_t @-> returning _Class)
+    superclass name extra_bytes
+
+(* Class *)
+
 let add_method ~self ~cmd ~typ ~imp ~enc =
   let method_t = id @-> _SEL @-> typ in
   let ty =
     _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
   foreign "class_addMethod" ty self cmd imp enc
-
-(** Creates a new class and metaclass.
-    extra_bytes: the number of bytes to allocate for indexed ivars at the end
-    of the class and metaclass objects. *)
-let allocate_class
-  ?(extra_bytes = Unsigned.Size_t.of_int 0)
-  ~superclass
-  name
-  =
-  foreign "objc_allocateClassPair"
-    (_Class @-> string @-> size_t @-> returning _Class)
-    superclass name extra_bytes
 
 (** Adds a new instance variable to a class. *)
 let add_ivar ~self ~name ~size ~enc =
@@ -71,6 +84,8 @@ let get_class_instance_variable ~self ~name =
   foreign "class_getInstanceVariable"
     (_Class @-> string @-> returning _Ivar)
     self name
+
+(* Object *)
 
 (** Reads the value of an Id instance variable in an object. *)
 let ivar_value ~self ~ivar =

@@ -6,6 +6,7 @@ module Delegate = AppDelegate.Create (App_delegate)
 let main () =
   let _ = new_object "NSAutoreleasePool"
   and _ = Document.define_class ()
+  and _ = Todo.define_class ()
   and app = NSApplication.shared
   and argc = Array.length Sys.argv
   and argv =
