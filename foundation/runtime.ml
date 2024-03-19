@@ -43,15 +43,27 @@ let msg_send_ov = msg_send ~typ: (id @-> returning void)
 
 (** Sends a message with a data-structure return value to
     an instance of a class. *)
-let msg_send_stret ~self ~cmd ~typ ~return_type ~stret_addr =
+let msg_send_stret ~self ~cmd ~typ ~return_type =
   match sizeof return_type with
   | 2 | 4 | 8 | 16 ->
     msg_send ~self ~cmd ~typ
   | _ ->
     foreign "objc_msgSend_stret"
-      (ptr return_type @-> id @-> _SEL @-> typ)
-      stret_addr self cmd
+      (id @-> _SEL @-> typ)
+      self cmd
 ;;
+
+(** Sends a message with a data-structure return value to
+    an instance of a class. *)
+    let msg_send_stret' ~self ~cmd ~typ ~return_type ~stret_addr =
+      match sizeof return_type with
+      | 2 | 4 | 8 | 16 ->
+        msg_send ~self ~cmd ~typ
+      | _ ->
+        foreign "objc_msgSend_stret"
+          (ptr return_type @-> id @-> _SEL @-> typ)
+          stret_addr self cmd
+    ;;
 
 (** Creates a new class and metaclass.
     extra_bytes: the number of bytes to allocate for indexed ivars at the end

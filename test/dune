@@ -1,13 +1,14 @@
 (test
  (name test_objc)
  (modules test_objc)
- (libraries foundation alcotest)
-;  (link_flags -cclib "-framework Foundation")
- )
+ (libraries foundation alcotest))
 
 (test
  (name test_camlkit)
  (modules test_camlkit)
- (libraries foundation appkit camlkit alcotest)
-;  (link_flags -cclib "-framework Foundation")
- )
+ (libraries foundation appkit camlkit alcotest))
+
+(test
+ (name test_stret)
+ (modules test_stret)
+ (libraries foundation appkit alcotest))
