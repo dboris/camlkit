@@ -1,37 +1,35 @@
 open Foundation
 open Objc
+module T = Objc_t
 
 let define_class () =
-  let ivars = [ ivar "items" Objc_t.id ]
+  let items = "items" in
+  let ivars = [ ivar items T.id ]
 
-  and init self _cmd =
-    let self = msg_send_super' (selector "init")
-      ~self ~args: Objc_t.[] ~return: Objc_t.id
+  and init self cmd =
+    let self = msg_send_super' cmd
+      ~self ~args: T.[] ~return: T.id
     in
-    self |> Property.set "items" (new_object "NSMutableArray");
+    self |> Property.set items (new_object "NSMutableArray") ~typ: Objc_t.id;
     self
   in
   let methods =
-    Property._object_ "items" Objc_t.id () @
+    Property._object_ items T.id () @
     [ method_imp init
-      ~cmd: (selector "init")
-      ~args: Objc_t.[] ~return: Objc_t.id
+      ~cmd: (selector "init") ~args: T.[] ~return: T.id
 
-    ; method_imp (fun _self _cmd -> true)
-      ~cmd: (selector "autosavesInPlace")
-      ~args: Objc_t.[] ~return: Objc_t.bool
+    ; method_imp (fun _ _ -> true)
+      ~cmd: (selector "autosavesInPlace") ~args: T.[] ~return: T.bool
 
-    ; method_imp (fun _self _cmd -> new_string "Document")
-      ~cmd: (selector "windowNibName")
-      ~args: Objc_t.[] ~return: Objc_t.id
+    ; method_imp (fun _ _ -> new_string "Document")
+      ~cmd: (selector "windowNibName") ~args: T.[] ~return: T.id
 
-    ; method_imp (fun _self _cmd _data_type _err -> nil)
-      ~cmd: (selector "dataOfType:error:")
-      ~args: Objc_t.[id; ptr id] ~return: Objc_t.id
+    ; method_imp (fun _ _ _data_type _err -> nil)
+      ~cmd: (selector "dataOfType:error:") ~args: T.[id; ptr id] ~return: T.id
 
-    ; method_imp (fun _self _cmd _data _data_type _err -> true)
+    ; method_imp (fun _ _ _data _data_type _err -> true)
       ~cmd: (selector "readFromData:ofType:error:")
-      ~args: Objc_t.[id; id; ptr id] ~return: Objc_t.bool
+      ~args: T.[id; id; ptr id] ~return: T.bool
     ]
   in
     define_class "Document"

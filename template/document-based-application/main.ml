@@ -15,7 +15,7 @@ let main () =
     |> Objc.CArray.start
   in
   app |> NSApplication.activate_ignoring_other_apps true;
-  application_main ~argc ~argv |> exit
+  NSApplication.main ~argc ~argv |> exit
 ;;
 
 let () = main ()

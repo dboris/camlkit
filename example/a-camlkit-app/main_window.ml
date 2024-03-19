@@ -5,7 +5,7 @@ let label = Label.create ""
 
 let update_label () =
   let count = Model.get_count () |> string_of_int  in
-  label |> set_property "stringValue" (new_string count)
+  label |> Property.set "stringValue" (new_string count) ~typ: Objc_t.id
 ;;
 
 let create app_ctrl =

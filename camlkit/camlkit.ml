@@ -4,8 +4,9 @@ open Objc
 module CamlProxy = struct
   module type S = sig
     val class_name : string
+    val ivars : ivar_spec' list
     val method_signature_for_selector : string -> Objc_t._Enc
-    val handle_invocation : object_t -> unit
+    val handle_invocation : object_t -> object_t -> unit
   end
 
   module Create (D : S) = struct
@@ -16,7 +17,7 @@ module CamlProxy = struct
         ~return: Objc_t.id
 
       ; method_imp
-        (fun _self _cmd invocation -> D.handle_invocation invocation)
+        (fun self _cmd invocation -> D.handle_invocation invocation self)
         ~cmd: (selector "forwardInvocation:")
         ~args: Objc_t.[id]
         ~return: Objc_t.void
@@ -34,7 +35,8 @@ module CamlProxy = struct
       ]
 
     let _class_ =
-      define_class D.class_name ~superclass: "NSProxy" ~methods
+      define_class D.class_name ~superclass: "NSProxy"
+        ~methods ~ivars: D.ivars
   end
 end
 
@@ -62,7 +64,7 @@ module CamlObjectProxy = struct
       let responds_to_selector_imp self cmd sel =
         D.responds_to_selector (string_of_selector sel) ||
         msg_send
-          ~self: (self |> get_property ivar_name |> get_object_class)
+          ~self: (self |> get_property ~typ: id ivar_name |> get_object_class)
           ~cmd
           ~typ: (_SEL @-> returning bool)
           sel
@@ -75,7 +77,7 @@ module CamlObjectProxy = struct
           msg_send_ov
             ~self: invocation
             ~cmd: (selector "invokeWithTarget:")
-            (self |> get_property ivar_name)
+            (self |> get_property ~typ: id ivar_name)
 
       and method_signature_for_selector_imp self cmd sel =
         let str_sel = string_of_selector sel in
@@ -87,7 +89,7 @@ module CamlObjectProxy = struct
             (D.method_signature_for_selector str_sel)
         else
           msg_send
-            ~self: (self |> get_property ivar_name)
+            ~self: (self |> get_property ~typ: id ivar_name)
             ~cmd
             ~typ: (_SEL @-> returning id)
             sel
@@ -101,7 +103,7 @@ module CamlObjectProxy = struct
           ~args: Objc_t.[id]
           ~return: Objc_t.id
           (fun self _cmd target ->
-            self |> set_property ivar_name target;
+            self |> set_property ~typ: id ivar_name target;
             self)
 
         ; method_imp

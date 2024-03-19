@@ -47,13 +47,6 @@ let set_frame (frame : Rect.t structure) self =
     ~typ: (Rect.t @-> returning void)
     frame
 
-(** Called by the main function to create and run the application. *)
-let application_main ~argc ~argv =
-  Foreign.foreign "NSApplicationMain"
-    (int @-> ptr string @-> returning int)
-    argc argv
-;;
-
 (* NSMenu *)
 
 (** Initializes and returns a menu having the specified title and with

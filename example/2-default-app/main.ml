@@ -16,7 +16,7 @@ let main () =
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
   app |> set_delegate (_new_ Delegate._class_);
   app |> NSApplication.activate_ignoring_other_apps true;
-  application_main ~argc ~argv |> exit
+  NSApplication.main ~argc ~argv |> exit
 ;;
 
 let () = main ()

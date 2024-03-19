@@ -31,13 +31,13 @@ let new_object class_name =
   alloc_object class_name |> init |> gc_autorelease
 ;;
 
-let get_property ?(typ = returning id) prop_name self =
-  msg_send ~self ~cmd: (selector prop_name) ~typ
+let get_property ~typ prop_name self =
+  msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ)
 ;;
 
-let set_property ?(typ = id @-> returning void) prop_name value self =
+let set_property ~typ prop_name value self =
   let cmd = selector (Util.setter_name_of_ivar prop_name) in
-  msg_send ~self ~cmd ~typ value
+  msg_send ~self ~cmd ~typ: (typ @-> returning void) value
 ;;
 
 let description self = msg_send_vo ~self ~cmd: (selector "description")

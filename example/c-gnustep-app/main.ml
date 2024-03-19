@@ -24,7 +24,7 @@ let create_window app =
     label
     |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
-    label |> set_property "stringValue" (new_string "Hello");
+    label |> Property.set "stringValue" (new_string "Hello") ~typ: Objc_t.id;
 
     Objc.(msg_send ~self: label
       ~cmd: (selector "setBezeled:")

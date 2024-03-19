@@ -6,7 +6,7 @@ let increment_sel = selector "incrementClicked:"
 
 let update_label () =
   let count = Model.get_count () |> string_of_int  in
-  label |> set_property "stringValue" (new_string count)
+  label |> Property.set "stringValue" (new_string count) ~typ: Objc_t.id
 ;;
 
 let increment_count_method _self _cmd _sender =

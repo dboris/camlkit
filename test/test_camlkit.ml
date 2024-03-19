@@ -9,6 +9,7 @@ let test_define_custom_class () =
   let module MyCustomClass = CamlProxy.Create (
     struct
       let class_name = "MyCustomClass"
+      let ivars = []
 
       let method_signature_for_selector sel =
         if String.equal sel my_sel then
@@ -17,7 +18,7 @@ let test_define_custom_class () =
           Objc_t.(Encode.value unknown)
       ;;
 
-      let handle_invocation inv =
+      let handle_invocation inv _ =
         let sel = inv |> Invocation.get_selector |> string_of_selector in
         if String.equal sel my_sel then
           let arg =

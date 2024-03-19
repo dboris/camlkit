@@ -9,15 +9,16 @@ open Objc
 
 let setup_ui self _cmd =
   let app = NSApplication.shared
-  and win = get_property "window" self in
-  let cv = get_property "contentView" win in
+  and win = Property.get "window" self ~typ: Objc_t.id in
+  let cv = Property.get "contentView" win ~typ: Objc_t.id in
 
   (* Access subviews by tag from NIB file *)
   let label = cv |> View.view_with_tag 1
   and button = cv |> View.view_with_tag 2
   in
-  label |> set_property "stringValue" (new_string "Hello, world!");
-  button |> set_property "target" app;
+  label |> Property.set "stringValue" (new_string "Hello, world!")
+    ~typ: Objc_t.id;
+  button |> Property.set "target" app ~typ: Objc_t.id;
 
   msg_send' (selector "setAction:")
     ~self: button ~args: Objc_t.[_SEL] ~return: Objc_t.void

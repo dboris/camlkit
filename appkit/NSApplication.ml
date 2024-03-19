@@ -15,6 +15,13 @@ module ActivationOptions = struct
   let activate_ignoring_other_apps = UInt.(shift_left one 1)
 end
 
+(** Called by the main function to create and run the application. *)
+let main ~argc ~argv =
+  Foreign.foreign "NSApplicationMain"
+    (int @-> ptr string @-> returning int)
+    argc argv
+;;
+
 let shared_application self =
   msg_send_vo ~self ~cmd: (selector "sharedApplication")
 ;;

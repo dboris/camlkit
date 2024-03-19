@@ -2,8 +2,9 @@ open Objc
 open Util
 open NSObject
 
-let get = get_property
-let set = set_property
+let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
+
+let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
 
 (** Getter for non-object values. *)
 let getter ~ivar_name ~typ ~enc =

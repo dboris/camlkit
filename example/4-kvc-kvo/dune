@@ -1,0 +1,7 @@
+(executable
+ (name main)
+ (public_name thermostat)
+ (package camlkit-examples)
+ (libraries foundation appkit camlkit))
+
+(alias (name default) (deps ui.nib))
