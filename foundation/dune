@@ -50,3 +50,7 @@
  (enabled_if (= %{system} linux))
  (target platform.ml)
  (action (copy platform.gnustep %{target})))
+
+(rule
+ (with-stdout-to arch.ml
+  (bash "foo=%{architecture}; echo \"type t = Amd64 | Arm64 \nlet current = ${foo^}\"")))

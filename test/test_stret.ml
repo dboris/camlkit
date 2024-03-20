@@ -64,7 +64,8 @@ let test_small_struct () =
       ~cmd: (selector "getSmallStruct")
       ~typ: (returning SmallStruct.t)
   in
-  A.check (A.float 0.0001) "same float" 5. (SmallStruct.x sm)
+  A.check (A.float 0.0001) "same float" 5. (SmallStruct.x sm);
+  A.check (A.float 0.0001) "same float" 22. (SmallStruct.y sm)
 
 let test_large_struct () =
   let lg =
@@ -74,7 +75,10 @@ let test_large_struct () =
       ~typ: (returning LargeStruct.t)
       ~return_type: LargeStruct.t
   in
-  A.check (A.float 0.0001) "same float" 5. (LargeStruct.x lg)
+  A.check (A.float 0.0001) "same float" 5. (LargeStruct.x lg);
+  A.check (A.float 0.0001) "same float" 22. (LargeStruct.y lg);
+  A.check (A.float 0.0001) "same float" 42. (LargeStruct.z lg);
+  A.check A.string "same string" "Hello" (LargeStruct.s lg)
 
 let suite =
   [ "return small struct", `Quick, test_small_struct
