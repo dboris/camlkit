@@ -4,6 +4,9 @@ open Foreign
 include C.Types
 include C.Functions
 
+module Platform = Platform
+
+
 let alignment_of_size size =
   let open Float in
   Unsigned.Size_t.to_int size
@@ -55,6 +58,10 @@ let msg_send_stret ~self ~cmd ~typ ~return_type =
         self cmd
     end
   | Arm64 -> msg_send ~self ~cmd ~typ
+;;
+
+let _to_string self =
+  msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
 ;;
 
 (** Creates a new class and metaclass.
@@ -112,3 +119,25 @@ let set_instance_variable ~self ~name ~value =
   foreign "object_setInstanceVariable"
     (id @-> string @-> ptr void @-> returning _Ivar)
     self name value
+
+(* Exception handling *)
+
+exception NSException of string * string
+
+(** Changes the top-level error handler. *)
+let set_uncaught_exception_handler =
+  foreign "NSSetUncaughtExceptionHandler"
+    (funptr (id @-> returning void) @-> returning void)
+
+let default_uncaught_exception_handler ex =
+  let name =
+    msg_send ~self: ex ~cmd: (selector "name") ~typ: (returning id)
+  and reason =
+    msg_send ~self: ex ~cmd: (selector "reason") ~typ: (returning id)
+  in
+  Printf.eprintf "NSException: %s -- %s\n%!"
+    (_to_string name) (_to_string reason);
+  raise @@ NSException (_to_string name, _to_string reason)
+
+let () =
+  set_uncaught_exception_handler default_uncaught_exception_handler

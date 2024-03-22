@@ -6,7 +6,7 @@ include NSObject
 module Objc = Objc
 module Objc_t = Objc_t
 module Property = Property
-module Platform = Platform
+module Platform = Runtime.Platform
 
 module NSObject = NSObject
 module NSString = NSString

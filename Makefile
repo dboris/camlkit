@@ -4,7 +4,7 @@ build:
 	@dune build @default
 
 test:
-	@opam exec -- dune runtest --root .
+	@dune runtest --root .
 
 run-demo:
 	@dune exec demoapp
