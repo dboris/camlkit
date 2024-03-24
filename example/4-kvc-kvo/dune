@@ -4,4 +4,29 @@
  (package camlkit-examples)
  (libraries foundation appkit camlkit))
 
-(alias (name default) (deps ui.nib))
+; (alias (name default) (deps ui.nib))
+
+(subdir Kvc.app/Contents
+ (rule
+  (deps ../../Info.plist)
+  (targets Info.plist)
+  (action (copy ../../Info.plist Info.plist))))
+
+(subdir Kvc.app/Contents/MacOS
+ (rule
+  (deps ../../../main.exe)
+  (targets Kvc)
+  (action (copy ../../../main.exe Kvc))))
+
+; (subdir Kvc.app/Contents/Resources
+;  (rule
+;   (deps ../../../icon.jpeg)
+;   (targets Kvc.jpeg)
+;   (action (copy ../../../icon.jpeg Kvc.jpeg))))
+
+(subdir Kvc.app/Contents/Resources/Base.lproj
+ (rule
+  (deps ../../../../ui.nib)
+  (targets ui.nib)
+  (action
+   (copy ../../../../ui.nib ui.nib))))
