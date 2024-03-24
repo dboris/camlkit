@@ -65,7 +65,7 @@ let test_define_CamlObjectProxy_class () =
     end)
   in
   let str = "Hello" in
-  match Platform.current with
+  (* match Platform.current with
   | GNUstep ->
     let args = Objc_t.[] and return = Objc_t.int in
     (* XXX add_method' with Objc_t *)
@@ -75,7 +75,7 @@ let test_define_CamlObjectProxy_class () =
       ~cmd: (selector "length")
       ~typ: (Objc_t.method_typ ~args return)
       ~enc: (Objc_t.Encode._method_ ~args return))
-  | MacOS -> ();
+  | MacOS -> (); *)
   let obj =
     NSStringCamlProxy.(alloc _class_ |> init_with_target_object (new_string str))
   in

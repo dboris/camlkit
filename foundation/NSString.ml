@@ -15,12 +15,19 @@ let init_with_utf8_string str self =
     str
 ;;
 
+let string_with_utf8_string str self =
+  msg_send ~self
+    ~cmd: (selector "stringWithUTF8String:")
+    ~typ: (string @-> returning id)
+    str
+;;
+
 let to_string = utf8_string
 let of_string = init_with_utf8_string
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
-  create_instance _class_
-  |> init_with_utf8_string str
+  _class_
+  |> string_with_utf8_string str
   |> NSObject.gc_autorelease
 ;;
