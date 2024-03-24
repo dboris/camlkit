@@ -103,7 +103,10 @@ let ivar_value ~self ~ivar =
   foreign "object_getIvar" (id @-> _Ivar @-> returning id)
   self ivar
 
-(** Sets the value of an instance variable in an object. *)
+(** Sets the value of an instance variable in an object.
+    object_setIvar is faster than object_setInstanceVariable if the Ivar
+    for the instance variable is already known.
+*)
 let set_ivar ~self ~ivar value =
   foreign "object_setIvar" (id @-> _Ivar @-> id @-> returning void)
   self ivar value

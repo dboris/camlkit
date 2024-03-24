@@ -35,7 +35,7 @@ module Functions (F : Ctypes.FOREIGN) = struct
     An integer value. Pass the number of pointers for which you have allocated space in buffer. On return, this function fills in only this number of elements. If this number is less than the number of registered classes, this function returns an arbitrary subset of the registered classes.
   *)
   let get_class_list =
-    foreign "objc_getClassList" (ptr _Class @-> int @-> returning int)
+    foreign "objc_getClassList" (ptr (ptr objc_class) @-> int @-> returning int)
 
   (* Class *)
 
@@ -85,4 +85,7 @@ module Functions (F : Ctypes.FOREIGN) = struct
   let ivar_offset =
     foreign "ivar_getOffset" (_Ivar @-> returning ptrdiff_t)
 
+  (** Returns the name of an instance variable. *)
+  let get_ivar_name =
+    foreign "ivar_getName" (_Ivar @-> returning string)
 end

@@ -62,10 +62,8 @@ let obj_setter
     in
       ivar_value ~self ~ivar |> release;
 
-    set_instance_variable ~self
-      ~name: ivar_name
-      ~value: (if copy then NSObject.copy value else value)
-    |> ignore
+    assert (not (is_null ivar));
+    set_ivar ~self ~ivar (if copy then NSObject.copy value else value)
   in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;

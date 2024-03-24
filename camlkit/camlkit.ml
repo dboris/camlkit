@@ -44,7 +44,7 @@ module CamlObjectProxy = struct
   module type S = sig
     val class_name : string
     val method_signature_for_selector : string -> Objc_t._Enc
-    val handle_invocation : object_t -> unit
+    val handle_invocation : object_t -> object_t -> unit
     val responds_to_selector : string -> bool
   end
 
@@ -72,7 +72,7 @@ module CamlObjectProxy = struct
       and forward_invocation_imp self _cmd invocation =
         let sel = invocation |> Invocation.get_selector in
         if D.responds_to_selector (string_of_selector sel) then
-          D.handle_invocation invocation
+          D.handle_invocation invocation self
         else
           msg_send_ov
             ~self: invocation

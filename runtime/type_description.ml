@@ -3,9 +3,8 @@ open Ctypes
 module Types (F : Ctypes.TYPE) = struct
   open F
 
-  (* type objc_object
-  let objc_object : objc_object structure typ = structure "objc_object"
-  let id = ptr objc_object *)
+  type objc_class
+  let objc_class : objc_class structure typ = structure "objc_class"
 
   type objc_selector
   let objc_selector : objc_selector structure typ = structure "objc_selector"
