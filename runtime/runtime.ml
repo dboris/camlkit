@@ -1,29 +1,22 @@
-include Ctypes
 include C.Types
+
+open Ctypes
 open Foreign
 
 module Platform = Platform
 module Sel = C.Functions.Sel
 module Ivar = C.Functions.Ivar
+module Inspect = Inspect
 
 let selector = Sel.register_name
-
-let alignment_of_size size =
-  let open Float in
-  Unsigned.Size_t.to_int size
-  |> of_int
-  |> log2
-  |> round
-  |> to_int
-  |> Unsigned.UInt8.of_int
-
-(* The following bindings are generated dynamically. *)
 
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
 
 module Objc =
 struct
+  include Ctypes
+  include Unsigned
   include C.Functions.Objc
 
   (** Sends a message with a simple return value to an instance of a class. *)
@@ -84,6 +77,16 @@ end
 module Class =
 struct
   include C.Functions.Class
+
+  let alignment_of_size size =
+    let open Float in
+    Unsigned.Size_t.to_int size
+    |> of_int
+    |> log2
+    |> round
+    |> to_int
+    |> Unsigned.UInt8.of_int
+  ;;
 
   let create_instance ?(extra_bytes = Unsigned.Size_t.of_int 0) cls =
     create_instance cls extra_bytes

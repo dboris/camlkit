@@ -1,7 +1,8 @@
 This project provides a selection of bindings to the Cocoa frameworks on
-macOS and enables the development of GUI applications on that platform in OCaml.
+macOS and GNUstep on Unix-like systems. It enables the development of GUI applications on these platforms in OCaml.
 
-NB: unreleased, API will change frequently until v1.0
+NOTE: unreleased, the API will change frequently
+until a beta version is available.
 
 ## Sample programs
 

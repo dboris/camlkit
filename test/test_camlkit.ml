@@ -1,5 +1,5 @@
 open Foundation
-open Runtime
+open Objc
 open Camlkit
 
 module A = Alcotest

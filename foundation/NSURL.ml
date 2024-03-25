@@ -2,10 +2,10 @@ open Runtime
 
 
 let url_with_string str self =
-  Objc.msg_send ~self
+  Objc.(msg_send ~self
     ~cmd: (selector "URLWithString:")
     ~typ: (id @-> returning id)
-    str
+    str)
 ;;
 
 let new_url str =
@@ -14,8 +14,8 @@ let new_url str =
 ;;
 
 let request_with_url url self =
-  Objc.msg_send ~self
+  Objc.(msg_send ~self
     ~cmd: (selector "requestWithURL:")
     ~typ: (id @-> returning id)
-    url
+    url)
 ;;

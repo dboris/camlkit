@@ -36,7 +36,7 @@ let main () =
   let win = create_window app in
 
   let pt =
-    win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 20.)
+    win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 1000.)
   in
   Printf.eprintf "Cascaded point: %.0f %.0f\n%!" (Point.x pt) (Point.y pt);
   win |> NSWindow.make_key_and_order_front ~sender: nil;

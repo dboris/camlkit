@@ -1,6 +1,6 @@
 open Foundation
 open Runtime
-open Unsigned
+open Objc
 
 module ActivationPolicy = struct
   let t = int
@@ -33,10 +33,15 @@ let set_main_menu menu self =
 ;;
 
 let set_activation_policy policy self =
-  Objc.msg_send ~self
-    ~cmd: (selector "setActivationPolicy:")
-    ~typ: (ActivationPolicy.t @-> returning bool)
-    policy
+  match Platform.current with
+  | MacOS ->
+    Objc.msg_send ~self
+      ~cmd: (selector "setActivationPolicy:")
+      ~typ: (ActivationPolicy.t @-> returning bool)
+      policy
+  | GNUstep ->
+    (* Not supported *)
+    true
 ;;
 
 let activate_ignoring_other_apps flag self =

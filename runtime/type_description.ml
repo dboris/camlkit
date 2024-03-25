@@ -6,6 +6,9 @@ module Types (F : Ctypes.TYPE) = struct
   type objc_class
   let objc_class : objc_class structure typ = structure "objc_class"
 
+  type objc_method
+  let objc_method : objc_method structure typ = structure "objc_method"
+
   type objc_selector
   let objc_selector : objc_selector structure typ = structure "objc_selector"
 
@@ -30,6 +33,7 @@ module Types (F : Ctypes.TYPE) = struct
   let _Enc = string
   let _Protocol = ptr objc_protocol
   let _Ivar = ptr objc_ivar
+  let _Method = ptr objc_method
 
   let c_id = constant "_C_ID" char
 end

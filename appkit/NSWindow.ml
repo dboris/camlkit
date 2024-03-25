@@ -1,6 +1,6 @@
 open Foundation
 open Runtime
-open Unsigned
+open Objc
 
 module StyleMask = struct
   let t = uint

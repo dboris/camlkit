@@ -101,6 +101,7 @@ let rec ctype_of_t
 : type a. a t -> a typ
 =
   let open Runtime in
+  let open Objc in
   function
     Id -> id
   | Class -> _Class

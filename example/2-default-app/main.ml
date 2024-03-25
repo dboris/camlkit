@@ -10,8 +10,8 @@ let main () =
   and argv =
     Sys.argv
     |> Array.to_list
-    |> Runtime.(CArray.of_list string)
-    |> Runtime.CArray.start
+    |> Objc.(CArray.of_list string)
+    |> Objc.CArray.start
   in
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
   app |> set_delegate (_new_ Delegate._class_);

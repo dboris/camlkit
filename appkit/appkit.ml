@@ -1,5 +1,6 @@
 open Foundation
 open Runtime
+open Objc
 
 module AppDelegate = AppDelegate
 module NSApplication = NSApplication
@@ -99,11 +100,25 @@ end
 
 module Label = struct
   let create title =
-    Objc.msg_send
-      ~self: (get_class "NSTextField")
-      ~cmd: (selector "labelWithString:")
-      ~typ: (id @-> returning id)
-      (new_string title)
+    match Platform.current with
+    | MacOS ->
+      Objc.msg_send
+        ~self: (get_class "NSTextField")
+        ~cmd: (selector "labelWithString:")
+        ~typ: (id @-> returning id)
+        (new_string title)
+    | GNUstep ->
+      let self = new_object "NSTextField" in
+      self |> Property.set "stringValue" (new_string title) ~typ: Objc_t.id;
+      Objc.msg_send ~self
+        ~cmd: (selector "setBezeled:")
+        ~typ: (bool @-> returning void)
+        false;
+      Objc.msg_send ~self
+        ~cmd: (selector "setDrawsBackground:")
+        ~typ: (bool @-> returning void)
+        false;
+      self
   ;;
 end
 

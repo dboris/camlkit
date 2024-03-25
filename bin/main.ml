@@ -1,6 +1,6 @@
 open Foundation
 open Appkit
-open Webkit
+(* open Webkit *)
 
 let win_width = 400.
 let win_height = 300.
@@ -33,7 +33,7 @@ let make_button ~title ~frame ~target ~action =
   btn |> set_title title;
   btn
 
-let webview url frame =
+(* let webview url frame =
   let webview =
     get_class "WebView"
     |> alloc
@@ -45,13 +45,13 @@ let webview url frame =
   webview
   |> main_frame
   |> load_request req;
-  webview
+  webview *)
 
 let main () =
   let _ = new_object "NSAutoreleasePool"
   and app = NSApplication.shared
   and win = app_window ()
-  and url = NSURL.new_url "http://example.com/"
+  (* and url = NSURL.new_url "http://example.com/" *)
   in
   let btn =
     make_button
@@ -61,14 +61,14 @@ let main () =
       ~frame:(Rect.make
         ~x:10. ~y:(win_height -. 40.)
         ~width:100. ~height:30.)
-  and wv =
+  (* and wv =
     webview url
       (Rect.make
         ~x:10. ~y:10.
-        ~width:(win_width -. 20.) ~height:(win_height -. 60.))
+        ~width:(win_width -. 20.) ~height:(win_height -. 60.)) *)
   in
   win |> content_view |> add_subview btn;
-  win |> content_view |> add_subview wv;
+  (* win |> content_view |> add_subview wv; *)
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
   app |> NSApplication.activate_ignoring_other_apps true;
   NSApplication.run app

@@ -5,21 +5,21 @@ let t = id
 let _class_ = Objc.get_class "NSString"
 
 let utf8_string self =
-  Objc.msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
+  Objc.(msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string))
 ;;
 
 let init_with_utf8_string str self =
-  Objc.msg_send ~self
+  Objc.(msg_send ~self
     ~cmd: (selector "initWithUTF8String:")
     ~typ: (string @-> returning id)
-    str
+    str)
 ;;
 
 let string_with_utf8_string str self =
-  Objc.msg_send ~self
+  Objc.(msg_send ~self
     ~cmd: (selector "stringWithUTF8String:")
     ~typ: (string @-> returning id)
-    str
+    str)
 ;;
 
 let to_string = utf8_string

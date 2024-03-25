@@ -1,16 +1,16 @@
 include NSObject
 
-module Objc_t = Objc_t
-module Property = Property
-module Platform = Runtime.Platform
-module Runtime = Runtime
-
 module NSObject = NSObject
 module NSString = NSString
 module NSURL = NSURL
+module Objc = Runtime.Objc
+module Objc_t = Objc_t
+module Platform = Runtime.Platform
+module Property = Property
+module Runtime = Runtime
 
 open Runtime
-open Unsigned
+open Objc
 
 let msg_send' cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
@@ -118,6 +118,7 @@ let combine_options = List.fold_left UInt.logor UInt.zero
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string = NSString.new_string
 
+(** Returns the selector name as string. *)
 let string_of_selector = Runtime.Sel.get_name
 
 let value_for_key key self =

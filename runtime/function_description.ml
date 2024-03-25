@@ -65,6 +65,16 @@ struct
     *)
     let create_instance =
       foreign "class_createInstance" (_Class @-> size_t @-> returning id)
+
+
+    (** Describes the instance methods implemented by a class.
+    outCount
+
+      On return, contains the length of the returned array. If outCount is NULL, the length is not returned.
+    *)
+    let copy_method_list =
+      foreign "class_copyMethodList" (_Class @-> ptr uint @-> returning (ptr _Method))
+
   end
 
   module Object =
@@ -100,5 +110,14 @@ struct
     (** Returns the name of an instance variable. *)
     let get_name =
       foreign "ivar_getName" (_Ivar @-> returning string)
+  end
+
+  module Method =
+  struct
+
+    (** Returns the name of a method. *)
+    let get_name =
+      foreign "method_getName" (_Method @-> returning _SEL)
+
   end
 end

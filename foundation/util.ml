@@ -1,4 +1,5 @@
 open Runtime
+open Objc
 
 (** Returns pointer to an ivar in object [self]  *)
 let ivar_ptr ~self ~ivar_name =
