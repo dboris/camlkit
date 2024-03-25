@@ -1,5 +1,6 @@
 open Foundation
-open Objc
+open Runtime
+open Define
 
 module CamlProxy = struct
   module type S = sig
@@ -11,37 +12,37 @@ module CamlProxy = struct
 
   module Create (D : S) = struct
     let methods =
-      [ method_imp (fun self _cmd -> self)
+      [ _method_ (fun self _cmd -> self)
         ~cmd: (selector "init")
         ~args: Objc_t.[]
         ~return: Objc_t.id
 
-      ; method_imp
+      ; _method_
         (fun self _cmd invocation -> D.handle_invocation invocation self)
         ~cmd: (selector "forwardInvocation:")
         ~args: Objc_t.[id]
         ~return: Objc_t.void
 
-      ; method_imp
+      ; _method_
         ~cmd: (selector "methodSignatureForSelector:")
         ~args: Objc_t.[_SEL]
         ~return: Objc_t.id
         (fun _self _cmd sel ->
-          msg_send
+          Objc.msg_send
             ~self: (get_class "NSMethodSignature")
             ~cmd: (selector "signatureWithObjCTypes:")
             ~typ: (_Enc @-> returning id)
             (D.method_signature_for_selector (string_of_selector sel)))
       ]
     and class_methods =
-      [ method_imp (fun self _cmd -> self)
+      [ _method_ (fun self _cmd -> self)
         ~cmd: (selector "new")
         ~args: Objc_t.[]
         ~return: Objc_t.id
       ]
 
     let _class_ =
-      define_class D.class_name ~superclass: "NSProxy"
+      Def._class_ D.class_name ~superclass: "NSProxy"
         ~methods ~class_methods ~ivars: D.ivars
   end
 end
@@ -58,7 +59,7 @@ module CamlObjectProxy = struct
 
     (** Initialize the proxy object with the target object *)
     let init_with_target_object target_object self  =
-      msg_send ~self
+      Objc.msg_send ~self
         ~cmd: (selector "initWithTargetObject:")
         ~typ: (id @-> returning id)
         target_object
@@ -69,8 +70,8 @@ module CamlObjectProxy = struct
 
       let responds_to_selector_imp self cmd sel =
         D.responds_to_selector (string_of_selector sel) ||
-        msg_send
-          ~self: (self |> get_property ~typ: id ivar_name |> get_object_class)
+        Objc.msg_send
+          ~self: (self |> get_property ~typ: id ivar_name |> Object.get_class)
           ~cmd
           ~typ: (_SEL @-> returning bool)
           sel
@@ -80,7 +81,7 @@ module CamlObjectProxy = struct
         if D.responds_to_selector (string_of_selector sel) then
           D.handle_invocation invocation self
         else
-          msg_send_ov
+          Objc.msg_send_ov
             ~self: invocation
             ~cmd: (selector "invokeWithTarget:")
             (self |> get_property ~typ: id ivar_name)
@@ -88,13 +89,13 @@ module CamlObjectProxy = struct
       and method_signature_for_selector_imp self cmd sel =
         let str_sel = string_of_selector sel in
         if D.responds_to_selector str_sel then
-          msg_send
+          Objc.msg_send
             ~self: (get_class "NSMethodSignature")
             ~cmd: (selector "signatureWithObjCTypes:")
             ~typ: (_Enc @-> returning id)
             (D.method_signature_for_selector str_sel)
         else
-          msg_send
+          Objc.msg_send
             ~self: (self |> get_property ~typ: id ivar_name)
             ~cmd
             ~typ: (_SEL @-> returning id)
@@ -104,7 +105,7 @@ module CamlObjectProxy = struct
         [ Property.obj_getter ~ivar_name ~typ: id ~enc: Objc_t.(Encode.value id)
         ; Property.obj_setter ~ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ()
 
-        ; method_imp
+        ; _method_
           ~cmd: (selector "initWithTargetObject:")
           ~args: Objc_t.[id]
           ~return: Objc_t.id
@@ -112,20 +113,20 @@ module CamlObjectProxy = struct
             self |> set_property ~typ: id ivar_name target;
             self)
 
-        ; method_imp
+        ; _method_
           ~cmd: (selector "forwardInvocation:")
           ~args: Objc_t.[id]
           ~return: Objc_t.void
           forward_invocation_imp
 
-        ; method_imp
+        ; _method_
           ~cmd: (selector "methodSignatureForSelector:")
           ~args: Objc_t.[_SEL]
           ~return: Objc_t.id
           method_signature_for_selector_imp
         ]
       and class_methods =
-        [ method_imp
+        [ _method_
           ~cmd: (selector "respondsToSelector:")
           ~args: Objc_t.[_SEL]
           ~return: Objc_t.bool
@@ -134,7 +135,7 @@ module CamlObjectProxy = struct
       and ivars =
         [ ivar_spec ~name: ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ]
       in
-        define_class D.class_name
+        _class_ D.class_name
           ~superclass: "NSProxy" ~ivars ~methods ~class_methods
   end
 end

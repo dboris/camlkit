@@ -1,4 +1,4 @@
-open Objc
+open Runtime
 open Util
 open NSObject
 
@@ -12,7 +12,7 @@ let getter ~ivar_name ~typ ~enc =
   and imp self _cmd =
     !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
   in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+    Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
 ;;
 
 (** Setter for non-object values. *)
@@ -22,7 +22,7 @@ let setter ~ivar_name ~typ ~enc =
   and imp self _cmd value =
     (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
   in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+  Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;
 
 (** Getter for object values. *)
@@ -30,13 +30,13 @@ let obj_getter ~ivar_name ~typ ~enc =
   let cmd = selector ivar_name
   and imp self _cmd =
     let ivar =
-      get_class_instance_variable
-        ~self: (get_object_class self)
+      Class.get_instance_variable
+        ~self: (Object.get_class self)
         ~name: ivar_name
     in
-      ivar_value ~self ~ivar
+      Object.get_ivar ~self ~ivar
   in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+  Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
 ;;
 
 (** Setter for object values. *)
@@ -56,16 +56,16 @@ let obj_setter
 
     (* release old object *)
     let ivar =
-      get_class_instance_variable
-        ~self: (get_object_class self)
+      Class.get_instance_variable
+        ~self: (Object.get_class self)
         ~name: ivar_name
     in
-      ivar_value ~self ~ivar |> release;
+    Object.get_ivar ~self ~ivar |> release;
 
     assert (not (is_null ivar));
-    set_ivar ~self ~ivar (if copy then NSObject.copy value else value)
+    Object.set_ivar ~self ~ivar (if copy then NSObject.copy value else value)
   in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+  Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 ;;
 
 (* Accessors *)

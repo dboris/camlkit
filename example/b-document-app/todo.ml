@@ -1,5 +1,5 @@
 open Foundation
-open Objc
+open Define
 
 let define_class () =
   let task = "task" and due = "due" and priority = "priority" in
@@ -13,5 +13,5 @@ let define_class () =
     Property._object_ due Objc_t.id () @
     Property.value priority Objc_t.int
   in
-    define_class "Todo" ~ivars ~methods
+    _class_ "Todo" ~ivars ~methods
 ;;

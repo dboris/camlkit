@@ -1,7 +1,7 @@
 open Foundation
-open Objc
+open Runtime
 
-let main_frame self = msg_send_vo ~self ~cmd: (selector "mainFrame")
+let main_frame self = Objc.msg_send_vo ~self ~cmd: (selector "mainFrame")
 
 let load_request req self =
-  msg_send_ov ~self ~cmd: (selector "loadRequest:") req
+  Objc.msg_send_ov ~self ~cmd: (selector "loadRequest:") req

@@ -1,11 +1,10 @@
 open Foundation
-open Objc
 
 let class_name = "MainAppController"
 
 let temp = "temperature"
 
-let ivars = [ ivar temp Objc_t.int ]
+let ivars = [ Define.ivar temp Objc_t.int ]
 
 let make_warmer self =
   let current =

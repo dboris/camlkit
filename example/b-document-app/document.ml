@@ -1,5 +1,6 @@
 open Foundation
-open Objc
+open Runtime
+open Define
 module T = Objc_t
 
 let define_class () =
@@ -15,24 +16,24 @@ let define_class () =
   in
   let methods =
     Property._object_ items T.id () @
-    [ method_imp init
+    [ _method_ init
       ~cmd: (selector "init") ~args: T.[] ~return: T.id
 
-    ; method_imp (fun _ _ -> true)
+    ; _method_ (fun _ _ -> true)
       ~cmd: (selector "autosavesInPlace") ~args: T.[] ~return: T.bool
 
-    ; method_imp (fun _ _ -> new_string "Document")
+    ; _method_ (fun _ _ -> new_string "Document")
       ~cmd: (selector "windowNibName") ~args: T.[] ~return: T.id
 
-    ; method_imp (fun _ _ _data_type _err -> nil)
+    ; _method_ (fun _ _ _data_type _err -> nil)
       ~cmd: (selector "dataOfType:error:") ~args: T.[id; ptr id] ~return: T.id
 
-    ; method_imp (fun _ _ _data _data_type _err -> true)
+    ; _method_ (fun _ _ _data _data_type _err -> true)
       ~cmd: (selector "readFromData:ofType:error:")
       ~args: T.[id; id; ptr id] ~return: T.bool
     ]
   in
-    define_class "Document"
+    _class_ "Document"
       ~superclass: "NSDocument"
       ~methods ~ivars
 ;;

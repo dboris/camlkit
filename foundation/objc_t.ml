@@ -100,7 +100,6 @@ end
 let rec ctype_of_t
 : type a. a t -> a typ
 =
-  let open Ctypes in
   let open Runtime in
   function
     Id -> id

@@ -1,6 +1,6 @@
 open Foundation
 open Appkit
-open Objc
+open Runtime
 
 (* This example demonstrates how to access view objects from a NIB file.
    The UI was laid out in Interface Builder and saved as a NIB file
@@ -29,10 +29,10 @@ let setup_ui self _cmd =
 
 let main () =
   let wc_class =
-    define_class "MainWindowController"
+    Define._class_ "MainWindowController"
       ~superclass: "NSWindowController"
       ~methods: [
-        method_imp setup_ui
+        Define._method_ setup_ui
           ~cmd: (selector "windowDidLoad")
           ~args: Objc_t.[] ~return: Objc_t.void
       ]
@@ -43,7 +43,7 @@ let main () =
       ~args: Objc_t.[id] ~return: Objc_t.id
       (new_string "MainWindowController")
   in
-  msg_send_ov ~self: wc ~cmd: (selector "showWindow:") nil;
+  Objc.msg_send_ov ~self: wc ~cmd: (selector "showWindow:") nil;
 
   let app = NSApplication.shared in
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));

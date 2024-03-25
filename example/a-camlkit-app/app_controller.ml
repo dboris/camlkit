@@ -1,5 +1,4 @@
 open Foundation
-open Objc
 
 let class_name = "MainAppController"
 

@@ -1,5 +1,6 @@
 open Foundation
-open Objc
+open Runtime
+open Define
 
 module A = Alcotest
 module T = Objc_t
@@ -42,7 +43,7 @@ module LargeStruct = struct
     p
 end
 
-let test_class = define_class "TestClass" ~methods:
+let test_class = _class_ "TestClass" ~methods:
   [ method_spec
     ~cmd: (selector "getSmallStruct")
     ~imp: (fun _ _ -> SmallStruct.make ~x: 5. ~y: 22.)
@@ -59,7 +60,7 @@ let test_object = new_object "TestClass"
 
 let test_small_struct () =
   let sm =
-    msg_send
+    Objc.msg_send
       ~self: test_object
       ~cmd: (selector "getSmallStruct")
       ~typ: (returning SmallStruct.t)
@@ -69,7 +70,7 @@ let test_small_struct () =
 
 let test_large_struct () =
   let lg =
-    msg_send_stret
+    Objc.msg_send_stret
       ~self: test_object
       ~cmd: (selector "getLargeStruct")
       ~typ: (returning LargeStruct.t)

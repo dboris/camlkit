@@ -12,8 +12,8 @@ let main () =
   and argv =
     Sys.argv
     |> Array.to_list
-    |> Objc.(CArray.of_list string)
-    |> Objc.CArray.start
+    |> Runtime.(CArray.of_list string)
+    |> Runtime.CArray.start
   in
   app |> NSApplication.activate_ignoring_other_apps true;
   NSApplication.main ~argc ~argv |> exit

@@ -1,5 +1,5 @@
 open Foundation
-open Objc
+open Runtime
 open Camlkit
 
 module A = Alcotest
@@ -33,7 +33,7 @@ let test_define_custom_class () =
   let obj = MyCustomClass._class_ |> alloc |> init in
   let expected = 5 * 2
   and actual =
-    msg_send ~self: obj
+    Objc.msg_send ~self: obj
       ~cmd: (selector my_sel)
       ~typ: (int @-> returning int)
       5
@@ -71,7 +71,7 @@ let test_define_CamlObjectProxy_class () =
   let x = 5 in
   let expected = x * 3
   and actual =
-    msg_send ~self: obj
+    Objc.msg_send ~self: obj
       ~cmd: (selector "multByThree:")
       ~typ: (int @-> returning int)
       x

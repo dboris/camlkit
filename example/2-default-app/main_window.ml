@@ -15,10 +15,9 @@ let increment_count_method _self _cmd _sender =
 ;;
 
 let controller_class =
-  let open Objc in
-  define_class "MyController"
+  Define._class_ "MyController"
     ~methods:
-      [ method_imp increment_count_method
+      [ Define._method_ increment_count_method
         ~cmd: increment_sel ~args: Objc_t.[id] ~return: Objc_t.void
       ]
 ;;

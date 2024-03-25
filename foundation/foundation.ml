@@ -1,25 +1,25 @@
-open Objc
-open Unsigned
-
 include NSObject
 
-module Objc = Objc
 module Objc_t = Objc_t
 module Property = Property
 module Platform = Runtime.Platform
+module Runtime = Runtime
 
 module NSObject = NSObject
 module NSString = NSString
 module NSURL = NSURL
 
+open Runtime
+open Unsigned
+
 let msg_send' cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
-  msg_send ~self ~cmd ~typ
+  Objc.msg_send ~self ~cmd ~typ
 ;;
 
 let msg_send_super' cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
-  msg_send_super ~self ~cmd ~typ
+  Objc.msg_send_super ~self ~cmd ~typ
 ;;
 
 module Point = struct
@@ -68,12 +68,12 @@ module Notification = struct
 
   (** The name of the notification. *)
   let name self =
-    msg_send_vo ~self ~cmd: (selector "name")
+    Objc.msg_send_vo ~self ~cmd: (selector "name")
   ;;
 
   (** The object associated with the notification. *)
   let _object_ self =
-    msg_send_vo ~self ~cmd: (selector "object")
+    Objc.msg_send_vo ~self ~cmd: (selector "object")
   ;;
 end
 
@@ -107,29 +107,48 @@ end
 
 let get_class = Objc.get_class
 
-let selector = Objc.selector
+let selector = Runtime.selector
 
 let to_selector = coerce (ptr void) _SEL
 
-let nil = Objc.nil
+let nil = null
 
 let combine_options = List.fold_left UInt.logor UInt.zero
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string = NSString.new_string
 
-let string_of_selector = Objc.string_of_selector
+let string_of_selector = Runtime.Sel.get_name
 
 let value_for_key key self =
-  msg_send ~self
+  Objc.msg_send ~self
     ~cmd: (selector "valueForKey:")
     ~typ: (NSString.t @-> returning id)
     (new_string key)
 ;;
 
 let set_value v ~for_key self =
-  msg_send ~self
+  Objc.msg_send ~self
     ~cmd: (selector "setValue:forKey:")
     ~typ: (id @-> NSString.t @-> returning void)
     v (new_string for_key)
 ;;
+
+module Define =
+struct
+  include Runtime.Def
+
+  let _method_ imp ~cmd ~args ~return =
+    let typ = Objc_t.method_typ ~args return
+    and enc = Objc_t.Encode._method_ ~args return
+    in
+    method_spec ~cmd ~typ ~imp ~enc
+  ;;
+
+  let ivar name typ =
+    let typ = Objc_t.(value_typ typ)
+    and enc = Objc_t.(Encode.value typ)
+    in ivar_spec ~name ~typ ~enc
+  ;;
+
+end

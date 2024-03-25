@@ -1,5 +1,5 @@
 open Foundation
-open Objc
+open Runtime
 
 module type S = sig
   val class_name : string
@@ -20,6 +20,7 @@ module type S = sig
 end
 
 module Create (D : S) = struct
+  open Define
   (** Note:
     [get_protocol "NSApplicationDelegate"] fails since its object is not created
     by the runtime unless referenced in ObjC code:
@@ -27,30 +28,30 @@ module Create (D : S) = struct
     But it's an informal protocol, not required for the code to function.
   *)
 
-  let _class_ = define_class D.class_name
+  let _class_ = _class_ D.class_name
     ~methods:
-      [ method_imp
+      [ _method_
         ~cmd: (selector "applicationWillFinishLaunching:")
         ~args: Objc_t.[id]
         ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_before_start notification)
 
-      ; method_imp
+      ; _method_
         ~cmd: (selector "applicationDidFinishLaunching:")
         ~args: Objc_t.[id]
         ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_started notification)
 
-      ; method_imp
+      ; _method_
         ~cmd: (selector "applicationWillTerminate:")
         ~args: Objc_t.[id]
         ~return: Objc_t.void
         (fun _self _cmd notification ->
           D.on_before_terminate notification)
 
-      ; method_imp
+      ; _method_
         ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
         ~args: Objc_t.[id]
         ~return: Objc_t.bool
