@@ -2,4 +2,16 @@
  (name main)
  (public_name hello_gnustep)
  (package camlkit-examples)
- (libraries foundation appkit))
+ (libraries foundation appkit camlkit))
+
+(subdir GSApp.app
+ (rule
+  (deps ../main.exe)
+  (targets GSApp)
+  (action (copy ../main.exe GSApp))))
+
+(subdir GSApp.app/Resources
+ (rule
+  (deps ../../Info-gnustep.plist)
+  (targets Info-gnustep.plist)
+  (action (copy ../../Info-gnustep.plist Info-gnustep.plist))))

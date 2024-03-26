@@ -34,16 +34,10 @@ module CamlProxy = struct
             ~typ: (_Enc @-> returning id)
             (D.method_signature_for_selector (string_of_selector sel))))
       ]
-    and class_methods =
-      [ _method_ (fun self _cmd -> self)
-        ~cmd: (selector "new")
-        ~args: Objc_t.[]
-        ~return: Objc_t.id
-      ]
 
     let _class_ =
       Def._class_ D.class_name ~superclass: "NSProxy"
-        ~methods ~class_methods ~ivars: D.ivars
+        ~methods ~ivars: D.ivars
   end
 end
 

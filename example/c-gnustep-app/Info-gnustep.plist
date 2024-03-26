@@ -1,0 +1,13 @@
+{
+    ApplicationDescription = "Test GNUstep app.";
+    ApplicationName = GSApp;
+    ApplicationRelease = "1.0";
+    Authors = ( "Boris D. <borisd@gmx.com>" );
+    FullVersionID = "1.0";
+    GSMainMarkupFile = "";
+    NSExecutable = GSApp;
+    NSIcon = "";
+    NSMainNibFile = "";
+    NSMainStoryboardFile = "";
+    NSPrincipalClass = NSApplication;
+}

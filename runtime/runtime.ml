@@ -12,67 +12,7 @@ let selector = Sel.register_name
 
 let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
-
-module Objc =
-struct
-  include Ctypes
-  include Unsigned
-  include C.Functions.Objc
-
-  (** Sends a message with a simple return value to an instance of a class. *)
-  let msg_send ~self ~cmd ~typ =
-    foreign "objc_msgSend"
-      (id @-> _SEL @-> typ)
-      self cmd
-  ;;
-
-  (** Sends a message with a simple return value to the superclass
-      of an instance of a class. *)
-  let msg_send_super ~self ~cmd ~typ =
-    foreign "objc_msgSendSuper"
-      (id @-> _SEL @-> typ)
-      self cmd
-  ;;
-
-  (** Shortcut for type [void @-> id] *)
-  let msg_send_vo = msg_send ~typ: (returning id)
-
-  (** Shortcut for type [id @-> void] *)
-  let msg_send_ov = msg_send ~typ: (id @-> returning void)
-
-  (** Sends a message with a data-structure return value to
-      an instance of a class. *)
-  let msg_send_stret ~self ~cmd ~typ ~return_type =
-    match Arch.current with
-    | Amd64 ->
-      begin match sizeof return_type with
-      | 2 | 4 | 8 | 16 ->
-        msg_send ~self ~cmd ~typ
-      | _ ->
-        foreign "objc_msgSend_stret"
-          (id @-> _SEL @-> typ)
-          self cmd
-      end
-    | Arm64 -> msg_send ~self ~cmd ~typ
-  ;;
-
-  let _to_string self =
-    msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
-  ;;
-
-  (** Creates a new class and metaclass.
-      extra_bytes: the number of bytes to allocate for indexed ivars at the end
-      of the class and metaclass objects. *)
-  let allocate_class
-  ?(extra_bytes = Unsigned.Size_t.of_int 0)
-  ~superclass
-  name
-  =
-    foreign "objc_allocateClassPair"
-      (_Class @-> string @-> size_t @-> returning _Class)
-      superclass name extra_bytes
-  ;;
-end
+;;
 
 module Class =
 struct
@@ -138,6 +78,70 @@ struct
     foreign "object_setInstanceVariable"
       (id @-> string @-> ptr void @-> returning _Ivar)
       self name value
+end
+
+module Objc =
+struct
+  include Ctypes
+  include Unsigned
+  include C.Functions.Objc
+
+  (** Sends a message with a simple return value to an instance of a class. *)
+  let msg_send ~self ~cmd ~typ =
+    foreign "objc_msgSend"
+      (id @-> _SEL @-> typ)
+      self cmd
+  ;;
+
+  (** Sends a message with a simple return value to the superclass
+      of an instance of a class. *)
+  let msg_send_super ~self ~cmd ~typ =
+    match Platform.current with
+    | MacOS ->
+      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd
+    | GNUstep ->
+      let self = Class.get_superclass self in
+      msg_send ~self ~cmd ~typ
+  ;;
+
+  (** Shortcut for type [void @-> id] *)
+  let msg_send_vo = msg_send ~typ: (returning id)
+
+  (** Shortcut for type [id @-> void] *)
+  let msg_send_ov = msg_send ~typ: (id @-> returning void)
+
+  (** Sends a message with a data-structure return value to
+      an instance of a class. *)
+  let msg_send_stret ~self ~cmd ~typ ~return_type =
+    match Arch.current with
+    | Amd64 ->
+      begin match sizeof return_type with
+      | 2 | 4 | 8 | 16 ->
+        msg_send ~self ~cmd ~typ
+      | _ ->
+        foreign "objc_msgSend_stret"
+          (id @-> _SEL @-> typ)
+          self cmd
+      end
+    | Arm64 -> msg_send ~self ~cmd ~typ
+  ;;
+
+  let _to_string self =
+    msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
+  ;;
+
+  (** Creates a new class and metaclass.
+      extra_bytes: the number of bytes to allocate for indexed ivars at the end
+      of the class and metaclass objects. *)
+  let allocate_class
+  ?(extra_bytes = Unsigned.Size_t.of_int 0)
+  ~superclass
+  name
+  =
+    foreign "objc_allocateClassPair"
+      (_Class @-> string @-> size_t @-> returning _Class)
+      superclass name extra_bytes
+  ;;
 end
 
 module Def =

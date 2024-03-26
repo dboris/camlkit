@@ -12,6 +12,7 @@ let method_signature_for_selector = function
 let handle_invocation inv _ =
   match string_of_selector (Invocation.get_selector inv) with
   | "incrementClicked:" ->
+    Printf.eprintf "incrementClicked...\n%!";
     Model.increment ();
     Main_window.update_label ()
   | _ -> raise Not_found
