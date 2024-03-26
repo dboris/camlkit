@@ -11,6 +11,10 @@ struct
 
   let ivars = []
 
+  let init self =
+    Printf.eprintf "MainAppController.init...\n%!";
+    self
+
   let method_signature_for_selector = function
     | "btnClicked:" ->
       let s = Objc_t.(Encode._method_ ~args: [id] void) in

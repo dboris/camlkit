@@ -6,13 +6,14 @@ module CamlProxy = struct
   module type S = sig
     val class_name : string
     val ivars : ivar_spec' list
+    val init : object_t -> object_t
     val method_signature_for_selector : string -> Objc_t._Enc
     val handle_invocation : object_t -> object_t -> unit
   end
 
   module Create (D : S) = struct
     let methods =
-      [ _method_ (fun self _cmd -> self)
+      [ _method_ (fun self _cmd -> D.init self)
         ~cmd: (selector "init")
         ~args: Objc_t.[]
         ~return: Objc_t.id
@@ -34,10 +35,16 @@ module CamlProxy = struct
             ~typ: (_Enc @-> returning id)
             (D.method_signature_for_selector (string_of_selector sel))))
       ]
+    let class_methods =
+      [ _method_ (fun self _cmd -> self |> alloc |> init)
+        ~cmd: (selector "new")
+        ~args: Objc_t.[]
+        ~return: Objc_t.id
+      ]
 
     let _class_ =
       Def._class_ D.class_name ~superclass: "NSProxy"
-        ~methods ~ivars: D.ivars
+        ~methods ~class_methods ~ivars: D.ivars
   end
 end
 

@@ -11,6 +11,8 @@ let test_define_custom_class () =
       let class_name = "MyCustomClass"
       let ivars = []
 
+      let init self = self
+
       let method_signature_for_selector sel =
         if String.equal sel my_sel then
           Objc_t.(Encode._method_ ~args: [int] int)

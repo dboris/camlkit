@@ -6,6 +6,11 @@ let temp = "temperature"
 
 let ivars = [ Define.ivar temp Objc_t.int ]
 
+let init self =
+  Printf.eprintf "MainAppController.init...\n%!";
+  self
+;;
+
 let make_warmer self =
   let current =
     self |> Property.get ~typ: Objc_t.int temp
