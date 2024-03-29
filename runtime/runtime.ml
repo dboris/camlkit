@@ -10,9 +10,9 @@ module Inspect = Inspect
 
 let selector = Sel.register_name
 
-let nsstring_of_selector =
+(* let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
-;;
+;; *)
 
 module Class =
 struct

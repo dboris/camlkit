@@ -39,4 +39,5 @@ module Types (F : Ctypes.TYPE) = struct
   let _Method = ptr objc_method
 
   let c_id = constant "_C_ID" char
+  let c_uchar = constant "_C_UCHR" char
 end

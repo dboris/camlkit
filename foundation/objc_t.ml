@@ -53,50 +53,6 @@ let array ty = Arr ty
 let struc ty = Struc ty
 let union ty = Union ty
 
-
-module Encode = struct
-
-  let rec enc_of_t
-  : type a. a t -> string
-  = function
-    Id -> "@"
-  | Class -> "#"
-  | Sel -> ":"
-  | Void -> "v"
-  | Str -> "*"
-  | Char -> "c"
-  | Bool -> "c"
-  | Int -> "i"
-  | Short -> "s"
-  | Long -> "l"
-  | LLong -> "q"
-  | Float -> "f"
-  | Double -> "d"
-  | Unknown -> "?"
-  | Ptr ty -> "^" ^ enc_of_t ty
-  | Arr ty -> "[" ^ enc_of_t ty ^ "]"
-  | Struc ty -> "{" ^ enc_of_t ty ^ "}"
-  | Union ty -> "(" ^ enc_of_t ty ^ ")"
-  | Imp -> "?"
-  | Enc -> "?"
-  | Proto -> "?"
-  | Ivar -> "?"
-
-  let rec fold_enc
-  : type a b. (a, b) hlist -> string
-  = function
-    [] -> ""
-  | t :: xs -> enc_of_t t ^ fold_enc xs
-
-  let _method_ ?args return =
-    enc_of_t return ^
-    fold_enc [id; _SEL] ^
-    Option.fold ~none:"" ~some:fold_enc args
-
-  let value = enc_of_t
-
-end
-
 let rec ctype_of_t
 : type a. a t -> a typ
 =
@@ -125,6 +81,85 @@ let rec ctype_of_t
   | Enc -> _Enc
   | Proto -> _Protocol
   | Ivar -> _Ivar
+
+module Encode = struct
+  let byte_size_of_t
+  : type a. a t -> int
+  = function
+    Id -> sizeof (ctype_of_t Id)
+  | Class -> sizeof (ctype_of_t Class)
+  | Sel -> sizeof (ctype_of_t Sel)
+  | Void -> sizeof (ctype_of_t Void)
+  | Str -> sizeof (ctype_of_t Str)
+  | Char -> sizeof (ctype_of_t Char)
+  | Bool -> sizeof (ctype_of_t Bool)
+  | Int -> sizeof (ctype_of_t Int)
+  | Short -> sizeof (ctype_of_t Short)
+  | Long -> sizeof (ctype_of_t Long)
+  | LLong -> sizeof (ctype_of_t LLong)
+  | Float -> sizeof (ctype_of_t Float)
+  | Double -> sizeof (ctype_of_t Double)
+  | Unknown -> sizeof (ctype_of_t Unknown)
+  | Ptr ty -> sizeof (ctype_of_t ty)
+  | Arr _ty -> 0  (* FIXME *)
+  | Struc _ty -> 0  (* FIXME *)
+  | Union _ty -> 0  (* FIXME *)
+  | Imp -> 8
+  | Enc -> 0  (* FIXME *)
+  | Proto -> 8  (* FIXME *)
+  | Ivar -> 8  (* FIXME *)
+
+  let rec enc_of_t
+  : type a. a t -> string
+  = function
+    Id -> "@"
+  | Class -> "#"
+  | Sel -> ":"
+  | Void -> "v"
+  | Str -> "*"
+  | Char -> "c"
+  | Bool -> Char.escaped Runtime.c_uchar
+  | Int -> "i"
+  | Short -> "s"
+  | Long -> "l"
+  | LLong -> "q"
+  | Float -> "f"
+  | Double -> "d"
+  | Unknown -> "?"
+  | Ptr ty -> "^" ^ enc_of_t ty
+  | Arr ty -> "[" ^ enc_of_t ty ^ "]"
+  | Struc ty -> "{" ^ enc_of_t ty ^ "}"
+  | Union ty -> "(" ^ enc_of_t ty ^ ")"
+  | Imp -> "?"
+  | Enc -> "?"
+  | Proto -> "?"
+  | Ivar -> "?"
+
+  let rec fold_enc
+  : type a b. int -> (a, b) hlist -> string
+  = fun arg_offset ->
+    function
+    [] -> ""
+  | t :: xs ->
+    enc_of_t t ^
+    string_of_int arg_offset ^
+    fold_enc (arg_offset + byte_size_of_t t) xs
+
+  let rec fold_size
+  : type a b. (a, b) hlist -> int
+  = function
+    [] -> 0
+  | t :: xs -> byte_size_of_t t + fold_size xs
+
+  let _method_ ~args return =
+    let args = id :: _SEL :: args in
+    let size_of_args = fold_size args in
+    enc_of_t return ^ string_of_int size_of_args ^
+    fold_enc 0 args
+
+  let value = enc_of_t
+
+end
 
 let rec fold_fn
 : type a b. b fn -> (a, b) hlist -> a fn

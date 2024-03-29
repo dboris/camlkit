@@ -2,6 +2,7 @@
  (name runtime)
  (public_name camlkit-base.runtime)
  (libraries ctypes ctypes.foreign)
+ (flags -linkall)
  (c_library_flags :standard %{read-lines:flags.txt})
  (ctypes
   (external_library_name libobjc)
