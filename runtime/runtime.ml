@@ -4,15 +4,21 @@ open Ctypes
 open Foreign
 
 module Platform = Platform
-module Sel = C.Functions.Sel
 module Ivar = C.Functions.Ivar
 module Inspect = Inspect
 
+module Sel =
+struct
+  include C.Functions.Sel
+  let register_typed_name =
+    foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
+end
+
 let selector = Sel.register_name
 
-(* let nsstring_of_selector =
+let nsstring_of_selector =
   foreign "NSStringFromSelector" (_SEL @-> returning id)
-;; *)
+;;
 
 module Class =
 struct
@@ -182,7 +188,12 @@ struct
     assert (not (is_null self));
 
     methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-      assert (Class.add_method ~self ~cmd ~typ ~imp ~enc));
+      match Platform.current with
+      | MacOS ->
+        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc)
+      | GNUstep ->
+        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc));
 
     protocols |> List.iter (fun proto ->
       assert (not (is_null proto));
