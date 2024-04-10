@@ -21,6 +21,8 @@
   (generated_types Types_generated)
   (generated_entry_point C)))
 
+(documentation (package camlkit-base))
+
 (rule
  (enabled_if (= %{system} macosx))
  (target cflags.txt)

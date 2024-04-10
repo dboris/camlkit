@@ -11,8 +11,11 @@ module Sel =
 struct
   include C.Functions.Sel
   let register_typed_name =
-    foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
-end
+    match Platform.current with
+    | GNUstep ->
+      foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
+    | MacOS -> (fun _ _ -> assert false)
+  end
 
 let selector = Sel.register_name
 

@@ -21,6 +21,7 @@
   dune
   ctypes
   ctypes-foreign
+  cmdliner
   (alcotest :with-test))
  (tags (objc bindings cocoa gnustep)))
 

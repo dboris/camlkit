@@ -25,19 +25,29 @@ struct
     let register_class =
       foreign "objc_registerClassPair" (_Class @-> returning void)
 
-    (** Obtains the list of registered class definitions.
-    [get_class_list buffer buffer_count]
-
-    buffer
-
-      An array of Class values. On output, each Class value points to one class definition, up to either bufferCount or the total number of registered classes, whichever is less. You can pass NULL to obtain the total number of registered class definitions without actually retrieving any class definitions.
-
-    buffer_count
-
-      An integer value. Pass the number of pointers for which you have allocated space in buffer. On return, this function fills in only this number of elements. If this number is less than the number of registered classes, this function returns an arbitrary subset of the registered classes.
-    *)
+    (** Obtains the list of registered class definitions. *)
     let get_class_list =
-      foreign "objc_getClassList" (ptr (ptr objc_class) @-> int @-> returning int)
+      (** [get_class_list buffer buffer_count]
+        {e buffer}
+          An array of Class values. On output, each Class value points to one class
+          definition, up to either bufferCount or the total number of registered
+          classes, whichever is less. You can pass NULL to obtain the total number
+          of registered class definitions without actually retrieving any class
+          definitions.
+
+        @param buffer_count An integer value. Pass the number of pointers for which you have allocated
+          space in buffer. On return, this function fills in only this number of
+          elements. If this number is less than the number of registered classes,
+          this function returns an arbitrary subset of the registered classes.
+      *)
+      foreign "objc_getClassList" (ptr (ptr objc_class)
+        @-> int @-> returning int)
+
+    (** Returns the names of all the loaded Objective-C frameworks and dynamic
+        libraries. *)
+    let copy_image_names =
+      foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
+
   end
 
   module Class =
@@ -74,6 +84,10 @@ struct
     *)
     let copy_method_list =
       foreign "class_copyMethodList" (_Class @-> ptr uint @-> returning (ptr _Method))
+
+    (** Returns the name of the dynamic library a class originated from. *)
+    let get_image_name =
+      foreign "class_getImageName" (_Class @-> returning string)
 
   end
 

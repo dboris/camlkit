@@ -2,3 +2,5 @@
  (name foundation)
  (public_name camlkit-base.foundation)
  (libraries runtime ctypes))
+
+(documentation (package camlkit-base))

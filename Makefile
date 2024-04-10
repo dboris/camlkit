@@ -1,4 +1,4 @@
-.PHONY: build test run-demo run-hello deps clean
+.PHONY: build test run-demo run-hello doc deps clean
 
 build:
 	@dune build @default
@@ -14,6 +14,9 @@ run-hello:
 
 run-gs:
 	@dune exec hello_gnustep
+
+doc:
+	@dune build @doc
 
 deps:
 	@opam install -y . --deps-only --with-test

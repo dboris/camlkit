@@ -2,6 +2,37 @@ open Ctypes
 open C.Types
 open C.Functions
 
+let loaded_library_names ?(sorted = true) () =
+  let count = allocate uint Unsigned.UInt.zero in
+  let m = Objc.copy_image_names count in
+  let libs =
+    CArray.from_ptr m (Unsigned.UInt.to_int (!@ count))
+    |> CArray.to_list
+  in
+  match sorted with
+  | false -> libs
+  | true ->
+    let pub =
+      libs
+      |> List.filter (String.starts_with ~prefix:"/System/Library/Frameworks/")
+      |> List.sort String.compare
+    and priv =
+      libs
+      |> List.filter (String.starts_with
+          ~prefix:"/System/Library/PrivateFrameworks/")
+      |> List.sort String.compare
+    and rest =
+      libs
+      |> List.filter (fun lib ->
+        not (String.starts_with
+          ~prefix:"/System/Library/Frameworks/" lib) &&
+        not (String.starts_with
+          ~prefix:"/System/Library/PrivateFrameworks/" lib))
+      |> List.sort String.compare
+    in
+    List.concat [pub; priv; rest]
+;;
+
 let registered_classes_count () =
   Objc.get_class_list (from_voidp (ptr objc_class) null) 0
 ;;
