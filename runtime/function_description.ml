@@ -48,6 +48,12 @@ struct
     let copy_image_names =
       foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
 
+    (** Returns the names of all the classes within a specified library
+        or framework. *)
+    let copy_image_class_names =
+      foreign "objc_copyClassNamesForImage" (string @-> ptr uint @->
+        returning (ptr string))
+
   end
 
   module Class =
@@ -128,10 +134,25 @@ struct
 
   module Method =
   struct
-
     (** Returns the name of a method. *)
     let get_name =
       foreign "method_getName" (_Method @-> returning _SEL)
+
+    (** Returns a string describing a method's return type. *)
+    let get_return_type =
+      foreign "method_copyReturnType" (_Method @-> returning string)
+
+    (** Returns the number of arguments accepted by a method. *)
+    let get_number_of_arguments =
+      foreign "method_getNumberOfArguments" (_Method @-> returning uint)
+
+    (** Returns a string describing a single parameter type of a method. *)
+    let get_argument_type =
+      foreign "method_copyArgumentType" (_Method @-> uint @-> returning string)
+
+    (** Returns a string describing a method's parameter and return types. *)
+    let get_type_encoding =
+      foreign "method_getTypeEncoding" (_Method @-> returning string)
 
   end
 end

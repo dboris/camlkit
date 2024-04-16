@@ -118,7 +118,7 @@ module Encode = struct
   | Void -> "v"
   | Str -> "*"
   | Char -> "c"
-  | Bool -> Char.escaped Runtime.c_uchar
+  | Bool -> "C"
   | Int -> "i"
   | Short -> "s"
   | Long -> "l"
@@ -134,6 +134,27 @@ module Encode = struct
   | Enc -> "?"
   | Proto -> "?"
   | Ivar -> "?"
+
+  let enc_to_ctype_string = function
+    "@" -> "id"
+  | "#" -> "_Class"
+  | ":" -> "_SEL"
+  | "v" -> "void"
+  | "*" -> "string"
+  | "c" -> "char"
+  | "C" -> "bool"
+  | "i" -> "int"
+  | "I" -> "uint"
+  | "s" -> "short"
+  | "S" -> "ushort"
+  | "l" -> "long"
+  | "L" -> "ulong"
+  | "q" -> "llong"
+  | "Q" -> "ullong"
+  | "f" -> "float"
+  | "d" -> "double"
+  | "D" -> "ldouble"
+  | _ -> failwith "TODO"
 
   let rec fold_enc
   : type a b. int -> (a, b) hlist -> string

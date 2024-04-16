@@ -1,4 +1,4 @@
-.PHONY: build test run-demo run-hello doc deps clean
+.PHONY: build test run-demo run-hello doc gen deps clean
 
 build:
 	@dune build @default
@@ -17,6 +17,9 @@ run-gs:
 
 doc:
 	@dune build @doc
+
+gen:
+	@dune exec generate-ml -- -methods NSString
 
 deps:
 	@opam install -y . --deps-only --with-test

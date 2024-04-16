@@ -16,7 +16,6 @@ depends: [
   "dune" {>= "3.13"}
   "ctypes"
   "ctypes-foreign"
-  "cmdliner"
   "alcotest" {with-test}
   "odoc" {with-doc}
 ]

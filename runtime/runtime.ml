@@ -1,10 +1,11 @@
 include C.Types
+include Ctypes
 
-open Ctypes
 open Foreign
 
 module Platform = Platform
 module Ivar = C.Functions.Ivar
+module Method = C.Functions.Method
 module Inspect = Inspect
 
 module Sel =

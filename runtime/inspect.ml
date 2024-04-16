@@ -4,9 +4,9 @@ open C.Functions
 
 let loaded_library_names ?(sorted = true) () =
   let count = allocate uint Unsigned.UInt.zero in
-  let m = Objc.copy_image_names count in
+  let libsp = Objc.copy_image_names count in
   let libs =
-    CArray.from_ptr m (Unsigned.UInt.to_int (!@ count))
+    CArray.from_ptr libsp (Unsigned.UInt.to_int (!@ count))
     |> CArray.to_list
   in
   match sorted with
@@ -31,6 +31,18 @@ let loaded_library_names ?(sorted = true) () =
       |> List.sort String.compare
     in
     List.concat [pub; priv; rest]
+;;
+
+let library_class_names ?(sorted = true) lib_name =
+  let count = allocate uint Unsigned.UInt.zero in
+  let namesp = Objc.copy_image_class_names lib_name count in
+  let names =
+    CArray.from_ptr namesp (Unsigned.UInt.to_int (!@ count))
+    |> CArray.to_list
+  in
+  match sorted with
+  | false -> names
+  | true -> List.sort String.compare names
 ;;
 
 let registered_classes_count () =
