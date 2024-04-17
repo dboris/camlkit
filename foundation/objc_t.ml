@@ -83,6 +83,8 @@ let rec ctype_of_t
   | Ivar -> _Ivar
 
 module Encode = struct
+  exception Encode_struct of string
+
   let byte_size_of_t
   : type a. a t -> int
   = function
@@ -135,7 +137,7 @@ module Encode = struct
   | Proto -> "?"
   | Ivar -> "?"
 
-  let enc_to_ctype_string = function
+  let rec enc_to_ctype_string = function
     "@" -> "id"
   | "#" -> "_Class"
   | ":" -> "_SEL"
@@ -154,7 +156,42 @@ module Encode = struct
   | "f" -> "float"
   | "d" -> "double"
   | "D" -> "ldouble"
-  | _ -> failwith "TODO"
+  | "B" -> "bool"  (* c++ bool *)
+  | "@?" -> "ptr void"  (* block *)
+  | "?" -> "ptr void"
+  | "^{__CFCharacterSet=}" -> "id"
+  | "{_NSRange=QQ}" -> "NSRange.t"
+  | "{CGRect={CGPoint=dd}{CGSize=dd}}" -> "CGRect.t"
+  | "{CGPoint=dd}" -> "CGPoint.t"
+  | "{CGSize=dd}" -> "CGSize.t"
+  | "^{_NSZone=}" -> "id"  (* Zones are ignored on iOS and 64-bit macOS. *)
+  | "[1{__va_list_tag=II^v^v}]" -> "ptr void"  (* varargs *)
+  | e ->
+    let rest = String.sub e 1 (String.length e - 1) in
+    begin match String.get e 0 with
+    | '^' -> "ptr (" ^ enc_to_ctype_string rest ^ ")"
+    | 'j' | 'A' | 'r' | 'n' | 'N' | 'o' | 'O' | 'R' | 'V' | '+' ->
+      (* Skip modifiers:
+        _C_COMPLEX     'j'
+        _C_ATOMIC      'A'
+        _C_CONST       'r'
+        _C_IN          'n'
+        _C_INOUT       'N'
+        _C_OUT         'o'
+        _C_BYCOPY      'O'
+        _C_BYREF       'R'
+        _C_ONEWAY      'V'
+        _C_GNUREGISTER '+'
+      *)
+      enc_to_ctype_string rest
+    | '{' ->
+      begin match String.split_on_char '=' e with
+      | _ :: [] -> raise (Encode_struct (String.sub rest 0 (String.length rest - 1)))
+      | _ :: [x] -> raise (Encode_struct (String.sub x 0 (String.length x - 1)))
+      | _ -> failwith (Printf.sprintf "Invalid struct: %s" e)
+      end
+    | _ -> failwith (Printf.sprintf "Unsupported enc: %s" e)
+    end
 
   let rec fold_enc
   : type a b. int -> (a, b) hlist -> string

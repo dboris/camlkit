@@ -1,4 +1,6 @@
-.PHONY: build test run-demo run-hello doc gen deps clean
+.PHONY: build test run-demo run-hello doc gen-fnd gen-obj show-fnd deps clean
+
+FOUNDATION := /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation
 
 build:
 	@dune build @default
@@ -18,8 +20,14 @@ run-gs:
 doc:
 	@dune build @doc
 
-gen:
-	@dune exec generate-ml -- -methods NSString
+gen-fnd:
+	cd foundation/gen && dune exec generate-ml -- -classes $(FOUNDATION)
+
+gen-obj:
+	@dune exec generate-ml -- -methods NSObject > foundation/gen/NSObject.ml
+
+show-fnd:
+	@dune exec browser -- -classes $(FOUNDATION)
 
 deps:
 	@opam install -y . --deps-only --with-test
