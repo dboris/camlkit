@@ -1,4 +1,4 @@
-open Foundation
+open Foundation.Compat
 
 let class_name = "MainAppController"
 

@@ -1,4 +1,4 @@
-open Foundation
+open Foundation.Compat
 open Objc
 open Camlkit
 

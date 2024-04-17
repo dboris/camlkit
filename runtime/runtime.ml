@@ -154,6 +154,65 @@ struct
   ;;
 end
 
+module NSClass =
+struct
+  include Class
+
+  let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
+
+  let alloc_object class_name = alloc (Objc.get_class class_name)
+
+  let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
+end
+
+module Object_util =
+struct
+  include Object
+
+  let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
+
+  let release self =
+    Objc.(msg_send ~self ~cmd: (selector "release") ~typ: (returning void))
+
+  (** Release ObjC object when OCaml ptr is garbage collected. *)
+  let gc_autorelease self =
+    Gc.finalise release self;
+    self
+  ;;
+
+  (** Allocates an object and sends it "init" and "gc_autorelease". *)
+  let new_object class_name =
+    NSClass.alloc_object class_name |> init |> gc_autorelease
+  ;;
+
+  (** Returns pointer to an ivar in object [self]  *)
+  let ivar_ptr ~self ~ivar_name =
+    Class.get_instance_variable
+      ~self: (Object.get_class self)
+      ~name: ivar_name
+    |> Ivar.get_offset
+    |> Ptrdiff.to_nativeint
+    |> Nativeint.add (raw_address_of_ptr self)
+    |> ptr_of_raw_address
+  ;;
+
+  (** Returns the ivar name capitalized, prefixed by "set", suffixed by ":" *)
+  let setter_name_of_ivar ivar_name =
+    "set" ^ String.capitalize_ascii ivar_name ^ ":"
+  ;;
+
+  let get_property ~typ prop_name self =
+    Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
+  ;;
+
+  let set_property ~typ prop_name value self =
+    let cmd = selector (setter_name_of_ivar prop_name) in
+    Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
+  ;;
+
+  let description self = Objc.msg_send_vo ~self ~cmd: (selector "description")
+end
+
 module Def =
 struct
   type 'a method_spec =

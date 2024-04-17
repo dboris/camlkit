@@ -1,4 +1,4 @@
-open Foundation
+open Foundation.Compat
 open Runtime
 
 let is_upper c =
@@ -35,7 +35,9 @@ let fun_of_selector sel =
 let emit_method_type m num_args =
   let ret = Method.get_return_type m
   and arg_types =
-    List.init num_args (fun i ->
+    (* Skip the implicit self and _cmd *)
+    List.init (num_args - 2) (fun j ->
+      let i = j + 2 in
       try
         Method.get_argument_type m (Unsigned.UInt.of_int i)
         |> Objc_t.Encode.enc_to_ctype_string
@@ -53,7 +55,8 @@ let emit_method_type m num_args =
         raise e)
   in
   String.concat " @-> " arg_types ^
-  " @-> returning (" ^ Objc_t.Encode.enc_to_ctype_string ret ^ ")"
+  (if num_args > 2 then " @-> " else "") ^
+  "returning (" ^ Objc_t.Encode.enc_to_ctype_string ret ^ ")"
 ;;
 
 let emit_method m  =
@@ -111,7 +114,10 @@ let () =
   if not (String.equal lib "") then
     Inspect.library_class_names lib
     |> List.iter (fun cls ->
-      if (not (String.starts_with ~prefix:"_" cls)) then
+      if (
+        String.starts_with ~prefix:"NS" cls &&
+        not (String.starts_with ~prefix:"NSCF" cls)
+      ) then
         let file = open_out (cls ^ ".ml") in
         emit_class cls ~file;
         close_out file)

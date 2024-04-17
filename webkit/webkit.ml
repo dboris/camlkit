@@ -1,4 +1,3 @@
-open Foundation
 open Runtime
 
 let main_frame self = Objc.msg_send_vo ~self ~cmd: (selector "mainFrame")
