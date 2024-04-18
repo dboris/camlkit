@@ -22,7 +22,7 @@ let test_define_custom_class () =
       ;;
 
       let handle_invocation inv _ =
-        let sel = inv |> NSInvocation._selector_ |> string_of_selector in
+        let sel = inv |> NSInvocation.selector_ |> string_of_selector in
         if String.equal sel my_sel then
           let arg =
             inv |> NSInvocation.get_argument ~at_index: 2 ~typ: int ~init: 0
@@ -58,7 +58,7 @@ let test_define_CamlObjectProxy_class () =
       | _ -> Objc_t.(Encode.value unknown)
 
       let handle_invocation inv _self =
-        match inv |> NSInvocation._selector_ |> string_of_selector with
+        match inv |> NSInvocation.selector_ |> string_of_selector with
         | "multByThree:" ->
           let arg =
             inv |> NSInvocation.get_argument ~at_index: 2 ~typ: int ~init: 0

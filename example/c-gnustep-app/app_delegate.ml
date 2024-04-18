@@ -27,7 +27,7 @@ struct
   ;;
 
   let handle_invocation inv _ =
-    match string_of_selector (NSInvocation._selector_ inv) with
+    match string_of_selector (NSInvocation.selector_ inv) with
     | "btnClicked:" ->
       Printf.eprintf "btnClicked...\n%!"
     | _ -> raise Not_found

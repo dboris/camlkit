@@ -78,7 +78,7 @@ module CamlObjectProxy = struct
           sel)
 
       and forward_invocation_imp self _cmd invocation =
-        let sel = invocation |> NSInvocation._selector_ in
+        let sel = invocation |> NSInvocation.selector_ in
         if D.responds_to_selector (string_of_selector sel) then
           D.handle_invocation invocation self
         else

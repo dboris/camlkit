@@ -13,7 +13,7 @@ let method_signature_for_selector = function
 ;;
 
 let handle_invocation inv _ =
-  match string_of_selector (NSInvocation._selector_ inv) with
+  match string_of_selector (NSInvocation.selector_ inv) with
   | "incrementClicked:" ->
     Model.increment ();
     Main_window.update_label ()

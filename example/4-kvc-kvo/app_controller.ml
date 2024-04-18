@@ -34,7 +34,7 @@ let method_signature_for_selector = function
 ;;
 
 let handle_invocation inv self =
-  match string_of_selector (NSInvocation._selector_ inv) with
+  match string_of_selector (NSInvocation.selector_ inv) with
   | "makeWarmer:" -> make_warmer self
   | "makeCooler:" -> make_cooler self
   | _ -> raise Not_found
