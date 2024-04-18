@@ -98,18 +98,19 @@ let method_binding m  =
 let emit_class_module ~file cls =
   let cls' = Objc.get_class cls in
   let super = Class.get_superclass cls' in
-  Printf.fprintf file "(* auto-generated, do not modify *)\n\n";
-  (* Printf.fprintf file "[@@@ocaml.warning \"-32-33\"]\n"; *)
-  Printf.fprintf file "open Runtime\n";
-  Printf.fprintf file "open Objc\n\n";
-  if not (is_null super) then
-    Printf.fprintf file "include %s\n\n" (Class.get_name super);
-  cls'
-  |> Inspect.methods
-  |> List.filter_map method_binding
-  |> List.sort String.compare
-  |> String.concat "\n"
-  |> Printf.fprintf file "%s"
+  match List.filter_map method_binding (Inspect.methods cls') with
+  | [] -> ()
+  | bindings ->
+    Printf.fprintf file "(* auto-generated, do not modify *)\n\n";
+    (* Printf.fprintf file "[@@@ocaml.warning \"-32-33\"]\n"; *)
+    Printf.fprintf file "open Runtime\n";
+    Printf.fprintf file "open Objc\n\n";
+    if not (is_null super) then
+      Printf.fprintf file "include %s\n\n" (Class.get_name super);
+    bindings
+    |> List.sort String.compare
+    |> String.concat "\n"
+    |> Printf.fprintf file "%s"
 ;;
 
 let usage = {|
