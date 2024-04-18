@@ -1,4 +1,3 @@
-open Foundation.Compat
 open Runtime
 
 module type S = sig

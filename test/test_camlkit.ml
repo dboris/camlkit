@@ -1,4 +1,5 @@
-open Foundation.Compat
+open Foundation
+open Runtime
 open Objc
 open Camlkit
 
@@ -21,12 +22,12 @@ let test_define_custom_class () =
       ;;
 
       let handle_invocation inv _ =
-        let sel = inv |> Invocation.get_selector |> string_of_selector in
+        let sel = inv |> NSInvocation._selector_ |> string_of_selector in
         if String.equal sel my_sel then
           let arg =
-            inv |> Invocation.get_argument ~at_index: 2 ~typ: int ~init: 0
+            inv |> NSInvocation.get_argument ~at_index: 2 ~typ: int ~init: 0
           in
-          inv |> Invocation.set_return_value (arg * 2) ~typ: int
+          inv |> NSInvocation.set_return_value (arg * 2) ~typ: int
         else
           raise Not_found
       ;;
@@ -57,12 +58,12 @@ let test_define_CamlObjectProxy_class () =
       | _ -> Objc_t.(Encode.value unknown)
 
       let handle_invocation inv _self =
-        match inv |> Invocation.get_selector |> string_of_selector with
+        match inv |> NSInvocation._selector_ |> string_of_selector with
         | "multByThree:" ->
           let arg =
-            inv |> Invocation.get_argument ~at_index: 2 ~typ: int ~init: 0
+            inv |> NSInvocation.get_argument ~at_index: 2 ~typ: int ~init: 0
           in
-          inv |> Invocation.set_return_value (arg * 3) ~typ: int
+          inv |> NSInvocation.set_return_value (arg * 3) ~typ: int
         | _ -> raise Not_found
     end)
   in
@@ -79,7 +80,7 @@ let test_define_CamlObjectProxy_class () =
       x
   in
   A.check A.int "caml method called" expected actual;
-  A.check A.string "target object method forwarded" str (NSString.to_string obj)
+  A.check A.string "target object method forwarded" str (NSString._UTF8String obj)
 ;;
 
 let suite =

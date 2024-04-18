@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Runtime
 open Appkit
 
 module Delegate = AppDelegate.Create (App_delegate)

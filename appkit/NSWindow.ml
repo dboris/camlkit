@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Foundation
 open Runtime
 open Objc
 
@@ -29,7 +29,7 @@ end
 let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
   Objc.msg_send ~self
     ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
-    ~typ: (Rect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
+    ~typ: (CGRect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
     rect (combine_options style_mask) backing defer
 ;;
 
@@ -44,8 +44,8 @@ let create ~content_rect ~style_mask ~backing ?(defer = false) () =
 let cascade_top_left_from_point pt self =
   Objc.msg_send_stret ~self
     ~cmd: (selector "cascadeTopLeftFromPoint:")
-    ~typ: (Point.t @-> returning Point.t)
-    ~return_type: Point.t
+    ~typ: (CGPoint.t @-> returning CGPoint.t)
+    ~return_type: CGPoint.t
     pt
 ;;
 

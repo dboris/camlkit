@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Foundation
 open Runtime
 open Objc
 
@@ -18,10 +18,10 @@ let set_title title self =
     title
 ;;
 
-let init_with_frame (frame : Rect.t structure) self =
+let init_with_frame (frame : CGRect.t structure) self =
   Objc.msg_send ~self
     ~cmd: (selector "initWithFrame:")
-    ~typ: (Rect.t @-> returning id)
+    ~typ: (CGRect.t @-> returning id)
     frame
 
 let set_target target self =
@@ -42,10 +42,10 @@ let add_subview view self =
     ~cmd: (selector "addSubview:")
     view
 
-let set_frame (frame : Rect.t structure) self =
+let set_frame (frame : CGRect.t structure) self =
   Objc.msg_send ~self
     ~cmd: (selector "setFrame:")
-    ~typ: (Rect.t @-> returning void)
+    ~typ: (CGRect.t @-> returning void)
     frame
 
 (* NSMenu *)

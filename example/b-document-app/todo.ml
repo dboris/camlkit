@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Runtime
 open Define
 
 let define_class () =

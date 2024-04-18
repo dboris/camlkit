@@ -7,6 +7,7 @@ module Platform = Platform
 module Ivar = C.Functions.Ivar
 module Method = C.Functions.Method
 module Inspect = Inspect
+module Objc_t = Objc_t
 
 module Sel =
 struct
@@ -17,12 +18,6 @@ struct
       foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
     | MacOS -> (fun _ _ -> assert false)
   end
-
-let selector = Sel.register_name
-
-let nsstring_of_selector =
-  foreign "NSStringFromSelector" (_SEL @-> returning id)
-;;
 
 module Class =
 struct
@@ -88,7 +83,34 @@ struct
     foreign "object_setInstanceVariable"
       (id @-> string @-> ptr void @-> returning _Ivar)
       self name value
+
+  (** Returns pointer to an ivar in object [self]  *)
+  let ivar_ptr ~self ~ivar_name =
+    Class.get_instance_variable
+      ~self: (get_class self)
+      ~name: ivar_name
+    |> Ivar.get_offset
+    |> Ptrdiff.to_nativeint
+    |> Nativeint.add (raw_address_of_ptr self)
+    |> ptr_of_raw_address
+  ;;
+
+  (** Returns the ivar name capitalized, prefixed by "set", suffixed by ":" *)
+  let setter_name_of_ivar ivar_name =
+    "set" ^ String.capitalize_ascii ivar_name ^ ":"
+  ;;
 end
+
+let selector = Sel.register_name
+
+(** Returns the selector name as string. *)
+let string_of_selector = Sel.get_name
+
+let nsstring_of_selector =
+  foreign "NSStringFromSelector" (_SEL @-> returning id)
+;;
+
+let to_selector = coerce (ptr void) _SEL
 
 module Objc =
 struct
@@ -154,64 +176,70 @@ struct
   ;;
 end
 
-module NSClass =
-struct
-  include Class
+let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
 
-  let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
+let alloc_object class_name = alloc (Objc.get_class class_name)
 
-  let alloc_object class_name = alloc (Objc.get_class class_name)
+let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
 
-  let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
-end
+let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
 
-module Object_util =
-struct
-  include Object
+let _copy_ self = Objc.msg_send_vo ~self ~cmd: (selector "copy")
 
-  let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
+let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
 
-  let release self =
-    Objc.(msg_send ~self ~cmd: (selector "release") ~typ: (returning void))
+let release self =
+  Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
-  (** Release ObjC object when OCaml ptr is garbage collected. *)
-  let gc_autorelease self =
-    Gc.finalise release self;
-    self
-  ;;
+(** Release ObjC object when OCaml ptr is garbage collected. *)
+let gc_autorelease self =
+  Gc.finalise release self;
+  self
+;;
 
-  (** Allocates an object and sends it "init" and "gc_autorelease". *)
-  let new_object class_name =
-    NSClass.alloc_object class_name |> init |> gc_autorelease
-  ;;
+(** Allocates an object and sends it "init" and "gc_autorelease". *)
+let new_object class_name =
+  alloc_object class_name |> init |> gc_autorelease
+;;
 
-  (** Returns pointer to an ivar in object [self]  *)
-  let ivar_ptr ~self ~ivar_name =
-    Class.get_instance_variable
-      ~self: (Object.get_class self)
-      ~name: ivar_name
-    |> Ivar.get_offset
-    |> Ptrdiff.to_nativeint
-    |> Nativeint.add (raw_address_of_ptr self)
-    |> ptr_of_raw_address
-  ;;
+let nsstring_class = Objc.get_class "NSString"
 
-  (** Returns the ivar name capitalized, prefixed by "set", suffixed by ":" *)
-  let setter_name_of_ivar ivar_name =
-    "set" ^ String.capitalize_ascii ivar_name ^ ":"
-  ;;
+(** Creates a new NSString object autoreleased by OCaml's GC. *)
+let new_string str =
+  Objc.msg_send ~self:nsstring_class
+    ~cmd: (selector "stringWithUTF8String:")
+    ~typ: (string @-> returning id)
+    str
+  |> gc_autorelease
+;;
 
-  let get_property ~typ prop_name self =
-    Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
-  ;;
+let msg_send' cmd ~self ~args ~return =
+  let typ = Objc_t.method_typ ~args return in
+  Objc.msg_send ~self ~cmd ~typ
+;;
 
-  let set_property ~typ prop_name value self =
-    let cmd = selector (setter_name_of_ivar prop_name) in
-    Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
-  ;;
+let msg_send_super' cmd ~self ~args ~return =
+  let typ = Objc_t.method_typ ~args return in
+  Objc.msg_send_super ~self ~cmd ~typ
+;;
 
-  let description self = Objc.msg_send_vo ~self ~cmd: (selector "description")
-end
+let value_for_key key self =
+  Objc.msg_send ~self
+    ~cmd: (selector "valueForKey:")
+    ~typ: (id @-> returning id)
+    (new_string key)
+;;
+
+let set_value v ~for_key self =
+  Objc.msg_send ~self
+    ~cmd: (selector "setValue:forKey:")
+    ~typ: (id @-> id @-> returning void)
+    v (new_string for_key)
+;;
+
+let nil = null
+
+let combine_options = List.fold_left Unsigned.UInt.logor Unsigned.UInt.zero
 
 module Def =
 struct
@@ -278,6 +306,131 @@ struct
 
     self
   ;;
+end
+
+let get_property ~typ prop_name self =
+  Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
+;;
+
+let set_property ~typ prop_name value self =
+  let cmd = selector (Object.setter_name_of_ivar prop_name) in
+  Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
+;;
+
+module Property = struct
+  open Objc
+  open Object
+
+  let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
+
+  let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
+
+  (** Getter for non-object values. *)
+  let getter ~ivar_name ~typ ~enc =
+    let cmd = selector ivar_name
+    and imp self _cmd =
+      !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
+    in
+      Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+  ;;
+
+  (** Setter for non-object values. *)
+  let setter ~ivar_name ~typ ~enc =
+    let cmd =
+      selector (setter_name_of_ivar ivar_name)
+    and imp self _cmd value =
+      (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
+    in
+    Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+  ;;
+
+  (** Getter for object values. *)
+  let obj_getter ~ivar_name ~typ ~enc =
+    let cmd = selector ivar_name
+    and imp self _cmd =
+      let ivar =
+        Class.get_instance_variable
+          ~self: (Object.get_class self)
+          ~name: ivar_name
+      in
+        Object.get_ivar ~self ~ivar
+    in
+    Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+  ;;
+
+  (** Setter for object values. *)
+  let obj_setter
+  ?(assign = false)
+  ?(copy = false)
+  ~ivar_name
+  ~typ
+  ~enc
+  ()
+  =
+    let cmd =
+      selector (setter_name_of_ivar ivar_name)
+    and imp self _cmd value =
+      if not assign && not copy then
+        value |> retain |> ignore;
+
+      (* release old object *)
+      let ivar =
+        Class.get_instance_variable
+          ~self: (Object.get_class self)
+          ~name: ivar_name
+      in
+      Object.get_ivar ~self ~ivar |> release;
+
+      assert (not (is_null ivar));
+      Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
+    in
+    Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+  ;;
+
+  (* Accessors *)
+
+  let value ivar_name typ =
+    let typ = Objc_t.(value_typ typ)
+    and enc = Objc_t.(Encode.value typ)
+    in
+    [ getter ~ivar_name ~typ ~enc
+    ; setter ~ivar_name ~typ ~enc
+    ]
+  ;;
+
+  let _object_
+  ?(assign = false)
+  ?(copy = false)
+  ivar_name
+  typ
+  ()
+  =
+    let typ = Objc_t.(value_typ typ)
+    and enc = Objc_t.(Encode.value typ)
+    in
+    [ obj_getter ~ivar_name ~typ ~enc
+    ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
+    ]
+  ;;
+end
+
+module Define =
+struct
+  include Def
+
+  let _method_ imp ~cmd ~args ~return =
+    let typ = Objc_t.method_typ ~args return
+    and enc = Objc_t.Encode._method_ ~args return
+    in
+    method_spec ~cmd ~typ ~imp ~enc
+  ;;
+
+  let ivar name typ =
+    let typ = Objc_t.(value_typ typ)
+    and enc = Objc_t.(Encode.value typ)
+    in ivar_spec ~name ~typ ~enc
+  ;;
+
 end
 
 (* Exception handling *)

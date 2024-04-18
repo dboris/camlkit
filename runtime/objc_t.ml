@@ -1,11 +1,10 @@
 open Ctypes
-
-type _Enc = Runtime._Enc
+include C.Types
 
 type _ t =
   Id : unit ptr t
 | Class : unit ptr t
-| Sel : Runtime.selector_t t
+| Sel : selector_t t
 | Void : unit t
 | Str : string t
 | Char : char t
@@ -23,8 +22,8 @@ type _ t =
 | Union : 'a t -> 'a union t
 | Imp : unit ptr t
 | Enc : _Enc t
-| Proto : Runtime.protocol_t t
-| Ivar : Runtime.ivar_t t
+| Proto : protocol_t t
+| Ivar : ivar_t t
 
 type (_, _) hlist =
   [] : ('r, 'r) hlist
@@ -56,8 +55,8 @@ let union ty = Union ty
 let rec ctype_of_t
 : type a. a t -> a typ
 =
-  let open Runtime in
-  let open Objc in
+  let open Ctypes in
+  let open C.Types in
   function
     Id -> id
   | Class -> _Class

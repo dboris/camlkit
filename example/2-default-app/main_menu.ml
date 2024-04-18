@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Runtime
 open Appkit
 
 let create app_name =

@@ -1,4 +1,5 @@
-open Foundation.Compat
+open Foundation
+open Runtime
 open Appkit
 
 let create_window app =
@@ -7,7 +8,7 @@ let create_window app =
   in
   let win =
     NSWindow.(create
-      ~content_rect: (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+      ~content_rect: (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable]
       ~backing: BackingStoreType.buffered
       ())
@@ -17,12 +18,12 @@ let create_window app =
       ~title: "Quit"
       ~target: app
       ~action: (selector "terminate:")
-      ~frame: (Rect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
+      ~frame: (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
 
   and label = Label.create "Hello, world!"
   in
     label
-    |> set_frame (Rect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+    |> set_frame (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
     win |> content_view |> add_subview label;
     win |> content_view |> add_subview btn;
@@ -36,9 +37,9 @@ let main () =
   let win = create_window app in
 
   let pt =
-    win |> NSWindow.cascade_top_left_from_point (Point.make ~x: 20. ~y: 1000.)
+    win |> NSWindow.cascade_top_left_from_point (CGPoint.make ~x: 20. ~y: 1000.)
   in
-  Printf.eprintf "Cascaded point: %.0f %.0f\n%!" (Point.x pt) (Point.y pt);
+  Printf.eprintf "Cascaded point: %.0f %.0f\n%!" (CGPoint.x pt) (CGPoint.y pt);
   win |> NSWindow.make_key_and_order_front ~sender: nil;
 
   assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));

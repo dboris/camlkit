@@ -1,4 +1,5 @@
-open Foundation.Compat
+open Foundation
+open Runtime
 open Appkit
 (* open Webkit *)
 
@@ -7,15 +8,15 @@ let win_height = 300.
 
 let app_window () =
   let win =
-    get_class "NSWindow"
+    Objc.get_class "NSWindow"
     |> alloc
     |> NSWindow.(init_with_content_rect
-        (Rect.make ~x:0. ~y:0. ~width:win_width ~height:win_height)
+        (CGRect.make ~x:0. ~y:0. ~width:win_width ~height:win_height)
         ~style_mask:StyleMask.[titled; closable; resizable]
         ~backing:BackingStoreType.buffered)
   in
   win
-  |> NSWindow.cascade_top_left_from_point (Point.make ~x:20. ~y:20.)
+  |> NSWindow.cascade_top_left_from_point (CGPoint.make ~x:20. ~y:20.)
   |> ignore;
   win |> set_title (new_string "Hello Caml");
   win |> NSWindow.make_key_and_order_front ~sender:nil;
@@ -23,7 +24,7 @@ let app_window () =
 
 let make_button ~title ~frame ~target ~action =
   let btn =
-    get_class "NSButton"
+    Objc.get_class "NSButton"
     |> alloc
     |> init_with_frame frame
     |> gc_autorelease
@@ -58,7 +59,7 @@ let main () =
       ~title:(new_string "Quit")
       ~target:app
       ~action:(selector "terminate:")
-      ~frame:(Rect.make
+      ~frame:(CGRect.make
         ~x:10. ~y:(win_height -. 40.)
         ~width:100. ~height:30.)
   (* and wv =

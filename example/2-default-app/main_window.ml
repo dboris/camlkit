@@ -1,4 +1,5 @@
-open Foundation.Compat
+open Foundation
+open Runtime
 open Appkit
 
 let label = Label.create ""
@@ -28,7 +29,7 @@ let create _app =
   in
   let win =
     NSWindow.(create
-      ~content_rect: (Rect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+      ~content_rect: (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
       ~style_mask: StyleMask.[titled; closable]
       ~backing: BackingStoreType.buffered
       ())
@@ -40,11 +41,11 @@ let create _app =
       ~title: "Increment"
       ~target: controller
       ~action: increment_sel
-      ~frame: (Rect.make ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.)
+      ~frame: (CGRect.make ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.)
   in
   update_label ();
 
-  label |> set_frame (Rect.make ~x: 20. ~y: (h -. 45.) ~width: 50. ~height: 30.);
+  label |> set_frame (CGRect.make ~x: 20. ~y: (h -. 45.) ~width: 50. ~height: 30.);
 
   win |> content_view |> add_subview label;
   win |> content_view |> add_subview btn;

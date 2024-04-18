@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Foundation
 open Runtime
 open Define
 
@@ -78,7 +78,7 @@ module CamlObjectProxy = struct
           sel)
 
       and forward_invocation_imp self _cmd invocation =
-        let sel = invocation |> Invocation.get_selector in
+        let sel = invocation |> NSInvocation._selector_ in
         if D.responds_to_selector (string_of_selector sel) then
           D.handle_invocation invocation self
         else

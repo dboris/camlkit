@@ -1,4 +1,4 @@
-open Foundation.Compat
+open Foundation
 open Runtime
 open Objc
 open Define
@@ -7,9 +7,9 @@ module A = Alcotest
 
 let test_object_description () =
   let desc =
-    get_class "NSObject" |> alloc |> init
-    |> description
-    |> NSString.utf8_string
+    get_class "NSObject" |> alloc |> NSObject.init
+    |> NSString.description
+    |> NSString._UTF8String
   in
   A.check A.string "same string" (String.sub desc 0 10) "<NSObject:"
 
@@ -64,10 +64,10 @@ let test_define_class_with_methods () =
 
 let dealloc_spec called_flag =
   let imp self _cmd =
-    self |> description |> NSString.utf8_string
+    self |> NSString.description |> NSString._UTF8String
     |> Printf.fprintf stderr "Deallocating %s\n%!";
     called_flag := true;
-    dealloc (Class.get_superclass self)
+    NSObject.dealloc (Class.get_superclass self)
   in
   method_spec
     ~cmd: (selector "dealloc")
@@ -163,8 +163,8 @@ let test_add_obj_ivar ~name x () =
       ~typ: (returning id)
   in
   A.check A.string "set value and get same value"
-    (NSString.utf8_string x)
-    (NSString.utf8_string v)
+    (NSString._UTF8String x)
+    (NSString._UTF8String v)
 ;;
 
 let test_kvc ~class_name x () =
@@ -174,7 +174,7 @@ let test_kvc ~class_name x () =
   let obj = _new_ (_class_ class_name ~ivars) in
   obj |> set_value (new_string x) ~for_key: "myVar";
   let v = obj |> value_for_key "myVar" in
-  A.check A.string "set value and get same value" x (NSString.to_string v)
+  A.check A.string "set value and get same value" x (NSString._UTF8String v)
 ;;
 
 let test_string_of_selector () =
