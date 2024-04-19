@@ -13,7 +13,7 @@ let is_reserved = function
 | "lxor" | "match" | "method" | "mod" | "module" | "mutable" | "new"
 | "nonrec" | "object" | "of" | "open" | "or" | "private" | "rec" | "sig"
 | "struct" | "then" | "to" | "true" | "try" | "type" | "val" | "virtual"
-| "when" | "while" | "with" | "selector" -> true
+| "when" | "while" | "with" | "selector" | "id" | "string" -> true
 | _ -> false
 
 let is_private sel =
@@ -85,9 +85,15 @@ type meth =
   }
 
 let string_of_method_binding {name; args; sel; typ} =
-  Printf.sprintf
-    "let %s %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
-    name (arg_labels args) sel typ (String.concat " " args)
+  match args with
+  | [] ->
+    Printf.sprintf
+      "let %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s)"
+      name sel typ
+  | args ->
+    Printf.sprintf
+      "let %s %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
+      name (arg_labels args) sel typ (String.concat " " args)
 ;;
 
 (* check if args is a duplicate and add '_' suffix *)
@@ -164,9 +170,9 @@ let emit_class_module ~file cls =
     (* Printf.fprintf file "[@@@ocaml.warning \"-32-33\"]\n"; *)
     Printf.fprintf file "open Runtime\n";
     Printf.fprintf file "open Objc\n\n";
-    Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
     if not (is_null super) then
       Printf.fprintf file "include %s\n\n" (Class.get_name super);
+    Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
     begin match List.filter_map method_binding (Inspect.methods meta) with
     | [] -> ()
     | class_bindings ->

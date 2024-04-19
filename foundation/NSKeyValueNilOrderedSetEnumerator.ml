@@ -5,4 +5,6 @@ open Objc
 
 include NSEnumerator
 
-let nextObject  self = msg_send ~self ~cmd:(selector "nextObject") ~typ:(returning (id)) 
+let _class_ = get_class "NSKeyValueNilOrderedSetEnumerator"
+
+let nextObject self = msg_send ~self ~cmd:(selector "nextObject") ~typ:(returning (id))

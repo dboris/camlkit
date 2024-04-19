@@ -5,6 +5,8 @@ open Objc
 
 include NSKeyValueMutableOrderedSet
 
+let _class_ = get_class "NSKeyValueFastMutableOrderedSet"
+
 let insertObject ~x ~atIndex self = msg_send ~self ~cmd:(selector "insertObject:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex
 let insertObjects ~x ~atIndexes self = msg_send ~self ~cmd:(selector "insertObjects:atIndexes:") ~typ:(id @-> id @-> returning (void)) x atIndexes
 let removeObjectAtIndex ~x self = msg_send ~self ~cmd:(selector "removeObjectAtIndex:") ~typ:(ullong @-> returning (void)) x

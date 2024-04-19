@@ -5,19 +5,21 @@ open Objc
 
 include NSObject
 
+let _class_ = get_class "NSFilePresenterXPCMessenger"
+
 let accommodateDeletionOfSubitemAtURL ~x ~completionHandler self = msg_send ~self ~cmd:(selector "accommodateDeletionOfSubitemAtURL:completionHandler:") ~typ:(id @-> ptr void @-> returning (void)) x completionHandler
 let collectDebuggingInformationWithCompletionHandler ~x self = msg_send ~self ~cmd:(selector "collectDebuggingInformationWithCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
-let dealloc  self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void)) 
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let initWithFilePresenter ~x ~queue self = msg_send ~self ~cmd:(selector "initWithFilePresenter:queue:") ~typ:(id @-> id @-> returning (id)) x queue
 let initWithFilePresenterProxy ~x self = msg_send ~self ~cmd:(selector "initWithFilePresenterProxy:") ~typ:(id @-> returning (id)) x
-let invalidate  self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning (void)) 
-let logSuspensionWarning  self = msg_send ~self ~cmd:(selector "logSuspensionWarning") ~typ:(returning (void)) 
+let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning (void))
+let logSuspensionWarning self = msg_send ~self ~cmd:(selector "logSuspensionWarning") ~typ:(returning (void))
 let observeChangeOfUbiquityAttributes ~x self = msg_send ~self ~cmd:(selector "observeChangeOfUbiquityAttributes:") ~typ:(id @-> returning (void)) x
 let observeChangeWithSubitemURL ~x self = msg_send ~self ~cmd:(selector "observeChangeWithSubitemURL:") ~typ:(id @-> returning (void)) x
-let observeDisconnection  self = msg_send ~self ~cmd:(selector "observeDisconnection") ~typ:(returning (void)) 
+let observeDisconnection self = msg_send ~self ~cmd:(selector "observeDisconnection") ~typ:(returning (void))
 let observeMoveToURL ~x ~withSubitemURL ~byWriterWithPurposeID self = msg_send ~self ~cmd:(selector "observeMoveToURL:withSubitemURL:byWriterWithPurposeID:") ~typ:(id @-> id @-> id @-> returning (void)) x withSubitemURL byWriterWithPurposeID
-let observePresenterChange ~x ~forSubitemAtURL self = msg_send ~self ~cmd:(selector "observePresenterChange:forSubitemAtURL:") ~typ:(char @-> id @-> returning (void)) x forSubitemAtURL
-let observeReconnection  self = msg_send ~self ~cmd:(selector "observeReconnection") ~typ:(returning (void)) 
+let observePresenterChange ~x ~forSubitemAtURL self = msg_send ~self ~cmd:(selector "observePresenterChange:forSubitemAtURL:") ~typ:(bool @-> id @-> returning (void)) x forSubitemAtURL
+let observeReconnection self = msg_send ~self ~cmd:(selector "observeReconnection") ~typ:(returning (void))
 let observeSharingChangeWithSubitemURL ~x self = msg_send ~self ~cmd:(selector "observeSharingChangeWithSubitemURL:") ~typ:(id @-> returning (void)) x
 let observeUbiquityChangeWithSubitemURL ~x self = msg_send ~self ~cmd:(selector "observeUbiquityChangeWithSubitemURL:") ~typ:(id @-> returning (void)) x
 let observeVersionChangeOfKind ~x ~toItemAtURL ~withClientID ~name self = msg_send ~self ~cmd:(selector "observeVersionChangeOfKind:toItemAtURL:withClientID:name:") ~typ:(id @-> id @-> id @-> id @-> returning (void)) x toItemAtURL withClientID name

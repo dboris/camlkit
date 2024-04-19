@@ -5,6 +5,13 @@ open Objc
 
 include NSObject
 
-let fileHandleForReading  self = msg_send ~self ~cmd:(selector "fileHandleForReading") ~typ:(returning (id)) 
-let fileHandleForWriting  self = msg_send ~self ~cmd:(selector "fileHandleForWriting") ~typ:(returning (id)) 
-let init  self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id)) 
+let _class_ = get_class "NSPipe"
+
+module Class = struct
+  let allocWithZone ~x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
+  let pipe self = msg_send ~self ~cmd:(selector "pipe") ~typ:(returning (id))
+end
+
+let fileHandleForReading self = msg_send ~self ~cmd:(selector "fileHandleForReading") ~typ:(returning (id))
+let fileHandleForWriting self = msg_send ~self ~cmd:(selector "fileHandleForWriting") ~typ:(returning (id))
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

@@ -5,9 +5,15 @@ open Objc
 
 include NSPlaceholderValue
 
-let init  self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id)) 
-let initWithBool ~x self = msg_send ~self ~cmd:(selector "initWithBool:") ~typ:(char @-> returning (id)) x
-let initWithChar ~x self = msg_send ~self ~cmd:(selector "initWithChar:") ~typ:(char @-> returning (id)) x
+let _class_ = get_class "NSPlaceholderNumber"
+
+module Class = struct
+  let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
+end
+
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
+let initWithBool ~x self = msg_send ~self ~cmd:(selector "initWithBool:") ~typ:(bool @-> returning (id)) x
+let initWithChar ~x self = msg_send ~self ~cmd:(selector "initWithChar:") ~typ:(bool @-> returning (id)) x
 let initWithCoder ~x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithDouble ~x self = msg_send ~self ~cmd:(selector "initWithDouble:") ~typ:(double @-> returning (id)) x
 let initWithFloat ~x self = msg_send ~self ~cmd:(selector "initWithFloat:") ~typ:(float @-> returning (id)) x

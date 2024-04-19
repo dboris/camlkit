@@ -5,4 +5,6 @@ open Objc
 
 include NSMutableSet
 
-let dealloc  self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void)) 
+let _class_ = get_class "NSKeyValueMutableSet"
+
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

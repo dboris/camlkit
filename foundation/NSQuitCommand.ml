@@ -5,4 +5,6 @@ open Objc
 
 include NSScriptCommand
 
-let saveOptions  self = msg_send ~self ~cmd:(selector "saveOptions") ~typ:(returning (ullong)) 
+let _class_ = get_class "NSQuitCommand"
+
+let saveOptions self = msg_send ~self ~cmd:(selector "saveOptions") ~typ:(returning (ullong))

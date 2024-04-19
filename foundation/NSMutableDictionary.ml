@@ -1,20 +1,29 @@
+(* auto-generated, do not modify *)
+
 open Runtime
 open Objc
 
 include NSDictionary
 
+let _class_ = get_class "NSMutableDictionary"
+
+module Class = struct
+  let dictionaryWithCapacity ~x self = msg_send ~self ~cmd:(selector "dictionaryWithCapacity:") ~typ:(ullong @-> returning (id)) x
+  let dictionaryWithSharedKeySet ~x self = msg_send ~self ~cmd:(selector "dictionaryWithSharedKeySet:") ~typ:(id @-> returning (id)) x
+end
+
 let addEntriesFromDictionary ~x self = msg_send ~self ~cmd:(selector "addEntriesFromDictionary:") ~typ:(id @-> returning (void)) x
 let addObject ~x ~forKey self = msg_send ~self ~cmd:(selector "addObject:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let addObjects ~x ~forKeys self = msg_send ~self ~cmd:(selector "addObjects:forKeys:") ~typ:(id @-> id @-> returning (void)) x forKeys
 let addObjects' ~x ~forKeys ~count self = msg_send ~self ~cmd:(selector "addObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (void)) x forKeys count
-let classForCoder  self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
+let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let initWithCapacity ~x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) x
 let initWithContentsOfFile ~x self = msg_send ~self ~cmd:(selector "initWithContentsOfFile:") ~typ:(id @-> returning (id)) x
 let initWithContentsOfURL ~x self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:") ~typ:(id @-> returning (id)) x
 let initWithContentsOfURL' ~x ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let initWithObjects ~x ~forKeys ~count self = msg_send ~self ~cmd:(selector "initWithObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (id)) x forKeys count
-let invert  self = msg_send ~self ~cmd:(selector "invert") ~typ:(returning (void))
-let removeAllObjects  self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
+let invert self = msg_send ~self ~cmd:(selector "invert") ~typ:(returning (void))
+let removeAllObjects self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
 let removeEntriesInDictionary ~x self = msg_send ~self ~cmd:(selector "removeEntriesInDictionary:") ~typ:(id @-> returning (void)) x
 let removeEntriesPassingTest ~x self = msg_send ~self ~cmd:(selector "removeEntriesPassingTest:") ~typ:(ptr void @-> returning (void)) x
 let removeEntriesWithOptions ~x ~passingTest self = msg_send ~self ~cmd:(selector "removeEntriesWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (void)) x passingTest

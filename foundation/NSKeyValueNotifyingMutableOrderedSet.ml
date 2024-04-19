@@ -5,7 +5,9 @@ open Objc
 
 include NSKeyValueMutableOrderedSet
 
-let count  self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong)) 
+let _class_ = get_class "NSKeyValueNotifyingMutableOrderedSet"
+
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
 let getObjects ~x ~range self = msg_send ~self ~cmd:(selector "getObjects:range:") ~typ:(ptr (id) @-> NSRange.t @-> returning (void)) x range
 let indexOfObject ~x self = msg_send ~self ~cmd:(selector "indexOfObject:") ~typ:(id @-> returning (ullong)) x
 let insertObject ~x ~atIndex self = msg_send ~self ~cmd:(selector "insertObject:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex

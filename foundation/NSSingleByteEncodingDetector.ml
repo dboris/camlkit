@@ -5,4 +5,6 @@ open Objc
 
 include NSEncodingDetector
 
-let confidence  self = msg_send ~self ~cmd:(selector "confidence") ~typ:(returning (double)) 
+let _class_ = get_class "NSSingleByteEncodingDetector"
+
+let confidence self = msg_send ~self ~cmd:(selector "confidence") ~typ:(returning (double))

@@ -1,27 +1,31 @@
+(* auto-generated, do not modify *)
+
 open Runtime
 open Objc
 
 include NSMutableArray
 
+let _class_ = get_class "NSXMLChildren"
+
 let addObject ~x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x
 let addObjectsFromArray ~x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning (void)) x
-let count  self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
-let dealloc  self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let exchangeObjectAtIndex ~x ~withObjectAtIndex self = msg_send ~self ~cmd:(selector "exchangeObjectAtIndex:withObjectAtIndex:") ~typ:(ullong @-> ullong @-> returning (void)) x withObjectAtIndex
-let init  self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithMutableArray ~x self = msg_send ~self ~cmd:(selector "initWithMutableArray:") ~typ:(id @-> returning (id)) x
 let insertObject ~x ~atIndex self = msg_send ~self ~cmd:(selector "insertObject:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex
 let insertObjects ~x ~atIndexes self = msg_send ~self ~cmd:(selector "insertObjects:atIndexes:") ~typ:(id @-> id @-> returning (void)) x atIndexes
-let makeStale  self = msg_send ~self ~cmd:(selector "makeStale") ~typ:(returning (void))
+let makeStale self = msg_send ~self ~cmd:(selector "makeStale") ~typ:(returning (void))
 let objectAtIndex ~x self = msg_send ~self ~cmd:(selector "objectAtIndex:") ~typ:(ullong @-> returning (id)) x
 let reallyAddObject ~x self = msg_send ~self ~cmd:(selector "reallyAddObject:") ~typ:(id @-> returning (id)) x
 let reallyInsertObject ~x ~atIndex self = msg_send ~self ~cmd:(selector "reallyInsertObject:atIndex:") ~typ:(id @-> ullong @-> returning (id)) x atIndex
-let reallyRemoveAllObjects  self = msg_send ~self ~cmd:(selector "reallyRemoveAllObjects") ~typ:(returning (id))
+let reallyRemoveAllObjects self = msg_send ~self ~cmd:(selector "reallyRemoveAllObjects") ~typ:(returning (id))
 let reallyRemoveObject ~x self = msg_send ~self ~cmd:(selector "reallyRemoveObject:") ~typ:(id @-> returning (id)) x
 let reallyRemoveObjectAtIndex ~x self = msg_send ~self ~cmd:(selector "reallyRemoveObjectAtIndex:") ~typ:(ullong @-> returning (id)) x
 let reallyReplaceObjectAtIndex ~x ~withObject self = msg_send ~self ~cmd:(selector "reallyReplaceObjectAtIndex:withObject:") ~typ:(ullong @-> id @-> returning (id)) x withObject
-let removeAllObjects  self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
-let removeLastObject  self = msg_send ~self ~cmd:(selector "removeLastObject") ~typ:(returning (void))
+let removeAllObjects self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
+let removeLastObject self = msg_send ~self ~cmd:(selector "removeLastObject") ~typ:(returning (void))
 let removeObject ~x self = msg_send ~self ~cmd:(selector "removeObject:") ~typ:(id @-> returning (void)) x
 let removeObject' ~x ~inRange self = msg_send ~self ~cmd:(selector "removeObject:inRange:") ~typ:(id @-> NSRange.t @-> returning (void)) x inRange
 let removeObjectAtIndex ~x self = msg_send ~self ~cmd:(selector "removeObjectAtIndex:") ~typ:(ullong @-> returning (void)) x

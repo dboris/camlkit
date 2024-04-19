@@ -5,4 +5,6 @@ open Objc
 
 include NSSingleByteEncodingDetector
 
+let _class_ = get_class "NSISO88596EncodingDetector"
+
 let recognizeString ~x ~withDataLength ~intoBuffer self = msg_send ~self ~cmd:(selector "recognizeString:withDataLength:intoBuffer:") ~typ:(string @-> ullong @-> id @-> returning (ullong)) x withDataLength intoBuffer

@@ -5,6 +5,12 @@ open Objc
 
 include NSObject
 
+let _class_ = get_class "NSScriptingAppleEventHandler"
+
+module Class = struct
+  let sharedScriptingAppleEventHandler self = msg_send ~self ~cmd:(selector "sharedScriptingAppleEventHandler") ~typ:(returning (id))
+end
+
 let handleCommandEvent ~x ~withReplyEvent self = msg_send ~self ~cmd:(selector "handleCommandEvent:withReplyEvent:") ~typ:(id @-> id @-> returning (void)) x withReplyEvent
 let handleGetAETEEvent ~x ~withReplyEvent self = msg_send ~self ~cmd:(selector "handleGetAETEEvent:withReplyEvent:") ~typ:(id @-> id @-> returning (void)) x withReplyEvent
 let registerForCommandDescription ~x self = msg_send ~self ~cmd:(selector "registerForCommandDescription:") ~typ:(id @-> returning (void)) x

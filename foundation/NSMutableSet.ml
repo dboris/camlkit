@@ -1,7 +1,17 @@
+(* auto-generated, do not modify *)
+
 open Runtime
 open Objc
 
 include NSSet
+
+let _class_ = get_class "NSMutableSet"
+
+module Class = struct
+  let setWithCapacity ~x self = msg_send ~self ~cmd:(selector "setWithCapacity:") ~typ:(ullong @-> returning (id)) x
+  let setWithCollectionViewIndexPath ~x self = msg_send ~self ~cmd:(selector "setWithCollectionViewIndexPath:") ~typ:(id @-> returning (id)) x
+  let setWithCollectionViewIndexPaths ~x self = msg_send ~self ~cmd:(selector "setWithCollectionViewIndexPaths:") ~typ:(id @-> returning (id)) x
+end
 
 let addObject ~x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x
 let addObjects ~x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (void)) x count
@@ -10,7 +20,7 @@ let addObjectsFromArray' ~x ~range self = msg_send ~self ~cmd:(selector "addObje
 let addObjectsFromOrderedSet ~x self = msg_send ~self ~cmd:(selector "addObjectsFromOrderedSet:") ~typ:(id @-> returning (void)) x
 let addObjectsFromOrderedSet' ~x ~range self = msg_send ~self ~cmd:(selector "addObjectsFromOrderedSet:range:") ~typ:(id @-> NSRange.t @-> returning (void)) x range
 let addObjectsFromSet ~x self = msg_send ~self ~cmd:(selector "addObjectsFromSet:") ~typ:(id @-> returning (void)) x
-let classForCoder  self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
+let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let filterUsingPredicate ~x self = msg_send ~self ~cmd:(selector "filterUsingPredicate:") ~typ:(id @-> returning (void)) x
 let initWithCapacity ~x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) x
 let initWithObjects ~x ~count self = msg_send ~self ~cmd:(selector "initWithObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (id)) x count
@@ -18,7 +28,7 @@ let intersectOrderedSet ~x self = msg_send ~self ~cmd:(selector "intersectOrdere
 let intersectSet ~x self = msg_send ~self ~cmd:(selector "intersectSet:") ~typ:(id @-> returning (void)) x
 let minusOrderedSet ~x self = msg_send ~self ~cmd:(selector "minusOrderedSet:") ~typ:(id @-> returning (void)) x
 let minusSet ~x self = msg_send ~self ~cmd:(selector "minusSet:") ~typ:(id @-> returning (void)) x
-let removeAllObjects  self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
+let removeAllObjects self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning (void))
 let removeObject ~x self = msg_send ~self ~cmd:(selector "removeObject:") ~typ:(id @-> returning (void)) x
 let removeObjectsInArray ~x self = msg_send ~self ~cmd:(selector "removeObjectsInArray:") ~typ:(id @-> returning (void)) x
 let removeObjectsInArray' ~x ~range self = msg_send ~self ~cmd:(selector "removeObjectsInArray:range:") ~typ:(id @-> NSRange.t @-> returning (void)) x range

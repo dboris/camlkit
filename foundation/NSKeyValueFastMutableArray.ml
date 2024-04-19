@@ -5,10 +5,12 @@ open Objc
 
 include NSKeyValueMutableArray
 
+let _class_ = get_class "NSKeyValueFastMutableArray"
+
 let addObject ~x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x
 let insertObject ~x ~atIndex self = msg_send ~self ~cmd:(selector "insertObject:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex
 let insertObjects ~x ~atIndexes self = msg_send ~self ~cmd:(selector "insertObjects:atIndexes:") ~typ:(id @-> id @-> returning (void)) x atIndexes
-let removeLastObject  self = msg_send ~self ~cmd:(selector "removeLastObject") ~typ:(returning (void)) 
+let removeLastObject self = msg_send ~self ~cmd:(selector "removeLastObject") ~typ:(returning (void))
 let removeObjectAtIndex ~x self = msg_send ~self ~cmd:(selector "removeObjectAtIndex:") ~typ:(ullong @-> returning (void)) x
 let removeObjectsAtIndexes ~x self = msg_send ~self ~cmd:(selector "removeObjectsAtIndexes:") ~typ:(id @-> returning (void)) x
 let replaceObjectAtIndex ~x ~withObject self = msg_send ~self ~cmd:(selector "replaceObjectAtIndex:withObject:") ~typ:(ullong @-> id @-> returning (void)) x withObject

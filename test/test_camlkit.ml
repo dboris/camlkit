@@ -5,6 +5,26 @@ open Camlkit
 
 module A = Alcotest
 
+module NSInvocation = struct
+  include NSInvocation
+
+  (** Indices 0 and 1 indicate the hidden arguments self and _cmd, respectively.
+      Use indices 2 and greater for the arguments normally passed in a message.
+    *)
+  let get_argument ~typ ~init ~at_index self =
+    let arg = allocate typ init in
+    let () =
+      self |> getArgument ~x: (to_voidp arg) ~atIndex: (Signed.LLong.of_int at_index) in
+    !@ arg
+  ;;
+
+  (** Sets the receiver’s return value. *)
+  let set_return_value ~typ v self =
+    let result = allocate typ v in
+    self |> setReturnValue ~x: (to_voidp result)
+  ;;
+end
+
 let test_define_custom_class () =
   let my_sel = "multByTwo:" in
   let module MyCustomClass = CamlProxy.Create (
