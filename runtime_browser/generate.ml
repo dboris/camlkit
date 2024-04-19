@@ -17,7 +17,7 @@ let is_reserved = function
 | _ -> false
 
 let is_private sel =
-  is_upper (String.get sel 0) || String.contains sel '_'
+  Char.equal (String.get sel 0) '.' || String.contains sel '_'
 ;;
 
 let valid_name name =
@@ -77,6 +77,28 @@ let method_type m =
   "returning (" ^ Objc_t.Encode.enc_to_ctype_string ret ^ ")"
 ;;
 
+type meth =
+  { name : string
+  ; args : string list
+  ; sel : string
+  ; typ : string
+  }
+
+let string_of_method_binding {name; args; sel; typ} =
+  Printf.sprintf
+    "let %s %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
+    name (arg_labels args) sel typ (String.concat " " args)
+;;
+
+(* check if args is a duplicate and add '_' suffix *)
+let disambiguate_args args =
+  let ar = Array.of_list args in
+  ar
+  |> Array.mapi (fun i a ->
+    if i > 0 && Array.mem a (Array.sub ar 0 i) then a ^ "_" else a)
+  |> Array.to_list
+;;
+
 let method_binding m  =
   let sel = Sel.get_name (Method.get_name m) in
   if is_private sel then
@@ -84,20 +106,57 @@ let method_binding m  =
   else
     try
       let name, args = split_selector sel in
-      Option.some @@ Printf.sprintf
-        "let %s %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
-        name
-        (arg_labels args)
-        sel
-        (method_type m)
-        (String.concat " " args)
+      Option.some
+        {name; args = disambiguate_args args; sel; typ = method_type m}
     with _ ->
       Option.none
 ;;
 
+let eq_name mb {name; _} = String.equal mb.name name
+let compare_sel mb {sel; _} = String.compare mb.sel sel
+let compare_arg_count mb {args; _} =
+  Int.compare (List.length mb.args) (List.length args)
+
+let rename_methods mb_group =
+  let l = List.of_seq mb_group in
+  let len = List.length l in
+  if Int.equal len 1 then
+    List.to_seq l
+  else
+    List.sort compare_arg_count l
+    |> List.mapi (fun i mb ->
+      if Int.equal i 0 then mb
+      else if Int.equal len 2 then {mb with name = mb.name ^ "'"}
+      else {mb with name = mb.name ^ string_of_int i})
+    |> List.to_seq
+;;
+
+let disambiguate mbs =
+  mbs
+  |> List.to_seq
+  |> Seq.group eq_name
+  |> Seq.map rename_methods
+  |> Seq.concat
+  |> List.of_seq
+;;
+
+let emit_method_bindings ?(pref = "") ~file bindings =
+  let sorted =
+    bindings
+    |> List.sort_uniq compare_sel
+  and sep = "\n" ^ pref
+  in
+  disambiguate sorted
+  |> List.map string_of_method_binding
+  |> String.concat sep
+  |> Printf.fprintf file "%s%s" pref
+;;
+
 let emit_class_module ~file cls =
   let cls' = Objc.get_class cls in
-  let super = Class.get_superclass cls' in
+  let super = Class.get_superclass cls'
+  and meta = Object.get_class cls'
+  in
   match List.filter_map method_binding (Inspect.methods cls') with
   | [] -> ()
   | bindings ->
@@ -105,12 +164,17 @@ let emit_class_module ~file cls =
     (* Printf.fprintf file "[@@@ocaml.warning \"-32-33\"]\n"; *)
     Printf.fprintf file "open Runtime\n";
     Printf.fprintf file "open Objc\n\n";
+    Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
     if not (is_null super) then
       Printf.fprintf file "include %s\n\n" (Class.get_name super);
-    bindings
-    |> List.sort String.compare
-    |> String.concat "\n"
-    |> Printf.fprintf file "%s"
+    begin match List.filter_map method_binding (Inspect.methods meta) with
+    | [] -> ()
+    | class_bindings ->
+      Printf.fprintf file "module Class = struct\n";
+      emit_method_bindings ~file ~pref:"  " class_bindings;
+      Printf.fprintf file "\nend\n\n"
+    end;
+    emit_method_bindings ~file bindings
 ;;
 
 let usage = {|

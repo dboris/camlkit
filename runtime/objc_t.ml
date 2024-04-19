@@ -142,7 +142,7 @@ module Encode = struct
   | ":" -> "_SEL"
   | "v" -> "void"
   | "*" -> "string"
-  | "c" -> "char"
+  | "c" -> "bool"  (* most of the time a char is used for BOOL *)
   | "C" -> "bool"
   | "i" -> "int"
   | "I" -> "uint"

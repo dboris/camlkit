@@ -28,7 +28,7 @@ foundation/gen/NSObject.ml:
 foundation/gen/NSString.ml:
 	@dune exec generate-ml -- -methods NSString > $@
 
-gen-cf: foundation/gen/NSObject.ml foundation/gen/NSString.ml
+gen-cf:
 	cd foundation/gen && dune exec generate-ml -- -classes $(CORE_FOUNDATION)
 
 gen-fnd:
