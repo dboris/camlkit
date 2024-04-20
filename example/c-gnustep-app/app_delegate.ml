@@ -23,14 +23,27 @@ struct
         "method_signature_for_selector: @(%s): %s\n%!"
         "btnClicked:" s;
       s
-    | _ -> Objc_t.(Encode.value unknown)
+    | "respondsToSelector:" ->
+      Objc_t.(Encode._method_ ~args: [_SEL] bool)
+    | sel ->
+      Printf.eprintf "Not found: %s\n%!" sel;
+      raise Not_found
   ;;
 
   let handle_invocation inv _ =
     match string_of_selector (NSInvocation.selector_ inv) with
     | "btnClicked:" ->
       Printf.eprintf "btnClicked...\n%!"
-    | _ -> raise Not_found
+    | "respondsToSelector:" ->
+      let sel = allocate _SEL (selector "init") in
+      inv |> NSInvocation.getArgument ~x: (to_voidp sel)
+          ~atIndex: (Signed.LLong.of_int 2);
+      Printf.eprintf "respondsToSelector: %s\n%!" (string_of_selector !@sel);
+      inv |> NSInvocation.setReturnValue
+        ~x: (NSNumber._class_ |> NSNumber.Class.numberWithBool ~x: true)
+    | sel ->
+      Printf.eprintf "Not found: %s\n%!" sel;
+      raise Not_found
   ;;
 end
 
@@ -48,23 +61,27 @@ struct
         ~backing: Types.BackingStoreType.buffered
         ~defer: false
     and btn1 =
-      NSButton._class_
-      |> NSButton.Class.buttonWithTitle (new_string "Click me")
-        ~target: ctrl ~action: (selector "btnClicked:")
+      alloc NSButton._class_
+      |> NSButton.initWithFrame
+        (CGRect.make ~x: 90. ~y: 10. ~width: 100. ~height: 30.)
     and btn2 =
-      NSButton._class_
-      |> NSButton.Class.buttonWithTitle (new_string "Quit")
-        ~target: app ~action: (selector "terminate:")
-    and label =
-      NSTextField._class_
-      |> NSTextField.Class.labelWithString (new_string "Hello")
+      alloc NSButton._class_
+      |> NSButton.initWithFrame
+        (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
+    and label = _new_ NSTextField._class_
     in
-      btn1 |>
-      NSButton.setFrame (CGRect.make ~x: 90. ~y: 10. ~width: 100. ~height: 30.);
-      btn1 |>
-      NSButton.setFrame (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.);
-      label
-      |> NSTextField.setFrame
+      btn1 |> NSButton.setTitle (new_string "Click me");
+      btn1 |> NSButton.setTarget ctrl;
+      btn1 |> NSButton.setAction (selector "btnClicked:");
+
+      btn2 |> NSButton.setTitle (new_string "Quit");
+      btn2 |> NSButton.setTarget app;
+      btn2 |> NSButton.setAction (selector "terminate:");
+
+      label |> NSTextField.setStringValue (new_string "Hello");
+      label |> NSTextField.setBezeled false;
+      label |> NSTextField.setDrawsBackground false;
+      label |> NSTextField.setFrame
         (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
       win |> NSWindow.contentView |> NSView.addSubview label;

@@ -2,6 +2,38 @@ open Ctypes
 open C.Types
 open C.Functions
 
+module Objc = struct
+  include Objc
+
+  (** Returns the names of all the loaded Objective-C frameworks and dynamic
+      libraries. *)
+  let copy_image_names =
+    match Platform.current with
+    | MacOS ->
+      Foreign.foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
+    | GNUstep ->
+      (fun _ -> failwith "Not supported")
+
+  (** Returns the names of all the classes within a specified library
+      or framework. *)
+  let copy_image_class_names =
+    match Platform.current with
+    | MacOS ->
+      Foreign.foreign "objc_copyClassNamesForImage" (string @-> ptr uint @->
+        returning (ptr string))
+    | GNUstep ->
+      (fun _ -> failwith "Not supported")
+
+  (** Returns the name of the dynamic library a class originated from. *)
+  let get_image_name =
+    match Platform.current with
+    | MacOS ->
+      Foreign.foreign "class_getImageName" (_Class @-> returning string)
+    | GNUstep ->
+      (fun _ -> failwith "Not supported")
+
+end
+
 let loaded_library_names ?(sorted = true) () =
   let count = allocate uint Unsigned.UInt.zero in
   let libsp = Objc.copy_image_names count in

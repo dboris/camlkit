@@ -43,17 +43,6 @@ struct
       foreign "objc_getClassList" (ptr (ptr objc_class)
         @-> int @-> returning int)
 
-    (** Returns the names of all the loaded Objective-C frameworks and dynamic
-        libraries. *)
-    let copy_image_names =
-      foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
-
-    (** Returns the names of all the classes within a specified library
-        or framework. *)
-    let copy_image_class_names =
-      foreign "objc_copyClassNamesForImage" (string @-> ptr uint @->
-        returning (ptr string))
-
   end
 
   module Class =
@@ -90,10 +79,6 @@ struct
     *)
     let copy_method_list =
       foreign "class_copyMethodList" (_Class @-> ptr uint @-> returning (ptr _Method))
-
-    (** Returns the name of the dynamic library a class originated from. *)
-    let get_image_name =
-      foreign "class_getImageName" (_Class @-> returning string)
 
   end
 

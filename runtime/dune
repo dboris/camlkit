@@ -33,7 +33,9 @@
  (enabled_if (= %{system} linux))
  (target cflags.txt)
  (action (with-stdout-to %{target}
-  (echo "-I/usr/GNUstep/Local/Library/Headers/"))))
+  (echo
+   "-I/usr/GNUstep/System/Library/Headers/\n\
+    -I/usr/GNUstep/Local/Library/Headers/"))))
 
 (rule
  (enabled_if (= %{system} macosx))

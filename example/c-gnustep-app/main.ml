@@ -14,8 +14,6 @@ let main () =
     |> Objc.(CArray.of_list string)
     |> Objc.CArray.start
   in
-  assert (app |>
-    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
   app |> NSApplication.setDelegate (_new_ Delegate._class_);
   app |> NSApplication.activateIgnoringOtherApps true;
 

@@ -1,3 +1,4 @@
+-L/usr/GNUstep/System/Library/Libraries
 -L/usr/GNUstep/Local/Library/Libraries
 -lgnustep-gui
 -lgnustep-base
