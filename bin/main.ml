@@ -8,30 +8,25 @@ let win_height = 300.
 
 let app_window () =
   let win =
-    Objc.get_class "NSWindow"
-    |> alloc
-    |> NSWindow.(init_with_content_rect
-        (CGRect.make ~x:0. ~y:0. ~width:win_width ~height:win_height)
-        ~style_mask:StyleMask.[titled; closable; resizable]
-        ~backing:BackingStoreType.buffered)
+    alloc NSWindow._class_
+    |> NSWindow.initWithContentRect
+      (CGRect.make ~x: 0. ~y: 0. ~width: win_width ~height: win_height)
+      ~styleMask: (combine_options Types.StyleMask.[titled; closable; resizable])
+      ~backing: Types.BackingStoreType.buffered
+      ~defer: false
   in
   win
-  |> NSWindow.cascade_top_left_from_point (CGPoint.make ~x:20. ~y:20.)
+  |> NSWindow.cascadeTopLeftFromPoint (CGPoint.make ~x:20. ~y:20.)
   |> ignore;
-  win |> set_title (new_string "Hello Caml");
-  win |> NSWindow.make_key_and_order_front ~sender:nil;
+  win |> NSWindow.setTitle (new_string "Hello Caml");
+  win |> NSWindow.makeKeyAndOrderFront nil;
   win
 
 let make_button ~title ~frame ~target ~action =
-  let btn =
-    Objc.get_class "NSButton"
-    |> alloc
-    |> init_with_frame frame
-    |> gc_autorelease
-  in
-  btn |> set_target target;
-  btn |> set_action action;
-  btn |> set_title title;
+  let btn = alloc NSButton._class_ |> NSButton.initWithFrame frame in
+  btn |> NSButton.setTarget target;
+  btn |> NSButton.setAction action;
+  btn |> NSButton.setTitle title;
   btn
 
 (* let webview url frame =
@@ -50,7 +45,7 @@ let make_button ~title ~frame ~target ~action =
 
 let main () =
   let _ = new_object "NSAutoreleasePool"
-  and app = NSApplication.shared
+  and app = NSApplication._class_ |> NSApplication.Class.sharedApplication
   and win = app_window ()
   (* and url = NSURL.new_url "http://example.com/" *)
   in
@@ -68,10 +63,11 @@ let main () =
         ~x:10. ~y:10.
         ~width:(win_width -. 20.) ~height:(win_height -. 60.)) *)
   in
-  win |> content_view |> add_subview btn;
+  win |> NSWindow.contentView |> NSView.addSubview btn;
   (* win |> content_view |> add_subview wv; *)
-  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
-  app |> NSApplication.activate_ignoring_other_apps true;
+  assert (app |>
+    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
+  app |> NSApplication.activateIgnoringOtherApps true;
   NSApplication.run app
 
 let () = main ()

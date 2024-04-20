@@ -239,7 +239,7 @@ let set_value v ~for_key self =
 
 let nil = null
 
-let combine_options = List.fold_left Unsigned.UInt.logor Unsigned.UInt.zero
+let combine_options = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
 
 module Def =
 struct

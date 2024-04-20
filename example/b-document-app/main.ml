@@ -7,7 +7,7 @@ let main () =
   let _ = new_object "NSAutoreleasePool"
   and _ = Document.define_class ()
   and _ = Todo.define_class ()
-  and app = NSApplication.shared
+  and app = NSApplication._class_ |> NSApplication.Class.sharedApplication
   and argc = Array.length Sys.argv
   and argv =
     Sys.argv
@@ -15,8 +15,8 @@ let main () =
     |> Objc.(CArray.of_list string)
     |> Objc.CArray.start
   in
-  app |> NSApplication.activate_ignoring_other_apps true;
-  NSApplication.main ~argc ~argv |> exit
+  app |> NSApplication.activateIgnoringOtherApps true;
+  Types.main ~argc ~argv |> exit
 ;;
 
 let () = main ()

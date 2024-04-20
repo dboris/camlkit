@@ -7,43 +7,46 @@ let create_window app =
   and h = 200.
   in
   let win =
-    NSWindow.(create
-      ~content_rect: (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
-      ~style_mask: StyleMask.[titled; closable]
-      ~backing: BackingStoreType.buffered
-      ())
+    alloc NSWindow._class_
+    |> NSWindow.initWithContentRect
+      (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+      ~styleMask: (combine_options Types.StyleMask.[titled; closable])
+      ~backing: Types.BackingStoreType.buffered
+      ~defer: false
 
   and btn =
-    Button.create
-      ~title: "Quit"
-      ~target: app
-      ~action: (selector "terminate:")
-      ~frame: (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
-
-  and label = Label.create "Hello, world!"
+    NSButton._class_
+    |> NSButton.Class.buttonWithTitle (new_string "Quit")
+      ~target: app ~action: (selector "terminate:")
+  and label =
+    NSTextField._class_
+    |> NSTextField.Class.labelWithString (new_string "Hello, world!")
   in
-    label
-    |> set_frame (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+    label |> NSTextField.setFrame
+      (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+    btn |> NSButton.setFrame
+      (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.);
 
-    win |> content_view |> add_subview label;
-    win |> content_view |> add_subview btn;
+    win |> NSWindow.contentView |> NSView.addSubview label;
+    win |> NSWindow.contentView |> NSView.addSubview btn;
 
-    win |> set_title (new_string "1-Hello");
+    win |> NSWindow.setTitle (new_string "1-Hello");
     win
 ;;
 
 let main () =
-  let app = NSApplication.shared in
+  let app = NSApplication._class_ |> NSApplication.Class.sharedApplication in
   let win = create_window app in
 
   let pt =
-    win |> NSWindow.cascade_top_left_from_point (CGPoint.make ~x: 20. ~y: 1000.)
+    win |> NSWindow.cascadeTopLeftFromPoint (CGPoint.make ~x: 20. ~y: 1000.)
   in
   Printf.eprintf "Cascaded point: %.0f %.0f\n%!" (CGPoint.x pt) (CGPoint.y pt);
-  win |> NSWindow.make_key_and_order_front ~sender: nil;
+  win |> NSWindow.makeKeyAndOrderFront nil;
 
-  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
-  app |> NSApplication.activate_ignoring_other_apps true;
+  assert (app |>
+    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
+  app |> NSApplication.activateIgnoringOtherApps true;
 
   NSApplication.run app
 ;;

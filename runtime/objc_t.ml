@@ -158,11 +158,13 @@ module Encode = struct
   | "B" -> "bool"  (* c++ bool *)
   | "@?" -> "ptr void"  (* block *)
   | "?" -> "ptr void"
-  | "^{__CFCharacterSet=}" -> "id"
+  | "^{__CFCharacterSet=}" | "^{CGImage=}" | "^{CGContext=}"
+  | "^{_CGLContextObject=}"
+    -> "id"
   | "{_NSRange=QQ}" -> "NSRange.t"
-  | "{CGRect={CGPoint=dd}{CGSize=dd}}" -> "CGRect.t"
+  | "{CGRect}" | "{CGRect={CGPoint=dd}{CGSize=dd}}" -> "CGRect.t"
   | "{CGPoint=dd}" -> "CGPoint.t"
-  | "{CGSize=dd}" -> "CGSize.t"
+  | "{CGSize}" | "{CGSize=dd}" -> "CGSize.t"
   | "^{_NSZone=}" -> "id"  (* Zones are ignored on iOS and 64-bit macOS. *)
   | "[1{__va_list_tag=II^v^v}]" -> "ptr void"  (* varargs *)
   | e ->

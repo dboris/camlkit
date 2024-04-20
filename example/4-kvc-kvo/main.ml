@@ -8,10 +8,11 @@ open Camlkit
 
 let main () =
   let module AppCtrl = CamlProxy.Create (App_controller) in
-  let app = NSApplication.shared in
-  app |> set_delegate (_new_ AppCtrl._class_);
-  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
-  app |> NSApplication.activate_ignoring_other_apps true;
+  let app = NSApplication._class_ |> NSApplication.Class.sharedApplication in
+  app |> NSApplication.setDelegate (_new_ AppCtrl._class_);
+  assert (app |>
+    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
+  app |> NSApplication.activateIgnoringOtherApps true;
 
   NSApplication.run app
 ;;

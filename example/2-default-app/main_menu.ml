@@ -2,23 +2,19 @@ open Runtime
 open Appkit
 
 let create app_name =
-  let main_menu = new_object "NSMenu"
-  and app_menu = new_object "NSMenu"
+  let main_menu = _new_ NSMenu._class_
+  and app_menu = _new_ NSMenu._class_
   in
-  main_menu |> add_item (new_object "NSMenuItem");
+  main_menu |> NSMenu.addItem (_new_ NSMenuItem._class_);
 
   main_menu
-  |> set_submenu app_menu
-    ~for_item: (
-      main_menu |> add_item'
-        ~title: app_name
-        ~action: (to_selector nil)
-        ~key_equivalent: "");
+  |> NSMenu.setSubmenu app_menu
+    ~forItem: (
+      main_menu |> NSMenu.addItemWithTitle (new_string app_name)
+        ~action: (to_selector nil) ~keyEquivalent: (new_string ""));
 
-  app_menu |> add_item'
-    ~title: "Quit"
-    ~action: (selector "terminate:")
-    ~key_equivalent: "q"
+  app_menu |> NSMenu.addItemWithTitle (new_string "Quit")
+    ~action: (selector "terminate:") ~keyEquivalent: (new_string "q")
   |> ignore;
 
   main_menu

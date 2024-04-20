@@ -6,24 +6,21 @@ open Runtime
    `MainWindowController.nib`.
 *)
 
+let tag_of_int = Signed.LLong.of_int
+
 let setup_ui self _cmd =
-  let app = NSApplication.shared
-  and win = Property.get "window" self ~typ: Objc_t.id in
-  let cv = Property.get "contentView" win ~typ: Objc_t.id in
+  let app = NSApplication._class_ |> NSApplication.Class.sharedApplication
+  and win = self |> NSWindowController.window in
+  let cv = win |> NSWindow.contentView in
 
   (* Access subviews by tag from NIB file *)
-  let label = cv |> View.view_with_tag 1
-  and button = cv |> View.view_with_tag 2
+  let label = cv |> NSView.viewWithTag (tag_of_int 1)
+  and button = cv |> NSView.viewWithTag (tag_of_int 2)
   in
-  label |> Property.set "stringValue" (new_string "Hello, world!")
-    ~typ: Objc_t.id;
-  button |> Property.set "target" app ~typ: Objc_t.id;
-
-  msg_send' (selector "setAction:")
-    ~self: button ~args: Objc_t.[_SEL] ~return: Objc_t.void
-    (selector "terminate:");
-
-  win |> set_title (new_string "3-Hello-NIB")
+  label |> NSTextField.setStringValue (new_string "Hello, world!");
+  button |> NSButton.setTarget app;
+  button |> NSButton.setAction (selector "terminate:");
+  win |> NSWindow.setTitle (new_string "3-Hello-NIB")
 ;;
 
 let main () =
@@ -37,16 +34,16 @@ let main () =
       ]
   in
   let wc =
-    msg_send' (selector "initWithWindowNibName:")
-      ~self: (wc_class |> alloc)
-      ~args: Objc_t.[id] ~return: Objc_t.id
+    alloc wc_class
+    |> NSWindowController.initWithWindowNibName
       (new_string "MainWindowController")
   in
-  Objc.msg_send_ov ~self: wc ~cmd: (selector "showWindow:") nil;
+  wc |> NSWindowController.showWindow nil;
 
-  let app = NSApplication.shared in
-  assert (app |> NSApplication.(set_activation_policy ActivationPolicy.regular));
-  app |> NSApplication.activate_ignoring_other_apps true;
+  let app = NSApplication._class_ |> NSApplication.Class.sharedApplication in
+  assert (app |>
+    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
+  app |> NSApplication.activateIgnoringOtherApps true;
 
   NSApplication.run app
 ;;

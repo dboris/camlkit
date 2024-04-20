@@ -87,16 +87,23 @@ type meth =
 let string_of_method_binding {name; args; sel; typ} =
   match args with
   | [] ->
+    (* no args *)
     Printf.sprintf
       "let %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s)"
       name sel typ
-  | args ->
+  | _ :: [] ->
+    (* single arg *)
     Printf.sprintf
-      "let %s %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
-      name (arg_labels args) sel typ (String.concat " " args)
+      "let %s x self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) x"
+      name sel typ
+  | _ :: rest as args ->
+    (* multiple args *)
+    Printf.sprintf
+      "let %s x %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
+      name (arg_labels rest) sel typ (String.concat " " args)
 ;;
 
-(* check if args is a duplicate and add '_' suffix *)
+(* check if arg is a duplicate and add '_' suffix *)
 let disambiguate_args args =
   let ar = Array.of_list args in
   ar
@@ -158,7 +165,7 @@ let emit_method_bindings ?(pref = "") ~file bindings =
   |> Printf.fprintf file "%s%s" pref
 ;;
 
-let emit_class_module ~file cls =
+let emit_class_module ?(open_foundation = false) ~file cls =
   let cls' = Objc.get_class cls in
   let super = Class.get_superclass cls'
   and meta = Object.get_class cls'
@@ -167,11 +174,16 @@ let emit_class_module ~file cls =
   | [] -> ()
   | bindings ->
     Printf.fprintf file "(* auto-generated, do not modify *)\n\n";
-    (* Printf.fprintf file "[@@@ocaml.warning \"-32-33\"]\n"; *)
     Printf.fprintf file "open Runtime\n";
     Printf.fprintf file "open Objc\n\n";
+    if open_foundation then begin
+      Printf.fprintf file "[@@@ocaml.warning \"-33\"]\n";
+      Printf.fprintf file "open Foundation\n\n"
+    end;
     if not (is_null super) then
-      Printf.fprintf file "include %s\n\n" (Class.get_name super);
+      let superclass = Class.get_name super in
+      if String.starts_with ~prefix:"NS" superclass then
+        Printf.fprintf file "include %s\n\n" superclass;
     Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
     begin match List.filter_map method_binding (Inspect.methods meta) with
     | [] -> ()
@@ -189,16 +201,19 @@ Usage: generate-ml -classes <lib-name> | -methods <class-name>
 
 let gen_classes = ref ""
 let gen_methods = ref ""
+let open_foundation = ref false
 
 let speclist =
   [ ("-classes", Arg.Set_string gen_classes, "Generate classes in <lib>")
   ; ("-methods", Arg.Set_string gen_methods, "Generate methods in <class>")
+  ; ("-foundation", Arg.Set open_foundation, "Open Foundation in generated module")
   ]
 
 let () =
   Arg.parse speclist ignore usage;
   let lib = !gen_classes
   and cls = !gen_methods
+  and open_foundation = !open_foundation
   in
   if not (String.equal lib "") then
     Inspect.library_class_names lib
@@ -208,9 +223,9 @@ let () =
         not (String.starts_with ~prefix:"NSCF" cls)
       ) then
         let file = open_out (cls ^ ".ml") in
-        emit_class_module cls ~file;
+        emit_class_module cls ~file ~open_foundation;
         close_out file)
   else if not (String.equal cls "") then
-    emit_class_module cls ~file:stdout
+    emit_class_module cls ~file:stdout ~open_foundation
   else
     print_endline usage

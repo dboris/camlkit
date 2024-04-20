@@ -41,36 +41,35 @@ struct
     and h = 200.
     in
     let win =
-      NSWindow.(create
-        ~content_rect: (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
-        ~style_mask: StyleMask.[titled; closable]
-        ~backing: BackingStoreType.buffered
-        ())
-
+      alloc NSWindow._class_
+      |> NSWindow.initWithContentRect
+        (CGRect.make ~x: 0. ~y: 0. ~width: w ~height: h)
+        ~styleMask: (combine_options Types.StyleMask.[titled; closable])
+        ~backing: Types.BackingStoreType.buffered
+        ~defer: false
     and btn1 =
-      Button.create
-        ~title: "Click me"
-        ~target: ctrl
-        ~action: (selector "btnClicked:")
-        ~frame: (CGRect.make ~x: 90. ~y: 10. ~width: 100. ~height: 30.)
-
+      NSButton._class_
+      |> NSButton.Class.buttonWithTitle (new_string "Click me")
+        ~target: ctrl ~action: (selector "btnClicked:")
     and btn2 =
-      Button.create
-        ~title: "Quit"
-        ~target: app
-        ~action: (selector "terminate:")
-        ~frame: (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.)
-
-    and label = Label.create "Hello"
+      NSButton._class_
+      |> NSButton.Class.buttonWithTitle (new_string "Quit")
+        ~target: app ~action: (selector "terminate:")
+    and label =
+      NSTextField._class_
+      |> NSTextField.Class.labelWithString (new_string "Hello")
     in
+      btn1 |>
+      NSButton.setFrame (CGRect.make ~x: 90. ~y: 10. ~width: 100. ~height: 30.);
+      btn1 |>
+      NSButton.setFrame (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.);
       label
-      |> set_frame (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
+      |> NSTextField.setFrame
+        (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
-      win |> content_view |> add_subview label;
-      win |> content_view |> add_subview btn1;
-      win |> content_view |> add_subview btn2;
-
-      win |> set_title (new_string "1-Hello");
+      win |> NSWindow.contentView |> NSView.addSubview label;
+      win |> NSWindow.contentView |> NSView.addSubview btn1;
+      win |> NSWindow.contentView |> NSView.addSubview btn2;
       win
   ;;
 end
@@ -81,11 +80,11 @@ let on_started notification =
   let module Ctrl = CamlProxy.Create (App_controller) in
   let app = Compat.Notification._object_ notification in
   let win = App_window.create app (Ctrl._class_ |> alloc |> init) in
-  win |> set_title (new_string app_name);
+  win |> NSWindow.setTitle (new_string app_name);
   win
-  |> NSWindow.cascade_top_left_from_point (CGPoint.make ~x: 20. ~y: 20.)
+  |> NSWindow.cascadeTopLeftFromPoint (CGPoint.make ~x: 20. ~y: 20.)
   |> ignore;
-  win |> NSWindow.make_key_and_order_front ~sender: nil
+  win |> NSWindow.makeKeyAndOrderFront nil
 ;;
 
 let on_before_terminate _ = ()

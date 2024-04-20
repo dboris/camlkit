@@ -1,8 +1,9 @@
-.PHONY: build test run-demo run-hello doc gen-cf gen-fnd show-fnd deps clean
+.PHONY: build test run-demo run-hello doc gen-cf gen-fnd gen-ak show-libs show-fnd deps clean
 
 FW := /System/Library/Frameworks
 CORE_FOUNDATION := $(FW)/CoreFoundation.framework/Versions/A/CoreFoundation
 FOUNDATION := $(FW)/Foundation.framework/Versions/C/Foundation
+APPKIT := $(FW)/AppKit.framework/Versions/C/AppKit
 
 build:
 	@dune build @default
@@ -33,6 +34,12 @@ gen-cf:
 
 gen-fnd:
 	cd foundation/gen && dune exec generate-ml -- -classes $(FOUNDATION)
+
+gen-ak:
+	cd appkit/gen && dune exec generate-ml -- -classes $(APPKIT) -foundation
+
+show-libs:
+	@dune exec browser -- -libs
 
 show-fnd:
 	@dune exec browser -- -classes $(FOUNDATION)
