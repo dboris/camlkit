@@ -36,11 +36,11 @@ struct
       Printf.eprintf "btnClicked...\n%!"
     | "respondsToSelector:" ->
       let sel = allocate _SEL (selector "init") in
-      inv |> NSInvocation.getArgument ~x: (to_voidp sel)
+      inv |> NSInvocation.getArgument (to_voidp sel)
           ~atIndex: (Signed.LLong.of_int 2);
       Printf.eprintf "respondsToSelector: %s\n%!" (string_of_selector !@sel);
       inv |> NSInvocation.setReturnValue
-        ~x: (NSNumber._class_ |> NSNumber.Class.numberWithBool ~x: true)
+        (NSNumber._class_ |> NSNumber.Class.numberWithBool true)
     | sel ->
       Printf.eprintf "Not found: %s\n%!" sel;
       raise Not_found

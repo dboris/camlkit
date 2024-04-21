@@ -8,7 +8,7 @@ include NSDirectoryEnumerator
 let _class_ = get_class "NSAllDescendantPathsEnumerator"
 
 module Class = struct
-  let newWithPath ~x ~prepend ~attributes ~cross ~depth self = msg_send ~self ~cmd:(selector "newWithPath:prepend:attributes:cross:depth:") ~typ:(id @-> id @-> id @-> bool @-> ullong @-> returning (id)) x prepend attributes cross depth
+  let newWithPath x ~prepend ~attributes ~cross ~depth self = msg_send ~self ~cmd:(selector "newWithPath:prepend:attributes:cross:depth:") ~typ:(id @-> id @-> id @-> bool @-> ullong @-> returning (id)) x prepend attributes cross depth
 end
 
 let currentSubdirectoryAttributes self = msg_send ~self ~cmd:(selector "currentSubdirectoryAttributes") ~typ:(returning (id))

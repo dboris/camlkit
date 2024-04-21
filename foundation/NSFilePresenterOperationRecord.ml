@@ -3,12 +3,10 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSFilePresenterOperationRecord"
 
 module Class = struct
-  let operationRecordWithDescription ~x ~reactor self = msg_send ~self ~cmd:(selector "operationRecordWithDescription:reactor:") ~typ:(id @-> id @-> returning (id)) x reactor
+  let operationRecordWithDescription x ~reactor self = msg_send ~self ~cmd:(selector "operationRecordWithDescription:reactor:") ~typ:(id @-> id @-> returning (id)) x reactor
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

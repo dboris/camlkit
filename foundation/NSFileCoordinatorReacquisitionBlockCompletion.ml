@@ -3,12 +3,10 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSFileCoordinatorReacquisitionBlockCompletion"
 
 module Class = struct
-  let completionWithBlock ~x ~queue self = msg_send ~self ~cmd:(selector "completionWithBlock:queue:") ~typ:(ptr void @-> id @-> returning (id)) x queue
+  let completionWithBlock x ~queue self = msg_send ~self ~cmd:(selector "completionWithBlock:queue:") ~typ:(ptr void @-> id @-> returning (id)) x queue
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

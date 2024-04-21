@@ -8,7 +8,7 @@ include NSDictionary
 let _class_ = get_class "NSFileAttributes"
 
 module Class = struct
-  let attributesAtPath ~x ~traverseLink self = msg_send ~self ~cmd:(selector "attributesAtPath:traverseLink:") ~typ:(id @-> bool @-> returning (id)) x traverseLink
+  let attributesAtPath x ~traverseLink self = msg_send ~self ~cmd:(selector "attributesAtPath:traverseLink:") ~typ:(id @-> bool @-> returning (id)) x traverseLink
 end
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
@@ -25,6 +25,6 @@ let fileSystemNumber self = msg_send ~self ~cmd:(selector "fileSystemNumber") ~t
 let fileType self = msg_send ~self ~cmd:(selector "fileType") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let isDirectory self = msg_send ~self ~cmd:(selector "isDirectory") ~typ:(returning (bool))
-let isEqual ~x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
+let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let keyEnumerator self = msg_send ~self ~cmd:(selector "keyEnumerator") ~typ:(returning (id))
-let objectForKey ~x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning (id)) x
+let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning (id)) x

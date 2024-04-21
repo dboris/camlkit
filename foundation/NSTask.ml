@@ -3,16 +3,14 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSTask"
 
 module Class = struct
-  let allocWithZone ~x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
+  let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let currentTaskDictionary self = msg_send ~self ~cmd:(selector "currentTaskDictionary") ~typ:(returning (id))
-  let launchedTaskWithDictionary ~x self = msg_send ~self ~cmd:(selector "launchedTaskWithDictionary:") ~typ:(id @-> returning (id)) x
-  let launchedTaskWithExecutableURL ~x ~arguments ~error ~terminationHandler self = msg_send ~self ~cmd:(selector "launchedTaskWithExecutableURL:arguments:error:terminationHandler:") ~typ:(id @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x arguments error terminationHandler
-  let launchedTaskWithLaunchPath ~x ~arguments self = msg_send ~self ~cmd:(selector "launchedTaskWithLaunchPath:arguments:") ~typ:(id @-> id @-> returning (id)) x arguments
+  let launchedTaskWithDictionary x self = msg_send ~self ~cmd:(selector "launchedTaskWithDictionary:") ~typ:(id @-> returning (id)) x
+  let launchedTaskWithExecutableURL x ~arguments ~error ~terminationHandler self = msg_send ~self ~cmd:(selector "launchedTaskWithExecutableURL:arguments:error:terminationHandler:") ~typ:(id @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x arguments error terminationHandler
+  let launchedTaskWithLaunchPath x ~arguments self = msg_send ~self ~cmd:(selector "launchedTaskWithLaunchPath:arguments:") ~typ:(id @-> id @-> returning (id)) x arguments
 end
 
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning (id))
@@ -25,23 +23,23 @@ let interrupt self = msg_send ~self ~cmd:(selector "interrupt") ~typ:(returning 
 let isRunning self = msg_send ~self ~cmd:(selector "isRunning") ~typ:(returning (bool))
 let isSpawnedProcessDisclaimed self = msg_send ~self ~cmd:(selector "isSpawnedProcessDisclaimed") ~typ:(returning (bool))
 let launch self = msg_send ~self ~cmd:(selector "launch") ~typ:(returning (void))
-let launchAndReturnError ~x self = msg_send ~self ~cmd:(selector "launchAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
+let launchAndReturnError x self = msg_send ~self ~cmd:(selector "launchAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
 let launchPath self = msg_send ~self ~cmd:(selector "launchPath") ~typ:(returning (id))
 let processIdentifier self = msg_send ~self ~cmd:(selector "processIdentifier") ~typ:(returning (int))
 let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning (llong))
 let resume self = msg_send ~self ~cmd:(selector "resume") ~typ:(returning (bool))
-let setArguments ~x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(id @-> returning (void)) x
-let setCurrentDirectoryPath ~x self = msg_send ~self ~cmd:(selector "setCurrentDirectoryPath:") ~typ:(id @-> returning (void)) x
-let setCurrentDirectoryURL ~x self = msg_send ~self ~cmd:(selector "setCurrentDirectoryURL:") ~typ:(id @-> returning (void)) x
-let setEnvironment ~x self = msg_send ~self ~cmd:(selector "setEnvironment:") ~typ:(id @-> returning (void)) x
-let setExecutableURL ~x self = msg_send ~self ~cmd:(selector "setExecutableURL:") ~typ:(id @-> returning (void)) x
-let setLaunchPath ~x self = msg_send ~self ~cmd:(selector "setLaunchPath:") ~typ:(id @-> returning (void)) x
-let setQualityOfService ~x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) x
-let setSpawnedProcessDisclaimed ~x self = msg_send ~self ~cmd:(selector "setSpawnedProcessDisclaimed:") ~typ:(bool @-> returning (void)) x
-let setStandardError ~x self = msg_send ~self ~cmd:(selector "setStandardError:") ~typ:(id @-> returning (void)) x
-let setStandardInput ~x self = msg_send ~self ~cmd:(selector "setStandardInput:") ~typ:(id @-> returning (void)) x
-let setStandardOutput ~x self = msg_send ~self ~cmd:(selector "setStandardOutput:") ~typ:(id @-> returning (void)) x
-let setTerminationHandler ~x self = msg_send ~self ~cmd:(selector "setTerminationHandler:") ~typ:(ptr void @-> returning (void)) x
+let setArguments x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(id @-> returning (void)) x
+let setCurrentDirectoryPath x self = msg_send ~self ~cmd:(selector "setCurrentDirectoryPath:") ~typ:(id @-> returning (void)) x
+let setCurrentDirectoryURL x self = msg_send ~self ~cmd:(selector "setCurrentDirectoryURL:") ~typ:(id @-> returning (void)) x
+let setEnvironment x self = msg_send ~self ~cmd:(selector "setEnvironment:") ~typ:(id @-> returning (void)) x
+let setExecutableURL x self = msg_send ~self ~cmd:(selector "setExecutableURL:") ~typ:(id @-> returning (void)) x
+let setLaunchPath x self = msg_send ~self ~cmd:(selector "setLaunchPath:") ~typ:(id @-> returning (void)) x
+let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) x
+let setSpawnedProcessDisclaimed x self = msg_send ~self ~cmd:(selector "setSpawnedProcessDisclaimed:") ~typ:(bool @-> returning (void)) x
+let setStandardError x self = msg_send ~self ~cmd:(selector "setStandardError:") ~typ:(id @-> returning (void)) x
+let setStandardInput x self = msg_send ~self ~cmd:(selector "setStandardInput:") ~typ:(id @-> returning (void)) x
+let setStandardOutput x self = msg_send ~self ~cmd:(selector "setStandardOutput:") ~typ:(id @-> returning (void)) x
+let setTerminationHandler x self = msg_send ~self ~cmd:(selector "setTerminationHandler:") ~typ:(ptr void @-> returning (void)) x
 let standardError self = msg_send ~self ~cmd:(selector "standardError") ~typ:(returning (id))
 let standardInput self = msg_send ~self ~cmd:(selector "standardInput") ~typ:(returning (id))
 let standardOutput self = msg_send ~self ~cmd:(selector "standardOutput") ~typ:(returning (id))

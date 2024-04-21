@@ -14,14 +14,14 @@ module NSInvocation = struct
   let get_argument ~typ ~init ~at_index self =
     let arg = allocate typ init in
     let () =
-      self |> getArgument ~x: (to_voidp arg) ~atIndex: (Signed.LLong.of_int at_index) in
+      self |> getArgument (to_voidp arg) ~atIndex: (Signed.LLong.of_int at_index) in
     !@ arg
   ;;
 
   (** Sets the receiver’s return value. *)
   let set_return_value ~typ v self =
     let result = allocate typ v in
-    self |> setReturnValue ~x: (to_voidp result)
+    self |> setReturnValue (to_voidp result)
   ;;
 end
 

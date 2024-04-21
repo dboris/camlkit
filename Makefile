@@ -24,16 +24,16 @@ doc:
 	@dune build @doc
 
 foundation/gen/NSObject.ml:
-	@dune exec generate-ml -- -methods NSObject > $@
+	cd foundation/gen && dune exec generate-ml -- -methods NSObject
 
 foundation/gen/NSString.ml:
-	@dune exec generate-ml -- -methods NSString > $@
+	cd foundation/gen && dune exec generate-ml -- -methods NSString -super
 
-gen-cf:
-	cd foundation/gen && dune exec generate-ml -- -classes $(CORE_FOUNDATION)
+gen-cf: foundation/gen/NSObject.ml
+	cd foundation/gen && dune exec generate-ml -- -classes $(CORE_FOUNDATION) -super
 
 gen-fnd:
-	cd foundation/gen && dune exec generate-ml -- -classes $(FOUNDATION)
+	cd foundation/gen && dune exec generate-ml -- -classes $(FOUNDATION) -super
 
 gen-ak:
 	cd appkit/gen && dune exec generate-ml -- -classes $(APPKIT) -foundation

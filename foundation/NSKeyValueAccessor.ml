@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSKeyValueAccessor"
 
 let containerClassID self = msg_send ~self ~cmd:(selector "containerClassID") ~typ:(returning (id))

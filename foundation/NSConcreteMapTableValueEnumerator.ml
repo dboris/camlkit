@@ -8,7 +8,7 @@ include NSEnumerator
 let _class_ = get_class "NSConcreteMapTableValueEnumerator"
 
 module Class = struct
-  let enumeratorWithMapTable ~x self = msg_send ~self ~cmd:(selector "enumeratorWithMapTable:") ~typ:(id @-> returning (id)) x
+  let enumeratorWithMapTable x self = msg_send ~self ~cmd:(selector "enumeratorWithMapTable:") ~typ:(id @-> returning (id)) x
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

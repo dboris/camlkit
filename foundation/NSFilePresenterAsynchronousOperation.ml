@@ -8,7 +8,7 @@ include NSOperation
 let _class_ = get_class "NSFilePresenterAsynchronousOperation"
 
 module Class = struct
-  let operationWithBlock ~x self = msg_send ~self ~cmd:(selector "operationWithBlock:") ~typ:(ptr void @-> returning (id)) x
+  let operationWithBlock x self = msg_send ~self ~cmd:(selector "operationWithBlock:") ~typ:(ptr void @-> returning (id)) x
 end
 
 let finish self = msg_send ~self ~cmd:(selector "finish") ~typ:(returning (void))

@@ -3,12 +3,10 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSEncodingDetectionPlaceholder"
 
 module Class = struct
-  let placeholderForDetector ~x self = msg_send ~self ~cmd:(selector "placeholderForDetector:") ~typ:(id @-> returning (id)) x
+  let placeholderForDetector x self = msg_send ~self ~cmd:(selector "placeholderForDetector:") ~typ:(id @-> returning (id)) x
 end
 
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (string))

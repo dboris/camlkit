@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSObject
-
 let _class_ = get_class "NSMetadataQueryAttributeValueTuple"
 
 let attribute self = msg_send ~self ~cmd:(selector "attribute") ~typ:(returning (id))
