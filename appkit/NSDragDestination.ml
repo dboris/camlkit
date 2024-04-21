@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSDragDestination"
 
 let animatesToDestination self = msg_send ~self ~cmd:(selector "animatesToDestination") ~typ:(returning (bool))

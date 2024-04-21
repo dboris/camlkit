@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSTearOffTabWindow"
 
 let beginServerSideWindowDragUsingOffset x self = msg_send ~self ~cmd:(selector "beginServerSideWindowDragUsingOffset:") ~typ:(CGSize.t @-> returning (void)) x

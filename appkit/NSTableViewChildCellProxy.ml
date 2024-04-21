@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTableViewCellProxy
-
 let _class_ = get_class "NSTableViewChildCellProxy"
 
 let accessibilityParentAttribute self = msg_send ~self ~cmd:(selector "accessibilityParentAttribute") ~typ:(returning (id))

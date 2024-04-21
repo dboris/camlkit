@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewController
-
 let _class_ = get_class "NSWindowSnappingPrefsViewController"
 
 let allowWindowDocking self = msg_send ~self ~cmd:(selector "allowWindowDocking") ~typ:(returning (bool))

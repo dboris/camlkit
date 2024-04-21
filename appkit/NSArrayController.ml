@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObjectController
-
 let _class_ = get_class "NSArrayController"
 
 module Class = struct

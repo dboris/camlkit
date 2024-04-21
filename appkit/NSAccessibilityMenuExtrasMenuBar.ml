@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAccessibilityMockUIElement
-
 let _class_ = get_class "NSAccessibilityMenuExtrasMenuBar"
 
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))

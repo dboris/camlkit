@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAnimation
-
 let _class_ = get_class "NSSpringAnimation"
 
 let currentValue self = msg_send ~self ~cmd:(selector "currentValue") ~typ:(returning (float))

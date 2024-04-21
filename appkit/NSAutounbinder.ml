@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSProxy
-
 let _class_ = get_class "NSAutounbinder"
 
 let addBinding x ~fromObject self = msg_send ~self ~cmd:(selector "addBinding:fromObject:") ~typ:(id @-> id @-> returning (void)) x fromObject

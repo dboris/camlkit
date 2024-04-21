@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTreeNode
-
 let _class_ = get_class "NSTreeControllerTreeNode"
 
 let childrenKeyPath self = msg_send ~self ~cmd:(selector "childrenKeyPath") ~typ:(returning (id))

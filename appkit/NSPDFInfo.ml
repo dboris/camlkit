@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSPDFInfo"
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning (id))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSLockoutUIPlaceholderWindow"
 
 let disengageWithDuration x ~completionHandler self = msg_send ~self ~cmd:(selector "disengageWithDuration:completionHandler:") ~typ:(double @-> ptr void @-> returning (void)) x completionHandler

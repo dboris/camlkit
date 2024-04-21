@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObjectController
-
 let _class_ = get_class "NSTreeController"
 
 let add x self = msg_send ~self ~cmd:(selector "add:") ~typ:(id @-> returning (void)) x

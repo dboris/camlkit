@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextStorage
-
 let _class_ = get_class "NSSubTextStorage"
 
 let allowsOriginalFontMetricsOverride self = msg_send ~self ~cmd:(selector "allowsOriginalFontMetricsOverride") ~typ:(returning (bool))

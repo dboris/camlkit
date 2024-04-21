@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSResponder
-
 let _class_ = get_class "NSBridgedTextCorrectionController"
 
 let addAnnotations x ~range self = msg_send ~self ~cmd:(selector "addAnnotations:range:") ~typ:(id @-> NSRange.t @-> returning (void)) x range

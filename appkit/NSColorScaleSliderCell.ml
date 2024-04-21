@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSSliderCell
-
 let _class_ = get_class "NSColorScaleSliderCell"
 
 let drawBarInside x ~flipped self = msg_send ~self ~cmd:(selector "drawBarInside:flipped:") ~typ:(CGRect.t @-> bool @-> returning (void)) x flipped

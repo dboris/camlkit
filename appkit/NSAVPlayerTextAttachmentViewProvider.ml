@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextAttachmentViewProvider
-
 let _class_ = get_class "NSAVPlayerTextAttachmentViewProvider"
 
 module Class = struct

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAnimation
-
 let _class_ = get_class "NSScrollAnimationHelper"
 
 let changeDestinationToPoint x self = msg_send ~self ~cmd:(selector "changeDestinationToPoint:") ~typ:(CGPoint.t @-> returning (void)) x

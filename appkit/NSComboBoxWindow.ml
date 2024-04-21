@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSComboBoxWindow"
 
 let accessibilityIsChildOfApp self = msg_send ~self ~cmd:(selector "accessibilityIsChildOfApp") ~typ:(returning (bool))

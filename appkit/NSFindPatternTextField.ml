@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextFinderBarTextField
-
 let _class_ = get_class "NSFindPatternTextField"
 
 let findField self = msg_send ~self ~cmd:(selector "findField") ~typ:(returning (id))

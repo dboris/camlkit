@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSArrayController
-
 let _class_ = get_class "NSDictionaryController"
 
 let canRemove self = msg_send ~self ~cmd:(selector "canRemove") ~typ:(returning (bool))

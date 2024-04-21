@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSGestureRecognizer
-
 let _class_ = get_class "NSPanGestureRecognizer"
 
 let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning (ullong))

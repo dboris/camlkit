@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSNavBannerView"
 
 let bannerType self = msg_send ~self ~cmd:(selector "bannerType") ~typ:(returning (llong))

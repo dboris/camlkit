@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSBridgedTextTouchBarController"
 
 let candidateListItem self = msg_send ~self ~cmd:(selector "candidateListItem") ~typ:(returning (id))

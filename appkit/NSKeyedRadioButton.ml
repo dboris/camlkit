@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSButton
-
 let _class_ = get_class "NSKeyedRadioButton"
 
 let activateRadioAction x self = msg_send ~self ~cmd:(selector "activateRadioAction:") ~typ:(id @-> returning (void)) x

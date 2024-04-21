@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarCustomizationPreviewLayoutAttributes
-
 let _class_ = get_class "NSTouchBarCustomizationPreviewMiniControlStripLayoutAttributes"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

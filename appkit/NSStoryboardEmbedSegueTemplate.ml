@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSStoryboardSegueTemplate
-
 let _class_ = get_class "NSStoryboardEmbedSegueTemplate"
 
 let containerView self = msg_send ~self ~cmd:(selector "containerView") ~typ:(returning (id))

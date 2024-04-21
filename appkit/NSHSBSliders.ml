@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSColorSpaceSliders
-
 let _class_ = get_class "NSHSBSliders"
 
 module Class = struct

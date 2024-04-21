@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarPressAndHoldTransposer
-
 let _class_ = get_class "NSTouchBarSliderPopoverTransposer"
 
 let beginTransposingWithTouch x self = msg_send ~self ~cmd:(selector "beginTransposingWithTouch:") ~typ:(id @-> returning (void)) x

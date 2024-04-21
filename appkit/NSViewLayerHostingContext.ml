@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewHostingContext
-
 let _class_ = get_class "NSViewLayerHostingContext"
 
 let contextId self = msg_send ~self ~cmd:(selector "contextId") ~typ:(returning (uint))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewBuffer
-
 let _class_ = get_class "NSOneLevelViewBuffer"
 
 let cacheRect x self = msg_send ~self ~cmd:(selector "cacheRect:") ~typ:(CGRect.t @-> returning (bool)) x

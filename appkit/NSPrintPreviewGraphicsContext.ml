@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSProxy
-
 let _class_ = get_class "NSPrintPreviewGraphicsContext"
 
 let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning (id))

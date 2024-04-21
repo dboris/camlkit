@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSControl
-
 let _class_ = get_class "NSCachedTableCellView"
 
 let cachedImage self = msg_send ~self ~cmd:(selector "cachedImage") ~typ:(returning (id))

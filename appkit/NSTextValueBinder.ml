@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSValueBinder
-
 let _class_ = get_class "NSTextValueBinder"
 
 module Class = struct

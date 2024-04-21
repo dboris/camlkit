@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSText
-
 let _class_ = get_class "NSTextView"
 
 module Class = struct

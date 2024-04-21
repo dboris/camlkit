@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSDisplayLink1
-
 let _class_ = get_class "NSDisplayLinkFallback"
 
 module Class = struct

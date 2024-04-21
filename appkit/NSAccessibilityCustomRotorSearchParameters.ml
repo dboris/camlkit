@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSAccessibilityCustomRotorSearchParameters"
 
 let currentItem self = msg_send ~self ~cmd:(selector "currentItem") ~typ:(returning (id))

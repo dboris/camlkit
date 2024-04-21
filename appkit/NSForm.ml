@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSMatrix
-
 let _class_ = get_class "NSForm"
 
 module Class = struct

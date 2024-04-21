@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSInputServer"
 
 let activeConversationChanged x ~toNewConversation self = msg_send ~self ~cmd:(selector "activeConversationChanged:toNewConversation:") ~typ:(id @-> llong @-> returning (void)) x toNewConversation

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPSMatrix
-
 let _class_ = get_class "NSFocusState"
 
 module Class = struct

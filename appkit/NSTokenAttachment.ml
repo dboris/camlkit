@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextAttachment
-
 let _class_ = get_class "NSTokenAttachment"
 
 let attachmentCell self = msg_send ~self ~cmd:(selector "attachmentCell") ~typ:(returning (id))

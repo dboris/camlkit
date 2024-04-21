@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindowController
-
 let _class_ = get_class "NSLocalWindowSharingWindowController"
 
 let close self = msg_send ~self ~cmd:(selector "close") ~typ:(returning (void))

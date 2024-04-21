@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSScrollingBehavior
-
 let _class_ = get_class "NSScrollingBehaviorConcurrentVBL"
 
 let automateLiveScrollOfScrollView x self = msg_send ~self ~cmd:(selector "automateLiveScrollOfScrollView:") ~typ:(id @-> returning (void)) x

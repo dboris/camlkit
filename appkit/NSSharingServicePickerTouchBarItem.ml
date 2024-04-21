@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarItem
-
 let _class_ = get_class "NSSharingServicePickerTouchBarItem"
 
 let buttonImage self = msg_send ~self ~cmd:(selector "buttonImage") ~typ:(returning (id))

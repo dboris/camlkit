@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSArray
-
 let _class_ = get_class "NSSelectionArray"
 
 module Class = struct

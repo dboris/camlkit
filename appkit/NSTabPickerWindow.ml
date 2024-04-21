@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSTabPickerWindow"
 
 let canEnterFullScreenMode self = msg_send ~self ~cmd:(selector "canEnterFullScreenMode") ~typ:(returning (bool))

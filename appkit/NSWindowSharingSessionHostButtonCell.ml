@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSButtonCell
-
 let _class_ = get_class "NSWindowSharingSessionHostButtonCell"
 
 let acceptsHover self = msg_send ~self ~cmd:(selector "acceptsHover") ~typ:(returning (bool))

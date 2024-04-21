@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSKeyBindingAtom"
 
 let binding self = msg_send ~self ~cmd:(selector "binding") ~typ:(returning (id))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSConcurrentEventMonitor"
 
 let callback self = msg_send ~self ~cmd:(selector "callback") ~typ:(returning (ptr void))

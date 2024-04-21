@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTableOverlappingColumnClipHelper"
 
 let clearClipping self = msg_send ~self ~cmd:(selector "clearClipping") ~typ:(returning (void))

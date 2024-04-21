@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSButtonCell
-
 let _class_ = get_class "NSNavBannerButtonCell"
 
 let disabledWhenInactive self = msg_send ~self ~cmd:(selector "disabledWhenInactive") ~typ:(returning (bool))

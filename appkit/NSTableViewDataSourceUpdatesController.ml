@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTableViewDataSourceUpdatesController"
 
 let commitUpdatesWithCompletionHandler x self = msg_send ~self ~cmd:(selector "commitUpdatesWithCompletionHandler:") ~typ:(ptr void @-> returning (void)) x

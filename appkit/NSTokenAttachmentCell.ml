@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextAttachmentCell
-
 let _class_ = get_class "NSTokenAttachmentCell"
 
 module Class = struct

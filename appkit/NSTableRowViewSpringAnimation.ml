@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSSpringAnimation
-
 let _class_ = get_class "NSTableRowViewSpringAnimation"
 
 let endPercentage self = msg_send ~self ~cmd:(selector "endPercentage") ~typ:(returning (double))

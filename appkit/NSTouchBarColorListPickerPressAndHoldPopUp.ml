@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTouchBarColorListPickerPressAndHoldPopUp"
 
 let colorList self = msg_send ~self ~cmd:(selector "colorList") ~typ:(returning (id))

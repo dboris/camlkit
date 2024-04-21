@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSUndoTextOperation
-
 let _class_ = get_class "NSUndoTyping"
 
 let coalesceAffectedRange x ~replacementRange ~selectedRange ~text self = msg_send ~self ~cmd:(selector "coalesceAffectedRange:replacementRange:selectedRange:text:") ~typ:(NSRange.t @-> NSRange.t @-> NSRange.t @-> id @-> returning (bool)) x replacementRange selectedRange text

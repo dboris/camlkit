@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSDynamicNamedColor
-
 let _class_ = get_class "NSDynamicModifiedColor"
 
 let baseColor self = msg_send ~self ~cmd:(selector "baseColor") ~typ:(returning (id))

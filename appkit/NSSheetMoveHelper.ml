@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSMoveHelper
-
 let _class_ = get_class "NSSheetMoveHelper"
 
 module Class = struct

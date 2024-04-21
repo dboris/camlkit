@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSToolbarItem
-
 let _class_ = get_class "NSTrackingSeparatorToolbarItem"
 
 module Class = struct

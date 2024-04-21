@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCalibratedWhiteColor
-
 let _class_ = get_class "NSDeviceWhiteColor"
 
 module Class = struct

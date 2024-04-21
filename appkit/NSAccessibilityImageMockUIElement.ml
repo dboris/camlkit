@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAccessibilityIndexedMockUIElement
-
 let _class_ = get_class "NSAccessibilityImageMockUIElement"
 
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))

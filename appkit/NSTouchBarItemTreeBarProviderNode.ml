@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarItemTreeNode
-
 let _class_ = get_class "NSTouchBarItemTreeBarProviderNode"
 
 module Class = struct

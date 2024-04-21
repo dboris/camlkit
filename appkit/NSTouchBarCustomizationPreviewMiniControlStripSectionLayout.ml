@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarCustomizationPreviewSectionLayout
-
 let _class_ = get_class "NSTouchBarCustomizationPreviewMiniControlStripSectionLayout"
 
 module Class = struct

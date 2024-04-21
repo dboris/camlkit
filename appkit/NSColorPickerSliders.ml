@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSColorPicker
-
 let _class_ = get_class "NSColorPickerSliders"
 
 let alphaControlAddedOrRemoved x self = msg_send ~self ~cmd:(selector "alphaControlAddedOrRemoved:") ~typ:(id @-> returning (void)) x

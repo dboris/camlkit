@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSColorWell
-
 let _class_ = get_class "NSPopoverColorWell"
 
 module Class = struct

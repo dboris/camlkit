@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSImageRep
-
 let _class_ = get_class "NSCGImageRep"
 
 let _CGImage self = msg_send ~self ~cmd:(selector "CGImage") ~typ:(returning (id))

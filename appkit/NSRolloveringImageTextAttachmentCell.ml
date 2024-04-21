@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewTextAttachmentCell
-
 let _class_ = get_class "NSRolloveringImageTextAttachmentCell"
 
 let activeTextAttachmentViewProvider self = msg_send ~self ~cmd:(selector "activeTextAttachmentViewProvider") ~typ:(returning (id))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSScrollerImp
-
 let _class_ = get_class "NSOverlayScrollerImp"
 
 let expandedRectForPart x self = msg_send ~self ~cmd:(selector "expandedRectForPart:") ~typ:(ullong @-> returning (CGRect.t)) x

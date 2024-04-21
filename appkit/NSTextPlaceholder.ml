@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTextPlaceholder"
 
 let attributedStringValue self = msg_send ~self ~cmd:(selector "attributedStringValue") ~typ:(returning (id))

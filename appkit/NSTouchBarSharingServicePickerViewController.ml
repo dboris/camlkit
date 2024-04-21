@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewController
-
 let _class_ = get_class "NSTouchBarSharingServicePickerViewController"
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))

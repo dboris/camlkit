@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSImageRep
-
 let _class_ = get_class "NSCustomImageRep"
 
 module Class = struct

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPrintOperation
-
 let _class_ = get_class "NSConcretePrintOperation"
 
 let _PDFPanel self = msg_send ~self ~cmd:(selector "PDFPanel") ~typ:(returning (id))

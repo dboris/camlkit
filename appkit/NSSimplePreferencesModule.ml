@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPreferencesModule
-
 let _class_ = get_class "NSSimplePreferencesModule"
 
 let applicationGroupContainerIdentifier self = msg_send ~self ~cmd:(selector "applicationGroupContainerIdentifier") ~typ:(returning (id))

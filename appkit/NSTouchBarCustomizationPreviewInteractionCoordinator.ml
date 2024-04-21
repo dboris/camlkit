@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTouchBarCustomizationPreviewInteractionCoordinator"
 
 let beginDragOfItem x ~anchorPoint ~dragType ~atPoint ~isInsertion self = msg_send ~self ~cmd:(selector "beginDragOfItem:anchorPoint:dragType:atPoint:isInsertion:") ~typ:(id @-> CGPoint.t @-> llong @-> CGPoint.t @-> bool @-> returning (id)) x anchorPoint dragType atPoint isInsertion

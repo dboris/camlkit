@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSIOAccelSurface"
 
 let _GPURegistryID self = msg_send ~self ~cmd:(selector "GPURegistryID") ~typ:(returning (ullong))

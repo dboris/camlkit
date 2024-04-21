@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSSavePanelAlertStyleContentView"
 
 let cancelAlertSpeaking self = msg_send ~self ~cmd:(selector "cancelAlertSpeaking") ~typ:(returning (void))

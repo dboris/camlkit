@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSDocument
-
 let _class_ = get_class "NSPersistentDocument"
 
 let backupFileURL self = msg_send ~self ~cmd:(selector "backupFileURL") ~typ:(returning (id))

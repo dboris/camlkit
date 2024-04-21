@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarColorPickerSliderArtworkProvider
-
 let _class_ = get_class "NSTouchBarColorPickerSliderAlphaArtworkProvider"
 
 let accessibilityValueStringForValue x self = msg_send ~self ~cmd:(selector "accessibilityValueStringForValue:") ~typ:(double @-> returning (id)) x

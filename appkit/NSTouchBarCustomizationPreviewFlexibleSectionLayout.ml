@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTouchBarCustomizationPreviewSectionLayout
-
 let _class_ = get_class "NSTouchBarCustomizationPreviewFlexibleSectionLayout"
 
 let canInsertItem x ~atIndex self = msg_send ~self ~cmd:(selector "canInsertItem:atIndex:") ~typ:(id @-> llong @-> returning (bool)) x atIndex

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewTextAttachmentCellHelper
-
 let _class_ = get_class "NSImageKitViewTextAttachmentCellHelper"
 
 let characterIndex self = msg_send ~self ~cmd:(selector "characterIndex") ~typ:(returning (ullong))

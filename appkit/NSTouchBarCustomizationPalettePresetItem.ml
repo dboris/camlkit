@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCollectionViewItem
-
 let _class_ = get_class "NSTouchBarCustomizationPalettePresetItem"
 
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning (id))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextField
-
 let _class_ = get_class "NSSearchField"
 
 module Class = struct

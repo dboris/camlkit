@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTableRowView
-
 let _class_ = get_class "NSCachedTableRowView"
 
 module Class = struct

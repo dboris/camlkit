@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPasteboard
-
 let _class_ = get_class "NSFilterServicesPasteboard"
 
 module Class = struct

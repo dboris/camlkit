@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindowController
-
 let _class_ = get_class "NSTableOptions"
 
 module Class = struct

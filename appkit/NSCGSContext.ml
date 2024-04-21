@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSGraphicsContext
-
 let _class_ = get_class "NSCGSContext"
 
 module Class = struct

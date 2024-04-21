@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSController
-
 let _class_ = get_class "NSUserDefaultsController"
 
 module Class = struct

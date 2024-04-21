@@ -17,9 +17,9 @@ let setup_ui self _cmd =
   let label = cv |> NSView.viewWithTag (tag_of_int 1)
   and button = cv |> NSView.viewWithTag (tag_of_int 2)
   in
-  label |> NSTextField.setStringValue (new_string "Hello, world!");
-  button |> NSButton.setTarget app;
-  button |> NSButton.setAction (selector "terminate:");
+  label |> NSControl.setStringValue (new_string "Hello, world!");
+  button |> NSControl.setTarget app;
+  button |> NSControl.setAction (selector "terminate:");
   win |> NSWindow.setTitle (new_string "3-Hello-NIB")
 ;;
 

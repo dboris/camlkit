@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSPersistentUIWindowSnapshotter"
 
 let accessWindowBits x ~handler self = msg_send ~self ~cmd:(selector "accessWindowBits:handler:") ~typ:(llong @-> ptr void @-> returning (void)) x handler

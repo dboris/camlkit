@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPanel
-
 let _class_ = get_class "NSTypeSelectPanel"
 
 let currentSearch self = msg_send ~self ~cmd:(selector "currentSearch") ~typ:(returning (id))

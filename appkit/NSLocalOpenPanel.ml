@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSLocalSavePanel
-
 let _class_ = get_class "NSLocalOpenPanel"
 
 let _URLs self = msg_send ~self ~cmd:(selector "URLs") ~typ:(returning (id))

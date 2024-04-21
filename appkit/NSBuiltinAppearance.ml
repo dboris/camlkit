@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAppearance
-
 let _class_ = get_class "NSBuiltinAppearance"
 
 let appearanceByApplyingTintColor x self = msg_send ~self ~cmd:(selector "appearanceByApplyingTintColor:") ~typ:(id @-> returning (id)) x

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCollectionViewLayout
-
 let _class_ = get_class "NSColorPanelFavoriteSwatchLayout"
 
 let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t))

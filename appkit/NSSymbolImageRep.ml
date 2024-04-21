@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSImageRep
-
 let _class_ = get_class "NSSymbolImageRep"
 
 let alignmentRect self = msg_send ~self ~cmd:(selector "alignmentRect") ~typ:(returning (CGRect.t))

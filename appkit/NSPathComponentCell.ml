@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextFieldCell
-
 let _class_ = get_class "NSPathComponentCell"
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning (id))

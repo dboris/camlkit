@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSClipView
-
 let _class_ = get_class "NSTitlebarAccessoryClipView"
 
 let accessoryViewController self = msg_send ~self ~cmd:(selector "accessoryViewController") ~typ:(returning (id))

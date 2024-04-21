@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSBinder
-
 let _class_ = get_class "NSOutlineViewBinder"
 
 module Class = struct

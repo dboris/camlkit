@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSBinder
-
 let _class_ = get_class "NSEditorBinder"
 
 let conditionallySetsEditable self = msg_send ~self ~cmd:(selector "conditionallySetsEditable") ~typ:(returning (bool))

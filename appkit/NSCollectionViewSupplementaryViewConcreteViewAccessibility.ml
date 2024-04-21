@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCollectionViewSupplementaryViewAccessibility
-
 let _class_ = get_class "NSCollectionViewSupplementaryViewConcreteViewAccessibility"
 
 let accessibilityNextContentSibling self = msg_send ~self ~cmd:(selector "accessibilityNextContentSibling") ~typ:(returning (id))

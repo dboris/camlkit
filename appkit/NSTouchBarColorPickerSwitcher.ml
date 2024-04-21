@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSTouchBarColorPickerSwitcher"
 
 let container self = msg_send ~self ~cmd:(selector "container") ~typ:(returning (id))

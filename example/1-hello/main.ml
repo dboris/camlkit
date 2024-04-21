@@ -22,9 +22,9 @@ let create_window app =
     NSTextField._class_
     |> NSTextField.Class.labelWithString (new_string "Hello, world!")
   in
-    label |> NSTextField.setFrame
+    label |> NSView.setFrame
       (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
-    btn |> NSButton.setFrame
+    btn |> NSView.setFrame
       (CGRect.make ~x: 190. ~y: 10. ~width: 100. ~height: 30.);
 
     win |> NSWindow.contentView |> NSView.addSubview label;

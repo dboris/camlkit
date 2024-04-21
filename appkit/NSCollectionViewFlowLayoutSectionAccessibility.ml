@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCollectionViewSectionAccessibility
-
 let _class_ = get_class "NSCollectionViewFlowLayoutSectionAccessibility"
 
 let hasSupplementaryFooterView self = msg_send ~self ~cmd:(selector "hasSupplementaryFooterView") ~typ:(returning (bool))

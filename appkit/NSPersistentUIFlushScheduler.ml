@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSPersistentUIFlushScheduler"
 
 let applicationDidChangeActive x self = msg_send ~self ~cmd:(selector "applicationDidChangeActive:") ~typ:(id @-> returning (void)) x

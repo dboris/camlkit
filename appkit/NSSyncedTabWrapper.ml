@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSBaseTabData
-
 let _class_ = get_class "NSSyncedTabWrapper"
 
 let dispose self = msg_send ~self ~cmd:(selector "dispose") ~typ:(returning (void))

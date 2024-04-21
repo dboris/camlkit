@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSKeyValueDependency"
 
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning (id))

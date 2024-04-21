@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAnimation
-
 let _class_ = get_class "NSDocumentRevisionsWindowTransformAnimationGroup"
 
 let completionHandler self = msg_send ~self ~cmd:(selector "completionHandler") ~typ:(returning (ptr void))

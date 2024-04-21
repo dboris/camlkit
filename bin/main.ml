@@ -24,8 +24,8 @@ let app_window () =
 
 let make_button ~title ~frame ~target ~action =
   let btn = alloc NSButton._class_ |> NSButton.initWithFrame frame in
-  btn |> NSButton.setTarget target;
-  btn |> NSButton.setAction action;
+  btn |> NSControl.setTarget target;
+  btn |> NSControl.setAction action;
   btn |> NSButton.setTitle title;
   btn
 

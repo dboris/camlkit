@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewController
-
 let _class_ = get_class "NSBrowserColumnViewController"
 
 let allowsEmptySelection self = msg_send ~self ~cmd:(selector "allowsEmptySelection") ~typ:(returning (bool))

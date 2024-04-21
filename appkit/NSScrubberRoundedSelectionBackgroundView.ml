@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSScrubberSelectionView
-
 let _class_ = get_class "NSScrubberRoundedSelectionBackgroundView"
 
 module Class = struct

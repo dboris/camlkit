@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSHMDMetalSessionDrawable"
 
 let addPresentScheduledHandler x self = msg_send ~self ~cmd:(selector "addPresentScheduledHandler:") ~typ:(ptr void @-> returning (void)) x

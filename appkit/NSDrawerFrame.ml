@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSFrameView
-
 let _class_ = get_class "NSDrawerFrame"
 
 module Class = struct

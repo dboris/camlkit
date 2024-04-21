@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSMouseTracker"
 
 let continueTrackingWithEvent x self = msg_send ~self ~cmd:(selector "continueTrackingWithEvent:") ~typ:(id @-> returning (bool)) x

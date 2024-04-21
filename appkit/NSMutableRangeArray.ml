@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSMutableArray
-
 let _class_ = get_class "NSMutableRangeArray"
 
 module Class = struct

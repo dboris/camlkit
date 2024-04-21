@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSSearchToolbarItemView"
 
 let aboveExpansionLimit self = msg_send ~self ~cmd:(selector "aboveExpansionLimit") ~typ:(returning (bool))

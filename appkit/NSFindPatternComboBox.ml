@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSComboBox
-
 let _class_ = get_class "NSFindPatternComboBox"
 
 let findField self = msg_send ~self ~cmd:(selector "findField") ~typ:(returning (id))

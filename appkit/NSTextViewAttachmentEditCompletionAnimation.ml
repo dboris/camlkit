@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTextViewAttachmentEditCompletionAnimation"
 
 let animationDidEnd x self = msg_send ~self ~cmd:(selector "animationDidEnd:") ~typ:(id @-> returning (void)) x

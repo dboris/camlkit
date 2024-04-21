@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTableHeaderData"
 
 let addTableColumn x ~atIndex self = msg_send ~self ~cmd:(selector "addTableColumn:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex

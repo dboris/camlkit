@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAccessibilityProxy
-
 let _class_ = get_class "NSAccessibilityReparentingProxy"
 
 module Class = struct

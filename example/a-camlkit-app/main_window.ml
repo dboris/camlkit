@@ -7,7 +7,7 @@ let label =
 
 let update_label () =
   let count = Model.get_count () |> string_of_int  in
-  label |> NSTextField.setStringValue (new_string count)
+  label |> NSControl.setStringValue (new_string count)
 ;;
 
 let create app_ctrl =
@@ -27,12 +27,12 @@ let create app_ctrl =
     |> NSButton.Class.buttonWithTitle (new_string "Increment")
       ~target: app_ctrl ~action: (selector "incrementClicked:")
   in
-  btn |> NSButton.setFrame
+  btn |> NSView.setFrame
     (CGRect.make ~x: 50. ~y: (h -. 40.) ~width: 100. ~height: 30.);
 
   update_label ();
 
-  label |> NSTextField.setFrame
+  label |> NSView.setFrame
     (CGRect.make ~x: 20. ~y: (h -. 45.) ~width: 50. ~height: 30.);
 
   win |> NSWindow.contentView |> NSView.addSubview label;

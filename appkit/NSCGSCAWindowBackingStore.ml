@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCGSWindowBackingStore
-
 let _class_ = get_class "NSCGSCAWindowBackingStore"
 
 let backBuffer self = msg_send ~self ~cmd:(selector "backBuffer") ~typ:(returning (id))

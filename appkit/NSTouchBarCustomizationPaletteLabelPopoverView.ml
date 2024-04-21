@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSTouchBarCustomizationPaletteLabelPopoverView"
 
 let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning (double))

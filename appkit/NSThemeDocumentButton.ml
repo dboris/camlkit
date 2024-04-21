@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSDocumentDragButton
-
 let _class_ = get_class "NSThemeDocumentButton"
 
 module Class = struct

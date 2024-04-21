@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSLockoutUIOverlayWindow"
 
 let constrainFrameRect x ~toScreen self = msg_send ~self ~cmd:(selector "constrainFrameRect:toScreen:") ~typ:(CGRect.t @-> id @-> returning (CGRect.t)) x toScreen

@@ -71,17 +71,17 @@ struct
     and label = _new_ NSTextField._class_
     in
       btn1 |> NSButton.setTitle (new_string "Click me");
-      btn1 |> NSButton.setTarget ctrl;
-      btn1 |> NSButton.setAction (selector "btnClicked:");
+      btn1 |> NSControl.setTarget ctrl;
+      btn1 |> NSControl.setAction (selector "btnClicked:");
 
       btn2 |> NSButton.setTitle (new_string "Quit");
-      btn2 |> NSButton.setTarget app;
-      btn2 |> NSButton.setAction (selector "terminate:");
+      btn2 |> NSControl.setTarget app;
+      btn2 |> NSControl.setAction (selector "terminate:");
 
-      label |> NSTextField.setStringValue (new_string "Hello");
+      label |> NSControl.setStringValue (new_string "Hello");
       label |> NSTextField.setBezeled false;
       label |> NSTextField.setDrawsBackground false;
-      label |> NSTextField.setFrame
+      label |> NSView.setFrame
         (CGRect.make ~x: 10. ~y: (h -. 40.) ~width: 150. ~height: 30.);
 
       win |> NSWindow.contentView |> NSView.addSubview label;

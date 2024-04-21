@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSUndoManager
-
 let _class_ = get_class "NSCellUndoManager"
 
 let canRedo self = msg_send ~self ~cmd:(selector "canRedo") ~typ:(returning (bool))

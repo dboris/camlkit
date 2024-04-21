@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSImageView
-
 let _class_ = get_class "NSToolbarImageView"
 
 let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning (ullong))

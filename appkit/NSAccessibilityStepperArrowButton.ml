@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSAccessibilityMockUIElement
-
 let _class_ = get_class "NSAccessibilityStepperArrowButton"
 
 module Class = struct

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSTableHeaderCellView"
 
 let cell self = msg_send ~self ~cmd:(selector "cell") ~typ:(returning (id))

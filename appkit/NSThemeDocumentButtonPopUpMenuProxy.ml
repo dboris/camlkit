@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSProxy
-
 let _class_ = get_class "NSThemeDocumentButtonPopUpMenuProxy"
 
 let createRealObjectIfNeeded self = msg_send ~self ~cmd:(selector "createRealObjectIfNeeded") ~typ:(returning (void))

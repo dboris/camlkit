@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSBitmapGraphicsContext
-
 let _class_ = get_class "NSSnapshotBitmapGraphicsContext"
 
 let backingData self = msg_send ~self ~cmd:(selector "backingData") ~typ:(returning (id))

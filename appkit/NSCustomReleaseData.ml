@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSMutableData
-
 let _class_ = get_class "NSCustomReleaseData"
 
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr (void)))

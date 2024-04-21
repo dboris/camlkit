@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSTextStorage
-
 let _class_ = get_class "NSSecureTextStorage"
 
 module Class = struct

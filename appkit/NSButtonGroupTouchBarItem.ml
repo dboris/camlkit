@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSCustomTouchBarItem
-
 let _class_ = get_class "NSButtonGroupTouchBarItem"
 
 module Class = struct

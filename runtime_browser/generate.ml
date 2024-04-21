@@ -165,14 +165,20 @@ let emit_method_bindings ?(pref = "") ~file bindings =
   |> Printf.fprintf file "%s%s" pref
 ;;
 
-let emit_class_module ?(open_foundation = false) ~file cls =
+let emit_class_module
+?(open_foundation = false)
+?(include_superclass = false)
+?(min_methods = 5)
+cls
+  =
   let cls' = Objc.get_class cls in
   let super = Class.get_superclass cls'
   and meta = Object.get_class cls'
   in
   match List.filter_map method_binding (Inspect.methods cls') with
   | [] -> ()
-  | bindings ->
+  | bindings when List.length bindings >= min_methods ->
+    let file = open_out (cls ^ ".ml") in
     Printf.fprintf file "(* auto-generated, do not modify *)\n\n";
     Printf.fprintf file "open Runtime\n";
     Printf.fprintf file "open Objc\n\n";
@@ -180,19 +186,28 @@ let emit_class_module ?(open_foundation = false) ~file cls =
       Printf.fprintf file "[@@@ocaml.warning \"-33\"]\n";
       Printf.fprintf file "open Foundation\n\n"
     end;
-    if not (is_null super) then
+    if include_superclass && not (is_null super) then begin
       let superclass = Class.get_name super in
-      if String.starts_with ~prefix:"NS" superclass then
+      if (
+        String.starts_with ~prefix:"NS" superclass &&
+        not (String.equal superclass "NSObject")
+      ) then
         Printf.fprintf file "include %s\n\n" superclass;
-    Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
-    begin match List.filter_map method_binding (Inspect.methods meta) with
-    | [] -> ()
-    | class_bindings ->
-      Printf.fprintf file "module Class = struct\n";
-      emit_method_bindings ~file ~pref:"  " class_bindings;
-      Printf.fprintf file "\nend\n\n"
     end;
-    emit_method_bindings ~file bindings
+    Printf.fprintf file "let _class_ = get_class \"%s\"\n\n" cls;
+    begin
+      match List.filter_map method_binding (Inspect.methods meta) with
+      | [] -> ()
+      | class_bindings ->
+        begin
+          Printf.fprintf file "module Class = struct\n";
+          emit_method_bindings ~file ~pref:"  " class_bindings;
+          Printf.fprintf file "\nend\n\n"
+        end
+    end;
+    emit_method_bindings ~file bindings;
+    close_out file
+  | _ -> ()
 ;;
 
 let usage = {|
@@ -202,11 +217,13 @@ Usage: generate-ml -classes <lib-name> | -methods <class-name>
 let gen_classes = ref ""
 let gen_methods = ref ""
 let open_foundation = ref false
+let include_superclass = ref false
 
 let speclist =
   [ ("-classes", Arg.Set_string gen_classes, "Generate classes in <lib>")
   ; ("-methods", Arg.Set_string gen_methods, "Generate methods in <class>")
   ; ("-foundation", Arg.Set open_foundation, "Open Foundation in generated module")
+  ; ("-super", Arg.Set include_superclass, "Include superclass methods in generated module")
   ]
 
 let () =
@@ -214,6 +231,7 @@ let () =
   let lib = !gen_classes
   and cls = !gen_methods
   and open_foundation = !open_foundation
+  and include_superclass = !include_superclass
   in
   if not (String.equal lib "") then
     Inspect.library_class_names lib
@@ -222,10 +240,8 @@ let () =
         String.starts_with ~prefix:"NS" cls &&
         not (String.starts_with ~prefix:"NSCF" cls)
       ) then
-        let file = open_out (cls ^ ".ml") in
-        emit_class_module cls ~file ~open_foundation;
-        close_out file)
+        emit_class_module cls ~open_foundation ~include_superclass)
   else if not (String.equal cls "") then
-    emit_class_module cls ~file:stdout ~open_foundation
+    emit_class_module cls ~open_foundation ~include_superclass
   else
     print_endline usage

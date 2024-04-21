@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSDocumentConflictPanelController"
 
 let acceptsPreviewPanelControl x self = msg_send ~self ~cmd:(selector "acceptsPreviewPanelControl:") ~typ:(id @-> returning (bool)) x

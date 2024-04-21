@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSWindowBatchOrdering"
 
 let addCompletionCallback x self = msg_send ~self ~cmd:(selector "addCompletionCallback:") ~typ:(ptr void @-> returning (void)) x

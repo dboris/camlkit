@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPopoverTouchBarItem
-
 let _class_ = get_class "NSCharacterPickerTouchBarItem"
 
 module Class = struct

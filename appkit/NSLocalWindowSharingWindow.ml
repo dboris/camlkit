@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindow
-
 let _class_ = get_class "NSLocalWindowSharingWindow"
 
 let closeButtonDidChangeGeometry x self = msg_send ~self ~cmd:(selector "closeButtonDidChangeGeometry:") ~typ:(id @-> returning (void)) x

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSColorPicker
-
 let _class_ = get_class "NSColorPickerWheel"
 
 let brightnessSlider x self = msg_send ~self ~cmd:(selector "brightnessSlider:") ~typ:(id @-> returning (void)) x

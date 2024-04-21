@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSPanGestureRecognizer
-
 let _class_ = get_class "NSPressureSensitivePanGestureRecognizer"
 
 let defaultPressure self = msg_send ~self ~cmd:(selector "defaultPressure") ~typ:(returning (double))

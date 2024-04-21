@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTableColumnDragInfo"
 
 let bodyDragImage self = msg_send ~self ~cmd:(selector "bodyDragImage") ~typ:(returning (id))

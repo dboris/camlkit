@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSDocumentErrorRecoveryAttempter"
 
 let attemptRecoveryFromError x ~optionIndex self = msg_send ~self ~cmd:(selector "attemptRecoveryFromError:optionIndex:") ~typ:(id @-> ullong @-> returning (bool)) x optionIndex

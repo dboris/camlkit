@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSResponder
-
 let _class_ = get_class "NSPopover"
 
 let accessibilityAllowsOverriddenAttributesWhenIgnored self = msg_send ~self ~cmd:(selector "accessibilityAllowsOverriddenAttributesWhenIgnored") ~typ:(returning (bool))

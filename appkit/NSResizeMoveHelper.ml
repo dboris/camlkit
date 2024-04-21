@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSMoveHelper
-
 let _class_ = get_class "NSResizeMoveHelper"
 
 let animateResizeToFrame x self = msg_send ~self ~cmd:(selector "animateResizeToFrame:") ~typ:(CGRect.t @-> returning (void)) x

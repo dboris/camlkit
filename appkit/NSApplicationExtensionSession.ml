@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSApplicationExtensionSession"
 
 let completeSessionReturningItems x ~error self = msg_send ~self ~cmd:(selector "completeSessionReturningItems:error:") ~typ:(id @-> id @-> returning (void)) x error

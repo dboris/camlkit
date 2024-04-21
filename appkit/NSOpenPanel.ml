@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSSavePanel
-
 let _class_ = get_class "NSOpenPanel"
 
 module Class = struct

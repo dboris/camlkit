@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSButtonCell
-
 let _class_ = get_class "NSStatusBarButtonCell"
 
 module Class = struct

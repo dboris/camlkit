@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSDynamicNamedColor
-
 let _class_ = get_class "NSDynamicSystemColor"
 
 module Class = struct

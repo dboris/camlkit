@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSStatusItem
-
 let _class_ = get_class "NSStatusItemReplicant"
 
 let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning (bool))

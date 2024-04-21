@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSControl
-
 let _class_ = get_class "NSTouchBarColorPickerSlider"
 
 module Class = struct

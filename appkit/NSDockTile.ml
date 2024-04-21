@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSDockTile"
 
 let badgeLabel self = msg_send ~self ~cmd:(selector "badgeLabel") ~typ:(returning (id))

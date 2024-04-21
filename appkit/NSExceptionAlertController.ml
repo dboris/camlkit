@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSWindowController
-
 let _class_ = get_class "NSExceptionAlertController"
 
 let btnClicked x self = msg_send ~self ~cmd:(selector "btnClicked:") ~typ:(id @-> returning (void)) x

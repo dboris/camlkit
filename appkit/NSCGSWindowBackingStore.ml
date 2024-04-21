@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSCGSWindowBackingStore"
 
 let defineBackBufferInRect x self = msg_send ~self ~cmd:(selector "defineBackBufferInRect:") ~typ:(CGRect.t @-> returning (void)) x

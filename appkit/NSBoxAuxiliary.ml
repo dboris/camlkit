@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSBoxAuxiliary"
 
 let borderColor self = msg_send ~self ~cmd:(selector "borderColor") ~typ:(returning (id))

@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSOperation
-
 let _class_ = get_class "NSTabSearchFilterOperation"
 
 let filterCompletionCallback self = msg_send ~self ~cmd:(selector "filterCompletionCallback") ~typ:(returning (ptr void))

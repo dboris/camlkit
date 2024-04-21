@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSViewController
-
 let _class_ = get_class "NSTabPickerViewController"
 
 let createNewTabForVisualTabPickerController x self = msg_send ~self ~cmd:(selector "createNewTabForVisualTabPickerController:") ~typ:(id @-> returning (void)) x

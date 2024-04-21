@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSView
-
 let _class_ = get_class "NSToolbarClippedItemsIndicatorViewer"
 
 let animateIntoView self = msg_send ~self ~cmd:(selector "animateIntoView") ~typ:(returning (void))

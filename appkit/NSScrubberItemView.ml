@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSScrubberArrangedView
-
 let _class_ = get_class "NSScrubberItemView"
 
 module Class = struct

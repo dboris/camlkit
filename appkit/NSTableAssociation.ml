@@ -6,8 +6,6 @@ open Objc
 [@@@ocaml.warning "-33"]
 open Foundation
 
-include NSObject
-
 let _class_ = get_class "NSTableAssociation"
 
 let column self = msg_send ~self ~cmd:(selector "column") ~typ:(returning (llong))
