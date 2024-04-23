@@ -1,14 +1,17 @@
 (test
  (name test_objc)
  (modules test_objc)
+ (build_if (= %{context_name} "default"))
  (libraries foundation alcotest))
 
 (test
  (name test_camlkit)
  (modules test_camlkit)
+ (build_if (= %{context_name} "default"))
  (libraries foundation appkit camlkit alcotest))
 
 (test
  (name test_stret)
  (modules test_stret)
+ (build_if (= %{context_name} "default"))
  (libraries foundation appkit alcotest))

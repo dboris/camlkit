@@ -59,4 +59,4 @@
 
 (rule
  (with-stdout-to arch.ml
-  (bash "foo=%{architecture}; echo \"type t = Amd64 | Arm64 \nlet current = ${foo^}\"")))
+  (bash "arch=%{architecture}; echo \"type t = Amd64 | Arm64 \nlet current = $(echo $arch | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\"")))
