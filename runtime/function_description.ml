@@ -43,6 +43,10 @@ struct
       foreign "objc_getClassList" (ptr (ptr objc_class)
         @-> int @-> returning int)
 
+    (** Returns an array of all the protocols known to the runtime. *)
+    let get_protocol_list =
+      foreign "objc_copyProtocolList" (ptr uint @-> returning (ptr _Protocol))
+
   end
 
   module Class =
@@ -138,6 +142,14 @@ struct
     (** Returns a string describing a method's parameter and return types. *)
     let get_type_encoding =
       foreign "method_getTypeEncoding" (_Method @-> returning string)
+
+  end
+
+  module Protocol =
+  struct
+    (** Returns the name of a protocol. *)
+    let get_name =
+      foreign "protocol_getName" (_Protocol @-> returning string)
 
   end
 end

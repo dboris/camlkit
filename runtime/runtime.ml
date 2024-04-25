@@ -6,6 +6,7 @@ open Foreign
 module Platform = Platform
 module Ivar = C.Functions.Ivar
 module Method = C.Functions.Method
+module Protocol = C.Functions.Protocol
 module Inspect = Inspect
 module Objc_t = Objc_t
 

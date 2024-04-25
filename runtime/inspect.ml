@@ -95,6 +95,19 @@ let registered_class_names () =
   |> List.sort String.compare
 ;;
 
+let registered_protocols () =
+  let count = allocate uint Unsigned.UInt.zero in
+  let p = Objc.get_protocol_list count in
+  CArray.from_ptr p (Unsigned.UInt.to_int (!@ count))
+  |> CArray.to_list
+;;
+
+let registered_protocol_names () =
+  registered_protocols ()
+  |> List.map Protocol.get_name
+  |> List.sort String.compare
+;;
+
 let methods cls =
   let count = allocate uint Unsigned.UInt.zero in
   let m = Class.copy_method_list cls count in

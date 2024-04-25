@@ -38,9 +38,25 @@
     -I/usr/GNUstep/Local/Library/Headers/"))))
 
 (rule
- (enabled_if (= %{system} macosx))
+ (enabled_if (and
+  (= %{system} macosx)
+  (or
+   (= %{context_name} default)
+   (= %{context_name} device)
+   (= %{context_name} simulator)
+   (= %{context_name} maccatalyst))))
  (target flags.txt)
  (action (copy flags.macos %{target})))
+
+(rule
+ (enabled_if (and
+  (= %{system} macosx)
+  (or
+   (= %{context_name} device.ios)
+   (= %{context_name} simulator.ios)
+   (= %{context_name} maccatalyst.ios))))
+ (target flags.txt)
+ (action (copy flags.ios %{target})))
 
 (rule
  (enabled_if (= %{system} linux))
