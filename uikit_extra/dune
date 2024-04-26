@@ -1,6 +1,6 @@
 (library
- (name uikit)
- (public_name camlkit-gui.uikit)
+ (name uikit_extra)
+ (public_name camlkit-gui.uikit-extra)
  (enabled_if (or
   (= %{context_name} device.ios)
   (= %{context_name} simulator.ios)
