@@ -95,7 +95,7 @@ let on_before_start _notification = ()
 
 let on_started notification =
   let module Ctrl = CamlProxy.Create (App_controller) in
-  let app = Compat.Notification._object_ notification in
+  let app = NSNotification.object_ notification in
   let win = App_window.create app (Ctrl._class_ |> alloc |> init) in
   win |> NSWindow.setTitle (new_string app_name);
   win

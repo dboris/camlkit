@@ -8,24 +8,23 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
   on iOS and [macOS (via Mac Catalyst)](https://developer.apple.com/mac-catalyst/)
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
-  (on all platforms)
+  (on iOS and macOS)
 
 ## Features
 
-* Using the classes and objects from the above Cocoa frameworks, defining new
+* Using the classes and objects from these Cocoa frameworks, defining new
   Cocoa classes, and accessing the functionality of other Cocoa frameworks
-  (via the lower-lever Objective-C runtime API bindings) can be done from the
+  (via the low-level Objective-C runtime API bindings) can be done from the
   comfort of OCaml. No need to write wrappers manually in C or Objective-C.
 * Cocoa object lifetimes can be managed by the OCaml GC.
-* The bindings in the above frameworks follow the Cocoa method naming and the
-  underlying typing closely. More convenient and idiomatic OCaml wrappers are
-  planned and will be added to the Camlkit package for the most used classes
-  and methods.
+* The framework bindings follow the Cocoa method naming and the underlying
+  typing closely. More convenient and idiomatic OCaml wrappers are planned
+  and will be added to the Camlkit package for the most used classes and methods.
 
 ## Sample programs
 
 A few sample programs are provided in the
-[example](https://github.com/dboris/ocaml-objc/tree/main/example) directory.
+[example](https://github.com/dboris/camlkit/tree/main/example) directory.
 
 ## Project status
 

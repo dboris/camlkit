@@ -1,5 +1,5 @@
 {
-    ApplicationDescription = "Test GNUstep app.";
+    ApplicationDescription = "Test GNUStep app.";
     ApplicationName = GSApp;
     ApplicationRelease = "1.0";
     Authors = ( "Boris D. <borisd@gmx.com>" );

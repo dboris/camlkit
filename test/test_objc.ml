@@ -83,10 +83,10 @@ let test_gc_autorelease () =
   let c = _class_ name ~methods in
   _new_ c |> gc_autorelease |> ignore;
   match Platform.current with
-  | GNUstep ->
+  | GNUStep ->
     (* XXX no tests run after Gc.full_major call in Linux. *)
     ()
-  | MacOS ->
+  | _ ->
     Gc.full_major ();
     A.check A.bool "dealloc was called after gc" true !dealloc_called
 

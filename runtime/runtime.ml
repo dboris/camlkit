@@ -15,9 +15,9 @@ struct
   include C.Functions.Sel
   let register_typed_name =
     match Platform.current with
-    | GNUstep ->
+    | GNUStep ->
       foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
-    | MacOS -> (fun _ _ -> assert false)
+    | _ -> (fun _ _ -> assert false)
   end
 
 module Class =
@@ -130,11 +130,11 @@ struct
       of an instance of a class. *)
   let msg_send_super ~self ~cmd ~typ =
     match Platform.current with
-    | MacOS ->
-      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd
-    | GNUstep ->
+    | GNUStep ->
       let self = Class.get_superclass self in
       msg_send ~self ~cmd ~typ
+    | _ ->
+      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd
   ;;
 
   (** Shortcut for type [void @-> id] *)
@@ -281,10 +281,10 @@ struct
 
     methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
       match Platform.current with
-      | MacOS ->
-        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc)
-      | GNUstep ->
+      | GNUStep ->
         let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc)
+      | _ ->
         assert (Class.add_method ~self ~cmd ~typ ~imp ~enc));
 
     protocols |> List.iter (fun proto ->

@@ -101,14 +101,14 @@ let set_main_menu menu self =
 
 let set_activation_policy policy self =
   match Platform.current with
-  | MacOS ->
+  | GNUStep ->
+    (* Not supported *)
+    true
+  | _ ->
     msg_send ~self
       ~cmd: (selector "setActivationPolicy:")
       ~typ: (ActivationPolicy.t @-> returning bool)
       policy
-  | GNUstep ->
-    (* Not supported *)
-    true
 ;;
 
 let activate_ignoring_other_apps flag self =
@@ -219,13 +219,7 @@ end
 module Label = struct
   let create title =
     match Platform.current with
-    | MacOS ->
-      msg_send
-        ~self: (get_class "NSTextField")
-        ~cmd: (selector "labelWithString:")
-        ~typ: (id @-> returning id)
-        (new_string title)
-    | GNUstep ->
+    | GNUStep ->
       let self = new_object "NSTextField" in
       self |> Property.set "stringValue" (new_string title) ~typ: Objc_t.id;
       msg_send ~self
@@ -237,7 +231,13 @@ module Label = struct
         ~typ: (bool @-> returning void)
         false;
       self
-  ;;
+    | _ ->
+      msg_send
+        ~self: (get_class "NSTextField")
+        ~cmd: (selector "labelWithString:")
+        ~typ: (id @-> returning id)
+        (new_string title)
+    ;;
 end
 
 module View = struct

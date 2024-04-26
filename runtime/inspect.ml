@@ -9,28 +9,28 @@ module Objc = struct
       libraries. *)
   let copy_image_names =
     match Platform.current with
-    | MacOS ->
-      Foreign.foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
-    | GNUstep ->
+    | GNUStep ->
       (fun _ -> failwith "Not supported")
+    | _ ->
+      Foreign.foreign "objc_copyImageNames" (ptr uint @-> returning (ptr string))
 
   (** Returns the names of all the classes within a specified library
       or framework. *)
   let copy_image_class_names =
     match Platform.current with
-    | MacOS ->
+    | GNUStep ->
+      (fun _ -> failwith "Not supported")
+    | _ ->
       Foreign.foreign "objc_copyClassNamesForImage" (string @-> ptr uint @->
         returning (ptr string))
-    | GNUstep ->
-      (fun _ -> failwith "Not supported")
 
   (** Returns the name of the dynamic library a class originated from. *)
   let get_image_name =
     match Platform.current with
-    | MacOS ->
-      Foreign.foreign "class_getImageName" (_Class @-> returning string)
-    | GNUstep ->
+    | GNUStep ->
       (fun _ -> failwith "Not supported")
+    | _ ->
+      Foreign.foreign "class_getImageName" (_Class @-> returning string)
 
 end
 
