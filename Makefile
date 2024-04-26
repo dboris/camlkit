@@ -1,9 +1,12 @@
-.PHONY: build test run-demo run-hello doc gen-cf gen-fnd gen-ak show-libs show-fnd deps clean
+.PHONY: build-ios build test run-demo run-hello doc gen-cf gen-fnd gen-ak show-libs show-fnd deps clean
 
 FW := /System/Library/Frameworks
 CORE_FOUNDATION := $(FW)/CoreFoundation.framework/Versions/A/CoreFoundation
 FOUNDATION := $(FW)/Foundation.framework/Versions/C/Foundation
 APPKIT := $(FW)/AppKit.framework/Versions/C/AppKit
+
+build-ios:
+	@dune build --workspace dune-workspace.ios
 
 build:
 	@dune build @default
