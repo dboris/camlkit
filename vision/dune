@@ -1,0 +1,4 @@
+(library
+ (name vision)
+ (public_name camlkit-base.vision)
+ (libraries foundation))
