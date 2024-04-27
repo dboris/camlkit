@@ -1,8 +1,8 @@
 (library
  (name uikit)
  (public_name camlkit-gui.uikit)
- (enabled_if (or
-  (= %{context_name} device.ios)
-  (= %{context_name} simulator.ios)
-  (= %{context_name} maccatalyst.ios)))
+;  (enabled_if (or
+;   (= %{context_name} device.ios)
+;   (= %{context_name} simulator.ios)
+;   (= %{context_name} maccatalyst.ios)))
  (libraries foundation))

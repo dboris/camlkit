@@ -53,10 +53,16 @@
   (= %{system} macosx)
   (or
    (= %{context_name} device.ios)
-   (= %{context_name} simulator.ios)
-   (= %{context_name} maccatalyst.ios))))
+   (= %{context_name} simulator.ios))))
  (target flags.txt)
  (action (copy flags.ios %{target})))
+
+(rule
+ (enabled_if (and
+  (= %{system} macosx)
+  (= %{context_name} maccatalyst.ios)))
+ (target flags.txt)
+ (action (copy flags.catalyst %{target})))
 
 (rule
  (enabled_if (= %{system} linux))
