@@ -4,10 +4,12 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
   (on all platforms)
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
-  on macOS and [GNUStep](https://gnustep.github.io/)
+  (on macOS and [GNUStep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
-  on iOS and [macOS (via Mac Catalyst)](https://developer.apple.com/mac-catalyst/)
+  (on iOS, macOS on Arm, and [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
+  (on iOS and macOS)
+* [Vision](https://developer.apple.com/documentation/vision?language=objc)
   (on iOS and macOS)
 
 ## Features
