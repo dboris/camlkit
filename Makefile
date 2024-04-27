@@ -11,6 +11,9 @@ build:
 build-ios:
 	@dune build --workspace dune-workspace.ios
 
+build-ios-v:
+	@dune build --workspace dune-workspace.ios --verbose
+
 build-cat:
 	@dune build --workspace dune-workspace.catalyst
 

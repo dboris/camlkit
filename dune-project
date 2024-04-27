@@ -58,4 +58,5 @@
   (camlkit-base (= :version))
   (camlkit-gui (= :version))
   (camlkit (= :version)))
+ (allow_empty)
  (tags (objc bindings cocoa gnustep)))

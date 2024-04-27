@@ -1,6 +1,7 @@
 (library
  (name foundation)
  (public_name camlkit-base.foundation)
+ (flags :standard -ccopt "-framework Foundation")
  (libraries runtime ctypes))
 
 ; (copy_files gen/*)

@@ -1,4 +1,5 @@
 (library
  (name vision)
  (public_name camlkit-base.vision)
+ (flags :standard -ccopt "-framework Vision")
  (libraries foundation))

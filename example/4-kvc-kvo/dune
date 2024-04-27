@@ -2,6 +2,10 @@
  (name main)
  (public_name thermostat)
  (package camlkit-examples)
+ (enabled_if (not (or
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} maccatalyst.ios))))
  (libraries foundation appkit camlkit))
 
 ; (alias (name default) (deps ui.nib))
@@ -16,6 +20,10 @@
  (rule
   (deps ../../../main.exe)
   (targets Kvc)
+  (enabled_if (not (or
+   (= %{context_name} device.ios)
+   (= %{context_name} simulator.ios)
+   (= %{context_name} maccatalyst.ios))))
   (action (copy ../../../main.exe Kvc))))
 
 ; (subdir Kvc.app/Contents/Resources

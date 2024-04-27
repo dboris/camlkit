@@ -2,24 +2,24 @@
  (name runtime)
  (public_name camlkit-base.runtime)
  (libraries ctypes ctypes.foreign)
- (flags -linkall)
  (c_library_flags :standard %{read-lines:flags.txt})
- (ctypes
-  (external_library_name libobjc)
-  (build_flags_resolver
-   (vendored
-    (c_flags :standard %{read-lines:cflags.txt})
-    (c_library_flags :standard %{read-lines:flags.txt})))
-  (headers (include "objc/runtime.h"))
-  (type_description
-   (instance Types)
-   (functor Type_description))
-  (function_description
-   (concurrency unlocked)
-   (instance Functions)
-   (functor Function_description))
-  (generated_types Types_generated)
-  (generated_entry_point C)))
+;  (ctypes
+;   (external_library_name libobjc)
+;   (build_flags_resolver
+;    (vendored
+;     (c_flags :standard %{read-lines:cflags.txt})
+;     (c_library_flags :standard %{read-lines:flags.txt})))
+;   (headers (include "objc/runtime.h"))
+;   (type_description
+;    (instance Types)
+;    (functor Type_description))
+;   (function_description
+;    (concurrency unlocked)
+;    (instance Functions)
+;    (functor Function_description))
+;   (generated_types Types_generated)
+;   (generated_entry_point C))
+  (flags -linkall))
 
 (documentation (package camlkit-base))
 

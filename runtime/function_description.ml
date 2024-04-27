@@ -1,12 +1,14 @@
 open Ctypes
+open Foreign
+open Type_description.Types
 
-module Types = Types_generated
+(* module Types = Types_generated
 
-module Functions (F : Ctypes.FOREIGN) =
-struct
+module Functions (F : Ctypes.FOREIGN) = struct
   open Types
-  open F
+  open F *)
 
+module Functions = struct
   module Objc =
   struct
 
