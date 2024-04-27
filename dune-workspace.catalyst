@@ -4,7 +4,7 @@
 
 (context
  (opam
-  (switch 4.14.2-device)
-  (name device)
+  (switch 4.14.2-catalyst)
+  (name maccatalyst)
   (targets ios)
   (disable_dynamically_linked_foreign_archives true)))

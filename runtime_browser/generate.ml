@@ -237,8 +237,7 @@ let () =
     Inspect.library_class_names lib
     |> List.iter (fun cls ->
       if (
-        String.starts_with ~prefix:"NS" cls &&
-        not (String.starts_with ~prefix:"NSCF" cls)
+        not (String.starts_with ~prefix:"_" cls)
       ) then
         emit_class_module cls ~open_foundation ~include_superclass)
   else if not (String.equal cls "") then

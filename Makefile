@@ -5,11 +5,14 @@ CORE_FOUNDATION := $(FW)/CoreFoundation.framework/Versions/A/CoreFoundation
 FOUNDATION := $(FW)/Foundation.framework/Versions/C/Foundation
 APPKIT := $(FW)/AppKit.framework/Versions/C/AppKit
 
+build:
+	@dune build @default
+
 build-ios:
 	@dune build --workspace dune-workspace.ios
 
-build:
-	@dune build @default
+build-cat:
+	@dune build --workspace dune-workspace.catalyst
 
 test:
 	@dune runtest --root .
