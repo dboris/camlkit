@@ -19,6 +19,6 @@ let rowHint self = msg_send ~self ~cmd:(selector "rowHint") ~typ:(returning (int
 let setDisplayHint x self = msg_send ~self ~cmd:(selector "setDisplayHint:") ~typ:(int @-> returning (void)) x
 let setRowHint x self = msg_send ~self ~cmd:(selector "setRowHint:") ~typ:(int @-> returning (void)) x
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning (void)) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t))
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let string_ self = msg_send ~self ~cmd:(selector "string") ~typ:(returning (id))
 let stringForRenderFlags x ~lightKeyboard self = msg_send ~self ~cmd:(selector "stringForRenderFlags:lightKeyboard:") ~typ:(llong @-> bool @-> returning (id)) x lightKeyboard

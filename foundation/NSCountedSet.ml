@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableSet
-
 let _class_ = get_class "NSCountedSet"
 
 module Class = struct
@@ -15,6 +13,7 @@ let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> 
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning (ullong)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning (id)) x

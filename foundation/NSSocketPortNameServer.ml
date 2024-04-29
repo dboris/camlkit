@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPortNameServer
-
 let _class_ = get_class "NSSocketPortNameServer"
 
 module Class = struct

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSEnumerator
-
 let _class_ = get_class "NSDirectoryEnumerator"
 
 let directoryAttributes self = msg_send ~self ~cmd:(selector "directoryAttributes") ~typ:(returning (id))

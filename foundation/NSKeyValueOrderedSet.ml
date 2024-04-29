@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSOrderedSet
-
 let _class_ = get_class "NSKeyValueOrderedSet"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

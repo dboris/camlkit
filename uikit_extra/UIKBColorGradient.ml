@@ -12,5 +12,6 @@ module Class = struct
   let gradientWithUIColor x self = msg_send ~self ~cmd:(selector "gradientWithUIColor:") ~typ:(id @-> returning (id)) x
 end
 
+let _CGGradient self = msg_send ~self ~cmd:(selector "CGGradient") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let initWithUIColor x self = msg_send ~self ~cmd:(selector "initWithUIColor:") ~typ:(id @-> returning (id)) x

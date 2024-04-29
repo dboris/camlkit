@@ -12,6 +12,8 @@ module Class = struct
   let defaultValueForKey x self = msg_send ~self ~cmd:(selector "defaultValueForKey:") ~typ:(id @-> returning (id)) x
 end
 
+let copyCGLContextForPixelFormat x self = msg_send ~self ~cmd:(selector "copyCGLContextForPixelFormat:") ~typ:(ptr void @-> returning (id)) x
+let copyCGLPixelFormatForDisplayMask x self = msg_send ~self ~cmd:(selector "copyCGLPixelFormatForDisplayMask:") ~typ:(uint @-> returning (ptr void)) x
 let didChangeValueForKey x self = msg_send ~self ~cmd:(selector "didChangeValueForKey:") ~typ:(id @-> returning (void)) x
 let display self = msg_send ~self ~cmd:(selector "display") ~typ:(returning (void))
 let drawInContext x self = msg_send ~self ~cmd:(selector "drawInContext:") ~typ:(id @-> returning (void)) x
@@ -19,6 +21,7 @@ let layerDidBecomeVisible x self = msg_send ~self ~cmd:(selector "layerDidBecome
 let openGLContextForPixelFormat x self = msg_send ~self ~cmd:(selector "openGLContextForPixelFormat:") ~typ:(id @-> returning (id)) x
 let openGLPixelFormatForDisplayMask x self = msg_send ~self ~cmd:(selector "openGLPixelFormatForDisplayMask:") ~typ:(uint @-> returning (id)) x
 let releaseCGLContext x self = msg_send ~self ~cmd:(selector "releaseCGLContext:") ~typ:(id @-> returning (void)) x
+let releaseCGLPixelFormat x self = msg_send ~self ~cmd:(selector "releaseCGLPixelFormat:") ~typ:(ptr void @-> returning (void)) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
 let willChangeValueForKey x self = msg_send ~self ~cmd:(selector "willChangeValueForKey:") ~typ:(id @-> returning (void)) x

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableSet
-
 let _class_ = get_class "NSSetChanges"
 
 module Class = struct

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDistantObjectRequest
-
 let _class_ = get_class "NSConcreteDistantObjectRequest"
 
 let connection self = msg_send ~self ~cmd:(selector "connection") ~typ:(returning (id))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFormatter
-
 let _class_ = get_class "NSRelativeDateTimeFormatter"
 
 let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning (id))

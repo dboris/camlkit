@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableString
-
 let _class_ = get_class "NSPlaceholderMutableString"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning (id))

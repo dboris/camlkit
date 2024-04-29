@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDistantObject
-
 let _class_ = get_class "NSMutableStringProxy"
 
 let getBytes x ~maxLength ~usedLength ~encoding ~options ~range ~remainingRange self = msg_send ~self ~cmd:(selector "getBytes:maxLength:usedLength:encoding:options:range:remainingRange:") ~typ:(ptr (void) @-> ullong @-> ptr (ullong) @-> ullong @-> ullong @-> NSRange.t @-> ptr (NSRange.t) @-> returning (bool)) x maxLength usedLength encoding options range remainingRange

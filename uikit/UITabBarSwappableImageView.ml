@@ -15,4 +15,4 @@ let setCurrentImage self = msg_send ~self ~cmd:(selector "setCurrentImage") ~typ
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
 let setLandscape x self = msg_send ~self ~cmd:(selector "setLandscape:") ~typ:(bool @-> returning (void)) x
 let showAlternateImage x self = msg_send ~self ~cmd:(selector "showAlternateImage:") ~typ:(bool @-> returning (void)) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x

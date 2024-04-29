@@ -17,4 +17,4 @@ let setCompletionHandler x self = msg_send ~self ~cmd:(selector "setCompletionHa
 let setCurrentProgress x self = msg_send ~self ~cmd:(selector "setCurrentProgress:") ~typ:(float @-> returning (void)) x
 let setIsScrollDueToUserAction x self = msg_send ~self ~cmd:(selector "setIsScrollDueToUserAction:") ~typ:(bool @-> returning (void)) x
 let setLogPerformanceAnalysis x self = msg_send ~self ~cmd:(selector "setLogPerformanceAnalysis:") ~typ:(bool @-> returning (void)) x
-let targetOrigin self = msg_send ~self ~cmd:(selector "targetOrigin") ~typ:(returning (CGPoint.t))
+let targetOrigin self = msg_send_stret ~self ~cmd:(selector "targetOrigin") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t

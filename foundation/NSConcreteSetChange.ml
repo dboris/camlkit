@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSSetChange
-
 let _class_ = get_class "NSConcreteSetChange"
 
 let changeType self = msg_send ~self ~cmd:(selector "changeType") ~typ:(returning (ullong))

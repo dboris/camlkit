@@ -24,4 +24,4 @@ let setShouldAdjustBounds x self = msg_send ~self ~cmd:(selector "setShouldAdjus
 let setTargetFrame x self = msg_send ~self ~cmd:(selector "setTargetFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setUpGState self = msg_send ~self ~cmd:(selector "setUpGState") ~typ:(returning (void))
 let shouldAdjustBounds self = msg_send ~self ~cmd:(selector "shouldAdjustBounds") ~typ:(returning (bool))
-let targetFrame self = msg_send ~self ~cmd:(selector "targetFrame") ~typ:(returning (CGRect.t))
+let targetFrame self = msg_send_stret ~self ~cmd:(selector "targetFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t

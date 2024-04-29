@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSString
-
 let _class_ = get_class "NSTaggedPointerString"
 
 module Class = struct

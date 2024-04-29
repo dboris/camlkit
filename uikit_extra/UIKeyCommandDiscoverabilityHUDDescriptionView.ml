@@ -9,15 +9,15 @@ open Foundation
 let _class_ = get_class "UIKeyCommandDiscoverabilityHUDDescriptionView"
 
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning (id))
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t))
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let invalidateIntrinsicContentSize self = msg_send ~self ~cmd:(selector "invalidateIntrinsicContentSize") ~typ:(returning (void))
 let layoutManager x ~didCompleteLayoutForTextContainer ~atEnd self = msg_send ~self ~cmd:(selector "layoutManager:didCompleteLayoutForTextContainer:atEnd:") ~typ:(id @-> id @-> bool @-> returning (void)) x didCompleteLayoutForTextContainer atEnd
 let layoutManager1 x ~shouldUseAction ~forControlCharacterAtIndex self = msg_send ~self ~cmd:(selector "layoutManager:shouldUseAction:forControlCharacterAtIndex:") ~typ:(id @-> llong @-> ullong @-> returning (llong)) x shouldUseAction forControlCharacterAtIndex
-let layoutManager2 x ~boundingBoxForControlGlyphAtIndex ~forTextContainer ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send ~self ~cmd:(selector "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> ullong @-> id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) x boundingBoxForControlGlyphAtIndex forTextContainer proposedLineFragment glyphPosition characterIndex
+let layoutManager2 x ~boundingBoxForControlGlyphAtIndex ~forTextContainer ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send_stret ~self ~cmd:(selector "layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> ullong @-> id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x boundingBoxForControlGlyphAtIndex forTextContainer proposedLineFragment glyphPosition characterIndex
 let layoutManager3 x ~shouldGenerateGlyphs ~properties ~characterIndexes ~font ~forGlyphRange self = msg_send ~self ~cmd:(selector "layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:") ~typ:(id @-> ptr (ushort) @-> ptr (llong) @-> ptr (ullong) @-> id @-> NSRange.t @-> returning (ullong)) x shouldGenerateGlyphs properties characterIndexes font forGlyphRange
 let setFont x self = msg_send ~self ~cmd:(selector "setFont:") ~typ:(id @-> returning (void)) x
 let setSpaceWidth x self = msg_send ~self ~cmd:(selector "setSpaceWidth:") ~typ:(double @-> returning (void)) x
 let setText x self = msg_send ~self ~cmd:(selector "setText:") ~typ:(id @-> returning (void)) x
 let spaceWidth self = msg_send ~self ~cmd:(selector "spaceWidth") ~typ:(returning (double))
-let systemLayoutSizeFittingSize x self = msg_send ~self ~cmd:(selector "systemLayoutSizeFittingSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let systemLayoutSizeFittingSize x self = msg_send_stret ~self ~cmd:(selector "systemLayoutSizeFittingSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning (id))

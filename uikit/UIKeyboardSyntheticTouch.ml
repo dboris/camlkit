@@ -13,12 +13,12 @@ module Class = struct
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let getLocationInWindow self = msg_send ~self ~cmd:(selector "getLocationInWindow") ~typ:(returning (CGPoint.t))
+let getLocationInWindow self = msg_send_stret ~self ~cmd:(selector "getLocationInWindow") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let initWithPoint x ~timestamp ~window self = msg_send ~self ~cmd:(selector "initWithPoint:timestamp:window:") ~typ:(CGPoint.t @-> double @-> id @-> returning (id)) x timestamp window
-let locationInView x self = msg_send ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) x
-let locationInWindow self = msg_send ~self ~cmd:(selector "locationInWindow") ~typ:(returning (CGPoint.t))
+let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
+let locationInWindow self = msg_send_stret ~self ~cmd:(selector "locationInWindow") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning (llong))
-let previousLocationInView x self = msg_send ~self ~cmd:(selector "previousLocationInView:") ~typ:(id @-> returning (CGPoint.t)) x
+let previousLocationInView x self = msg_send_stret ~self ~cmd:(selector "previousLocationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let setLocationInWindow x self = msg_send ~self ~cmd:(selector "setLocationInWindow:") ~typ:(CGPoint.t @-> returning (void)) x
 let setPhase x self = msg_send ~self ~cmd:(selector "setPhase:") ~typ:(llong @-> returning (void)) x
 let setTapCount x self = msg_send ~self ~cmd:(selector "setTapCount:") ~typ:(ullong @-> returning (void)) x

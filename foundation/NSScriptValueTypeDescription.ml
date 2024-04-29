@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptTypeDescription
-
 let _class_ = get_class "NSScriptValueTypeDescription"
 
 module Class = struct

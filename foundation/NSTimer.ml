@@ -16,6 +16,7 @@ module Class = struct
   let timerWithTimeInterval2 x ~target ~selector_ ~userInfo ~repeats self = msg_send ~self ~cmd:(selector "timerWithTimeInterval:target:selector:userInfo:repeats:") ~typ:(double @-> id @-> _SEL @-> id @-> bool @-> returning (id)) x target selector_ userInfo repeats
 end
 
+let copyDebugDescription self = msg_send ~self ~cmd:(selector "copyDebugDescription") ~typ:(returning (ptr void))
 let fire self = msg_send ~self ~cmd:(selector "fire") ~typ:(returning (void))
 let fireDate self = msg_send ~self ~cmd:(selector "fireDate") ~typ:(returning (id))
 let fireTime self = msg_send ~self ~cmd:(selector "fireTime") ~typ:(returning (double))

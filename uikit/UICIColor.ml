@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICIColor"
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let _CIColor self = msg_send ~self ~cmd:(selector "CIColor") ~typ:(returning (id))
 let colorWithAlphaComponent x self = msg_send ~self ~cmd:(selector "colorWithAlphaComponent:") ~typ:(double @-> returning (id)) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

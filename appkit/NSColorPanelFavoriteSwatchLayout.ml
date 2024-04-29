@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSColorPanelFavoriteSwatchLayout"
 
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t))
-let enclosingBounds self = msg_send ~self ~cmd:(selector "enclosingBounds") ~typ:(returning (CGRect.t))
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
+let enclosingBounds self = msg_send_stret ~self ~cmd:(selector "enclosingBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let itemSize self = msg_send ~self ~cmd:(selector "itemSize") ~typ:(returning (CGSize.t))
+let itemSize self = msg_send_stret ~self ~cmd:(selector "itemSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let itemSpacing self = msg_send ~self ~cmd:(selector "itemSpacing") ~typ:(returning (double))
 let layoutAttributesForDecorationViewOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForDecorationViewOfKind:atIndexPath:") ~typ:(id @-> id @-> returning (id)) x atIndexPath
 let layoutAttributesForDropTargetAtPoint x self = msg_send ~self ~cmd:(selector "layoutAttributesForDropTargetAtPoint:") ~typ:(CGPoint.t @-> returning (id)) x

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSSubstitutionCheckingResult
-
 let _class_ = get_class "NSCorrectionCheckingResult"
 
 module Class = struct

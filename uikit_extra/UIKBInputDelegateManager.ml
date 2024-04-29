@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIKBInputDelegateManager"
 
 module Class = struct
-  let rangeForTextRange x ~document self = msg_send ~self ~cmd:(selector "rangeForTextRange:document:") ~typ:(id @-> id @-> returning (NSRange.t)) x document
+  let rangeForTextRange x ~document self = msg_send_stret ~self ~cmd:(selector "rangeForTextRange:document:") ~typ:(id @-> id @-> returning (NSRange.t)) ~return_type:NSRange.t x document
 end
 
 let applyAutocorrection x ~toString ~withCompletionHandler self = msg_send ~self ~cmd:(selector "applyAutocorrection:toString:withCompletionHandler:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x toString withCompletionHandler

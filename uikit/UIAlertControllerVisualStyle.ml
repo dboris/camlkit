@@ -16,7 +16,7 @@ end
 let actionWidthForMinimumActionWidth x self = msg_send ~self ~cmd:(selector "actionWidthForMinimumActionWidth:") ~typ:(double @-> returning (double)) x
 let animateAlertControllerView x ~ofAlertController ~forPresentation ~inContainerView ~descendantOfContainerView ~duration ~completionBlock self = msg_send ~self ~cmd:(selector "animateAlertControllerView:ofAlertController:forPresentation:inContainerView:descendantOfContainerView:duration:completionBlock:") ~typ:(id @-> id @-> bool @-> id @-> id @-> double @-> ptr void @-> returning (void)) x ofAlertController forPresentation inContainerView descendantOfContainerView duration completionBlock
 let animateRevealOfAlertControllerView x ~alertController ~inContainerView ~duration ~completionBlock self = msg_send ~self ~cmd:(selector "animateRevealOfAlertControllerView:alertController:inContainerView:duration:completionBlock:") ~typ:(id @-> id @-> id @-> double @-> ptr void @-> returning (void)) x alertController inContainerView duration completionBlock
-let collectionViewOutsetSize self = msg_send ~self ~cmd:(selector "collectionViewOutsetSize") ~typ:(returning (CGSize.t))
+let collectionViewOutsetSize self = msg_send_stret ~self ~cmd:(selector "collectionViewOutsetSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let configureAttributesForImageView x ~imageProperty ~actionViewState self = msg_send ~self ~cmd:(selector "configureAttributesForImageView:imageProperty:actionViewState:") ~typ:(id @-> id @-> id @-> returning (void)) x imageProperty actionViewState
 let configureAttributesForTitleLabel x ~classificationLabel ~actionViewState self = msg_send ~self ~cmd:(selector "configureAttributesForTitleLabel:classificationLabel:actionViewState:") ~typ:(id @-> id @-> id @-> returning (void)) x classificationLabel actionViewState
 let contentHorizontalMargin self = msg_send ~self ~cmd:(selector "contentHorizontalMargin") ~typ:(returning (double))
@@ -44,7 +44,7 @@ let maximumWidth self = msg_send ~self ~cmd:(selector "maximumWidth") ~typ:(retu
 let maximumWidthForTitleAndMessageContentView self = msg_send ~self ~cmd:(selector "maximumWidthForTitleAndMessageContentView") ~typ:(returning (double))
 let messageLabelColor self = msg_send ~self ~cmd:(selector "messageLabelColor") ~typ:(returning (id))
 let messageLabelFont self = msg_send ~self ~cmd:(selector "messageLabelFont") ~typ:(returning (id))
-let minimumActionContentSize self = msg_send ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning (CGSize.t))
+let minimumActionContentSize self = msg_send_stret ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let minimumWidth self = msg_send ~self ~cmd:(selector "minimumWidth") ~typ:(returning (double))
 let permittedActionLayoutDirection self = msg_send ~self ~cmd:(selector "permittedActionLayoutDirection") ~typ:(returning (llong))
 let placementAvoidsKeyboard self = msg_send ~self ~cmd:(selector "placementAvoidsKeyboard") ~typ:(returning (bool))

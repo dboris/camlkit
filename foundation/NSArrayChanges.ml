@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableArray
-
 let _class_ = get_class "NSArrayChanges"
 
 module Class = struct

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSHashTable
-
 let _class_ = get_class "NSConcreteHashTable"
 
 module Class = struct
@@ -16,6 +14,7 @@ let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returnin
 let assign x ~key self = msg_send ~self ~cmd:(selector "assign:key:") ~typ:(ullong @-> ptr (void) @-> returning (void)) x key
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x

@@ -54,6 +54,6 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let isEqualToIndexSet x self = msg_send ~self ~cmd:(selector "isEqualToIndexSet:") ~typ:(id @-> returning (bool)) x
 let lastIndex self = msg_send ~self ~cmd:(selector "lastIndex") ~typ:(returning (ullong))
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:(id @-> returning (id)) x
-let rangeAtIndex x self = msg_send ~self ~cmd:(selector "rangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) x
+let rangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "rangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
 let rangeCount self = msg_send ~self ~cmd:(selector "rangeCount") ~typ:(returning (ullong))
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning (id)) x

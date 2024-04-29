@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSRegularExpression
-
 let _class_ = get_class "NSDataDetector"
 
 module Class = struct

@@ -10,14 +10,14 @@ let _class_ = get_class "UISwitchVisualElement"
 
 module Class = struct
   let isFixedSize self = msg_send ~self ~cmd:(selector "isFixedSize") ~typ:(returning (bool))
-  let preferredContentSize self = msg_send ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t))
+  let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 
 let enabled self = msg_send ~self ~cmd:(selector "enabled") ~typ:(returning (bool))
 let enabledAlpha self = msg_send ~self ~cmd:(selector "enabledAlpha") ~typ:(returning (double))
 let impactFeedbackGenerator self = msg_send ~self ~cmd:(selector "impactFeedbackGenerator") ~typ:(returning (id))
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let preferredContentSize self = msg_send ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t))
+let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setEnabledAlpha x self = msg_send ~self ~cmd:(selector "setEnabledAlpha:") ~typ:(double @-> returning (void)) x
 let setImpactFeedbackGenerator x self = msg_send ~self ~cmd:(selector "setImpactFeedbackGenerator:") ~typ:(id @-> returning (void)) x

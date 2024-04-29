@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSTextCheckingResult
-
 let _class_ = get_class "NSDateCheckingResult"
 
 module Class = struct
@@ -25,7 +23,7 @@ let initWithRange4 x ~date ~timeZone ~duration ~referenceDate ~underlyingResult 
 let initWithRange5 x ~date ~timeZone ~duration ~referenceDate ~underlyingResult ~timeIsSignificant ~timeIsApproximate ~timeIsPast self = msg_send ~self ~cmd:(selector "initWithRange:date:timeZone:duration:referenceDate:underlyingResult:timeIsSignificant:timeIsApproximate:timeIsPast:") ~typ:(NSRange.t @-> id @-> id @-> double @-> id @-> ptr (void) @-> bool @-> bool @-> bool @-> returning (id)) x date timeZone duration referenceDate underlyingResult timeIsSignificant timeIsApproximate timeIsPast
 let initWithRange6 x ~date ~timeZone ~duration ~referenceDate ~underlyingResult ~timeIsSignificant ~timeIsApproximate ~timeIsPast ~leadingText ~trailingText self = msg_send ~self ~cmd:(selector "initWithRange:date:timeZone:duration:referenceDate:underlyingResult:timeIsSignificant:timeIsApproximate:timeIsPast:leadingText:trailingText:") ~typ:(NSRange.t @-> id @-> id @-> double @-> id @-> ptr (void) @-> bool @-> bool @-> bool @-> id @-> id @-> returning (id)) x date timeZone duration referenceDate underlyingResult timeIsSignificant timeIsApproximate timeIsPast leadingText trailingText
 let leadingText self = msg_send ~self ~cmd:(selector "leadingText") ~typ:(returning (id))
-let range self = msg_send ~self ~cmd:(selector "range") ~typ:(returning (NSRange.t))
+let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
 let referenceDate self = msg_send ~self ~cmd:(selector "referenceDate") ~typ:(returning (id))
 let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) x
 let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning (ullong))

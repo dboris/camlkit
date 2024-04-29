@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableData
-
 let _class_ = get_class "NSConcreteMutableData"
 
 let appendBytes x ~length self = msg_send ~self ~cmd:(selector "appendBytes:length:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x length

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDirectoryEnumerator
-
 let _class_ = get_class "NSURLDirectoryEnumerator"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

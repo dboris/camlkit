@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXPCCoder
-
 let _class_ = get_class "NSXPCDecoder"
 
 let allowedClasses self = msg_send ~self ~cmd:(selector "allowedClasses") ~typ:(returning (id))
@@ -29,4 +27,5 @@ let decodeObjectOfClass x ~forKey self = msg_send ~self ~cmd:(selector "decodeOb
 let decodeObjectOfClasses x ~forKey self = msg_send ~self ~cmd:(selector "decodeObjectOfClasses:forKey:") ~typ:(id @-> id @-> returning (id)) x forKey
 let decodeValueOfObjCType x ~at self = msg_send ~self ~cmd:(selector "decodeValueOfObjCType:at:") ~typ:(string @-> ptr (void) @-> returning (void)) x at
 let decodeXPCObjectForKey x self = msg_send ~self ~cmd:(selector "decodeXPCObjectForKey:") ~typ:(id @-> returning (id)) x
+let decodeXPCObjectOfType x ~forKey self = msg_send ~self ~cmd:(selector "decodeXPCObjectOfType:forKey:") ~typ:(ptr void @-> id @-> returning (id)) x forKey
 let initWithInterface x self = msg_send ~self ~cmd:(selector "initWithInterface:") ~typ:(id @-> returning (id)) x

@@ -55,6 +55,5 @@ let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning (void))
 let stop self = msg_send ~self ~cmd:(selector "stop") ~typ:(returning (void))
 let suspend self = msg_send ~self ~cmd:(selector "suspend") ~typ:(returning (void))
 let synchronousRemoteObjectProxyWithErrorHandler x self = msg_send ~self ~cmd:(selector "synchronousRemoteObjectProxyWithErrorHandler:") ~typ:(ptr void @-> returning (id)) x
-let uniquify self = msg_send ~self ~cmd:(selector "uniquify") ~typ:(returning (void))
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning (id))
 let valueForEntitlement x self = msg_send ~self ~cmd:(selector "valueForEntitlement:") ~typ:(id @-> returning (id)) x

@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSCollectionViewSupplementaryViewAccessibility"
 
 let accessibilityChildren self = msg_send ~self ~cmd:(selector "accessibilityChildren") ~typ:(returning (id))
-let accessibilityFrame self = msg_send ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t))
+let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let accessibilityLabel self = msg_send ~self ~cmd:(selector "accessibilityLabel") ~typ:(returning (id))
 let accessibilityParent self = msg_send ~self ~cmd:(selector "accessibilityParent") ~typ:(returning (id))
 let accessibilityRole self = msg_send ~self ~cmd:(selector "accessibilityRole") ~typ:(returning (id))

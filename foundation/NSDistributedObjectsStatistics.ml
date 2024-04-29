@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDictionary
-
 let _class_ = get_class "NSDistributedObjectsStatistics"
 
 let addStatistics x self = msg_send ~self ~cmd:(selector "addStatistics:") ~typ:(id @-> returning (void)) x

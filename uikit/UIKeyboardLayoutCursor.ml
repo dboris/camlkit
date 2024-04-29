@@ -10,7 +10,7 @@ let _class_ = get_class "UIKeyboardLayoutCursor"
 
 module Class = struct
   let carKeyboardNameForKeyboard x ~screenTraits self = msg_send ~self ~cmd:(selector "carKeyboardNameForKeyboard:screenTraits:") ~typ:(id @-> id @-> returning (id)) x screenTraits
-  let keyboardSizeForInputMode x ~screenTraits ~keyboardType self = msg_send ~self ~cmd:(selector "keyboardSizeForInputMode:screenTraits:keyboardType:") ~typ:(id @-> id @-> llong @-> returning (CGSize.t)) x screenTraits keyboardType
+  let keyboardSizeForInputMode x ~screenTraits ~keyboardType self = msg_send_stret ~self ~cmd:(selector "keyboardSizeForInputMode:screenTraits:keyboardType:") ~typ:(id @-> id @-> llong @-> returning (CGSize.t)) ~return_type:CGSize.t x screenTraits keyboardType
 end
 
 let acceptRecentInputIfNecessary self = msg_send ~self ~cmd:(selector "acceptRecentInputIfNecessary") ~typ:(returning (void))
@@ -65,7 +65,7 @@ let returnToKeyplaneAfterDictation self = msg_send ~self ~cmd:(selector "returnT
 let runWithSuppressedActions x self = msg_send ~self ~cmd:(selector "runWithSuppressedActions:") ~typ:(ptr void @-> returning (void)) x
 let selectInitialKeyIfNecessary self = msg_send ~self ~cmd:(selector "selectInitialKeyIfNecessary") ~typ:(returning (void))
 let selectedKeyBeforeDictation self = msg_send ~self ~cmd:(selector "selectedKeyBeforeDictation") ~typ:(returning (llong))
-let selectionFrameForKeyIndex x self = msg_send ~self ~cmd:(selector "selectionFrameForKeyIndex:") ~typ:(llong @-> returning (CGRect.t)) x
+let selectionFrameForKeyIndex x self = msg_send_stret ~self ~cmd:(selector "selectionFrameForKeyIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let setCursorLocation x self = msg_send ~self ~cmd:(selector "setCursorLocation:") ~typ:(ullong @-> returning (void)) x
 let setDisableTouchInput x self = msg_send ~self ~cmd:(selector "setDisableTouchInput:") ~typ:(bool @-> returning (void)) x
 let setFocusWindow x self = msg_send ~self ~cmd:(selector "setFocusWindow:") ~typ:(id @-> returning (void)) x

@@ -10,9 +10,9 @@ let _class_ = get_class "NSOutlineButtonCell"
 
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))
 let accessibilityAttributeValue x self = msg_send ~self ~cmd:(selector "accessibilityAttributeValue:") ~typ:(id @-> returning (id)) x
-let cellSizeForBounds x self = msg_send ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning (CGSize.t)) x
+let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let cellViewBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "cellViewBaselineOffsetFromTop") ~typ:(returning (double))
-let imageRectForBounds x self = msg_send ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
+let imageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let isGroupRow self = msg_send ~self ~cmd:(selector "isGroupRow") ~typ:(returning (bool))
 let isSourceList self = msg_send ~self ~cmd:(selector "isSourceList") ~typ:(returning (bool))
 let outlineView self = msg_send ~self ~cmd:(selector "outlineView") ~typ:(returning (id))

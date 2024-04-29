@@ -9,12 +9,12 @@ open Foundation
 let _class_ = get_class "UIInputViewSetPlacementFloating"
 
 module Class = struct
-  let frameAtOffset x ~keyboardSize ~screenSize self = msg_send ~self ~cmd:(selector "frameAtOffset:keyboardSize:screenSize:") ~typ:(CGPoint.t @-> CGSize.t @-> CGSize.t @-> returning (CGRect.t)) x keyboardSize screenSize
+  let frameAtOffset x ~keyboardSize ~screenSize self = msg_send_stret ~self ~cmd:(selector "frameAtOffset:keyboardSize:screenSize:") ~typ:(CGPoint.t @-> CGSize.t @-> CGSize.t @-> returning (CGRect.t)) ~return_type:CGRect.t x keyboardSize screenSize
   let infoWithPoint x ~forOwner self = msg_send ~self ~cmd:(selector "infoWithPoint:forOwner:") ~typ:(CGPoint.t @-> id @-> returning (id)) x forOwner
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let adjustBoundsForNotificationsWithOwner x self = msg_send ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning (CGRect.t)) x
+let adjustBoundsForNotificationsWithOwner x self = msg_send_stret ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let applicatorClassForKeyboard x self = msg_send ~self ~cmd:(selector "applicatorClassForKeyboard:") ~typ:(bool @-> returning (_Class)) x
 let applicatorInfoForOwner x self = msg_send ~self ~cmd:(selector "applicatorInfoForOwner:") ~typ:(id @-> returning (id)) x
 let checkSizeForOwner x self = msg_send ~self ~cmd:(selector "checkSizeForOwner:") ~typ:(id @-> returning (void)) x

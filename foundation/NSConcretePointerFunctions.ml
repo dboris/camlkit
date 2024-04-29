@@ -3,9 +3,12 @@
 open Runtime
 open Objc
 
-include NSPointerFunctions
-
 let _class_ = get_class "NSConcretePointerFunctions"
+
+module Class = struct
+  let initializeBackingStore x ~sentinel self = msg_send ~self ~cmd:(selector "initializeBackingStore:sentinel:") ~typ:(ptr void @-> bool @-> returning (void)) x sentinel
+  let initializeSlice x ~withOptions self = msg_send ~self ~cmd:(selector "initializeSlice:withOptions:") ~typ:(ptr void @-> ullong @-> returning (bool)) x withOptions
+end
 
 let acquireFunction self = msg_send ~self ~cmd:(selector "acquireFunction") ~typ:(returning (ptr (ptr void)))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

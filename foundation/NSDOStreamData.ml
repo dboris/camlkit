@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableData
-
 let _class_ = get_class "NSDOStreamData"
 
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr (void)))

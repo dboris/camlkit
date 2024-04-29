@@ -13,6 +13,5 @@ module Class = struct
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let detectDataWithTypes x ~context self = msg_send ~self ~cmd:(selector "detectDataWithTypes:context:") ~typ:(ullong @-> id @-> returning (id)) x context
 let frame self = msg_send ~self ~cmd:(selector "frame") ~typ:(returning (id))
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning (id))

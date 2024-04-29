@@ -14,6 +14,7 @@ module Class = struct
   let predicateWithFormat1 x ~argumentArray self = msg_send ~self ~cmd:(selector "predicateWithFormat:argumentArray:") ~typ:(id @-> id @-> returning (id)) x argumentArray
   let predicateWithFormat2 x ~arguments self = msg_send ~self ~cmd:(selector "predicateWithFormat:arguments:") ~typ:(id @-> ptr void @-> returning (id)) x arguments
   let predicateWithValue x self = msg_send ~self ~cmd:(selector "predicateWithValue:") ~typ:(bool @-> returning (id)) x
+  let retainedLocale self = msg_send ~self ~cmd:(selector "retainedLocale") ~typ:(returning (ptr void))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -26,6 +27,5 @@ let evaluateWithObject x self = msg_send ~self ~cmd:(selector "evaluateWithObjec
 let evaluateWithObject' x ~substitutionVariables self = msg_send ~self ~cmd:(selector "evaluateWithObject:substitutionVariables:") ~typ:(id @-> id @-> returning (bool)) x substitutionVariables
 let generateMetadataDescription self = msg_send ~self ~cmd:(selector "generateMetadataDescription") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning (id)) x
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning (id))
 let predicateWithSubstitutionVariables x self = msg_send ~self ~cmd:(selector "predicateWithSubstitutionVariables:") ~typ:(id @-> returning (id)) x

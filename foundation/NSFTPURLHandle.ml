@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSURLHandle
-
 let _class_ = get_class "NSFTPURLHandle"
 
 module Class = struct
@@ -14,6 +12,7 @@ module Class = struct
 end
 
 let beginLoadInBackground self = msg_send ~self ~cmd:(selector "beginLoadInBackground") ~typ:(returning (void))
+let createFTPReadStream self = msg_send ~self ~cmd:(selector "createFTPReadStream") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let endLoadInBackground self = msg_send ~self ~cmd:(selector "endLoadInBackground") ~typ:(returning (void))
 let errorStringForFTPStatusCode x ~fromURL self = msg_send ~self ~cmd:(selector "errorStringForFTPStatusCode:fromURL:") ~typ:(llong @-> id @-> returning (id)) x fromURL

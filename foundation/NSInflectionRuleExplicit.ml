@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSInflectionRule
-
 let _class_ = get_class "NSInflectionRuleExplicit"
 
 module Class = struct

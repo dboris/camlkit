@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSProxy
-
 let _class_ = get_class "NSProtocolChecker"
 
 module Class = struct
@@ -17,6 +15,7 @@ let doesNotRecognizeSelector x self = msg_send ~self ~cmd:(selector "doesNotReco
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning (void)) x
 let forwardingTargetForSelector x self = msg_send ~self ~cmd:(selector "forwardingTargetForSelector:") ~typ:(_SEL @-> returning (id)) x
 let initWithTarget x ~protocol self = msg_send ~self ~cmd:(selector "initWithTarget:protocol:") ~typ:(id @-> id @-> returning (id)) x protocol
+let methodDescriptionForSelector x self = msg_send ~self ~cmd:(selector "methodDescriptionForSelector:") ~typ:(_SEL @-> returning (ptr void)) x
 let methodSignatureForSelector x self = msg_send ~self ~cmd:(selector "methodSignatureForSelector:") ~typ:(_SEL @-> returning (id)) x
 let protocol self = msg_send ~self ~cmd:(selector "protocol") ~typ:(returning (id))
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning (id)) x

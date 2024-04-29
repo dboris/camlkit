@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSCharacterSet
-
 let _class_ = get_class "NSMutableCharacterSet"
 
 module Class = struct

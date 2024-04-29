@@ -16,6 +16,7 @@ end
 let addSecurityScopedBookmarks x self = msg_send ~self ~cmd:(selector "addSecurityScopedBookmarks:") ~typ:(id @-> returning (void)) x
 let archivedState self = msg_send ~self ~cmd:(selector "archivedState") ~typ:(returning (id))
 let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning (llong)) x
+let copyData self = msg_send ~self ~cmd:(selector "copyData") ~typ:(returning (ptr void))
 let copyStateDecoderRequiringSecureCoding x self = msg_send ~self ~cmd:(selector "copyStateDecoderRequiringSecureCoding:") ~typ:(bool @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

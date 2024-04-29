@@ -40,4 +40,4 @@ let updateConstraintInsets self = msg_send ~self ~cmd:(selector "updateConstrain
 let updateEmptyHeightConstraint self = msg_send ~self ~cmd:(selector "updateEmptyHeightConstraint") ~typ:(returning (void))
 let updateViewConstraints self = msg_send ~self ~cmd:(selector "updateViewConstraints") ~typ:(returning (void))
 let updateViewSizingConstraints self = msg_send ~self ~cmd:(selector "updateViewSizingConstraints") ~typ:(returning (void))
-let visibleFrame self = msg_send ~self ~cmd:(selector "visibleFrame") ~typ:(returning (CGRect.t))
+let visibleFrame self = msg_send_stret ~self ~cmd:(selector "visibleFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t

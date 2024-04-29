@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFileReactorProxy
-
 let _class_ = get_class "NSFileProviderProxy"
 
 let allowedForURL x self = msg_send ~self ~cmd:(selector "allowedForURL:") ~typ:(id @-> returning (bool)) x

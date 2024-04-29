@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableString
-
 let _class_ = get_class "NSCheapMutableString"
 
 let cString self = msg_send ~self ~cmd:(selector "cString") ~typ:(returning (string))

@@ -13,6 +13,6 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let drawInRect x ~forPageAtIndex self = msg_send ~self ~cmd:(selector "drawInRect:forPageAtIndex:") ~typ:(CGRect.t @-> llong @-> returning (void)) x forPageAtIndex
 let initWithMarkupText x self = msg_send ~self ~cmd:(selector "initWithMarkupText:") ~typ:(id @-> returning (id)) x
 let markupText self = msg_send ~self ~cmd:(selector "markupText") ~typ:(returning (id))
-let rectForPageAtIndex x self = msg_send ~self ~cmd:(selector "rectForPageAtIndex:") ~typ:(llong @-> returning (CGRect.t)) x
+let rectForPageAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectForPageAtIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let removeFromPrintPageRenderer self = msg_send ~self ~cmd:(selector "removeFromPrintPageRenderer") ~typ:(returning (void))
 let setMarkupText x self = msg_send ~self ~cmd:(selector "setMarkupText:") ~typ:(id @-> returning (void)) x

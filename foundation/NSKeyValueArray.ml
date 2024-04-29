@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSArray
-
 let _class_ = get_class "NSKeyValueArray"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

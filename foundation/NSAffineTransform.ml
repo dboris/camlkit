@@ -16,12 +16,9 @@ module Class = struct
   let transformWithXTranslation x ~yTranslation self = msg_send ~self ~cmd:(selector "transformWithXTranslation:yTranslation:") ~typ:(double @-> double @-> returning (id)) x yTranslation
 end
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning (id))
 let appendTransform x self = msg_send ~self ~cmd:(selector "appendTransform:") ~typ:(id @-> returning (void)) x
-let concat self = msg_send ~self ~cmd:(selector "concat") ~typ:(returning (void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning (void)) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -34,8 +31,6 @@ let rotateByDegrees x self = msg_send ~self ~cmd:(selector "rotateByDegrees:") ~
 let rotateByRadians x self = msg_send ~self ~cmd:(selector "rotateByRadians:") ~typ:(double @-> returning (void)) x
 let scaleBy x self = msg_send ~self ~cmd:(selector "scaleBy:") ~typ:(double @-> returning (void)) x
 let scaleXBy x ~yBy self = msg_send ~self ~cmd:(selector "scaleXBy:yBy:") ~typ:(double @-> double @-> returning (void)) x yBy
-let set self = msg_send ~self ~cmd:(selector "set") ~typ:(returning (void))
-let transformBezierPath x self = msg_send ~self ~cmd:(selector "transformBezierPath:") ~typ:(id @-> returning (id)) x
-let transformPoint x self = msg_send ~self ~cmd:(selector "transformPoint:") ~typ:(CGPoint.t @-> returning (CGPoint.t)) x
-let transformSize x self = msg_send ~self ~cmd:(selector "transformSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let transformPoint x self = msg_send_stret ~self ~cmd:(selector "transformPoint:") ~typ:(CGPoint.t @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
+let transformSize x self = msg_send_stret ~self ~cmd:(selector "transformSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let translateXBy x ~yBy self = msg_send ~self ~cmd:(selector "translateXBy:yBy:") ~typ:(double @-> double @-> returning (void)) x yBy

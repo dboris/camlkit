@@ -12,6 +12,7 @@ module Class = struct
   let _DCIP3ColorSpace self = msg_send ~self ~cmd:(selector "DCIP3ColorSpace") ~typ:(returning (id))
   let adobeRGB1998ColorSpace self = msg_send ~self ~cmd:(selector "adobeRGB1998ColorSpace") ~typ:(returning (id))
   let availableColorSpacesWithModel x self = msg_send ~self ~cmd:(selector "availableColorSpacesWithModel:") ~typ:(llong @-> returning (id)) x
+  let colorSpaceForCGColorSpace x self = msg_send ~self ~cmd:(selector "colorSpaceForCGColorSpace:") ~typ:(ptr void @-> returning (id)) x
   let colorSpaceForColorSpaceName x self = msg_send ~self ~cmd:(selector "colorSpaceForColorSpaceName:") ~typ:(id @-> returning (id)) x
   let deviceCMYKColorSpace self = msg_send ~self ~cmd:(selector "deviceCMYKColorSpace") ~typ:(returning (id))
   let deviceGrayColorSpace self = msg_send ~self ~cmd:(selector "deviceGrayColorSpace") ~typ:(returning (id))
@@ -30,6 +31,7 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
+let _CGColorSpace self = msg_send ~self ~cmd:(selector "CGColorSpace") ~typ:(returning (ptr void))
 let _ICCProfileData self = msg_send ~self ~cmd:(selector "ICCProfileData") ~typ:(returning (id))
 let allowsExtendedRange self = msg_send ~self ~cmd:(selector "allowsExtendedRange") ~typ:(returning (bool))
 let awakeAfterUsingCoder x self = msg_send ~self ~cmd:(selector "awakeAfterUsingCoder:") ~typ:(id @-> returning (id)) x
@@ -42,6 +44,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
+let initWithCGColorSpace x self = msg_send ~self ~cmd:(selector "initWithCGColorSpace:") ~typ:(ptr void @-> returning (id)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithColorProfile x self = msg_send ~self ~cmd:(selector "initWithColorProfile:") ~typ:(id @-> returning (id)) x
 let initWithColorSyncProfile x self = msg_send ~self ~cmd:(selector "initWithColorSyncProfile:") ~typ:(ptr (void) @-> returning (id)) x

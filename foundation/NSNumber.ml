@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSValue
-
 let _class_ = get_class "NSNumber"
 
 module Class = struct
@@ -28,7 +26,6 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning (id))
 let boolValue self = msg_send ~self ~cmd:(selector "boolValue") ~typ:(returning (bool))
 let charValue self = msg_send ~self ~cmd:(selector "charValue") ~typ:(returning (bool))
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
@@ -37,7 +34,6 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning (id)) x
 let doubleValue self = msg_send ~self ~cmd:(selector "doubleValue") ~typ:(returning (double))
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning (void)) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning (float))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
@@ -63,8 +59,6 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let isEqualToNumber x self = msg_send ~self ~cmd:(selector "isEqualToNumber:") ~typ:(id @-> returning (bool)) x
 let longLongValue self = msg_send ~self ~cmd:(selector "longLongValue") ~typ:(returning (llong))
 let longValue self = msg_send ~self ~cmd:(selector "longValue") ~typ:(returning (llong))
-let matchesProcess x self = msg_send ~self ~cmd:(selector "matchesProcess:") ~typ:(id @-> returning (bool)) x
-let processPredicate self = msg_send ~self ~cmd:(selector "processPredicate") ~typ:(returning (id))
 let redactedDescription self = msg_send ~self ~cmd:(selector "redactedDescription") ~typ:(returning (id))
 let shortValue self = msg_send ~self ~cmd:(selector "shortValue") ~typ:(returning (short))
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning (id))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSCoder
-
 let _class_ = get_class "NSKeyedArchiver"
 
 module Class = struct

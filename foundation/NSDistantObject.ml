@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSProxy
-
 let _class_ = get_class "NSDistantObject"
 
 module Class = struct

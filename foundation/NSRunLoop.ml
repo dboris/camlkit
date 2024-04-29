@@ -11,7 +11,6 @@ module Class = struct
 end
 
 let acceptInputForMode x ~beforeDate self = msg_send ~self ~cmd:(selector "acceptInputForMode:beforeDate:") ~typ:(id @-> id @-> returning (void)) x beforeDate
-let addDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "addDisplayLink:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let addPort x ~forMode self = msg_send ~self ~cmd:(selector "addPort:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let addTimer x ~forMode self = msg_send ~self ~cmd:(selector "addTimer:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let allModes self = msg_send ~self ~cmd:(selector "allModes") ~typ:(returning (id))
@@ -24,13 +23,13 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let currentMode self = msg_send ~self ~cmd:(selector "currentMode") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
+let getCFRunLoop self = msg_send ~self ~cmd:(selector "getCFRunLoop") ~typ:(returning (ptr void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let limitDateForMode x self = msg_send ~self ~cmd:(selector "limitDateForMode:") ~typ:(id @-> returning (id)) x
 let performBlock x self = msg_send ~self ~cmd:(selector "performBlock:") ~typ:(ptr void @-> returning (void)) x
 let performInModes x ~block self = msg_send ~self ~cmd:(selector "performInModes:block:") ~typ:(id @-> ptr void @-> returning (void)) x block
 let performSelector x ~target ~argument ~order ~modes self = msg_send ~self ~cmd:(selector "performSelector:target:argument:order:modes:") ~typ:(_SEL @-> id @-> id @-> ullong @-> id @-> returning (void)) x target argument order modes
 let portsForMode x self = msg_send ~self ~cmd:(selector "portsForMode:") ~typ:(id @-> returning (id)) x
-let removeDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "removeDisplayLink:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let removePort x ~forMode self = msg_send ~self ~cmd:(selector "removePort:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let removeTimer x ~forMode self = msg_send ~self ~cmd:(selector "removeTimer:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let run self = msg_send ~self ~cmd:(selector "run") ~typ:(returning (void))

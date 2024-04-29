@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScanner
-
 let _class_ = get_class "NSConcreteScanner"
 
 let caseSensitive self = msg_send ~self ~cmd:(selector "caseSensitive") ~typ:(returning (bool))

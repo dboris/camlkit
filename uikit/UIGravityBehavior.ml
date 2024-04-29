@@ -10,9 +10,9 @@ let _class_ = get_class "UIGravityBehavior"
 
 let addItem x self = msg_send ~self ~cmd:(selector "addItem:") ~typ:(id @-> returning (void)) x
 let angle self = msg_send ~self ~cmd:(selector "angle") ~typ:(returning (double))
-let denormalizedGravity self = msg_send ~self ~cmd:(selector "denormalizedGravity") ~typ:(returning (CGPoint.t))
+let denormalizedGravity self = msg_send_stret ~self ~cmd:(selector "denormalizedGravity") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let gravity self = msg_send ~self ~cmd:(selector "gravity") ~typ:(returning (CGPoint.t))
+let gravity self = msg_send_stret ~self ~cmd:(selector "gravity") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithItems x self = msg_send ~self ~cmd:(selector "initWithItems:") ~typ:(id @-> returning (id)) x
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning (id))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyValueFastMutableArray
-
 let _class_ = get_class "NSKeyValueFastMutableArray2"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

@@ -15,7 +15,7 @@ end
 let anchorView self = msg_send ~self ~cmd:(selector "anchorView") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let popover self = msg_send ~self ~cmd:(selector "popover") ~typ:(returning (id))
-let positioningRect self = msg_send ~self ~cmd:(selector "positioningRect") ~typ:(returning (CGRect.t))
+let positioningRect self = msg_send_stret ~self ~cmd:(selector "positioningRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning (ullong))
 let recognizerDidCancelAnimation x self = msg_send ~self ~cmd:(selector "recognizerDidCancelAnimation:") ~typ:(id @-> returning (void)) x
 let recognizerDidCompleteAnimation x self = msg_send ~self ~cmd:(selector "recognizerDidCompleteAnimation:") ~typ:(id @-> returning (void)) x

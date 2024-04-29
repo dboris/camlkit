@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptCommand
-
 let _class_ = get_class "NSCreateCommand"
 
 let createClassDescription self = msg_send ~self ~cmd:(selector "createClassDescription") ~typ:(returning (id))

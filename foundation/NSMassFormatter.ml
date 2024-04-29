@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFormatter
-
 let _class_ = get_class "NSMassFormatter"
 
 let attributedStringForObjectValue x ~withDefaultAttributes self = msg_send ~self ~cmd:(selector "attributedStringForObjectValue:withDefaultAttributes:") ~typ:(id @-> id @-> returning (id)) x withDefaultAttributes

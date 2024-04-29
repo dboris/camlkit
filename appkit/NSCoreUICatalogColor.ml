@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCoreUICatalogColor"
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let alphaComponent self = msg_send ~self ~cmd:(selector "alphaComponent") ~typ:(returning (double))
 let bundle self = msg_send ~self ~cmd:(selector "bundle") ~typ:(returning (id))
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))

@@ -30,6 +30,7 @@ let setSynthesizerIsRetained x self = msg_send ~self ~cmd:(selector "setSynthesi
 let setUsesFeedbackWindow x self = msg_send ~self ~cmd:(selector "setUsesFeedbackWindow:") ~typ:(bool @-> returning (void)) x
 let setUsingDefaultVoice x self = msg_send ~self ~cmd:(selector "setUsingDefaultVoice:") ~typ:(bool @-> returning (void)) x
 let speakingSpeechFeedbackServices self = msg_send ~self ~cmd:(selector "speakingSpeechFeedbackServices") ~typ:(returning (bool))
+let speechChannel self = msg_send ~self ~cmd:(selector "speechChannel") ~typ:(returning (ptr void))
 let speechFeedbackServicesInvoker self = msg_send ~self ~cmd:(selector "speechFeedbackServicesInvoker") ~typ:(returning (id))
 let speechFeedbackServicesRef self = msg_send ~self ~cmd:(selector "speechFeedbackServicesRef") ~typ:(returning (uint))
 let speechFinishedSuccessfully self = msg_send ~self ~cmd:(selector "speechFinishedSuccessfully") ~typ:(returning (bool))

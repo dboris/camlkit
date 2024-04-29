@@ -12,6 +12,7 @@ module Class = struct
   let nullEffect self = msg_send ~self ~cmd:(selector "nullEffect") ~typ:(returning (id))
 end
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let gradient self = msg_send ~self ~cmd:(selector "gradient") ~typ:(returning (id))
 let isValid self = msg_send ~self ~cmd:(selector "isValid") ~typ:(returning (bool))

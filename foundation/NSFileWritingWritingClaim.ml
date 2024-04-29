@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFileAccessClaim
-
 let _class_ = get_class "NSFileWritingWritingClaim"
 
 module Class = struct

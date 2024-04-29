@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSAKDeserializer
-
 let _class_ = get_class "NSDocumentDeserializer"
 
 let deserializeNewData self = msg_send ~self ~cmd:(selector "deserializeNewData") ~typ:(returning (id))

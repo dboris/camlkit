@@ -15,4 +15,4 @@ let initWithView x self = msg_send ~self ~cmd:(selector "initWithView:") ~typ:(i
 let minLineHeight self = msg_send ~self ~cmd:(selector "minLineHeight") ~typ:(returning (double))
 let overlay self = msg_send ~self ~cmd:(selector "overlay") ~typ:(returning (bool))
 let setIndexBarView x self = msg_send ~self ~cmd:(selector "setIndexBarView:") ~typ:(id @-> returning (void)) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x

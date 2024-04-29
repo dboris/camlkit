@@ -36,5 +36,5 @@ let setSelectedTintColor x self = msg_send ~self ~cmd:(selector "setSelectedTint
 let setShouldUseContinuousCorners x self = msg_send ~self ~cmd:(selector "setShouldUseContinuousCorners:") ~typ:(bool @-> returning (void)) x
 let setStatisticsIdentifier x self = msg_send ~self ~cmd:(selector "setStatisticsIdentifier:") ~typ:(id @-> returning (void)) x
 let shouldUseContinuousCorners self = msg_send ~self ~cmd:(selector "shouldUseContinuousCorners") ~typ:(returning (bool))
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let statisticsIdentifier self = msg_send ~self ~cmd:(selector "statisticsIdentifier") ~typ:(returning (id))

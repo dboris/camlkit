@@ -12,8 +12,6 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning (id))
-let accessibilityDidEndScrolling self = msg_send ~self ~cmd:(selector "accessibilityDidEndScrolling") ~typ:(returning (void))
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -24,5 +22,4 @@ let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (voi
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning (id)) x
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning (id))
 let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning (ullong))
-let runActionForKey x ~object_ ~arguments self = msg_send ~self ~cmd:(selector "runActionForKey:object:arguments:") ~typ:(id @-> id @-> id @-> returning (void)) x object_ arguments
 let valueForKey x self = msg_send ~self ~cmd:(selector "valueForKey:") ~typ:(id @-> returning (id)) x

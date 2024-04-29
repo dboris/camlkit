@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableDictionary
-
 let _class_ = get_class "NSDirInfo"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

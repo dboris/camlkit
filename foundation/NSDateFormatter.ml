@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFormatter
-
 let _class_ = get_class "NSDateFormatter"
 
 module Class = struct

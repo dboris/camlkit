@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSInputAlignmentController"
 
 module Class = struct
-  let alignmentDeltaFromMatches x self = msg_send ~self ~cmd:(selector "alignmentDeltaFromMatches:") ~typ:(id @-> returning (CGPoint.t)) x
+  let alignmentDeltaFromMatches x self = msg_send_stret ~self ~cmd:(selector "alignmentDeltaFromMatches:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 end
 
 let alignItem x ~usingFilter self = msg_send ~self ~cmd:(selector "alignItem:usingFilter:") ~typ:(id @-> id @-> returning (id)) x usingFilter

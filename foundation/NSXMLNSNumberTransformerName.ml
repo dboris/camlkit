@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSValueTransformer
-
 let _class_ = get_class "NSXMLNSNumberTransformerName"
 
 module Class = struct

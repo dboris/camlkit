@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSURLHandle
-
 let _class_ = get_class "NSFileURLHandle"
 
 module Class = struct

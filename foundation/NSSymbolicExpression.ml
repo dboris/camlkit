@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSExpression
-
 let _class_ = get_class "NSSymbolicExpression"
 
 module Class = struct

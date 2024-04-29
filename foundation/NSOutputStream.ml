@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSStream
-
 let _class_ = get_class "NSOutputStream"
 
 module Class = struct

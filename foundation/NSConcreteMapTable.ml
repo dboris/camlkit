@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMapTable
-
 let _class_ = get_class "NSConcreteMapTable"
 
 module Class = struct
@@ -18,6 +16,7 @@ let checkCount x self = msg_send ~self ~cmd:(selector "checkCount:") ~typ:(strin
 let containsKeys x ~values ~count self = msg_send ~self ~cmd:(selector "containsKeys:values:count:") ~typ:(ptr (ptr (void)) @-> ptr (ptr (void)) @-> ullong @-> returning (bool)) x values count
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let dump self = msg_send ~self ~cmd:(selector "dump") ~typ:(returning (id))

@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIAccessibilityElement"
 
-let accessibilityFrame self = msg_send ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t))
-let accessibilityFrameInContainerSpace self = msg_send ~self ~cmd:(selector "accessibilityFrameInContainerSpace") ~typ:(returning (CGRect.t))
+let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
+let accessibilityFrameInContainerSpace self = msg_send_stret ~self ~cmd:(selector "accessibilityFrameInContainerSpace") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let accessibilityHint self = msg_send ~self ~cmd:(selector "accessibilityHint") ~typ:(returning (id))
 let accessibilityLabel self = msg_send ~self ~cmd:(selector "accessibilityLabel") ~typ:(returning (id))
 let accessibilityTraits self = msg_send ~self ~cmd:(selector "accessibilityTraits") ~typ:(returning (ullong))
@@ -21,7 +21,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let didUpdateFocusInContext x ~withAnimationCoordinator self = msg_send ~self ~cmd:(selector "didUpdateFocusInContext:withAnimationCoordinator:") ~typ:(id @-> id @-> returning (void)) x withAnimationCoordinator
 let focusItemContainer self = msg_send ~self ~cmd:(selector "focusItemContainer") ~typ:(returning (id))
 let focusItemsInRect x self = msg_send ~self ~cmd:(selector "focusItemsInRect:") ~typ:(CGRect.t @-> returning (id)) x
-let frame self = msg_send ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t))
+let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let initWithAccessibilityContainer x self = msg_send ~self ~cmd:(selector "initWithAccessibilityContainer:") ~typ:(id @-> returning (id)) x
 let isAccessibilityElement self = msg_send ~self ~cmd:(selector "isAccessibilityElement") ~typ:(returning (bool))
 let nextResponder self = msg_send ~self ~cmd:(selector "nextResponder") ~typ:(returning (id))

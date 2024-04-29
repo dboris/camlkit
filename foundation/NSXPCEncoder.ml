@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXPCCoder
-
 let _class_ = get_class "NSXPCEncoder"
 
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning (bool))

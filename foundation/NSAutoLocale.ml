@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSLocale
-
 let _class_ = get_class "NSAutoLocale"
 
 module Class = struct

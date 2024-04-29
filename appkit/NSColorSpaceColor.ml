@@ -14,6 +14,7 @@ module Class = struct
   let newWithColorSpace x ~components ~count self = msg_send ~self ~cmd:(selector "newWithColorSpace:components:count:") ~typ:(id @-> ptr (double) @-> llong @-> returning (id)) x components count
 end
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let alphaComponent self = msg_send ~self ~cmd:(selector "alphaComponent") ~typ:(returning (double))
 let blackComponent self = msg_send ~self ~cmd:(selector "blackComponent") ~typ:(returning (double))
 let blueComponent self = msg_send ~self ~cmd:(selector "blueComponent") ~typ:(returning (double))

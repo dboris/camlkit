@@ -12,10 +12,10 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let anchorPoint self = msg_send ~self ~cmd:(selector "anchorPoint") ~typ:(returning (CGPoint.t))
+let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
-let locationInView x self = msg_send ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) x
+let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning (double))
 let scaleThreshold self = msg_send ~self ~cmd:(selector "scaleThreshold") ~typ:(returning (double))
 let setScale x self = msg_send ~self ~cmd:(selector "setScale:") ~typ:(double @-> returning (void)) x

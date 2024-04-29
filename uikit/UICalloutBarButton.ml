@@ -18,7 +18,7 @@ end
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
 let additionalContentHeight self = msg_send ~self ~cmd:(selector "additionalContentHeight") ~typ:(returning (double))
-let adjustRectForPosition x self = msg_send ~self ~cmd:(selector "adjustRectForPosition:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
+let adjustRectForPosition x self = msg_send_stret ~self ~cmd:(selector "adjustRectForPosition:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let cancelFlash self = msg_send ~self ~cmd:(selector "cancelFlash") ~typ:(returning (void))
 let configureForLeftPosition x self = msg_send ~self ~cmd:(selector "configureForLeftPosition:") ~typ:(int @-> returning (void)) x
 let configureForMiddlePosition self = msg_send ~self ~cmd:(selector "configureForMiddlePosition") ~typ:(returning (void))
@@ -34,7 +34,7 @@ let dontDismiss self = msg_send ~self ~cmd:(selector "dontDismiss") ~typ:(return
 let fadeAndSendActionWithAuthenticationMessage x self = msg_send ~self ~cmd:(selector "fadeAndSendActionWithAuthenticationMessage:") ~typ:(id @-> returning (void)) x
 let flash x ~forEvent self = msg_send ~self ~cmd:(selector "flash:forEvent:") ~typ:(id @-> id @-> returning (void)) x forEvent
 let forceFlash self = msg_send ~self ~cmd:(selector "forceFlash") ~typ:(returning (bool))
-let imageRectForContentRect x self = msg_send ~self ~cmd:(selector "imageRectForContentRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
+let imageRectForContentRect x self = msg_send_stret ~self ~cmd:(selector "imageRectForContentRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let imageVerticalAdjust self = msg_send ~self ~cmd:(selector "imageVerticalAdjust") ~typ:(returning (double))
 let isSecurePasteButton self = msg_send ~self ~cmd:(selector "isSecurePasteButton") ~typ:(returning (bool))
 let page self = msg_send ~self ~cmd:(selector "page") ~typ:(returning (llong))
@@ -56,6 +56,6 @@ let setupWithTitle x ~action ~type_ self = msg_send ~self ~cmd:(selector "setupW
 let setupWithTitle1 x ~image ~action ~type_ self = msg_send ~self ~cmd:(selector "setupWithTitle:image:action:type:") ~typ:(id @-> id @-> _SEL @-> int @-> returning (void)) x image action type_
 let setupWithTitle2 x ~subtitle ~maxWidth ~action ~type_ self = msg_send ~self ~cmd:(selector "setupWithTitle:subtitle:maxWidth:action:type:") ~typ:(id @-> id @-> double @-> _SEL @-> int @-> returning (void)) x subtitle maxWidth action type_
 let textReplacement self = msg_send ~self ~cmd:(selector "textReplacement") ~typ:(returning (id))
-let titleRectForContentRect x self = msg_send ~self ~cmd:(selector "titleRectForContentRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
+let titleRectForContentRect x self = msg_send_stret ~self ~cmd:(selector "titleRectForContentRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let touchDown self = msg_send ~self ~cmd:(selector "touchDown") ~typ:(returning (void))
 let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning (int))

@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIActivityIndicatorView"
 
 module Class = struct
-  let defaultSizeForStyle x self = msg_send ~self ~cmd:(selector "defaultSizeForStyle:") ~typ:(llong @-> returning (CGSize.t)) x
+  let defaultSizeForStyle x self = msg_send_stret ~self ~cmd:(selector "defaultSizeForStyle:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t x
 end
 
 let activityIndicatorViewStyle self = msg_send ~self ~cmd:(selector "activityIndicatorViewStyle") ~typ:(returning (llong))
@@ -41,8 +41,8 @@ let setSpinning x self = msg_send ~self ~cmd:(selector "setSpinning:") ~typ:(boo
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) x
 let setWidth x self = msg_send ~self ~cmd:(selector "setWidth:") ~typ:(double @-> returning (void)) x
 let shadowColor self = msg_send ~self ~cmd:(selector "shadowColor") ~typ:(returning (id))
-let shadowOffset self = msg_send ~self ~cmd:(selector "shadowOffset") ~typ:(returning (CGSize.t))
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let shadowOffset self = msg_send_stret ~self ~cmd:(selector "shadowOffset") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let spinning self = msg_send ~self ~cmd:(selector "spinning") ~typ:(returning (bool))
 let startAnimating self = msg_send ~self ~cmd:(selector "startAnimating") ~typ:(returning (void))
 let startAnimation self = msg_send ~self ~cmd:(selector "startAnimation") ~typ:(returning (void))

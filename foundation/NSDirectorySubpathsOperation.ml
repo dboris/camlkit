@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDirectoryTraversalOperation
-
 let _class_ = get_class "NSDirectorySubpathsOperation"
 
 module Class = struct

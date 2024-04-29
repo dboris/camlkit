@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPortCoder
-
 let _class_ = get_class "NSUnkeyedPortCoder"
 
 module Class = struct

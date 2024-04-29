@@ -167,6 +167,7 @@ let method_binding m  =
       Option.some
         {name; args = disambiguate_args args; sel; typ = method_type m}
     with _ ->
+      (* Printf.eprintf "Exn: %s\n%!" (Printexc.to_string e); *)
       Option.none
 ;;
 
@@ -213,7 +214,7 @@ let emit_method_bindings ?(pref = "") ~file bindings =
 let emit_class_module
 ?(open_foundation = false)
 ?(include_superclass = false)
-?(min_methods = 1)
+?(min_methods = 3)
 cls
   =
   let cls' = Objc.get_class cls in
@@ -222,7 +223,7 @@ cls
   in
   match List.filter_map method_binding (Inspect.methods cls') with
   | [] -> ()
-  | bindings when List.length bindings > min_methods ->
+  | bindings when List.length bindings >= min_methods ->
     let file = open_out (cls ^ ".ml") in
     Printf.fprintf file "(* auto-generated, do not modify *)\n\n";
     Printf.fprintf file "open Runtime\n";

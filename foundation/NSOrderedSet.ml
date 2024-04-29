@@ -33,6 +33,7 @@ let containsObject x self = msg_send ~self ~cmd:(selector "containsObject:") ~ty
 let containsObject' x ~inRange self = msg_send ~self ~cmd:(selector "containsObject:inRange:") ~typ:(id @-> NSRange.t @-> returning (bool)) x inRange
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning (ullong)) x
 let countForObject' x ~inRange self = msg_send ~self ~cmd:(selector "countForObject:inRange:") ~typ:(id @-> NSRange.t @-> returning (ullong)) x inRange
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

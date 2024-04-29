@@ -10,7 +10,7 @@ let _class_ = get_class "NSDraggingItem"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let draggingFrame self = msg_send ~self ~cmd:(selector "draggingFrame") ~typ:(returning (CGRect.t))
+let draggingFrame self = msg_send_stret ~self ~cmd:(selector "draggingFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let imageComponents self = msg_send ~self ~cmd:(selector "imageComponents") ~typ:(returning (id))
 let imageComponentsProvider self = msg_send ~self ~cmd:(selector "imageComponentsProvider") ~typ:(returning (ptr void))
 let initWithPasteboardWriter x self = msg_send ~self ~cmd:(selector "initWithPasteboardWriter:") ~typ:(id @-> returning (id)) x

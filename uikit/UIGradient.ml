@@ -11,3 +11,4 @@ let _class_ = get_class "UIGradient"
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let fillRect x self = msg_send ~self ~cmd:(selector "fillRect:") ~typ:(CGRect.t @-> returning (void)) x
 let fillRect' x ~inContext self = msg_send ~self ~cmd:(selector "fillRect:inContext:") ~typ:(CGRect.t @-> id @-> returning (void)) x inContext
+let initVerticalWithValues x self = msg_send ~self ~cmd:(selector "initVerticalWithValues:") ~typ:(ptr void @-> returning (id)) x

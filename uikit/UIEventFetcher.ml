@@ -15,6 +15,7 @@ let deadlineTimeForTouchEvents self = msg_send ~self ~cmd:(selector "deadlineTim
 let displayLinkDidFire x self = msg_send ~self ~cmd:(selector "displayLinkDidFire:") ~typ:(id @-> returning (void)) x
 let drainEventsIntoEnvironment x self = msg_send ~self ~cmd:(selector "drainEventsIntoEnvironment:") ~typ:(id @-> returning (void)) x
 let eventFetcherSink self = msg_send ~self ~cmd:(selector "eventFetcherSink") ~typ:(returning (id))
+let filterEvent x self = msg_send ~self ~cmd:(selector "filterEvent:") ~typ:(ptr void @-> returning (void)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let latestHoverEventsByContextID self = msg_send ~self ~cmd:(selector "latestHoverEventsByContextID") ~typ:(returning (id))
 let latestMoveDragEventResendTimestamp self = msg_send ~self ~cmd:(selector "latestMoveDragEventResendTimestamp") ~typ:(returning (double))

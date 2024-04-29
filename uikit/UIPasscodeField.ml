@@ -18,6 +18,7 @@ let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstRespon
 let canBecomeFirstResponder self = msg_send ~self ~cmd:(selector "canBecomeFirstResponder") ~typ:(returning (bool))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let deleteLastCharacter self = msg_send ~self ~cmd:(selector "deleteLastCharacter") ~typ:(returning (void))
+let hitTest x ~forEvent self = msg_send ~self ~cmd:(selector "hitTest:forEvent:") ~typ:(CGPoint.t @-> ptr void @-> returning (id)) x forEvent
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let isFirstResponder self = msg_send ~self ~cmd:(selector "isFirstResponder") ~typ:(returning (bool))
 let numberOfEntryFields self = msg_send ~self ~cmd:(selector "numberOfEntryFields") ~typ:(returning (int))

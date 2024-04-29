@@ -15,7 +15,7 @@ end
 let abortToolTip self = msg_send ~self ~cmd:(selector "abortToolTip") ~typ:(returning (void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let detatchFromView self = msg_send ~self ~cmd:(selector "detatchFromView") ~typ:(returning (void))
-let dynamicToolTipRectAtPoint x self = msg_send ~self ~cmd:(selector "dynamicToolTipRectAtPoint:") ~typ:(CGPoint.t @-> returning (CGRect.t)) x
+let dynamicToolTipRectAtPoint x self = msg_send_stret ~self ~cmd:(selector "dynamicToolTipRectAtPoint:") ~typ:(CGPoint.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let dynamicToolTipRevealoverInfoAtPoint x ~trackingRect self = msg_send ~self ~cmd:(selector "dynamicToolTipRevealoverInfoAtPoint:trackingRect:") ~typ:(CGPoint.t @-> ptr (CGRect.t) @-> returning (id)) x trackingRect
 let dynamicToolTipStringAtPoint x ~trackingRect self = msg_send ~self ~cmd:(selector "dynamicToolTipStringAtPoint:trackingRect:") ~typ:(CGPoint.t @-> ptr (CGRect.t) @-> returning (id)) x trackingRect
 let initWithView x self = msg_send ~self ~cmd:(selector "initWithView:") ~typ:(id @-> returning (id)) x
@@ -25,7 +25,7 @@ let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id 
 let setWantsExpansionToolTips x self = msg_send ~self ~cmd:(selector "setWantsExpansionToolTips:") ~typ:(bool @-> returning (void)) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
 let view1 x ~customToolTip ~fadeOutAllowedForToolTipWithDisplayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:fadeOutAllowedForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (bool)) x customToolTip fadeOutAllowedForToolTipWithDisplayInfo
-let view2 x ~customToolTip ~frameForToolTipWithDisplayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:frameForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (CGRect.t)) x customToolTip frameForToolTipWithDisplayInfo
+let view2 x ~customToolTip ~frameForToolTipWithDisplayInfo self = msg_send_stret ~self ~cmd:(selector "view:customToolTip:frameForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (CGRect.t)) ~return_type:CGRect.t x customToolTip frameForToolTipWithDisplayInfo
 let view3 x ~customToolTip ~drawInView ~displayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:drawInView:displayInfo:") ~typ:(id @-> llong @-> id @-> id @-> returning (void)) x customToolTip drawInView displayInfo
 let viewDidEndLiveResize self = msg_send ~self ~cmd:(selector "viewDidEndLiveResize") ~typ:(returning (void))
 let viewDidMoveToWindow self = msg_send ~self ~cmd:(selector "viewDidMoveToWindow") ~typ:(returning (void))

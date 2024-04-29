@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPredicateOperator
-
 let _class_ = get_class "NSStringPredicateOperator"
 
 module Class = struct

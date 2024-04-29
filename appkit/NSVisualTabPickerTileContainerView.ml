@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSVisualTabPickerTileContainerView"
 
 module Class = struct
-  let offsetBetweenStackedThumbnails self = msg_send ~self ~cmd:(selector "offsetBetweenStackedThumbnails") ~typ:(returning (CGPoint.t))
+  let offsetBetweenStackedThumbnails self = msg_send_stret ~self ~cmd:(selector "offsetBetweenStackedThumbnails") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
   let thumbnailYOffset self = msg_send ~self ~cmd:(selector "thumbnailYOffset") ~typ:(returning (double))
 end
 
@@ -43,7 +43,7 @@ let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-
 let setTileContainerType x self = msg_send ~self ~cmd:(selector "setTileContainerType:") ~typ:(llong @-> returning (void)) x
 let setVisualTabPickerGridView x self = msg_send ~self ~cmd:(selector "setVisualTabPickerGridView:") ~typ:(id @-> returning (void)) x
 let startTiltAnimation x ~animationDuration ~indexOfSelectedTile self = msg_send ~self ~cmd:(selector "startTiltAnimation:animationDuration:indexOfSelectedTile:") ~typ:(llong @-> double @-> ullong @-> returning (void)) x animationDuration indexOfSelectedTile
-let thumbnailContainerFrameForThumbnailAtIndex x self = msg_send ~self ~cmd:(selector "thumbnailContainerFrameForThumbnailAtIndex:") ~typ:(ullong @-> returning (CGRect.t)) x
+let thumbnailContainerFrameForThumbnailAtIndex x self = msg_send_stret ~self ~cmd:(selector "thumbnailContainerFrameForThumbnailAtIndex:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let tileContainerType self = msg_send ~self ~cmd:(selector "tileContainerType") ~typ:(returning (llong))
 let titleForNSVisualTabPickerThumbnailView x self = msg_send ~self ~cmd:(selector "titleForNSVisualTabPickerThumbnailView:") ~typ:(id @-> returning (id)) x
 let viewForVisualTabPickerTileThumbnailView x self = msg_send ~self ~cmd:(selector "viewForVisualTabPickerTileThumbnailView:") ~typ:(id @-> returning (id)) x

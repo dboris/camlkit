@@ -18,3 +18,4 @@ end
 let bottomBorderLayer self = msg_send ~self ~cmd:(selector "bottomBorderLayer") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let setBottomBorderLayer x self = msg_send ~self ~cmd:(selector "setBottomBorderLayer:") ~typ:(id @-> returning (void)) x
+let setPath x self = msg_send ~self ~cmd:(selector "setPath:") ~typ:(ptr void @-> returning (void)) x

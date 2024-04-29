@@ -188,4 +188,4 @@ let underlineColorForTextAlternatives self = msg_send ~self ~cmd:(selector "unde
 let updateResultComparedToTraits x self = msg_send ~self ~cmd:(selector "updateResultComparedToTraits:") ~typ:(id @-> returning (llong)) x
 let useAutomaticEndpointing self = msg_send ~self ~cmd:(selector "useAutomaticEndpointing") ~typ:(returning (bool))
 let useInterfaceLanguageForLocalization self = msg_send ~self ~cmd:(selector "useInterfaceLanguageForLocalization") ~typ:(returning (bool))
-let validTextRange self = msg_send ~self ~cmd:(selector "validTextRange") ~typ:(returning (NSRange.t))
+let validTextRange self = msg_send_stret ~self ~cmd:(selector "validTextRange") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t

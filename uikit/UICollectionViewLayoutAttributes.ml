@@ -15,11 +15,11 @@ module Class = struct
 end
 
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning (double))
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning (CGRect.t))
-let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning (CGPoint.t))
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
+let center self = msg_send_stret ~self ~cmd:(selector "center") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let frame self = msg_send ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t))
+let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let indexPath self = msg_send ~self ~cmd:(selector "indexPath") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -38,5 +38,5 @@ let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-
 let setIndexPath x self = msg_send ~self ~cmd:(selector "setIndexPath:") ~typ:(id @-> returning (void)) x
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setZIndex x self = msg_send ~self ~cmd:(selector "setZIndex:") ~typ:(llong @-> returning (void)) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t))
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let zIndex self = msg_send ~self ~cmd:(selector "zIndex") ~typ:(returning (llong))

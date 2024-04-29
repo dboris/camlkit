@@ -14,7 +14,7 @@ end
 
 let allAttributes self = msg_send ~self ~cmd:(selector "allAttributes") ~typ:(returning (id))
 let allLineAttributes self = msg_send ~self ~cmd:(selector "allLineAttributes") ~typ:(returning (id))
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t))
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let indexPathsToDeleteForSupplementaryViewOfKind x self = msg_send ~self ~cmd:(selector "indexPathsToDeleteForSupplementaryViewOfKind:") ~typ:(id @-> returning (id)) x
 let invalidateLayout self = msg_send ~self ~cmd:(selector "invalidateLayout") ~typ:(returning (void))

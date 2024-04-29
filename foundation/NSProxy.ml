@@ -68,6 +68,7 @@ let isFault self = msg_send ~self ~cmd:(selector "isFault") ~typ:(returning (boo
 let isKindOfClass x self = msg_send ~self ~cmd:(selector "isKindOfClass:") ~typ:(_Class @-> returning (bool)) x
 let isMemberOfClass x self = msg_send ~self ~cmd:(selector "isMemberOfClass:") ~typ:(_Class @-> returning (bool)) x
 let isProxy self = msg_send ~self ~cmd:(selector "isProxy") ~typ:(returning (bool))
+let methodDescriptionForSelector x self = msg_send ~self ~cmd:(selector "methodDescriptionForSelector:") ~typ:(_SEL @-> returning (ptr void)) x
 let methodSignatureForSelector x self = msg_send ~self ~cmd:(selector "methodSignatureForSelector:") ~typ:(_SEL @-> returning (id)) x
 let performSelector x self = msg_send ~self ~cmd:(selector "performSelector:") ~typ:(_SEL @-> returning (id)) x
 let performSelector1 x ~withObject self = msg_send ~self ~cmd:(selector "performSelector:withObject:") ~typ:(_SEL @-> id @-> returning (id)) x withObject

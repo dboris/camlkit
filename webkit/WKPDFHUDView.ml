@@ -1,0 +1,17 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open Foundation
+
+let _class_ = get_class "WKPDFHUDView"
+
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
+let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning (id)) x
+let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning (void)) x
+let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning (void)) x
+let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning (void)) x
+let setDeviceScaleFactor x self = msg_send ~self ~cmd:(selector "setDeviceScaleFactor:") ~typ:(double @-> returning (void)) x
+let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x

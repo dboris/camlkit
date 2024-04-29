@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDecimalNumber
-
 let _class_ = get_class "NSDecimalNumberPlaceholder"
 
 module Class = struct

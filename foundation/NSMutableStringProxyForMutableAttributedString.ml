@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableString
-
 let _class_ = get_class "NSMutableStringProxyForMutableAttributedString"
 
 let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning (ushort)) x

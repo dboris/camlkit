@@ -8,9 +8,6 @@ open Foundation
 
 let _class_ = get_class "WKContactPicker"
 
-let contactPicker x ~didSelectContact self = msg_send ~self ~cmd:(selector "contactPicker:didSelectContact:") ~typ:(id @-> id @-> returning (void)) x didSelectContact
-let contactPicker' x ~didSelectContacts self = msg_send ~self ~cmd:(selector "contactPicker:didSelectContacts:") ~typ:(id @-> id @-> returning (void)) x didSelectContacts
-let contactPickerDidCancel x self = msg_send ~self ~cmd:(selector "contactPickerDidCancel:") ~typ:(id @-> returning (void)) x
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let dismissWithContacts x self = msg_send ~self ~cmd:(selector "dismissWithContacts:") ~typ:(id @-> returning (void)) x
 let initWithView x self = msg_send ~self ~cmd:(selector "initWithView:") ~typ:(id @-> returning (id)) x

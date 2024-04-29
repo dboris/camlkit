@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSData
-
 let _class_ = get_class "NSPageData"
 
 module Class = struct

@@ -21,4 +21,4 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithScreen x self = msg_send ~self ~cmd:(selector "initWithScreen:") ~typ:(id @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t))
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

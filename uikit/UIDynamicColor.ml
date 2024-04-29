@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDynamicColor"
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let alphaComponent self = msg_send ~self ~cmd:(selector "alphaComponent") ~typ:(returning (double))
 let blueComponent self = msg_send ~self ~cmd:(selector "blueComponent") ~typ:(returning (double))
 let brightnessComponent self = msg_send ~self ~cmd:(selector "brightnessComponent") ~typ:(returning (double))

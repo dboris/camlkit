@@ -13,13 +13,13 @@ module Class = struct
 end
 
 let animateScrubberToRect x self = msg_send ~self ~cmd:(selector "animateScrubberToRect:") ~typ:(CGRect.t @-> returning (void)) x
-let categorySelectedCircleRect x self = msg_send ~self ~cmd:(selector "categorySelectedCircleRect:") ~typ:(llong @-> returning (CGRect.t)) x
+let categorySelectedCircleRect x self = msg_send_stret ~self ~cmd:(selector "categorySelectedCircleRect:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let didMoveToWindow self = msg_send ~self ~cmd:(selector "didMoveToWindow") ~typ:(returning (void))
 let dimKeys x self = msg_send ~self ~cmd:(selector "dimKeys:") ~typ:(id @-> returning (void)) x
 let emojiGraphicsTraits self = msg_send ~self ~cmd:(selector "emojiGraphicsTraits") ~typ:(returning (id))
 let flippedIndexForIndex x self = msg_send ~self ~cmd:(selector "flippedIndexForIndex:") ~typ:(ullong @-> returning (ullong)) x
-let frameForDivider x self = msg_send ~self ~cmd:(selector "frameForDivider:") ~typ:(int @-> returning (CGRect.t)) x
+let frameForDivider x self = msg_send_stret ~self ~cmd:(selector "frameForDivider:") ~typ:(int @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let hitTestResponder self = msg_send ~self ~cmd:(selector "hitTestResponder") ~typ:(returning (id))
 let initWithFrame x ~keyplane ~key self = msg_send ~self ~cmd:(selector "initWithFrame:keyplane:key:") ~typ:(CGRect.t @-> id @-> id @-> returning (id)) x keyplane key
 let initWithFrame' x ~keyplane ~key ~screenTraits self = msg_send ~self ~cmd:(selector "initWithFrame:keyplane:key:screenTraits:") ~typ:(CGRect.t @-> id @-> id @-> id @-> returning (id)) x keyplane key screenTraits

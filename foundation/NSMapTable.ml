@@ -26,6 +26,7 @@ let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(re
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let dictionaryRepresentation self = msg_send ~self ~cmd:(selector "dictionaryRepresentation") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x

@@ -46,7 +46,6 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithExpressionType x self = msg_send ~self ~cmd:(selector "initWithExpressionType:") ~typ:(ullong @-> returning (id)) x
 let keyPath self = msg_send ~self ~cmd:(selector "keyPath") ~typ:(returning (id))
 let leftExpression self = msg_send ~self ~cmd:(selector "leftExpression") ~typ:(returning (id))
-let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning (id)) x
 let operand self = msg_send ~self ~cmd:(selector "operand") ~typ:(returning (id))
 let predicate self = msg_send ~self ~cmd:(selector "predicate") ~typ:(returning (id))
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning (id))

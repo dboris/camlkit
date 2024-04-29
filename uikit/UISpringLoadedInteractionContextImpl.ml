@@ -10,7 +10,7 @@ let _class_ = get_class "UISpringLoadedInteractionContextImpl"
 
 let currentRecognizer self = msg_send ~self ~cmd:(selector "currentRecognizer") ~typ:(returning (id))
 let dropSession self = msg_send ~self ~cmd:(selector "dropSession") ~typ:(returning (id))
-let locationInView x self = msg_send ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) x
+let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let overrideTargetItem self = msg_send ~self ~cmd:(selector "overrideTargetItem") ~typ:(returning (id))
 let overrideTargetView self = msg_send ~self ~cmd:(selector "overrideTargetView") ~typ:(returning (id))
 let setCurrentRecognizer x self = msg_send ~self ~cmd:(selector "setCurrentRecognizer:") ~typ:(id @-> returning (void)) x

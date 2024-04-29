@@ -27,6 +27,6 @@ let setTargetPoint x ~forItem self = msg_send ~self ~cmd:(selector "setTargetPoi
 let setXComponent x self = msg_send ~self ~cmd:(selector "setXComponent:") ~typ:(double @-> returning (void)) x
 let setXComponent' x ~yComponent self = msg_send ~self ~cmd:(selector "setXComponent:yComponent:") ~typ:(double @-> double @-> returning (void)) x yComponent
 let setYComponent x self = msg_send ~self ~cmd:(selector "setYComponent:") ~typ:(double @-> returning (void)) x
-let targetPointForItem x self = msg_send ~self ~cmd:(selector "targetPointForItem:") ~typ:(id @-> returning (CGPoint.t)) x
+let targetPointForItem x self = msg_send_stret ~self ~cmd:(selector "targetPointForItem:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let xComponent self = msg_send ~self ~cmd:(selector "xComponent") ~typ:(returning (double))
 let yComponent self = msg_send ~self ~cmd:(selector "yComponent") ~typ:(returning (double))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSUnit
-
 let _class_ = get_class "NSDimension"
 
 module Class = struct

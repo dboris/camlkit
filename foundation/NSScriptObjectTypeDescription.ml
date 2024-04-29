@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptTypeDescription
-
 let _class_ = get_class "NSScriptObjectTypeDescription"
 
 let appleEventCode self = msg_send ~self ~cmd:(selector "appleEventCode") ~typ:(returning (uint))

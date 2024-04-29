@@ -107,6 +107,7 @@ module Class = struct
   let windowFrameTextColor self = msg_send ~self ~cmd:(selector "windowFrameTextColor") ~typ:(returning (id))
 end
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let allowsWeakReference self = msg_send ~self ~cmd:(selector "allowsWeakReference") ~typ:(returning (bool))
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning (id))
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))

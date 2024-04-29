@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPickerColumnView"
 
-let accessibilityFrame self = msg_send ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t))
+let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let beginUpdates self = msg_send ~self ~cmd:(selector "beginUpdates") ~typ:(returning (void))
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning (bool))
 let cellForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "cellForRowAtIndexPath:") ~typ:(id @-> returning (id)) x
@@ -24,7 +24,7 @@ let rightHitTestExtension self = msg_send ~self ~cmd:(selector "rightHitTestExte
 let rowHeight self = msg_send ~self ~cmd:(selector "rowHeight") ~typ:(returning (double))
 let selectRow x ~animated ~notify self = msg_send ~self ~cmd:(selector "selectRow:animated:notify:") ~typ:(llong @-> bool @-> bool @-> returning (bool)) x animated notify
 let selectRow' x ~animated ~notify ~updateChecked self = msg_send ~self ~cmd:(selector "selectRow:animated:notify:updateChecked:") ~typ:(llong @-> bool @-> bool @-> bool @-> returning (bool)) x animated notify updateChecked
-let selectionBarRect self = msg_send ~self ~cmd:(selector "selectionBarRect") ~typ:(returning (CGRect.t))
+let selectionBarRect self = msg_send_stret ~self ~cmd:(selector "selectionBarRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let selectionBarRow self = msg_send ~self ~cmd:(selector "selectionBarRow") ~typ:(returning (llong))
 let setAllowsMultipleSelection x self = msg_send ~self ~cmd:(selector "setAllowsMultipleSelection:") ~typ:(bool @-> returning (void)) x
 let setIsNoLongerInUse x self = msg_send ~self ~cmd:(selector "setIsNoLongerInUse:") ~typ:(bool @-> returning (void)) x

@@ -25,4 +25,4 @@ let showDetailsButton self = msg_send ~self ~cmd:(selector "showDetailsButton") 
 let showingDetails self = msg_send ~self ~cmd:(selector "showingDetails") ~typ:(returning (bool))
 let windowDidLoad self = msg_send ~self ~cmd:(selector "windowDidLoad") ~typ:(returning (void))
 let windowWillClose x self = msg_send ~self ~cmd:(selector "windowWillClose:") ~typ:(id @-> returning (void)) x
-let windowWillResize x ~toSize self = msg_send ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning (CGSize.t)) x toSize
+let windowWillResize x ~toSize self = msg_send_stret ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x toSize

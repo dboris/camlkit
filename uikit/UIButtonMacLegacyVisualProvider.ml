@@ -22,10 +22,10 @@ let contextMenuInteraction2 x ~previewForHighlightingMenuWithConfiguration self 
 let contextMenuInteraction3 x ~updateStyleForMenuWithConfiguration ~style self = msg_send ~self ~cmd:(selector "contextMenuInteraction:updateStyleForMenuWithConfiguration:style:") ~typ:(id @-> id @-> id @-> returning (void)) x updateStyleForMenuWithConfiguration style
 let effectiveContentView self = msg_send ~self ~cmd:(selector "effectiveContentView") ~typ:(returning (id))
 let initWithVisualElement x ~button self = msg_send ~self ~cmd:(selector "initWithVisualElement:button:") ~typ:(id @-> id @-> returning (id)) x button
-let intrinsicSizeWithinSize x self = msg_send ~self ~cmd:(selector "intrinsicSizeWithinSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let intrinsicSizeWithinSize x self = msg_send_stret ~self ~cmd:(selector "intrinsicSizeWithinSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let isSelected self = msg_send ~self ~cmd:(selector "isSelected") ~typ:(returning (bool))
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
-let menuAttachmentPointForConfiguration x self = msg_send ~self ~cmd:(selector "menuAttachmentPointForConfiguration:") ~typ:(id @-> returning (CGPoint.t)) x
+let menuAttachmentPointForConfiguration x self = msg_send_stret ~self ~cmd:(selector "menuAttachmentPointForConfiguration:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let preferredConfigurationForFocusAnimation x ~inContext self = msg_send ~self ~cmd:(selector "preferredConfigurationForFocusAnimation:inContext:") ~typ:(llong @-> id @-> returning (id)) x inContext
 let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
 let setContextMenuIsPrimary x self = msg_send ~self ~cmd:(selector "setContextMenuIsPrimary:") ~typ:(bool @-> returning (void)) x

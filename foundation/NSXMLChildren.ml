@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableArray
-
 let _class_ = get_class "NSXMLChildren"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x

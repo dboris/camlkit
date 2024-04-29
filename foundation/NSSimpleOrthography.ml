@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSOrthography
-
 let _class_ = get_class "NSSimpleOrthography"
 
 module Class = struct

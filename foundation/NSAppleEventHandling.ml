@@ -7,6 +7,7 @@ let _class_ = get_class "NSAppleEventHandling"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let event self = msg_send ~self ~cmd:(selector "event") ~typ:(returning (id))
+let initWithEvent x ~replyEvent self = msg_send ~self ~cmd:(selector "initWithEvent:replyEvent:") ~typ:(ptr void @-> ptr void @-> returning (id)) x replyEvent
 let replyEvent self = msg_send ~self ~cmd:(selector "replyEvent") ~typ:(returning (id))
 let resumeWithScriptCommandResult x self = msg_send ~self ~cmd:(selector "resumeWithScriptCommandResult:") ~typ:(id @-> returning (void)) x
 let scriptCommand self = msg_send ~self ~cmd:(selector "scriptCommand") ~typ:(returning (id))

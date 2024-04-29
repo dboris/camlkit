@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDictionary
-
 let _class_ = get_class "NSOwnedDictionaryProxy"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

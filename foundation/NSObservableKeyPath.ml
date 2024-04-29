@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSBoundKeyPath
-
 let _class_ = get_class "NSObservableKeyPath"
 
 let addObserver x self = msg_send ~self ~cmd:(selector "addObserver:") ~typ:(id @-> returning (id)) x

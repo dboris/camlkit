@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSHIPresentationInstance"
 
+let currentPresentationInstance self = msg_send ~self ~cmd:(selector "currentPresentationInstance") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let discard self = msg_send ~self ~cmd:(selector "discard") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

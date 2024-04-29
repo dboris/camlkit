@@ -27,6 +27,7 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
+let aeDesc self = msg_send ~self ~cmd:(selector "aeDesc") ~typ:(returning (ptr void))
 let attributeDescriptorForKeyword x self = msg_send ~self ~cmd:(selector "attributeDescriptorForKeyword:") ~typ:(uint @-> returning (id)) x
 let booleanValue self = msg_send ~self ~cmd:(selector "booleanValue") ~typ:(returning (bool))
 let coerceToDescriptorType x self = msg_send ~self ~cmd:(selector "coerceToDescriptorType:") ~typ:(uint @-> returning (id)) x
@@ -47,6 +48,7 @@ let fileURLValue self = msg_send ~self ~cmd:(selector "fileURLValue") ~typ:(retu
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initListDescriptor self = msg_send ~self ~cmd:(selector "initListDescriptor") ~typ:(returning (id))
 let initRecordDescriptor self = msg_send ~self ~cmd:(selector "initRecordDescriptor") ~typ:(returning (id))
+let initWithAEDescNoCopy x self = msg_send ~self ~cmd:(selector "initWithAEDescNoCopy:") ~typ:(ptr void @-> returning (id)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithDescriptorType x ~data self = msg_send ~self ~cmd:(selector "initWithDescriptorType:data:") ~typ:(uint @-> id @-> returning (id)) x data
 let initWithDescriptorType' x ~bytes ~length self = msg_send ~self ~cmd:(selector "initWithDescriptorType:bytes:length:") ~typ:(uint @-> ptr (void) @-> ullong @-> returning (id)) x bytes length

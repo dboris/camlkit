@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFileHandle
-
 let _class_ = get_class "NSConcreteFileHandle"
 
 let acceptConnectionInBackgroundAndNotify self = msg_send ~self ~cmd:(selector "acceptConnectionInBackgroundAndNotify") ~typ:(returning (void))

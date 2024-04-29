@@ -13,10 +13,10 @@ module Class = struct
 end
 
 let activeTouches self = msg_send ~self ~cmd:(selector "activeTouches") ~typ:(returning (id))
-let beginPanCentroid self = msg_send ~self ~cmd:(selector "beginPanCentroid") ~typ:(returning (CGPoint.t))
+let beginPanCentroid self = msg_send_stret ~self ~cmd:(selector "beginPanCentroid") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let beginPanTimestamp self = msg_send ~self ~cmd:(selector "beginPanTimestamp") ~typ:(returning (double))
 let beginTouchLocations self = msg_send ~self ~cmd:(selector "beginTouchLocations") ~typ:(returning (id))
-let centroidOfTouches x self = msg_send ~self ~cmd:(selector "centroidOfTouches:") ~typ:(id @-> returning (CGPoint.t)) x
+let centroidOfTouches x self = msg_send_stret ~self ~cmd:(selector "centroidOfTouches:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
 let isShiftOrMoreKeyForTouch x self = msg_send ~self ~cmd:(selector "isShiftOrMoreKeyForTouch:") ~typ:(id @-> returning (bool)) x

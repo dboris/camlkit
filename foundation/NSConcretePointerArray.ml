@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPointerArray
-
 let _class_ = get_class "NSConcretePointerArray"
 
 module Class = struct
@@ -16,6 +14,7 @@ let arrayGrow x self = msg_send ~self ~cmd:(selector "arrayGrow:") ~typ:(ullong 
 let compact self = msg_send ~self ~cmd:(selector "compact") ~typ:(returning (void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))

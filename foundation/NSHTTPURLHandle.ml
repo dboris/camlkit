@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSURLHandle
-
 let _class_ = get_class "NSHTTPURLHandle"
 
 module Class = struct
@@ -22,6 +20,7 @@ let flushCachedData self = msg_send ~self ~cmd:(selector "flushCachedData") ~typ
 let initWithURL x ~cached self = msg_send ~self ~cmd:(selector "initWithURL:cached:") ~typ:(id @-> bool @-> returning (id)) x cached
 let loadInForeground self = msg_send ~self ~cmd:(selector "loadInForeground") ~typ:(returning (id))
 let performStreamRead self = msg_send ~self ~cmd:(selector "performStreamRead") ~typ:(returning (void))
+let populateCacheFromStream x ~data self = msg_send ~self ~cmd:(selector "populateCacheFromStream:data:") ~typ:(ptr void @-> id @-> returning (void)) x data
 let propertyForKey x self = msg_send ~self ~cmd:(selector "propertyForKey:") ~typ:(id @-> returning (id)) x
 let propertyForKeyIfAvailable x self = msg_send ~self ~cmd:(selector "propertyForKeyIfAvailable:") ~typ:(id @-> returning (id)) x
 let reportStreamError self = msg_send ~self ~cmd:(selector "reportStreamError") ~typ:(returning (void))

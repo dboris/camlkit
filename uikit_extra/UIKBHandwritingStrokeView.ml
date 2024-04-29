@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "UIKBHandwritingStrokeView"
 
-let aggregateInvalidRect self = msg_send ~self ~cmd:(selector "aggregateInvalidRect") ~typ:(returning (CGRect.t))
+let aggregateInvalidRect self = msg_send_stret ~self ~cmd:(selector "aggregateInvalidRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let bitmapContext self = msg_send ~self ~cmd:(selector "bitmapContext") ~typ:(returning (id))
 let clearRect x self = msg_send ~self ~cmd:(selector "clearRect:") ~typ:(CGRect.t @-> returning (void)) x
-let convertRectToBitmapCoordinates x self = msg_send ~self ~cmd:(selector "convertRectToBitmapCoordinates:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
-let convertRectToViewCoordinates x self = msg_send ~self ~cmd:(selector "convertRectToViewCoordinates:") ~typ:(CGRect.t @-> returning (CGRect.t)) x
+let convertRectToBitmapCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertRectToBitmapCoordinates:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
+let convertRectToViewCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertRectToViewCoordinates:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let createBitmapIfNeeded self = msg_send ~self ~cmd:(selector "createBitmapIfNeeded") ~typ:(returning (void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let displayAggregateInvalidRect self = msg_send ~self ~cmd:(selector "displayAggregateInvalidRect") ~typ:(returning (void))

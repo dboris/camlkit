@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyValueProxyGetter
-
 let _class_ = get_class "NSKeyValueFastMutableCollection2Getter"
 
 let baseGetter self = msg_send ~self ~cmd:(selector "baseGetter") ~typ:(returning (id))

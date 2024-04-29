@@ -10,7 +10,7 @@ let _class_ = get_class "UIKBSplitRow"
 
 let addKey x self = msg_send ~self ~cmd:(selector "addKey:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let defaultKeySize self = msg_send ~self ~cmd:(selector "defaultKeySize") ~typ:(returning (CGSize.t))
+let defaultKeySize self = msg_send_stret ~self ~cmd:(selector "defaultKeySize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let hints self = msg_send ~self ~cmd:(selector "hints") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

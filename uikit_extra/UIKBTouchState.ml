@@ -21,8 +21,8 @@ end
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let locationInView x self = msg_send ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) x
-let locationInWindow self = msg_send ~self ~cmd:(selector "locationInWindow") ~typ:(returning (CGPoint.t))
+let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
+let locationInWindow self = msg_send_stret ~self ~cmd:(selector "locationInWindow") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let pathIndex self = msg_send ~self ~cmd:(selector "pathIndex") ~typ:(returning (ullong))
 let pathMajorRadius self = msg_send ~self ~cmd:(selector "pathMajorRadius") ~typ:(returning (double))
 let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning (llong))

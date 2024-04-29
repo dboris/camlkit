@@ -18,7 +18,7 @@ end
 
 let activePrintInfo self = msg_send ~self ~cmd:(selector "activePrintInfo") ~typ:(returning (id))
 let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning (llong))
-let currentRange self = msg_send ~self ~cmd:(selector "currentRange") ~typ:(returning (NSRange.t))
+let currentRange self = msg_send_stret ~self ~cmd:(selector "currentRange") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let dismissAnimated x self = msg_send ~self ~cmd:(selector "dismissAnimated:") ~typ:(bool @-> returning (void)) x

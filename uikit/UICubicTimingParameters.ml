@@ -9,8 +9,8 @@ open Foundation
 let _class_ = get_class "UICubicTimingParameters"
 
 let animationCurve self = msg_send ~self ~cmd:(selector "animationCurve") ~typ:(returning (llong))
-let controlPoint1 self = msg_send ~self ~cmd:(selector "controlPoint1") ~typ:(returning (CGPoint.t))
-let controlPoint2 self = msg_send ~self ~cmd:(selector "controlPoint2") ~typ:(returning (CGPoint.t))
+let controlPoint1 self = msg_send_stret ~self ~cmd:(selector "controlPoint1") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
+let controlPoint2 self = msg_send_stret ~self ~cmd:(selector "controlPoint2") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let cubicTimingParameters self = msg_send ~self ~cmd:(selector "cubicTimingParameters") ~typ:(returning (id))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSString
-
 let _class_ = get_class "NSPathStore2"
 
 module Class = struct

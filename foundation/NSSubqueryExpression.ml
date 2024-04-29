@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSExpression
-
 let _class_ = get_class "NSSubqueryExpression"
 
 module Class = struct
@@ -23,7 +21,6 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithExpression x ~usingIteratorExpression ~predicate self = msg_send ~self ~cmd:(selector "initWithExpression:usingIteratorExpression:predicate:") ~typ:(id @-> id @-> id @-> returning (id)) x usingIteratorExpression predicate
 let initWithExpression' x ~usingIteratorVariable ~predicate self = msg_send ~self ~cmd:(selector "initWithExpression:usingIteratorVariable:predicate:") ~typ:(id @-> id @-> id @-> returning (id)) x usingIteratorVariable predicate
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning (id)) x
 let predicate self = msg_send ~self ~cmd:(selector "predicate") ~typ:(returning (id))
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning (id))
 let variable self = msg_send ~self ~cmd:(selector "variable") ~typ:(returning (id))

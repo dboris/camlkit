@@ -9,6 +9,7 @@ let autocorrectionDictionaryForLanguage x ~isGerman self = msg_send ~self ~cmd:(
 let checkString x ~offset ~types ~options ~orthography ~wordCount self = msg_send ~self ~cmd:(selector "checkString:offset:types:options:orthography:wordCount:") ~typ:(id @-> ullong @-> ullong @-> id @-> id @-> ptr (llong) @-> returning (id)) x offset types options orthography wordCount
 let checkString' x ~offset ~types ~options ~orthography ~learnedDictionaries ~wordCount self = msg_send ~self ~cmd:(selector "checkString:offset:types:options:orthography:learnedDictionaries:wordCount:") ~typ:(id @-> ullong @-> ullong @-> id @-> id @-> id @-> ptr (llong) @-> returning (id)) x offset types options orthography learnedDictionaries wordCount
 let correctionForString x ~language self = msg_send ~self ~cmd:(selector "correctionForString:language:") ~typ:(id @-> id @-> returning (id)) x language
+let createDictHashTable x self = msg_send ~self ~cmd:(selector "createDictHashTable:") ~typ:(bool @-> returning (ptr void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let dictionaryInfo x self = msg_send ~self ~cmd:(selector "dictionaryInfo:") ~typ:(id @-> returning (id)) x

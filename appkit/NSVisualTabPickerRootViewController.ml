@@ -15,7 +15,7 @@ end
 let canCloseTabsInVisualTabPickerGridView x self = msg_send ~self ~cmd:(selector "canCloseTabsInVisualTabPickerGridView:") ~typ:(id @-> returning (bool)) x
 let closeVisualTabPicker self = msg_send ~self ~cmd:(selector "closeVisualTabPicker") ~typ:(returning (void))
 let closeVisualTabPickerAnimated x self = msg_send ~self ~cmd:(selector "closeVisualTabPickerAnimated:") ~typ:(bool @-> returning (void)) x
-let contentLayoutRect self = msg_send ~self ~cmd:(selector "contentLayoutRect") ~typ:(returning (CGRect.t))
+let contentLayoutRect self = msg_send_stret ~self ~cmd:(selector "contentLayoutRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let control x ~textView ~doCommandBySelector self = msg_send ~self ~cmd:(selector "control:textView:doCommandBySelector:") ~typ:(id @-> id @-> _SEL @-> returning (bool)) x textView doCommandBySelector
 let createNewTabForVisualTabPickerGridView x self = msg_send ~self ~cmd:(selector "createNewTabForVisualTabPickerGridView:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

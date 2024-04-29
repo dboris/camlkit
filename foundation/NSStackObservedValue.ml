@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSObservedValue
-
 let _class_ = get_class "NSStackObservedValue"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning (id))

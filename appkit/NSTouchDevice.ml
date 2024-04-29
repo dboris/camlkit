@@ -26,4 +26,4 @@ let removeGestureRecognizersForTouch x self = msg_send ~self ~cmd:(selector "rem
 let setOverridePressureConfiguration x self = msg_send ~self ~cmd:(selector "setOverridePressureConfiguration:") ~typ:(id @-> returning (void)) x
 let setTouches x ~forContextID self = msg_send ~self ~cmd:(selector "setTouches:forContextID:") ~typ:(id @-> llong @-> returning (void)) x forContextID
 let supportsForce self = msg_send ~self ~cmd:(selector "supportsForce") ~typ:(returning (bool))
-let surfaceSize self = msg_send ~self ~cmd:(selector "surfaceSize") ~typ:(returning (CGSize.t))
+let surfaceSize self = msg_send_stret ~self ~cmd:(selector "surfaceSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

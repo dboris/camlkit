@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSAttributedString
-
 let _class_ = get_class "NSConcreteAttributedString"
 
 let attribute x ~atIndex ~effectiveRange self = msg_send ~self ~cmd:(selector "attribute:atIndex:effectiveRange:") ~typ:(id @-> ullong @-> ptr (NSRange.t) @-> returning (id)) x atIndex effectiveRange

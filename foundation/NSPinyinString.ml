@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSString
-
 let _class_ = get_class "NSPinyinString"
 
 module Class = struct
@@ -26,7 +24,7 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let lastSyllableIsPartial self = msg_send ~self ~cmd:(selector "lastSyllableIsPartial") ~typ:(returning (bool))
 let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning (ullong))
 let nonPinyinIndexSet self = msg_send ~self ~cmd:(selector "nonPinyinIndexSet") ~typ:(returning (id))
-let nonPinyinRangeAtIndex x self = msg_send ~self ~cmd:(selector "nonPinyinRangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) x
+let nonPinyinRangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "nonPinyinRangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
 let numberOfDeletions self = msg_send ~self ~cmd:(selector "numberOfDeletions") ~typ:(returning (ullong))
 let numberOfInsertions self = msg_send ~self ~cmd:(selector "numberOfInsertions") ~typ:(returning (ullong))
 let numberOfNonPinyinRanges self = msg_send ~self ~cmd:(selector "numberOfNonPinyinRanges") ~typ:(returning (ullong))

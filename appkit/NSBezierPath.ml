@@ -46,6 +46,7 @@ module Class = struct
   let windingRule self = msg_send ~self ~cmd:(selector "windingRule") ~typ:(returning (ullong))
 end
 
+let _CGPath self = msg_send ~self ~cmd:(selector "CGPath") ~typ:(returning (ptr void))
 let addClip self = msg_send ~self ~cmd:(selector "addClip") ~typ:(returning (void))
 let appendBezierPath x self = msg_send ~self ~cmd:(selector "appendBezierPath:") ~typ:(id @-> returning (void)) x
 let appendBezierPathWithArcFromPoint x ~toPoint ~radius self = msg_send ~self ~cmd:(selector "appendBezierPathWithArcFromPoint:toPoint:radius:") ~typ:(CGPoint.t @-> CGPoint.t @-> double @-> returning (void)) x toPoint radius
@@ -63,13 +64,13 @@ let appendBezierPathWithRect x self = msg_send ~self ~cmd:(selector "appendBezie
 let appendBezierPathWithRoundedRect x ~xRadius ~yRadius self = msg_send ~self ~cmd:(selector "appendBezierPathWithRoundedRect:xRadius:yRadius:") ~typ:(CGRect.t @-> double @-> double @-> returning (void)) x xRadius yRadius
 let bezierPathByFlatteningPath self = msg_send ~self ~cmd:(selector "bezierPathByFlatteningPath") ~typ:(returning (id))
 let bezierPathByReversingPath self = msg_send ~self ~cmd:(selector "bezierPathByReversingPath") ~typ:(returning (id))
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning (CGRect.t))
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let cachesBezierPath self = msg_send ~self ~cmd:(selector "cachesBezierPath") ~typ:(returning (bool))
 let closePath self = msg_send ~self ~cmd:(selector "closePath") ~typ:(returning (void))
 let containsPoint x self = msg_send ~self ~cmd:(selector "containsPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
-let controlPointBounds self = msg_send ~self ~cmd:(selector "controlPointBounds") ~typ:(returning (CGRect.t))
+let controlPointBounds self = msg_send_stret ~self ~cmd:(selector "controlPointBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let currentPoint self = msg_send ~self ~cmd:(selector "currentPoint") ~typ:(returning (CGPoint.t))
+let currentPoint self = msg_send_stret ~self ~cmd:(selector "currentPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let curveToPoint x ~controlPoint1 ~controlPoint2 self = msg_send ~self ~cmd:(selector "curveToPoint:controlPoint1:controlPoint2:") ~typ:(CGPoint.t @-> CGPoint.t @-> CGPoint.t @-> returning (void)) x controlPoint1 controlPoint2
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

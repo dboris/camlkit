@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFileHandle
-
 let _class_ = get_class "NSNullFileHandle"
 
 let availableData self = msg_send ~self ~cmd:(selector "availableData") ~typ:(returning (id))

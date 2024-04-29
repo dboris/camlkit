@@ -12,6 +12,6 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let isSystemCloseButton self = msg_send ~self ~cmd:(selector "isSystemCloseButton") ~typ:(returning (bool))
 let itemView self = msg_send ~self ~cmd:(selector "itemView") ~typ:(returning (id))
-let preferredSize self = msg_send ~self ~cmd:(selector "preferredSize") ~typ:(returning (CGSize.t))
+let preferredSize self = msg_send_stret ~self ~cmd:(selector "preferredSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let setIsSystemCloseButton x self = msg_send ~self ~cmd:(selector "setIsSystemCloseButton:") ~typ:(bool @-> returning (void)) x
 let setItemView x self = msg_send ~self ~cmd:(selector "setItemView:") ~typ:(id @-> returning (void)) x

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSUnitConverter
-
 let _class_ = get_class "NSUnitConverterReciprocal"
 
 module Class = struct

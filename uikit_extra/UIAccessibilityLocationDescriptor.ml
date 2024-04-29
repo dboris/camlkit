@@ -15,5 +15,5 @@ let initWithName x ~view self = msg_send ~self ~cmd:(selector "initWithName:view
 let initWithName' x ~point ~inView self = msg_send ~self ~cmd:(selector "initWithName:point:inView:") ~typ:(id @-> CGPoint.t @-> id @-> returning (id)) x point inView
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
-let point self = msg_send ~self ~cmd:(selector "point") ~typ:(returning (CGPoint.t))
+let point self = msg_send_stret ~self ~cmd:(selector "point") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

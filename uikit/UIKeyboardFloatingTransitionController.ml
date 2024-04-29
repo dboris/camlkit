@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIKeyboardFloatingTransitionController"
 
 module Class = struct
-  let dockingRegion self = msg_send ~self ~cmd:(selector "dockingRegion") ~typ:(returning (CGRect.t))
+  let dockingRegion self = msg_send_stret ~self ~cmd:(selector "dockingRegion") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
   let isPointWithinDockingRegion x self = msg_send ~self ~cmd:(selector "isPointWithinDockingRegion:") ~typ:(CGPoint.t @-> returning (bool)) x
   let magneticEdgeMargin self = msg_send ~self ~cmd:(selector "magneticEdgeMargin") ~typ:(returning (double))
   let snapshotOfKeyplaneView x self = msg_send ~self ~cmd:(selector "snapshotOfKeyplaneView:") ~typ:(id @-> returning (id)) x
@@ -37,9 +37,10 @@ let gestureRecognizerShouldBegin x self = msg_send ~self ~cmd:(selector "gesture
 let handlePanGestureRecognizerAction x self = msg_send ~self ~cmd:(selector "handlePanGestureRecognizerAction:") ~typ:(id @-> returning (void)) x
 let handlePinchGestureRecognizerAction x self = msg_send ~self ~cmd:(selector "handlePinchGestureRecognizerAction:") ~typ:(id @-> returning (void)) x
 let initializeContextAtPoint x self = msg_send ~self ~cmd:(selector "initializeContextAtPoint:") ~typ:(CGPoint.t @-> returning (void)) x
+let inputViewSnapshot x ~withPlatterInsets self = msg_send ~self ~cmd:(selector "inputViewSnapshot:withPlatterInsets:") ~typ:(ptr (id) @-> ptr void @-> returning (void)) x withPlatterInsets
 let inputWindowController self = msg_send ~self ~cmd:(selector "inputWindowController") ~typ:(returning (id))
 let isTransitioning self = msg_send ~self ~cmd:(selector "isTransitioning") ~typ:(returning (bool))
-let lastGestureCenter self = msg_send ~self ~cmd:(selector "lastGestureCenter") ~typ:(returning (CGPoint.t))
+let lastGestureCenter self = msg_send_stret ~self ~cmd:(selector "lastGestureCenter") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let panGestureRecognizer self = msg_send ~self ~cmd:(selector "panGestureRecognizer") ~typ:(returning (id))
 let pillView self = msg_send ~self ~cmd:(selector "pillView") ~typ:(returning (id))
 let pinchGestureRecognizer self = msg_send ~self ~cmd:(selector "pinchGestureRecognizer") ~typ:(returning (id))

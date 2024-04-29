@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXMLNamedNode
-
 let _class_ = get_class "NSXMLNamedFidelityNode"
 
 let addEntity x ~index self = msg_send ~self ~cmd:(selector "addEntity:index:") ~typ:(id @-> ullong @-> returning (void)) x index

@@ -22,6 +22,7 @@ let initWithMode x self = msg_send ~self ~cmd:(selector "initWithMode:") ~typ:(u
 let initWithSelectedFont x ~inMode self = msg_send ~self ~cmd:(selector "initWithSelectedFont:inMode:") ~typ:(id @-> ullong @-> returning (id)) x inMode
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning (void))
 let pickerDidCancel self = msg_send ~self ~cmd:(selector "pickerDidCancel") ~typ:(returning (void))
+let pickerDidSelectFont x self = msg_send ~self ~cmd:(selector "pickerDidSelectFont:") ~typ:(ptr void @-> returning (void)) x
 let remoteViewController self = msg_send ~self ~cmd:(selector "remoteViewController") ~typ:(returning (id))
 let selectedFontDescriptor self = msg_send ~self ~cmd:(selector "selectedFontDescriptor") ~typ:(returning (id))
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x

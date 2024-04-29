@@ -16,7 +16,7 @@ module Class = struct
 end
 
 let accessoryViewWillAppear self = msg_send ~self ~cmd:(selector "accessoryViewWillAppear") ~typ:(returning (bool))
-let adjustBoundsForNotificationsWithOwner x self = msg_send ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning (CGRect.t)) x
+let adjustBoundsForNotificationsWithOwner x self = msg_send_stret ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning (double))
 let applicatorClassForKeyboard x self = msg_send ~self ~cmd:(selector "applicatorClassForKeyboard:") ~typ:(bool @-> returning (_Class)) x
 let applicatorInfoForOwner x self = msg_send ~self ~cmd:(selector "applicatorInfoForOwner:") ~typ:(id @-> returning (id)) x
@@ -41,7 +41,7 @@ let isInteractive self = msg_send ~self ~cmd:(selector "isInteractive") ~typ:(re
 let isUndocked self = msg_send ~self ~cmd:(selector "isUndocked") ~typ:(returning (bool))
 let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning (bool))
 let notificationsForTransitionToPlacement x self = msg_send ~self ~cmd:(selector "notificationsForTransitionToPlacement:") ~typ:(id @-> returning (ullong)) x
-let remoteIntrinsicContentSizeForInputViewInSet x ~includingIAV self = msg_send ~self ~cmd:(selector "remoteIntrinsicContentSizeForInputViewInSet:includingIAV:") ~typ:(id @-> bool @-> returning (CGRect.t)) x includingIAV
+let remoteIntrinsicContentSizeForInputViewInSet x ~includingIAV self = msg_send_stret ~self ~cmd:(selector "remoteIntrinsicContentSizeForInputViewInSet:includingIAV:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x includingIAV
 let requiresWindowBasedSafeAreaInsets self = msg_send ~self ~cmd:(selector "requiresWindowBasedSafeAreaInsets") ~typ:(returning (bool))
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDirty self = msg_send ~self ~cmd:(selector "setDirty") ~typ:(returning (void))

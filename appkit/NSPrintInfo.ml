@@ -15,7 +15,7 @@ module Class = struct
   let setDefaultPrinter x self = msg_send ~self ~cmd:(selector "setDefaultPrinter:") ~typ:(id @-> returning (void)) x
   let setSharedPrintInfo x self = msg_send ~self ~cmd:(selector "setSharedPrintInfo:") ~typ:(id @-> returning (void)) x
   let sharedPrintInfo self = msg_send ~self ~cmd:(selector "sharedPrintInfo") ~typ:(returning (id))
-  let sizeForPaperName x self = msg_send ~self ~cmd:(selector "sizeForPaperName:") ~typ:(id @-> returning (CGSize.t)) x
+  let sizeForPaperName x self = msg_send_stret ~self ~cmd:(selector "sizeForPaperName:") ~typ:(id @-> returning (CGSize.t)) ~return_type:CGSize.t x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -29,7 +29,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let dictionary self = msg_send ~self ~cmd:(selector "dictionary") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let horizontalPagination self = msg_send ~self ~cmd:(selector "horizontalPagination") ~typ:(returning (ullong))
-let imageablePageBounds self = msg_send ~self ~cmd:(selector "imageablePageBounds") ~typ:(returning (CGRect.t))
+let imageablePageBounds self = msg_send_stret ~self ~cmd:(selector "imageablePageBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithDictionary x self = msg_send ~self ~cmd:(selector "initWithDictionary:") ~typ:(id @-> returning (id)) x
@@ -41,7 +41,7 @@ let leftMargin self = msg_send ~self ~cmd:(selector "leftMargin") ~typ:(returnin
 let localizedPaperName self = msg_send ~self ~cmd:(selector "localizedPaperName") ~typ:(returning (id))
 let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning (llong))
 let paperName self = msg_send ~self ~cmd:(selector "paperName") ~typ:(returning (id))
-let paperSize self = msg_send ~self ~cmd:(selector "paperSize") ~typ:(returning (CGSize.t))
+let paperSize self = msg_send_stret ~self ~cmd:(selector "paperSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let printSettings self = msg_send ~self ~cmd:(selector "printSettings") ~typ:(returning (id))
 let printer self = msg_send ~self ~cmd:(selector "printer") ~typ:(returning (id))
 let rightMargin self = msg_send ~self ~cmd:(selector "rightMargin") ~typ:(returning (double))

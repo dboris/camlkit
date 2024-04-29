@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIProgressView"
 
 module Class = struct
-  let defaultSize self = msg_send ~self ~cmd:(selector "defaultSize") ~typ:(returning (CGSize.t))
+  let defaultSize self = msg_send_stret ~self ~cmd:(selector "defaultSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 
 let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning (llong))
@@ -35,7 +35,7 @@ let setProgressTintColor x self = msg_send ~self ~cmd:(selector "setProgressTint
 let setProgressViewStyle x self = msg_send ~self ~cmd:(selector "setProgressViewStyle:") ~typ:(llong @-> returning (void)) x
 let setTrackImage x self = msg_send ~self ~cmd:(selector "setTrackImage:") ~typ:(id @-> returning (void)) x
 let setTrackTintColor x self = msg_send ~self ~cmd:(selector "setTrackTintColor:") ~typ:(id @-> returning (void)) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let tintColorDidChange self = msg_send ~self ~cmd:(selector "tintColorDidChange") ~typ:(returning (void))
 let trackImage self = msg_send ~self ~cmd:(selector "trackImage") ~typ:(returning (id))
 let trackTintColor self = msg_send ~self ~cmd:(selector "trackTintColor") ~typ:(returning (id))

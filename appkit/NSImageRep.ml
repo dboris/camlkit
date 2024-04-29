@@ -36,7 +36,7 @@ end
 
 let _CGImageForProposedRect x ~context ~hints self = msg_send ~self ~cmd:(selector "CGImageForProposedRect:context:hints:") ~typ:(ptr (CGRect.t) @-> id @-> id @-> returning (id)) x context hints
 let _CGImageForProposedRect' x ~context ~hints ~flipped self = msg_send ~self ~cmd:(selector "CGImageForProposedRect:context:hints:flipped:") ~typ:(ptr (CGRect.t) @-> id @-> id @-> bool @-> returning (id)) x context hints flipped
-let alignmentRect self = msg_send ~self ~cmd:(selector "alignmentRect") ~typ:(returning (CGRect.t))
+let alignmentRect self = msg_send_stret ~self ~cmd:(selector "alignmentRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let bitsPerSample self = msg_send ~self ~cmd:(selector "bitsPerSample") ~typ:(returning (llong))
 let colorSpace self = msg_send ~self ~cmd:(selector "colorSpace") ~typ:(returning (id))
 let colorSpaceName self = msg_send ~self ~cmd:(selector "colorSpaceName") ~typ:(returning (id))
@@ -69,4 +69,4 @@ let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-
 let setPixelsHigh x self = msg_send ~self ~cmd:(selector "setPixelsHigh:") ~typ:(llong @-> returning (void)) x
 let setPixelsWide x self = msg_send ~self ~cmd:(selector "setPixelsWide:") ~typ:(llong @-> returning (void)) x
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning (void)) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t))
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

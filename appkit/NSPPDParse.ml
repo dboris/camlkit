@@ -19,6 +19,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let endInputStream self = msg_send ~self ~cmd:(selector "endInputStream") ~typ:(returning (id))
 let getMoreInput self = msg_send ~self ~cmd:(selector "getMoreInput") ~typ:(returning (bool))
+let growBuffer x ~current ~end_ ~factor self = msg_send ~self ~cmd:(selector "growBuffer:current:end:factor:") ~typ:(ptr void @-> ptr (string) @-> ptr (string) @-> float @-> returning (id)) x current end_ factor
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let openInclude x self = msg_send ~self ~cmd:(selector "openInclude:") ~typ:(id @-> returning (id)) x
 let parseKey x self = msg_send ~self ~cmd:(selector "parseKey:") ~typ:(bool @-> returning (bool)) x

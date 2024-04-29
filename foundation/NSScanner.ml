@@ -18,6 +18,7 @@ let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~ty
 let isAtEnd self = msg_send ~self ~cmd:(selector "isAtEnd") ~typ:(returning (bool))
 let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning (id))
 let scanCharactersFromSet x ~intoString self = msg_send ~self ~cmd:(selector "scanCharactersFromSet:intoString:") ~typ:(id @-> ptr (id) @-> returning (bool)) x intoString
+let scanDecimal x self = msg_send ~self ~cmd:(selector "scanDecimal:") ~typ:(ptr void @-> returning (bool)) x
 let scanDouble x self = msg_send ~self ~cmd:(selector "scanDouble:") ~typ:(ptr (double) @-> returning (bool)) x
 let scanFloat x self = msg_send ~self ~cmd:(selector "scanFloat:") ~typ:(ptr (float) @-> returning (bool)) x
 let scanHexDouble x self = msg_send ~self ~cmd:(selector "scanHexDouble:") ~typ:(ptr (double) @-> returning (bool)) x

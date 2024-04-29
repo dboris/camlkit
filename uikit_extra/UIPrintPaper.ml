@@ -15,6 +15,6 @@ end
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let paperSize self = msg_send ~self ~cmd:(selector "paperSize") ~typ:(returning (CGSize.t))
-let printRect self = msg_send ~self ~cmd:(selector "printRect") ~typ:(returning (CGRect.t))
-let printableRect self = msg_send ~self ~cmd:(selector "printableRect") ~typ:(returning (CGRect.t))
+let paperSize self = msg_send_stret ~self ~cmd:(selector "paperSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
+let printRect self = msg_send_stret ~self ~cmd:(selector "printRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
+let printableRect self = msg_send_stret ~self ~cmd:(selector "printableRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t

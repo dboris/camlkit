@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyValueFastMutableSet
-
 let _class_ = get_class "NSKeyValueFastMutableSet1"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

@@ -13,7 +13,7 @@ module Class = struct
 end
 
 let backgroundColors self = msg_send ~self ~cmd:(selector "backgroundColors") ~typ:(returning (id))
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t))
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -22,11 +22,11 @@ let layoutAttributesForDropTargetAtPoint x self = msg_send ~self ~cmd:(selector 
 let layoutAttributesForElementsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForElementsInRect:") ~typ:(CGRect.t @-> returning (id)) x
 let layoutAttributesForInterItemGapBeforeIndexPath x self = msg_send ~self ~cmd:(selector "layoutAttributesForInterItemGapBeforeIndexPath:") ~typ:(id @-> returning (id)) x
 let layoutAttributesForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndexPath:") ~typ:(id @-> returning (id)) x
-let maximumItemSize self = msg_send ~self ~cmd:(selector "maximumItemSize") ~typ:(returning (CGSize.t))
+let maximumItemSize self = msg_send_stret ~self ~cmd:(selector "maximumItemSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let maximumNumberOfColumns self = msg_send ~self ~cmd:(selector "maximumNumberOfColumns") ~typ:(returning (ullong))
 let maximumNumberOfRows self = msg_send ~self ~cmd:(selector "maximumNumberOfRows") ~typ:(returning (ullong))
 let minimumInteritemSpacing self = msg_send ~self ~cmd:(selector "minimumInteritemSpacing") ~typ:(returning (double))
-let minimumItemSize self = msg_send ~self ~cmd:(selector "minimumItemSize") ~typ:(returning (CGSize.t))
+let minimumItemSize self = msg_send_stret ~self ~cmd:(selector "minimumItemSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let minimumLineSpacing self = msg_send ~self ~cmd:(selector "minimumLineSpacing") ~typ:(returning (double))
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning (void))
 let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning (llong))

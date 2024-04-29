@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyValueProxyGetter
-
 let _class_ = get_class "NSKeyValueNotifyingMutableCollectionGetter"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

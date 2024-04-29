@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFilePromiseDragSource"
 
+let copyDropDirectory self = msg_send ~self ~cmd:(selector "copyDropDirectory") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let didEndDrag self = msg_send ~self ~cmd:(selector "didEndDrag") ~typ:(returning (void))
 let draggedImage x ~beganAt self = msg_send ~self ~cmd:(selector "draggedImage:beganAt:") ~typ:(id @-> CGPoint.t @-> returning (void)) x beganAt

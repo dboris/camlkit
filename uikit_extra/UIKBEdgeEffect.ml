@@ -12,6 +12,7 @@ module Class = struct
   let effectWithColor x ~edges ~inset ~weight self = msg_send ~self ~cmd:(selector "effectWithColor:edges:inset:weight:") ~typ:(id @-> ullong @-> double @-> double @-> returning (id)) x edges inset weight
 end
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

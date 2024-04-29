@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMapTable
-
 let _class_ = get_class "NSClassicMapTable"
 
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning (id))

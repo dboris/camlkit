@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSWindowCornerMask"
 
-let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning (CGRect.t))
+let center self = msg_send_stret ~self ~cmd:(selector "center") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let clipsWindowContents self = msg_send ~self ~cmd:(selector "clipsWindowContents") ~typ:(returning (bool))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let definesShadowShape self = msg_send ~self ~cmd:(selector "definesShadowShape") ~typ:(returning (bool))

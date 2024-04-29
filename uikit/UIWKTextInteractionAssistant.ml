@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIWKTextInteractionAssistant"
 
 let addGestureRecognizersToView x self = msg_send ~self ~cmd:(selector "addGestureRecognizersToView:") ~typ:(id @-> returning (void)) x
-let caretBeforeTap self = msg_send ~self ~cmd:(selector "caretBeforeTap") ~typ:(returning (CGRect.t))
+let caretBeforeTap self = msg_send_stret ~self ~cmd:(selector "caretBeforeTap") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let containerAllowsSelection self = msg_send ~self ~cmd:(selector "containerAllowsSelection") ~typ:(returning (bool))
 let containerAllowsSelectionTintOnly self = msg_send ~self ~cmd:(selector "containerAllowsSelectionTintOnly") ~typ:(returning (bool))
 let containerIsAtom self = msg_send ~self ~cmd:(selector "containerIsAtom") ~typ:(returning (bool))

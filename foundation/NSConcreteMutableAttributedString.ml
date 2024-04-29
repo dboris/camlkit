@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableAttributedString
-
 let _class_ = get_class "NSConcreteMutableAttributedString"
 
 module Class = struct

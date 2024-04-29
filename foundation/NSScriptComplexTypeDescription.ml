@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptTypeDescription
-
 let _class_ = get_class "NSScriptComplexTypeDescription"
 
 let alternativeTypeDescriptions self = msg_send ~self ~cmd:(selector "alternativeTypeDescriptions") ~typ:(returning (id))

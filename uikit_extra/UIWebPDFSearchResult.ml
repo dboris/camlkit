@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebPDFSearchResult"
 
-let boundingBox self = msg_send ~self ~cmd:(selector "boundingBox") ~typ:(returning (CGRect.t))
+let boundingBox self = msg_send_stret ~self ~cmd:(selector "boundingBox") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let pageIndex self = msg_send ~self ~cmd:(selector "pageIndex") ~typ:(returning (ullong))
 let rects self = msg_send ~self ~cmd:(selector "rects") ~typ:(returning (id))

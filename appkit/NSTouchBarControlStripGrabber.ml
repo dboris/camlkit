@@ -30,7 +30,7 @@ let gestureRecognizer x ~shouldRecognizeSimultaneouslyWithGestureRecognizer self
 let handlePress x self = msg_send ~self ~cmd:(selector "handlePress:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t))
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let isHighlighted self = msg_send ~self ~cmd:(selector "isHighlighted") ~typ:(returning (bool))

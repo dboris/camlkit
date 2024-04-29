@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSIndexSet
-
 let _class_ = get_class "NSMutableIndexSet"
 
 let addIndex x self = msg_send ~self ~cmd:(selector "addIndex:") ~typ:(ullong @-> returning (void)) x

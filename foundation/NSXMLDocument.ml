@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXMLNode
-
 let _class_ = get_class "NSXMLDocument"
 
 module Class = struct

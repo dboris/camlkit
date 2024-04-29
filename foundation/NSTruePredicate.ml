@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPredicate
-
 let _class_ = get_class "NSTruePredicate"
 
 module Class = struct

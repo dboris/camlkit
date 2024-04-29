@@ -12,6 +12,7 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (i
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning (ullong))
 let pickerDidCancel self = msg_send ~self ~cmd:(selector "pickerDidCancel") ~typ:(returning (void))
+let pickerDidSelectFont x self = msg_send ~self ~cmd:(selector "pickerDidSelectFont:") ~typ:(ptr void @-> returning (void)) x
 let presentFontPickerFromBarButtonItem x ~animated self = msg_send ~self ~cmd:(selector "presentFontPickerFromBarButtonItem:animated:") ~typ:(id @-> bool @-> returning (bool)) x animated
 let presentFontPickerFromRect x ~inView ~animated self = msg_send ~self ~cmd:(selector "presentFontPickerFromRect:inView:animated:") ~typ:(CGRect.t @-> id @-> bool @-> returning (bool)) x inView animated
 let remoteViewController self = msg_send ~self ~cmd:(selector "remoteViewController") ~typ:(returning (id))

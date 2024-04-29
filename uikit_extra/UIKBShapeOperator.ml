@@ -13,8 +13,8 @@ module Class = struct
 end
 
 let geometryByScalingShapeGeometry x ~factor self = msg_send ~self ~cmd:(selector "geometryByScalingShapeGeometry:factor:") ~typ:(id @-> CGSize.t @-> returning (id)) x factor
-let offsetForCenteringShapes x ~insideRect self = msg_send ~self ~cmd:(selector "offsetForCenteringShapes:insideRect:") ~typ:(id @-> CGRect.t @-> returning (CGPoint.t)) x insideRect
-let rectByScalingRect x ~factor self = msg_send ~self ~cmd:(selector "rectByScalingRect:factor:") ~typ:(CGRect.t @-> CGSize.t @-> returning (CGRect.t)) x factor
+let offsetForCenteringShapes x ~insideRect self = msg_send_stret ~self ~cmd:(selector "offsetForCenteringShapes:insideRect:") ~typ:(id @-> CGRect.t @-> returning (CGPoint.t)) ~return_type:CGPoint.t x insideRect
+let rectByScalingRect x ~factor self = msg_send_stret ~self ~cmd:(selector "rectByScalingRect:factor:") ~typ:(CGRect.t @-> CGSize.t @-> returning (CGRect.t)) ~return_type:CGRect.t x factor
 let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning (double))
 let setScale x self = msg_send ~self ~cmd:(selector "setScale:") ~typ:(double @-> returning (void)) x
 let shapeByScalingShape x ~factor self = msg_send ~self ~cmd:(selector "shapeByScalingShape:factor:") ~typ:(id @-> CGSize.t @-> returning (id)) x factor

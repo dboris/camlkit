@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXMLNode
-
 let _class_ = get_class "NSXMLDTDNode"
 
 let _DTDKind self = msg_send ~self ~cmd:(selector "DTDKind") ~typ:(returning (ullong))

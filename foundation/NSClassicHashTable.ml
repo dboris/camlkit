@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSHashTable
-
 let _class_ = get_class "NSClassicHashTable"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x

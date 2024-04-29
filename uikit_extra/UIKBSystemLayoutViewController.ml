@@ -12,7 +12,7 @@ module Class = struct
   let systemLayoutViewControllerWithViewController x self = msg_send ~self ~cmd:(selector "systemLayoutViewControllerWithViewController:") ~typ:(id @-> returning (id)) x
 end
 
-let centeredOffsets self = msg_send ~self ~cmd:(selector "centeredOffsets") ~typ:(returning (CGSize.t))
+let centeredOffsets self = msg_send_stret ~self ~cmd:(selector "centeredOffsets") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let horizontalLayoutType self = msg_send ~self ~cmd:(selector "horizontalLayoutType") ~typ:(returning (ullong))
 let setCenteredOffsets x self = msg_send ~self ~cmd:(selector "setCenteredOffsets:") ~typ:(CGSize.t @-> returning (void)) x

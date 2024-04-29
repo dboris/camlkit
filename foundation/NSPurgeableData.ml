@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableData
-
 let _class_ = get_class "NSPurgeableData"
 
 let beginContentAccess self = msg_send ~self ~cmd:(selector "beginContentAccess") ~typ:(returning (bool))

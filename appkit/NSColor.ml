@@ -27,6 +27,7 @@ module Class = struct
   let colorFromPasteboard x self = msg_send ~self ~cmd:(selector "colorFromPasteboard:") ~typ:(id @-> returning (id)) x
   let colorNamed x self = msg_send ~self ~cmd:(selector "colorNamed:") ~typ:(id @-> returning (id)) x
   let colorNamed' x ~bundle self = msg_send ~self ~cmd:(selector "colorNamed:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
+  let colorWithCGColor x self = msg_send ~self ~cmd:(selector "colorWithCGColor:") ~typ:(ptr void @-> returning (id)) x
   let colorWithCIColor x self = msg_send ~self ~cmd:(selector "colorWithCIColor:") ~typ:(id @-> returning (id)) x
   let colorWithCalibratedHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector "colorWithCalibratedHue:saturation:brightness:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x saturation brightness alpha
   let colorWithCalibratedRed x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "colorWithCalibratedRed:green:blue:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x green blue alpha
@@ -169,6 +170,7 @@ module Class = struct
   let yellowColor self = msg_send ~self ~cmd:(selector "yellowColor") ~typ:(returning (id))
 end
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let accessibilityName self = msg_send ~self ~cmd:(selector "accessibilityName") ~typ:(returning (id))
 let alphaComponent self = msg_send ~self ~cmd:(selector "alphaComponent") ~typ:(returning (double))
 let blackComponent self = msg_send ~self ~cmd:(selector "blackComponent") ~typ:(returning (double))

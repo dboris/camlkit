@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDate
-
 let _class_ = get_class "NSCalendarDate"
 
 module Class = struct

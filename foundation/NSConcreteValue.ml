@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSValue
-
 let _class_ = get_class "NSConcreteValue"
 
 module Class = struct

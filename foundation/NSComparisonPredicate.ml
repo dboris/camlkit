@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPredicate
-
 let _class_ = get_class "NSComparisonPredicate"
 
 module Class = struct
@@ -35,7 +33,6 @@ let initWithPredicateOperator2 x ~leftKeyPath ~rightValue self = msg_send ~self 
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let keyPathExpressionForString x self = msg_send ~self ~cmd:(selector "keyPathExpressionForString:") ~typ:(id @-> returning (id)) x
 let leftExpression self = msg_send ~self ~cmd:(selector "leftExpression") ~typ:(returning (id))
-let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning (id)) x
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning (ullong))
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning (id))
 let predicateOperator self = msg_send ~self ~cmd:(selector "predicateOperator") ~typ:(returning (id))

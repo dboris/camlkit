@@ -24,6 +24,6 @@ let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning (ullong))
 let owner self = msg_send ~self ~cmd:(selector "owner") ~typ:(returning (id))
 let pressureConfigurations self = msg_send ~self ~cmd:(selector "pressureConfigurations") ~typ:(returning (id))
-let rect self = msg_send ~self ~cmd:(selector "rect") ~typ:(returning (CGRect.t))
+let rect self = msg_send_stret ~self ~cmd:(selector "rect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let setGestureBehaviors x self = msg_send ~self ~cmd:(selector "setGestureBehaviors:") ~typ:(id @-> returning (void)) x
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning (id))

@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDeviceRGBColor"
 
+let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
 let alphaComponent self = msg_send ~self ~cmd:(selector "alphaComponent") ~typ:(returning (double))
 let blueComponent self = msg_send ~self ~cmd:(selector "blueComponent") ~typ:(returning (double))
 let brightnessComponent self = msg_send ~self ~cmd:(selector "brightnessComponent") ~typ:(returning (double))
@@ -26,6 +27,7 @@ let getWhite x ~alpha self = msg_send ~self ~cmd:(selector "getWhite:alpha:") ~t
 let greenComponent self = msg_send ~self ~cmd:(selector "greenComponent") ~typ:(returning (double))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let hueComponent self = msg_send ~self ~cmd:(selector "hueComponent") ~typ:(returning (double))
+let initWithCGColor x self = msg_send ~self ~cmd:(selector "initWithCGColor:") ~typ:(ptr void @-> returning (id)) x
 let initWithHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector "initWithHue:saturation:brightness:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x saturation brightness alpha
 let initWithRed x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "initWithRed:green:blue:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x green blue alpha
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

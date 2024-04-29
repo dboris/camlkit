@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-
-
 let _class_ = get_class "NSReduceObservationTransformer"
 
 module Class = struct

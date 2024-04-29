@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDictionary
-
 let _class_ = get_class "NSMutableDictionary"
 
 module Class = struct

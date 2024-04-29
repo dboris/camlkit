@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIInputSwitcherGestureState"
 
 let didMoveBeyondThreshold self = msg_send ~self ~cmd:(selector "didMoveBeyondThreshold") ~typ:(returning (bool))
-let firstReferencePoint self = msg_send ~self ~cmd:(selector "firstReferencePoint") ~typ:(returning (CGPoint.t))
+let firstReferencePoint self = msg_send_stret ~self ~cmd:(selector "firstReferencePoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let gestureConflictsWithTypingWindow self = msg_send ~self ~cmd:(selector "gestureConflictsWithTypingWindow") ~typ:(returning (bool))
 let hideSwitcher self = msg_send ~self ~cmd:(selector "hideSwitcher") ~typ:(returning (bool))
 let lastSeenKeyboardTouchDown self = msg_send ~self ~cmd:(selector "lastSeenKeyboardTouchDown") ~typ:(returning (double))

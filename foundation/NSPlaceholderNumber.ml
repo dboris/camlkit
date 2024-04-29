@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPlaceholderValue
-
 let _class_ = get_class "NSPlaceholderNumber"
 
 module Class = struct

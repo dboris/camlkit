@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSArray
-
 let _class_ = get_class "NSConstantArray"
 
 module Class = struct

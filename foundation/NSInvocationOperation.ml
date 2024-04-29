@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSOperation
-
 let _class_ = get_class "NSInvocationOperation"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

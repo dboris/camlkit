@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSUserScriptTask
-
 let _class_ = get_class "NSUserAppleScriptTask"
 
 module Class = struct

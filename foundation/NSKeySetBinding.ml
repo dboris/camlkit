@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyBinding
-
 let _class_ = get_class "NSKeySetBinding"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

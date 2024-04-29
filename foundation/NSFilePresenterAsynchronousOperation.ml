@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSOperation
-
 let _class_ = get_class "NSFilePresenterAsynchronousOperation"
 
 module Class = struct

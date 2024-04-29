@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSNotificationCenter
-
 let _class_ = get_class "NSDistributedNotificationCenter"
 
 module Class = struct

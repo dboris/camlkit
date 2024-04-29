@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSPipe
-
 let _class_ = get_class "NSConcretePipe"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

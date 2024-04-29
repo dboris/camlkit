@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSFileReactorProxy
-
 let _class_ = get_class "NSFilePresenterProxy"
 
 module Class = struct

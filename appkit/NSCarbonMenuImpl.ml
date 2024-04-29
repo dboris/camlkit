@@ -21,6 +21,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let highlightItemAtIndex x self = msg_send ~self ~cmd:(selector "highlightItemAtIndex:") ~typ:(llong @-> returning (void)) x
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning (id))
 let menuAppearance self = msg_send ~self ~cmd:(selector "menuAppearance") ~typ:(returning (id))
+let nsElementFromAXUIElement x self = msg_send ~self ~cmd:(selector "nsElementFromAXUIElement:") ~typ:(ptr void @-> returning (id)) x
 let performActionWithHighlightingForItemAtIndex x self = msg_send ~self ~cmd:(selector "performActionWithHighlightingForItemAtIndex:") ~typ:(llong @-> returning (void)) x
 let performMenuAction x ~withTarget self = msg_send ~self ~cmd:(selector "performMenuAction:withTarget:") ~typ:(_SEL @-> id @-> returning (void)) x withTarget
 let popUpMenu x ~atLocation ~width ~forView ~withSelectedItem ~withFont self = msg_send ~self ~cmd:(selector "popUpMenu:atLocation:width:forView:withSelectedItem:withFont:") ~typ:(id @-> CGPoint.t @-> double @-> id @-> llong @-> id @-> returning (void)) x atLocation width forView withSelectedItem withFont

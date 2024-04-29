@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSNumber
-
 let _class_ = get_class "NSConstantFloatNumber"
 
 module Class = struct

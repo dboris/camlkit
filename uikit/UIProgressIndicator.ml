@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIProgressIndicator"
 
 module Class = struct
-  let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t))
+  let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 
 let progressIndicatorStyle self = msg_send ~self ~cmd:(selector "progressIndicatorStyle") ~typ:(returning (int))

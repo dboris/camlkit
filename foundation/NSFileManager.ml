@@ -7,7 +7,6 @@ let _class_ = get_class "NSFileManager"
 
 module Class = struct
   let defaultManager self = msg_send ~self ~cmd:(selector "defaultManager") ~typ:(returning (id))
-  let fileManagerWithAuthorization x self = msg_send ~self ~cmd:(selector "fileManagerWithAuthorization:") ~typ:(id @-> returning (id)) x
 end
 
 let _URLForDirectory x ~inDomain ~appropriateForURL ~create ~error self = msg_send ~self ~cmd:(selector "URLForDirectory:inDomain:appropriateForURL:create:error:") ~typ:(ullong @-> ullong @-> id @-> bool @-> ptr (id) @-> returning (id)) x inDomain appropriateForURL create error

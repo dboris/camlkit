@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSValue
-
 let _class_ = get_class "NSWeakObjectValue"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

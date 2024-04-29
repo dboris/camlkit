@@ -16,7 +16,7 @@ end
 
 let browserProxy self = msg_send ~self ~cmd:(selector "browserProxy") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let frame self = msg_send ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t))
+let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let frameAutosaveName self = msg_send ~self ~cmd:(selector "frameAutosaveName") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning (bool))

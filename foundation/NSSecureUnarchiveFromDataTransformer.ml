@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSValueTransformer
-
 let _class_ = get_class "NSSecureUnarchiveFromDataTransformer"
 
 module Class = struct

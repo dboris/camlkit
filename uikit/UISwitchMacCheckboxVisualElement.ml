@@ -12,7 +12,7 @@ module Class = struct
   let isFixedSize self = msg_send ~self ~cmd:(selector "isFixedSize") ~typ:(returning (bool))
 end
 
-let accessibilityActivationPoint self = msg_send ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning (CGPoint.t))
+let accessibilityActivationPoint self = msg_send_stret ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let didSwitch x self = msg_send ~self ~cmd:(selector "didSwitch:") ~typ:(id @-> returning (void)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))

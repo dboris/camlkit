@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLegacyScrollerImp"
 
+let copyCoreUIOptions self = msg_send ~self ~cmd:(selector "copyCoreUIOptions") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let hitTestForLocalPoint x self = msg_send ~self ~cmd:(selector "hitTestForLocalPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

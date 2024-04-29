@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXMLNode
-
 let _class_ = get_class "NSXMLNamedNode"
 
 let _URI self = msg_send ~self ~cmd:(selector "URI") ~typ:(returning (id))

@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSProxy
-
 let _class_ = get_class "NSUndoManagerProxy"
 
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning (void)) x

@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIAccessibilityHUDView"
 
 module Class = struct
-  let preferredHUDSize self = msg_send ~self ~cmd:(selector "preferredHUDSize") ~typ:(returning (CGSize.t))
+  let preferredHUDSize self = msg_send_stret ~self ~cmd:(selector "preferredHUDSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 
 let containerViewForLayout self = msg_send ~self ~cmd:(selector "containerViewForLayout") ~typ:(returning (id))
@@ -23,5 +23,5 @@ let layoutManager self = msg_send ~self ~cmd:(selector "layoutManager") ~typ:(re
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
 let setItem x self = msg_send ~self ~cmd:(selector "setItem:") ~typ:(id @-> returning (void)) x
 let showAnimated x ~completion self = msg_send ~self ~cmd:(selector "showAnimated:completion:") ~typ:(bool @-> ptr void @-> returning (void)) x completion
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let titleLabel self = msg_send ~self ~cmd:(selector "titleLabel") ~typ:(returning (id))

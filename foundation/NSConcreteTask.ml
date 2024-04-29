@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSTask
-
 let _class_ = get_class "NSConcreteTask"
 
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning (id))

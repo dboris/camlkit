@@ -10,7 +10,7 @@ let _class_ = get_class "UIInputSwitcherSelectionExtraView"
 
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let keyRect self = msg_send ~self ~cmd:(selector "keyRect") ~typ:(returning (CGRect.t))
+let keyRect self = msg_send_stret ~self ~cmd:(selector "keyRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning (id))
 let pointerOffset self = msg_send ~self ~cmd:(selector "pointerOffset") ~typ:(returning (double))
 let roundedCorners self = msg_send ~self ~cmd:(selector "roundedCorners") ~typ:(returning (ullong))

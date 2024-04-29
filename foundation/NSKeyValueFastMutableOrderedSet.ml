@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableOrderedSet
-
 let _class_ = get_class "NSKeyValueFastMutableOrderedSet"
 
 let insertObject x ~atIndex self = msg_send ~self ~cmd:(selector "insertObject:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex

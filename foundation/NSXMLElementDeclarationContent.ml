@@ -3,11 +3,10 @@
 open Runtime
 open Objc
 
-include NSXMLNode
-
 let _class_ = get_class "NSXMLElementDeclarationContent"
 
 module Class = struct
+  let createElementContent x self = msg_send ~self ~cmd:(selector "createElementContent:") ~typ:(ptr void @-> returning (id)) x
   let createElementContentFromString x self = msg_send ~self ~cmd:(selector "createElementContentFromString:") ~typ:(id @-> returning (id)) x
 end
 
@@ -18,6 +17,7 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithContentKind x ~occurrence self = msg_send ~self ~cmd:(selector "initWithContentKind:occurrence:") ~typ:(ullong @-> ullong @-> returning (id)) x occurrence
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let leftChild self = msg_send ~self ~cmd:(selector "leftChild") ~typ:(returning (id))
+let libxml2Content self = msg_send ~self ~cmd:(selector "libxml2Content") ~typ:(returning (ptr void))
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let occurrence self = msg_send ~self ~cmd:(selector "occurrence") ~typ:(returning (ullong))
 let rightChild self = msg_send ~self ~cmd:(selector "rightChild") ~typ:(returning (id))

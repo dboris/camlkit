@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSXMLDTDNode
-
 let _class_ = get_class "NSXMLAttributeDeclaration"
 
 let addEnumeration x self = msg_send ~self ~cmd:(selector "addEnumeration:") ~typ:(id @-> returning (void)) x

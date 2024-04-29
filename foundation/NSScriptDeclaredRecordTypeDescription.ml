@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptRecordTypeDescription
-
 let _class_ = get_class "NSScriptDeclaredRecordTypeDescription"
 
 let appendObjectClassDeclarationToAETEData x ~includingParts self = msg_send ~self ~cmd:(selector "appendObjectClassDeclarationToAETEData:includingParts:") ~typ:(id @-> int @-> returning (void)) x includingParts

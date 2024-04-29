@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSExpression
-
 let _class_ = get_class "NSVariableExpression"
 
 module Class = struct

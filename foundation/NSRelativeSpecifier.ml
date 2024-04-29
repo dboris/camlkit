@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptObjectSpecifier
-
 let _class_ = get_class "NSRelativeSpecifier"
 
 let baseSpecifier self = msg_send ~self ~cmd:(selector "baseSpecifier") ~typ:(returning (id))

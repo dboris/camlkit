@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptObjectSpecifier
-
 let _class_ = get_class "NSIndexSpecifier"
 
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x

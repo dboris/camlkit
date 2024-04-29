@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSStringPredicateOperator
-
 let _class_ = get_class "NSTokenMatchingPredicateOperator"
 
 let performPrimitiveOperationUsingObject x ~andObject self = msg_send ~self ~cmd:(selector "performPrimitiveOperationUsingObject:andObject:") ~typ:(id @-> id @-> returning (bool)) x andObject

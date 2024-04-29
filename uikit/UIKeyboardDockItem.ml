@@ -27,5 +27,5 @@ let setImageName x self = msg_send ~self ~cmd:(selector "setImageName:") ~typ:(i
 let setLongPressGestureRecognizer x self = msg_send ~self ~cmd:(selector "setLongPressGestureRecognizer:") ~typ:(id @-> returning (void)) x
 let setPanGestureRecognizer x self = msg_send ~self ~cmd:(selector "setPanGestureRecognizer:") ~typ:(id @-> returning (void)) x
 let setTouchDownPoint x self = msg_send ~self ~cmd:(selector "setTouchDownPoint:") ~typ:(CGPoint.t @-> returning (void)) x
-let touchDownPoint self = msg_send ~self ~cmd:(selector "touchDownPoint") ~typ:(returning (CGPoint.t))
+let touchDownPoint self = msg_send_stret ~self ~cmd:(selector "touchDownPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

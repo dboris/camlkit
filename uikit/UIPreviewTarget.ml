@@ -12,7 +12,7 @@ module Class = struct
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
 end
 
-let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning (CGPoint.t))
+let center self = msg_send_stret ~self ~cmd:(selector "center") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let container self = msg_send ~self ~cmd:(selector "container") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

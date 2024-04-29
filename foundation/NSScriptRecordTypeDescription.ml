@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSScriptTypeDescription
-
 let _class_ = get_class "NSScriptRecordTypeDescription"
 
 let coercedValue x self = msg_send ~self ~cmd:(selector "coercedValue:") ~typ:(id @-> returning (id)) x

@@ -16,6 +16,7 @@ let discoverabilityHUDColumnView x ~descriptionStringForKeyCommand self = msg_se
 let discoverabilityHUDColumnView1 x ~inputStringForKeyCommand self = msg_send ~self ~cmd:(selector "discoverabilityHUDColumnView:inputStringForKeyCommand:") ~typ:(id @-> id @-> returning (id)) x inputStringForKeyCommand
 let discoverabilityHUDColumnView2 x ~modifiersStringForKeyCommand self = msg_send ~self ~cmd:(selector "discoverabilityHUDColumnView:modifiersStringForKeyCommand:") ~typ:(id @-> id @-> returning (id)) x modifiersStringForKeyCommand
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning (id)) x withEvent
+let initWithKeyCommands x ~keyboard self = msg_send ~self ~cmd:(selector "initWithKeyCommands:keyboard:") ~typ:(id @-> ptr void @-> returning (id)) x keyboard
 let recalculatePages self = msg_send ~self ~cmd:(selector "recalculatePages") ~typ:(returning (void))
 let scrollViewDidEndDecelerating x self = msg_send ~self ~cmd:(selector "scrollViewDidEndDecelerating:") ~typ:(id @-> returning (void)) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x

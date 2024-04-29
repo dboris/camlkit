@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSInvocation
-
 let _class_ = get_class "NSBlockInvocation"
 
 let invoke self = msg_send ~self ~cmd:(selector "invoke") ~typ:(returning (void))

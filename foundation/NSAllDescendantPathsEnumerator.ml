@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSDirectoryEnumerator
-
 let _class_ = get_class "NSAllDescendantPathsEnumerator"
 
 module Class = struct

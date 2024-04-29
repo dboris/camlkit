@@ -3,14 +3,10 @@
 open Runtime
 open Objc
 
-include NSSet
-
 let _class_ = get_class "NSMutableSet"
 
 module Class = struct
   let setWithCapacity x self = msg_send ~self ~cmd:(selector "setWithCapacity:") ~typ:(ullong @-> returning (id)) x
-  let setWithCollectionViewIndexPath x self = msg_send ~self ~cmd:(selector "setWithCollectionViewIndexPath:") ~typ:(id @-> returning (id)) x
-  let setWithCollectionViewIndexPaths x self = msg_send ~self ~cmd:(selector "setWithCollectionViewIndexPaths:") ~typ:(id @-> returning (id)) x
 end
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x

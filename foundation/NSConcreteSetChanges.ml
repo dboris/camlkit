@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSSetChanges
-
 let _class_ = get_class "NSConcreteSetChanges"
 
 let addChange x self = msg_send ~self ~cmd:(selector "addChange:") ~typ:(id @-> returning (void)) x
@@ -12,6 +10,7 @@ let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromAr
 let changeCount self = msg_send ~self ~cmd:(selector "changeCount") ~typ:(returning (ullong))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let enumerateChanges x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateChanges:usingBlock:") ~typ:(ullong @-> ptr void @-> returning (void)) x usingBlock

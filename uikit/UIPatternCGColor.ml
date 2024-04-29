@@ -14,6 +14,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let getHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector "getHue:saturation:brightness:alpha:") ~typ:(ptr (double) @-> ptr (double) @-> ptr (double) @-> ptr (double) @-> returning (bool)) x saturation brightness alpha
 let getRed x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "getRed:green:blue:alpha:") ~typ:(ptr (double) @-> ptr (double) @-> ptr (double) @-> ptr (double) @-> returning (bool)) x green blue alpha
 let getWhite x ~alpha self = msg_send ~self ~cmd:(selector "getWhite:alpha:") ~typ:(ptr (double) @-> ptr (double) @-> returning (bool)) x alpha
+let initWithCGColor x self = msg_send ~self ~cmd:(selector "initWithCGColor:") ~typ:(ptr void @-> returning (id)) x
 let isPatternColor self = msg_send ~self ~cmd:(selector "isPatternColor") ~typ:(returning (bool))
 let set self = msg_send ~self ~cmd:(selector "set") ~typ:(returning (void))
 let setFill self = msg_send ~self ~cmd:(selector "setFill") ~typ:(returning (void))

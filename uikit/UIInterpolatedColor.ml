@@ -10,6 +10,7 @@ let _class_ = get_class "UIInterpolatedColor"
 
 module Class = struct
   let epsilon self = msg_send ~self ~cmd:(selector "epsilon") ~typ:(returning (id))
+  let valueWithCGColor x self = msg_send ~self ~cmd:(selector "valueWithCGColor:") ~typ:(ptr void @-> returning (id)) x
   let valueWithUIColor x self = msg_send ~self ~cmd:(selector "valueWithUIColor:") ~typ:(id @-> returning (id)) x
   let zero self = msg_send ~self ~cmd:(selector "zero") ~typ:(returning (id))
 end
@@ -17,6 +18,7 @@ end
 let addVector x self = msg_send ~self ~cmd:(selector "addVector:") ~typ:(id @-> returning (id)) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
+let getCGColor self = msg_send ~self ~cmd:(selector "getCGColor") ~typ:(returning (ptr void))
 let getNSValue self = msg_send ~self ~cmd:(selector "getNSValue") ~typ:(returning (id))
 let getUIColor self = msg_send ~self ~cmd:(selector "getUIColor") ~typ:(returning (id))
 let getValue self = msg_send ~self ~cmd:(selector "getValue") ~typ:(returning (id))

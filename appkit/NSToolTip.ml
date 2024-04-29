@@ -24,5 +24,5 @@ let setString x self = msg_send ~self ~cmd:(selector "setString:") ~typ:(id @-> 
 let setTrackingNum x self = msg_send ~self ~cmd:(selector "setTrackingNum:") ~typ:(llong @-> returning (void)) x
 let string_ self = msg_send ~self ~cmd:(selector "string") ~typ:(returning (id))
 let trackingNum self = msg_send ~self ~cmd:(selector "trackingNum") ~typ:(returning (llong))
-let trackingRect self = msg_send ~self ~cmd:(selector "trackingRect") ~typ:(returning (CGRect.t))
+let trackingRect self = msg_send_stret ~self ~cmd:(selector "trackingRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

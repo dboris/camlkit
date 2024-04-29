@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIWKDocumentRequest"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let documentRect self = msg_send ~self ~cmd:(selector "documentRect") ~typ:(returning (CGRect.t))
+let documentRect self = msg_send_stret ~self ~cmd:(selector "documentRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let flags self = msg_send ~self ~cmd:(selector "flags") ~typ:(returning (llong))
 let granularityCount self = msg_send ~self ~cmd:(selector "granularityCount") ~typ:(returning (llong))
 let inputElementIdentifier self = msg_send ~self ~cmd:(selector "inputElementIdentifier") ~typ:(returning (id))

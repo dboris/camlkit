@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIInputSwitcherSegmentedTableCell"
 
 module Class = struct
-  let preferredSizeWithSegmentCount x self = msg_send ~self ~cmd:(selector "preferredSizeWithSegmentCount:") ~typ:(ullong @-> returning (CGSize.t)) x
+  let preferredSizeWithSegmentCount x self = msg_send_stret ~self ~cmd:(selector "preferredSizeWithSegmentCount:") ~typ:(ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x
 end
 
 let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) x reuseIdentifier

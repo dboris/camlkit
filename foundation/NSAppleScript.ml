@@ -13,5 +13,4 @@ let executeAppleEvent x ~error self = msg_send ~self ~cmd:(selector "executeAppl
 let initWithContentsOfURL x ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let initWithSource x self = msg_send ~self ~cmd:(selector "initWithSource:") ~typ:(id @-> returning (id)) x
 let isCompiled self = msg_send ~self ~cmd:(selector "isCompiled") ~typ:(returning (bool))
-let richTextSource self = msg_send ~self ~cmd:(selector "richTextSource") ~typ:(returning (id))
 let source self = msg_send ~self ~cmd:(selector "source") ~typ:(returning (id))

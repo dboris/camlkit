@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSMutableSet
-
 let _class_ = get_class "NSKeyValueIvarMutableSet"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x

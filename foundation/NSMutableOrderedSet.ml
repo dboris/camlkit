@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSOrderedSet
-
 let _class_ = get_class "NSMutableOrderedSet"
 
 module Class = struct

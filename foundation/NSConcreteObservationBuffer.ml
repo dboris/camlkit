@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSObservationBuffer
-
 let _class_ = get_class "NSConcreteObservationBuffer"
 
 let automaticallyEmitsObjects self = msg_send ~self ~cmd:(selector "automaticallyEmitsObjects") ~typ:(returning (bool))

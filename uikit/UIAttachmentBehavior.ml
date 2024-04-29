@@ -13,7 +13,7 @@ module Class = struct
   let pinAttachmentWithItem x ~attachedToItem ~attachmentAnchor self = msg_send ~self ~cmd:(selector "pinAttachmentWithItem:attachedToItem:attachmentAnchor:") ~typ:(id @-> id @-> CGPoint.t @-> returning (id)) x attachedToItem attachmentAnchor
 end
 
-let anchorPoint self = msg_send ~self ~cmd:(selector "anchorPoint") ~typ:(returning (CGPoint.t))
+let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let attachedBehaviorType self = msg_send ~self ~cmd:(selector "attachedBehaviorType") ~typ:(returning (llong))
 let damping self = msg_send ~self ~cmd:(selector "damping") ~typ:(returning (double))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

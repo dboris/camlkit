@@ -8,7 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSOverlayScrollerImp"
 
-let expandedRectForPart x self = msg_send ~self ~cmd:(selector "expandedRectForPart:") ~typ:(ullong @-> returning (CGRect.t)) x
+let copyCoreUIKnobOptions self = msg_send ~self ~cmd:(selector "copyCoreUIKnobOptions") ~typ:(returning (ptr void))
+let copyCoreUIOptions self = msg_send ~self ~cmd:(selector "copyCoreUIOptions") ~typ:(returning (ptr void))
+let copyCoreUITrackOptions self = msg_send ~self ~cmd:(selector "copyCoreUITrackOptions") ~typ:(returning (ptr void))
+let expandedRectForPart x self = msg_send_stret ~self ~cmd:(selector "expandedRectForPart:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let expansionTransitionProgress self = msg_send ~self ~cmd:(selector "expansionTransitionProgress") ~typ:(returning (double))
 let hitTestForLocalPoint x self = msg_send ~self ~cmd:(selector "hitTestForLocalPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))

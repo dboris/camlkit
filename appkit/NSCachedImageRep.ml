@@ -27,6 +27,6 @@ let initWithSize x ~depth ~separate ~alpha self = msg_send ~self ~cmd:(selector 
 let initWithWindow x ~rect self = msg_send ~self ~cmd:(selector "initWithWindow:rect:") ~typ:(id @-> CGRect.t @-> returning (id)) x rect
 let pixelsHigh self = msg_send ~self ~cmd:(selector "pixelsHigh") ~typ:(returning (llong))
 let pixelsWide self = msg_send ~self ~cmd:(selector "pixelsWide") ~typ:(returning (llong))
-let rect self = msg_send ~self ~cmd:(selector "rect") ~typ:(returning (CGRect.t))
+let rect self = msg_send_stret ~self ~cmd:(selector "rect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let setAlpha x self = msg_send ~self ~cmd:(selector "setAlpha:") ~typ:(bool @-> returning (void)) x
 let window self = msg_send ~self ~cmd:(selector "window") ~typ:(returning (id))

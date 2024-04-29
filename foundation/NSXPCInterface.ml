@@ -10,6 +10,7 @@ module Class = struct
   let signatureForBlock x self = msg_send ~self ~cmd:(selector "signatureForBlock:") ~typ:(id @-> returning (id)) x
 end
 
+let _XPCTypeForSelector x ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "XPCTypeForSelector:argumentIndex:ofReply:") ~typ:(_SEL @-> ullong @-> bool @-> returning (ptr void)) x argumentIndex ofReply
 let classForSelector x ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "classForSelector:argumentIndex:ofReply:") ~typ:(_SEL @-> ullong @-> bool @-> returning (_Class)) x argumentIndex ofReply
 let classesForSelector x ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "classesForSelector:argumentIndex:ofReply:") ~typ:(_SEL @-> ullong @-> bool @-> returning (id)) x argumentIndex ofReply
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -24,5 +25,6 @@ let setInterface x ~forSelector ~argumentIndex ~ofReply self = msg_send ~self ~c
 let setProtocol x self = msg_send ~self ~cmd:(selector "setProtocol:") ~typ:(id @-> returning (void)) x
 let setReplyBlockSignature x ~forSelector self = msg_send ~self ~cmd:(selector "setReplyBlockSignature:forSelector:") ~typ:(id @-> _SEL @-> returning (void)) x forSelector
 let setVersion x ~forSelector self = msg_send ~self ~cmd:(selector "setVersion:forSelector:") ~typ:(ullong @-> _SEL @-> returning (void)) x forSelector
+let setXPCType x ~forSelector ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "setXPCType:forSelector:argumentIndex:ofReply:") ~typ:(ptr void @-> _SEL @-> ullong @-> bool @-> returning (void)) x forSelector argumentIndex ofReply
 let version self = msg_send ~self ~cmd:(selector "version") ~typ:(returning (ullong))
 let versionForSelector x self = msg_send ~self ~cmd:(selector "versionForSelector:") ~typ:(_SEL @-> returning (ullong)) x

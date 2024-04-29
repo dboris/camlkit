@@ -30,6 +30,6 @@ let scaleUpAnimationResponse self = msg_send ~self ~cmd:(selector "scaleUpAnimat
 let scaleUpPoints self = msg_send ~self ~cmd:(selector "scaleUpPoints") ~typ:(returning (double))
 let setPreview x self = msg_send ~self ~cmd:(selector "setPreview:") ~typ:(id @-> returning (void)) x
 let settings self = msg_send ~self ~cmd:(selector "settings") ~typ:(returning (id))
-let slipFactor self = msg_send ~self ~cmd:(selector "slipFactor") ~typ:(returning (CGPoint.t))
+let slipFactor self = msg_send_stret ~self ~cmd:(selector "slipFactor") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let useSoftShadow self = msg_send ~self ~cmd:(selector "useSoftShadow") ~typ:(returning (bool))
 let usesPointerArbiter self = msg_send ~self ~cmd:(selector "usesPointerArbiter") ~typ:(returning (bool))

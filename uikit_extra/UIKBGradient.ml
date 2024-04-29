@@ -16,6 +16,7 @@ module Class = struct
   let gradientWithStartColor x ~endColor self = msg_send ~self ~cmd:(selector "gradientWithStartColor:endColor:") ~typ:(id @-> id @-> returning (id)) x endColor
 end
 
+let _CGGradient self = msg_send ~self ~cmd:(selector "CGGradient") ~typ:(returning (ptr void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

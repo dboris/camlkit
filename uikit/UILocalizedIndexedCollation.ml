@@ -20,4 +20,5 @@ let sectionForSectionIndexTitleAtIndex x self = msg_send ~self ~cmd:(selector "s
 let sectionIndexTitles self = msg_send ~self ~cmd:(selector "sectionIndexTitles") ~typ:(returning (id))
 let sectionTitles self = msg_send ~self ~cmd:(selector "sectionTitles") ~typ:(returning (id))
 let sortedArrayFromArray x ~collationStringSelector self = msg_send ~self ~cmd:(selector "sortedArrayFromArray:collationStringSelector:") ~typ:(id @-> _SEL @-> returning (id)) x collationStringSelector
+let tokenizer self = msg_send ~self ~cmd:(selector "tokenizer") ~typ:(returning (ptr void))
 let transformedCollationStringForString x self = msg_send ~self ~cmd:(selector "transformedCollationStringForString:") ~typ:(id @-> returning (id)) x

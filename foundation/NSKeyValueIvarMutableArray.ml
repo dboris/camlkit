@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-include NSKeyValueMutableArray
-
 let _class_ = get_class "NSKeyValueIvarMutableArray"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x

@@ -15,5 +15,6 @@ module Class = struct
 end
 
 let initWithRequest x ~cachedResponse ~client self = msg_send ~self ~cmd:(selector "initWithRequest:cachedResponse:client:") ~typ:(id @-> id @-> id @-> returning (id)) x cachedResponse client
+let initializationRunLoop self = msg_send ~self ~cmd:(selector "initializationRunLoop") ~typ:(returning (ptr void))
 let startLoading self = msg_send ~self ~cmd:(selector "startLoading") ~typ:(returning (void))
 let stopLoading self = msg_send ~self ~cmd:(selector "stopLoading") ~typ:(returning (void))
