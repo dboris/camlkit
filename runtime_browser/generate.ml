@@ -48,10 +48,20 @@ let arg_labels args =
   |> String.concat " "
 ;;
 
+type msg_type =
+| Stret of string * string
+| Normal of string
+
+type meth =
+  { name : string
+  ; args : string list
+  ; sel : string
+  ; typ : msg_type
+  }
+
 let method_type m =
-  let num_args = Unsigned.UInt.to_int (Method.get_number_of_arguments m)
-  and ret = Method.get_return_type m
-  in
+  let num_args =
+    Unsigned.UInt.to_int (Method.get_number_of_arguments m) in
   let arg_types =
     (* Skip the implicit self and _cmd *)
     List.init (num_args - 2) (fun j ->
@@ -60,47 +70,82 @@ let method_type m =
         Method.get_argument_type m (Unsigned.UInt.of_int i)
         |> Objc_t.Encode.enc_to_ctype_string
       with
-      | (Objc_t.Encode.Encode_struct arg) as e->
-        Printf.eprintf "Failed: %s\tStruct: %s\tArgs: %s\n"
-          (Sel.get_name (Method.get_name m))
-          (Method.get_argument_type m (Unsigned.UInt.of_int i))
-          arg;
-        raise e
+      | (Objc_t.Encode.Encode_struct arg) as e ->
+        begin match arg with
+        | "NSRange.t" | "CGRect.t" | "CGPoint.t" | "CGSize.t" -> arg
+        | _ ->
+          Printf.eprintf "Failed: %s\tStruct: %s\tArg: %s\n"
+            (Sel.get_name (Method.get_name m))
+            (Method.get_argument_type m (Unsigned.UInt.of_int i))
+            arg;
+          raise e
+        end
       | Failure _ as e ->
         Printf.eprintf "Failed: %s\tArgs: %s\n"
           (Sel.get_name (Method.get_name m))
           (Method.get_argument_type m (Unsigned.UInt.of_int i));
         raise e)
   in
-  String.concat " @-> " arg_types ^
-  (if num_args > 2 then " @-> " else "") ^
-  "returning (" ^ Objc_t.Encode.enc_to_ctype_string ret ^ ")"
+  let ret = Method.get_return_type m in
+  try
+    Normal (String.concat " @-> " arg_types ^
+      (if num_args > 2 then " @-> " else "") ^
+      "returning (" ^ Objc_t.Encode.enc_to_ctype_string ret ^ ")")
+  with (Objc_t.Encode.Encode_struct ret_ty) as e ->
+    begin match ret_ty with
+    | "NSRange.t" | "CGRect.t" | "CGPoint.t" | "CGSize.t" ->
+      Stret
+      ( String.concat " @-> " arg_types ^
+        (if num_args > 2 then " @-> " else "") ^
+        "returning (" ^ ret_ty ^ ")"
+      , ret_ty
+      )
+    | _ ->
+      Printf.eprintf "Failed: %s\treturns Struct: %s\n"
+        (Sel.get_name (Method.get_name m))
+        ret_ty;
+      raise e
+    end
 ;;
-
-type meth =
-  { name : string
-  ; args : string list
-  ; sel : string
-  ; typ : string
-  }
 
 let string_of_method_binding {name; args; sel; typ} =
   match args with
   | [] ->
     (* no args *)
-    Printf.sprintf
-      "let %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s)"
-      name sel typ
+    begin match typ with
+    | Normal typ ->
+      Printf.sprintf
+        "let %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s)"
+        name sel typ
+    | Stret (typ, ret_ty) ->
+      Printf.sprintf
+        "let %s self = msg_send_stret ~self ~cmd:(selector \"%s\") ~typ:(%s) ~return_type:%s"
+        name sel typ ret_ty
+    end
   | _ :: [] ->
     (* single arg *)
-    Printf.sprintf
-      "let %s x self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) x"
-      name sel typ
+    begin match typ with
+    | Normal typ ->
+      Printf.sprintf
+        "let %s x self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) x"
+        name sel typ
+    | Stret (typ, ret_ty) ->
+      Printf.sprintf
+        "let %s x self = msg_send_stret ~self ~cmd:(selector \"%s\") ~typ:(%s) ~return_type:%s x"
+        name sel typ ret_ty
+    end
   | _ :: rest as args ->
     (* multiple args *)
-    Printf.sprintf
-      "let %s x %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
-      name (arg_labels rest) sel typ (String.concat " " args)
+    begin match typ with
+    | Normal typ ->
+      Printf.sprintf
+        "let %s x %s self = msg_send ~self ~cmd:(selector \"%s\") ~typ:(%s) %s"
+        name (arg_labels rest) sel typ (String.concat " " args)
+    | Stret (typ, ret_ty) ->
+      Printf.sprintf
+        "let %s x %s self = msg_send_stret ~self ~cmd:(selector \"%s\") ~typ:(%s) ~return_type:%s %s"
+        name (arg_labels rest) sel typ ret_ty (String.concat " " args)
+    end
 ;;
 
 (* check if arg is a duplicate and add '_' suffix *)

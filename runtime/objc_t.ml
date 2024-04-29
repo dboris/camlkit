@@ -159,18 +159,24 @@ module Encode = struct
   | "@?" -> "ptr void"  (* block *)
   | "?" -> "ptr void"
   | "^{__CFCharacterSet=}" | "^{CGImage=}" | "^{CGContext=}"
-  | "^{_CGLContextObject=}"
-    -> "id"
-  | "{_NSRange=QQ}" -> "NSRange.t"
-  | "{CGRect}" | "{CGRect={CGPoint=dd}{CGSize=dd}}" -> "CGRect.t"
-  | "{CGPoint=dd}" -> "CGPoint.t"
-  | "{CGSize}" | "{CGSize=dd}" -> "CGSize.t"
-  | "^{_NSZone=}" -> "id"  (* Zones are ignored on iOS and 64-bit macOS. *)
+  | "^{_NSZone=}"  (* Zones are ignored on iOS and 64-bit macOS. *)
+  | "^{_CGLContextObject=}" -> "id"
   | "[1{__va_list_tag=II^v^v}]" -> "ptr void"  (* varargs *)
   | e ->
     let rest = String.sub e 1 (String.length e - 1) in
     begin match String.get e 0 with
-    | '^' -> "ptr (" ^ enc_to_ctype_string rest ^ ")"
+    | '^' ->
+      begin
+        try "ptr (" ^ enc_to_ctype_string rest ^ ")"
+        with
+        | Encode_struct arg ->
+          begin match arg with
+          | "NSRange.t" | "CGRect.t" | "CGPoint.t" | "CGSize.t" ->
+            "ptr (" ^ arg ^ ")"
+          | _ -> "ptr void"
+          end
+        | e -> raise e
+      end
     | 'j' | 'A' | 'r' | 'n' | 'N' | 'o' | 'O' | 'R' | 'V' | '+' ->
       (* Skip modifiers:
         _C_COMPLEX     'j'
@@ -186,10 +192,21 @@ module Encode = struct
       *)
       enc_to_ctype_string rest
     | '{' ->
-      begin match String.split_on_char '=' e with
-      | _ :: [] -> raise (Encode_struct (String.sub rest 0 (String.length rest - 1)))
-      | _ :: [x] -> raise (Encode_struct (String.sub x 0 (String.length x - 1)))
-      | _ -> failwith (Printf.sprintf "Invalid struct: %s" e)
+      begin match e with
+      | "{_NSRange}" | "{_NSRange=QQ}" ->
+        raise (Encode_struct "NSRange.t")
+      | "{CGRect}" | "{CGRect={CGPoint=dd}{CGSize=dd}}" ->
+        raise (Encode_struct "CGRect.t")
+      | "{CGPoint}" | "{CGPoint=dd}" ->
+        raise (Encode_struct "CGPoint.t")
+      | "{CGSize}" | "{CGSize=dd}" ->
+        raise (Encode_struct "CGSize.t")
+      | _ ->
+        begin match String.split_on_char '=' e with
+        | _ :: [] -> raise (Encode_struct (String.sub rest 0 (String.length rest - 1)))
+        | _ :: [x] -> raise (Encode_struct (String.sub x 0 (String.length x - 1)))
+        | _ -> failwith (Printf.sprintf "Invalid struct: %s" e)
+        end
       end
     | _ -> failwith (Printf.sprintf "Unsupported enc: %s" e)
     end
