@@ -1,4 +1,4 @@
-.PHONY: build test run-demo doc gen-cf gen-fnd gen-ak gen-wk show-libs show-fnd show-ak deps clean dist-clean
+.PHONY: build test run-demo doc gen-cf gen-fnd gen-ak gen-wk show-libs show-fnd show-ak clean
 
 FW := /System/Library/Frameworks
 CORE_FOUNDATION := $(FW)/CoreFoundation.framework/Versions/A/CoreFoundation
@@ -13,7 +13,7 @@ test:
 	@dune runtest --root .
 
 run-demo:
-	@dune exec demoapp
+	@dune exec ./bin/main.exe
 
 doc:
 	@dune build @doc
@@ -45,12 +45,5 @@ show-fnd:
 show-ak:
 	@dune exec browser -- -classes $(APPKIT)
 
-deps:
-	@opam install -y . --deps-only --with-test
-
 clean:
-	@dune clean
-
-dist-clean:
-	rm -f foundation/gen/*
 	@dune clean

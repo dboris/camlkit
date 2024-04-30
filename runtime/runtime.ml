@@ -117,6 +117,7 @@ module Objc =
 struct
   include Ctypes
   include Unsigned
+  include Signed
   include C.Functions.Objc
 
   (** Sends a message with a simple return value to an instance of a class. *)

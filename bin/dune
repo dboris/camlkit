@@ -1,5 +1,3 @@
 (executable
  (name main)
- (public_name demoapp)
- (package camlkit)
  (libraries foundation appkit webkit))

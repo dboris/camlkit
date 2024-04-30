@@ -1,11 +1,10 @@
 (lang dune 3.13)
 (using ctypes 0.3)
-(using directory-targets 0.1)
 
 (name camlkit)
 (version 0.1.1)
 
-(generate_opam_files true)
+(generate_opam_files false)
 
 (source (github dboris/camlkit))
 
@@ -27,14 +26,14 @@
 
 (package
  (name camlkit-gui)
- (synopsis "OCaml bindings to the AppKit framework")
- (description "OCaml bindings to the AppKit framework")
+ (synopsis "OCaml bindings to the AppKit and UIKit frameworks")
+ (description "OCaml bindings to the AppKit and UIKit frameworks")
  (depends
   ocaml
   dune
   (camlkit-base (= :version))
   (alcotest :with-test))
- (tags (objc bindings cocoa gnustep)))
+ (tags (objc bindings cocoa ios gnustep)))
 
 (package
  (name camlkit)
@@ -46,4 +45,42 @@
   (camlkit-base (= :version))
   (camlkit-gui (= :version))
   (alcotest :with-test))
- (tags (objc cocoa gnustep)))
+ (tags (objc cocoa ios gnustep)))
+
+(package
+ (name camlkit-base-ios)
+ (synopsis "OCaml bindings to the Objective-C runtime and Foundation framework")
+ (description "OCaml bindings to the Objective-C runtime and Foundation framework")
+ (allow_empty)
+ (depends
+  ocaml
+  dune
+  ctypes
+  ctypes-foreign
+  (alcotest :with-test))
+ (tags (objc bindings cocoa ios gnustep)))
+
+(package
+ (name camlkit-gui-ios)
+ (synopsis "OCaml bindings to the AppKit and UIKit frameworks")
+ (description "OCaml bindings to the AppKit and UIKit frameworks")
+ (allow_empty)
+ (depends
+  ocaml
+  dune
+  (camlkit-base (= :version))
+  (alcotest :with-test))
+ (tags (objc bindings cocoa ios gnustep)))
+
+(package
+ (name camlkit-ios)
+ (synopsis "Higher-level wrappers for Cocoa APIs")
+ (description "Higher-level wrappers for Cocoa APIs")
+ (allow_empty)
+ (depends
+  ocaml
+  dune
+  (camlkit-base-ios (= :version))
+  (camlkit-gui-ios (= :version))
+  (alcotest :with-test))
+ (tags (objc cocoa ios gnustep)))

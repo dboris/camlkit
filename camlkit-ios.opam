@@ -10,25 +10,18 @@ tags: ["objc" "cocoa" "ios" "gnustep"]
 homepage: "https://github.com/dboris/camlkit"
 bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
-  "ocaml"
+  "ocaml-ios"
   "dune" {>= "3.13"}
-  "camlkit-base" {= version}
-  "camlkit-gui" {= version}
-  "alcotest" {with-test}
-  "odoc" {with-doc}
+  "camlkit-base-ios" {= version}
+  "camlkit-gui-ios" {= version}
 ]
 build: [
-  ["dune" "subst"] {dev}
   [
-    "dune"
-    "build"
-    "-p"
-    name
-    "-j"
-    jobs
+    "dune" "build"
+    "-p" "camlkit"
+    "-j" jobs
+    "-x" "ios"
     "@install"
-    "@runtest" {with-test}
-    "@doc" {with-doc}
   ]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"

@@ -71,9 +71,9 @@ let make_key_and_order_front ~sender self =
 
 module ActivationPolicy = struct
   let t = llong
-  let regular = Signed.LLong.of_int 0
-  let accessory = Signed.LLong.of_int 1
-  let prohibited = Signed.LLong.of_int 2
+  let regular = LLong.of_int 0
+  let accessory = LLong.of_int 1
+  let prohibited = LLong.of_int 2
 end
 
 module ActivationOptions = struct

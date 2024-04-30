@@ -14,7 +14,7 @@ module NSInvocation = struct
   let get_argument ~typ ~init ~at_index self =
     let arg = allocate typ init in
     let () =
-      self |> getArgument (to_voidp arg) ~atIndex: (Signed.LLong.of_int at_index) in
+      self |> getArgument (to_voidp arg) ~atIndex: (LLong.of_int at_index) in
     !@ arg
   ;;
 
