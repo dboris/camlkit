@@ -47,16 +47,3 @@
   (camlkit-gui (= :version))
   (alcotest :with-test))
  (tags (objc cocoa gnustep)))
-
-(package
- (name camlkit-examples)
- (synopsis "Cocoa applications examples")
- (description "Cocoa applications examples")
- (depends
-  ocaml
-  dune
-  (camlkit-base (= :version))
-  (camlkit-gui (= :version))
-  (camlkit (= :version)))
- (allow_empty)
- (tags (objc bindings cocoa gnustep)))

@@ -44,7 +44,7 @@
    (= %{context_name} default)
    (= %{context_name} device)
    (= %{context_name} simulator)
-   (= %{context_name} maccatalyst))))
+   (= %{context_name} catalyst))))
  (target flags.txt)
  (action (copy flags.macos %{target})))
 
@@ -60,7 +60,7 @@
 (rule
  (enabled_if (and
   (= %{system} macosx)
-  (= %{context_name} maccatalyst.ios)))
+  (= %{context_name} catalyst.ios)))
  (target flags.txt)
  (action (copy flags.catalyst %{target})))
 
@@ -76,7 +76,7 @@
    (= %{context_name} default)
    (= %{context_name} device)
    (= %{context_name} simulator)
-   (= %{context_name} maccatalyst))))
+   (= %{context_name} catalyst))))
  (target platform.ml)
  (action (copy platform.macos %{target})))
 
@@ -92,7 +92,7 @@
 (rule
  (enabled_if (and
   (= %{system} macosx)
-  (= %{context_name} maccatalyst.ios)))
+  (= %{context_name} catalyst.ios)))
  (target platform.ml)
  (action (copy platform.catalyst %{target})))
 
