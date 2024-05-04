@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+open Foundation
 open Runtime
 open Objc
 
