@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICollectionViewCompositionalLayout"
 
-module Class = struct
+module C = struct
   let layoutWithListConfiguration x self = msg_send ~self ~cmd:(selector "layoutWithListConfiguration:") ~typ:(id @-> returning (id)) x
 end
 
@@ -31,7 +31,7 @@ let indexPathsToDeleteForSupplementaryViewOfKind x self = msg_send ~self ~cmd:(s
 let indexPathsToInsertForDecorationViewOfKind x self = msg_send ~self ~cmd:(selector "indexPathsToInsertForDecorationViewOfKind:") ~typ:(id @-> returning (id)) x
 let indexPathsToInsertForSupplementaryViewOfKind x self = msg_send ~self ~cmd:(selector "indexPathsToInsertForSupplementaryViewOfKind:") ~typ:(id @-> returning (id)) x
 let initWithLayoutSection x self = msg_send ~self ~cmd:(selector "initWithLayoutSection:") ~typ:(id @-> returning (id)) x
-let initWithLayoutSection' x ~scrollDirection self = msg_send ~self ~cmd:(selector "initWithLayoutSection:scrollDirection:") ~typ:(id @-> llong @-> returning (id)) x scrollDirection
+let initWithLayoutSection' x ~scrollDirection self = msg_send ~self ~cmd:(selector "initWithLayoutSection:scrollDirection:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int scrollDirection)
 let initWithSection x self = msg_send ~self ~cmd:(selector "initWithSection:") ~typ:(id @-> returning (id)) x
 let initWithSection1 x ~configuration self = msg_send ~self ~cmd:(selector "initWithSection:configuration:") ~typ:(id @-> id @-> returning (id)) x configuration
 let initWithSection2 x ~sectionProvider ~configuration self = msg_send ~self ~cmd:(selector "initWithSection:sectionProvider:configuration:") ~typ:(id @-> ptr void @-> id @-> returning (id)) x sectionProvider configuration
@@ -63,12 +63,14 @@ let setDataSourceSnapshotter x self = msg_send ~self ~cmd:(selector "setDataSour
 let setDeferredLastInvalidationNextInvalidationRequiresFullResolve x self = msg_send ~self ~cmd:(selector "setDeferredLastInvalidationNextInvalidationRequiresFullResolve:") ~typ:(bool @-> returning (void)) x
 let setDefersInitialSolveUntilPrepare x self = msg_send ~self ~cmd:(selector "setDefersInitialSolveUntilPrepare:") ~typ:(bool @-> returning (void)) x
 let setDynamicsConfigurationHandler x self = msg_send ~self ~cmd:(selector "setDynamicsConfigurationHandler:") ~typ:(ptr void @-> returning (void)) x
-let setEdgesForSafeAreaPropagation x self = msg_send ~self ~cmd:(selector "setEdgesForSafeAreaPropagation:") ~typ:(ullong @-> returning (void)) x
+let setEdgesForSafeAreaPropagation x self = msg_send ~self ~cmd:(selector "setEdgesForSafeAreaPropagation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setEditing x self = msg_send ~self ~cmd:(selector "setEditing:") ~typ:(bool @-> returning (void)) x
 let setIsInUpdateVisibleCellsPass x self = msg_send ~self ~cmd:(selector "setIsInUpdateVisibleCellsPass:") ~typ:(bool @-> returning (void)) x
 let setLayoutRTL x self = msg_send ~self ~cmd:(selector "setLayoutRTL:") ~typ:(bool @-> returning (void)) x
 let setLayoutSectionProvider x self = msg_send ~self ~cmd:(selector "setLayoutSectionProvider:") ~typ:(ptr void @-> returning (void)) x
 let setLayoutSectionTemplate x self = msg_send ~self ~cmd:(selector "setLayoutSectionTemplate:") ~typ:(id @-> returning (void)) x
+let setMemoizedDynamicAnimatorWorldAdjustingInsets x self = msg_send ~self ~cmd:(selector "setMemoizedDynamicAnimatorWorldAdjustingInsets:") ~typ:(ptr void @-> returning (void)) x
+let setMemoizedPreviousLayoutMargins x self = msg_send ~self ~cmd:(selector "setMemoizedPreviousLayoutMargins:") ~typ:(ptr void @-> returning (void)) x
 let setMemoizedPreviousSolvedViewBoundsSize x self = msg_send ~self ~cmd:(selector "setMemoizedPreviousSolvedViewBoundsSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setRoundsToScreenScale x self = msg_send ~self ~cmd:(selector "setRoundsToScreenScale:") ~typ:(bool @-> returning (void)) x
 let setShouldAdjustContentInsetModeForCollectionViewNeverMode x self = msg_send ~self ~cmd:(selector "setShouldAdjustContentInsetModeForCollectionViewNeverMode:") ~typ:(bool @-> returning (void)) x

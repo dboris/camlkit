@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextDraggableObject"
 
-module Class = struct
+module C = struct
   let draggableObjectWithItemProvider x ~fromRange self = msg_send ~self ~cmd:(selector "draggableObjectWithItemProvider:fromRange:") ~typ:(id @-> id @-> returning (id)) x fromRange
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSVisualEffectView"
 
-module Class = struct
+module C = struct
   let beginFreezingInWindow x self = msg_send ~self ~cmd:(selector "beginFreezingInWindow:") ~typ:(id @-> returning (void)) x
   let endFreezingInWindow x self = msg_send ~self ~cmd:(selector "endFreezingInWindow:") ~typ:(id @-> returning (void)) x
 end
@@ -29,13 +29,13 @@ let isEmphasized self = msg_send ~self ~cmd:(selector "isEmphasized") ~typ:(retu
 let maskImage self = msg_send ~self ~cmd:(selector "maskImage") ~typ:(returning (id))
 let material self = msg_send ~self ~cmd:(selector "material") ~typ:(returning (llong))
 let setAppearsDarker x self = msg_send ~self ~cmd:(selector "setAppearsDarker:") ~typ:(bool @-> returning (void)) x
-let setBlendingMode x self = msg_send ~self ~cmd:(selector "setBlendingMode:") ~typ:(llong @-> returning (void)) x
+let setBlendingMode x self = msg_send ~self ~cmd:(selector "setBlendingMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setEmphasized x self = msg_send ~self ~cmd:(selector "setEmphasized:") ~typ:(bool @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setInheritsBlendGroup x self = msg_send ~self ~cmd:(selector "setInheritsBlendGroup:") ~typ:(bool @-> returning (void)) x
 let setMaskImage x self = msg_send ~self ~cmd:(selector "setMaskImage:") ~typ:(id @-> returning (void)) x
-let setMaterial x self = msg_send ~self ~cmd:(selector "setMaterial:") ~typ:(llong @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setMaterial x self = msg_send ~self ~cmd:(selector "setMaterial:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning (void))
 let viewDidChangeEffectiveAppearance self = msg_send ~self ~cmd:(selector "viewDidChangeEffectiveAppearance") ~typ:(returning (void))

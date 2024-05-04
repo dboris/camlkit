@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIColor"
 
-module Class = struct
+module C = struct
   let akBoxBorderColor self = msg_send ~self ~cmd:(selector "akBoxBorderColor") ~typ:(returning (id))
   let akBubbleFillColor self = msg_send ~self ~cmd:(selector "akBubbleFillColor") ~typ:(returning (id))
   let akButtonHoverStateColor self = msg_send ~self ~cmd:(selector "akButtonHoverStateColor") ~typ:(returning (id))
@@ -41,6 +41,7 @@ module Class = struct
   let colorWithDisplayP3Red x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "colorWithDisplayP3Red:green:blue:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x green blue alpha
   let colorWithDynamicProvider x self = msg_send ~self ~cmd:(selector "colorWithDynamicProvider:") ~typ:(ptr void @-> returning (id)) x
   let colorWithHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector "colorWithHue:saturation:brightness:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x saturation brightness alpha
+  let colorWithITColor x self = msg_send ~self ~cmd:(selector "colorWithITColor:") ~typ:(ptr void @-> returning (id)) x
   let colorWithPatternImage x self = msg_send ~self ~cmd:(selector "colorWithPatternImage:") ~typ:(id @-> returning (id)) x
   let colorWithRed x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "colorWithRed:green:blue:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning (id)) x green blue alpha
   let colorWithWhite x ~alpha self = msg_send ~self ~cmd:(selector "colorWithWhite:alpha:") ~typ:(double @-> double @-> returning (id)) x alpha

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPDFPanel"
 
-module Class = struct
+module C = struct
   let panel self = msg_send ~self ~cmd:(selector "panel") ~typ:(returning (id))
 end
 
@@ -19,4 +19,4 @@ let defaultFileName self = msg_send ~self ~cmd:(selector "defaultFileName") ~typ
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning (llong))
 let setAccessoryController x self = msg_send ~self ~cmd:(selector "setAccessoryController:") ~typ:(id @-> returning (void)) x
 let setDefaultFileName x self = msg_send ~self ~cmd:(selector "setDefaultFileName:") ~typ:(id @-> returning (void)) x
-let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(llong @-> returning (void)) x
+let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFocusHaloEffect"
 
-module Class = struct
+module C = struct
   let effectWithPath x self = msg_send ~self ~cmd:(selector "effectWithPath:") ~typ:(id @-> returning (id)) x
   let effectWithRect x self = msg_send ~self ~cmd:(selector "effectWithRect:") ~typ:(CGRect.t @-> returning (id)) x
   let effectWithRoundedRect x ~cornerRadius ~curve self = msg_send ~self ~cmd:(selector "effectWithRoundedRect:cornerRadius:curve:") ~typ:(CGRect.t @-> double @-> id @-> returning (id)) x cornerRadius curve
@@ -20,5 +20,5 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let position self = msg_send ~self ~cmd:(selector "position") ~typ:(returning (llong))
 let referenceView self = msg_send ~self ~cmd:(selector "referenceView") ~typ:(returning (id))
 let setContainerView x self = msg_send ~self ~cmd:(selector "setContainerView:") ~typ:(id @-> returning (void)) x
-let setPosition x self = msg_send ~self ~cmd:(selector "setPosition:") ~typ:(llong @-> returning (void)) x
+let setPosition x self = msg_send ~self ~cmd:(selector "setPosition:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setReferenceView x self = msg_send ~self ~cmd:(selector "setReferenceView:") ~typ:(id @-> returning (void)) x

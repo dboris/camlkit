@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICollectionViewSupplementaryRegistration"
 
-module Class = struct
+module C = struct
   let registrationWithSupplementaryClass x ~elementKind ~configurationHandler self = msg_send ~self ~cmd:(selector "registrationWithSupplementaryClass:elementKind:configurationHandler:") ~typ:(_Class @-> id @-> ptr void @-> returning (id)) x elementKind configurationHandler
   let registrationWithSupplementaryNib x ~elementKind ~configurationHandler self = msg_send ~self ~cmd:(selector "registrationWithSupplementaryNib:elementKind:configurationHandler:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x elementKind configurationHandler
 end

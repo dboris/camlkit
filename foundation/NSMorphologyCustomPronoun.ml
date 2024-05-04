@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMorphologyCustomPronoun"
 
-module Class = struct
+module C = struct
   let isSupportedForLanguage x self = msg_send ~self ~cmd:(selector "isSupportedForLanguage:") ~typ:(id @-> returning (bool)) x
   let requiredKeysForLanguage x self = msg_send ~self ~cmd:(selector "requiredKeysForLanguage:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptCommand"
 
-module Class = struct
+module C = struct
   let currentCommand self = msg_send ~self ~cmd:(selector "currentCommand") ~typ:(returning (id))
 end
 
@@ -36,7 +36,7 @@ let setArguments x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(i
 let setDirectParameter x self = msg_send ~self ~cmd:(selector "setDirectParameter:") ~typ:(id @-> returning (void)) x
 let setReceiversSpecifier x self = msg_send ~self ~cmd:(selector "setReceiversSpecifier:") ~typ:(id @-> returning (void)) x
 let setScriptErrorExpectedTypeDescriptor x self = msg_send ~self ~cmd:(selector "setScriptErrorExpectedTypeDescriptor:") ~typ:(id @-> returning (void)) x
-let setScriptErrorNumber x self = msg_send ~self ~cmd:(selector "setScriptErrorNumber:") ~typ:(llong @-> returning (void)) x
+let setScriptErrorNumber x self = msg_send ~self ~cmd:(selector "setScriptErrorNumber:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setScriptErrorOffendingObjectDescriptor x self = msg_send ~self ~cmd:(selector "setScriptErrorOffendingObjectDescriptor:") ~typ:(id @-> returning (void)) x
 let setScriptErrorString x self = msg_send ~self ~cmd:(selector "setScriptErrorString:") ~typ:(id @-> returning (void)) x
 let suspendExecution self = msg_send ~self ~cmd:(selector "suspendExecution") ~typ:(returning (void))

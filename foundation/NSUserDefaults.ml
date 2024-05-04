@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserDefaults"
 
-module Class = struct
+module C = struct
   let resetStandardUserDefaults self = msg_send ~self ~cmd:(selector "resetStandardUserDefaults") ~typ:(returning (void))
   let setStandardUserDefaults x self = msg_send ~self ~cmd:(selector "setStandardUserDefaults:") ~typ:(id @-> returning (void)) x
   let standardUserDefaults self = msg_send ~self ~cmd:(selector "standardUserDefaults") ~typ:(returning (id))
@@ -43,8 +43,8 @@ let searchList self = msg_send ~self ~cmd:(selector "searchList") ~typ:(returnin
 let setBool x ~forKey self = msg_send ~self ~cmd:(selector "setBool:forKey:") ~typ:(bool @-> id @-> returning (void)) x forKey
 let setDouble x ~forKey self = msg_send ~self ~cmd:(selector "setDouble:forKey:") ~typ:(double @-> id @-> returning (void)) x forKey
 let setFloat x ~forKey self = msg_send ~self ~cmd:(selector "setFloat:forKey:") ~typ:(float @-> id @-> returning (void)) x forKey
-let setInteger x ~forKey self = msg_send ~self ~cmd:(selector "setInteger:forKey:") ~typ:(llong @-> id @-> returning (void)) x forKey
-let setLong x ~forKey self = msg_send ~self ~cmd:(selector "setLong:forKey:") ~typ:(llong @-> id @-> returning (void)) x forKey
+let setInteger x ~forKey self = msg_send ~self ~cmd:(selector "setInteger:forKey:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) forKey
+let setLong x ~forKey self = msg_send ~self ~cmd:(selector "setLong:forKey:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) forKey
 let setObject x ~forKey self = msg_send ~self ~cmd:(selector "setObject:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let setObject' x ~forKey ~inDomain self = msg_send ~self ~cmd:(selector "setObject:forKey:inDomain:") ~typ:(id @-> id @-> id @-> returning (void)) x forKey inDomain
 let setPersistentDomain x ~forName self = msg_send ~self ~cmd:(selector "setPersistentDomain:forName:") ~typ:(id @-> id @-> returning (void)) x forName

@@ -25,6 +25,6 @@ let setCloseButtonVisible x self = msg_send ~self ~cmd:(selector "setCloseButton
 let setDataSource x self = msg_send ~self ~cmd:(selector "setDataSource:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setExposeBorderVisible x self = msg_send ~self ~cmd:(selector "setExposeBorderVisible:") ~typ:(bool @-> returning (void)) x
-let startTitleOpacityAnimation x self = msg_send ~self ~cmd:(selector "startTitleOpacityAnimation:") ~typ:(llong @-> returning (void)) x
+let startTitleOpacityAnimation x self = msg_send ~self ~cmd:(selector "startTitleOpacityAnimation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning (void))
 let willStartExitAnimation self = msg_send ~self ~cmd:(selector "willStartExitAnimation") ~typ:(returning (void))

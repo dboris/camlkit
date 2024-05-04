@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSConstantDoubleNumber"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
 end
@@ -19,7 +19,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let doubleValue self = msg_send ~self ~cmd:(selector "doubleValue") ~typ:(returning (double))
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning (float))
 let getValue x self = msg_send ~self ~cmd:(selector "getValue:") ~typ:(ptr (void) @-> returning (void)) x
-let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x size
+let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x (ULLong.of_int size)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning (int))
 let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning (llong))

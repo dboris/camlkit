@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDictationManager"
 
-module Class = struct
+module C = struct
   let defaultManager self = msg_send ~self ~cmd:(selector "defaultManager") ~typ:(returning (id))
   let dictationMenuItemsForMenu x self = msg_send ~self ~cmd:(selector "dictationMenuItemsForMenu:") ~typ:(id @-> returning (id)) x
   let isDictationSupported self = msg_send ~self ~cmd:(selector "isDictationSupported") ~typ:(returning (bool))

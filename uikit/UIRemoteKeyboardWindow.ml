@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIRemoteKeyboardWindow"
 
-module Class = struct
+module C = struct
   let remoteKeyboardWindowForScreen x ~create self = msg_send ~self ~cmd:(selector "remoteKeyboardWindowForScreen:create:") ~typ:(id @-> bool @-> returning (id)) x create
 end
 

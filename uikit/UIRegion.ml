@@ -8,12 +8,12 @@ open Foundation
 
 let _class_ = get_class "UIRegion"
 
-module Class = struct
+module C = struct
   let infiniteRegion self = msg_send ~self ~cmd:(selector "infiniteRegion") ~typ:(returning (id))
 end
 
 let containsPoint x self = msg_send ~self ~cmd:(selector "containsPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
-let containsPoints x ~locationStride ~results ~resultsStride ~count self = msg_send ~self ~cmd:(selector "containsPoints:locationStride:results:resultsStride:count:") ~typ:(ptr (float) @-> llong @-> string @-> llong @-> int @-> returning (void)) x locationStride results resultsStride count
+let containsPoints x ~locationStride ~results ~resultsStride ~count self = msg_send ~self ~cmd:(selector "containsPoints:locationStride:results:resultsStride:count:") ~typ:(ptr (float) @-> llong @-> string @-> llong @-> int @-> returning (void)) x (LLong.of_int locationStride) results (LLong.of_int resultsStride) count
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x

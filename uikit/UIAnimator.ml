@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAnimator"
 
-module Class = struct
+module C = struct
   let disableAnimation self = msg_send ~self ~cmd:(selector "disableAnimation") ~typ:(returning (void))
   let enableAnimation self = msg_send ~self ~cmd:(selector "enableAnimation") ~typ:(returning (void))
   let sharedAnimator self = msg_send ~self ~cmd:(selector "sharedAnimator") ~typ:(returning (id))

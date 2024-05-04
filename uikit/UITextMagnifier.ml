@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextMagnifier"
 
-module Class = struct
+module C = struct
   let renderClass self = msg_send ~self ~cmd:(selector "renderClass") ~typ:(returning (_Class))
 end
 

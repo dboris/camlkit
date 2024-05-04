@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSCFError"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
 end
 

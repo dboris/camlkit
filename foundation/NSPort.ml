@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSPort"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let port self = msg_send ~self ~cmd:(selector "port") ~typ:(returning (id))
   let portWithMachPort x self = msg_send ~self ~cmd:(selector "portWithMachPort:") ~typ:(uint @-> returning (id)) x
@@ -28,6 +28,6 @@ let replacementObjectForCoder x self = msg_send ~self ~cmd:(selector "replacemen
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning (id)) x
 let reservedSpaceLength self = msg_send ~self ~cmd:(selector "reservedSpaceLength") ~typ:(returning (ullong))
 let scheduleInRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "scheduleInRunLoop:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
-let sendBeforeDate x ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:components:from:reserved:") ~typ:(id @-> id @-> id @-> ullong @-> returning (bool)) x components from reserved
-let sendBeforeDate' x ~msgid ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:msgid:components:from:reserved:") ~typ:(id @-> ullong @-> id @-> id @-> ullong @-> returning (bool)) x msgid components from reserved
+let sendBeforeDate x ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:components:from:reserved:") ~typ:(id @-> id @-> id @-> ullong @-> returning (bool)) x components from (ULLong.of_int reserved)
+let sendBeforeDate' x ~msgid ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:msgid:components:from:reserved:") ~typ:(id @-> ullong @-> id @-> id @-> ullong @-> returning (bool)) x (ULLong.of_int msgid) components from (ULLong.of_int reserved)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x

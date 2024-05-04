@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSImageView"
 
-module Class = struct
+module C = struct
   let imageViewWithImage x self = msg_send ~self ~cmd:(selector "imageViewWithImage:") ~typ:(id @-> returning (id)) x
   let imageWellWithImage x ~target ~action self = msg_send ~self ~cmd:(selector "imageWellWithImage:target:action:") ~typ:(id @-> id @-> _SEL @-> returning (id)) x target action
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -60,16 +60,16 @@ let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(boo
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) x
-let setImageFrameStyle x self = msg_send ~self ~cmd:(selector "setImageFrameStyle:") ~typ:(ullong @-> returning (void)) x
-let setImageScaling x self = msg_send ~self ~cmd:(selector "setImageScaling:") ~typ:(ullong @-> returning (void)) x
+let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setImageFrameStyle x self = msg_send ~self ~cmd:(selector "setImageFrameStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setImageScaling x self = msg_send ~self ~cmd:(selector "setImageScaling:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setLayer x self = msg_send ~self ~cmd:(selector "setLayer:") ~typ:(id @-> returning (void)) x
 let setNeedsDisplayInRect x self = msg_send ~self ~cmd:(selector "setNeedsDisplayInRect:") ~typ:(CGRect.t @-> returning (void)) x
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x
 let setPlaceholderImage x self = msg_send ~self ~cmd:(selector "setPlaceholderImage:") ~typ:(id @-> returning (void)) x
 let setSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setSymbolConfiguration:") ~typ:(id @-> returning (void)) x
 let setSymbolFont x self = msg_send ~self ~cmd:(selector "setSymbolFont:") ~typ:(id @-> returning (void)) x
-let setSymbolScale x self = msg_send ~self ~cmd:(selector "setSymbolScale:") ~typ:(llong @-> returning (void)) x
+let setSymbolScale x self = msg_send ~self ~cmd:(selector "setSymbolScale:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let setTemplateTintColor x self = msg_send ~self ~cmd:(selector "setTemplateTintColor:") ~typ:(id @-> returning (void)) x
 let shouldBeTreatedAsInkEvent x self = msg_send ~self ~cmd:(selector "shouldBeTreatedAsInkEvent:") ~typ:(id @-> returning (bool)) x

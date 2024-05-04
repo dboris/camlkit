@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXMLNode"
 
-module Class = struct
+module C = struct
   let _DTDNodeWithXMLString x self = msg_send ~self ~cmd:(selector "DTDNodeWithXMLString:") ~typ:(id @-> returning (id)) x
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let attributeWithLocalName x ~_URI ~stringValue self = msg_send ~self ~cmd:(selector "attributeWithLocalName:URI:stringValue:") ~typ:(id @-> id @-> id @-> returning (id)) x _URI stringValue
@@ -13,7 +13,7 @@ module Class = struct
   let attributeWithName' x ~_URI ~stringValue self = msg_send ~self ~cmd:(selector "attributeWithName:URI:stringValue:") ~typ:(id @-> id @-> id @-> returning (id)) x _URI stringValue
   let commentWithStringValue x self = msg_send ~self ~cmd:(selector "commentWithStringValue:") ~typ:(id @-> returning (id)) x
   let document self = msg_send ~self ~cmd:(selector "document") ~typ:(returning (id))
-  let documentWithContentsOfURL x ~options ~error self = msg_send ~self ~cmd:(selector "documentWithContentsOfURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x options error
+  let documentWithContentsOfURL x ~options ~error self = msg_send ~self ~cmd:(selector "documentWithContentsOfURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) error
   let documentWithRootElement x self = msg_send ~self ~cmd:(selector "documentWithRootElement:") ~typ:(id @-> returning (id)) x
   let elementWithLocalName x ~_URI self = msg_send ~self ~cmd:(selector "elementWithLocalName:URI:") ~typ:(id @-> id @-> returning (id)) x _URI
   let elementWithName x self = msg_send ~self ~cmd:(selector "elementWithName:") ~typ:(id @-> returning (id)) x
@@ -31,10 +31,10 @@ end
 let _URI self = msg_send ~self ~cmd:(selector "URI") ~typ:(returning (id))
 let _XMLData self = msg_send ~self ~cmd:(selector "XMLData") ~typ:(returning (id))
 let _XMLString self = msg_send ~self ~cmd:(selector "XMLString") ~typ:(returning (id))
-let _XMLStringWithOptions x self = msg_send ~self ~cmd:(selector "XMLStringWithOptions:") ~typ:(ullong @-> returning (id)) x
+let _XMLStringWithOptions x self = msg_send ~self ~cmd:(selector "XMLStringWithOptions:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let _XPath self = msg_send ~self ~cmd:(selector "XPath") ~typ:(returning (id))
 let canonicalXMLStringPreservingComments x self = msg_send ~self ~cmd:(selector "canonicalXMLStringPreservingComments:") ~typ:(bool @-> returning (id)) x
-let childAtIndex x self = msg_send ~self ~cmd:(selector "childAtIndex:") ~typ:(ullong @-> returning (id)) x
+let childAtIndex x self = msg_send ~self ~cmd:(selector "childAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning (ullong))
 let children self = msg_send ~self ~cmd:(selector "children") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
@@ -44,8 +44,8 @@ let detach self = msg_send ~self ~cmd:(selector "detach") ~typ:(returning (void)
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let index self = msg_send ~self ~cmd:(selector "index") ~typ:(returning (ullong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithKind x self = msg_send ~self ~cmd:(selector "initWithKind:") ~typ:(ullong @-> returning (id)) x
-let initWithKind' x ~options self = msg_send ~self ~cmd:(selector "initWithKind:options:") ~typ:(ullong @-> ullong @-> returning (id)) x options
+let initWithKind x self = msg_send ~self ~cmd:(selector "initWithKind:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+let initWithKind' x ~options self = msg_send ~self ~cmd:(selector "initWithKind:options:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int options)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let kind self = msg_send ~self ~cmd:(selector "kind") ~typ:(returning (ullong))
 let level self = msg_send ~self ~cmd:(selector "level") ~typ:(returning (ullong))

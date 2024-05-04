@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDebuggingIvar"
 
-module Class = struct
+module C = struct
   let ivarWithObjcIvar x ~forObject self = msg_send ~self ~cmd:(selector "ivarWithObjcIvar:forObject:") ~typ:(ptr void @-> id @-> returning (id)) x forObject
 end
 

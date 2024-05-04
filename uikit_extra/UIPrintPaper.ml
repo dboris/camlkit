@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIPrintPaper"
 
-module Class = struct
+module C = struct
   let bestPaperForPageSize x ~withPapersFromArray self = msg_send ~self ~cmd:(selector "bestPaperForPageSize:withPapersFromArray:") ~typ:(CGSize.t @-> id @-> returning (id)) x withPapersFromArray
-  let bestPaperForPageSize' x ~andContentType ~withPapersFromArray self = msg_send ~self ~cmd:(selector "bestPaperForPageSize:andContentType:withPapersFromArray:") ~typ:(CGSize.t @-> llong @-> id @-> returning (id)) x andContentType withPapersFromArray
+  let bestPaperForPageSize' x ~andContentType ~withPapersFromArray self = msg_send ~self ~cmd:(selector "bestPaperForPageSize:andContentType:withPapersFromArray:") ~typ:(CGSize.t @-> llong @-> id @-> returning (id)) x (LLong.of_int andContentType) withPapersFromArray
 end
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

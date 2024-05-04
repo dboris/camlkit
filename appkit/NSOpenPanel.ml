@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSOpenPanel"
 
-module Class = struct
+module C = struct
   let openPanel self = msg_send ~self ~cmd:(selector "openPanel") ~typ:(returning (id))
 end
 
@@ -21,12 +21,12 @@ let canChooseFiles self = msg_send ~self ~cmd:(selector "canChooseFiles") ~typ:(
 let canDownloadUbiquitousContents self = msg_send ~self ~cmd:(selector "canDownloadUbiquitousContents") ~typ:(returning (bool))
 let canResolveUbiquitousConflicts self = msg_send ~self ~cmd:(selector "canResolveUbiquitousConflicts") ~typ:(returning (bool))
 let configureContentView x self = msg_send ~self ~cmd:(selector "configureContentView:") ~typ:(id @-> returning (void)) x
-let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
 let delegateRequestNewDocumentNameWithReply x self = msg_send ~self ~cmd:(selector "delegateRequestNewDocumentNameWithReply:") ~typ:(ptr void @-> returning (void)) x
 let delegateShouldCreateNewDocumentAtURL x self = msg_send ~self ~cmd:(selector "delegateShouldCreateNewDocumentAtURL:") ~typ:(id @-> returning (void)) x
 let filenames self = msg_send ~self ~cmd:(selector "filenames") ~typ:(returning (id))
-let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
-let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x styleMask backing defer
+let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer
 let isAccessoryViewDisclosed self = msg_send ~self ~cmd:(selector "isAccessoryViewDisclosed") ~typ:(returning (bool))
 let isMovable self = msg_send ~self ~cmd:(selector "isMovable") ~typ:(returning (bool))
 let preventsApplicationTerminationWhenModal self = msg_send ~self ~cmd:(selector "preventsApplicationTerminationWhenModal") ~typ:(returning (bool))

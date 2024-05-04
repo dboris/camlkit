@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolTipManager"
 
-module Class = struct
+module C = struct
   let isCurrentMouseLocationAboveWindow x self = msg_send ~self ~cmd:(selector "isCurrentMouseLocationAboveWindow:") ~typ:(id @-> returning (bool)) x
   let sharedToolTipManager self = msg_send ~self ~cmd:(selector "sharedToolTipManager") ~typ:(returning (id))
 end
@@ -35,7 +35,7 @@ let recomputeToolTipsForView x ~remove ~add self = msg_send ~self ~cmd:(selector
 let removeAllToolTipsForView x self = msg_send ~self ~cmd:(selector "removeAllToolTipsForView:") ~typ:(id @-> returning (void)) x
 let removeAllToolTipsForView1 x ~withDisplayDelegate self = msg_send ~self ~cmd:(selector "removeAllToolTipsForView:withDisplayDelegate:") ~typ:(id @-> id @-> returning (void)) x withDisplayDelegate
 let removeAllToolTipsForView2 x ~withOwner self = msg_send ~self ~cmd:(selector "removeAllToolTipsForView:withOwner:") ~typ:(id @-> id @-> returning (void)) x withOwner
-let removeToolTipForView x ~tag self = msg_send ~self ~cmd:(selector "removeToolTipForView:tag:") ~typ:(id @-> llong @-> returning (void)) x tag
+let removeToolTipForView x ~tag self = msg_send ~self ~cmd:(selector "removeToolTipForView:tag:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int tag)
 let setCurrentDisplayedExpansionToolTip x self = msg_send ~self ~cmd:(selector "setCurrentDisplayedExpansionToolTip:") ~typ:(id @-> returning (void)) x
 let setCurrentDisplayedNormalToolTip x self = msg_send ~self ~cmd:(selector "setCurrentDisplayedNormalToolTip:") ~typ:(id @-> returning (void)) x
 let setInitialToolTipDelay x self = msg_send ~self ~cmd:(selector "setInitialToolTipDelay:") ~typ:(double @-> returning (void)) x

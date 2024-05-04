@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIColorWell"
 
-module Class = struct
+module C = struct
   let styleForColorWell x self = msg_send ~self ~cmd:(selector "styleForColorWell:") ~typ:(id @-> returning (id)) x
 end
 

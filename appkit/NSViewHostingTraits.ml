@@ -24,6 +24,6 @@ let setAppearsKey x self = msg_send ~self ~cmd:(selector "setAppearsKey:") ~typ:
 let setDisplayScale x self = msg_send ~self ~cmd:(selector "setDisplayScale:") ~typ:(double @-> returning (void)) x
 let setFlipped x self = msg_send ~self ~cmd:(selector "setFlipped:") ~typ:(bool @-> returning (void)) x
 let setHostingBounds x self = msg_send ~self ~cmd:(selector "setHostingBounds:") ~typ:(CGRect.t @-> returning (void)) x
-let setLayoutDirection x self = msg_send ~self ~cmd:(selector "setLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setLayoutDirection x self = msg_send ~self ~cmd:(selector "setLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setScreenTransform x self = msg_send ~self ~cmd:(selector "setScreenTransform:") ~typ:(id @-> returning (void)) x
 let setVisible x self = msg_send ~self ~cmd:(selector "setVisible:") ~typ:(bool @-> returning (void)) x

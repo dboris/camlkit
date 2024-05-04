@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStepperCell"
 
-module Class = struct
+module C = struct
   let prefersTrackingUntilMouseUp self = msg_send ~self ~cmd:(selector "prefersTrackingUntilMouseUp") ~typ:(returning (bool))
 end
 
@@ -63,7 +63,7 @@ let setDoubleValue x self = msg_send ~self ~cmd:(selector "setDoubleValue:") ~ty
 let setFloatValue x self = msg_send ~self ~cmd:(selector "setFloatValue:") ~typ:(float @-> returning (void)) x
 let setIncrement x self = msg_send ~self ~cmd:(selector "setIncrement:") ~typ:(double @-> returning (void)) x
 let setIntValue x self = msg_send ~self ~cmd:(selector "setIntValue:") ~typ:(int @-> returning (void)) x
-let setIntegerValue x self = msg_send ~self ~cmd:(selector "setIntegerValue:") ~typ:(llong @-> returning (void)) x
+let setIntegerValue x self = msg_send ~self ~cmd:(selector "setIntegerValue:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMaxValue x self = msg_send ~self ~cmd:(selector "setMaxValue:") ~typ:(double @-> returning (void)) x
 let setMinValue x self = msg_send ~self ~cmd:(selector "setMinValue:") ~typ:(double @-> returning (void)) x
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x

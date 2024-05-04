@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorSwatchScrubberItemView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesInvalidatingLayout self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingLayout") ~typ:(returning (id))
 end
 

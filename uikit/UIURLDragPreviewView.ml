@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIURLDragPreviewView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let viewWithTitle x ~_URL self = msg_send ~self ~cmd:(selector "viewWithTitle:URL:") ~typ:(id @-> id @-> returning (id)) x _URL
   let viewWithTitle' x ~_URLText self = msg_send ~self ~cmd:(selector "viewWithTitle:URLText:") ~typ:(id @-> id @-> returning (id)) x _URLText

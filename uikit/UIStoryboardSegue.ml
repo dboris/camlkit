@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIStoryboardSegue"
 
-module Class = struct
+module C = struct
   let segueWithIdentifier x ~source ~destination ~performHandler self = msg_send ~self ~cmd:(selector "segueWithIdentifier:source:destination:performHandler:") ~typ:(id @-> id @-> id @-> ptr void @-> returning (id)) x source destination performHandler
 end
 

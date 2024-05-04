@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIUserNotificationAction"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -23,15 +23,15 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithIdentifier x ~title ~behavior ~parameters ~activationMode ~isAuthenticationRequired ~isDestructive self = msg_send ~self ~cmd:(selector "initWithIdentifier:title:behavior:parameters:activationMode:isAuthenticationRequired:isDestructive:") ~typ:(id @-> id @-> ullong @-> id @-> ullong @-> bool @-> bool @-> returning (id)) x title behavior parameters activationMode isAuthenticationRequired isDestructive
+let initWithIdentifier x ~title ~behavior ~parameters ~activationMode ~isAuthenticationRequired ~isDestructive self = msg_send ~self ~cmd:(selector "initWithIdentifier:title:behavior:parameters:activationMode:isAuthenticationRequired:isDestructive:") ~typ:(id @-> id @-> ullong @-> id @-> ullong @-> bool @-> bool @-> returning (id)) x title (ULLong.of_int behavior) parameters (ULLong.of_int activationMode) isAuthenticationRequired isDestructive
 let isAuthenticationRequired self = msg_send ~self ~cmd:(selector "isAuthenticationRequired") ~typ:(returning (bool))
 let isDestructive self = msg_send ~self ~cmd:(selector "isDestructive") ~typ:(returning (bool))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:(id @-> returning (id)) x
 let parameters self = msg_send ~self ~cmd:(selector "parameters") ~typ:(returning (id))
-let setActivationMode x self = msg_send ~self ~cmd:(selector "setActivationMode:") ~typ:(ullong @-> returning (void)) x
+let setActivationMode x self = msg_send ~self ~cmd:(selector "setActivationMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setAuthenticationRequired x self = msg_send ~self ~cmd:(selector "setAuthenticationRequired:") ~typ:(bool @-> returning (void)) x
-let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(ullong @-> returning (void)) x
+let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDestructive x self = msg_send ~self ~cmd:(selector "setDestructive:") ~typ:(bool @-> returning (void)) x
 let setIdentifier x self = msg_send ~self ~cmd:(selector "setIdentifier:") ~typ:(id @-> returning (void)) x
 let setParameters x self = msg_send ~self ~cmd:(selector "setParameters:") ~typ:(id @-> returning (void)) x

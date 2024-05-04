@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardEmojiPreferences"
 
-module Class = struct
+module C = struct
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end
 
@@ -35,15 +35,15 @@ let maximumRecentsCount self = msg_send ~self ~cmd:(selector "maximumRecentsCoun
 let memojiSettingEnabled self = msg_send ~self ~cmd:(selector "memojiSettingEnabled") ~typ:(returning (bool))
 let preferencesClient self = msg_send ~self ~cmd:(selector "preferencesClient") ~typ:(returning (id))
 let readEmojiDefaults self = msg_send ~self ~cmd:(selector "readEmojiDefaults") ~typ:(returning (void))
-let recentEmojiAtIndex x ~size self = msg_send ~self ~cmd:(selector "recentEmojiAtIndex:size:") ~typ:(llong @-> ptr (ullong) @-> returning (id)) x size
+let recentEmojiAtIndex x ~size self = msg_send ~self ~cmd:(selector "recentEmojiAtIndex:size:") ~typ:(llong @-> ptr (ullong) @-> returning (id)) (LLong.of_int x) size
 let recents self = msg_send ~self ~cmd:(selector "recents") ~typ:(returning (id))
 let refreshLocalRecents self = msg_send ~self ~cmd:(selector "refreshLocalRecents") ~typ:(returning (void))
 let selectedCategoryType self = msg_send ~self ~cmd:(selector "selectedCategoryType") ~typ:(returning (llong))
-let setEmojiCategoryDefaultsIndex x ~forCategory self = msg_send ~self ~cmd:(selector "setEmojiCategoryDefaultsIndex:forCategory:") ~typ:(llong @-> id @-> returning (void)) x forCategory
+let setEmojiCategoryDefaultsIndex x ~forCategory self = msg_send ~self ~cmd:(selector "setEmojiCategoryDefaultsIndex:forCategory:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) forCategory
 let setHasCheckedMemojiPreference x self = msg_send ~self ~cmd:(selector "setHasCheckedMemojiPreference:") ~typ:(bool @-> returning (void)) x
-let setMaximumRecentsCount x self = msg_send ~self ~cmd:(selector "setMaximumRecentsCount:") ~typ:(ullong @-> returning (void)) x
+let setMaximumRecentsCount x self = msg_send ~self ~cmd:(selector "setMaximumRecentsCount:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRecents x self = msg_send ~self ~cmd:(selector "setRecents:") ~typ:(id @-> returning (void)) x
-let setSelectedCategoryType x self = msg_send ~self ~cmd:(selector "setSelectedCategoryType:") ~typ:(llong @-> returning (void)) x
+let setSelectedCategoryType x self = msg_send ~self ~cmd:(selector "setSelectedCategoryType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSkinToneBaseKeyPreferences x self = msg_send ~self ~cmd:(selector "setSkinToneBaseKeyPreferences:") ~typ:(id @-> returning (void)) x
 let setSupportsMemoji x self = msg_send ~self ~cmd:(selector "setSupportsMemoji:") ~typ:(bool @-> returning (void)) x
 let shouldShowRecents self = msg_send ~self ~cmd:(selector "shouldShowRecents") ~typ:(returning (bool))

@@ -26,6 +26,6 @@ let replaceDashesInSelection x self = msg_send ~self ~cmd:(selector "replaceDash
 let replaceQuotesInSelection x self = msg_send ~self ~cmd:(selector "replaceQuotesInSelection:") ~typ:(id @-> returning (void)) x
 let replaceTextInSelection x self = msg_send ~self ~cmd:(selector "replaceTextInSelection:") ~typ:(id @-> returning (void)) x
 let setContentsValid x self = msg_send ~self ~cmd:(selector "setContentsValid:") ~typ:(bool @-> returning (void)) x
-let textStorage x ~didProcessEditing ~range ~changeInLength self = msg_send ~self ~cmd:(selector "textStorage:didProcessEditing:range:changeInLength:") ~typ:(id @-> ullong @-> NSRange.t @-> llong @-> returning (void)) x didProcessEditing range changeInLength
+let textStorage x ~didProcessEditing ~range ~changeInLength self = msg_send ~self ~cmd:(selector "textStorage:didProcessEditing:range:changeInLength:") ~typ:(id @-> ullong @-> NSRange.t @-> llong @-> returning (void)) x (ULLong.of_int didProcessEditing) range (LLong.of_int changeInLength)
 let uppercaseWord x self = msg_send ~self ~cmd:(selector "uppercaseWord:") ~typ:(id @-> returning (void)) x
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning (bool)) x

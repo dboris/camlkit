@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionSection"
 
-module Class = struct
+module C = struct
   let actionsFromSections x self = msg_send ~self ~cmd:(selector "actionsFromSections:") ~typ:(id @-> returning (id)) x
 end
 

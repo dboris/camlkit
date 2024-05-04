@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIListContentConfiguration"
 
-module Class = struct
+module C = struct
   let accompaniedSidebarCellConfiguration self = msg_send ~self ~cmd:(selector "accompaniedSidebarCellConfiguration") ~typ:(returning (id))
   let accompaniedSidebarSubtitleCellConfiguration self = msg_send ~self ~cmd:(selector "accompaniedSidebarSubtitleCellConfiguration") ~typ:(returning (id))
   let cellConfiguration self = msg_send ~self ~cmd:(selector "cellConfiguration") ~typ:(returning (id))
@@ -43,7 +43,8 @@ let secondaryAttributedText self = msg_send ~self ~cmd:(selector "secondaryAttri
 let secondaryText self = msg_send ~self ~cmd:(selector "secondaryText") ~typ:(returning (id))
 let secondaryTextProperties self = msg_send ~self ~cmd:(selector "secondaryTextProperties") ~typ:(returning (id))
 let setAttributedText x self = msg_send ~self ~cmd:(selector "setAttributedText:") ~typ:(id @-> returning (void)) x
-let setAxesPreservingSuperviewLayoutMargins x self = msg_send ~self ~cmd:(selector "setAxesPreservingSuperviewLayoutMargins:") ~typ:(ullong @-> returning (void)) x
+let setAxesPreservingSuperviewLayoutMargins x self = msg_send ~self ~cmd:(selector "setAxesPreservingSuperviewLayoutMargins:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setDirectionalLayoutMargins x self = msg_send ~self ~cmd:(selector "setDirectionalLayoutMargins:") ~typ:(ptr void @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
 let setImageToTextPadding x self = msg_send ~self ~cmd:(selector "setImageToTextPadding:") ~typ:(double @-> returning (void)) x
 let setPrefersSideBySideTextAndSecondaryText x self = msg_send ~self ~cmd:(selector "setPrefersSideBySideTextAndSecondaryText:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTableBackgroundView"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
 end
 
@@ -29,7 +29,7 @@ let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(C
 let setGradient x self = msg_send ~self ~cmd:(selector "setGradient:") ~typ:(id @-> returning (void)) x
 let setLayer x self = msg_send ~self ~cmd:(selector "setLayer:") ~typ:(id @-> returning (void)) x
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning (void)) x
-let setRubberBandArea x self = msg_send ~self ~cmd:(selector "setRubberBandArea:") ~typ:(llong @-> returning (void)) x
+let setRubberBandArea x self = msg_send ~self ~cmd:(selector "setRubberBandArea:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSecondAlternatingColor x self = msg_send ~self ~cmd:(selector "setSecondAlternatingColor:") ~typ:(id @-> returning (void)) x
 let setShouldDrawVerticalGrid x self = msg_send ~self ~cmd:(selector "setShouldDrawVerticalGrid:") ~typ:(bool @-> returning (void)) x
 let setTableView x self = msg_send ~self ~cmd:(selector "setTableView:") ~typ:(id @-> returning (void)) x

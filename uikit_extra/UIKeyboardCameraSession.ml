@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCameraSession"
 
-module Class = struct
+module C = struct
   let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
   let keyboardCameraContentTypeForResponder x self = msg_send ~self ~cmd:(selector "keyboardCameraContentTypeForResponder:") ~typ:(id @-> returning (id)) x
   let shouldShowTextSuggestionForResponder x self = msg_send ~self ~cmd:(selector "shouldShowTextSuggestionForResponder:") ~typ:(id @-> returning (bool)) x

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSTask"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let currentTaskDictionary self = msg_send ~self ~cmd:(selector "currentTaskDictionary") ~typ:(returning (id))
   let launchedTaskWithDictionary x self = msg_send ~self ~cmd:(selector "launchedTaskWithDictionary:") ~typ:(id @-> returning (id)) x
@@ -34,7 +34,7 @@ let setCurrentDirectoryURL x self = msg_send ~self ~cmd:(selector "setCurrentDir
 let setEnvironment x self = msg_send ~self ~cmd:(selector "setEnvironment:") ~typ:(id @-> returning (void)) x
 let setExecutableURL x self = msg_send ~self ~cmd:(selector "setExecutableURL:") ~typ:(id @-> returning (void)) x
 let setLaunchPath x self = msg_send ~self ~cmd:(selector "setLaunchPath:") ~typ:(id @-> returning (void)) x
-let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) x
+let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSpawnedProcessDisclaimed x self = msg_send ~self ~cmd:(selector "setSpawnedProcessDisclaimed:") ~typ:(bool @-> returning (void)) x
 let setStandardError x self = msg_send ~self ~cmd:(selector "setStandardError:") ~typ:(id @-> returning (void)) x
 let setStandardInput x self = msg_send ~self ~cmd:(selector "setStandardInput:") ~typ:(id @-> returning (void)) x

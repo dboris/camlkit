@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderer"
 
-module Class = struct
+module C = struct
   let clearInternalCaches self = msg_send ~self ~cmd:(selector "clearInternalCaches") ~typ:(returning (void))
-  let imageContextWithSize x ~scale ~colorFormat ~opaque ~invert self = msg_send ~self ~cmd:(selector "imageContextWithSize:scale:colorFormat:opaque:invert:") ~typ:(CGSize.t @-> double @-> llong @-> bool @-> bool @-> returning (id)) x scale colorFormat opaque invert
-  let rendererWithContext x ~withSize ~withScale ~opaque ~renderFlags ~assetIdiom self = msg_send ~self ~cmd:(selector "rendererWithContext:withSize:withScale:opaque:renderFlags:assetIdiom:") ~typ:(id @-> CGSize.t @-> double @-> bool @-> llong @-> llong @-> returning (id)) x withSize withScale opaque renderFlags assetIdiom
+  let imageContextWithSize x ~scale ~colorFormat ~opaque ~invert self = msg_send ~self ~cmd:(selector "imageContextWithSize:scale:colorFormat:opaque:invert:") ~typ:(CGSize.t @-> double @-> llong @-> bool @-> bool @-> returning (id)) x scale (LLong.of_int colorFormat) opaque invert
+  let rendererWithContext x ~withSize ~withScale ~opaque ~renderFlags ~assetIdiom self = msg_send ~self ~cmd:(selector "rendererWithContext:withSize:withScale:opaque:renderFlags:assetIdiom:") ~typ:(id @-> CGSize.t @-> double @-> bool @-> llong @-> llong @-> returning (id)) x withSize withScale opaque (LLong.of_int renderFlags) (LLong.of_int assetIdiom)
 end
 
 let addPathForFlickGeometry x self = msg_send ~self ~cmd:(selector "addPathForFlickGeometry:") ~typ:(id @-> returning (void)) x
@@ -19,7 +19,7 @@ let addPathForFlickPopupGeometries x self = msg_send ~self ~cmd:(selector "addPa
 let addPathForRenderGeometry x self = msg_send ~self ~cmd:(selector "addPathForRenderGeometry:") ~typ:(id @-> returning (void)) x
 let addPathForSplitGeometry x self = msg_send ~self ~cmd:(selector "addPathForSplitGeometry:") ~typ:(id @-> returning (void)) x
 let addPathForTraits x ~displayRect self = msg_send ~self ~cmd:(selector "addPathForTraits:displayRect:") ~typ:(id @-> ptr (CGRect.t) @-> returning (void)) x displayRect
-let addRoundRect x ~radius ~corners self = msg_send ~self ~cmd:(selector "addRoundRect:radius:corners:") ~typ:(CGRect.t @-> double @-> ullong @-> returning (void)) x radius corners
+let addRoundRect x ~radius ~corners self = msg_send ~self ~cmd:(selector "addRoundRect:radius:corners:") ~typ:(CGRect.t @-> double @-> ullong @-> returning (void)) x radius (ULLong.of_int corners)
 let assetIdiom self = msg_send ~self ~cmd:(selector "assetIdiom") ~typ:(returning (llong))
 let cacheKey self = msg_send ~self ~cmd:(selector "cacheKey") ~typ:(returning (id))
 let colorDetectMode self = msg_send ~self ~cmd:(selector "colorDetectMode") ~typ:(returning (bool))
@@ -33,9 +33,11 @@ let detectColorsForEffect x self = msg_send ~self ~cmd:(selector "detectColorsFo
 let detectColorsForGradient x self = msg_send ~self ~cmd:(selector "detectColorsForGradient:") ~typ:(id @-> returning (void)) x
 let detectColorsForNamedColor x self = msg_send ~self ~cmd:(selector "detectColorsForNamedColor:") ~typ:(id @-> returning (void)) x
 let disableInternalCaching self = msg_send ~self ~cmd:(selector "disableInternalCaching") ~typ:(returning (bool))
+let drawPath x ~weight ~transform ~color ~fill self = msg_send ~self ~cmd:(selector "drawPath:weight:transform:color:fill:") ~typ:(ptr void @-> double @-> ptr void @-> ptr void @-> bool @-> returning (void)) x weight transform color fill
+let drawShiftPath x ~weight ~transform ~color self = msg_send ~self ~cmd:(selector "drawShiftPath:weight:transform:color:") ~typ:(bool @-> double @-> ptr void @-> ptr void @-> returning (void)) x weight transform color
 let ensureContext self = msg_send ~self ~cmd:(selector "ensureContext") ~typ:(returning (void))
-let forceColorFormat x self = msg_send ~self ~cmd:(selector "forceColorFormat:") ~typ:(llong @-> returning (void)) x
-let initWithContext x ~withSize ~withScale ~opaque ~renderFlags ~assetIdiom self = msg_send ~self ~cmd:(selector "initWithContext:withSize:withScale:opaque:renderFlags:assetIdiom:") ~typ:(id @-> CGSize.t @-> double @-> bool @-> llong @-> llong @-> returning (id)) x withSize withScale opaque renderFlags assetIdiom
+let forceColorFormat x self = msg_send ~self ~cmd:(selector "forceColorFormat:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let initWithContext x ~withSize ~withScale ~opaque ~renderFlags ~assetIdiom self = msg_send ~self ~cmd:(selector "initWithContext:withSize:withScale:opaque:renderFlags:assetIdiom:") ~typ:(id @-> CGSize.t @-> double @-> bool @-> llong @-> llong @-> returning (id)) x withSize withScale opaque (LLong.of_int renderFlags) (LLong.of_int assetIdiom)
 let loadCachedImageForHashString x self = msg_send ~self ~cmd:(selector "loadCachedImageForHashString:") ~typ:(id @-> returning (bool)) x
 let opaque self = msg_send ~self ~cmd:(selector "opaque") ~typ:(returning (bool))
 let pathForConcaveCornerWithGeometry x self = msg_send ~self ~cmd:(selector "pathForConcaveCornerWithGeometry:") ~typ:(id @-> returning (id)) x
@@ -50,9 +52,9 @@ let renderDivotEffect x ~withTraits self = msg_send ~self ~cmd:(selector "render
 let renderEdgeEffect x ~withTraits self = msg_send ~self ~cmd:(selector "renderEdgeEffect:withTraits:") ~typ:(id @-> id @-> returning (void)) x withTraits
 let renderFlags self = msg_send ~self ~cmd:(selector "renderFlags") ~typ:(returning (llong))
 let renderKeyContents x ~withTraits self = msg_send ~self ~cmd:(selector "renderKeyContents:withTraits:") ~typ:(id @-> id @-> returning (void)) x withTraits
-let renderKeyImageContents x ~withTraits ~status self = msg_send ~self ~cmd:(selector "renderKeyImageContents:withTraits:status:") ~typ:(id @-> id @-> ullong @-> returning (ullong)) x withTraits status
+let renderKeyImageContents x ~withTraits ~status self = msg_send ~self ~cmd:(selector "renderKeyImageContents:withTraits:status:") ~typ:(id @-> id @-> ullong @-> returning (ullong)) x withTraits (ULLong.of_int status)
 let renderKeyPathContents x ~withTraits self = msg_send ~self ~cmd:(selector "renderKeyPathContents:withTraits:") ~typ:(id @-> id @-> returning (bool)) x withTraits
-let renderKeyStringContents x ~withTraits ~status self = msg_send ~self ~cmd:(selector "renderKeyStringContents:withTraits:status:") ~typ:(id @-> id @-> ullong @-> returning (ullong)) x withTraits status
+let renderKeyStringContents x ~withTraits ~status self = msg_send ~self ~cmd:(selector "renderKeyStringContents:withTraits:status:") ~typ:(id @-> id @-> ullong @-> returning (ullong)) x withTraits (ULLong.of_int status)
 let renderNullEffect x ~withTraits self = msg_send ~self ~cmd:(selector "renderNullEffect:withTraits:") ~typ:(id @-> id @-> returning (void)) x withTraits
 let renderShadowEffect x ~withTraits self = msg_send ~self ~cmd:(selector "renderShadowEffect:withTraits:") ~typ:(id @-> id @-> returning (void)) x withTraits
 let renderedImage self = msg_send ~self ~cmd:(selector "renderedImage") ~typ:(returning (id))
@@ -63,5 +65,5 @@ let setDisableInternalCaching x self = msg_send ~self ~cmd:(selector "setDisable
 let singleColor self = msg_send ~self ~cmd:(selector "singleColor") ~typ:(returning (id))
 let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let symbolImageConfigForKey x ~traitCollection self = msg_send ~self ~cmd:(selector "symbolImageConfigForKey:traitCollection:") ~typ:(id @-> id @-> returning (id)) x traitCollection
-let symbolImageRenderingModeForIdiom x self = msg_send ~self ~cmd:(selector "symbolImageRenderingModeForIdiom:") ~typ:(llong @-> returning (llong)) x
+let symbolImageRenderingModeForIdiom x self = msg_send ~self ~cmd:(selector "symbolImageRenderingModeForIdiom:") ~typ:(llong @-> returning (llong)) (LLong.of_int x)
 let watchPathForRenderGeometry x self = msg_send ~self ~cmd:(selector "watchPathForRenderGeometry:") ~typ:(id @-> returning (id)) x

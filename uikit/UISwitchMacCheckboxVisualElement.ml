@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwitchMacCheckboxVisualElement"
 
-module Class = struct
+module C = struct
   let isFixedSize self = msg_send ~self ~cmd:(selector "isFixedSize") ~typ:(returning (bool))
 end
 

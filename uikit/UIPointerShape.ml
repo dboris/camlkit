@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIPointerShape"
 
-module Class = struct
-  let beamWithPreferredLength x ~axis self = msg_send ~self ~cmd:(selector "beamWithPreferredLength:axis:") ~typ:(double @-> ullong @-> returning (id)) x axis
+module C = struct
+  let beamWithPreferredLength x ~axis self = msg_send ~self ~cmd:(selector "beamWithPreferredLength:axis:") ~typ:(double @-> ullong @-> returning (id)) x (ULLong.of_int axis)
   let shapeWithPath x self = msg_send ~self ~cmd:(selector "shapeWithPath:") ~typ:(id @-> returning (id)) x
   let shapeWithRoundedRect x self = msg_send ~self ~cmd:(selector "shapeWithRoundedRect:") ~typ:(CGRect.t @-> returning (id)) x
   let shapeWithRoundedRect' x ~cornerRadius self = msg_send ~self ~cmd:(selector "shapeWithRoundedRect:cornerRadius:") ~typ:(CGRect.t @-> double @-> returning (id)) x cornerRadius

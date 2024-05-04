@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMenuWindowManager"
 
-module Class = struct
+module C = struct
   let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
   let managerForWindowID x self = msg_send ~self ~cmd:(selector "managerForWindowID:") ~typ:(uint @-> returning (id)) x
   let providesShadow self = msg_send ~self ~cmd:(selector "providesShadow") ~typ:(returning (bool))
@@ -18,7 +18,7 @@ end
 let _CGContext self = msg_send ~self ~cmd:(selector "CGContext") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let drawContentViewFromImage x ~clippingRegion ~context ~viewBounds ~visualizeRegion self = msg_send ~self ~cmd:(selector "drawContentViewFromImage:clippingRegion:context:viewBounds:visualizeRegion:") ~typ:(id @-> ptr void @-> id @-> CGRect.t @-> bool @-> returning (void)) x clippingRegion context viewBounds visualizeRegion
-let drawSubimage x ~destBounds ~scale ~context self = msg_send ~self ~cmd:(selector "drawSubimage:destBounds:scale:context:") ~typ:(id @-> CGRect.t @-> llong @-> id @-> returning (void)) x destBounds scale context
+let drawSubimage x ~destBounds ~scale ~context self = msg_send ~self ~cmd:(selector "drawSubimage:destBounds:scale:context:") ~typ:(id @-> CGRect.t @-> llong @-> id @-> returning (void)) x destBounds (LLong.of_int scale) context
 let flush self = msg_send ~self ~cmd:(selector "flush") ~typ:(returning (void))
 let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let hasDarkAppearance self = msg_send ~self ~cmd:(selector "hasDarkAppearance") ~typ:(returning (bool))
@@ -36,7 +36,7 @@ let selectionMaterialRect self = msg_send_stret ~self ~cmd:(selector "selectionM
 let setFocused x self = msg_send ~self ~cmd:(selector "setFocused:") ~typ:(bool @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setHasDarkAppearance x self = msg_send ~self ~cmd:(selector "setHasDarkAppearance:") ~typ:(bool @-> returning (void)) x
-let setLevel x self = msg_send ~self ~cmd:(selector "setLevel:") ~typ:(llong @-> returning (void)) x
+let setLevel x self = msg_send ~self ~cmd:(selector "setLevel:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMaskImage x self = msg_send ~self ~cmd:(selector "setMaskImage:") ~typ:(id @-> returning (void)) x
 let setMenuItemsClipRect x self = msg_send ~self ~cmd:(selector "setMenuItemsClipRect:") ~typ:(CGRect.t @-> returning (void)) x
 let setNonVibrantBlendingRegion x self = msg_send ~self ~cmd:(selector "setNonVibrantBlendingRegion:") ~typ:(ptr void @-> returning (void)) x

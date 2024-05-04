@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICollectionViewLayoutAttributes"
 
-module Class = struct
+module C = struct
   let layoutAttributesForCellWithIndexPath x self = msg_send ~self ~cmd:(selector "layoutAttributesForCellWithIndexPath:") ~typ:(id @-> returning (id)) x
   let layoutAttributesForDecorationViewOfKind x ~withIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForDecorationViewOfKind:withIndexPath:") ~typ:(id @-> id @-> returning (id)) x withIndexPath
   let layoutAttributesForSupplementaryViewOfKind x ~withIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForSupplementaryViewOfKind:withIndexPath:") ~typ:(id @-> id @-> returning (id)) x withIndexPath
@@ -37,6 +37,8 @@ let setHasMaskViewFrame x self = msg_send ~self ~cmd:(selector "setHasMaskViewFr
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning (void)) x
 let setIndexPath x self = msg_send ~self ~cmd:(selector "setIndexPath:") ~typ:(id @-> returning (void)) x
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning (void)) x
-let setZIndex x self = msg_send ~self ~cmd:(selector "setZIndex:") ~typ:(llong @-> returning (void)) x
+let setTransform3D x self = msg_send ~self ~cmd:(selector "setTransform3D:") ~typ:(ptr void @-> returning (void)) x
+let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(ptr void @-> returning (void)) x
+let setZIndex x self = msg_send ~self ~cmd:(selector "setZIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let zIndex self = msg_send ~self ~cmd:(selector "zIndex") ~typ:(returning (llong))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINavigationButton"
 
-module Class = struct
+module C = struct
   let defaultFont self = msg_send ~self ~cmd:(selector "defaultFont") ~typ:(returning (id))
 end
 
@@ -22,18 +22,18 @@ let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning (id))
 let initWithImage x self = msg_send ~self ~cmd:(selector "initWithImage:") ~typ:(id @-> returning (id)) x
 let initWithImage1 x ~style self = msg_send ~self ~cmd:(selector "initWithImage:style:") ~typ:(id @-> int @-> returning (id)) x style
 let initWithImage2 x ~width ~style self = msg_send ~self ~cmd:(selector "initWithImage:width:style:") ~typ:(id @-> double @-> int @-> returning (id)) x width style
-let initWithImage3 x ~width ~style ~applyBezel ~forBarStyle ~buttonItemStyle self = msg_send ~self ~cmd:(selector "initWithImage:width:style:applyBezel:forBarStyle:buttonItemStyle:") ~typ:(id @-> double @-> int @-> bool @-> llong @-> llong @-> returning (id)) x width style applyBezel forBarStyle buttonItemStyle
+let initWithImage3 x ~width ~style ~applyBezel ~forBarStyle ~buttonItemStyle self = msg_send ~self ~cmd:(selector "initWithImage:width:style:applyBezel:forBarStyle:buttonItemStyle:") ~typ:(id @-> double @-> int @-> bool @-> llong @-> llong @-> returning (id)) x width style applyBezel (LLong.of_int forBarStyle) (LLong.of_int buttonItemStyle)
 let initWithTitle x self = msg_send ~self ~cmd:(selector "initWithTitle:") ~typ:(id @-> returning (id)) x
 let initWithTitle1 x ~style self = msg_send ~self ~cmd:(selector "initWithTitle:style:") ~typ:(id @-> int @-> returning (id)) x style
 let initWithTitle2 x ~possibleTitles ~style self = msg_send ~self ~cmd:(selector "initWithTitle:possibleTitles:style:") ~typ:(id @-> id @-> int @-> returning (id)) x possibleTitles style
-let initWithValue x ~width ~style ~barStyle ~possibleTitles ~tintColor self = msg_send ~self ~cmd:(selector "initWithValue:width:style:barStyle:possibleTitles:tintColor:") ~typ:(id @-> double @-> int @-> llong @-> id @-> id @-> returning (id)) x width style barStyle possibleTitles tintColor
-let initWithValue' x ~width ~style ~barStyle ~possibleTitles ~possibleSystemItems ~tintColor ~applyBezel ~forButtonItemStyle self = msg_send ~self ~cmd:(selector "initWithValue:width:style:barStyle:possibleTitles:possibleSystemItems:tintColor:applyBezel:forButtonItemStyle:") ~typ:(id @-> double @-> int @-> llong @-> id @-> id @-> id @-> bool @-> llong @-> returning (id)) x width style barStyle possibleTitles possibleSystemItems tintColor applyBezel forButtonItemStyle
+let initWithValue x ~width ~style ~barStyle ~possibleTitles ~tintColor self = msg_send ~self ~cmd:(selector "initWithValue:width:style:barStyle:possibleTitles:tintColor:") ~typ:(id @-> double @-> int @-> llong @-> id @-> id @-> returning (id)) x width style (LLong.of_int barStyle) possibleTitles tintColor
+let initWithValue' x ~width ~style ~barStyle ~possibleTitles ~possibleSystemItems ~tintColor ~applyBezel ~forButtonItemStyle self = msg_send ~self ~cmd:(selector "initWithValue:width:style:barStyle:possibleTitles:possibleSystemItems:tintColor:applyBezel:forButtonItemStyle:") ~typ:(id @-> double @-> int @-> llong @-> id @-> id @-> id @-> bool @-> llong @-> returning (id)) x width style (LLong.of_int barStyle) possibleTitles possibleSystemItems tintColor applyBezel (LLong.of_int forButtonItemStyle)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
 let maximumWidth self = msg_send ~self ~cmd:(selector "maximumWidth") ~typ:(returning (double))
 let minimumWidth self = msg_send ~self ~cmd:(selector "minimumWidth") ~typ:(returning (double))
 let originatingButtonItem self = msg_send ~self ~cmd:(selector "originatingButtonItem") ~typ:(returning (id))
 let originatingNavigationItem self = msg_send ~self ~cmd:(selector "originatingNavigationItem") ~typ:(returning (id))
-let setBarStyle x self = msg_send ~self ~cmd:(selector "setBarStyle:") ~typ:(llong @-> returning (void)) x
+let setBarStyle x self = msg_send ~self ~cmd:(selector "setBarStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(int @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x

@@ -14,4 +14,4 @@ let currentItem self = msg_send ~self ~cmd:(selector "currentItem") ~typ:(return
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let forwardItem self = msg_send ~self ~cmd:(selector "forwardItem") ~typ:(returning (id))
 let forwardList self = msg_send ~self ~cmd:(selector "forwardList") ~typ:(returning (id))
-let itemAtIndex x self = msg_send ~self ~cmd:(selector "itemAtIndex:") ~typ:(llong @-> returning (id)) x
+let itemAtIndex x self = msg_send ~self ~cmd:(selector "itemAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)

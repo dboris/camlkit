@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISSceneRequestOptions"
 
-module Class = struct
+module C = struct
   let supportsBSXPCSecureCoding self = msg_send ~self ~cmd:(selector "supportsBSXPCSecureCoding") ~typ:(returning (bool))
 end
 
@@ -33,7 +33,7 @@ let setRequestBackground x self = msg_send ~self ~cmd:(selector "setRequestBackg
 let setRequestCenterSlot x self = msg_send ~self ~cmd:(selector "setRequestCenterSlot:") ~typ:(bool @-> returning (void)) x
 let setRequestFullscreen x self = msg_send ~self ~cmd:(selector "setRequestFullscreen:") ~typ:(bool @-> returning (void)) x
 let setRequestQuickLookScene x self = msg_send ~self ~cmd:(selector "setRequestQuickLookScene:") ~typ:(bool @-> returning (void)) x
-let setSceneCollectionJoinBehavior x self = msg_send ~self ~cmd:(selector "setSceneCollectionJoinBehavior:") ~typ:(llong @-> returning (void)) x
-let setSceneRequestIntent x self = msg_send ~self ~cmd:(selector "setSceneRequestIntent:") ~typ:(llong @-> returning (void)) x
+let setSceneCollectionJoinBehavior x self = msg_send ~self ~cmd:(selector "setSceneCollectionJoinBehavior:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSceneRequestIntent x self = msg_send ~self ~cmd:(selector "setSceneRequestIntent:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSourceIdentifier x self = msg_send ~self ~cmd:(selector "setSourceIdentifier:") ~typ:(id @-> returning (void)) x
 let sourceIdentifier self = msg_send ~self ~cmd:(selector "sourceIdentifier") ~typ:(returning (id))

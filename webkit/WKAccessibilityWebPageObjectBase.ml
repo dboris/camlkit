@@ -13,3 +13,4 @@ let accessibilityPluginObject self = msg_send ~self ~cmd:(selector "accessibilit
 let accessibilityRootObjectWrapper self = msg_send ~self ~cmd:(selector "accessibilityRootObjectWrapper") ~typ:(returning (id))
 let setHasMainFramePlugin x self = msg_send ~self ~cmd:(selector "setHasMainFramePlugin:") ~typ:(bool @-> returning (void)) x
 let setRemoteParent x self = msg_send ~self ~cmd:(selector "setRemoteParent:") ~typ:(id @-> returning (void)) x
+let setWebPage x self = msg_send ~self ~cmd:(selector "setWebPage:") ~typ:(ptr void @-> returning (void)) x

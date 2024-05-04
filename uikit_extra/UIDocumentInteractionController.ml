@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDocumentInteractionController"
 
-module Class = struct
+module C = struct
   let interactionControllerWithURL x self = msg_send ~self ~cmd:(selector "interactionControllerWithURL:") ~typ:(id @-> returning (id)) x
 end
 
@@ -37,7 +37,7 @@ let openDocumentWithDefaultApplication self = msg_send ~self ~cmd:(selector "ope
 let openResourceOperation x ~didFinishCopyingResource self = msg_send ~self ~cmd:(selector "openResourceOperation:didFinishCopyingResource:") ~typ:(id @-> id @-> returning (void)) x didFinishCopyingResource
 let physicalURL self = msg_send ~self ~cmd:(selector "physicalURL") ~typ:(returning (id))
 let popoverController self = msg_send ~self ~cmd:(selector "popoverController") ~typ:(returning (id))
-let popoverController' x ~animationCompleted self = msg_send ~self ~cmd:(selector "popoverController:animationCompleted:") ~typ:(id @-> llong @-> returning (void)) x animationCompleted
+let popoverController' x ~animationCompleted self = msg_send ~self ~cmd:(selector "popoverController:animationCompleted:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int animationCompleted)
 let presentOpenInMenuFromBarButtonItem x ~animated self = msg_send ~self ~cmd:(selector "presentOpenInMenuFromBarButtonItem:animated:") ~typ:(id @-> bool @-> returning (bool)) x animated
 let presentOpenInMenuFromRect x ~inView ~animated self = msg_send ~self ~cmd:(selector "presentOpenInMenuFromRect:inView:animated:") ~typ:(CGRect.t @-> id @-> bool @-> returning (bool)) x inView animated
 let presentOptionsMenuFromBarButtonItem x ~animated self = msg_send ~self ~cmd:(selector "presentOptionsMenuFromBarButtonItem:animated:") ~typ:(id @-> bool @-> returning (bool)) x animated

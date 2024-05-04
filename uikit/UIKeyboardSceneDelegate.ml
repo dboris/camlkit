@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardSceneDelegate"
 
-module Class = struct
+module C = struct
   let activeKeyboardSceneDelegate self = msg_send ~self ~cmd:(selector "activeKeyboardSceneDelegate") ~typ:(returning (id))
   let applicationConnectedWindowScenes self = msg_send ~self ~cmd:(selector "applicationConnectedWindowScenes") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let interfaceOrientation self = msg_send ~self ~cmd:(selector "interfaceOrientation") ~typ:(returning (llong))
-  let logInterfaceOrientation x ~withDescription self = msg_send ~self ~cmd:(selector "logInterfaceOrientation:withDescription:") ~typ:(llong @-> id @-> returning (void)) x withDescription
+  let logInterfaceOrientation x ~withDescription self = msg_send ~self ~cmd:(selector "logInterfaceOrientation:withDescription:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) withDescription
   let performOnControllers x self = msg_send ~self ~cmd:(selector "performOnControllers:") ~typ:(ptr void @-> returning (void)) x
-  let setInterfaceOrientation x self = msg_send ~self ~cmd:(selector "setInterfaceOrientation:") ~typ:(llong @-> returning (void)) x
+  let setInterfaceOrientation x self = msg_send ~self ~cmd:(selector "setInterfaceOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 end
 
 let addVisibilityObserver x self = msg_send ~self ~cmd:(selector "addVisibilityObserver:") ~typ:(id @-> returning (void)) x
@@ -84,7 +84,7 @@ let restoringInputViews self = msg_send ~self ~cmd:(selector "restoringInputView
 let scene self = msg_send ~self ~cmd:(selector "scene") ~typ:(returning (id))
 let setAutomaticAppearanceEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticAppearanceEnabled:") ~typ:(bool @-> returning (void)) x
 let setAutomaticAppearanceInternalEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticAppearanceInternalEnabled:") ~typ:(bool @-> returning (void)) x
-let setDeactivationCount x self = msg_send ~self ~cmd:(selector "setDeactivationCount:") ~typ:(ullong @-> returning (void)) x
+let setDeactivationCount x self = msg_send ~self ~cmd:(selector "setDeactivationCount:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setHideSystemInputAssistantView x self = msg_send ~self ~cmd:(selector "setHideSystemInputAssistantView:") ~typ:(bool @-> returning (void)) x
 let setIgnoresPinning x self = msg_send ~self ~cmd:(selector "setIgnoresPinning:") ~typ:(bool @-> returning (void)) x
 let setInputViews x self = msg_send ~self ~cmd:(selector "setInputViews:") ~typ:(id @-> returning (void)) x

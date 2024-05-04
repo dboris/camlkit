@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIContinuousPathIntroductionView"
 
 let extraButtonTapAction self = msg_send ~self ~cmd:(selector "extraButtonTapAction") ~typ:(returning (void))
-let initWithKeyboardAppearance x self = msg_send ~self ~cmd:(selector "initWithKeyboardAppearance:") ~typ:(llong @-> returning (id)) x
+let initWithKeyboardAppearance x self = msg_send ~self ~cmd:(selector "initWithKeyboardAppearance:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let keyboardView self = msg_send ~self ~cmd:(selector "keyboardView") ~typ:(returning (id))
 let landscapeButton self = msg_send ~self ~cmd:(selector "landscapeButton") ~typ:(returning (id))
 let landscapeConstraints self = msg_send ~self ~cmd:(selector "landscapeConstraints") ~typ:(returning (id))

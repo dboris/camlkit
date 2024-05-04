@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISpringLoadedInteraction"
 
-module Class = struct
+module C = struct
   let hysteresisBehaviorWithBeginningVelocity x ~cancelingVelocity self = msg_send ~self ~cmd:(selector "hysteresisBehaviorWithBeginningVelocity:cancelingVelocity:") ~typ:(double @-> double @-> returning (id)) x cancelingVelocity
   let springLoadedInteractionWithHandler x self = msg_send ~self ~cmd:(selector "springLoadedInteractionWithHandler:") ~typ:(ptr void @-> returning (id)) x
 end
@@ -26,7 +26,7 @@ let setActivateAction x self = msg_send ~self ~cmd:(selector "setActivateAction:
 let setContext x self = msg_send ~self ~cmd:(selector "setContext:") ~typ:(id @-> returning (void)) x
 let setEmphasizeAction x self = msg_send ~self ~cmd:(selector "setEmphasizeAction:") ~typ:(id @-> returning (void)) x
 let setHandler x self = msg_send ~self ~cmd:(selector "setHandler:") ~typ:(ptr void @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
 let willMoveToView x self = msg_send ~self ~cmd:(selector "willMoveToView:") ~typ:(id @-> returning (void)) x

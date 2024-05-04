@@ -27,5 +27,5 @@ let setFileURL x self = msg_send ~self ~cmd:(selector "setFileURL:") ~typ:(id @-
 let setHasUndoManager x self = msg_send ~self ~cmd:(selector "setHasUndoManager:") ~typ:(bool @-> returning (void)) x
 let setManagedObjectContext x self = msg_send ~self ~cmd:(selector "setManagedObjectContext:") ~typ:(id @-> returning (void)) x
 let setUndoManager x self = msg_send ~self ~cmd:(selector "setUndoManager:") ~typ:(id @-> returning (void)) x
-let writeSafelyToURL x ~ofType ~forSaveOperation ~error self = msg_send ~self ~cmd:(selector "writeSafelyToURL:ofType:forSaveOperation:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (bool)) x ofType forSaveOperation error
-let writeToURL x ~ofType ~forSaveOperation ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeToURL:ofType:forSaveOperation:originalContentsURL:error:") ~typ:(id @-> id @-> ullong @-> id @-> ptr (id) @-> returning (bool)) x ofType forSaveOperation originalContentsURL error
+let writeSafelyToURL x ~ofType ~forSaveOperation ~error self = msg_send ~self ~cmd:(selector "writeSafelyToURL:ofType:forSaveOperation:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (bool)) x ofType (ULLong.of_int forSaveOperation) error
+let writeToURL x ~ofType ~forSaveOperation ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeToURL:ofType:forSaveOperation:originalContentsURL:error:") ~typ:(id @-> id @-> ullong @-> id @-> ptr (id) @-> returning (bool)) x ofType (ULLong.of_int forSaveOperation) originalContentsURL error

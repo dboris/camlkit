@@ -30,3 +30,4 @@ let readingModel self = msg_send ~self ~cmd:(selector "readingModel") ~typ:(retu
 let setParent x self = msg_send ~self ~cmd:(selector "setParent:") ~typ:(id @-> returning (void)) x
 let setPdfLayerController x self = msg_send ~self ~cmd:(selector "setPdfLayerController:") ~typ:(id @-> returning (void)) x
 let setPdfPlugin x self = msg_send ~self ~cmd:(selector "setPdfPlugin:") ~typ:(ptr (void) @-> returning (void)) x
+let setPluginElement x self = msg_send ~self ~cmd:(selector "setPluginElement:") ~typ:(ptr void @-> returning (void)) x

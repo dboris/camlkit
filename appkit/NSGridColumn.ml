@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSGridColumn"
 
-let cellAtIndex x self = msg_send ~self ~cmd:(selector "cellAtIndex:") ~typ:(llong @-> returning (id)) x
+let cellAtIndex x self = msg_send ~self ~cmd:(selector "cellAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let gridView self = msg_send ~self ~cmd:(selector "gridView") ~typ:(returning (id))
@@ -24,7 +24,7 @@ let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-
 let setLeadingPadding x self = msg_send ~self ~cmd:(selector "setLeadingPadding:") ~typ:(double @-> returning (void)) x
 let setTrailingPadding x self = msg_send ~self ~cmd:(selector "setTrailingPadding:") ~typ:(double @-> returning (void)) x
 let setWidth x self = msg_send ~self ~cmd:(selector "setWidth:") ~typ:(double @-> returning (void)) x
-let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning (void)) x
+let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let trailingPadding self = msg_send ~self ~cmd:(selector "trailingPadding") ~typ:(returning (double))
 let width self = msg_send ~self ~cmd:(selector "width") ~typ:(returning (double))
 let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning (llong))

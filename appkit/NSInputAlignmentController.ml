@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInputAlignmentController"
 
-module Class = struct
+module C = struct
   let alignmentDeltaFromMatches x self = msg_send_stret ~self ~cmd:(selector "alignmentDeltaFromMatches:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 end
 

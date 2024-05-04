@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorPickerSlider"
 
-module Class = struct
+module C = struct
   let accessibilityIsSingleCelled self = msg_send ~self ~cmd:(selector "accessibilityIsSingleCelled") ~typ:(returning (bool))
   let keyPathsForValuesAffectingKnobIsPressed self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingKnobIsPressed") ~typ:(returning (id))
   let keyPathsForValuesAffectingLabelAlphaValue self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingLabelAlphaValue") ~typ:(returning (id))
@@ -78,9 +78,9 @@ let setFloatValue x self = msg_send ~self ~cmd:(selector "setFloatValue:") ~typ:
 let setHideLabelTimer self = msg_send ~self ~cmd:(selector "setHideLabelTimer") ~typ:(returning (void))
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setIntValue x self = msg_send ~self ~cmd:(selector "setIntValue:") ~typ:(int @-> returning (void)) x
-let setIntegerValue x self = msg_send ~self ~cmd:(selector "setIntegerValue:") ~typ:(llong @-> returning (void)) x
+let setIntegerValue x self = msg_send ~self ~cmd:(selector "setIntegerValue:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLabelIsOnLeadingSideOfKnob x self = msg_send ~self ~cmd:(selector "setLabelIsOnLeadingSideOfKnob:") ~typ:(bool @-> returning (void)) x
-let setLabelTextEffect x self = msg_send ~self ~cmd:(selector "setLabelTextEffect:") ~typ:(llong @-> returning (void)) x
+let setLabelTextEffect x self = msg_send ~self ~cmd:(selector "setLabelTextEffect:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMinimizationDelegate x self = msg_send ~self ~cmd:(selector "setMinimizationDelegate:") ~typ:(id @-> returning (void)) x
 let setMinimized x self = msg_send ~self ~cmd:(selector "setMinimized:") ~typ:(bool @-> returning (void)) x
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x

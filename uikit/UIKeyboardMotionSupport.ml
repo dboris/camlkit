@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardMotionSupport"
 
-module Class = struct
+module C = struct
   let supportForScreen x self = msg_send ~self ~cmd:(selector "supportForScreen:") ~typ:(id @-> returning (id)) x
   let supportForUIScene x self = msg_send ~self ~cmd:(selector "supportForUIScene:") ~typ:(id @-> returning (id)) x
 end

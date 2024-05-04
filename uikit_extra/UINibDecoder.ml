@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINibDecoder"
 
-module Class = struct
+module C = struct
   let unarchiveObjectWithData x self = msg_send ~self ~cmd:(selector "unarchiveObjectWithData:") ~typ:(id @-> returning (id)) x
   let unarchiveObjectWithFile x self = msg_send ~self ~cmd:(selector "unarchiveObjectWithFile:") ~typ:(id @-> returning (id)) x
 end
@@ -16,10 +16,10 @@ end
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning (bool))
 let containsValueForKey x self = msg_send ~self ~cmd:(selector "containsValueForKey:") ~typ:(id @-> returning (bool)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let decodeArrayOfCGFloats x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfCGFloats:count:forKey:") ~typ:(ptr (double) @-> llong @-> id @-> returning (bool)) x count forKey
-let decodeArrayOfDoubles x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfDoubles:count:forKey:") ~typ:(ptr (double) @-> llong @-> id @-> returning (bool)) x count forKey
-let decodeArrayOfFloats x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfFloats:count:forKey:") ~typ:(ptr (float) @-> llong @-> id @-> returning (bool)) x count forKey
-let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x count at
+let decodeArrayOfCGFloats x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfCGFloats:count:forKey:") ~typ:(ptr (double) @-> llong @-> id @-> returning (bool)) x (LLong.of_int count) forKey
+let decodeArrayOfDoubles x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfDoubles:count:forKey:") ~typ:(ptr (double) @-> llong @-> id @-> returning (bool)) x (LLong.of_int count) forKey
+let decodeArrayOfFloats x ~count ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfFloats:count:forKey:") ~typ:(ptr (float) @-> llong @-> id @-> returning (bool)) x (LLong.of_int count) forKey
+let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x (ULLong.of_int count) at
 let decodeBoolForKey x self = msg_send ~self ~cmd:(selector "decodeBoolForKey:") ~typ:(id @-> returning (bool)) x
 let decodeBytesForKey x ~returnedLength self = msg_send ~self ~cmd:(selector "decodeBytesForKey:returnedLength:") ~typ:(id @-> ptr (ullong) @-> returning (string)) x returnedLength
 let decodeBytesWithReturnedLength x self = msg_send ~self ~cmd:(selector "decodeBytesWithReturnedLength:") ~typ:(ptr (ullong) @-> returning (ptr (void))) x
@@ -49,9 +49,9 @@ let replaceObject x ~withObject self = msg_send ~self ~cmd:(selector "replaceObj
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning (uint))
 let uniqueIDForCurrentlyDecodingObject self = msg_send ~self ~cmd:(selector "uniqueIDForCurrentlyDecodingObject") ~typ:(returning (llong))
-let validateAndIndexClasses x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexClasses:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x length
+let validateAndIndexClasses x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexClasses:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x (ULLong.of_int length)
 let validateAndIndexData x ~error self = msg_send ~self ~cmd:(selector "validateAndIndexData:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
-let validateAndIndexKeys x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexKeys:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x length
-let validateAndIndexObjects x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexObjects:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x length
-let validateAndIndexValues x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexValues:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x length
+let validateAndIndexKeys x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexKeys:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x (ULLong.of_int length)
+let validateAndIndexObjects x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexObjects:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x (ULLong.of_int length)
+let validateAndIndexValues x ~length self = msg_send ~self ~cmd:(selector "validateAndIndexValues:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x (ULLong.of_int length)
 let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning (llong)) x

@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSGridRow"
 
 let bottomPadding self = msg_send ~self ~cmd:(selector "bottomPadding") ~typ:(returning (double))
-let cellAtIndex x self = msg_send ~self ~cmd:(selector "cellAtIndex:") ~typ:(llong @-> returning (id)) x
+let cellAtIndex x self = msg_send ~self ~cmd:(selector "cellAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
@@ -26,8 +26,8 @@ let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(retu
 let setBottomPadding x self = msg_send ~self ~cmd:(selector "setBottomPadding:") ~typ:(double @-> returning (void)) x
 let setHeight x self = msg_send ~self ~cmd:(selector "setHeight:") ~typ:(double @-> returning (void)) x
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning (void)) x
-let setRowAlignment x self = msg_send ~self ~cmd:(selector "setRowAlignment:") ~typ:(llong @-> returning (void)) x
+let setRowAlignment x self = msg_send ~self ~cmd:(selector "setRowAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTopPadding x self = msg_send ~self ~cmd:(selector "setTopPadding:") ~typ:(double @-> returning (void)) x
-let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning (void)) x
+let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let topPadding self = msg_send ~self ~cmd:(selector "topPadding") ~typ:(returning (double))
 let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning (llong))

@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "NSTrackingSeparatorToolbarItem"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfAlignmentSatisfied self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfAlignmentSatisfied") ~typ:(returning (bool))
-  let trackingSeparatorToolbarItemWithIdentifier x ~splitView ~dividerIndex self = msg_send ~self ~cmd:(selector "trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:") ~typ:(id @-> id @-> llong @-> returning (id)) x splitView dividerIndex
+  let trackingSeparatorToolbarItemWithIdentifier x ~splitView ~dividerIndex self = msg_send ~self ~cmd:(selector "trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:") ~typ:(id @-> id @-> llong @-> returning (id)) x splitView (LLong.of_int dividerIndex)
 end
 
 let alignmentIsAlwaysSatisfied self = msg_send ~self ~cmd:(selector "alignmentIsAlwaysSatisfied") ~typ:(returning (bool))
-let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) x andSizeMode
+let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) (ULLong.of_int x) (ULLong.of_int andSizeMode)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
 let dividerIndex self = msg_send ~self ~cmd:(selector "dividerIndex") ~typ:(returning (llong))
@@ -35,7 +35,7 @@ let representsTrailingSidebar self = msg_send ~self ~cmd:(selector "representsTr
 let setAlignmentIsAlwaysSatisfied x self = msg_send ~self ~cmd:(selector "setAlignmentIsAlwaysSatisfied:") ~typ:(bool @-> returning (void)) x
 let setAlignmentRequired x self = msg_send ~self ~cmd:(selector "setAlignmentRequired:") ~typ:(bool @-> returning (void)) x
 let setAlignmentSatisfied x self = msg_send ~self ~cmd:(selector "setAlignmentSatisfied:") ~typ:(bool @-> returning (void)) x
-let setDividerIndex x self = msg_send ~self ~cmd:(selector "setDividerIndex:") ~typ:(llong @-> returning (void)) x
+let setDividerIndex x self = msg_send ~self ~cmd:(selector "setDividerIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFullHeightDividersDisabled x self = msg_send ~self ~cmd:(selector "setFullHeightDividersDisabled:") ~typ:(bool @-> returning (void)) x
 let setNavigational x self = msg_send ~self ~cmd:(selector "setNavigational:") ~typ:(bool @-> returning (void)) x
 let setRepresentsSidebar x self = msg_send ~self ~cmd:(selector "setRepresentsSidebar:") ~typ:(bool @-> returning (void)) x
@@ -45,6 +45,6 @@ let splitView self = msg_send ~self ~cmd:(selector "splitView") ~typ:(returning 
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
 let viewDidLayout self = msg_send ~self ~cmd:(selector "viewDidLayout") ~typ:(returning (void))
 let visibilityPriority self = msg_send ~self ~cmd:(selector "visibilityPriority") ~typ:(returning (llong))
-let wantsHiddenLabelInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsHiddenLabelInDisplayMode:") ~typ:(ullong @-> returning (bool)) x
-let wantsToDrawIconInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsToDrawIconInDisplayMode:") ~typ:(ullong @-> returning (bool)) x
-let wantsToDrawLabelInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsToDrawLabelInDisplayMode:") ~typ:(ullong @-> returning (bool)) x
+let wantsHiddenLabelInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsHiddenLabelInDisplayMode:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
+let wantsToDrawIconInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsToDrawIconInDisplayMode:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
+let wantsToDrawLabelInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsToDrawLabelInDisplayMode:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)

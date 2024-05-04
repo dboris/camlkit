@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDateCheckingResult"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -25,7 +25,7 @@ let initWithRange6 x ~date ~timeZone ~duration ~referenceDate ~underlyingResult 
 let leadingText self = msg_send ~self ~cmd:(selector "leadingText") ~typ:(returning (id))
 let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
 let referenceDate self = msg_send ~self ~cmd:(selector "referenceDate") ~typ:(returning (id))
-let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) x
+let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning (ullong))
 let timeIsApproximate self = msg_send ~self ~cmd:(selector "timeIsApproximate") ~typ:(returning (bool))
 let timeIsPast self = msg_send ~self ~cmd:(selector "timeIsPast") ~typ:(returning (bool))

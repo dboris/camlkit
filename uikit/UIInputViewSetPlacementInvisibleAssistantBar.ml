@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacementInvisibleAssistantBar"
 
-module Class = struct
+module C = struct
   let placementWithPlacement x self = msg_send ~self ~cmd:(selector "placementWithPlacement:") ~typ:(id @-> returning (id)) x
 end
 

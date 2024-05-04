@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIStatusBarAnimationParameters"
 
-module Class = struct
+module C = struct
   let animateWithParameters x ~animations ~completion self = msg_send ~self ~cmd:(selector "animateWithParameters:animations:completion:") ~typ:(id @-> ptr void @-> ptr void @-> returning (void)) x animations completion
   let animateWithParameters1 x ~fromCurrentState ~animations ~completion self = msg_send ~self ~cmd:(selector "animateWithParameters:fromCurrentState:animations:completion:") ~typ:(id @-> bool @-> ptr void @-> ptr void @-> returning (void)) x fromCurrentState animations completion
   let animateWithParameters2 x ~fromCurrentState ~frameInterval ~animations ~completion self = msg_send ~self ~cmd:(selector "animateWithParameters:fromCurrentState:frameInterval:animations:completion:") ~typ:(id @-> bool @-> double @-> ptr void @-> ptr void @-> returning (void)) x fromCurrentState frameInterval animations completion
@@ -24,7 +24,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithDefaultParameters self = msg_send ~self ~cmd:(selector "initWithDefaultParameters") ~typ:(returning (id))
 let initWithEmptyParameters self = msg_send ~self ~cmd:(selector "initWithEmptyParameters") ~typ:(returning (id))
 let setAnimationFactory x self = msg_send ~self ~cmd:(selector "setAnimationFactory:") ~typ:(id @-> returning (void)) x
-let setCurve x self = msg_send ~self ~cmd:(selector "setCurve:") ~typ:(llong @-> returning (void)) x
+let setCurve x self = msg_send ~self ~cmd:(selector "setCurve:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setDelay x self = msg_send ~self ~cmd:(selector "setDelay:") ~typ:(double @-> returning (void)) x
 let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(double @-> returning (void)) x
 let setSkipFencing x self = msg_send ~self ~cmd:(selector "setSkipFencing:") ~typ:(bool @-> returning (void)) x

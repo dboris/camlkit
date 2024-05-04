@@ -35,6 +35,7 @@ let setNeedsLayout self = msg_send ~self ~cmd:(selector "setNeedsLayout") ~typ:(
 let setNeedsLayout' x self = msg_send ~self ~cmd:(selector "setNeedsLayout:") ~typ:(bool @-> returning (void)) x
 let setPreviousConfiguration x self = msg_send ~self ~cmd:(selector "setPreviousConfiguration:") ~typ:(id @-> returning (void)) x
 let setPreviousContainerSize x self = msg_send ~self ~cmd:(selector "setPreviousContainerSize:") ~typ:(CGSize.t @-> returning (void)) x
+let setSafeAreaInsets x self = msg_send ~self ~cmd:(selector "setSafeAreaInsets:") ~typ:(ptr void @-> returning (void)) x
 let setStandardLayoutWidthProvider x self = msg_send ~self ~cmd:(selector "setStandardLayoutWidthProvider:") ~typ:(ptr void @-> returning (void)) x
 let setTrailingLayout x self = msg_send ~self ~cmd:(selector "setTrailingLayout:") ~typ:(id @-> returning (void)) x
 let standardLayoutWidthProvider self = msg_send ~self ~cmd:(selector "standardLayoutWidthProvider") ~typ:(returning (ptr void))

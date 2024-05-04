@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDragInteraction"
 
-module Class = struct
+module C = struct
   let isEnabledByDefault self = msg_send ~self ~cmd:(selector "isEnabledByDefault") ~typ:(returning (bool))
 end
 

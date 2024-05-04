@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBTextStyle"
 
-module Class = struct
+module C = struct
   let styleWithFontName x ~withFontSize self = msg_send ~self ~cmd:(selector "styleWithFontName:withFontSize:") ~typ:(id @-> double @-> returning (id)) x withFontSize
   let styleWithTextColor x self = msg_send ~self ~cmd:(selector "styleWithTextColor:") ~typ:(id @-> returning (id)) x
 end
@@ -32,8 +32,8 @@ let minFontSize self = msg_send ~self ~cmd:(selector "minFontSize") ~typ:(return
 let overlayWithStyle x self = msg_send ~self ~cmd:(selector "overlayWithStyle:") ~typ:(id @-> returning (void)) x
 let pathWeight self = msg_send ~self ~cmd:(selector "pathWeight") ~typ:(returning (double))
 let selector_ self = msg_send ~self ~cmd:(selector "selector") ~typ:(returning (llong))
-let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) x
-let setAnchorCorner x self = msg_send ~self ~cmd:(selector "setAnchorCorner:") ~typ:(ullong @-> returning (void)) x
+let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setAnchorCorner x self = msg_send ~self ~cmd:(selector "setAnchorCorner:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setEtchColor x self = msg_send ~self ~cmd:(selector "setEtchColor:") ~typ:(id @-> returning (void)) x
 let setEtchOffset x self = msg_send ~self ~cmd:(selector "setEtchOffset:") ~typ:(CGPoint.t @-> returning (void)) x
 let setFontName x self = msg_send ~self ~cmd:(selector "setFontName:") ~typ:(id @-> returning (void)) x
@@ -44,7 +44,7 @@ let setImageScale x self = msg_send ~self ~cmd:(selector "setImageScale:") ~typ:
 let setKerning x self = msg_send ~self ~cmd:(selector "setKerning:") ~typ:(double @-> returning (void)) x
 let setMinFontSize x self = msg_send ~self ~cmd:(selector "setMinFontSize:") ~typ:(double @-> returning (void)) x
 let setPathWeight x self = msg_send ~self ~cmd:(selector "setPathWeight:") ~typ:(double @-> returning (void)) x
-let setSelector x self = msg_send ~self ~cmd:(selector "setSelector:") ~typ:(llong @-> returning (void)) x
+let setSelector x self = msg_send ~self ~cmd:(selector "setSelector:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTextColor x self = msg_send ~self ~cmd:(selector "setTextColor:") ~typ:(id @-> returning (void)) x
 let setTextOffset x self = msg_send ~self ~cmd:(selector "setTextOffset:") ~typ:(CGPoint.t @-> returning (void)) x
 let setTextOpacity x self = msg_send ~self ~cmd:(selector "setTextOpacity:") ~typ:(double @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIStatusBarItemView"
 
-module Class = struct
+module C = struct
   let createViewForItem x ~withData ~actions ~foregroundStyle self = msg_send ~self ~cmd:(selector "createViewForItem:withData:actions:foregroundStyle:") ~typ:(id @-> id @-> int @-> id @-> returning (id)) x withData actions foregroundStyle
 end
 
@@ -50,7 +50,7 @@ let neededSizeForImageSet x self = msg_send ~self ~cmd:(selector "neededSizeForI
 let performPendedActions self = msg_send ~self ~cmd:(selector "performPendedActions") ~typ:(returning (void))
 let resetContentOverlap self = msg_send ~self ~cmd:(selector "resetContentOverlap") ~typ:(returning (double))
 let setAllowsUpdates x self = msg_send ~self ~cmd:(selector "setAllowsUpdates:") ~typ:(bool @-> returning (void)) x
-let setContentMode x self = msg_send ~self ~cmd:(selector "setContentMode:") ~typ:(llong @-> returning (void)) x
+let setContentMode x self = msg_send ~self ~cmd:(selector "setContentMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCurrentOverlap x self = msg_send ~self ~cmd:(selector "setCurrentOverlap:") ~typ:(double @-> returning (void)) x
 let setLayerContentsImage x self = msg_send ~self ~cmd:(selector "setLayerContentsImage:") ~typ:(id @-> returning (void)) x
 let setLayoutManager x self = msg_send ~self ~cmd:(selector "setLayoutManager:") ~typ:(id @-> returning (void)) x

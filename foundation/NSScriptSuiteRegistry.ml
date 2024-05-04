@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptSuiteRegistry"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let setSharedScriptSuiteRegistry x self = msg_send ~self ~cmd:(selector "setSharedScriptSuiteRegistry:") ~typ:(id @-> returning (void)) x
   let sharedScriptSuiteRegistry self = msg_send ~self ~cmd:(selector "sharedScriptSuiteRegistry") ~typ:(returning (id))

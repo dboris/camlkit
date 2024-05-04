@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIMenuController"
 
-module Class = struct
+module C = struct
   let sharedMenuController self = msg_send ~self ~cmd:(selector "sharedMenuController") ~typ:(returning (id))
 end
 
@@ -22,7 +22,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let isMenuVisible self = msg_send ~self ~cmd:(selector "isMenuVisible") ~typ:(returning (bool))
 let menuFrame self = msg_send_stret ~self ~cmd:(selector "menuFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let menuItems self = msg_send ~self ~cmd:(selector "menuItems") ~typ:(returning (id))
-let setArrowDirection x self = msg_send ~self ~cmd:(selector "setArrowDirection:") ~typ:(llong @-> returning (void)) x
+let setArrowDirection x self = msg_send ~self ~cmd:(selector "setArrowDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMenuItems x self = msg_send ~self ~cmd:(selector "setMenuItems:") ~typ:(id @-> returning (void)) x
 let setMenuVisible x self = msg_send ~self ~cmd:(selector "setMenuVisible:") ~typ:(bool @-> returning (void)) x
 let setMenuVisible' x ~animated self = msg_send ~self ~cmd:(selector "setMenuVisible:animated:") ~typ:(bool @-> bool @-> returning (void)) x animated

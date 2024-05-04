@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSearchField"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -41,7 +41,7 @@ let sendsWholeSearchString self = msg_send ~self ~cmd:(selector "sendsWholeSearc
 let setCentersPlaceholder x self = msg_send ~self ~cmd:(selector "setCentersPlaceholder:") ~typ:(bool @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
-let setMaximumRecents x self = msg_send ~self ~cmd:(selector "setMaximumRecents:") ~typ:(llong @-> returning (void)) x
+let setMaximumRecents x self = msg_send ~self ~cmd:(selector "setMaximumRecents:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRecentSearches x self = msg_send ~self ~cmd:(selector "setRecentSearches:") ~typ:(id @-> returning (void)) x
 let setRecentsAutosaveName x self = msg_send ~self ~cmd:(selector "setRecentsAutosaveName:") ~typ:(id @-> returning (void)) x
 let setSearchMenuTemplate x self = msg_send ~self ~cmd:(selector "setSearchMenuTemplate:") ~typ:(id @-> returning (void)) x

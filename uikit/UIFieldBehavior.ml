@@ -8,15 +8,17 @@ open Foundation
 
 let _class_ = get_class "UIFieldBehavior"
 
-module Class = struct
+module C = struct
   let dragField self = msg_send ~self ~cmd:(selector "dragField") ~typ:(returning (id))
   let electricField self = msg_send ~self ~cmd:(selector "electricField") ~typ:(returning (id))
   let fieldWithEvaluationBlock x self = msg_send ~self ~cmd:(selector "fieldWithEvaluationBlock:") ~typ:(ptr void @-> returning (id)) x
+  let linearGravityFieldWithVector x self = msg_send ~self ~cmd:(selector "linearGravityFieldWithVector:") ~typ:(ptr void @-> returning (id)) x
   let magneticField self = msg_send ~self ~cmd:(selector "magneticField") ~typ:(returning (id))
   let noiseFieldWithSmoothness x ~animationSpeed self = msg_send ~self ~cmd:(selector "noiseFieldWithSmoothness:animationSpeed:") ~typ:(double @-> double @-> returning (id)) x animationSpeed
   let radialGravityFieldWithPosition x self = msg_send ~self ~cmd:(selector "radialGravityFieldWithPosition:") ~typ:(CGPoint.t @-> returning (id)) x
   let springField self = msg_send ~self ~cmd:(selector "springField") ~typ:(returning (id))
   let turbulenceFieldWithSmoothness x ~animationSpeed self = msg_send ~self ~cmd:(selector "turbulenceFieldWithSmoothness:animationSpeed:") ~typ:(double @-> double @-> returning (id)) x animationSpeed
+  let velocityFieldWithVector x self = msg_send ~self ~cmd:(selector "velocityFieldWithVector:") ~typ:(ptr void @-> returning (id)) x
   let vortexField self = msg_send ~self ~cmd:(selector "vortexField") ~typ:(returning (id))
 end
 
@@ -31,6 +33,7 @@ let position self = msg_send_stret ~self ~cmd:(selector "position") ~typ:(return
 let region self = msg_send ~self ~cmd:(selector "region") ~typ:(returning (id))
 let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:(id @-> returning (void)) x
 let setAnimationSpeed x self = msg_send ~self ~cmd:(selector "setAnimationSpeed:") ~typ:(double @-> returning (void)) x
+let setDirection x self = msg_send ~self ~cmd:(selector "setDirection:") ~typ:(ptr void @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setFalloff x self = msg_send ~self ~cmd:(selector "setFalloff:") ~typ:(double @-> returning (void)) x
 let setMinimumRadius x self = msg_send ~self ~cmd:(selector "setMinimumRadius:") ~typ:(double @-> returning (void)) x

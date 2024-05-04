@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSavePanel"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingValueForKey x self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingValueForKey:") ~typ:(id @-> returning (id)) x
   let savePanel self = msg_send ~self ~cmd:(selector "savePanel") ~typ:(returning (id))
 end
@@ -48,10 +48,10 @@ let canDownloadUbiquitousContents self = msg_send ~self ~cmd:(selector "canDownl
 let canResolveUbiquitousConflicts self = msg_send ~self ~cmd:(selector "canResolveUbiquitousConflicts") ~typ:(returning (bool))
 let canSelectHiddenExtension self = msg_send ~self ~cmd:(selector "canSelectHiddenExtension") ~typ:(returning (bool))
 let cancel x self = msg_send ~self ~cmd:(selector "cancel:") ~typ:(id @-> returning (void)) x
-let completeModal x self = msg_send ~self ~cmd:(selector "completeModal:") ~typ:(llong @-> returning (void)) x
-let completeModeless x self = msg_send ~self ~cmd:(selector "completeModeless:") ~typ:(llong @-> returning (void)) x
-let completeSheet x self = msg_send ~self ~cmd:(selector "completeSheet:") ~typ:(llong @-> returning (void)) x
-let completeWithReturnCode x ~url ~urls self = msg_send ~self ~cmd:(selector "completeWithReturnCode:url:urls:") ~typ:(llong @-> id @-> id @-> returning (void)) x url urls
+let completeModal x self = msg_send ~self ~cmd:(selector "completeModal:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let completeModeless x self = msg_send ~self ~cmd:(selector "completeModeless:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let completeSheet x self = msg_send ~self ~cmd:(selector "completeSheet:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let completeWithReturnCode x ~url ~urls self = msg_send ~self ~cmd:(selector "completeWithReturnCode:url:urls:") ~typ:(llong @-> id @-> id @-> returning (void)) (LLong.of_int x) url urls
 let completionHandler self = msg_send ~self ~cmd:(selector "completionHandler") ~typ:(returning (ptr void))
 let configureContentView x self = msg_send ~self ~cmd:(selector "configureContentView:") ~typ:(id @-> returning (void)) x
 let customActions self = msg_send ~self ~cmd:(selector "customActions") ~typ:(returning (id))
@@ -62,8 +62,8 @@ let delegateRequestNewDocumentNameWithReply x self = msg_send ~self ~cmd:(select
 let delegateShouldCreateNewDocumentAtURL x self = msg_send ~self ~cmd:(selector "delegateShouldCreateNewDocumentAtURL:") ~typ:(id @-> returning (void)) x
 let delegateValidateURLs x ~withReply self = msg_send ~self ~cmd:(selector "delegateValidateURLs:withReply:") ~typ:(id @-> ptr void @-> returning (void)) x withReply
 let didBeginServicePanel self = msg_send ~self ~cmd:(selector "didBeginServicePanel") ~typ:(returning (bool))
-let didEndPanelWithReturnCode x self = msg_send ~self ~cmd:(selector "didEndPanelWithReturnCode:") ~typ:(llong @-> returning (void)) x
-let didEndSheet x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "didEndSheet:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x returnCode contextInfo
+let didEndPanelWithReturnCode x self = msg_send ~self ~cmd:(selector "didEndPanelWithReturnCode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let didEndSheet x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "didEndSheet:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x (LLong.of_int returnCode) contextInfo
 let didPrepareToRun self = msg_send ~self ~cmd:(selector "didPrepareToRun") ~typ:(returning (bool))
 let directory self = msg_send ~self ~cmd:(selector "directory") ~typ:(returning (id))
 let directoryURL self = msg_send ~self ~cmd:(selector "directoryURL") ~typ:(returning (id))
@@ -76,7 +76,7 @@ let hidesSharedSection self = msg_send ~self ~cmd:(selector "hidesSharedSection"
 let iCloudOpenPanel self = msg_send ~self ~cmd:(selector "iCloudOpenPanel") ~typ:(returning (bool))
 let induceEventLoopIterationSoon self = msg_send ~self ~cmd:(selector "induceEventLoopIterationSoon") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x styleMask backing defer
+let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer
 let isAccessoryViewDisclosed self = msg_send ~self ~cmd:(selector "isAccessoryViewDisclosed") ~typ:(returning (bool))
 let isExpanded self = msg_send ~self ~cmd:(selector "isExpanded") ~typ:(returning (bool))
 let isExtensionHidden self = msg_send ~self ~cmd:(selector "isExtensionHidden") ~typ:(returning (bool))

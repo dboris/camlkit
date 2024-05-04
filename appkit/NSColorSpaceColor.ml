@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSColorSpaceColor"
 
-module Class = struct
+module C = struct
   let load self = msg_send ~self ~cmd:(selector "load") ~typ:(returning (void))
   let newWithCoder x ~zone self = msg_send ~self ~cmd:(selector "newWithCoder:zone:") ~typ:(id @-> id @-> returning (id)) x zone
-  let newWithColorSpace x ~components ~count self = msg_send ~self ~cmd:(selector "newWithColorSpace:components:count:") ~typ:(id @-> ptr (double) @-> llong @-> returning (id)) x components count
+  let newWithColorSpace x ~components ~count self = msg_send ~self ~cmd:(selector "newWithColorSpace:components:count:") ~typ:(id @-> ptr (double) @-> llong @-> returning (id)) x components (LLong.of_int count)
 end
 
 let _CGColor self = msg_send ~self ~cmd:(selector "CGColor") ~typ:(returning (ptr void))
@@ -24,7 +24,7 @@ let colorSpace self = msg_send ~self ~cmd:(selector "colorSpace") ~typ:(returnin
 let colorSpaceName self = msg_send ~self ~cmd:(selector "colorSpaceName") ~typ:(returning (id))
 let colorUsingColorSpace x self = msg_send ~self ~cmd:(selector "colorUsingColorSpace:") ~typ:(id @-> returning (id)) x
 let colorUsingColorSpaceName x ~device self = msg_send ~self ~cmd:(selector "colorUsingColorSpaceName:device:") ~typ:(id @-> id @-> returning (id)) x device
-let colorUsingType x self = msg_send ~self ~cmd:(selector "colorUsingType:") ~typ:(llong @-> returning (id)) x
+let colorUsingType x self = msg_send ~self ~cmd:(selector "colorUsingType:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let colorWithAlphaComponent x self = msg_send ~self ~cmd:(selector "colorWithAlphaComponent:") ~typ:(double @-> returning (id)) x
 let cyanComponent self = msg_send ~self ~cmd:(selector "cyanComponent") ~typ:(returning (double))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -38,7 +38,7 @@ let getWhite x ~alpha self = msg_send ~self ~cmd:(selector "getWhite:alpha:") ~t
 let greenComponent self = msg_send ~self ~cmd:(selector "greenComponent") ~typ:(returning (double))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let hueComponent self = msg_send ~self ~cmd:(selector "hueComponent") ~typ:(returning (double))
-let initWithColorSpace x ~components ~count self = msg_send ~self ~cmd:(selector "initWithColorSpace:components:count:") ~typ:(id @-> ptr (double) @-> llong @-> returning (id)) x components count
+let initWithColorSpace x ~components ~count self = msg_send ~self ~cmd:(selector "initWithColorSpace:components:count:") ~typ:(id @-> ptr (double) @-> llong @-> returning (id)) x components (LLong.of_int count)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isUniform self = msg_send ~self ~cmd:(selector "isUniform") ~typ:(returning (bool))
 let magentaComponent self = msg_send ~self ~cmd:(selector "magentaComponent") ~typ:(returning (double))

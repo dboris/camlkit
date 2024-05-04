@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSIBObjectData"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -30,7 +30,7 @@ let oidTable self = msg_send ~self ~cmd:(selector "oidTable") ~typ:(returning (i
 let rootObject self = msg_send ~self ~cmd:(selector "rootObject") ~typ:(returning (id))
 let setConnections x self = msg_send ~self ~cmd:(selector "setConnections:") ~typ:(id @-> returning (void)) x
 let setFirstResponder x self = msg_send ~self ~cmd:(selector "setFirstResponder:") ~typ:(id @-> returning (void)) x
-let setNextObjectID x self = msg_send ~self ~cmd:(selector "setNextObjectID:") ~typ:(ullong @-> returning (void)) x
+let setNextObjectID x self = msg_send ~self ~cmd:(selector "setNextObjectID:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRootObject x self = msg_send ~self ~cmd:(selector "setRootObject:") ~typ:(id @-> returning (void)) x
 let setShouldEncodeDesigntimeData x self = msg_send ~self ~cmd:(selector "setShouldEncodeDesigntimeData:") ~typ:(bool @-> returning (void)) x
 let setTargetFramework x self = msg_send ~self ~cmd:(selector "setTargetFramework:") ~typ:(id @-> returning (void)) x

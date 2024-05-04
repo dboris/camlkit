@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTextInputContext"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let currentInputContext self = msg_send ~self ~cmd:(selector "currentInputContext") ~typ:(returning (id))
   let currentKeyboardInputSourceParticipatesInTouchBar self = msg_send ~self ~cmd:(selector "currentKeyboardInputSourceParticipatesInTouchBar") ~typ:(returning (bool))
@@ -40,8 +40,8 @@ let attributedStringWithCompletionHandler x self = msg_send ~self ~cmd:(selector
 let attributedSubstringForProposedRange x ~actualRange self = msg_send ~self ~cmd:(selector "attributedSubstringForProposedRange:actualRange:") ~typ:(NSRange.t @-> ptr (NSRange.t) @-> returning (id)) x actualRange
 let attributedSubstringForProposedRange' x ~completionHandler self = msg_send ~self ~cmd:(selector "attributedSubstringForProposedRange:completionHandler:") ~typ:(NSRange.t @-> ptr void @-> returning (void)) x completionHandler
 let auxiliary self = msg_send ~self ~cmd:(selector "auxiliary") ~typ:(returning (id))
-let baselineDeltaForCharacterAtIndex x self = msg_send ~self ~cmd:(selector "baselineDeltaForCharacterAtIndex:") ~typ:(ullong @-> returning (double)) x
-let baselineDeltaForCharacterAtIndex' x ~completionHandler self = msg_send ~self ~cmd:(selector "baselineDeltaForCharacterAtIndex:completionHandler:") ~typ:(ullong @-> ptr void @-> returning (void)) x completionHandler
+let baselineDeltaForCharacterAtIndex x self = msg_send ~self ~cmd:(selector "baselineDeltaForCharacterAtIndex:") ~typ:(ullong @-> returning (double)) (ULLong.of_int x)
+let baselineDeltaForCharacterAtIndex' x ~completionHandler self = msg_send ~self ~cmd:(selector "baselineDeltaForCharacterAtIndex:completionHandler:") ~typ:(ullong @-> ptr void @-> returning (void)) (ULLong.of_int x) completionHandler
 let bridgedTextCorrectionController self = msg_send ~self ~cmd:(selector "bridgedTextCorrectionController") ~typ:(returning (id))
 let bridgedTextSubstitutionController self = msg_send ~self ~cmd:(selector "bridgedTextSubstitutionController") ~typ:(returning (id))
 let bridgedTextTouchBarController self = msg_send ~self ~cmd:(selector "bridgedTextTouchBarController") ~typ:(returning (id))
@@ -76,8 +76,8 @@ let doCommandBySelector x self = msg_send ~self ~cmd:(selector "doCommandBySelec
 let doCommandBySelector1 x ~completionHandler self = msg_send ~self ~cmd:(selector "doCommandBySelector:completionHandler:") ~typ:(_SEL @-> ptr void @-> returning (void)) x completionHandler
 let doCommandBySelector2 x ~completionHandlerWithResult self = msg_send ~self ~cmd:(selector "doCommandBySelector:completionHandlerWithResult:") ~typ:(_SEL @-> ptr void @-> returning (void)) x completionHandlerWithResult
 let doCommandBySelectorWithResult x self = msg_send ~self ~cmd:(selector "doCommandBySelectorWithResult:") ~typ:(_SEL @-> returning (bool)) x
-let drawsVerticallyForCharacterAtIndex x self = msg_send ~self ~cmd:(selector "drawsVerticallyForCharacterAtIndex:") ~typ:(ullong @-> returning (bool)) x
-let drawsVerticallyForCharacterAtIndex' x ~completionHandler self = msg_send ~self ~cmd:(selector "drawsVerticallyForCharacterAtIndex:completionHandler:") ~typ:(ullong @-> ptr void @-> returning (void)) x completionHandler
+let drawsVerticallyForCharacterAtIndex x self = msg_send ~self ~cmd:(selector "drawsVerticallyForCharacterAtIndex:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
+let drawsVerticallyForCharacterAtIndex' x ~completionHandler self = msg_send ~self ~cmd:(selector "drawsVerticallyForCharacterAtIndex:completionHandler:") ~typ:(ullong @-> ptr void @-> returning (void)) (ULLong.of_int x) completionHandler
 let firstRectForCharacterRange x ~actualRange self = msg_send_stret ~self ~cmd:(selector "firstRectForCharacterRange:actualRange:") ~typ:(NSRange.t @-> ptr (NSRange.t) @-> returning (CGRect.t)) ~return_type:CGRect.t x actualRange
 let firstRectForCharacterRange' x ~completionHandler self = msg_send ~self ~cmd:(selector "firstRectForCharacterRange:completionHandler:") ~typ:(NSRange.t @-> ptr void @-> returning (void)) x completionHandler
 let flushRTIOperations self = msg_send ~self ~cmd:(selector "flushRTIOperations") ~typ:(returning (void))

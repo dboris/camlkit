@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewPlacementTransition"
 
-module Class = struct
+module C = struct
   let transitionFromPlacement x ~toPlacement ~withAnimationStyle self = msg_send ~self ~cmd:(selector "transitionFromPlacement:toPlacement:withAnimationStyle:") ~typ:(id @-> id @-> id @-> returning (id)) x toPlacement withAnimationStyle
 end
 
@@ -29,6 +29,6 @@ let setAnimationStyle x self = msg_send ~self ~cmd:(selector "setAnimationStyle:
 let setCancelled x self = msg_send ~self ~cmd:(selector "setCancelled:") ~typ:(bool @-> returning (void)) x
 let setFromPlacement x self = msg_send ~self ~cmd:(selector "setFromPlacement:") ~typ:(id @-> returning (void)) x
 let setNotificationInfo x self = msg_send ~self ~cmd:(selector "setNotificationInfo:") ~typ:(id @-> returning (void)) x
-let setNotifications x self = msg_send ~self ~cmd:(selector "setNotifications:") ~typ:(ullong @-> returning (void)) x
+let setNotifications x self = msg_send ~self ~cmd:(selector "setNotifications:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setToPlacement x self = msg_send ~self ~cmd:(selector "setToPlacement:") ~typ:(id @-> returning (void)) x
 let toPlacement self = msg_send ~self ~cmd:(selector "toPlacement") ~typ:(returning (id))

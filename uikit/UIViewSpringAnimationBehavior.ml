@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIViewSpringAnimationBehavior"
 
-module Class = struct
+module C = struct
   let behaviorWithDampingRatio x ~response self = msg_send ~self ~cmd:(selector "behaviorWithDampingRatio:response:") ~typ:(double @-> double @-> returning (id)) x response
 end
 

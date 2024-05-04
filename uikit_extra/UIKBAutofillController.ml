@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIKBAutofillController"
 
-module Class = struct
-  let translateToTextInputAutofillMode x self = msg_send ~self ~cmd:(selector "translateToTextInputAutofillMode:") ~typ:(llong @-> returning (ullong)) x
+module C = struct
+  let translateToTextInputAutofillMode x self = msg_send ~self ~cmd:(selector "translateToTextInputAutofillMode:") ~typ:(llong @-> returning (ullong)) (LLong.of_int x)
 end
 
 let accessibilityLoginKeywordList self = msg_send ~self ~cmd:(selector "accessibilityLoginKeywordList") ~typ:(returning (id))
@@ -43,7 +43,7 @@ let preferFallbackAutofillGroup self = msg_send ~self ~cmd:(selector "preferFall
 let processLocalizedString x self = msg_send ~self ~cmd:(selector "processLocalizedString:") ~typ:(id @-> returning (id)) x
 let removeTemporaryTextColorFromTextField x self = msg_send ~self ~cmd:(selector "removeTemporaryTextColorFromTextField:") ~typ:(id @-> returning (void)) x
 let searchKeywordSet self = msg_send ~self ~cmd:(selector "searchKeywordSet") ~typ:(returning (id))
-let setDelegateNeedsAutofillMode x self = msg_send ~self ~cmd:(selector "setDelegateNeedsAutofillMode:") ~typ:(llong @-> returning (void)) x
+let setDelegateNeedsAutofillMode x self = msg_send ~self ~cmd:(selector "setDelegateNeedsAutofillMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFallbackAutofillGroup x self = msg_send ~self ~cmd:(selector "setFallbackAutofillGroup:") ~typ:(id @-> returning (void)) x
 let setShouldSaveAutofill x self = msg_send ~self ~cmd:(selector "setShouldSaveAutofill:") ~typ:(bool @-> returning (void)) x
 let setTextFieldOrigColor x self = msg_send ~self ~cmd:(selector "setTextFieldOrigColor:") ~typ:(id @-> returning (void)) x

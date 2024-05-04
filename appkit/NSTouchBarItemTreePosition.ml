@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarItemTreePosition"
 
-module Class = struct
-  let positionInParentNode x ~atIndex self = msg_send ~self ~cmd:(selector "positionInParentNode:atIndex:") ~typ:(id @-> llong @-> returning (id)) x atIndex
+module C = struct
+  let positionInParentNode x ~atIndex self = msg_send ~self ~cmd:(selector "positionInParentNode:atIndex:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int atIndex)
 end
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x

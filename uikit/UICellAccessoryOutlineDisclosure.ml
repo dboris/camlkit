@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICellAccessoryOutlineDisclosure"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -20,5 +20,5 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let rotationAngle self = msg_send ~self ~cmd:(selector "rotationAngle") ~typ:(returning (double))
 let setActionHandler x self = msg_send ~self ~cmd:(selector "setActionHandler:") ~typ:(ptr void @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning (llong))

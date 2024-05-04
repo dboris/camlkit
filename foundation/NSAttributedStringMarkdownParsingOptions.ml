@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSAttributedStringMarkdownParsingOptions"
 
-module Class = struct
+module C = struct
   let allowingExtendedAttributes self = msg_send ~self ~cmd:(selector "allowingExtendedAttributes") ~typ:(returning (id))
 end
 
@@ -21,6 +21,6 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let languageCode self = msg_send ~self ~cmd:(selector "languageCode") ~typ:(returning (id))
 let setAllowsExtendedAttributes x self = msg_send ~self ~cmd:(selector "setAllowsExtendedAttributes:") ~typ:(bool @-> returning (void)) x
 let setAppliesSourcePositionAttributes x self = msg_send ~self ~cmd:(selector "setAppliesSourcePositionAttributes:") ~typ:(bool @-> returning (void)) x
-let setFailurePolicy x self = msg_send ~self ~cmd:(selector "setFailurePolicy:") ~typ:(llong @-> returning (void)) x
-let setInterpretedSyntax x self = msg_send ~self ~cmd:(selector "setInterpretedSyntax:") ~typ:(llong @-> returning (void)) x
+let setFailurePolicy x self = msg_send ~self ~cmd:(selector "setFailurePolicy:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setInterpretedSyntax x self = msg_send ~self ~cmd:(selector "setInterpretedSyntax:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLanguageCode x self = msg_send ~self ~cmd:(selector "setLanguageCode:") ~typ:(id @-> returning (void)) x

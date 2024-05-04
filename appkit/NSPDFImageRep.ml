@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPDFImageRep"
 
-module Class = struct
+module C = struct
   let canInitWithData x self = msg_send ~self ~cmd:(selector "canInitWithData:") ~typ:(id @-> returning (bool)) x
   let imageRepWithData x self = msg_send ~self ~cmd:(selector "imageRepWithData:") ~typ:(id @-> returning (id)) x
   let imageUnfilteredFileTypes self = msg_send ~self ~cmd:(selector "imageUnfilteredFileTypes") ~typ:(returning (id))
@@ -28,4 +28,4 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithData x self = msg_send ~self ~cmd:(selector "initWithData:") ~typ:(id @-> returning (id)) x
 let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning (llong))
-let setCurrentPage x self = msg_send ~self ~cmd:(selector "setCurrentPage:") ~typ:(llong @-> returning (void)) x
+let setCurrentPage x self = msg_send ~self ~cmd:(selector "setCurrentPage:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

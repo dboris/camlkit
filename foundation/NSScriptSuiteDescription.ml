@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptSuiteDescription"
 
-module Class = struct
+module C = struct
   let currentSuiteAppleEventCode self = msg_send ~self ~cmd:(selector "currentSuiteAppleEventCode") ~typ:(returning (uint))
   let currentSuiteTerminology self = msg_send ~self ~cmd:(selector "currentSuiteTerminology") ~typ:(returning (id))
   let sortedClassDescriptions x self = msg_send ~self ~cmd:(selector "sortedClassDescriptions:") ~typ:(id @-> returning (id)) x

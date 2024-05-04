@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTitlebarAccessoryViewController"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
 end
 
@@ -39,7 +39,7 @@ let setFullScreenMinHeight x self = msg_send ~self ~cmd:(selector "setFullScreen
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning (void)) x
 let setInFullScreen x self = msg_send ~self ~cmd:(selector "setInFullScreen:") ~typ:(bool @-> returning (void)) x
 let setIsToolbarAccessoryView x self = msg_send ~self ~cmd:(selector "setIsToolbarAccessoryView:") ~typ:(bool @-> returning (void)) x
-let setLayoutAttribute x self = msg_send ~self ~cmd:(selector "setLayoutAttribute:") ~typ:(llong @-> returning (void)) x
+let setLayoutAttribute x self = msg_send ~self ~cmd:(selector "setLayoutAttribute:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPrefersDefaultSize x self = msg_send ~self ~cmd:(selector "setPrefersDefaultSize:") ~typ:(bool @-> returning (void)) x
 let setRevealAmount x self = msg_send ~self ~cmd:(selector "setRevealAmount:") ~typ:(double @-> returning (void)) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x

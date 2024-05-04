@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptObjectSpecifier"
 
-module Class = struct
+module C = struct
   let objectSpecifierWithDescriptor x self = msg_send ~self ~cmd:(selector "objectSpecifierWithDescriptor:") ~typ:(id @-> returning (id)) x
 end
 
@@ -35,5 +35,5 @@ let setContainerClassDescription x self = msg_send ~self ~cmd:(selector "setCont
 let setContainerIsObjectBeingTested x self = msg_send ~self ~cmd:(selector "setContainerIsObjectBeingTested:") ~typ:(bool @-> returning (void)) x
 let setContainerIsRangeContainerObject x self = msg_send ~self ~cmd:(selector "setContainerIsRangeContainerObject:") ~typ:(bool @-> returning (void)) x
 let setContainerSpecifier x self = msg_send ~self ~cmd:(selector "setContainerSpecifier:") ~typ:(id @-> returning (void)) x
-let setEvaluationErrorNumber x self = msg_send ~self ~cmd:(selector "setEvaluationErrorNumber:") ~typ:(llong @-> returning (void)) x
+let setEvaluationErrorNumber x self = msg_send ~self ~cmd:(selector "setEvaluationErrorNumber:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setKey x self = msg_send ~self ~cmd:(selector "setKey:") ~typ:(id @-> returning (void)) x

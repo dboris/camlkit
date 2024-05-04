@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSConstantDate"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISApplicationInitializationContext"
 
-module Class = struct
+module C = struct
   let defaultContext self = msg_send ~self ~cmd:(selector "defaultContext") ~typ:(returning (id))
   let supportsBSXPCSecureCoding self = msg_send ~self ~cmd:(selector "supportsBSXPCSecureCoding") ~typ:(returning (bool))
 end

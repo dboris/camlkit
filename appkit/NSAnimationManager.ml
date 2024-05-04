@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSAnimationManager"
 
-module Class = struct
+module C = struct
   let currentAnimationManager self = msg_send ~self ~cmd:(selector "currentAnimationManager") ~typ:(returning (id))
   let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> ptr (void) @-> returning (void)) x ofObject change context
   let performAnimations x self = msg_send ~self ~cmd:(selector "performAnimations:") ~typ:(id @-> returning (void)) x
@@ -22,5 +22,5 @@ let removeAllAnimationsForObject x self = msg_send ~self ~cmd:(selector "removeA
 let removeAnimationsForObject x ~keyPath self = msg_send ~self ~cmd:(selector "removeAnimationsForObject:keyPath:") ~typ:(id @-> id @-> returning (void)) x keyPath
 let removeAnimationsForObject' x ~keyPath ~finished self = msg_send ~self ~cmd:(selector "removeAnimationsForObject:keyPath:finished:") ~typ:(id @-> id @-> bool @-> returning (void)) x keyPath finished
 let setTargetValue x ~forObject ~keyPath ~animation self = msg_send ~self ~cmd:(selector "setTargetValue:forObject:keyPath:animation:") ~typ:(id @-> id @-> id @-> id @-> returning (void)) x forObject keyPath animation
-let setTargetValue' x ~forObject ~keyPath ~animation ~options self = msg_send ~self ~cmd:(selector "setTargetValue:forObject:keyPath:animation:options:") ~typ:(id @-> id @-> id @-> id @-> llong @-> returning (void)) x forObject keyPath animation options
+let setTargetValue' x ~forObject ~keyPath ~animation ~options self = msg_send ~self ~cmd:(selector "setTargetValue:forObject:keyPath:animation:options:") ~typ:(id @-> id @-> id @-> id @-> llong @-> returning (void)) x forObject keyPath animation (LLong.of_int options)
 let targetValueForObject x ~keyPath self = msg_send ~self ~cmd:(selector "targetValueForObject:keyPath:") ~typ:(id @-> id @-> returning (id)) x keyPath

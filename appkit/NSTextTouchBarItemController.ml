@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTextTouchBarItemController"
 
-module Class = struct
+module C = struct
   let nibForItems self = msg_send ~self ~cmd:(selector "nibForItems") ~typ:(returning (id))
 end
 

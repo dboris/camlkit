@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSAEDescriptorTranslator"
 
-module Class = struct
+module C = struct
   let sharedAEDescriptorTranslator self = msg_send ~self ~cmd:(selector "sharedAEDescriptorTranslator") ~typ:(returning (id))
 end
 

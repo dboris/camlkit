@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSaveAccessoryAdapter"
 
-module Class = struct
+module C = struct
   let adaptAccessoryIfNecessary x ~collapsePriority ~forOpen self = msg_send ~self ~cmd:(selector "adaptAccessoryIfNecessary:collapsePriority:forOpen:") ~typ:(id @-> float @-> bool @-> returning (id)) x collapsePriority forOpen
   let checkAllowedSize x ~atPriority ~ofView self = msg_send_stret ~self ~cmd:(selector "checkAllowedSize:atPriority:ofView:") ~typ:(CGSize.t @-> float @-> id @-> returning (CGSize.t)) ~return_type:CGSize.t x atPriority ofView
   let unwrapAccessoryIfNecessary x self = msg_send ~self ~cmd:(selector "unwrapAccessoryIfNecessary:") ~typ:(id @-> returning (id)) x

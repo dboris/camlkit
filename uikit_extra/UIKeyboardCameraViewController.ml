@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCameraViewController"
 
-module Class = struct
+module C = struct
   let isCameraRestricted self = msg_send ~self ~cmd:(selector "isCameraRestricted") ~typ:(returning (bool))
   let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
   let isLiveTextEnabled self = msg_send ~self ~cmd:(selector "isLiveTextEnabled") ~typ:(returning (bool))

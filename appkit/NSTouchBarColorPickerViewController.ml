@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorPickerViewController"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingWorkingColor self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingWorkingColor") ~typ:(returning (id))
 end
 
@@ -30,7 +30,7 @@ let setAllowsAlpha x self = msg_send ~self ~cmd:(selector "setAllowsAlpha:") ~ty
 let setColorList x self = msg_send ~self ~cmd:(selector "setColorList:") ~typ:(id @-> returning (void)) x
 let setColorListSupportsPressAndHoldVariants x self = msg_send ~self ~cmd:(selector "setColorListSupportsPressAndHoldVariants:") ~typ:(bool @-> returning (void)) x
 let setCurrentColor x self = msg_send ~self ~cmd:(selector "setCurrentColor:") ~typ:(id @-> returning (void)) x
-let setCurrentMode x self = msg_send ~self ~cmd:(selector "setCurrentMode:") ~typ:(llong @-> returning (void)) x
+let setCurrentMode x self = msg_send ~self ~cmd:(selector "setCurrentMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let switcher x ~didSelectItemAtIndex self = msg_send ~self ~cmd:(selector "switcher:didSelectItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x didSelectItemAtIndex
+let switcher x ~didSelectItemAtIndex self = msg_send ~self ~cmd:(selector "switcher:didSelectItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int didSelectItemAtIndex)
 let workingColor self = msg_send ~self ~cmd:(selector "workingColor") ~typ:(returning (id))

@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSURL"
 
-module Class = struct
-  let _URLByResolvingAliasFileAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "URLByResolvingAliasFileAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x options error
-  let _URLByResolvingBookmarkData x ~options ~relativeToURL ~bookmarkDataIsStale ~error self = msg_send ~self ~cmd:(selector "URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:") ~typ:(id @-> ullong @-> id @-> ptr (bool) @-> ptr (id) @-> returning (id)) x options relativeToURL bookmarkDataIsStale error
+module C = struct
+  let _URLByResolvingAliasFileAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "URLByResolvingAliasFileAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) error
+  let _URLByResolvingBookmarkData x ~options ~relativeToURL ~bookmarkDataIsStale ~error self = msg_send ~self ~cmd:(selector "URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:") ~typ:(id @-> ullong @-> id @-> ptr (bool) @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) relativeToURL bookmarkDataIsStale error
   let _URLWithDataRepresentation x ~relativeToURL self = msg_send ~self ~cmd:(selector "URLWithDataRepresentation:relativeToURL:") ~typ:(id @-> id @-> returning (id)) x relativeToURL
   let _URLWithString x self = msg_send ~self ~cmd:(selector "URLWithString:") ~typ:(id @-> returning (id)) x
   let _URLWithString' x ~relativeToURL self = msg_send ~self ~cmd:(selector "URLWithString:relativeToURL:") ~typ:(id @-> id @-> returning (id)) x relativeToURL
@@ -26,7 +26,7 @@ module Class = struct
   let resourceValuesForKeys x ~fromBookmarkData self = msg_send ~self ~cmd:(selector "resourceValuesForKeys:fromBookmarkData:") ~typ:(id @-> id @-> returning (id)) x fromBookmarkData
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let writableTypeIdentifiersForItemProvider self = msg_send ~self ~cmd:(selector "writableTypeIdentifiersForItemProvider") ~typ:(returning (id))
-  let writeBookmarkData x ~toURL ~options ~error self = msg_send ~self ~cmd:(selector "writeBookmarkData:toURL:options:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (bool)) x toURL options error
+  let writeBookmarkData x ~toURL ~options ~error self = msg_send ~self ~cmd:(selector "writeBookmarkData:toURL:options:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (bool)) x toURL (ULLong.of_int options) error
 end
 
 let _URLByAppendingPathComponent x self = msg_send ~self ~cmd:(selector "URLByAppendingPathComponent:") ~typ:(id @-> returning (id)) x
@@ -45,7 +45,7 @@ let _URLHandleUsingCache x self = msg_send ~self ~cmd:(selector "URLHandleUsingC
 let absoluteString self = msg_send ~self ~cmd:(selector "absoluteString") ~typ:(returning (id))
 let absoluteURL self = msg_send ~self ~cmd:(selector "absoluteURL") ~typ:(returning (id))
 let baseURL self = msg_send ~self ~cmd:(selector "baseURL") ~typ:(returning (id))
-let bookmarkDataWithOptions x ~includingResourceValuesForKeys ~relativeToURL ~error self = msg_send ~self ~cmd:(selector "bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:") ~typ:(ullong @-> id @-> id @-> ptr (id) @-> returning (id)) x includingResourceValuesForKeys relativeToURL error
+let bookmarkDataWithOptions x ~includingResourceValuesForKeys ~relativeToURL ~error self = msg_send ~self ~cmd:(selector "bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:") ~typ:(ullong @-> id @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) includingResourceValuesForKeys relativeToURL error
 let checkPromisedItemIsReachableAndReturnError x self = msg_send ~self ~cmd:(selector "checkPromisedItemIsReachableAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
 let checkResourceIsReachableAndReturnError x self = msg_send ~self ~cmd:(selector "checkResourceIsReachableAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
 let conformsToOverridePatternWithKey x self = msg_send ~self ~cmd:(selector "conformsToOverridePatternWithKey:") ~typ:(id @-> returning (bool)) x
@@ -63,7 +63,7 @@ let fileSystemRepresentation self = msg_send ~self ~cmd:(selector "fileSystemRep
 let fmfURL self = msg_send ~self ~cmd:(selector "fmfURL") ~typ:(returning (id))
 let fmipURL self = msg_send ~self ~cmd:(selector "fmipURL") ~typ:(returning (id))
 let fragment self = msg_send ~self ~cmd:(selector "fragment") ~typ:(returning (id))
-let getFileSystemRepresentation x ~maxLength self = msg_send ~self ~cmd:(selector "getFileSystemRepresentation:maxLength:") ~typ:(string @-> ullong @-> returning (bool)) x maxLength
+let getFileSystemRepresentation x ~maxLength self = msg_send ~self ~cmd:(selector "getFileSystemRepresentation:maxLength:") ~typ:(string @-> ullong @-> returning (bool)) x (ULLong.of_int maxLength)
 let getPromisedItemResourceValue x ~forKey ~error self = msg_send ~self ~cmd:(selector "getPromisedItemResourceValue:forKey:error:") ~typ:(ptr (id) @-> id @-> ptr (id) @-> returning (bool)) x forKey error
 let getResourceValue x ~forKey ~error self = msg_send ~self ~cmd:(selector "getResourceValue:forKey:error:") ~typ:(ptr (id) @-> id @-> ptr (id) @-> returning (bool)) x forKey error
 let hasDirectoryPath self = msg_send ~self ~cmd:(selector "hasDirectoryPath") ~typ:(returning (bool))
@@ -76,8 +76,8 @@ let iWorkApplicationName self = msg_send ~self ~cmd:(selector "iWorkApplicationN
 let iWorkDocumentName self = msg_send ~self ~cmd:(selector "iWorkDocumentName") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initAbsoluteURLWithDataRepresentation x ~relativeToURL self = msg_send ~self ~cmd:(selector "initAbsoluteURLWithDataRepresentation:relativeToURL:") ~typ:(id @-> id @-> returning (id)) x relativeToURL
-let initByResolvingAliasFileAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "initByResolvingAliasFileAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x options error
-let initByResolvingBookmarkData x ~options ~relativeToURL ~bookmarkDataIsStale ~error self = msg_send ~self ~cmd:(selector "initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:") ~typ:(id @-> ullong @-> id @-> ptr (bool) @-> ptr (id) @-> returning (id)) x options relativeToURL bookmarkDataIsStale error
+let initByResolvingAliasFileAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "initByResolvingAliasFileAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) error
+let initByResolvingBookmarkData x ~options ~relativeToURL ~bookmarkDataIsStale ~error self = msg_send ~self ~cmd:(selector "initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:") ~typ:(id @-> ullong @-> id @-> ptr (bool) @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) relativeToURL bookmarkDataIsStale error
 let initFileURLWithFileSystemRepresentation x ~isDirectory ~relativeToURL self = msg_send ~self ~cmd:(selector "initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:") ~typ:(string @-> bool @-> id @-> returning (id)) x isDirectory relativeToURL
 let initFileURLWithPath x self = msg_send ~self ~cmd:(selector "initFileURLWithPath:") ~typ:(id @-> returning (id)) x
 let initFileURLWithPath1 x ~isDirectory self = msg_send ~self ~cmd:(selector "initFileURLWithPath:isDirectory:") ~typ:(id @-> bool @-> returning (id)) x isDirectory

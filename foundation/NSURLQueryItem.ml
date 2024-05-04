@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSURLQueryItem"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let queryItemWithName x ~value self = msg_send ~self ~cmd:(selector "queryItemWithName:value:") ~typ:(id @-> id @-> returning (id)) x value
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

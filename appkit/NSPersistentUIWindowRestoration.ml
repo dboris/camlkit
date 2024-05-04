@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPersistentUIWindowRestoration"
 
-module Class = struct
+module C = struct
   let bulkDisposeTalagentWindowsIfUnused x ~withFade self = msg_send ~self ~cmd:(selector "bulkDisposeTalagentWindowsIfUnused:withFade:") ~typ:(id @-> bool @-> returning (void)) x withFade
 end
 

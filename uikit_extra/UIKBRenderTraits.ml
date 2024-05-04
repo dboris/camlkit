@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderTraits"
 
-module Class = struct
+module C = struct
   let emptyTraits self = msg_send ~self ~cmd:(selector "emptyTraits") ~typ:(returning (id))
   let traitsWithGeometry x self = msg_send ~self ~cmd:(selector "traitsWithGeometry:") ~typ:(id @-> returning (id)) x
   let traitsWithSymbolStyle x self = msg_send ~self ~cmd:(selector "traitsWithSymbolStyle:") ~typ:(id @-> returning (id)) x
@@ -40,7 +40,7 @@ let renderFlagsForAboveEffects self = msg_send ~self ~cmd:(selector "renderFlags
 let renderSecondarySymbolsSeparately self = msg_send ~self ~cmd:(selector "renderSecondarySymbolsSeparately") ~typ:(returning (bool))
 let secondarySymbolStyles self = msg_send ~self ~cmd:(selector "secondarySymbolStyles") ~typ:(returning (id))
 let setBackgroundGradient x self = msg_send ~self ~cmd:(selector "setBackgroundGradient:") ~typ:(id @-> returning (void)) x
-let setBlendForm x self = msg_send ~self ~cmd:(selector "setBlendForm:") ~typ:(llong @-> returning (void)) x
+let setBlendForm x self = msg_send ~self ~cmd:(selector "setBlendForm:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBlurBlending x self = msg_send ~self ~cmd:(selector "setBlurBlending:") ~typ:(bool @-> returning (void)) x
 let setControlOpacities x self = msg_send ~self ~cmd:(selector "setControlOpacities:") ~typ:(bool @-> returning (void)) x
 let setFallbackSymbolStyle x self = msg_send ~self ~cmd:(selector "setFallbackSymbolStyle:") ~typ:(id @-> returning (void)) x
@@ -50,7 +50,7 @@ let setHighlightedVariantTraits x self = msg_send ~self ~cmd:(selector "setHighl
 let setLayeredBackgroundGradient x self = msg_send ~self ~cmd:(selector "setLayeredBackgroundGradient:") ~typ:(id @-> returning (void)) x
 let setLayeredForegroundGradient x self = msg_send ~self ~cmd:(selector "setLayeredForegroundGradient:") ~typ:(id @-> returning (void)) x
 let setRenderFlags x self = msg_send ~self ~cmd:(selector "setRenderFlags:") ~typ:(id @-> returning (void)) x
-let setRenderFlagsForAboveEffects x self = msg_send ~self ~cmd:(selector "setRenderFlagsForAboveEffects:") ~typ:(llong @-> returning (void)) x
+let setRenderFlagsForAboveEffects x self = msg_send ~self ~cmd:(selector "setRenderFlagsForAboveEffects:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRenderSecondarySymbolsSeparately x self = msg_send ~self ~cmd:(selector "setRenderSecondarySymbolsSeparately:") ~typ:(bool @-> returning (void)) x
 let setSecondarySymbolStyles x self = msg_send ~self ~cmd:(selector "setSecondarySymbolStyles:") ~typ:(id @-> returning (void)) x
 let setSymbolStyle x self = msg_send ~self ~cmd:(selector "setSymbolStyle:") ~typ:(id @-> returning (void)) x

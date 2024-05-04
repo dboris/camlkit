@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBRecentInputCell"
 
-module Class = struct
+module C = struct
   let textColorForRenderConfig x ~isSelected self = msg_send ~self ~cmd:(selector "textColorForRenderConfig:isSelected:") ~typ:(id @-> bool @-> returning (id)) x isSelected
   let titleAttributesForRenderConfig x self = msg_send ~self ~cmd:(selector "titleAttributesForRenderConfig:") ~typ:(id @-> returning (id)) x
 end

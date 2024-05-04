@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserNotificationCenter"
 
-module Class = struct
+module C = struct
   let defaultUserNotificationCenter self = msg_send ~self ~cmd:(selector "defaultUserNotificationCenter") ~typ:(returning (id))
 end
 

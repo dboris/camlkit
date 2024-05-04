@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAutonomousSingleAppModeSession"
 
-module Class = struct
+module C = struct
   let currentlyActiveSession self = msg_send ~self ~cmd:(selector "currentlyActiveSession") ~typ:(returning (id))
   let requestSessionWithConfiguration x ~completion self = msg_send ~self ~cmd:(selector "requestSessionWithConfiguration:completion:") ~typ:(id @-> ptr void @-> returning (void)) x completion
 end

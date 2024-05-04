@@ -16,6 +16,7 @@ let immediateActionRecognizerDidCompleteAnimation x self = msg_send ~self ~cmd:(
 let immediateActionRecognizerDidUpdateAnimation x self = msg_send ~self ~cmd:(selector "immediateActionRecognizerDidUpdateAnimation:") ~typ:(id @-> returning (void)) x
 let immediateActionRecognizerWillBeginAnimation x self = msg_send ~self ~cmd:(selector "immediateActionRecognizerWillBeginAnimation:") ~typ:(id @-> returning (void)) x
 let immediateActionRecognizerWillPrepare x self = msg_send ~self ~cmd:(selector "immediateActionRecognizerWillPrepare:") ~typ:(id @-> returning (void)) x
+let initWithPage x ~view ~viewImpl ~recognizer self = msg_send ~self ~cmd:(selector "initWithPage:view:viewImpl:recognizer:") ~typ:(ptr void @-> id @-> ptr void @-> id @-> returning (id)) x view viewImpl recognizer
 let menuItem x ~itemFrameForPoint self = msg_send_stret ~self ~cmd:(selector "menuItem:itemFrameForPoint:") ~typ:(id @-> CGPoint.t @-> returning (CGRect.t)) ~return_type:CGRect.t x itemFrameForPoint
 let menuItem1 x ~maxSizeForPoint self = msg_send_stret ~self ~cmd:(selector "menuItem:maxSizeForPoint:") ~typ:(id @-> CGPoint.t @-> returning (CGSize.t)) ~return_type:CGSize.t x maxSizeForPoint
 let menuItem2 x ~preferredEdgeForPoint self = msg_send ~self ~cmd:(selector "menuItem:preferredEdgeForPoint:") ~typ:(id @-> CGPoint.t @-> returning (ullong)) x preferredEdgeForPoint

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarControlStripGrabber"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingAlignmentRectInsets self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingAlignmentRectInsets") ~typ:(returning (id))
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
   let keyPathsForValuesInvalidatingIntrinsicContentSize self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingIntrinsicContentSize") ~typ:(returning (id))
@@ -38,9 +38,10 @@ let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void)
 let layoutLayers self = msg_send ~self ~cmd:(selector "layoutLayers") ~typ:(returning (void))
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning (void))
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning (void)) x
+let setAlignmentRectInsets x self = msg_send ~self ~cmd:(selector "setAlignmentRectInsets:") ~typ:(ptr void @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))

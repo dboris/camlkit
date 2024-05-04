@@ -34,5 +34,5 @@ let setLatestMoveDragEventsBySessionID x self = msg_send ~self ~cmd:(selector "s
 let setNeedsSignalOnDisplayLink x self = msg_send ~self ~cmd:(selector "setNeedsSignalOnDisplayLink:") ~typ:(bool @-> returning (void)) x
 let setupForRunLoop x self = msg_send ~self ~cmd:(selector "setupForRunLoop:") ~typ:(id @-> returning (void)) x
 let setupThreadAndRun self = msg_send ~self ~cmd:(selector "setupThreadAndRun") ~typ:(returning (void))
-let signalEventsAvailableWithReason x ~filteredEventCount self = msg_send ~self ~cmd:(selector "signalEventsAvailableWithReason:filteredEventCount:") ~typ:(ullong @-> llong @-> returning (void)) x filteredEventCount
+let signalEventsAvailableWithReason x ~filteredEventCount self = msg_send ~self ~cmd:(selector "signalEventsAvailableWithReason:filteredEventCount:") ~typ:(ullong @-> llong @-> returning (void)) (ULLong.of_int x) (LLong.of_int filteredEventCount)
 let threadMain self = msg_send ~self ~cmd:(selector "threadMain") ~typ:(returning (void))

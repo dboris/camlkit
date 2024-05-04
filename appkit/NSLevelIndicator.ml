@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLevelIndicator"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -33,7 +33,7 @@ let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") 
 let placeholderVisibility self = msg_send ~self ~cmd:(selector "placeholderVisibility") ~typ:(returning (llong))
 let ratingImage self = msg_send ~self ~cmd:(selector "ratingImage") ~typ:(returning (id))
 let ratingPlaceholderImage self = msg_send ~self ~cmd:(selector "ratingPlaceholderImage") ~typ:(returning (id))
-let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
+let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t (LLong.of_int x)
 let setAlwaysDrawRatingPlaceholder x self = msg_send ~self ~cmd:(selector "setAlwaysDrawRatingPlaceholder:") ~typ:(bool @-> returning (void)) x
 let setCriticalFillColor x self = msg_send ~self ~cmd:(selector "setCriticalFillColor:") ~typ:(id @-> returning (void)) x
 let setCriticalValue x self = msg_send ~self ~cmd:(selector "setCriticalValue:") ~typ:(double @-> returning (void)) x
@@ -43,20 +43,20 @@ let setCustomWarningFillColor x self = msg_send ~self ~cmd:(selector "setCustomW
 let setDrawsTieredCapacityLevels x self = msg_send ~self ~cmd:(selector "setDrawsTieredCapacityLevels:") ~typ:(bool @-> returning (void)) x
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning (void)) x
 let setFillColor x self = msg_send ~self ~cmd:(selector "setFillColor:") ~typ:(id @-> returning (void)) x
-let setLevelIndicatorStyle x self = msg_send ~self ~cmd:(selector "setLevelIndicatorStyle:") ~typ:(ullong @-> returning (void)) x
+let setLevelIndicatorStyle x self = msg_send ~self ~cmd:(selector "setLevelIndicatorStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMaxValue x self = msg_send ~self ~cmd:(selector "setMaxValue:") ~typ:(double @-> returning (void)) x
 let setMinValue x self = msg_send ~self ~cmd:(selector "setMinValue:") ~typ:(double @-> returning (void)) x
-let setNumberOfMajorTickMarks x self = msg_send ~self ~cmd:(selector "setNumberOfMajorTickMarks:") ~typ:(llong @-> returning (void)) x
-let setNumberOfTickMarks x self = msg_send ~self ~cmd:(selector "setNumberOfTickMarks:") ~typ:(llong @-> returning (void)) x
-let setPlaceholderVisibility x self = msg_send ~self ~cmd:(selector "setPlaceholderVisibility:") ~typ:(llong @-> returning (void)) x
+let setNumberOfMajorTickMarks x self = msg_send ~self ~cmd:(selector "setNumberOfMajorTickMarks:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setNumberOfTickMarks x self = msg_send ~self ~cmd:(selector "setNumberOfTickMarks:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPlaceholderVisibility x self = msg_send ~self ~cmd:(selector "setPlaceholderVisibility:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRatingImage x self = msg_send ~self ~cmd:(selector "setRatingImage:") ~typ:(id @-> returning (void)) x
 let setRatingPlaceholderImage x self = msg_send ~self ~cmd:(selector "setRatingPlaceholderImage:") ~typ:(id @-> returning (void)) x
-let setTickMarkPosition x self = msg_send ~self ~cmd:(selector "setTickMarkPosition:") ~typ:(ullong @-> returning (void)) x
+let setTickMarkPosition x self = msg_send ~self ~cmd:(selector "setTickMarkPosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setWarningFillColor x self = msg_send ~self ~cmd:(selector "setWarningFillColor:") ~typ:(id @-> returning (void)) x
 let setWarningValue x self = msg_send ~self ~cmd:(selector "setWarningValue:") ~typ:(double @-> returning (void)) x
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning (void))
 let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning (ullong))
-let tickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkValueAtIndex:") ~typ:(llong @-> returning (double)) x
+let tickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkValueAtIndex:") ~typ:(llong @-> returning (double)) (LLong.of_int x)
 let viewDidMoveToSuperview self = msg_send ~self ~cmd:(selector "viewDidMoveToSuperview") ~typ:(returning (void))
 let viewDidMoveToWindow self = msg_send ~self ~cmd:(selector "viewDidMoveToWindow") ~typ:(returning (void))
 let warningFillColor self = msg_send ~self ~cmd:(selector "warningFillColor") ~typ:(returning (id))

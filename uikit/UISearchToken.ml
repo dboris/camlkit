@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISearchToken"
 
-module Class = struct
+module C = struct
   let tokenWithIcon x ~text self = msg_send ~self ~cmd:(selector "tokenWithIcon:text:") ~typ:(id @-> id @-> returning (id)) x text
   let tokenWithImage x self = msg_send ~self ~cmd:(selector "tokenWithImage:") ~typ:(id @-> returning (id)) x
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWindowSectionContentController"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let keyPathsForValuesAffectingDividerStyle self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingDividerStyle") ~typ:(returning (id))
 end
@@ -31,7 +31,7 @@ let separatorOffset self = msg_send ~self ~cmd:(selector "separatorOffset") ~typ
 let setAlignmentSatisfied x self = msg_send ~self ~cmd:(selector "setAlignmentSatisfied:") ~typ:(bool @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDividerExtentRect x self = msg_send ~self ~cmd:(selector "setDividerExtentRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setDividerStyle x self = msg_send ~self ~cmd:(selector "setDividerStyle:") ~typ:(llong @-> returning (void)) x
+let setDividerStyle x self = msg_send ~self ~cmd:(selector "setDividerStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFullHeightDividersDisabled x self = msg_send ~self ~cmd:(selector "setFullHeightDividersDisabled:") ~typ:(bool @-> returning (void)) x
 let setFullHeightSidebarDividersDisabled x self = msg_send ~self ~cmd:(selector "setFullHeightSidebarDividersDisabled:") ~typ:(bool @-> returning (void)) x
 let setLeadingItem x self = msg_send ~self ~cmd:(selector "setLeadingItem:") ~typ:(id @-> returning (void)) x

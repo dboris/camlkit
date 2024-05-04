@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISpringTimingParameters"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -23,8 +23,13 @@ let implicitDuration self = msg_send ~self ~cmd:(selector "implicitDuration") ~t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithDampingRatio x self = msg_send ~self ~cmd:(selector "initWithDampingRatio:") ~typ:(double @-> returning (id)) x
-let initWithDampingRatio' x ~response self = msg_send ~self ~cmd:(selector "initWithDampingRatio:response:") ~typ:(double @-> double @-> returning (id)) x response
+let initWithDampingRatio1 x ~initialVelocity self = msg_send ~self ~cmd:(selector "initWithDampingRatio:initialVelocity:") ~typ:(double @-> ptr void @-> returning (id)) x initialVelocity
+let initWithDampingRatio2 x ~response self = msg_send ~self ~cmd:(selector "initWithDampingRatio:response:") ~typ:(double @-> double @-> returning (id)) x response
+let initWithDampingRatio3 x ~response ~initialVelocity self = msg_send ~self ~cmd:(selector "initWithDampingRatio:response:initialVelocity:") ~typ:(double @-> double @-> ptr void @-> returning (id)) x response initialVelocity
+let initWithMass x ~stiffness ~damping ~initialVelocity self = msg_send ~self ~cmd:(selector "initWithMass:stiffness:damping:initialVelocity:") ~typ:(double @-> double @-> double @-> ptr void @-> returning (id)) x stiffness damping initialVelocity
 let initWithParameters x self = msg_send ~self ~cmd:(selector "initWithParameters:") ~typ:(id @-> returning (id)) x
+let initWithParameters' x ~initialVelocity self = msg_send ~self ~cmd:(selector "initWithParameters:initialVelocity:") ~typ:(id @-> ptr void @-> returning (id)) x initialVelocity
+let initWithVelocity x self = msg_send ~self ~cmd:(selector "initWithVelocity:") ~typ:(ptr void @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let mass self = msg_send ~self ~cmd:(selector "mass") ~typ:(returning (double))
 let setDamping x self = msg_send ~self ~cmd:(selector "setDamping:") ~typ:(double @-> returning (void)) x

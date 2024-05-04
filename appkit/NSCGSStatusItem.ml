@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSStatusItem"
 
-module Class = struct
+module C = struct
   let addMetricsChangedNotificationHandler x self = msg_send ~self ~cmd:(selector "addMetricsChangedNotificationHandler:") ~typ:(ptr void @-> returning (void)) x
   let addNavigationChangedNotificationHandler x self = msg_send ~self ~cmd:(selector "addNavigationChangedNotificationHandler:") ~typ:(ptr void @-> returning (void)) x
   let currentNavigationWindowID self = msg_send ~self ~cmd:(selector "currentNavigationWindowID") ~typ:(returning (uint))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarItemTreeItemNode"
 
-module Class = struct
+module C = struct
   let nodeForItem x self = msg_send ~self ~cmd:(selector "nodeForItem:") ~typ:(id @-> returning (id)) x
 end
 

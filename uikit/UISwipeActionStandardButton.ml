@@ -13,5 +13,5 @@ let extensionLength self = msg_send ~self ~cmd:(selector "extensionLength") ~typ
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
 let setExtensionLength x self = msg_send ~self ~cmd:(selector "setExtensionLength:") ~typ:(double @-> returning (void)) x
-let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let titleLabel self = msg_send ~self ~cmd:(selector "titleLabel") ~typ:(returning (id))

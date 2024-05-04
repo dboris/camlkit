@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSAutoContentAccessingProxy"
 
-module Class = struct
+module C = struct
   let proxyWithTarget x self = msg_send ~self ~cmd:(selector "proxyWithTarget:") ~typ:(id @-> returning (id)) x
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInputManager"
 
-module Class = struct
+module C = struct
   let currentInputManager self = msg_send ~self ~cmd:(selector "currentInputManager") ~typ:(returning (id))
   let cycleToNextInputLanguage x self = msg_send ~self ~cmd:(selector "cycleToNextInputLanguage:") ~typ:(id @-> returning (void)) x
   let cycleToNextInputServerInLanguage x self = msg_send ~self ~cmd:(selector "cycleToNextInputServerInLanguage:") ~typ:(id @-> returning (void)) x

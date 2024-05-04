@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPersistentUIEncodedReference"
 
-module Class = struct
+module C = struct
   let encodedReferenceToResponderMap self = msg_send ~self ~cmd:(selector "encodedReferenceToResponderMap") ~typ:(returning (id))
   let setEncodedReferenceToResponderMap x self = msg_send ~self ~cmd:(selector "setEncodedReferenceToResponderMap:") ~typ:(id @-> returning (void)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

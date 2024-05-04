@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPersistentUIFileManager"
 
-module Class = struct
+module C = struct
   let persistentStateDirectoryURLForBundleID x self = msg_send ~self ~cmd:(selector "persistentStateDirectoryURLForBundleID:") ~typ:(id @-> returning (id)) x
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBASPCoverView"
 
-module Class = struct
+module C = struct
   let _ASPCoverView x ~withFrame ~isRightToLeft ~withTextWidth self = msg_send ~self ~cmd:(selector "ASPCoverView:withFrame:isRightToLeft:withTextWidth:") ~typ:(bool @-> CGRect.t @-> bool @-> double @-> returning (id)) x withFrame isRightToLeft withTextWidth
   let _ASPCoverViewColor self = msg_send ~self ~cmd:(selector "ASPCoverViewColor") ~typ:(returning (id))
 end

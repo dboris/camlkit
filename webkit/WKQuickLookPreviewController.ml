@@ -15,5 +15,5 @@ let initWithPage x ~imageData ~title ~imageURL ~activity self = msg_send ~self ~
 let isControlling x self = msg_send ~self ~cmd:(selector "isControlling:") ~typ:(id @-> returning (bool)) x
 let numberOfPreviewItemsInPreviewPanel x self = msg_send ~self ~cmd:(selector "numberOfPreviewItemsInPreviewPanel:") ~typ:(id @-> returning (llong)) x
 let previewPanel x ~initialActivityForItem self = msg_send ~self ~cmd:(selector "previewPanel:initialActivityForItem:") ~typ:(id @-> id @-> returning (llong)) x initialActivityForItem
-let previewPanel' x ~previewItemAtIndex self = msg_send ~self ~cmd:(selector "previewPanel:previewItemAtIndex:") ~typ:(id @-> llong @-> returning (id)) x previewItemAtIndex
+let previewPanel' x ~previewItemAtIndex self = msg_send ~self ~cmd:(selector "previewPanel:previewItemAtIndex:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int previewItemAtIndex)
 let provideDataForItem x self = msg_send ~self ~cmd:(selector "provideDataForItem:") ~typ:(id @-> returning (id)) x

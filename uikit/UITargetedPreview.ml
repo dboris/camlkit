@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITargetedPreview"
 
-module Class = struct
+module C = struct
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
 end
 

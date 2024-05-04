@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSActionGroup"
 
-module Class = struct
+module C = struct
   let groupWithActions x ~sourceApplication self = msg_send ~self ~cmd:(selector "groupWithActions:sourceApplication:") ~typ:(id @-> id @-> returning (id)) x sourceApplication
 end
 

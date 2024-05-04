@@ -8,16 +8,16 @@ open Foundation
 
 let _class_ = get_class "UIToolbar"
 
-module Class = struct
+module C = struct
   let defaultButtonFont self = msg_send ~self ~cmd:(selector "defaultButtonFont") ~typ:(returning (id))
   let defaultHeight self = msg_send ~self ~cmd:(selector "defaultHeight") ~typ:(returning (double))
   let defaultHeightForBarSize x self = msg_send ~self ~cmd:(selector "defaultHeightForBarSize:") ~typ:(int @-> returning (double)) x
 end
 
 let autoHidesToolbarInFullscreen self = msg_send ~self ~cmd:(selector "autoHidesToolbarInFullscreen") ~typ:(returning (bool))
-let backdropView x ~didChangeToGraphicsQuality self = msg_send ~self ~cmd:(selector "backdropView:didChangeToGraphicsQuality:") ~typ:(id @-> llong @-> returning (void)) x didChangeToGraphicsQuality
+let backdropView x ~didChangeToGraphicsQuality self = msg_send ~self ~cmd:(selector "backdropView:didChangeToGraphicsQuality:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int didChangeToGraphicsQuality)
 let backgroundEffects self = msg_send ~self ~cmd:(selector "backgroundEffects") ~typ:(returning (id))
-let backgroundImageForToolbarPosition x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForToolbarPosition:barMetrics:") ~typ:(llong @-> llong @-> returning (id)) x barMetrics
+let backgroundImageForToolbarPosition x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForToolbarPosition:barMetrics:") ~typ:(llong @-> llong @-> returning (id)) (LLong.of_int x) (LLong.of_int barMetrics)
 let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning (llong))
 let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning (llong))
 let barTintColor self = msg_send ~self ~cmd:(selector "barTintColor") ~typ:(returning (id))
@@ -26,7 +26,7 @@ let centerTextButtons self = msg_send ~self ~cmd:(selector "centerTextButtons") 
 let compactAppearance self = msg_send ~self ~cmd:(selector "compactAppearance") ~typ:(returning (id))
 let compactScrollEdgeAppearance self = msg_send ~self ~cmd:(selector "compactScrollEdgeAppearance") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let defaultSizeForOrientation x self = msg_send_stret ~self ~cmd:(selector "defaultSizeForOrientation:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t x
+let defaultSizeForOrientation x self = msg_send_stret ~self ~cmd:(selector "defaultSizeForOrientation:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t (LLong.of_int x)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
@@ -46,8 +46,8 @@ let pointInside x ~withEvent self = msg_send ~self ~cmd:(selector "pointInside:w
 let scrollEdgeAppearance self = msg_send ~self ~cmd:(selector "scrollEdgeAppearance") ~typ:(returning (id))
 let setAutoHidesToolbarInFullscreen x self = msg_send ~self ~cmd:(selector "setAutoHidesToolbarInFullscreen:") ~typ:(bool @-> returning (void)) x
 let setBackgroundEffects x self = msg_send ~self ~cmd:(selector "setBackgroundEffects:") ~typ:(id @-> returning (void)) x
-let setBackgroundImage x ~forToolbarPosition ~barMetrics self = msg_send ~self ~cmd:(selector "setBackgroundImage:forToolbarPosition:barMetrics:") ~typ:(id @-> llong @-> llong @-> returning (void)) x forToolbarPosition barMetrics
-let setBarStyle x self = msg_send ~self ~cmd:(selector "setBarStyle:") ~typ:(llong @-> returning (void)) x
+let setBackgroundImage x ~forToolbarPosition ~barMetrics self = msg_send ~self ~cmd:(selector "setBackgroundImage:forToolbarPosition:barMetrics:") ~typ:(id @-> llong @-> llong @-> returning (void)) x (LLong.of_int forToolbarPosition) (LLong.of_int barMetrics)
+let setBarStyle x self = msg_send ~self ~cmd:(selector "setBarStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBarTintColor x self = msg_send ~self ~cmd:(selector "setBarTintColor:") ~typ:(id @-> returning (void)) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x
 let setCenterItem x self = msg_send ~self ~cmd:(selector "setCenterItem:") ~typ:(id @-> returning (void)) x
@@ -59,12 +59,12 @@ let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t 
 let setItems x self = msg_send ~self ~cmd:(selector "setItems:") ~typ:(id @-> returning (void)) x
 let setItems' x ~animated self = msg_send ~self ~cmd:(selector "setItems:animated:") ~typ:(id @-> bool @-> returning (void)) x animated
 let setScrollEdgeAppearance x self = msg_send ~self ~cmd:(selector "setScrollEdgeAppearance:") ~typ:(id @-> returning (void)) x
-let setShadowImage x ~forToolbarPosition self = msg_send ~self ~cmd:(selector "setShadowImage:forToolbarPosition:") ~typ:(id @-> llong @-> returning (void)) x forToolbarPosition
+let setShadowImage x ~forToolbarPosition self = msg_send ~self ~cmd:(selector "setShadowImage:forToolbarPosition:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int forToolbarPosition)
 let setStandardAppearance x self = msg_send ~self ~cmd:(selector "setStandardAppearance:") ~typ:(id @-> returning (void)) x
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning (void)) x
 let setTranslatesAutoresizingMaskIntoConstraints x self = msg_send ~self ~cmd:(selector "setTranslatesAutoresizingMaskIntoConstraints:") ~typ:(bool @-> returning (void)) x
 let setTranslucent x self = msg_send ~self ~cmd:(selector "setTranslucent:") ~typ:(bool @-> returning (void)) x
-let shadowImageForToolbarPosition x self = msg_send ~self ~cmd:(selector "shadowImageForToolbarPosition:") ~typ:(llong @-> returning (id)) x
+let shadowImageForToolbarPosition x self = msg_send ~self ~cmd:(selector "shadowImageForToolbarPosition:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let standardAppearance self = msg_send ~self ~cmd:(selector "standardAppearance") ~typ:(returning (id))
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning (void)) x

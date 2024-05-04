@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPasteboardItem"
 
-module Class = struct
+module C = struct
   let readableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "readableTypesForPasteboard:") ~typ:(id @-> returning (id)) x
 end
 

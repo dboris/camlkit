@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrubberItemView"
 
-module Class = struct
+module C = struct
   let createTouchBarColorListPickerSelectionOverlayView self = msg_send ~self ~cmd:(selector "createTouchBarColorListPickerSelectionOverlayView") ~typ:(returning (id))
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
 end
@@ -33,7 +33,7 @@ let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ
 let rightMaskLayer self = msg_send ~self ~cmd:(selector "rightMaskLayer") ~typ:(returning (id))
 let selectionBackgroundView self = msg_send ~self ~cmd:(selector "selectionBackgroundView") ~typ:(returning (id))
 let selectionOverlayView self = msg_send ~self ~cmd:(selector "selectionOverlayView") ~typ:(returning (id))
-let setAccessibilityRawIndex x self = msg_send ~self ~cmd:(selector "setAccessibilityRawIndex:") ~typ:(llong @-> returning (void)) x
+let setAccessibilityRawIndex x self = msg_send ~self ~cmd:(selector "setAccessibilityRawIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLeftMaskLayer x self = msg_send ~self ~cmd:(selector "setLeftMaskLayer:") ~typ:(id @-> returning (void)) x
 let setRightMaskLayer x self = msg_send ~self ~cmd:(selector "setRightMaskLayer:") ~typ:(id @-> returning (void)) x
 let setSelectionBackgroundView x self = msg_send ~self ~cmd:(selector "setSelectionBackgroundView:") ~typ:(id @-> returning (void)) x

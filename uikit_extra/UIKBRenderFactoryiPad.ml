@@ -80,5 +80,5 @@ let thinKeycapsFontName self = msg_send ~self ~cmd:(selector "thinKeycapsFontNam
 let tinyPunctuationGlyphFontSize self = msg_send ~self ~cmd:(selector "tinyPunctuationGlyphFontSize") ~typ:(returning (double))
 let tinyPunctuationGlyphOffset self = msg_send_stret ~self ~cmd:(selector "tinyPunctuationGlyphOffset") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let variantAnnotationTextOffset self = msg_send_stret ~self ~cmd:(selector "variantAnnotationTextOffset") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let variantGeometriesForGeometry x ~variantCount ~rowLimit ~annotationIndex self = msg_send ~self ~cmd:(selector "variantGeometriesForGeometry:variantCount:rowLimit:annotationIndex:") ~typ:(id @-> ullong @-> llong @-> ullong @-> returning (id)) x variantCount rowLimit annotationIndex
+let variantGeometriesForGeometry x ~variantCount ~rowLimit ~annotationIndex self = msg_send ~self ~cmd:(selector "variantGeometriesForGeometry:variantCount:rowLimit:annotationIndex:") ~typ:(id @-> ullong @-> llong @-> ullong @-> returning (id)) x (ULLong.of_int variantCount) (LLong.of_int rowLimit) (ULLong.of_int annotationIndex)
 let zhuyinFirstToneKeyFontSize self = msg_send ~self ~cmd:(selector "zhuyinFirstToneKeyFontSize") ~typ:(returning (double))

@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSDisplayCycle"
 
-module Class = struct
+module C = struct
   let currentDisplayCycle self = msg_send ~self ~cmd:(selector "currentDisplayCycle") ~typ:(returning (id))
   let currentDisplayCycleContainsObserver x self = msg_send ~self ~cmd:(selector "currentDisplayCycleContainsObserver:") ~typ:(id @-> returning (bool)) x
-  let currentDisplayCycleHasIdentifier x self = msg_send ~self ~cmd:(selector "currentDisplayCycleHasIdentifier:") ~typ:(ullong @-> returning (bool)) x
+  let currentDisplayCycleHasIdentifier x self = msg_send ~self ~cmd:(selector "currentDisplayCycleHasIdentifier:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
 end
 
 let addObserver x self = msg_send ~self ~cmd:(selector "addObserver:") ~typ:(id @-> returning (void)) x

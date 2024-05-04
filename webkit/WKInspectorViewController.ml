@@ -8,13 +8,14 @@ open Foundation
 
 let _class_ = get_class "WKInspectorViewController"
 
-module Class = struct
+module C = struct
   let _URLForInspectorResource x self = msg_send ~self ~cmd:(selector "URLForInspectorResource:") ~typ:(id @-> returning (id)) x
   let viewIsInspectorWebView x self = msg_send ~self ~cmd:(selector "viewIsInspectorWebView:") ~typ:(id @-> returning (bool)) x
 end
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
+let initWithConfiguration x ~inspectedPage self = msg_send ~self ~cmd:(selector "initWithConfiguration:inspectedPage:") ~typ:(id @-> ptr void @-> returning (id)) x inspectedPage
 let inspectorWKWebView x ~willMoveToWindow self = msg_send ~self ~cmd:(selector "inspectorWKWebView:willMoveToWindow:") ~typ:(id @-> id @-> returning (void)) x willMoveToWindow
 let inspectorWKWebViewDidBecomeActive x self = msg_send ~self ~cmd:(selector "inspectorWKWebViewDidBecomeActive:") ~typ:(id @-> returning (void)) x
 let inspectorWKWebViewDidMoveToWindow x self = msg_send ~self ~cmd:(selector "inspectorWKWebViewDidMoveToWindow:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSNib"
 
-module Class = struct
+module C = struct
   let getNibName x ~objectID ~forUserInterfaceItem self = msg_send ~self ~cmd:(selector "getNibName:objectID:forUserInterfaceItem:") ~typ:(ptr (id) @-> ptr (id) @-> id @-> returning (bool)) x objectID forUserInterfaceItem
 end
 

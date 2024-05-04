@@ -13,4 +13,4 @@ let animationForLayer x ~forKey ~forView self = msg_send ~self ~cmd:(selector "a
 let cleanupTrackedLayers self = msg_send ~self ~cmd:(selector "cleanupTrackedLayers") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let pop self = msg_send ~self ~cmd:(selector "pop") ~typ:(returning (void))
-let setupWithDuration x ~delay ~view ~options ~factory ~parentState ~start ~completion self = msg_send ~self ~cmd:(selector "setupWithDuration:delay:view:options:factory:parentState:start:completion:") ~typ:(double @-> double @-> id @-> ullong @-> id @-> id @-> ptr void @-> ptr void @-> returning (void)) x delay view options factory parentState start completion
+let setupWithDuration x ~delay ~view ~options ~factory ~parentState ~start ~completion self = msg_send ~self ~cmd:(selector "setupWithDuration:delay:view:options:factory:parentState:start:completion:") ~typ:(double @-> double @-> id @-> ullong @-> id @-> id @-> ptr void @-> ptr void @-> returning (void)) x delay view (ULLong.of_int options) factory parentState start completion

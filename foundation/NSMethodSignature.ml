@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMethodSignature"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let signatureWithObjCTypes x self = msg_send ~self ~cmd:(selector "signatureWithObjCTypes:") ~typ:(string @-> returning (id)) x
 end
@@ -13,7 +13,7 @@ end
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
 let frameLength self = msg_send ~self ~cmd:(selector "frameLength") ~typ:(returning (ullong))
-let getArgumentTypeAtIndex x self = msg_send ~self ~cmd:(selector "getArgumentTypeAtIndex:") ~typ:(ullong @-> returning (string)) x
+let getArgumentTypeAtIndex x self = msg_send ~self ~cmd:(selector "getArgumentTypeAtIndex:") ~typ:(ullong @-> returning (string)) (ULLong.of_int x)
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

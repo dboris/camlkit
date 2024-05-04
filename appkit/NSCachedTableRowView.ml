@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCachedTableRowView"
 
-module Class = struct
+module C = struct
   let defaultIdentifier self = msg_send ~self ~cmd:(selector "defaultIdentifier") ~typ:(returning (id))
 end
 

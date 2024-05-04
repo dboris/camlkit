@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarPrimaryTitleContainerView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingIsShowingAutosavePopup self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingIsShowingAutosavePopup") ~typ:(returning (id))
 end
 

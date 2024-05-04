@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPathControlItem"
 
-module Class = struct
+module C = struct
   let itemWithCell x self = msg_send ~self ~cmd:(selector "itemWithCell:") ~typ:(id @-> returning (id)) x
 end
 

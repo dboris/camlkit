@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarItemOverlay"
 
-module Class = struct
+module C = struct
   let activeOverlay self = msg_send ~self ~cmd:(selector "activeOverlay") ~typ:(returning (id))
   let makePopoverCloseButtonWithTarget x ~action self = msg_send ~self ~cmd:(selector "makePopoverCloseButtonWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
   let runHidePopoverAnimationWithTouchBarView x ~colorView ~closeButton ~completionHandler self = msg_send ~self ~cmd:(selector "runHidePopoverAnimationWithTouchBarView:colorView:closeButton:completionHandler:") ~typ:(id @-> id @-> id @-> ptr void @-> returning (void)) x colorView closeButton completionHandler

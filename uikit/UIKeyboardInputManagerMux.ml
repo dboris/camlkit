@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardInputManagerMux"
 
-module Class = struct
+module C = struct
   let instancesRespondToSelector x self = msg_send ~self ~cmd:(selector "instancesRespondToSelector:") ~typ:(_SEL @-> returning (bool)) x
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end
@@ -27,6 +27,6 @@ let respondsToSelector x self = msg_send ~self ~cmd:(selector "respondsToSelecto
 let responseDelegate self = msg_send ~self ~cmd:(selector "responseDelegate") ~typ:(returning (id))
 let setResponseDelegate x self = msg_send ~self ~cmd:(selector "setResponseDelegate:") ~typ:(id @-> returning (void)) x
 let setSystemInputManager x self = msg_send ~self ~cmd:(selector "setSystemInputManager:") ~typ:(id @-> returning (void)) x
-let setSystemInputManagerFromTextInputTraits x ~autofillMode self = msg_send ~self ~cmd:(selector "setSystemInputManagerFromTextInputTraits:autofillMode:") ~typ:(id @-> llong @-> returning (void)) x autofillMode
+let setSystemInputManagerFromTextInputTraits x ~autofillMode self = msg_send ~self ~cmd:(selector "setSystemInputManagerFromTextInputTraits:autofillMode:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int autofillMode)
 let systemInputManager self = msg_send ~self ~cmd:(selector "systemInputManager") ~typ:(returning (id))
 let updateClientResponseDelegatesWithDelegate x self = msg_send ~self ~cmd:(selector "updateClientResponseDelegatesWithDelegate:") ~typ:(id @-> returning (void)) x

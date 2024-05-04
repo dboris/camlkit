@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSGroupTouchBarItem"
 
-module Class = struct
+module C = struct
   let alertStyleGroupItemWithIdentifier x self = msg_send ~self ~cmd:(selector "alertStyleGroupItemWithIdentifier:") ~typ:(id @-> returning (id)) x
   let groupItemWithIdentifier x ~items self = msg_send ~self ~cmd:(selector "groupItemWithIdentifier:items:") ~typ:(id @-> id @-> returning (id)) x items
   let groupItemWithIdentifier' x ~items ~allowedCompressionOptions self = msg_send ~self ~cmd:(selector "groupItemWithIdentifier:items:allowedCompressionOptions:") ~typ:(id @-> id @-> id @-> returning (id)) x items allowedCompressionOptions
@@ -39,7 +39,7 @@ let prioritizedCompressionOptions self = msg_send ~self ~cmd:(selector "prioriti
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning (void)) x
 let setGroupHasAlertStyle x self = msg_send ~self ~cmd:(selector "setGroupHasAlertStyle:") ~typ:(bool @-> returning (void)) x
 let setGroupTouchBar x self = msg_send ~self ~cmd:(selector "setGroupTouchBar:") ~typ:(id @-> returning (void)) x
-let setGroupUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setGroupUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setGroupUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setGroupUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setHasAutomaticLayoutDirection x self = msg_send ~self ~cmd:(selector "setHasAutomaticLayoutDirection:") ~typ:(bool @-> returning (void)) x
 let setPreferredItemWidth x self = msg_send ~self ~cmd:(selector "setPreferredItemWidth:") ~typ:(double @-> returning (void)) x
 let setPrefersEqualWidths x self = msg_send ~self ~cmd:(selector "setPrefersEqualWidths:") ~typ:(bool @-> returning (void)) x

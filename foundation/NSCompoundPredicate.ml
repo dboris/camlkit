@@ -5,14 +5,14 @@ open Objc
 
 let _class_ = get_class "NSCompoundPredicate"
 
-module Class = struct
+module C = struct
   let andPredicateWithSubpredicates x self = msg_send ~self ~cmd:(selector "andPredicateWithSubpredicates:") ~typ:(id @-> returning (id)) x
   let notPredicateWithSubpredicate x self = msg_send ~self ~cmd:(selector "notPredicateWithSubpredicate:") ~typ:(id @-> returning (id)) x
   let orPredicateWithSubpredicates x self = msg_send ~self ~cmd:(selector "orPredicateWithSubpredicates:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x flags
+let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int flags)
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning (void))
 let compoundPredicateType self = msg_send ~self ~cmd:(selector "compoundPredicateType") ~typ:(returning (ullong))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
@@ -22,7 +22,7 @@ let evaluateWithObject x ~substitutionVariables self = msg_send ~self ~cmd:(sele
 let generateMetadataDescription self = msg_send ~self ~cmd:(selector "generateMetadataDescription") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithType x ~subpredicates self = msg_send ~self ~cmd:(selector "initWithType:subpredicates:") ~typ:(ullong @-> id @-> returning (id)) x subpredicates
+let initWithType x ~subpredicates self = msg_send ~self ~cmd:(selector "initWithType:subpredicates:") ~typ:(ullong @-> id @-> returning (id)) (ULLong.of_int x) subpredicates
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning (id))
 let predicateOperator self = msg_send ~self ~cmd:(selector "predicateOperator") ~typ:(returning (id))

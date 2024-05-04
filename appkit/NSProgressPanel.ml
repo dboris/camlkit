@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSProgressPanel"
 
-module Class = struct
+module C = struct
   let progressPanelWithNibName x self = msg_send ~self ~cmd:(selector "progressPanelWithNibName:") ~typ:(id @-> returning (id)) x
 end
 

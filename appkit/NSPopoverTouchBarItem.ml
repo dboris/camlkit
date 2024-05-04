@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPopoverTouchBarItem"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingPresented self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingPresented") ~typ:(returning (id))
   let keyPathsForValuesAffectingView self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingView") ~typ:(returning (id))
   let makeStandardActivatePopoverGestureRecognizer self = msg_send ~self ~cmd:(selector "makeStandardActivatePopoverGestureRecognizer") ~typ:(returning (id))
@@ -39,7 +39,7 @@ let pressAndHoldTouchBar self = msg_send ~self ~cmd:(selector "pressAndHoldTouch
 let preventUserDismissal self = msg_send ~self ~cmd:(selector "preventUserDismissal") ~typ:(returning (bool))
 let setCloseButtonHandler x self = msg_send ~self ~cmd:(selector "setCloseButtonHandler:") ~typ:(ptr void @-> returning (void)) x
 let setCollapsedRepresentation x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentation:") ~typ:(id @-> returning (void)) x
-let setCollapsedRepresentationChevronBehavior x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationChevronBehavior:") ~typ:(llong @-> returning (void)) x
+let setCollapsedRepresentationChevronBehavior x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationChevronBehavior:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCollapsedRepresentationImage x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationImage:") ~typ:(id @-> returning (void)) x
 let setCollapsedRepresentationLabel x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationLabel:") ~typ:(id @-> returning (void)) x
 let setCollapsedRepresentationShowsChevron x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationShowsChevron:") ~typ:(bool @-> returning (void)) x

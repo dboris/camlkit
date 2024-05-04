@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAccessibilityHUDView"
 
-module Class = struct
+module C = struct
   let preferredHUDSize self = msg_send_stret ~self ~cmd:(selector "preferredHUDSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 

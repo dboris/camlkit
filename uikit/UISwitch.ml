@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "UISwitch"
 
-module Class = struct
+module C = struct
   let setVisualElementProvider x self = msg_send ~self ~cmd:(selector "setVisualElementProvider:") ~typ:(id @-> returning (void)) x
   let visualElementForTraitCollection x self = msg_send ~self ~cmd:(selector "visualElementForTraitCollection:") ~typ:(id @-> returning (id)) x
-  let visualElementForTraitCollection' x ~style self = msg_send ~self ~cmd:(selector "visualElementForTraitCollection:style:") ~typ:(id @-> llong @-> returning (id)) x style
+  let visualElementForTraitCollection' x ~style self = msg_send ~self ~cmd:(selector "visualElementForTraitCollection:style:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int style)
 end
 
 let accessibilityActivationPoint self = msg_send_stret ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
@@ -41,9 +41,9 @@ let setOn1 x ~animated self = msg_send ~self ~cmd:(selector "setOn:animated:") ~
 let setOn2 x ~animated ~notifyingVisualElement self = msg_send ~self ~cmd:(selector "setOn:animated:notifyingVisualElement:") ~typ:(bool @-> bool @-> bool @-> returning (void)) x animated notifyingVisualElement
 let setOnImage x self = msg_send ~self ~cmd:(selector "setOnImage:") ~typ:(id @-> returning (void)) x
 let setOnTintColor x self = msg_send ~self ~cmd:(selector "setOnTintColor:") ~typ:(id @-> returning (void)) x
-let setPreferredStyle x self = msg_send ~self ~cmd:(selector "setPreferredStyle:") ~typ:(llong @-> returning (void)) x
-let setSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "setSemanticContentAttribute:") ~typ:(llong @-> returning (void)) x
-let setSwitchStyle x self = msg_send ~self ~cmd:(selector "setSwitchStyle:") ~typ:(llong @-> returning (void)) x
+let setPreferredStyle x self = msg_send ~self ~cmd:(selector "setPreferredStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "setSemanticContentAttribute:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSwitchStyle x self = msg_send ~self ~cmd:(selector "setSwitchStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setThumbTintColor x self = msg_send ~self ~cmd:(selector "setThumbTintColor:") ~typ:(id @-> returning (void)) x
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x

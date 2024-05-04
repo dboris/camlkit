@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIReferenceLibraryViewController"
 
-module Class = struct
+module C = struct
   let dictionaryHasDefinitionForTerm x self = msg_send ~self ~cmd:(selector "dictionaryHasDefinitionForTerm:") ~typ:(id @-> returning (bool)) x
 end
 
@@ -24,14 +24,14 @@ let pushDownloadManager x self = msg_send ~self ~cmd:(selector "pushDownloadMana
 let setDismissCompletionHandler x self = msg_send ~self ~cmd:(selector "setDismissCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
 let setEnableRotation x self = msg_send ~self ~cmd:(selector "setEnableRotation:") ~typ:(bool @-> returning (void)) x
 let shouldAutorotate self = msg_send ~self ~cmd:(selector "shouldAutorotate") ~typ:(returning (bool))
-let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) x
+let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning (ullong))
 let tableView x ~cellForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:cellForRowAtIndexPath:") ~typ:(id @-> id @-> returning (id)) x cellForRowAtIndexPath
 let tableView1 x ~heightForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:heightForRowAtIndexPath:") ~typ:(id @-> id @-> returning (double)) x heightForRowAtIndexPath
-let tableView2 x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning (llong)) x numberOfRowsInSection
-let tableView3 x ~titleForHeaderInSection self = msg_send ~self ~cmd:(selector "tableView:titleForHeaderInSection:") ~typ:(id @-> llong @-> returning (id)) x titleForHeaderInSection
+let tableView2 x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning (llong)) x (LLong.of_int numberOfRowsInSection)
+let tableView3 x ~titleForHeaderInSection self = msg_send ~self ~cmd:(selector "tableView:titleForHeaderInSection:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int titleForHeaderInSection)
 let tableView4 x ~willSelectRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:willSelectRowAtIndexPath:") ~typ:(id @-> id @-> returning (id)) x willSelectRowAtIndexPath
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning (void)) x
 let viewDidLoad self = msg_send ~self ~cmd:(selector "viewDidLoad") ~typ:(returning (void))
 let viewWillLayoutSubviews self = msg_send ~self ~cmd:(selector "viewWillLayoutSubviews") ~typ:(returning (void))
-let window x ~setupWithInterfaceOrientation self = msg_send ~self ~cmd:(selector "window:setupWithInterfaceOrientation:") ~typ:(id @-> llong @-> returning (void)) x setupWithInterfaceOrientation
+let window x ~setupWithInterfaceOrientation self = msg_send ~self ~cmd:(selector "window:setupWithInterfaceOrientation:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int setupWithInterfaceOrientation)

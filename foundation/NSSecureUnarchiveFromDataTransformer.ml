@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSecureUnarchiveFromDataTransformer"
 
-module Class = struct
+module C = struct
   let allowedTopLevelClasses self = msg_send ~self ~cmd:(selector "allowedTopLevelClasses") ~typ:(returning (id))
 end
 

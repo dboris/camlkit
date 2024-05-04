@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISegmentedControlMacBezelView"
 
-module Class = struct
+module C = struct
   let heightForControlSize x self = msg_send ~self ~cmd:(selector "heightForControlSize:") ~typ:(int @-> returning (double)) x
 end
 

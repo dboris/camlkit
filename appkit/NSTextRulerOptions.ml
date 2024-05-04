@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTextRulerOptions"
 
-module Class = struct
+module C = struct
   let sharedTextRulerOptions self = msg_send ~self ~cmd:(selector "sharedTextRulerOptions") ~typ:(returning (id))
 end
 
@@ -32,7 +32,7 @@ let setLinkInWindow x ~string_ ~delegate self = msg_send ~self ~cmd:(selector "s
 let setMarkerFormatInWindow x ~textList ~delegate self = msg_send ~self ~cmd:(selector "setMarkerFormatInWindow:textList:delegate:") ~typ:(id @-> id @-> id @-> returning (void)) x textList delegate
 let setSpacing x ~inWindow ~delegate self = msg_send ~self ~cmd:(selector "setSpacing:inWindow:delegate:") ~typ:(id @-> id @-> id @-> returning (void)) x inWindow delegate
 let setStartFieldAndStepper self = msg_send ~self ~cmd:(selector "setStartFieldAndStepper") ~typ:(returning (void))
-let sheetDidEnd x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "sheetDidEnd:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x returnCode contextInfo
+let sheetDidEnd x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "sheetDidEnd:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x (LLong.of_int returnCode) contextInfo
 let updateFavoritesFromDefaults self = msg_send ~self ~cmd:(selector "updateFavoritesFromDefaults") ~typ:(returning (void))
 let updateFavoritesUI self = msg_send ~self ~cmd:(selector "updateFavoritesUI") ~typ:(returning (void))
 let updateLineSpacingUI self = msg_send ~self ~cmd:(selector "updateLineSpacingUI") ~typ:(returning (void))

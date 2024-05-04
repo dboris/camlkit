@@ -10,7 +10,7 @@ let _class_ = get_class "UIFocusAnimationCoordinator"
 
 let activeFocusAnimation self = msg_send ~self ~cmd:(selector "activeFocusAnimation") ~typ:(returning (llong))
 let addCoordinatedAnimations x ~completion self = msg_send ~self ~cmd:(selector "addCoordinatedAnimations:completion:") ~typ:(ptr void @-> ptr void @-> returning (void)) x completion
-let addCoordinatedAnimationsForAnimation x ~animations ~completion self = msg_send ~self ~cmd:(selector "addCoordinatedAnimationsForAnimation:animations:completion:") ~typ:(llong @-> ptr void @-> ptr void @-> returning (void)) x animations completion
+let addCoordinatedAnimationsForAnimation x ~animations ~completion self = msg_send ~self ~cmd:(selector "addCoordinatedAnimationsForAnimation:animations:completion:") ~typ:(llong @-> ptr void @-> ptr void @-> returning (void)) (LLong.of_int x) animations completion
 let addCoordinatedFocusingAnimations x ~completion self = msg_send ~self ~cmd:(selector "addCoordinatedFocusingAnimations:completion:") ~typ:(ptr void @-> ptr void @-> returning (void)) x completion
 let addCoordinatedUnfocusingAnimations x ~completion self = msg_send ~self ~cmd:(selector "addCoordinatedUnfocusingAnimations:completion:") ~typ:(ptr void @-> ptr void @-> returning (void)) x completion
 let focusingAnimations self = msg_send ~self ~cmd:(selector "focusingAnimations") ~typ:(returning (id))

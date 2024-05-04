@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCoreUIImageRep"
 
-module Class = struct
+module C = struct
   let imageRepWithCocoaName x self = msg_send ~self ~cmd:(selector "imageRepWithCocoaName:") ~typ:(id @-> returning (id)) x
 end
 

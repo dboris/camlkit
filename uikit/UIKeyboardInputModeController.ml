@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardInputModeController"
 
-module Class = struct
+module C = struct
   let _ASCIICapableInputModeIdentifierForPreferredLanguages self = msg_send ~self ~cmd:(selector "ASCIICapableInputModeIdentifierForPreferredLanguages") ~typ:(returning (id))
   let dictationInputModeIsFunctional self = msg_send ~self ~cmd:(selector "dictationInputModeIsFunctional") ~typ:(returning (bool))
   let disallowedDictationLanguagesForDeviceLanguage self = msg_send ~self ~cmd:(selector "disallowedDictationLanguagesForDeviceLanguage") ~typ:(returning (id))
@@ -98,7 +98,7 @@ let lastUsedInputMode self = msg_send ~self ~cmd:(selector "lastUsedInputMode") 
 let lastUsedInputModeForCurrentContext self = msg_send ~self ~cmd:(selector "lastUsedInputModeForCurrentContext") ~typ:(returning (id))
 let lastUsedInputModeForTextInputMode x self = msg_send ~self ~cmd:(selector "lastUsedInputModeForTextInputMode:") ~typ:(id @-> returning (id)) x
 let loadSuggestedInputModesForSiriLanguage self = msg_send ~self ~cmd:(selector "loadSuggestedInputModesForSiriLanguage") ~typ:(returning (void))
-let nextInputModeFromList x ~withFilter ~withTraits self = msg_send ~self ~cmd:(selector "nextInputModeFromList:withFilter:withTraits:") ~typ:(id @-> ullong @-> id @-> returning (id)) x withFilter withTraits
+let nextInputModeFromList x ~withFilter ~withTraits self = msg_send ~self ~cmd:(selector "nextInputModeFromList:withFilter:withTraits:") ~typ:(id @-> ullong @-> id @-> returning (id)) x (ULLong.of_int withFilter) withTraits
 let nextInputModeInPreferenceListForTraits x self = msg_send ~self ~cmd:(selector "nextInputModeInPreferenceListForTraits:") ~typ:(id @-> returning (id)) x
 let nextInputModeInPreferenceListForTraits1 x ~updatePreference self = msg_send ~self ~cmd:(selector "nextInputModeInPreferenceListForTraits:updatePreference:") ~typ:(id @-> bool @-> returning (id)) x updatePreference
 let nextInputModeInPreferenceListForTraits2 x ~updatePreference ~skipEmoji self = msg_send ~self ~cmd:(selector "nextInputModeInPreferenceListForTraits:updatePreference:skipEmoji:") ~typ:(id @-> bool @-> bool @-> returning (id)) x updatePreference skipEmoji

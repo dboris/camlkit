@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserNotificationAction"
 
-module Class = struct
+module C = struct
   let actionWithIdentifier x ~title self = msg_send ~self ~cmd:(selector "actionWithIdentifier:title:") ~typ:(id @-> id @-> returning (id)) x title
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x

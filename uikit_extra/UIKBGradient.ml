@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBGradient"
 
-module Class = struct
+module C = struct
   let gradientWith3Colors x ~middleLocation self = msg_send ~self ~cmd:(selector "gradientWith3Colors:middleLocation:") ~typ:(id @-> double @-> returning (id)) x middleLocation
   let gradientWithColors x ~middleLocations self = msg_send ~self ~cmd:(selector "gradientWithColors:middleLocations:") ~typ:(id @-> id @-> returning (id)) x middleLocations
   let gradientWithFlatColor x self = msg_send ~self ~cmd:(selector "gradientWithFlatColor:") ~typ:(id @-> returning (id)) x

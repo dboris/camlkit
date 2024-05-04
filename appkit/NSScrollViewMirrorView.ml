@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrollViewMirrorView"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfAssociatedScrollView self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfAssociatedScrollView") ~typ:(returning (bool))
 end
 

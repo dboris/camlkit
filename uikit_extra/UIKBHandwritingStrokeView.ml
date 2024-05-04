@@ -8,6 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIKBHandwritingStrokeView"
 
+let addHandwritingPoint x self = msg_send ~self ~cmd:(selector "addHandwritingPoint:") ~typ:(ptr void @-> returning (void)) x
+let addTrapezoidFromFirstPoint x ~secondPoint self = msg_send ~self ~cmd:(selector "addTrapezoidFromFirstPoint:secondPoint:") ~typ:(ptr void @-> ptr void @-> returning (void)) x secondPoint
 let aggregateInvalidRect self = msg_send_stret ~self ~cmd:(selector "aggregateInvalidRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let bitmapContext self = msg_send ~self ~cmd:(selector "bitmapContext") ~typ:(returning (id))
 let clearRect x self = msg_send ~self ~cmd:(selector "clearRect:") ~typ:(CGRect.t @-> returning (void)) x
@@ -17,6 +19,7 @@ let createBitmapIfNeeded self = msg_send ~self ~cmd:(selector "createBitmapIfNee
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let displayAggregateInvalidRect self = msg_send ~self ~cmd:(selector "displayAggregateInvalidRect") ~typ:(returning (void))
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
+let handwritingPointToRect x self = msg_send_stret ~self ~cmd:(selector "handwritingPointToRect:") ~typ:(ptr void @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let keyView self = msg_send ~self ~cmd:(selector "keyView") ~typ:(returning (id))
 let redrawStrokesInRect x self = msg_send ~self ~cmd:(selector "redrawStrokesInRect:") ~typ:(CGRect.t @-> returning (void)) x
 let scaleFactor self = msg_send ~self ~cmd:(selector "scaleFactor") ~typ:(returning (double))

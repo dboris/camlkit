@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSViewHostingContext"
 
-module Class = struct
+module C = struct
   let allContexts self = msg_send ~self ~cmd:(selector "allContexts") ~typ:(returning (id))
 end
 

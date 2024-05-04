@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSSystemPreferencesClient"
 
-module Class = struct
+module C = struct
   let sharedClient self = msg_send ~self ~cmd:(selector "sharedClient") ~typ:(returning (id))
 end
 

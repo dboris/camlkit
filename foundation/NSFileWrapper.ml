@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileWrapper"
 
-module Class = struct
+module C = struct
   let attemptOverwrite x self = msg_send ~self ~cmd:(selector "attemptOverwrite:") ~typ:(id @-> returning (bool)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -28,7 +28,7 @@ let initSymbolicLinkWithDestinationURL x self = msg_send ~self ~cmd:(selector "i
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithPath x self = msg_send ~self ~cmd:(selector "initWithPath:") ~typ:(id @-> returning (id)) x
 let initWithSerializedRepresentation x self = msg_send ~self ~cmd:(selector "initWithSerializedRepresentation:") ~typ:(id @-> returning (id)) x
-let initWithURL x ~options ~error self = msg_send ~self ~cmd:(selector "initWithURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x options error
+let initWithURL x ~options ~error self = msg_send ~self ~cmd:(selector "initWithURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) error
 let isDirectory self = msg_send ~self ~cmd:(selector "isDirectory") ~typ:(returning (bool))
 let isRegularFile self = msg_send ~self ~cmd:(selector "isRegularFile") ~typ:(returning (bool))
 let isSymbolicLink self = msg_send ~self ~cmd:(selector "isSymbolicLink") ~typ:(returning (bool))
@@ -36,7 +36,7 @@ let keyForFileWrapper x self = msg_send ~self ~cmd:(selector "keyForFileWrapper:
 let matchesContentsOfURL x self = msg_send ~self ~cmd:(selector "matchesContentsOfURL:") ~typ:(id @-> returning (bool)) x
 let needsToBeUpdatedFromPath x self = msg_send ~self ~cmd:(selector "needsToBeUpdatedFromPath:") ~typ:(id @-> returning (bool)) x
 let preferredFilename self = msg_send ~self ~cmd:(selector "preferredFilename") ~typ:(returning (id))
-let readFromURL x ~options ~error self = msg_send ~self ~cmd:(selector "readFromURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (bool)) x options error
+let readFromURL x ~options ~error self = msg_send ~self ~cmd:(selector "readFromURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (bool)) x (ULLong.of_int options) error
 let regularFileContents self = msg_send ~self ~cmd:(selector "regularFileContents") ~typ:(returning (id))
 let removeFileWrapper x self = msg_send ~self ~cmd:(selector "removeFileWrapper:") ~typ:(id @-> returning (void)) x
 let serializedRepresentation self = msg_send ~self ~cmd:(selector "serializedRepresentation") ~typ:(returning (id))
@@ -47,4 +47,4 @@ let symbolicLinkDestination self = msg_send ~self ~cmd:(selector "symbolicLinkDe
 let symbolicLinkDestinationURL self = msg_send ~self ~cmd:(selector "symbolicLinkDestinationURL") ~typ:(returning (id))
 let updateFromPath x self = msg_send ~self ~cmd:(selector "updateFromPath:") ~typ:(id @-> returning (bool)) x
 let writeToFile x ~atomically ~updateFilenames self = msg_send ~self ~cmd:(selector "writeToFile:atomically:updateFilenames:") ~typ:(id @-> bool @-> bool @-> returning (bool)) x atomically updateFilenames
-let writeToURL x ~options ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeToURL:options:originalContentsURL:error:") ~typ:(id @-> ullong @-> id @-> ptr (id) @-> returning (bool)) x options originalContentsURL error
+let writeToURL x ~options ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeToURL:options:originalContentsURL:error:") ~typ:(id @-> ullong @-> id @-> ptr (id) @-> returning (bool)) x (ULLong.of_int options) originalContentsURL error

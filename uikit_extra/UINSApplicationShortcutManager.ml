@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSApplicationShortcutManager"
 
-module Class = struct
+module C = struct
   let sharedShortcutManager self = msg_send ~self ~cmd:(selector "sharedShortcutManager") ~typ:(returning (id))
 end
 

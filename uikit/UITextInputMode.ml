@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextInputMode"
 
-module Class = struct
+module C = struct
   let activeInputModes self = msg_send ~self ~cmd:(selector "activeInputModes") ~typ:(returning (id))
   let currentInputMode self = msg_send ~self ~cmd:(selector "currentInputMode") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

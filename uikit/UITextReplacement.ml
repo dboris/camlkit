@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextReplacement"
 
-module Class = struct
+module C = struct
   let replacementWithRange x ~original ~replacement ~menuTitle self = msg_send ~self ~cmd:(selector "replacementWithRange:original:replacement:menuTitle:") ~typ:(id @-> id @-> id @-> id @-> returning (id)) x original replacement menuTitle
 end
 

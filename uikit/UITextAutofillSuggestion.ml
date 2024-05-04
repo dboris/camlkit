@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextAutofillSuggestion"
 
-module Class = struct
+module C = struct
   let autofillSuggestionWithUsername x ~password self = msg_send ~self ~cmd:(selector "autofillSuggestionWithUsername:password:") ~typ:(id @-> id @-> returning (id)) x password
 end
 

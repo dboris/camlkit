@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFloatRange"
 
-module Class = struct
+module C = struct
   let rangeWithLocation x ~length self = msg_send ~self ~cmd:(selector "rangeWithLocation:length:") ~typ:(double @-> double @-> returning (id)) x length
 end
 

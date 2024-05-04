@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSColorSpace"
 
-module Class = struct
+module C = struct
   let _DCIP3ColorSpace self = msg_send ~self ~cmd:(selector "DCIP3ColorSpace") ~typ:(returning (id))
   let adobeRGB1998ColorSpace self = msg_send ~self ~cmd:(selector "adobeRGB1998ColorSpace") ~typ:(returning (id))
-  let availableColorSpacesWithModel x self = msg_send ~self ~cmd:(selector "availableColorSpacesWithModel:") ~typ:(llong @-> returning (id)) x
+  let availableColorSpacesWithModel x self = msg_send ~self ~cmd:(selector "availableColorSpacesWithModel:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
   let colorSpaceForCGColorSpace x self = msg_send ~self ~cmd:(selector "colorSpaceForCGColorSpace:") ~typ:(ptr void @-> returning (id)) x
   let colorSpaceForColorSpaceName x self = msg_send ~self ~cmd:(selector "colorSpaceForColorSpaceName:") ~typ:(id @-> returning (id)) x
   let deviceCMYKColorSpace self = msg_send ~self ~cmd:(selector "deviceCMYKColorSpace") ~typ:(returning (id))

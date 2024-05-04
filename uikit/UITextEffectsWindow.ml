@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextEffectsWindow"
 
-module Class = struct
+module C = struct
   let activeTextEffectsWindowForCanvas x self = msg_send ~self ~cmd:(selector "activeTextEffectsWindowForCanvas:") ~typ:(id @-> returning (id)) x
   let activeTextEffectsWindowForScreen x self = msg_send ~self ~cmd:(selector "activeTextEffectsWindowForScreen:") ~typ:(id @-> returning (id)) x
   let activeTextEffectsWindowForWindowScene x self = msg_send ~self ~cmd:(selector "activeTextEffectsWindowForWindowScene:") ~typ:(id @-> returning (id)) x
@@ -28,7 +28,7 @@ let aboveStatusBarWindow self = msg_send ~self ~cmd:(selector "aboveStatusBarWin
 let actualSceneBounds self = msg_send_stret ~self ~cmd:(selector "actualSceneBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let actualSceneBoundsForLandscape x self = msg_send_stret ~self ~cmd:(selector "actualSceneBoundsForLandscape:") ~typ:(bool @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let actualSceneFrame self = msg_send_stret ~self ~cmd:(selector "actualSceneFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let actualSceneFrameForOrientation x self = msg_send_stret ~self ~cmd:(selector "actualSceneFrameForOrientation:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
+let actualSceneFrameForOrientation x self = msg_send_stret ~self ~cmd:(selector "actualSceneFrameForOrientation:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t (LLong.of_int x)
 let actualSceneOrientation self = msg_send ~self ~cmd:(selector "actualSceneOrientation") ~typ:(returning (llong))
 let addBottomPadding x self = msg_send ~self ~cmd:(selector "addBottomPadding:") ~typ:(double @-> returning (void)) x
 let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ:(returning (void))
@@ -63,11 +63,12 @@ let resetTransform self = msg_send ~self ~cmd:(selector "resetTransform") ~typ:(
 let sendSubviewToBack x self = msg_send ~self ~cmd:(selector "sendSubviewToBack:") ~typ:(id @-> returning (void)) x
 let setDefaultWindowLevel x self = msg_send ~self ~cmd:(selector "setDefaultWindowLevel:") ~typ:(double @-> returning (void)) x
 let setEnableRemoteHosting x self = msg_send ~self ~cmd:(selector "setEnableRemoteHosting:") ~typ:(bool @-> returning (void)) x
+let setHostedSafeInsets x self = msg_send ~self ~cmd:(selector "setHostedSafeInsets:") ~typ:(ptr void @-> returning (void)) x
 let setHostedSceneSize x self = msg_send ~self ~cmd:(selector "setHostedSceneSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setHostedWindowOffset x self = msg_send ~self ~cmd:(selector "setHostedWindowOffset:") ~typ:(CGPoint.t @-> returning (void)) x
 let slideOverWindowVerticalOffset self = msg_send ~self ~cmd:(selector "slideOverWindowVerticalOffset") ~typ:(returning (double))
 let sortSubviews self = msg_send ~self ~cmd:(selector "sortSubviews") ~typ:(returning (void))
 let updateEditingOverlayContainer self = msg_send ~self ~cmd:(selector "updateEditingOverlayContainer") ~typ:(returning (void))
-let updateForOrientation x self = msg_send ~self ~cmd:(selector "updateForOrientation:") ~typ:(llong @-> returning (void)) x
-let updateForOrientation' x ~forceResetTransform self = msg_send ~self ~cmd:(selector "updateForOrientation:forceResetTransform:") ~typ:(llong @-> bool @-> returning (void)) x forceResetTransform
+let updateForOrientation x self = msg_send ~self ~cmd:(selector "updateForOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let updateForOrientation' x ~forceResetTransform self = msg_send ~self ~cmd:(selector "updateForOrientation:forceResetTransform:") ~typ:(llong @-> bool @-> returning (void)) (LLong.of_int x) forceResetTransform
 let updateSubviewOrdering self = msg_send ~self ~cmd:(selector "updateSubviewOrdering") ~typ:(returning (void))

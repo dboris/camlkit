@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISegmentAccessibilityButton"
 
-module Class = struct
+module C = struct
   let buttonWithSegment x self = msg_send ~self ~cmd:(selector "buttonWithSegment:") ~typ:(id @-> returning (id)) x
 end
 

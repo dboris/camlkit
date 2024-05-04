@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "UITextInputSessionActionAnalytics"
 
-module Class = struct
+module C = struct
   let addEndingObserver x self = msg_send ~self ~cmd:(selector "addEndingObserver:") ~typ:(id @-> returning (void)) x
   let addObserver x self = msg_send ~self ~cmd:(selector "addObserver:") ~typ:(id @-> returning (void)) x
   let allowedValuesForTextInputSource self = msg_send ~self ~cmd:(selector "allowedValuesForTextInputSource") ~typ:(returning (id))
   let removeEndingObserver x self = msg_send ~self ~cmd:(selector "removeEndingObserver:") ~typ:(id @-> returning (void)) x
   let removeObserver x self = msg_send ~self ~cmd:(selector "removeObserver:") ~typ:(id @-> returning (void)) x
   let sharedPunctuationCharacterSet self = msg_send ~self ~cmd:(selector "sharedPunctuationCharacterSet") ~typ:(returning (id))
-  let stringValueForSource x self = msg_send ~self ~cmd:(selector "stringValueForSource:") ~typ:(llong @-> returning (id)) x
+  let stringValueForSource x self = msg_send ~self ~cmd:(selector "stringValueForSource:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 end
 
 let addAccumulator x self = msg_send ~self ~cmd:(selector "addAccumulator:") ~typ:(id @-> returning (void)) x
@@ -26,7 +26,7 @@ let beginTrackingSessionDurationIfNecessary self = msg_send ~self ~cmd:(selector
 let delegateSource self = msg_send ~self ~cmd:(selector "delegateSource") ~typ:(returning (id))
 let didBegin self = msg_send ~self ~cmd:(selector "didBegin") ~typ:(returning (void))
 let didChangeToSelection x ~relativeRangeBefore self = msg_send ~self ~cmd:(selector "didChangeToSelection:relativeRangeBefore:") ~typ:(NSRange.t @-> NSRange.t @-> returning (void)) x relativeRangeBefore
-let didDeleteBackward x ~relativeRangeBefore self = msg_send ~self ~cmd:(selector "didDeleteBackward:relativeRangeBefore:") ~typ:(ullong @-> NSRange.t @-> returning (void)) x relativeRangeBefore
+let didDeleteBackward x ~relativeRangeBefore self = msg_send ~self ~cmd:(selector "didDeleteBackward:relativeRangeBefore:") ~typ:(ullong @-> NSRange.t @-> returning (void)) (ULLong.of_int x) relativeRangeBefore
 let didDictationBegin x self = msg_send ~self ~cmd:(selector "didDictationBegin:") ~typ:(bool @-> returning (void)) x
 let didInsertText x ~relativeRangeBefore self = msg_send ~self ~cmd:(selector "didInsertText:relativeRangeBefore:") ~typ:(id @-> NSRange.t @-> returning (void)) x relativeRangeBefore
 let didOther self = msg_send ~self ~cmd:(selector "didOther") ~typ:(returning (void))

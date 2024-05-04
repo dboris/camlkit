@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardLayoutCursor"
 
-module Class = struct
+module C = struct
   let carKeyboardNameForKeyboard x ~screenTraits self = msg_send ~self ~cmd:(selector "carKeyboardNameForKeyboard:screenTraits:") ~typ:(id @-> id @-> returning (id)) x screenTraits
-  let keyboardSizeForInputMode x ~screenTraits ~keyboardType self = msg_send_stret ~self ~cmd:(selector "keyboardSizeForInputMode:screenTraits:keyboardType:") ~typ:(id @-> id @-> llong @-> returning (CGSize.t)) ~return_type:CGSize.t x screenTraits keyboardType
+  let keyboardSizeForInputMode x ~screenTraits ~keyboardType self = msg_send_stret ~self ~cmd:(selector "keyboardSizeForInputMode:screenTraits:keyboardType:") ~typ:(id @-> id @-> llong @-> returning (CGSize.t)) ~return_type:CGSize.t x screenTraits (LLong.of_int keyboardType)
 end
 
 let acceptRecentInputIfNecessary self = msg_send ~self ~cmd:(selector "acceptRecentInputIfNecessary") ~typ:(returning (void))
@@ -25,7 +25,7 @@ let currentKey self = msg_send ~self ~cmd:(selector "currentKey") ~typ:(returnin
 let cursorLocation self = msg_send ~self ~cmd:(selector "cursorLocation") ~typ:(returning (ullong))
 let deactivateKey x self = msg_send ~self ~cmd:(selector "deactivateKey:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let defaultSelectedVariantIndexForKey x ~withActions self = msg_send ~self ~cmd:(selector "defaultSelectedVariantIndexForKey:withActions:") ~typ:(id @-> ullong @-> returning (llong)) x withActions
+let defaultSelectedVariantIndexForKey x ~withActions self = msg_send ~self ~cmd:(selector "defaultSelectedVariantIndexForKey:withActions:") ~typ:(id @-> ullong @-> returning (llong)) x (ULLong.of_int withActions)
 let diacriticForwardCompose self = msg_send ~self ~cmd:(selector "diacriticForwardCompose") ~typ:(returning (bool))
 let didSelectRecentInputString x self = msg_send ~self ~cmd:(selector "didSelectRecentInputString:") ~typ:(id @-> returning (void)) x
 let downActionFlagsForKey x self = msg_send ~self ~cmd:(selector "downActionFlagsForKey:") ~typ:(id @-> returning (ullong)) x
@@ -34,7 +34,7 @@ let endMultitapForKey x self = msg_send ~self ~cmd:(selector "endMultitapForKey:
 let flushKeyCache x self = msg_send ~self ~cmd:(selector "flushKeyCache:") ~typ:(id @-> returning (void)) x
 let focusWindow self = msg_send ~self ~cmd:(selector "focusWindow") ~typ:(returning (id))
 let getHandRestRecognizerState self = msg_send ~self ~cmd:(selector "getHandRestRecognizerState") ~typ:(returning (bool))
-let getNextKeyplaneIndex x self = msg_send ~self ~cmd:(selector "getNextKeyplaneIndex:") ~typ:(ullong @-> returning (ullong)) x
+let getNextKeyplaneIndex x self = msg_send ~self ~cmd:(selector "getNextKeyplaneIndex:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
 let getRomanAccentVariantsForString x ~inputMode ~keyboardVariantIndludes self = msg_send ~self ~cmd:(selector "getRomanAccentVariantsForString:inputMode:keyboardVariantIndludes:") ~typ:(id @-> id @-> int @-> returning (id)) x inputMode keyboardVariantIndludes
 let handleLinearDirectionalInput x self = msg_send ~self ~cmd:(selector "handleLinearDirectionalInput:") ~typ:(int @-> returning (bool)) x
 let handleVariantDeleteIfNecessaryForKey x self = msg_send ~self ~cmd:(selector "handleVariantDeleteIfNecessaryForKey:") ~typ:(id @-> returning (void)) x
@@ -65,20 +65,20 @@ let returnToKeyplaneAfterDictation self = msg_send ~self ~cmd:(selector "returnT
 let runWithSuppressedActions x self = msg_send ~self ~cmd:(selector "runWithSuppressedActions:") ~typ:(ptr void @-> returning (void)) x
 let selectInitialKeyIfNecessary self = msg_send ~self ~cmd:(selector "selectInitialKeyIfNecessary") ~typ:(returning (void))
 let selectedKeyBeforeDictation self = msg_send ~self ~cmd:(selector "selectedKeyBeforeDictation") ~typ:(returning (llong))
-let selectionFrameForKeyIndex x self = msg_send_stret ~self ~cmd:(selector "selectionFrameForKeyIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t x
-let setCursorLocation x self = msg_send ~self ~cmd:(selector "setCursorLocation:") ~typ:(ullong @-> returning (void)) x
+let selectionFrameForKeyIndex x self = msg_send_stret ~self ~cmd:(selector "selectionFrameForKeyIndex:") ~typ:(llong @-> returning (CGRect.t)) ~return_type:CGRect.t (LLong.of_int x)
+let setCursorLocation x self = msg_send ~self ~cmd:(selector "setCursorLocation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDisableTouchInput x self = msg_send ~self ~cmd:(selector "setDisableTouchInput:") ~typ:(bool @-> returning (void)) x
 let setFocusWindow x self = msg_send ~self ~cmd:(selector "setFocusWindow:") ~typ:(id @-> returning (void)) x
-let setHighlightedVariantIndex x ~key self = msg_send ~self ~cmd:(selector "setHighlightedVariantIndex:key:") ~typ:(llong @-> id @-> returning (void)) x key
-let setKeyboardAppearance x self = msg_send ~self ~cmd:(selector "setKeyboardAppearance:") ~typ:(llong @-> returning (void)) x
-let setKeyboardName x ~appearance self = msg_send ~self ~cmd:(selector "setKeyboardName:appearance:") ~typ:(id @-> llong @-> returning (void)) x appearance
+let setHighlightedVariantIndex x ~key self = msg_send ~self ~cmd:(selector "setHighlightedVariantIndex:key:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) key
+let setKeyboardAppearance x self = msg_send ~self ~cmd:(selector "setKeyboardAppearance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setKeyboardName x ~appearance self = msg_send ~self ~cmd:(selector "setKeyboardName:appearance:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int appearance)
 let setKeyplaneBeforeDictation x self = msg_send ~self ~cmd:(selector "setKeyplaneBeforeDictation:") ~typ:(id @-> returning (void)) x
 let setKeyplaneName x self = msg_send ~self ~cmd:(selector "setKeyplaneName:") ~typ:(id @-> returning (void)) x
 let setRecentInputs x self = msg_send ~self ~cmd:(selector "setRecentInputs:") ~typ:(id @-> returning (void)) x
 let setRecentInputsAlert x self = msg_send ~self ~cmd:(selector "setRecentInputsAlert:") ~typ:(id @-> returning (void)) x
 let setRenderConfig x self = msg_send ~self ~cmd:(selector "setRenderConfig:") ~typ:(id @-> returning (void)) x
-let setSelectedKeyBeforeDictation x self = msg_send ~self ~cmd:(selector "setSelectedKeyBeforeDictation:") ~typ:(llong @-> returning (void)) x
-let setSelectedKeyIndex x self = msg_send ~self ~cmd:(selector "setSelectedKeyIndex:") ~typ:(llong @-> returning (void)) x
+let setSelectedKeyBeforeDictation x self = msg_send ~self ~cmd:(selector "setSelectedKeyBeforeDictation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSelectedKeyIndex x self = msg_send ~self ~cmd:(selector "setSelectedKeyIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setShift x self = msg_send ~self ~cmd:(selector "setShift:") ~typ:(bool @-> returning (void)) x
 let shouldAllowCurrentKeyplaneReload self = msg_send ~self ~cmd:(selector "shouldAllowCurrentKeyplaneReload") ~typ:(returning (bool))
 let shouldDeactivateWithoutWindow self = msg_send ~self ~cmd:(selector "shouldDeactivateWithoutWindow") ~typ:(returning (bool))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInputAlignmentFilter"
 
-module Class = struct
+module C = struct
   let filterInputEventMask self = msg_send ~self ~cmd:(selector "filterInputEventMask") ~typ:(returning (ullong))
   let inputEventMask self = msg_send ~self ~cmd:(selector "inputEventMask") ~typ:(returning (ullong))
 end

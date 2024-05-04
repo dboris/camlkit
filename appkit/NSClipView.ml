@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSClipView"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -53,6 +53,8 @@ let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColo
 let setBoundsOrigin x self = msg_send ~self ~cmd:(selector "setBoundsOrigin:") ~typ:(CGPoint.t @-> returning (void)) x
 let setBoundsRotation x self = msg_send ~self ~cmd:(selector "setBoundsRotation:") ~typ:(double @-> returning (void)) x
 let setBoundsSize x self = msg_send ~self ~cmd:(selector "setBoundsSize:") ~typ:(CGSize.t @-> returning (void)) x
+let setContentInset x self = msg_send ~self ~cmd:(selector "setContentInset:") ~typ:(ptr void @-> returning (void)) x
+let setContentInsets x self = msg_send ~self ~cmd:(selector "setContentInsets:") ~typ:(ptr void @-> returning (void)) x
 let setContentSize x self = msg_send ~self ~cmd:(selector "setContentSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setCopiesOnScroll x self = msg_send ~self ~cmd:(selector "setCopiesOnScroll:") ~typ:(bool @-> returning (void)) x
 let setDocumentCursor x self = msg_send ~self ~cmd:(selector "setDocumentCursor:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCompositeAppearance"
 
-module Class = struct
+module C = struct
   let compositeAppearanceForView x self = msg_send ~self ~cmd:(selector "compositeAppearanceForView:") ~typ:(id @-> returning (id)) x
 end
 
@@ -29,7 +29,7 @@ let resolvedAppearanceForWidget x ~styleConfiguration self = msg_send ~self ~cmd
 let resolvedAppearanceForWidget' x ~variant self = msg_send ~self ~cmd:(selector "resolvedAppearanceForWidget:variant:") ~typ:(id @-> id @-> returning (id)) x variant
 let setAppearances x self = msg_send ~self ~cmd:(selector "setAppearances:") ~typ:(id @-> returning (void)) x
 let setName x self = msg_send ~self ~cmd:(selector "setName:") ~typ:(id @-> returning (void)) x
-let systemFontForControlSize x ~weight self = msg_send ~self ~cmd:(selector "systemFontForControlSize:weight:") ~typ:(ullong @-> double @-> returning (id)) x weight
-let systemFontSizeForControlSize x self = msg_send ~self ~cmd:(selector "systemFontSizeForControlSize:") ~typ:(ullong @-> returning (double)) x
+let systemFontForControlSize x ~weight self = msg_send ~self ~cmd:(selector "systemFontForControlSize:weight:") ~typ:(ullong @-> double @-> returning (id)) (ULLong.of_int x) weight
+let systemFontSizeForControlSize x self = msg_send ~self ~cmd:(selector "systemFontSizeForControlSize:") ~typ:(ullong @-> returning (double)) (ULLong.of_int x)
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning (id))
 let uniqueIdentifier self = msg_send ~self ~cmd:(selector "uniqueIdentifier") ~typ:(returning (id))

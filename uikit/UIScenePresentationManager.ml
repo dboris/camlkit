@@ -9,9 +9,9 @@ open Foundation
 let _class_ = get_class "UIScenePresentationManager"
 
 let createPresenterForLayerTarget x ~identifier self = msg_send ~self ~cmd:(selector "createPresenterForLayerTarget:identifier:") ~typ:(id @-> id @-> returning (id)) x identifier
-let createPresenterForLayerTarget' x ~identifier ~priority self = msg_send ~self ~cmd:(selector "createPresenterForLayerTarget:identifier:priority:") ~typ:(id @-> id @-> llong @-> returning (id)) x identifier priority
+let createPresenterForLayerTarget' x ~identifier ~priority self = msg_send ~self ~cmd:(selector "createPresenterForLayerTarget:identifier:priority:") ~typ:(id @-> id @-> llong @-> returning (id)) x identifier (LLong.of_int priority)
 let createPresenterWithIdentifier x self = msg_send ~self ~cmd:(selector "createPresenterWithIdentifier:") ~typ:(id @-> returning (id)) x
-let createPresenterWithIdentifier' x ~priority self = msg_send ~self ~cmd:(selector "createPresenterWithIdentifier:priority:") ~typ:(id @-> llong @-> returning (id)) x priority
+let createPresenterWithIdentifier' x ~priority self = msg_send ~self ~cmd:(selector "createPresenterWithIdentifier:priority:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int priority)
 let defaultPresentationContext self = msg_send ~self ~cmd:(selector "defaultPresentationContext") ~typ:(returning (id))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

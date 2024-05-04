@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPathControl"
 
-module Class = struct
+module C = struct
   let cellClass self = msg_send ~self ~cmd:(selector "cellClass") ~typ:(returning (_Class))
 end
 
@@ -26,7 +26,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let doubleAction self = msg_send ~self ~cmd:(selector "doubleAction") ~typ:(returning (_SEL))
 let draggedImage x ~beganAt self = msg_send ~self ~cmd:(selector "draggedImage:beganAt:") ~typ:(id @-> CGPoint.t @-> returning (void)) x beganAt
-let draggedImage' x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning (void)) x endedAt operation
+let draggedImage' x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning (void)) x endedAt (ULLong.of_int operation)
 let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning (ullong)) x
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning (void)) x
 let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning (ullong)) x
@@ -57,13 +57,13 @@ let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColo
 let setCell x self = msg_send ~self ~cmd:(selector "setCell:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDoubleAction x self = msg_send ~self ~cmd:(selector "setDoubleAction:") ~typ:(_SEL @-> returning (void)) x
-let setDraggingSourceOperationMask x ~forLocal self = msg_send ~self ~cmd:(selector "setDraggingSourceOperationMask:forLocal:") ~typ:(ullong @-> bool @-> returning (void)) x forLocal
+let setDraggingSourceOperationMask x ~forLocal self = msg_send ~self ~cmd:(selector "setDraggingSourceOperationMask:forLocal:") ~typ:(ullong @-> bool @-> returning (void)) (ULLong.of_int x) forLocal
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setMenu x self = msg_send ~self ~cmd:(selector "setMenu:") ~typ:(id @-> returning (void)) x
 let setPathComponentCells x self = msg_send ~self ~cmd:(selector "setPathComponentCells:") ~typ:(id @-> returning (void)) x
 let setPathItems x self = msg_send ~self ~cmd:(selector "setPathItems:") ~typ:(id @-> returning (void)) x
-let setPathStyle x self = msg_send ~self ~cmd:(selector "setPathStyle:") ~typ:(llong @-> returning (void)) x
+let setPathStyle x self = msg_send ~self ~cmd:(selector "setPathStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPlaceholderAttributedString x self = msg_send ~self ~cmd:(selector "setPlaceholderAttributedString:") ~typ:(id @-> returning (void)) x
 let setPlaceholderString x self = msg_send ~self ~cmd:(selector "setPlaceholderString:") ~typ:(id @-> returning (void)) x
 let setURL x self = msg_send ~self ~cmd:(selector "setURL:") ~typ:(id @-> returning (void)) x

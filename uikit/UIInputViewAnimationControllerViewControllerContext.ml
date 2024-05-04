@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewAnimationControllerViewControllerContext"
 
-module Class = struct
+module C = struct
   let contextWithHost x ~startPlacement ~endPlacement ~transitionContext self = msg_send ~self ~cmd:(selector "contextWithHost:startPlacement:endPlacement:transitionContext:") ~typ:(id @-> id @-> id @-> id @-> returning (id)) x startPlacement endPlacement transitionContext
 end
 

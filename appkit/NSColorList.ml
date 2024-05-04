@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorList"
 
-module Class = struct
+module C = struct
   let availableColorLists self = msg_send ~self ~cmd:(selector "availableColorLists") ~typ:(returning (id))
   let colorListNamed x self = msg_send ~self ~cmd:(selector "colorListNamed:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -25,7 +25,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithName x self = msg_send ~self ~cmd:(selector "initWithName:") ~typ:(id @-> returning (id)) x
 let initWithName' x ~fromFile self = msg_send ~self ~cmd:(selector "initWithName:fromFile:") ~typ:(id @-> id @-> returning (id)) x fromFile
-let insertColor x ~key ~atIndex self = msg_send ~self ~cmd:(selector "insertColor:key:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (void)) x key atIndex
+let insertColor x ~key ~atIndex self = msg_send ~self ~cmd:(selector "insertColor:key:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (void)) x key (ULLong.of_int atIndex)
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning (bool))
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let removeColorWithKey x self = msg_send ~self ~cmd:(selector "removeColorWithKey:") ~typ:(id @-> returning (void)) x

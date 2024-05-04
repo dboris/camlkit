@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSCFInputStream"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
 end
@@ -22,7 +22,7 @@ let initWithURL x self = msg_send ~self ~cmd:(selector "initWithURL:") ~typ:(id 
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let open_ self = msg_send ~self ~cmd:(selector "open") ~typ:(returning (void))
 let propertyForKey x self = msg_send ~self ~cmd:(selector "propertyForKey:") ~typ:(id @-> returning (id)) x
-let read x ~maxLength self = msg_send ~self ~cmd:(selector "read:maxLength:") ~typ:(string @-> ullong @-> returning (llong)) x maxLength
+let read x ~maxLength self = msg_send ~self ~cmd:(selector "read:maxLength:") ~typ:(string @-> ullong @-> returning (llong)) x (ULLong.of_int maxLength)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (void))
 let removeFromRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "removeFromRunLoop:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning (id))

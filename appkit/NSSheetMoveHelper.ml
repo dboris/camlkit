@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSheetMoveHelper"
 
-module Class = struct
+module C = struct
   let moveHelperWithSheet x self = msg_send ~self ~cmd:(selector "moveHelperWithSheet:") ~typ:(id @-> returning (id)) x
   let moveHelpersDimmingWindow x self = msg_send ~self ~cmd:(selector "moveHelpersDimmingWindow:") ~typ:(id @-> returning (id)) x
 end

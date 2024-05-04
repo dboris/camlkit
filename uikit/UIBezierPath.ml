@@ -8,19 +8,19 @@ open Foundation
 
 let _class_ = get_class "UIBezierPath"
 
-module Class = struct
+module C = struct
   let bezierPath self = msg_send ~self ~cmd:(selector "bezierPath") ~typ:(returning (id))
   let bezierPathWithArcCenter x ~radius ~startAngle ~endAngle ~clockwise self = msg_send ~self ~cmd:(selector "bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:") ~typ:(CGPoint.t @-> double @-> double @-> double @-> bool @-> returning (id)) x radius startAngle endAngle clockwise
   let bezierPathWithCGPath x self = msg_send ~self ~cmd:(selector "bezierPathWithCGPath:") ~typ:(ptr void @-> returning (id)) x
   let bezierPathWithOvalInRect x self = msg_send ~self ~cmd:(selector "bezierPathWithOvalInRect:") ~typ:(CGRect.t @-> returning (id)) x
   let bezierPathWithRect x self = msg_send ~self ~cmd:(selector "bezierPathWithRect:") ~typ:(CGRect.t @-> returning (id)) x
   let bezierPathWithRoundedRect x ~cornerRadius self = msg_send ~self ~cmd:(selector "bezierPathWithRoundedRect:cornerRadius:") ~typ:(CGRect.t @-> double @-> returning (id)) x cornerRadius
-  let bezierPathWithRoundedRect' x ~byRoundingCorners ~cornerRadii self = msg_send ~self ~cmd:(selector "bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:") ~typ:(CGRect.t @-> ullong @-> CGSize.t @-> returning (id)) x byRoundingCorners cornerRadii
-  let roundedRectBezierPath x ~withRoundedEdges self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedEdges:") ~typ:(CGRect.t @-> ullong @-> returning (id)) x withRoundedEdges
-  let roundedRectBezierPath1 x ~withRoundedCorners ~withCornerRadii self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedCorners:withCornerRadii:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x withRoundedCorners withCornerRadii
-  let roundedRectBezierPath2 x ~withRoundedCorners ~withCornerRadius self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedCorners:withCornerRadius:") ~typ:(CGRect.t @-> ullong @-> double @-> returning (id)) x withRoundedCorners withCornerRadius
+  let bezierPathWithRoundedRect' x ~byRoundingCorners ~cornerRadii self = msg_send ~self ~cmd:(selector "bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:") ~typ:(CGRect.t @-> ullong @-> CGSize.t @-> returning (id)) x (ULLong.of_int byRoundingCorners) cornerRadii
+  let roundedRectBezierPath x ~withRoundedEdges self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedEdges:") ~typ:(CGRect.t @-> ullong @-> returning (id)) x (ULLong.of_int withRoundedEdges)
+  let roundedRectBezierPath1 x ~withRoundedCorners ~withCornerRadii self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedCorners:withCornerRadii:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x (ULLong.of_int withRoundedCorners) withCornerRadii
+  let roundedRectBezierPath2 x ~withRoundedCorners ~withCornerRadius self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withRoundedCorners:withCornerRadius:") ~typ:(CGRect.t @-> ullong @-> double @-> returning (id)) x (ULLong.of_int withRoundedCorners) withCornerRadius
   let roundedRectBezierPath3 x ~withTopCornerRadius ~withBottomCornerRadius self = msg_send ~self ~cmd:(selector "roundedRectBezierPath:withTopCornerRadius:withBottomCornerRadius:") ~typ:(CGRect.t @-> double @-> double @-> returning (id)) x withTopCornerRadius withBottomCornerRadius
-  let shadowBezierPath x ~withRoundedEdges self = msg_send ~self ~cmd:(selector "shadowBezierPath:withRoundedEdges:") ~typ:(CGRect.t @-> ullong @-> returning (id)) x withRoundedEdges
+  let shadowBezierPath x ~withRoundedEdges self = msg_send ~self ~cmd:(selector "shadowBezierPath:withRoundedEdges:") ~typ:(CGRect.t @-> ullong @-> returning (id)) x (ULLong.of_int withRoundedEdges)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -34,8 +34,10 @@ let akAppendPath x self = msg_send ~self ~cmd:(selector "akAppendPath:") ~typ:(i
 let appendBezierPath x self = msg_send ~self ~cmd:(selector "appendBezierPath:") ~typ:(id @-> returning (void)) x
 let appendBezierPathWithArcWithCenter x ~radius ~startAngle ~endAngle ~clockwise self = msg_send ~self ~cmd:(selector "appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:") ~typ:(CGPoint.t @-> double @-> double @-> double @-> bool @-> returning (void)) x radius startAngle endAngle clockwise
 let appendBezierPathWithOvalInRect x self = msg_send ~self ~cmd:(selector "appendBezierPathWithOvalInRect:") ~typ:(CGRect.t @-> returning (void)) x
+let appendBezierPathWithOvalInRect' x ~transform self = msg_send ~self ~cmd:(selector "appendBezierPathWithOvalInRect:transform:") ~typ:(CGRect.t @-> ptr void @-> returning (void)) x transform
 let appendBezierPathWithRect x self = msg_send ~self ~cmd:(selector "appendBezierPathWithRect:") ~typ:(CGRect.t @-> returning (void)) x
 let appendPath x self = msg_send ~self ~cmd:(selector "appendPath:") ~typ:(id @-> returning (void)) x
+let applyTransform x self = msg_send ~self ~cmd:(selector "applyTransform:") ~typ:(ptr void @-> returning (void)) x
 let bezierPathByReversingPath self = msg_send ~self ~cmd:(selector "bezierPathByReversingPath") ~typ:(returning (id))
 let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let clip self = msg_send ~self ~cmd:(selector "clip") ~typ:(returning (void))
@@ -65,7 +67,7 @@ let removeAllPoints self = msg_send ~self ~cmd:(selector "removeAllPoints") ~typ
 let setCGPath x self = msg_send ~self ~cmd:(selector "setCGPath:") ~typ:(ptr void @-> returning (void)) x
 let setFlatness x self = msg_send ~self ~cmd:(selector "setFlatness:") ~typ:(double @-> returning (void)) x
 let setLineCapStyle x self = msg_send ~self ~cmd:(selector "setLineCapStyle:") ~typ:(int @-> returning (void)) x
-let setLineDash x ~count ~phase self = msg_send ~self ~cmd:(selector "setLineDash:count:phase:") ~typ:(ptr (double) @-> llong @-> double @-> returning (void)) x count phase
+let setLineDash x ~count ~phase self = msg_send ~self ~cmd:(selector "setLineDash:count:phase:") ~typ:(ptr (double) @-> llong @-> double @-> returning (void)) x (LLong.of_int count) phase
 let setLineJoinStyle x self = msg_send ~self ~cmd:(selector "setLineJoinStyle:") ~typ:(int @-> returning (void)) x
 let setLineWidth x self = msg_send ~self ~cmd:(selector "setLineWidth:") ~typ:(double @-> returning (void)) x
 let setMiterLimit x self = msg_send ~self ~cmd:(selector "setMiterLimit:") ~typ:(double @-> returning (void)) x

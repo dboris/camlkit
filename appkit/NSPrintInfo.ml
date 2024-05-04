@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPrintInfo"
 
-module Class = struct
+module C = struct
   let allowedAttributeClasses self = msg_send ~self ~cmd:(selector "allowedAttributeClasses") ~typ:(returning (id))
   let defaultPrinter self = msg_send ~self ~cmd:(selector "defaultPrinter") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -47,11 +47,11 @@ let printer self = msg_send ~self ~cmd:(selector "printer") ~typ:(returning (id)
 let rightMargin self = msg_send ~self ~cmd:(selector "rightMargin") ~typ:(returning (double))
 let scalingFactor self = msg_send ~self ~cmd:(selector "scalingFactor") ~typ:(returning (double))
 let setBottomMargin x self = msg_send ~self ~cmd:(selector "setBottomMargin:") ~typ:(double @-> returning (void)) x
-let setHorizontalPagination x self = msg_send ~self ~cmd:(selector "setHorizontalPagination:") ~typ:(ullong @-> returning (void)) x
+let setHorizontalPagination x self = msg_send ~self ~cmd:(selector "setHorizontalPagination:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setHorizontallyCentered x self = msg_send ~self ~cmd:(selector "setHorizontallyCentered:") ~typ:(bool @-> returning (void)) x
 let setJobDisposition x self = msg_send ~self ~cmd:(selector "setJobDisposition:") ~typ:(id @-> returning (void)) x
 let setLeftMargin x self = msg_send ~self ~cmd:(selector "setLeftMargin:") ~typ:(double @-> returning (void)) x
-let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) x
+let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPaperName x self = msg_send ~self ~cmd:(selector "setPaperName:") ~typ:(id @-> returning (void)) x
 let setPaperSize x self = msg_send ~self ~cmd:(selector "setPaperSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setPrinter x self = msg_send ~self ~cmd:(selector "setPrinter:") ~typ:(id @-> returning (void)) x
@@ -60,7 +60,7 @@ let setScalingFactor x self = msg_send ~self ~cmd:(selector "setScalingFactor:")
 let setSelectionOnly x self = msg_send ~self ~cmd:(selector "setSelectionOnly:") ~typ:(bool @-> returning (void)) x
 let setTopMargin x self = msg_send ~self ~cmd:(selector "setTopMargin:") ~typ:(double @-> returning (void)) x
 let setUpPrintOperationDefaultValues self = msg_send ~self ~cmd:(selector "setUpPrintOperationDefaultValues") ~typ:(returning (void))
-let setVerticalPagination x self = msg_send ~self ~cmd:(selector "setVerticalPagination:") ~typ:(ullong @-> returning (void)) x
+let setVerticalPagination x self = msg_send ~self ~cmd:(selector "setVerticalPagination:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setVerticallyCentered x self = msg_send ~self ~cmd:(selector "setVerticallyCentered:") ~typ:(bool @-> returning (void)) x
 let takeSettingsFromPDFInfo x self = msg_send ~self ~cmd:(selector "takeSettingsFromPDFInfo:") ~typ:(id @-> returning (void)) x
 let topMargin self = msg_send ~self ~cmd:(selector "topMargin") ~typ:(returning (double))

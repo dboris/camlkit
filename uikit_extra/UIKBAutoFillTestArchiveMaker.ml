@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBAutoFillTestArchiveMaker"
 
-module Class = struct
+module C = struct
   let archiveMakerWithViewControllerToSnapshot x self = msg_send ~self ~cmd:(selector "archiveMakerWithViewControllerToSnapshot:") ~typ:(id @-> returning (id)) x
 end
 

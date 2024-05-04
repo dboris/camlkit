@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSKeyedUnarchiver"
 
-module Class = struct
+module C = struct
   let classForClassName x self = msg_send ~self ~cmd:(selector "classForClassName:") ~typ:(id @-> returning (_Class)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let setClass x ~forClassName self = msg_send ~self ~cmd:(selector "setClass:forClassName:") ~typ:(_Class @-> id @-> returning (void)) x forClassName
@@ -26,7 +26,7 @@ let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") 
 let classForClassName x self = msg_send ~self ~cmd:(selector "classForClassName:") ~typ:(id @-> returning (_Class)) x
 let containsValueForKey x self = msg_send ~self ~cmd:(selector "containsValueForKey:") ~typ:(id @-> returning (bool)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x count at
+let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x (ULLong.of_int count) at
 let decodeArrayOfObjectsOfClasses x ~forKey self = msg_send ~self ~cmd:(selector "decodeArrayOfObjectsOfClasses:forKey:") ~typ:(id @-> id @-> returning (id)) x forKey
 let decodeBoolForKey x self = msg_send ~self ~cmd:(selector "decodeBoolForKey:") ~typ:(id @-> returning (bool)) x
 let decodeBytesForKey x ~returnedLength self = msg_send ~self ~cmd:(selector "decodeBytesForKey:returnedLength:") ~typ:(id @-> ptr (ullong) @-> returning (string)) x returnedLength
@@ -58,7 +58,7 @@ let replaceObject x ~withObject self = msg_send ~self ~cmd:(selector "replaceObj
 let requiresSecureCoding self = msg_send ~self ~cmd:(selector "requiresSecureCoding") ~typ:(returning (bool))
 let setAllowedClasses x self = msg_send ~self ~cmd:(selector "setAllowedClasses:") ~typ:(id @-> returning (void)) x
 let setClass x ~forClassName self = msg_send ~self ~cmd:(selector "setClass:forClassName:") ~typ:(_Class @-> id @-> returning (void)) x forClassName
-let setDecodingFailurePolicy x self = msg_send ~self ~cmd:(selector "setDecodingFailurePolicy:") ~typ:(llong @-> returning (void)) x
+let setDecodingFailurePolicy x self = msg_send ~self ~cmd:(selector "setDecodingFailurePolicy:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setRequiresSecureCoding x self = msg_send ~self ~cmd:(selector "setRequiresSecureCoding:") ~typ:(bool @-> returning (void)) x
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning (uint))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSImageCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -45,9 +45,9 @@ let setControlView x self = msg_send ~self ~cmd:(selector "setControlView:") ~ty
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning (void)) x
 let setFormatter x self = msg_send ~self ~cmd:(selector "setFormatter:") ~typ:(id @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) x
-let setImageFrameStyle x self = msg_send ~self ~cmd:(selector "setImageFrameStyle:") ~typ:(ullong @-> returning (void)) x
-let setImageScaling x self = msg_send ~self ~cmd:(selector "setImageScaling:") ~typ:(ullong @-> returning (void)) x
+let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setImageFrameStyle x self = msg_send ~self ~cmd:(selector "setImageFrameStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setImageScaling x self = msg_send ~self ~cmd:(selector "setImageScaling:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x
 let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let trackMouse x ~inRect ~ofView ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> bool @-> returning (bool)) x inRect ofView untilMouseUp

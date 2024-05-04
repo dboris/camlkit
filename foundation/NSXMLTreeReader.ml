@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXMLTreeReader"
 
-module Class = struct
+module C = struct
   let currentReader self = msg_send ~self ~cmd:(selector "currentReader") ~typ:(returning (id))
   let setCurrentReader x self = msg_send ~self ~cmd:(selector "setCurrentReader:") ~typ:(id @-> returning (void)) x
 end
@@ -16,8 +16,8 @@ let allowedEntityURLs self = msg_send ~self ~cmd:(selector "allowedEntityURLs") 
 let createNamedNodeFromNode x ~reader self = msg_send ~self ~cmd:(selector "createNamedNodeFromNode:reader:") ~typ:(ptr void @-> ptr void @-> returning (id)) x reader
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let externalEntityLoadingPolicy self = msg_send ~self ~cmd:(selector "externalEntityLoadingPolicy") ~typ:(returning (llong))
-let initWithData x ~documentClass ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:options:error:") ~typ:(id @-> _Class @-> ullong @-> ptr (id) @-> returning (id)) x documentClass options error
-let initWithData' x ~documentClass ~isSingleDTDNode ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:isSingleDTDNode:options:error:") ~typ:(id @-> _Class @-> bool @-> ullong @-> ptr (id) @-> returning (id)) x documentClass isSingleDTDNode options error
+let initWithData x ~documentClass ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:options:error:") ~typ:(id @-> _Class @-> ullong @-> ptr (id) @-> returning (id)) x documentClass (ULLong.of_int options) error
+let initWithData' x ~documentClass ~isSingleDTDNode ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:isSingleDTDNode:options:error:") ~typ:(id @-> _Class @-> bool @-> ullong @-> ptr (id) @-> returning (id)) x documentClass isSingleDTDNode (ULLong.of_int options) error
 let parse self = msg_send ~self ~cmd:(selector "parse") ~typ:(returning (id))
 let processCDATA x self = msg_send ~self ~cmd:(selector "processCDATA:") ~typ:(ptr void @-> returning (void)) x
 let processComment x self = msg_send ~self ~cmd:(selector "processComment:") ~typ:(ptr void @-> returning (void)) x
@@ -41,8 +41,8 @@ let root self = msg_send ~self ~cmd:(selector "root") ~typ:(returning (id))
 let setAllowedEntityURLs x self = msg_send ~self ~cmd:(selector "setAllowedEntityURLs:") ~typ:(id @-> returning (void)) x
 let setContent x self = msg_send ~self ~cmd:(selector "setContent:") ~typ:(id @-> returning (void)) x
 let setCurrent x self = msg_send ~self ~cmd:(selector "setCurrent:") ~typ:(id @-> returning (void)) x
-let setError x ~info ~fatal self = msg_send ~self ~cmd:(selector "setError:info:fatal:") ~typ:(llong @-> id @-> bool @-> returning (void)) x info fatal
-let setExternalEntityLoadingPolicy x self = msg_send ~self ~cmd:(selector "setExternalEntityLoadingPolicy:") ~typ:(llong @-> returning (void)) x
+let setError x ~info ~fatal self = msg_send ~self ~cmd:(selector "setError:info:fatal:") ~typ:(llong @-> id @-> bool @-> returning (void)) (LLong.of_int x) info fatal
+let setExternalEntityLoadingPolicy x self = msg_send ~self ~cmd:(selector "setExternalEntityLoadingPolicy:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRoot x self = msg_send ~self ~cmd:(selector "setRoot:") ~typ:(id @-> returning (void)) x
 let setURI x self = msg_send ~self ~cmd:(selector "setURI:") ~typ:(id @-> returning (void)) x
 let url self = msg_send ~self ~cmd:(selector "url") ~typ:(returning (id))

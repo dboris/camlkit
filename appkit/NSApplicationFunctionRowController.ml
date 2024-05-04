@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSApplicationFunctionRowController"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let sharedApplicationFunctionRowController self = msg_send ~self ~cmd:(selector "sharedApplicationFunctionRowController") ~typ:(returning (id))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSComplexOrthography"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 

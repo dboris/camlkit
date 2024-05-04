@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBColorGradient"
 
-module Class = struct
+module C = struct
   let gradientWithUIColor x self = msg_send ~self ~cmd:(selector "gradientWithUIColor:") ~typ:(id @-> returning (id)) x
 end
 

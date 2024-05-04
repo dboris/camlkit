@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKContentRuleListStore"
 
-module Class = struct
+module C = struct
   let defaultStore self = msg_send ~self ~cmd:(selector "defaultStore") ~typ:(returning (id))
   let defaultStoreWithLegacyFilename self = msg_send ~self ~cmd:(selector "defaultStoreWithLegacyFilename") ~typ:(returning (id))
   let storeWithURL x self = msg_send ~self ~cmd:(selector "storeWithURL:") ~typ:(id @-> returning (id)) x

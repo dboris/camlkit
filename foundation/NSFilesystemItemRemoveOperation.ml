@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFilesystemItemRemoveOperation"
 
-module Class = struct
+module C = struct
   let filesystemItemRemoveOperationWithPath x ~fileManager self = msg_send ~self ~cmd:(selector "filesystemItemRemoveOperationWithPath:fileManager:") ~typ:(id @-> id @-> returning (id)) x fileManager
 end
 

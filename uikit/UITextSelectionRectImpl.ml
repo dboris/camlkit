@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextSelectionRectImpl"
 
-module Class = struct
+module C = struct
   let rectWithWebRect x self = msg_send ~self ~cmd:(selector "rectWithWebRect:") ~typ:(id @-> returning (id)) x
   let rectsWithWebRects x self = msg_send ~self ~cmd:(selector "rectsWithWebRects:") ~typ:(id @-> returning (id)) x
 end

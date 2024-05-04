@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIRepeatedAction"
 
-module Class = struct
+module C = struct
   let actionWithTarget x ~selector_ ~object_ self = msg_send ~self ~cmd:(selector "actionWithTarget:selector:object:") ~typ:(id @-> _SEL @-> id @-> returning (id)) x selector_ object_
 end
 

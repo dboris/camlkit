@@ -16,5 +16,5 @@ let inputTimeStamp self = msg_send ~self ~cmd:(selector "inputTimeStamp") ~typ:(
 let presentAtTimestamp x self = msg_send ~self ~cmd:(selector "presentAtTimestamp:") ~typ:(double @-> returning (void)) x
 let presentedTime self = msg_send ~self ~cmd:(selector "presentedTime") ~typ:(returning (double))
 let session self = msg_send ~self ~cmd:(selector "session") ~typ:(returning (id))
-let setDebugSignpost x self = msg_send ~self ~cmd:(selector "setDebugSignpost:") ~typ:(ullong @-> returning (void)) x
+let setDebugSignpost x self = msg_send ~self ~cmd:(selector "setDebugSignpost:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setInputTimeStamp x self = msg_send ~self ~cmd:(selector "setInputTimeStamp:") ~typ:(double @-> returning (void)) x

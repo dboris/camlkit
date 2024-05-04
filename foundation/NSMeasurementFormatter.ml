@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMeasurementFormatter"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,8 +18,8 @@ let measurementFromString x self = msg_send ~self ~cmd:(selector "measurementFro
 let numberFormatter self = msg_send ~self ~cmd:(selector "numberFormatter") ~typ:(returning (id))
 let setLocale x self = msg_send ~self ~cmd:(selector "setLocale:") ~typ:(id @-> returning (void)) x
 let setNumberFormatter x self = msg_send ~self ~cmd:(selector "setNumberFormatter:") ~typ:(id @-> returning (void)) x
-let setUnitOptions x self = msg_send ~self ~cmd:(selector "setUnitOptions:") ~typ:(ullong @-> returning (void)) x
-let setUnitStyle x self = msg_send ~self ~cmd:(selector "setUnitStyle:") ~typ:(llong @-> returning (void)) x
+let setUnitOptions x self = msg_send ~self ~cmd:(selector "setUnitOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setUnitStyle x self = msg_send ~self ~cmd:(selector "setUnitStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning (id)) x
 let stringFromMeasurement x self = msg_send ~self ~cmd:(selector "stringFromMeasurement:") ~typ:(id @-> returning (id)) x
 let stringFromUnit x self = msg_send ~self ~cmd:(selector "stringFromUnit:") ~typ:(id @-> returning (id)) x

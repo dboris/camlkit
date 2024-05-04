@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSWindowSurface"
 
-module Class = struct
+module C = struct
   let synchronize self = msg_send ~self ~cmd:(selector "synchronize") ~typ:(returning (void))
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTableViewActionButton"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
   let keyPathsForValuesInvalidatingLayout self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingLayout") ~typ:(returning (id))
 end
@@ -38,7 +38,7 @@ let setCornerRadius x self = msg_send ~self ~cmd:(selector "setCornerRadius:") ~
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setMaskedCornersMask x self = msg_send ~self ~cmd:(selector "setMaskedCornersMask:") ~typ:(ullong @-> returning (void)) x
+let setMaskedCornersMask x self = msg_send ~self ~cmd:(selector "setMaskedCornersMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRequiredSize x self = msg_send ~self ~cmd:(selector "setRequiredSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setRowAction x self = msg_send ~self ~cmd:(selector "setRowAction:") ~typ:(id @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x

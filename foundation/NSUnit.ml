@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUnit"
 
-module Class = struct
+module C = struct
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

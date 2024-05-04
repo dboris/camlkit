@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSVisualTabPickerRootViewController"
 
-module Class = struct
+module C = struct
   let springAnimationForVisualTabPicker self = msg_send ~self ~cmd:(selector "springAnimationForVisualTabPicker") ~typ:(returning (id))
 end
 

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSValueTransformer"
 
-module Class = struct
+module C = struct
   let allowsReverseTransformation self = msg_send ~self ~cmd:(selector "allowsReverseTransformation") ~typ:(returning (bool))
   let setValueTransformer x ~forName self = msg_send ~self ~cmd:(selector "setValueTransformer:forName:") ~typ:(id @-> id @-> returning (void)) x forName
   let transformedValueClass self = msg_send ~self ~cmd:(selector "transformedValueClass") ~typ:(returning (_Class))

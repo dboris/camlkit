@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDocumentRevisionsStackItem"
 
-module Class = struct
+module C = struct
   let itemWithVersion x self = msg_send ~self ~cmd:(selector "itemWithVersion:") ~typ:(id @-> returning (id)) x
 end
 

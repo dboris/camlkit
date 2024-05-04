@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSecureTextFieldCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -29,7 +29,7 @@ let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(i
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isKernelSecureMode self = msg_send ~self ~cmd:(selector "isKernelSecureMode") ~typ:(returning (bool))
 let passwordSessionValue self = msg_send ~self ~cmd:(selector "passwordSessionValue") ~typ:(returning (id))
-let selectWithFrame x ~inView ~editor ~delegate ~start ~length self = msg_send ~self ~cmd:(selector "selectWithFrame:inView:editor:delegate:start:length:") ~typ:(CGRect.t @-> id @-> id @-> id @-> llong @-> llong @-> returning (void)) x inView editor delegate start length
+let selectWithFrame x ~inView ~editor ~delegate ~start ~length self = msg_send ~self ~cmd:(selector "selectWithFrame:inView:editor:delegate:start:length:") ~typ:(CGRect.t @-> id @-> id @-> id @-> llong @-> llong @-> returning (void)) x inView editor delegate (LLong.of_int start) (LLong.of_int length)
 let setEchosBullets x self = msg_send ~self ~cmd:(selector "setEchosBullets:") ~typ:(bool @-> returning (void)) x
 let setKernelSecureMode x self = msg_send ~self ~cmd:(selector "setKernelSecureMode:") ~typ:(bool @-> returning (void)) x
 let setUpFieldEditorAttributes x self = msg_send ~self ~cmd:(selector "setUpFieldEditorAttributes:") ~typ:(id @-> returning (id)) x

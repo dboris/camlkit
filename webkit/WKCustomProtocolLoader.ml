@@ -16,3 +16,4 @@ let connection3 x ~willCacheResponse self = msg_send ~self ~cmd:(selector "conne
 let connection4 x ~willSendRequest ~redirectResponse self = msg_send ~self ~cmd:(selector "connection:willSendRequest:redirectResponse:") ~typ:(id @-> id @-> id @-> returning (id)) x willSendRequest redirectResponse
 let connectionDidFinishLoading x self = msg_send ~self ~cmd:(selector "connectionDidFinishLoading:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
+let initWithLegacyCustomProtocolManagerProxy x ~customProtocolID ~request self = msg_send ~self ~cmd:(selector "initWithLegacyCustomProtocolManagerProxy:customProtocolID:request:") ~typ:(ptr (void) @-> ptr void @-> id @-> returning (id)) x customProtocolID request

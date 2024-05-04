@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorAppearanceTintedModifier"
 
-module Class = struct
+module C = struct
   let focusIndicatorModifier self = msg_send ~self ~cmd:(selector "focusIndicatorModifier") ~typ:(returning (id))
   let selectionModifier self = msg_send ~self ~cmd:(selector "selectionModifier") ~typ:(returning (id))
   let textHighlightModifier self = msg_send ~self ~cmd:(selector "textHighlightModifier") ~typ:(returning (id))

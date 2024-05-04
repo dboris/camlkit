@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSFindPatternAttachmentCell"
 
 let cellBaselineOffset self = msg_send_stret ~self ~cmd:(selector "cellBaselineOffset") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let cellFrameForTextContainer x ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send_stret ~self ~cmd:(selector "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x proposedLineFragment glyphPosition characterIndex
+let cellFrameForTextContainer x ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send_stret ~self ~cmd:(selector "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x proposedLineFragment glyphPosition (ULLong.of_int characterIndex)
 let cellSize self = msg_send_stret ~self ~cmd:(selector "cellSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -18,7 +18,7 @@ let drawInteriorWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawIn
 let drawTokenInRect x ~withOptions self = msg_send ~self ~cmd:(selector "drawTokenInRect:withOptions:") ~typ:(CGRect.t @-> id @-> returning (void)) x withOptions
 let drawTokenWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawTokenWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning (void)) x inView
 let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning (void)) x inView
-let drawWithFrame' x ~inView ~characterIndex ~layoutManager self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:layoutManager:") ~typ:(CGRect.t @-> id @-> ullong @-> id @-> returning (void)) x inView characterIndex layoutManager
+let drawWithFrame' x ~inView ~characterIndex ~layoutManager self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:layoutManager:") ~typ:(CGRect.t @-> id @-> ullong @-> id @-> returning (void)) x inView (ULLong.of_int characterIndex) layoutManager
 let drawingRectForBounds x self = msg_send_stret ~self ~cmd:(selector "drawingRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let field self = msg_send ~self ~cmd:(selector "field") ~typ:(returning (id))
 let findPattern self = msg_send ~self ~cmd:(selector "findPattern") ~typ:(returning (id))

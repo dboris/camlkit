@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSDrawerWindow"
 
-module Class = struct
-  let frameViewClassForStyleMask x self = msg_send ~self ~cmd:(selector "frameViewClassForStyleMask:") ~typ:(ullong @-> returning (_Class)) x
+module C = struct
+  let frameViewClassForStyleMask x self = msg_send ~self ~cmd:(selector "frameViewClassForStyleMask:") ~typ:(ullong @-> returning (_Class)) (ULLong.of_int x)
 end
 
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))
@@ -28,7 +28,7 @@ let fieldEditor x ~forObject self = msg_send ~self ~cmd:(selector "fieldEditor:f
 let hasKeyAppearance self = msg_send ~self ~cmd:(selector "hasKeyAppearance") ~typ:(returning (bool))
 let hasShadow self = msg_send ~self ~cmd:(selector "hasShadow") ~typ:(returning (bool))
 let hideToolbar x self = msg_send ~self ~cmd:(selector "hideToolbar:") ~typ:(id @-> returning (void)) x
-let initWithContentRect x ~styleMask ~backing ~defer ~drawer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:drawer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> id @-> returning (id)) x styleMask backing defer drawer
+let initWithContentRect x ~styleMask ~backing ~defer ~drawer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:drawer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> id @-> returning (id)) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer drawer
 let isExcludedFromWindowsMenu self = msg_send ~self ~cmd:(selector "isExcludedFromWindowsMenu") ~typ:(returning (bool))
 let isKeyWindow self = msg_send ~self ~cmd:(selector "isKeyWindow") ~typ:(returning (bool))
 let isMainWindow self = msg_send ~self ~cmd:(selector "isMainWindow") ~typ:(returning (bool))

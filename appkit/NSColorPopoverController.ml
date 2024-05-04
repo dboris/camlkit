@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorPopoverController"
 
-module Class = struct
+module C = struct
   let defaultTopBarColorList self = msg_send ~self ~cmd:(selector "defaultTopBarColorList") ~typ:(returning (id))
 end
 

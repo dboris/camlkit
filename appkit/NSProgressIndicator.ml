@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSProgressIndicator"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -36,6 +36,7 @@ let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t 
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let firstBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "firstBaselineOffsetFromTop") ~typ:(returning (double))
 let geometryInWindowDidChange self = msg_send ~self ~cmd:(selector "geometryInWindowDidChange") ~typ:(returning (void))
+let heartBeat x self = msg_send ~self ~cmd:(selector "heartBeat:") ~typ:(ptr void @-> returning (void)) x
 let incrementBy x self = msg_send ~self ~cmd:(selector "incrementBy:") ~typ:(double @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
@@ -50,16 +51,16 @@ let minValue self = msg_send ~self ~cmd:(selector "minValue") ~typ:(returning (d
 let roundDeterminateColor self = msg_send ~self ~cmd:(selector "roundDeterminateColor") ~typ:(returning (id))
 let setAnimationDelay x self = msg_send ~self ~cmd:(selector "setAnimationDelay:") ~typ:(double @-> returning (void)) x
 let setBezeled x self = msg_send ~self ~cmd:(selector "setBezeled:") ~typ:(bool @-> returning (void)) x
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
-let setControlTint x self = msg_send ~self ~cmd:(selector "setControlTint:") ~typ:(ullong @-> returning (void)) x
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setControlTint x self = msg_send ~self ~cmd:(selector "setControlTint:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDisplayedWhenStopped x self = msg_send ~self ~cmd:(selector "setDisplayedWhenStopped:") ~typ:(bool @-> returning (void)) x
 let setDoubleValue x self = msg_send ~self ~cmd:(selector "setDoubleValue:") ~typ:(double @-> returning (void)) x
 let setIndeterminate x self = msg_send ~self ~cmd:(selector "setIndeterminate:") ~typ:(bool @-> returning (void)) x
 let setMaxValue x self = msg_send ~self ~cmd:(selector "setMaxValue:") ~typ:(double @-> returning (void)) x
 let setMinValue x self = msg_send ~self ~cmd:(selector "setMinValue:") ~typ:(double @-> returning (void)) x
 let setRoundDeterminateColor x self = msg_send ~self ~cmd:(selector "setRoundDeterminateColor:") ~typ:(id @-> returning (void)) x
-let setSpinningTint x self = msg_send ~self ~cmd:(selector "setSpinningTint:") ~typ:(llong @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(ullong @-> returning (void)) x
+let setSpinningTint x self = msg_send ~self ~cmd:(selector "setSpinningTint:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setUsesThreadedAnimation x self = msg_send ~self ~cmd:(selector "setUsesThreadedAnimation:") ~typ:(bool @-> returning (void)) x
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning (void))
 let spinningTint self = msg_send ~self ~cmd:(selector "spinningTint") ~typ:(returning (llong))

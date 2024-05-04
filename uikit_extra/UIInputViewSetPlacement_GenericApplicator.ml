@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacement_GenericApplicator"
 
-module Class = struct
+module C = struct
   let applicatorForOwner x ~withPlacement self = msg_send ~self ~cmd:(selector "applicatorForOwner:withPlacement:") ~typ:(id @-> id @-> returning (id)) x withPlacement
 end
 

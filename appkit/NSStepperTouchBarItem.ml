@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStepperTouchBarItem"
 
-module Class = struct
+module C = struct
   let stepperTouchBarItemWithIdentifier x ~drawingHandler self = msg_send ~self ~cmd:(selector "stepperTouchBarItemWithIdentifier:drawingHandler:") ~typ:(id @-> ptr void @-> returning (id)) x drawingHandler
   let stepperTouchBarItemWithIdentifier' x ~formatter self = msg_send ~self ~cmd:(selector "stepperTouchBarItemWithIdentifier:formatter:") ~typ:(id @-> id @-> returning (id)) x formatter
 end

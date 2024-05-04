@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSTouchDevice"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let touchDeviceFromDeviceID x self = msg_send ~self ~cmd:(selector "touchDeviceFromDeviceID:") ~typ:(ullong @-> returning (id)) x
+  let touchDeviceFromDeviceID x self = msg_send ~self ~cmd:(selector "touchDeviceFromDeviceID:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let touchDevices self = msg_send ~self ~cmd:(selector "touchDevices") ~typ:(returning (id))
 end
 
@@ -21,9 +21,9 @@ let deviceID self = msg_send ~self ~cmd:(selector "deviceID") ~typ:(returning (u
 let deviceType self = msg_send ~self ~cmd:(selector "deviceType") ~typ:(returning (llong))
 let hasActuation self = msg_send ~self ~cmd:(selector "hasActuation") ~typ:(returning (bool))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let performFeedbackPattern x ~performanceTime self = msg_send ~self ~cmd:(selector "performFeedbackPattern:performanceTime:") ~typ:(llong @-> ullong @-> returning (void)) x performanceTime
+let performFeedbackPattern x ~performanceTime self = msg_send ~self ~cmd:(selector "performFeedbackPattern:performanceTime:") ~typ:(llong @-> ullong @-> returning (void)) (LLong.of_int x) (ULLong.of_int performanceTime)
 let removeGestureRecognizersForTouch x self = msg_send ~self ~cmd:(selector "removeGestureRecognizersForTouch:") ~typ:(id @-> returning (void)) x
 let setOverridePressureConfiguration x self = msg_send ~self ~cmd:(selector "setOverridePressureConfiguration:") ~typ:(id @-> returning (void)) x
-let setTouches x ~forContextID self = msg_send ~self ~cmd:(selector "setTouches:forContextID:") ~typ:(id @-> llong @-> returning (void)) x forContextID
+let setTouches x ~forContextID self = msg_send ~self ~cmd:(selector "setTouches:forContextID:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int forContextID)
 let supportsForce self = msg_send ~self ~cmd:(selector "supportsForce") ~typ:(returning (bool))
 let surfaceSize self = msg_send_stret ~self ~cmd:(selector "surfaceSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICollectionViewTableLayout"
 
-module Class = struct
+module C = struct
   let invalidationContextClass self = msg_send ~self ~cmd:(selector "invalidationContextClass") ~typ:(returning (_Class))
   let layoutAttributesClass self = msg_send ~self ~cmd:(selector "layoutAttributesClass") ~typ:(returning (_Class))
 end
@@ -75,8 +75,9 @@ let setSectionFooterHeight x self = msg_send ~self ~cmd:(selector "setSectionFoo
 let setSectionHeaderHeight x self = msg_send ~self ~cmd:(selector "setSectionHeaderHeight:") ~typ:(double @-> returning (void)) x
 let setSeparatorColor x self = msg_send ~self ~cmd:(selector "setSeparatorColor:") ~typ:(id @-> returning (void)) x
 let setSeparatorEffect x self = msg_send ~self ~cmd:(selector "setSeparatorEffect:") ~typ:(id @-> returning (void)) x
+let setSeparatorInset x self = msg_send ~self ~cmd:(selector "setSeparatorInset:") ~typ:(ptr void @-> returning (void)) x
 let setSeparatorInsetIsRelativeToCellEdges x self = msg_send ~self ~cmd:(selector "setSeparatorInsetIsRelativeToCellEdges:") ~typ:(bool @-> returning (void)) x
-let setSeparatorStyle x self = msg_send ~self ~cmd:(selector "setSeparatorStyle:") ~typ:(llong @-> returning (void)) x
+let setSeparatorStyle x self = msg_send ~self ~cmd:(selector "setSeparatorStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let shouldInvalidateLayoutForBoundsChange x self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForBoundsChange:") ~typ:(CGRect.t @-> returning (bool)) x
 let shouldInvalidateLayoutForPreferredLayoutAttributes x ~withOriginalAttributes self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForPreferredLayoutAttributes:withOriginalAttributes:") ~typ:(id @-> id @-> returning (bool)) x withOriginalAttributes
 let swipeActionController x ~didEndSwipeForItemAtIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:didEndSwipeForItemAtIndexPath:") ~typ:(id @-> id @-> returning (void)) x didEndSwipeForItemAtIndexPath
@@ -88,5 +89,6 @@ let swipeActionController5 x ~viewForItemAtIndexPath self = msg_send ~self ~cmd:
 let swipeActionController6 x ~willBeginSwipeForItemAtIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:willBeginSwipeForItemAtIndexPath:") ~typ:(id @-> id @-> returning (void)) x willBeginSwipeForItemAtIndexPath
 let swipeActionController7 x ~willPerformAction ~atIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:willPerformAction:atIndexPath:") ~typ:(id @-> id @-> id @-> returning (void)) x willPerformAction atIndexPath
 let swipeActionController8 x ~didCompleteAction ~cancelled ~atIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:didCompleteAction:cancelled:atIndexPath:") ~typ:(id @-> id @-> bool @-> id @-> returning (void)) x didCompleteAction cancelled atIndexPath
+let swipeActionController9 x ~animateView ~actionsView ~forDestructiveAction ~atIndexPath ~withSwipeInfo ~completion self = msg_send ~self ~cmd:(selector "swipeActionController:animateView:actionsView:forDestructiveAction:atIndexPath:withSwipeInfo:completion:") ~typ:(id @-> id @-> id @-> id @-> id @-> ptr void @-> ptr void @-> returning (void)) x animateView actionsView forDestructiveAction atIndexPath withSwipeInfo completion
 let swipeActionForDeletingRowAtIndexPath x self = msg_send ~self ~cmd:(selector "swipeActionForDeletingRowAtIndexPath:") ~typ:(id @-> returning (id)) x
 let usesVariableMargins self = msg_send ~self ~cmd:(selector "usesVariableMargins") ~typ:(returning (bool))

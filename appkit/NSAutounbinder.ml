@@ -10,7 +10,7 @@ let _class_ = get_class "NSAutounbinder"
 
 let addBinding x ~fromObject self = msg_send ~self ~cmd:(selector "addBinding:fromObject:") ~typ:(id @-> id @-> returning (void)) x fromObject
 let addBinding' x ~fromObject ~isWeak self = msg_send ~self ~cmd:(selector "addBinding:fromObject:isWeak:") ~typ:(id @-> id @-> bool @-> returning (void)) x fromObject isWeak
-let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath options context
+let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath (ULLong.of_int options) context
 let bindingTarget self = msg_send ~self ~cmd:(selector "bindingTarget") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

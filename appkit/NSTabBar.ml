@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSTabBar"
 
-module Class = struct
-  let accessibilityLabelForNumberOfTabs x ~andNumberOfPinnedTabs self = msg_send ~self ~cmd:(selector "accessibilityLabelForNumberOfTabs:andNumberOfPinnedTabs:") ~typ:(ullong @-> ullong @-> returning (id)) x andNumberOfPinnedTabs
+module C = struct
+  let accessibilityLabelForNumberOfTabs x ~andNumberOfPinnedTabs self = msg_send ~self ~cmd:(selector "accessibilityLabelForNumberOfTabs:andNumberOfPinnedTabs:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int andNumberOfPinnedTabs)
 end
 
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning (bool)) x
@@ -26,7 +26,7 @@ let currentButtonWidth self = msg_send ~self ~cmd:(selector "currentButtonWidth"
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let destinationWindowForDetachedTabDraggingImageToWindowTransitionController x self = msg_send ~self ~cmd:(selector "destinationWindowForDetachedTabDraggingImageToWindowTransitionController:") ~typ:(id @-> returning (id)) x
-let destinationWindowShouldMoveToDropPointInSpace x ~forDetachedTabDraggingImageToWindowTransitionController self = msg_send ~self ~cmd:(selector "destinationWindowShouldMoveToDropPointInSpace:forDetachedTabDraggingImageToWindowTransitionController:") ~typ:(ullong @-> id @-> returning (bool)) x forDetachedTabDraggingImageToWindowTransitionController
+let destinationWindowShouldMoveToDropPointInSpace x ~forDetachedTabDraggingImageToWindowTransitionController self = msg_send ~self ~cmd:(selector "destinationWindowShouldMoveToDropPointInSpace:forDetachedTabDraggingImageToWindowTransitionController:") ~typ:(ullong @-> id @-> returning (bool)) (ULLong.of_int x) forDetachedTabDraggingImageToWindowTransitionController
 let detachedTabDraggingImageToWindowTransitionController x ~didFinishTransitionAnimationForWindow self = msg_send ~self ~cmd:(selector "detachedTabDraggingImageToWindowTransitionController:didFinishTransitionAnimationForWindow:") ~typ:(id @-> id @-> returning (void)) x didFinishTransitionAnimationForWindow
 let dragDestinationWindowForMorphingDragImage x self = msg_send ~self ~cmd:(selector "dragDestinationWindowForMorphingDragImage:") ~typ:(id @-> returning (id)) x
 let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning (ullong)) x
@@ -36,8 +36,8 @@ let forcesActiveWindowState self = msg_send ~self ~cmd:(selector "forcesActiveWi
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning (id)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let insertTabBarViewItem x ~atIndex self = msg_send ~self ~cmd:(selector "insertTabBarViewItem:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex
-let insertTabBarViewItem' x ~atIndex ~animated self = msg_send ~self ~cmd:(selector "insertTabBarViewItem:atIndex:animated:") ~typ:(id @-> ullong @-> bool @-> returning (void)) x atIndex animated
+let insertTabBarViewItem x ~atIndex self = msg_send ~self ~cmd:(selector "insertTabBarViewItem:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int atIndex)
+let insertTabBarViewItem' x ~atIndex ~animated self = msg_send ~self ~cmd:(selector "insertTabBarViewItem:atIndex:animated:") ~typ:(id @-> ullong @-> bool @-> returning (void)) x (ULLong.of_int atIndex) animated
 let isAccessibilityElement self = msg_send ~self ~cmd:(selector "isAccessibilityElement") ~typ:(returning (bool))
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning (bool))
@@ -50,12 +50,12 @@ let mouseEntered x self = msg_send ~self ~cmd:(selector "mouseEntered:") ~typ:(i
 let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id @-> returning (void)) x
 let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning (void)) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning (void)) x
-let moveTabBarViewItem x ~toIndex self = msg_send ~self ~cmd:(selector "moveTabBarViewItem:toIndex:") ~typ:(id @-> ullong @-> returning (void)) x toIndex
+let moveTabBarViewItem x ~toIndex self = msg_send ~self ~cmd:(selector "moveTabBarViewItem:toIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int toIndex)
 let otherMouseUp x self = msg_send ~self ~cmd:(selector "otherMouseUp:") ~typ:(id @-> returning (void)) x
 let performDragOperation x self = msg_send ~self ~cmd:(selector "performDragOperation:") ~typ:(id @-> returning (bool)) x
 let performTabDragOperation x self = msg_send ~self ~cmd:(selector "performTabDragOperation:") ~typ:(id @-> returning (bool)) x
 let removeTabBarViewItem x self = msg_send ~self ~cmd:(selector "removeTabBarViewItem:") ~typ:(id @-> returning (void)) x
-let removeTabBarViewItemAtIndex x self = msg_send ~self ~cmd:(selector "removeTabBarViewItemAtIndex:") ~typ:(ullong @-> returning (void)) x
+let removeTabBarViewItemAtIndex x self = msg_send ~self ~cmd:(selector "removeTabBarViewItemAtIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let scrollWheel x self = msg_send ~self ~cmd:(selector "scrollWheel:") ~typ:(id @-> returning (void)) x
 let selectTabBarViewItem x self = msg_send ~self ~cmd:(selector "selectTabBarViewItem:") ~typ:(id @-> returning (void)) x
 let selectTabBarViewItem' x ~animated self = msg_send ~self ~cmd:(selector "selectTabBarViewItem:animated:") ~typ:(id @-> bool @-> returning (void)) x animated
@@ -69,7 +69,7 @@ let setForcesActiveWindowState x self = msg_send ~self ~cmd:(selector "setForces
 let setLastKeyView x self = msg_send ~self ~cmd:(selector "setLastKeyView:") ~typ:(id @-> returning (void)) x
 let setNeedsLayout x self = msg_send ~self ~cmd:(selector "setNeedsLayout:") ~typ:(bool @-> returning (void)) x
 let setNextKeyView x self = msg_send ~self ~cmd:(selector "setNextKeyView:") ~typ:(id @-> returning (void)) x
-let setSelectedTabButtonIndex x self = msg_send ~self ~cmd:(selector "setSelectedTabButtonIndex:") ~typ:(ullong @-> returning (void)) x
+let setSelectedTabButtonIndex x self = msg_send ~self ~cmd:(selector "setSelectedTabButtonIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setShouldShowAddButton x self = msg_send ~self ~cmd:(selector "setShouldShowAddButton:") ~typ:(bool @-> returning (void)) x
 let setTabBarViewItems x self = msg_send ~self ~cmd:(selector "setTabBarViewItems:") ~typ:(id @-> returning (void)) x
 let setUseModalCollapsedLayout x self = msg_send ~self ~cmd:(selector "setUseModalCollapsedLayout:") ~typ:(bool @-> returning (void)) x

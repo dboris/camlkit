@@ -8,41 +8,41 @@ open Foundation
 
 let _class_ = get_class "NSFontManager"
 
-module Class = struct
+module C = struct
   let setFontManagerFactory x self = msg_send ~self ~cmd:(selector "setFontManagerFactory:") ~typ:(_Class @-> returning (void)) x
   let setFontPanelFactory x self = msg_send ~self ~cmd:(selector "setFontPanelFactory:") ~typ:(_Class @-> returning (void)) x
   let sharedFontManager self = msg_send ~self ~cmd:(selector "sharedFontManager") ~typ:(returning (id))
 end
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
-let addCollection x ~options self = msg_send ~self ~cmd:(selector "addCollection:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
+let addCollection x ~options self = msg_send ~self ~cmd:(selector "addCollection:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
 let addFontDescriptors x ~toCollection self = msg_send ~self ~cmd:(selector "addFontDescriptors:toCollection:") ~typ:(id @-> id @-> returning (void)) x toCollection
 let addFontTrait x self = msg_send ~self ~cmd:(selector "addFontTrait:") ~typ:(id @-> returning (void)) x
 let availableFontFamilies self = msg_send ~self ~cmd:(selector "availableFontFamilies") ~typ:(returning (id))
 let availableFontNamesMatchingFontDescriptor x self = msg_send ~self ~cmd:(selector "availableFontNamesMatchingFontDescriptor:") ~typ:(id @-> returning (id)) x
-let availableFontNamesWithTraits x self = msg_send ~self ~cmd:(selector "availableFontNamesWithTraits:") ~typ:(ullong @-> returning (id)) x
+let availableFontNamesWithTraits x self = msg_send ~self ~cmd:(selector "availableFontNamesWithTraits:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let availableFonts self = msg_send ~self ~cmd:(selector "availableFonts") ~typ:(returning (id))
 let availableMembersOfFontFamily x self = msg_send ~self ~cmd:(selector "availableMembersOfFontFamily:") ~typ:(id @-> returning (id)) x
 let collectionNames self = msg_send ~self ~cmd:(selector "collectionNames") ~typ:(returning (id))
 let convertAttributes x self = msg_send ~self ~cmd:(selector "convertAttributes:") ~typ:(id @-> returning (id)) x
 let convertFont x self = msg_send ~self ~cmd:(selector "convertFont:") ~typ:(id @-> returning (id)) x
-let convertFont1 x ~toApproximateTraits self = msg_send ~self ~cmd:(selector "convertFont:toApproximateTraits:") ~typ:(id @-> ullong @-> returning (id)) x toApproximateTraits
+let convertFont1 x ~toApproximateTraits self = msg_send ~self ~cmd:(selector "convertFont:toApproximateTraits:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int toApproximateTraits)
 let convertFont2 x ~toFace self = msg_send ~self ~cmd:(selector "convertFont:toFace:") ~typ:(id @-> id @-> returning (id)) x toFace
 let convertFont3 x ~toFamily self = msg_send ~self ~cmd:(selector "convertFont:toFamily:") ~typ:(id @-> id @-> returning (id)) x toFamily
-let convertFont4 x ~toHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toHaveTrait:") ~typ:(id @-> ullong @-> returning (id)) x toHaveTrait
-let convertFont5 x ~toNotHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toNotHaveTrait:") ~typ:(id @-> ullong @-> returning (id)) x toNotHaveTrait
+let convertFont4 x ~toHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toHaveTrait:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int toHaveTrait)
+let convertFont5 x ~toNotHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toNotHaveTrait:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int toNotHaveTrait)
 let convertFont6 x ~toSize self = msg_send ~self ~cmd:(selector "convertFont:toSize:") ~typ:(id @-> double @-> returning (id)) x toSize
-let convertFontTraits x self = msg_send ~self ~cmd:(selector "convertFontTraits:") ~typ:(ullong @-> returning (ullong)) x
+let convertFontTraits x self = msg_send ~self ~cmd:(selector "convertFontTraits:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
 let convertWeight x ~ofFont self = msg_send ~self ~cmd:(selector "convertWeight:ofFont:") ~typ:(bool @-> id @-> returning (id)) x ofFont
 let currentFontAction self = msg_send ~self ~cmd:(selector "currentFontAction") ~typ:(returning (ullong))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let displayNameForCollectionWithName x self = msg_send ~self ~cmd:(selector "displayNameForCollectionWithName:") ~typ:(id @-> returning (id)) x
 let fontDescriptorsInCollection x self = msg_send ~self ~cmd:(selector "fontDescriptorsInCollection:") ~typ:(id @-> returning (id)) x
 let fontMenu x self = msg_send ~self ~cmd:(selector "fontMenu:") ~typ:(bool @-> returning (id)) x
-let fontNameWithFamily x ~traits ~weight self = msg_send ~self ~cmd:(selector "fontNameWithFamily:traits:weight:") ~typ:(id @-> ullong @-> llong @-> returning (id)) x traits weight
-let fontNamed x ~hasTraits self = msg_send ~self ~cmd:(selector "fontNamed:hasTraits:") ~typ:(id @-> ullong @-> returning (bool)) x hasTraits
+let fontNameWithFamily x ~traits ~weight self = msg_send ~self ~cmd:(selector "fontNameWithFamily:traits:weight:") ~typ:(id @-> ullong @-> llong @-> returning (id)) x (ULLong.of_int traits) (LLong.of_int weight)
+let fontNamed x ~hasTraits self = msg_send ~self ~cmd:(selector "fontNamed:hasTraits:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int hasTraits)
 let fontPanel x self = msg_send ~self ~cmd:(selector "fontPanel:") ~typ:(bool @-> returning (id)) x
-let fontWithFamily x ~traits ~weight ~size self = msg_send ~self ~cmd:(selector "fontWithFamily:traits:weight:size:") ~typ:(id @-> ullong @-> llong @-> double @-> returning (id)) x traits weight size
+let fontWithFamily x ~traits ~weight ~size self = msg_send ~self ~cmd:(selector "fontWithFamily:traits:weight:size:") ~typ:(id @-> ullong @-> llong @-> double @-> returning (id)) x (ULLong.of_int traits) (LLong.of_int weight) size
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
 let isMultiple self = msg_send ~self ~cmd:(selector "isMultiple") ~typ:(returning (bool))

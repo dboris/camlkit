@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDistributedLock"
 
-module Class = struct
+module C = struct
   let lockWithPath x self = msg_send ~self ~cmd:(selector "lockWithPath:") ~typ:(id @-> returning (id)) x
 end
 

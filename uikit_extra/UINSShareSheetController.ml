@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSShareSheetController"
 
-module Class = struct
+module C = struct
   let sharedShareSheetController self = msg_send ~self ~cmd:(selector "sharedShareSheetController") ~typ:(returning (id))
 end
 
@@ -29,7 +29,7 @@ let setCompletionWithItemsHandler x self = msg_send ~self ~cmd:(selector "setCom
 let setExcludedActivityTypes x self = msg_send ~self ~cmd:(selector "setExcludedActivityTypes:") ~typ:(id @-> returning (void)) x
 let setShareKitInfo x self = msg_send ~self ~cmd:(selector "setShareKitInfo:") ~typ:(id @-> returning (void)) x
 let setSharingServicePicker x self = msg_send ~self ~cmd:(selector "setSharingServicePicker:") ~typ:(id @-> returning (void)) x
-let setSharingStyle x self = msg_send ~self ~cmd:(selector "setSharingStyle:") ~typ:(llong @-> returning (void)) x
+let setSharingStyle x self = msg_send ~self ~cmd:(selector "setSharingStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let shareKitInfo self = msg_send ~self ~cmd:(selector "shareKitInfo") ~typ:(returning (id))
 let sharingService x ~didShareItems self = msg_send ~self ~cmd:(selector "sharingService:didShareItems:") ~typ:(id @-> id @-> returning (void)) x didShareItems
 let sharingService1 x ~didFailToShareItems ~error self = msg_send ~self ~cmd:(selector "sharingService:didFailToShareItems:error:") ~typ:(id @-> id @-> id @-> returning (void)) x didFailToShareItems error

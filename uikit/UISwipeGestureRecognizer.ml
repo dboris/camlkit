@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwipeGestureRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,7 +18,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
-let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x inView
+let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t (ULLong.of_int x) inView
 let maximumDuration self = msg_send ~self ~cmd:(selector "maximumDuration") ~typ:(returning (double))
 let maximumPrimaryMovement self = msg_send ~self ~cmd:(selector "maximumPrimaryMovement") ~typ:(returning (double))
 let maximumSecondaryMovement self = msg_send ~self ~cmd:(selector "maximumSecondaryMovement") ~typ:(returning (double))
@@ -29,14 +29,14 @@ let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ
 let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning (ullong))
 let rateOfMaximumMovementDecay self = msg_send ~self ~cmd:(selector "rateOfMaximumMovementDecay") ~typ:(returning (double))
 let rateOfMinimumMovementDecay self = msg_send ~self ~cmd:(selector "rateOfMinimumMovementDecay") ~typ:(returning (double))
-let setDirection x self = msg_send ~self ~cmd:(selector "setDirection:") ~typ:(ullong @-> returning (void)) x
+let setDirection x self = msg_send ~self ~cmd:(selector "setDirection:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMaximumDuration x self = msg_send ~self ~cmd:(selector "setMaximumDuration:") ~typ:(double @-> returning (void)) x
 let setMaximumPrimaryMovement x self = msg_send ~self ~cmd:(selector "setMaximumPrimaryMovement:") ~typ:(double @-> returning (void)) x
 let setMaximumSecondaryMovement x self = msg_send ~self ~cmd:(selector "setMaximumSecondaryMovement:") ~typ:(double @-> returning (void)) x
 let setMinimumPrimaryMovement x self = msg_send ~self ~cmd:(selector "setMinimumPrimaryMovement:") ~typ:(double @-> returning (void)) x
 let setMinimumPrimaryMovementRate x self = msg_send ~self ~cmd:(selector "setMinimumPrimaryMovementRate:") ~typ:(double @-> returning (void)) x
 let setMinimumSecondaryMovement x self = msg_send ~self ~cmd:(selector "setMinimumSecondaryMovement:") ~typ:(double @-> returning (void)) x
-let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRateOfMaximumMovementDecay x self = msg_send ~self ~cmd:(selector "setRateOfMaximumMovementDecay:") ~typ:(double @-> returning (void)) x
 let setRateOfMinimumMovementDecay x self = msg_send ~self ~cmd:(selector "setRateOfMinimumMovementDecay:") ~typ:(double @-> returning (void)) x
 let startPoint self = msg_send_stret ~self ~cmd:(selector "startPoint") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t

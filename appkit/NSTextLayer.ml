@@ -16,3 +16,4 @@ let drawInContext x self = msg_send ~self ~cmd:(selector "drawInContext:") ~typ:
 let drawLayer x ~inContext self = msg_send ~self ~cmd:(selector "drawLayer:inContext:") ~typ:(id @-> id @-> returning (void)) x inContext
 let layerDidBecomeVisible x self = msg_send ~self ~cmd:(selector "layerDidBecomeVisible:") ~typ:(bool @-> returning (void)) x
 let setBezelLayer x self = msg_send ~self ~cmd:(selector "setBezelLayer:") ~typ:(id @-> returning (void)) x
+let setSublayerTransform x self = msg_send ~self ~cmd:(selector "setSublayerTransform:") ~typ:(ptr void @-> returning (void)) x

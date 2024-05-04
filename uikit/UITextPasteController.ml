@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextPasteController"
 
-module Class = struct
+module C = struct
   let combineAttributedStrings x ~addingSeparation self = msg_send ~self ~cmd:(selector "combineAttributedStrings:addingSeparation:") ~typ:(id @-> bool @-> returning (id)) x addingSeparation
 end
 

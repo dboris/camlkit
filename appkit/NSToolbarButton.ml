@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarButton"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -24,7 +24,7 @@ let sendAction self = msg_send ~self ~cmd:(selector "sendAction") ~typ:(returnin
 let sendAction' x ~to_ self = msg_send ~self ~cmd:(selector "sendAction:to:") ~typ:(_SEL @-> id @-> returning (bool)) x to_
 let setBezelColor x self = msg_send ~self ~cmd:(selector "setBezelColor:") ~typ:(id @-> returning (void)) x
 let setBordered x self = msg_send ~self ~cmd:(selector "setBordered:") ~typ:(bool @-> returning (void)) x
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setFocusRingView x self = msg_send ~self ~cmd:(selector "setFocusRingView:") ~typ:(id @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
 let setShowingRollover x self = msg_send ~self ~cmd:(selector "setShowingRollover:") ~typ:(bool @-> returning (void)) x

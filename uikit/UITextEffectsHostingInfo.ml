@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextEffectsHostingInfo"
 
-module Class = struct
+module C = struct
   let hostingInfoForWindowScene x self = msg_send ~self ~cmd:(selector "hostingInfoForWindowScene:") ~typ:(id @-> returning (id)) x
 end
 

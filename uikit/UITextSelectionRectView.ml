@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextSelectionRectView"
 
-module Class = struct
+module C = struct
   let layerClass self = msg_send ~self ~cmd:(selector "layerClass") ~typ:(returning (_Class))
 end
 

@@ -20,5 +20,5 @@ let setDraggingAccepted x self = msg_send ~self ~cmd:(selector "setDraggingAccep
 let setDropFeedbackViews x self = msg_send ~self ~cmd:(selector "setDropFeedbackViews:") ~typ:(id @-> returning (void)) x
 let setIsExternalDrag x self = msg_send ~self ~cmd:(selector "setIsExternalDrag:") ~typ:(bool @-> returning (void)) x
 let setIsTemporaryDrag x self = msg_send ~self ~cmd:(selector "setIsTemporaryDrag:") ~typ:(bool @-> returning (void)) x
-let setStartRow x self = msg_send ~self ~cmd:(selector "setStartRow:") ~typ:(llong @-> returning (void)) x
+let setStartRow x self = msg_send ~self ~cmd:(selector "setStartRow:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let startRow self = msg_send ~self ~cmd:(selector "startRow") ~typ:(returning (llong))

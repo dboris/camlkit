@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSArrayDetailBinder"
 
-module Class = struct
+module C = struct
   let binderClassesSuperseded self = msg_send ~self ~cmd:(selector "binderClassesSuperseded") ~typ:(returning (id))
   let bindingsForObject x self = msg_send ~self ~cmd:(selector "bindingsForObject:") ~typ:(id @-> returning (id)) x
   let isUsableWithObject x self = msg_send ~self ~cmd:(selector "isUsableWithObject:") ~typ:(id @-> returning (bool)) x
@@ -19,11 +19,11 @@ let addObjectsToMasterArrayRelationship x ~selectionMode self = msg_send ~self ~
 let availableBindings self = msg_send ~self ~cmd:(selector "availableBindings") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let insertObjectIntoMasterArrayRelationship x ~atIndex ~selectionMode self = msg_send ~self ~cmd:(selector "insertObjectIntoMasterArrayRelationship:atIndex:selectionMode:") ~typ:(id @-> ullong @-> ptr (int) @-> returning (bool)) x atIndex selectionMode
+let insertObjectIntoMasterArrayRelationship x ~atIndex ~selectionMode self = msg_send ~self ~cmd:(selector "insertObjectIntoMasterArrayRelationship:atIndex:selectionMode:") ~typ:(id @-> ullong @-> ptr (int) @-> returning (bool)) x (ULLong.of_int atIndex) selectionMode
 let insertObjectsIntoMasterArrayRelationship x ~atIndexes ~selectionMode self = msg_send ~self ~cmd:(selector "insertObjectsIntoMasterArrayRelationship:atIndexes:selectionMode:") ~typ:(id @-> id @-> ptr (int) @-> returning (bool)) x atIndexes selectionMode
 let isBindingReadOnly x self = msg_send ~self ~cmd:(selector "isBindingReadOnly:") ~typ:(id @-> returning (bool)) x
 let refreshDetailContent self = msg_send ~self ~cmd:(selector "refreshDetailContent") ~typ:(returning (void))
-let removeObjectFromMasterArrayRelationshipAtIndex x ~selectionMode self = msg_send ~self ~cmd:(selector "removeObjectFromMasterArrayRelationshipAtIndex:selectionMode:") ~typ:(ullong @-> ptr (int) @-> returning (bool)) x selectionMode
+let removeObjectFromMasterArrayRelationshipAtIndex x ~selectionMode self = msg_send ~self ~cmd:(selector "removeObjectFromMasterArrayRelationshipAtIndex:selectionMode:") ~typ:(ullong @-> ptr (int) @-> returning (bool)) (ULLong.of_int x) selectionMode
 let removeObjectsFromMasterArrayRelationshipAtIndexes x ~selectionMode self = msg_send ~self ~cmd:(selector "removeObjectsFromMasterArrayRelationshipAtIndexes:selectionMode:") ~typ:(id @-> ptr (int) @-> returning (bool)) x selectionMode
 let selectsAllWhenSettingContent self = msg_send ~self ~cmd:(selector "selectsAllWhenSettingContent") ~typ:(returning (bool))
 let setSelectsAllWhenSettingContent x self = msg_send ~self ~cmd:(selector "setSelectsAllWhenSettingContent:") ~typ:(bool @-> returning (void)) x

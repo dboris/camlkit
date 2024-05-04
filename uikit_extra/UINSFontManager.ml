@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSFontManager"
 
-module Class = struct
+module C = struct
   let isFontPanelVisible self = msg_send ~self ~cmd:(selector "isFontPanelVisible") ~typ:(returning (bool))
   let sharedFontManager self = msg_send ~self ~cmd:(selector "sharedFontManager") ~typ:(returning (id))
   let toggleFontPanelShown x self = msg_send ~self ~cmd:(selector "toggleFontPanelShown:") ~typ:(id @-> returning (void)) x

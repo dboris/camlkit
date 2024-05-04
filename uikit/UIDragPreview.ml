@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDragPreview"
 
-module Class = struct
+module C = struct
   let defaultBoundingSize self = msg_send_stret ~self ~cmd:(selector "defaultBoundingSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
   let previewForURL x self = msg_send ~self ~cmd:(selector "previewForURL:") ~typ:(id @-> returning (id)) x
   let previewForURL' x ~title self = msg_send ~self ~cmd:(selector "previewForURL:title:") ~typ:(id @-> id @-> returning (id)) x title

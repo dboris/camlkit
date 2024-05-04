@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSystemAppearanceProxy"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingEffectiveAppearance self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingEffectiveAppearance") ~typ:(returning (id))
   let systemProxy self = msg_send ~self ~cmd:(selector "systemProxy") ~typ:(returning (id))
 end

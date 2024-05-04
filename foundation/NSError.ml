@@ -5,8 +5,8 @@ open Objc
 
 let _class_ = get_class "NSError"
 
-module Class = struct
-  let errorWithDomain x ~code ~userInfo self = msg_send ~self ~cmd:(selector "errorWithDomain:code:userInfo:") ~typ:(id @-> llong @-> id @-> returning (id)) x code userInfo
+module C = struct
+  let errorWithDomain x ~code ~userInfo self = msg_send ~self ~cmd:(selector "errorWithDomain:code:userInfo:") ~typ:(id @-> llong @-> id @-> returning (id)) x (LLong.of_int code) userInfo
   let setUserInfoValueProviderForDomain x ~provider self = msg_send ~self ~cmd:(selector "setUserInfoValueProviderForDomain:provider:") ~typ:(id @-> ptr void @-> returning (void)) x provider
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let userInfoValueProviderForDomain x self = msg_send ~self ~cmd:(selector "userInfoValueProviderForDomain:") ~typ:(id @-> returning (ptr void)) x
@@ -22,7 +22,7 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let helpAnchor self = msg_send ~self ~cmd:(selector "helpAnchor") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithDomain x ~code ~userInfo self = msg_send ~self ~cmd:(selector "initWithDomain:code:userInfo:") ~typ:(id @-> llong @-> id @-> returning (id)) x code userInfo
+let initWithDomain x ~code ~userInfo self = msg_send ~self ~cmd:(selector "initWithDomain:code:userInfo:") ~typ:(id @-> llong @-> id @-> returning (id)) x (LLong.of_int code) userInfo
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let localizedDescription self = msg_send ~self ~cmd:(selector "localizedDescription") ~typ:(returning (id))
 let localizedFailureReason self = msg_send ~self ~cmd:(selector "localizedFailureReason") ~typ:(returning (id))

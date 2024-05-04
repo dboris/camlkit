@@ -1,5 +1,5 @@
 (library
  (name webkit)
- (package camlkit-gui)
+ (public_name camlkit-base.webkit)
  (libraries foundation)
  (flags :standard -ccopt "-framework WebKit"))

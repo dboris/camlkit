@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UIKeyboardEmojiSplitCategoryCell"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) x reuseIdentifier
+let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) reuseIdentifier
 let selectedCircle self = msg_send ~self ~cmd:(selector "selectedCircle") ~typ:(returning (id))
 let setPressIndicatorHidden x self = msg_send ~self ~cmd:(selector "setPressIndicatorHidden:") ~typ:(bool @-> returning (void)) x
 let setSelectedCircle x self = msg_send ~self ~cmd:(selector "setSelectedCircle:") ~typ:(id @-> returning (void)) x

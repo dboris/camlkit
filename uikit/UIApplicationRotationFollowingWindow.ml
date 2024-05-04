@@ -15,4 +15,4 @@ let isInterfaceAutorotationDisabled self = msg_send ~self ~cmd:(selector "isInte
 let limitToWindowLevel self = msg_send ~self ~cmd:(selector "limitToWindowLevel") ~typ:(returning (bool))
 let priorityLevel self = msg_send ~self ~cmd:(selector "priorityLevel") ~typ:(returning (llong))
 let setLimitToWindowLevel x self = msg_send ~self ~cmd:(selector "setLimitToWindowLevel:") ~typ:(bool @-> returning (void)) x
-let setPriorityLevel x self = msg_send ~self ~cmd:(selector "setPriorityLevel:") ~typ:(llong @-> returning (void)) x
+let setPriorityLevel x self = msg_send ~self ~cmd:(selector "setPriorityLevel:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacementAssistantOnScreen"
 
-module Class = struct
-  let infoWithPoint x ~isCompact ~frame ~position self = msg_send ~self ~cmd:(selector "infoWithPoint:isCompact:frame:position:") ~typ:(CGPoint.t @-> bool @-> CGRect.t @-> ullong @-> returning (id)) x isCompact frame position
+module C = struct
+  let infoWithPoint x ~isCompact ~frame ~position self = msg_send ~self ~cmd:(selector "infoWithPoint:isCompact:frame:position:") ~typ:(CGPoint.t @-> bool @-> CGRect.t @-> ullong @-> returning (id)) x isCompact frame (ULLong.of_int position)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 

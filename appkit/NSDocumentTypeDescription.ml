@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDocumentTypeDescription"
 
-module Class = struct
+module C = struct
   let aliasesByName self = msg_send ~self ~cmd:(selector "aliasesByName") ~typ:(returning (id))
   let descriptionsWithDeclarations x self = msg_send ~self ~cmd:(selector "descriptionsWithDeclarations:") ~typ:(id @-> returning (id)) x
   let namesByAlias self = msg_send ~self ~cmd:(selector "namesByAlias") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDisplayCyclePhaseCollection"
 
-module Class = struct
+module C = struct
   let globalCollection self = msg_send ~self ~cmd:(selector "globalCollection") ~typ:(returning (id))
 end
 

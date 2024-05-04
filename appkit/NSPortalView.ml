@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPortalView"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfSourceView self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfSourceView") ~typ:(returning (bool))
 end
 

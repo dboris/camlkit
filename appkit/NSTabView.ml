@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTabView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -50,7 +50,7 @@ let indexOfTabViewItem x self = msg_send ~self ~cmd:(selector "indexOfTabViewIte
 let indexOfTabViewItemWithIdentifier x self = msg_send ~self ~cmd:(selector "indexOfTabViewItemWithIdentifier:") ~typ:(id @-> returning (llong)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let insertTabViewItem x ~atIndex self = msg_send ~self ~cmd:(selector "insertTabViewItem:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex
+let insertTabViewItem x ~atIndex self = msg_send ~self ~cmd:(selector "insertTabViewItem:atIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int atIndex)
 let instantiateWithObjectInstantiator x self = msg_send ~self ~cmd:(selector "instantiateWithObjectInstantiator:") ~typ:(id @-> returning (void)) x
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning (bool))
@@ -79,23 +79,23 @@ let selectLastTabViewItem x self = msg_send ~self ~cmd:(selector "selectLastTabV
 let selectNextTabViewItem x self = msg_send ~self ~cmd:(selector "selectNextTabViewItem:") ~typ:(id @-> returning (void)) x
 let selectPreviousTabViewItem x self = msg_send ~self ~cmd:(selector "selectPreviousTabViewItem:") ~typ:(id @-> returning (void)) x
 let selectTabViewItem x self = msg_send ~self ~cmd:(selector "selectTabViewItem:") ~typ:(id @-> returning (void)) x
-let selectTabViewItemAtIndex x self = msg_send ~self ~cmd:(selector "selectTabViewItemAtIndex:") ~typ:(llong @-> returning (void)) x
+let selectTabViewItemAtIndex x self = msg_send ~self ~cmd:(selector "selectTabViewItemAtIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let selectTabViewItemWithIdentifier x self = msg_send ~self ~cmd:(selector "selectTabViewItemWithIdentifier:") ~typ:(id @-> returning (void)) x
 let selectedTabViewItem self = msg_send ~self ~cmd:(selector "selectedTabViewItem") ~typ:(returning (id))
 let setAllowsTruncatedLabels x self = msg_send ~self ~cmd:(selector "setAllowsTruncatedLabels:") ~typ:(bool @-> returning (void)) x
-let setContentCompressionResistancePriority x ~forOrientation self = msg_send ~self ~cmd:(selector "setContentCompressionResistancePriority:forOrientation:") ~typ:(float @-> llong @-> returning (void)) x forOrientation
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
-let setControlTint x self = msg_send ~self ~cmd:(selector "setControlTint:") ~typ:(ullong @-> returning (void)) x
+let setContentCompressionResistancePriority x ~forOrientation self = msg_send ~self ~cmd:(selector "setContentCompressionResistancePriority:forOrientation:") ~typ:(float @-> llong @-> returning (void)) x (LLong.of_int forOrientation)
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setControlTint x self = msg_send ~self ~cmd:(selector "setControlTint:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDrawsBackground x self = msg_send ~self ~cmd:(selector "setDrawsBackground:") ~typ:(bool @-> returning (void)) x
 let setFont x self = msg_send ~self ~cmd:(selector "setFont:") ~typ:(id @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setNextKeyView x self = msg_send ~self ~cmd:(selector "setNextKeyView:") ~typ:(id @-> returning (void)) x
-let setTabPosition x self = msg_send ~self ~cmd:(selector "setTabPosition:") ~typ:(ullong @-> returning (void)) x
-let setTabViewBorderType x self = msg_send ~self ~cmd:(selector "setTabViewBorderType:") ~typ:(ullong @-> returning (void)) x
+let setTabPosition x self = msg_send ~self ~cmd:(selector "setTabPosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setTabViewBorderType x self = msg_send ~self ~cmd:(selector "setTabViewBorderType:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setTabViewItems x self = msg_send ~self ~cmd:(selector "setTabViewItems:") ~typ:(id @-> returning (void)) x
 let setTabViewMinimumSizeConstraint x self = msg_send ~self ~cmd:(selector "setTabViewMinimumSizeConstraint:") ~typ:(id @-> returning (void)) x
-let setTabViewType x self = msg_send ~self ~cmd:(selector "setTabViewType:") ~typ:(ullong @-> returning (void)) x
+let setTabViewType x self = msg_send ~self ~cmd:(selector "setTabViewType:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let springLoadingActivated x ~draggingInfo self = msg_send ~self ~cmd:(selector "springLoadingActivated:draggingInfo:") ~typ:(bool @-> id @-> returning (void)) x draggingInfo
 let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning (ullong)) x
 let springLoadingExited x self = msg_send ~self ~cmd:(selector "springLoadingExited:") ~typ:(id @-> returning (void)) x
@@ -103,7 +103,7 @@ let springLoadingHighlightChanged x self = msg_send ~self ~cmd:(selector "spring
 let springLoadingUpdated x self = msg_send ~self ~cmd:(selector "springLoadingUpdated:") ~typ:(id @-> returning (ullong)) x
 let tabPosition self = msg_send ~self ~cmd:(selector "tabPosition") ~typ:(returning (ullong))
 let tabViewBorderType self = msg_send ~self ~cmd:(selector "tabViewBorderType") ~typ:(returning (ullong))
-let tabViewItemAtIndex x self = msg_send ~self ~cmd:(selector "tabViewItemAtIndex:") ~typ:(llong @-> returning (id)) x
+let tabViewItemAtIndex x self = msg_send ~self ~cmd:(selector "tabViewItemAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let tabViewItemAtPoint x self = msg_send ~self ~cmd:(selector "tabViewItemAtPoint:") ~typ:(CGPoint.t @-> returning (id)) x
 let tabViewItems self = msg_send ~self ~cmd:(selector "tabViewItems") ~typ:(returning (id))
 let tabViewMinimumSizeConstraint self = msg_send ~self ~cmd:(selector "tabViewMinimumSizeConstraint") ~typ:(returning (id))

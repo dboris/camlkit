@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPrinterPickerController"
 
-module Class = struct
+module C = struct
   let printerPickerControllerWithInitiallySelectedPrinter x self = msg_send ~self ~cmd:(selector "printerPickerControllerWithInitiallySelectedPrinter:") ~typ:(id @-> returning (id)) x
 end
 

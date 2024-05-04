@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMutableCharacterSet"
 
-module Class = struct
+module C = struct
   let alphanumericCharacterSet self = msg_send ~self ~cmd:(selector "alphanumericCharacterSet") ~typ:(returning (id))
   let capitalizedLetterCharacterSet self = msg_send ~self ~cmd:(selector "capitalizedLetterCharacterSet") ~typ:(returning (id))
   let characterSetWithBitmapRepresentation x self = msg_send ~self ~cmd:(selector "characterSetWithBitmapRepresentation:") ~typ:(id @-> returning (id)) x

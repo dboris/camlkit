@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSSceneViewController"
 
-module Class = struct
+module C = struct
   let defaultUIScaleFactorForIdiom self = msg_send ~self ~cmd:(selector "defaultUIScaleFactorForIdiom") ~typ:(returning (double))
   let defaultUIScaleFactorForWindows self = msg_send ~self ~cmd:(selector "defaultUIScaleFactorForWindows") ~typ:(returning (double))
   let downscaleWindowIfNecessary self = msg_send ~self ~cmd:(selector "downscaleWindowIfNecessary") ~typ:(returning (bool))
@@ -26,7 +26,7 @@ let hostedContextID self = msg_send ~self ~cmd:(selector "hostedContextID") ~typ
 let hostingSceneType self = msg_send ~self ~cmd:(selector "hostingSceneType") ~typ:(returning (llong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
-let initWithSceneType x self = msg_send ~self ~cmd:(selector "initWithSceneType:") ~typ:(llong @-> returning (id)) x
+let initWithSceneType x self = msg_send ~self ~cmd:(selector "initWithSceneType:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let isSceneViewPinned self = msg_send ~self ~cmd:(selector "isSceneViewPinned") ~typ:(returning (bool))
 let isSceneViewZoomEnabled self = msg_send ~self ~cmd:(selector "isSceneViewZoomEnabled") ~typ:(returning (bool))
 let isTransitioningFromFullscreen self = msg_send ~self ~cmd:(selector "isTransitioningFromFullscreen") ~typ:(returning (bool))

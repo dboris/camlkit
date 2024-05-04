@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSFileAccessIntent"
 
-module Class = struct
-  let readingIntentWithURL x ~options self = msg_send ~self ~cmd:(selector "readingIntentWithURL:options:") ~typ:(id @-> ullong @-> returning (id)) x options
-  let writingIntentWithURL x ~options self = msg_send ~self ~cmd:(selector "writingIntentWithURL:options:") ~typ:(id @-> ullong @-> returning (id)) x options
+module C = struct
+  let readingIntentWithURL x ~options self = msg_send ~self ~cmd:(selector "readingIntentWithURL:options:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int options)
+  let writingIntentWithURL x ~options self = msg_send ~self ~cmd:(selector "writingIntentWithURL:options:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int options)
 end
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning (id))

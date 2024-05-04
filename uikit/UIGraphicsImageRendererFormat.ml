@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIGraphicsImageRendererFormat"
 
-module Class = struct
+module C = struct
   let defaultFormat self = msg_send ~self ~cmd:(selector "defaultFormat") ~typ:(returning (id))
   let formatForTraitCollection x self = msg_send ~self ~cmd:(selector "formatForTraitCollection:") ~typ:(id @-> returning (id)) x
   let preferredFormat self = msg_send ~self ~cmd:(selector "preferredFormat") ~typ:(returning (id))
@@ -22,6 +22,6 @@ let preferredRange self = msg_send ~self ~cmd:(selector "preferredRange") ~typ:(
 let prefersExtendedRange self = msg_send ~self ~cmd:(selector "prefersExtendedRange") ~typ:(returning (bool))
 let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning (double))
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning (void)) x
-let setPreferredRange x self = msg_send ~self ~cmd:(selector "setPreferredRange:") ~typ:(llong @-> returning (void)) x
+let setPreferredRange x self = msg_send ~self ~cmd:(selector "setPreferredRange:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPrefersExtendedRange x self = msg_send ~self ~cmd:(selector "setPrefersExtendedRange:") ~typ:(bool @-> returning (void)) x
 let setScale x self = msg_send ~self ~cmd:(selector "setScale:") ~typ:(double @-> returning (void)) x

@@ -10,7 +10,7 @@ let _class_ = get_class "UIKBRecentInputsView"
 
 let collectionView self = msg_send ~self ~cmd:(selector "collectionView") ~typ:(returning (id))
 let collectionView1 x ~cellForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:cellForItemAtIndexPath:") ~typ:(id @-> id @-> returning (id)) x cellForItemAtIndexPath
-let collectionView2 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x numberOfItemsInSection
+let collectionView2 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x (LLong.of_int numberOfItemsInSection)
 let collectionView3 x ~layout ~sizeForItemAtIndexPath self = msg_send_stret ~self ~cmd:(selector "collectionView:layout:sizeForItemAtIndexPath:") ~typ:(id @-> id @-> id @-> returning (CGSize.t)) ~return_type:CGSize.t x layout sizeForItemAtIndexPath
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let displayLayer x self = msg_send ~self ~cmd:(selector "displayLayer:") ~typ:(id @-> returning (void)) x

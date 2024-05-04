@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileAccessProcessManager"
 
-module Class = struct
+module C = struct
   let needToManageConnection x ~forURLs self = msg_send ~self ~cmd:(selector "needToManageConnection:forURLs:") ~typ:(id @-> id @-> returning (bool)) x forURLs
 end
 

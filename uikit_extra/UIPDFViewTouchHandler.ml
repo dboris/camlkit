@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPDFViewTouchHandler"
 
-module Class = struct
+module C = struct
   let releaseViewManager self = msg_send ~self ~cmd:(selector "releaseViewManager") ~typ:(returning (void))
 end
 

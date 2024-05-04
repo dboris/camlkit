@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSHMDDisplayLink"
 
-module Class = struct
+module C = struct
   let currentTimestamp self = msg_send ~self ~cmd:(selector "currentTimestamp") ~typ:(returning (double))
 end
 

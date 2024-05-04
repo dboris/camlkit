@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSInputServer"
 
-let activeConversationChanged x ~toNewConversation self = msg_send ~self ~cmd:(selector "activeConversationChanged:toNewConversation:") ~typ:(id @-> llong @-> returning (void)) x toNewConversation
-let activeConversationWillChange x ~fromOldConversation self = msg_send ~self ~cmd:(selector "activeConversationWillChange:fromOldConversation:") ~typ:(id @-> llong @-> returning (void)) x fromOldConversation
+let activeConversationChanged x ~toNewConversation self = msg_send ~self ~cmd:(selector "activeConversationChanged:toNewConversation:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int toNewConversation)
+let activeConversationWillChange x ~fromOldConversation self = msg_send ~self ~cmd:(selector "activeConversationWillChange:fromOldConversation:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int fromOldConversation)
 let canBeDisabled self = msg_send ~self ~cmd:(selector "canBeDisabled") ~typ:(returning (bool))
-let cancelInput x ~conversation self = msg_send ~self ~cmd:(selector "cancelInput:conversation:") ~typ:(id @-> llong @-> returning (void)) x conversation
+let cancelInput x ~conversation self = msg_send ~self ~cmd:(selector "cancelInput:conversation:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int conversation)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let doCommandBySelector x ~client self = msg_send ~self ~cmd:(selector "doCommandBySelector:client:") ~typ:(_SEL @-> id @-> returning (void)) x client
@@ -23,9 +23,9 @@ let inputClientResignActive x self = msg_send ~self ~cmd:(selector "inputClientR
 let insertText x ~client self = msg_send ~self ~cmd:(selector "insertText:client:") ~typ:(id @-> id @-> returning (void)) x client
 let markedTextAbandoned x self = msg_send ~self ~cmd:(selector "markedTextAbandoned:") ~typ:(id @-> returning (void)) x
 let markedTextSelectionChanged x ~client self = msg_send ~self ~cmd:(selector "markedTextSelectionChanged:client:") ~typ:(NSRange.t @-> id @-> returning (void)) x client
-let mouseDownOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (bool)) x atCoordinate withModifier client
-let mouseDraggedOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (bool)) x atCoordinate withModifier client
-let mouseUpOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (void)) x atCoordinate withModifier client
+let mouseDownOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseDownOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (bool)) (ULLong.of_int x) atCoordinate (ULLong.of_int withModifier) client
+let mouseDraggedOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (bool)) (ULLong.of_int x) atCoordinate (ULLong.of_int withModifier) client
+let mouseUpOnCharacterIndex x ~atCoordinate ~withModifier ~client self = msg_send ~self ~cmd:(selector "mouseUpOnCharacterIndex:atCoordinate:withModifier:client:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> id @-> returning (void)) (ULLong.of_int x) atCoordinate (ULLong.of_int withModifier) client
 let senderDidBecomeActive x self = msg_send ~self ~cmd:(selector "senderDidBecomeActive:") ~typ:(id @-> returning (void)) x
 let senderDidResignActive x self = msg_send ~self ~cmd:(selector "senderDidResignActive:") ~typ:(id @-> returning (void)) x
 let setActivated x ~sender self = msg_send ~self ~cmd:(selector "setActivated:sender:") ~typ:(bool @-> id @-> returning (void)) x sender

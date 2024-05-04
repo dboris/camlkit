@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebpagePreferences"
 
-module Class = struct
+module C = struct
   let defaultPreferences self = msg_send ~self ~cmd:(selector "defaultPreferences") ~typ:(returning (id))
 end
 
@@ -17,4 +17,4 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let preferredContentMode self = msg_send ~self ~cmd:(selector "preferredContentMode") ~typ:(returning (llong))
 let setAllowsContentJavaScript x self = msg_send ~self ~cmd:(selector "setAllowsContentJavaScript:") ~typ:(bool @-> returning (void)) x
-let setPreferredContentMode x self = msg_send ~self ~cmd:(selector "setPreferredContentMode:") ~typ:(llong @-> returning (void)) x
+let setPreferredContentMode x self = msg_send ~self ~cmd:(selector "setPreferredContentMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIResponder"
 
-module Class = struct
+module C = struct
   let clearTextInputContextIdentifier x self = msg_send ~self ~cmd:(selector "clearTextInputContextIdentifier:") ~typ:(id @-> returning (void)) x
   let objectWithRestorationIdentifierPath x self = msg_send ~self ~cmd:(selector "objectWithRestorationIdentifierPath:") ~typ:(id @-> returning (id)) x
 end
@@ -43,9 +43,9 @@ let isEditing self = msg_send ~self ~cmd:(selector "isEditing") ~typ:(returning 
 let isFirstResponder self = msg_send ~self ~cmd:(selector "isFirstResponder") ~typ:(returning (bool))
 let keyCommands self = msg_send ~self ~cmd:(selector "keyCommands") ~typ:(returning (id))
 let makeTouchBar self = msg_send ~self ~cmd:(selector "makeTouchBar") ~typ:(returning (id))
-let motionBegan x ~withEvent self = msg_send ~self ~cmd:(selector "motionBegan:withEvent:") ~typ:(llong @-> id @-> returning (void)) x withEvent
-let motionCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "motionCancelled:withEvent:") ~typ:(llong @-> id @-> returning (void)) x withEvent
-let motionEnded x ~withEvent self = msg_send ~self ~cmd:(selector "motionEnded:withEvent:") ~typ:(llong @-> id @-> returning (void)) x withEvent
+let motionBegan x ~withEvent self = msg_send ~self ~cmd:(selector "motionBegan:withEvent:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) withEvent
+let motionCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "motionCancelled:withEvent:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) withEvent
+let motionEnded x ~withEvent self = msg_send ~self ~cmd:(selector "motionEnded:withEvent:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) withEvent
 let nextFirstResponder self = msg_send ~self ~cmd:(selector "nextFirstResponder") ~typ:(returning (id))
 let nextResponder self = msg_send ~self ~cmd:(selector "nextResponder") ~typ:(returning (id))
 let pasteConfiguration self = msg_send ~self ~cmd:(selector "pasteConfiguration") ~typ:(returning (id))

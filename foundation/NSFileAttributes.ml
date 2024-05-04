@@ -5,8 +5,9 @@ open Objc
 
 let _class_ = get_class "NSFileAttributes"
 
-module Class = struct
+module C = struct
   let attributesAtPath x ~traverseLink self = msg_send ~self ~cmd:(selector "attributesAtPath:traverseLink:") ~typ:(id @-> bool @-> returning (id)) x traverseLink
+  let attributesWithStat x self = msg_send ~self ~cmd:(selector "attributesWithStat:") ~typ:(ptr void @-> returning (id)) x
 end
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))

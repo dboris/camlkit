@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTableViewStyleData"
 
-module Class = struct
+module C = struct
   let defaultStyleData self = msg_send ~self ~cmd:(selector "defaultStyleData") ~typ:(returning (id))
 end
 
@@ -25,8 +25,8 @@ let hasInsetContent self = msg_send ~self ~cmd:(selector "hasInsetContent") ~typ
 let hasPaddedContent self = msg_send ~self ~cmd:(selector "hasPaddedContent") ~typ:(returning (bool))
 let headerHeight self = msg_send ~self ~cmd:(selector "headerHeight") ~typ:(returning (double))
 let indentationPerLevel self = msg_send ~self ~cmd:(selector "indentationPerLevel") ~typ:(returning (double))
-let initWithEffectiveStyle x self = msg_send ~self ~cmd:(selector "initWithEffectiveStyle:") ~typ:(llong @-> returning (id)) x
-let initWithEffectiveStyle' x ~rowSizeStyle self = msg_send ~self ~cmd:(selector "initWithEffectiveStyle:rowSizeStyle:") ~typ:(llong @-> llong @-> returning (id)) x rowSizeStyle
+let initWithEffectiveStyle x self = msg_send ~self ~cmd:(selector "initWithEffectiveStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+let initWithEffectiveStyle' x ~rowSizeStyle self = msg_send ~self ~cmd:(selector "initWithEffectiveStyle:rowSizeStyle:") ~typ:(llong @-> llong @-> returning (id)) (LLong.of_int x) (LLong.of_int rowSizeStyle)
 let intercellSpacing self = msg_send_stret ~self ~cmd:(selector "intercellSpacing") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let intergroupSpacing self = msg_send ~self ~cmd:(selector "intergroupSpacing") ~typ:(returning (double))
 let isSourceList self = msg_send ~self ~cmd:(selector "isSourceList") ~typ:(returning (bool))
@@ -44,7 +44,7 @@ let setCornerRadius x self = msg_send ~self ~cmd:(selector "setCornerRadius:") ~
 let setDisclosureButtonLeadingSpacing x self = msg_send ~self ~cmd:(selector "setDisclosureButtonLeadingSpacing:") ~typ:(double @-> returning (void)) x
 let setDisclosureButtonTrailingSpacing x self = msg_send ~self ~cmd:(selector "setDisclosureButtonTrailingSpacing:") ~typ:(double @-> returning (void)) x
 let setDisclosureButtonWidth x self = msg_send ~self ~cmd:(selector "setDisclosureButtonWidth:") ~typ:(double @-> returning (void)) x
-let setEffectiveStyle x self = msg_send ~self ~cmd:(selector "setEffectiveStyle:") ~typ:(llong @-> returning (void)) x
+let setEffectiveStyle x self = msg_send ~self ~cmd:(selector "setEffectiveStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setGroupRowHeight x self = msg_send ~self ~cmd:(selector "setGroupRowHeight:") ~typ:(double @-> returning (void)) x
 let setHeaderHeight x self = msg_send ~self ~cmd:(selector "setHeaderHeight:") ~typ:(double @-> returning (void)) x
 let setIndentationPerLevel x self = msg_send ~self ~cmd:(selector "setIndentationPerLevel:") ~typ:(double @-> returning (void)) x
@@ -57,8 +57,8 @@ let setRowBackgroundInset x self = msg_send ~self ~cmd:(selector "setRowBackgrou
 let setRowContentInset x self = msg_send ~self ~cmd:(selector "setRowContentInset:") ~typ:(double @-> returning (void)) x
 let setRowContentPadding x self = msg_send ~self ~cmd:(selector "setRowContentPadding:") ~typ:(double @-> returning (void)) x
 let setRowHeight x self = msg_send ~self ~cmd:(selector "setRowHeight:") ~typ:(double @-> returning (void)) x
-let setRowSizeStyle x self = msg_send ~self ~cmd:(selector "setRowSizeStyle:") ~typ:(llong @-> returning (void)) x
-let setSelectionMaterial x self = msg_send ~self ~cmd:(selector "setSelectionMaterial:") ~typ:(llong @-> returning (void)) x
+let setRowSizeStyle x self = msg_send ~self ~cmd:(selector "setRowSizeStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSelectionMaterial x self = msg_send ~self ~cmd:(selector "setSelectionMaterial:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTopPadding x self = msg_send ~self ~cmd:(selector "setTopPadding:") ~typ:(double @-> returning (void)) x
 let setWantsUniformInsetsForSingleColumn x self = msg_send ~self ~cmd:(selector "setWantsUniformInsetsForSingleColumn:") ~typ:(bool @-> returning (void)) x
 let tableViewStyle self = msg_send ~self ~cmd:(selector "tableViewStyle") ~typ:(returning (llong))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPointerRegion"
 
-module Class = struct
+module C = struct
   let regionWithRect x ~identifier self = msg_send ~self ~cmd:(selector "regionWithRect:identifier:") ~typ:(CGRect.t @-> id @-> returning (id)) x identifier
 end
 
@@ -21,8 +21,8 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let latchingAxes self = msg_send ~self ~cmd:(selector "latchingAxes") ~typ:(returning (ullong))
 let rect self = msg_send_stret ~self ~cmd:(selector "rect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let referenceView self = msg_send ~self ~cmd:(selector "referenceView") ~typ:(returning (id))
-let setGenerationID x self = msg_send ~self ~cmd:(selector "setGenerationID:") ~typ:(ullong @-> returning (void)) x
+let setGenerationID x self = msg_send ~self ~cmd:(selector "setGenerationID:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setIdentifier x self = msg_send ~self ~cmd:(selector "setIdentifier:") ~typ:(id @-> returning (void)) x
-let setLatchingAxes x self = msg_send ~self ~cmd:(selector "setLatchingAxes:") ~typ:(ullong @-> returning (void)) x
+let setLatchingAxes x self = msg_send ~self ~cmd:(selector "setLatchingAxes:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRect x self = msg_send ~self ~cmd:(selector "setRect:") ~typ:(CGRect.t @-> returning (void)) x
 let setReferenceView x self = msg_send ~self ~cmd:(selector "setReferenceView:") ~typ:(id @-> returning (void)) x

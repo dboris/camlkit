@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptArgumentDescription"
 
-module Class = struct
+module C = struct
   let argumentDescriptionFromName x ~implDeclaration ~presoDeclaration ~suiteName ~commandName self = msg_send ~self ~cmd:(selector "argumentDescriptionFromName:implDeclaration:presoDeclaration:suiteName:commandName:") ~typ:(id @-> id @-> id @-> id @-> id @-> returning (id)) x implDeclaration presoDeclaration suiteName commandName
 end
 
@@ -16,7 +16,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let firstPresentableName self = msg_send ~self ~cmd:(selector "firstPresentableName") ~typ:(returning (id))
 let initWithKey x ~appleEventCode ~type_ ~isOptional ~presentableDescription ~nameOrNames self = msg_send ~self ~cmd:(selector "initWithKey:appleEventCode:type:isOptional:presentableDescription:nameOrNames:") ~typ:(id @-> uint @-> id @-> bool @-> id @-> id @-> returning (id)) x appleEventCode type_ isOptional presentableDescription nameOrNames
-let initWithKey' x ~appleEventCode ~type_ ~isOptional ~isHidden ~requiresAccess ~presentableDescription ~name ~synonymDescriptions self = msg_send ~self ~cmd:(selector "initWithKey:appleEventCode:type:isOptional:isHidden:requiresAccess:presentableDescription:name:synonymDescriptions:") ~typ:(id @-> uint @-> id @-> bool @-> bool @-> ullong @-> id @-> id @-> id @-> returning (id)) x appleEventCode type_ isOptional isHidden requiresAccess presentableDescription name synonymDescriptions
+let initWithKey' x ~appleEventCode ~type_ ~isOptional ~isHidden ~requiresAccess ~presentableDescription ~name ~synonymDescriptions self = msg_send ~self ~cmd:(selector "initWithKey:appleEventCode:type:isOptional:isHidden:requiresAccess:presentableDescription:name:synonymDescriptions:") ~typ:(id @-> uint @-> id @-> bool @-> bool @-> ullong @-> id @-> id @-> id @-> returning (id)) x appleEventCode type_ isOptional isHidden (ULLong.of_int requiresAccess) presentableDescription name synonymDescriptions
 let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning (bool))
 let isOptional self = msg_send ~self ~cmd:(selector "isOptional") ~typ:(returning (bool))
 let key self = msg_send ~self ~cmd:(selector "key") ~typ:(returning (id))

@@ -22,4 +22,4 @@ let sawDragEndEvent self = msg_send ~self ~cmd:(selector "sawDragEndEvent") ~typ
 let sessionID self = msg_send ~self ~cmd:(selector "sessionID") ~typ:(returning (uint))
 let setHandler x self = msg_send ~self ~cmd:(selector "setHandler:") ~typ:(id @-> returning (void)) x
 let takeHandler x self = msg_send ~self ~cmd:(selector "takeHandler:") ~typ:(id @-> returning (void)) x
-let takePotentialDropOperation x self = msg_send ~self ~cmd:(selector "takePotentialDropOperation:") ~typ:(ullong @-> returning (void)) x
+let takePotentialDropOperation x self = msg_send ~self ~cmd:(selector "takePotentialDropOperation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

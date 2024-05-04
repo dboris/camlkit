@@ -8,20 +8,20 @@ open Foundation
 
 let _class_ = get_class "UIKBInputDelegateManager"
 
-module Class = struct
+module C = struct
   let rangeForTextRange x ~document self = msg_send_stret ~self ~cmd:(selector "rangeForTextRange:document:") ~typ:(id @-> id @-> returning (NSRange.t)) ~return_type:NSRange.t x document
 end
 
 let applyAutocorrection x ~toString ~withCompletionHandler self = msg_send ~self ~cmd:(selector "applyAutocorrection:toString:withCompletionHandler:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x toString withCompletionHandler
 let asynchronousInputDelegate self = msg_send ~self ~cmd:(selector "asynchronousInputDelegate") ~typ:(returning (id))
 let attributedMarkedText self = msg_send ~self ~cmd:(selector "attributedMarkedText") ~typ:(returning (id))
-let baseWritingDirectionForPosition x ~inDirection self = msg_send ~self ~cmd:(selector "baseWritingDirectionForPosition:inDirection:") ~typ:(id @-> llong @-> returning (llong)) x inDirection
+let baseWritingDirectionForPosition x ~inDirection self = msg_send ~self ~cmd:(selector "baseWritingDirectionForPosition:inDirection:") ~typ:(id @-> llong @-> returning (llong)) x (LLong.of_int inDirection)
 let beginningOfDocument self = msg_send ~self ~cmd:(selector "beginningOfDocument") ~typ:(returning (id))
-let callShouldReplaceExtendedRange x ~withText ~includeMarkedText self = msg_send ~self ~cmd:(selector "callShouldReplaceExtendedRange:withText:includeMarkedText:") ~typ:(llong @-> id @-> bool @-> returning (bool)) x withText includeMarkedText
+let callShouldReplaceExtendedRange x ~withText ~includeMarkedText self = msg_send ~self ~cmd:(selector "callShouldReplaceExtendedRange:withText:includeMarkedText:") ~typ:(llong @-> id @-> bool @-> returning (bool)) (LLong.of_int x) withText includeMarkedText
 let changedSelection self = msg_send ~self ~cmd:(selector "changedSelection") ~typ:(returning (void))
 let clearDelegate self = msg_send ~self ~cmd:(selector "clearDelegate") ~typ:(returning (void))
 let clearForwardingInputDelegateAndResign x self = msg_send ~self ~cmd:(selector "clearForwardingInputDelegateAndResign:") ~typ:(bool @-> returning (void)) x
-let collapseSelectionAndAdjustByOffset x self = msg_send ~self ~cmd:(selector "collapseSelectionAndAdjustByOffset:") ~typ:(llong @-> returning (void)) x
+let collapseSelectionAndAdjustByOffset x self = msg_send ~self ~cmd:(selector "collapseSelectionAndAdjustByOffset:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let comparePosition x ~toPosition self = msg_send ~self ~cmd:(selector "comparePosition:toPosition:") ~typ:(id @-> id @-> returning (llong)) x toPosition
 let continuousSpellCheckingEnabled self = msg_send ~self ~cmd:(selector "continuousSpellCheckingEnabled") ~typ:(returning (bool))
 let delegateAdoptsWebTextInputPrivate self = msg_send ~self ~cmd:(selector "delegateAdoptsWebTextInputPrivate") ~typ:(returning (bool))
@@ -40,7 +40,7 @@ let insertAttributedText x self = msg_send ~self ~cmd:(selector "insertAttribute
 let insertSupplementalItem x ~candidate ~replacementRange self = msg_send ~self ~cmd:(selector "insertSupplementalItem:candidate:replacementRange:") ~typ:(id @-> id @-> id @-> returning (bool)) x candidate replacementRange
 let insertText x self = msg_send ~self ~cmd:(selector "insertText:") ~typ:(id @-> returning (void)) x
 let insertText1 x ~updateInputSource self = msg_send ~self ~cmd:(selector "insertText:updateInputSource:") ~typ:(id @-> bool @-> returning (void)) x updateInputSource
-let insertText2 x ~alternatives ~style self = msg_send ~self ~cmd:(selector "insertText:alternatives:style:") ~typ:(id @-> id @-> llong @-> returning (void)) x alternatives style
+let insertText2 x ~alternatives ~style self = msg_send ~self ~cmd:(selector "insertText:alternatives:style:") ~typ:(id @-> id @-> llong @-> returning (void)) x alternatives (LLong.of_int style)
 let insertTextAfterSelection x self = msg_send ~self ~cmd:(selector "insertTextAfterSelection:") ~typ:(id @-> returning (void)) x
 let insertTextSuggestion x self = msg_send ~self ~cmd:(selector "insertTextSuggestion:") ~typ:(id @-> returning (void)) x
 let insideKeyInputDelegateCall self = msg_send ~self ~cmd:(selector "insideKeyInputDelegateCall") ~typ:(returning (bool))
@@ -50,7 +50,7 @@ let legacyInputDelegate self = msg_send ~self ~cmd:(selector "legacyInputDelegat
 let markedText self = msg_send ~self ~cmd:(selector "markedText") ~typ:(returning (id))
 let markedTextRange self = msg_send ~self ~cmd:(selector "markedTextRange") ~typ:(returning (id))
 let moveSelectionToEndOfWord self = msg_send ~self ~cmd:(selector "moveSelectionToEndOfWord") ~typ:(returning (void))
-let positionFromPosition x ~offset self = msg_send ~self ~cmd:(selector "positionFromPosition:offset:") ~typ:(id @-> llong @-> returning (id)) x offset
+let positionFromPosition x ~offset self = msg_send ~self ~cmd:(selector "positionFromPosition:offset:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int offset)
 let privateInputDelegate self = msg_send ~self ~cmd:(selector "privateInputDelegate") ~typ:(returning (id))
 let privateKeyInputDelegate self = msg_send ~self ~cmd:(selector "privateKeyInputDelegate") ~typ:(returning (id))
 let replaceRange x ~withText self = msg_send ~self ~cmd:(selector "replaceRange:withText:") ~typ:(id @-> id @-> returning (void)) x withText
@@ -61,7 +61,7 @@ let selectedTextRange self = msg_send ~self ~cmd:(selector "selectedTextRange") 
 let selectionIsEndOfWord self = msg_send ~self ~cmd:(selector "selectionIsEndOfWord") ~typ:(returning (bool))
 let selectionIsWord self = msg_send ~self ~cmd:(selector "selectionIsWord") ~typ:(returning (bool))
 let setAttributedMarkedText x ~selectedRange self = msg_send ~self ~cmd:(selector "setAttributedMarkedText:selectedRange:") ~typ:(id @-> NSRange.t @-> returning (void)) x selectedRange
-let setBaseWritingDirection x ~forRange self = msg_send ~self ~cmd:(selector "setBaseWritingDirection:forRange:") ~typ:(llong @-> id @-> returning (void)) x forRange
+let setBaseWritingDirection x ~forRange self = msg_send ~self ~cmd:(selector "setBaseWritingDirection:forRange:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) forRange
 let setContinuousSpellCheckingEnabled x self = msg_send ~self ~cmd:(selector "setContinuousSpellCheckingEnabled:") ~typ:(bool @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setForwardingInputDelegate x self = msg_send ~self ~cmd:(selector "setForwardingInputDelegate:") ~typ:(id @-> returning (void)) x

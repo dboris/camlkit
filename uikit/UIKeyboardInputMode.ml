@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardInputMode"
 
-module Class = struct
+module C = struct
   let autofillSignupInputMode self = msg_send ~self ~cmd:(selector "autofillSignupInputMode") ~typ:(returning (id))
   let canonicalLanguageIdentifierFromIdentifier x self = msg_send ~self ~cmd:(selector "canonicalLanguageIdentifierFromIdentifier:") ~typ:(id @-> returning (id)) x
   let hardwareLayoutFromIdentifier x self = msg_send ~self ~cmd:(selector "hardwareLayoutFromIdentifier:") ~typ:(id @-> returning (id)) x

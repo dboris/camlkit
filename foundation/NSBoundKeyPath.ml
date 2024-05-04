@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSBoundKeyPath"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let keyPathWithRootObject x ~path self = msg_send ~self ~cmd:(selector "keyPathWithRootObject:path:") ~typ:(id @-> string @-> returning (id)) x path
   let newKeyPathWithRootObject x ~keyPathString self = msg_send ~self ~cmd:(selector "newKeyPathWithRootObject:keyPathString:") ~typ:(id @-> id @-> returning (id)) x keyPathString

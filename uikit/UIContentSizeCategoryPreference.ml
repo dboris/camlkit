@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIContentSizeCategoryPreference"
 
-module Class = struct
+module C = struct
   let asyncOverrideSystemWithPreference x self = msg_send ~self ~cmd:(selector "asyncOverrideSystemWithPreference:") ~typ:(id @-> returning (void)) x
   let asyncResetSystemPreferenceOverride self = msg_send ~self ~cmd:(selector "asyncResetSystemPreferenceOverride") ~typ:(returning (void))
   let overrideSystemWithPreference x self = msg_send ~self ~cmd:(selector "overrideSystemWithPreference:") ~typ:(id @-> returning (void)) x

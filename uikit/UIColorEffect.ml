@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIColorEffect"
 
-module Class = struct
+module C = struct
   let colorEffectAdd x self = msg_send ~self ~cmd:(selector "colorEffectAdd:") ~typ:(id @-> returning (id)) x
   let colorEffectBrightness x self = msg_send ~self ~cmd:(selector "colorEffectBrightness:") ~typ:(double @-> returning (id)) x
   let colorEffectColor x self = msg_send ~self ~cmd:(selector "colorEffectColor:") ~typ:(id @-> returning (id)) x
@@ -17,6 +17,7 @@ module Class = struct
   let colorEffectInvert self = msg_send ~self ~cmd:(selector "colorEffectInvert") ~typ:(returning (id))
   let colorEffectLuminanceCurveMap x ~blendingAmount self = msg_send ~self ~cmd:(selector "colorEffectLuminanceCurveMap:blendingAmount:") ~typ:(id @-> double @-> returning (id)) x blendingAmount
   let colorEffectLuminanceMap x ~blendingAmount self = msg_send ~self ~cmd:(selector "colorEffectLuminanceMap:blendingAmount:") ~typ:(id @-> double @-> returning (id)) x blendingAmount
+  let colorEffectMatrix x self = msg_send ~self ~cmd:(selector "colorEffectMatrix:") ~typ:(ptr void @-> returning (id)) x
   let colorEffectMonochromeTint x ~blendingAmount ~brightnessAdjustment self = msg_send ~self ~cmd:(selector "colorEffectMonochromeTint:blendingAmount:brightnessAdjustment:") ~typ:(id @-> double @-> double @-> returning (id)) x blendingAmount brightnessAdjustment
   let colorEffectMultiply x self = msg_send ~self ~cmd:(selector "colorEffectMultiply:") ~typ:(id @-> returning (id)) x
   let colorEffectSaturate x self = msg_send ~self ~cmd:(selector "colorEffectSaturate:") ~typ:(double @-> returning (id)) x

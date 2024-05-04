@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCandidateTextField"
 
-module Class = struct
+module C = struct
   let cellClass self = msg_send ~self ~cmd:(selector "cellClass") ~typ:(returning (_Class))
 end
 

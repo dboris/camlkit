@@ -10,7 +10,7 @@ let _class_ = get_class "UIInterfaceActionGroupViewController"
 
 let actionGroup self = msg_send ~self ~cmd:(selector "actionGroup") ~typ:(returning (id))
 let actionGroupView self = msg_send ~self ~cmd:(selector "actionGroupView") ~typ:(returning (id))
-let defaultVisualStyleForTraitCollection x ~presentationStyle self = msg_send ~self ~cmd:(selector "defaultVisualStyleForTraitCollection:presentationStyle:") ~typ:(id @-> llong @-> returning (id)) x presentationStyle
+let defaultVisualStyleForTraitCollection x ~presentationStyle self = msg_send ~self ~cmd:(selector "defaultVisualStyleForTraitCollection:presentationStyle:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int presentationStyle)
 let initWithActionGroup x self = msg_send ~self ~cmd:(selector "initWithActionGroup:") ~typ:(id @-> returning (id)) x
 let interfaceAction x ~invokeActionHandler ~completion self = msg_send ~self ~cmd:(selector "interfaceAction:invokeActionHandler:completion:") ~typ:(id @-> ptr void @-> ptr void @-> returning (void)) x invokeActionHandler completion
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning (bool))

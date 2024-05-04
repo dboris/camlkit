@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardEmojiGraphicsTraits"
 
-module Class = struct
+module C = struct
   let emojiGraphicsTraitsForCurrentScreenTraits self = msg_send ~self ~cmd:(selector "emojiGraphicsTraitsForCurrentScreenTraits") ~typ:(returning (id))
   let emojiGraphicsTraitsWithScreenTraits x self = msg_send ~self ~cmd:(selector "emojiGraphicsTraitsWithScreenTraits:") ~typ:(id @-> returning (id)) x
 end

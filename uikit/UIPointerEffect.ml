@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPointerEffect"
 
-module Class = struct
+module C = struct
   let effectWithPreview x self = msg_send ~self ~cmd:(selector "effectWithPreview:") ~typ:(id @-> returning (id)) x
 end
 

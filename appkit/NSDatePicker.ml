@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDatePicker"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let keyPathsForValuesAffectingTimeInterval self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingTimeInterval") ~typ:(returning (id))
 end
@@ -47,9 +47,9 @@ let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColo
 let setBezeled x self = msg_send ~self ~cmd:(selector "setBezeled:") ~typ:(bool @-> returning (void)) x
 let setBordered x self = msg_send ~self ~cmd:(selector "setBordered:") ~typ:(bool @-> returning (void)) x
 let setCalendar x self = msg_send ~self ~cmd:(selector "setCalendar:") ~typ:(id @-> returning (void)) x
-let setDatePickerElements x self = msg_send ~self ~cmd:(selector "setDatePickerElements:") ~typ:(ullong @-> returning (void)) x
-let setDatePickerMode x self = msg_send ~self ~cmd:(selector "setDatePickerMode:") ~typ:(ullong @-> returning (void)) x
-let setDatePickerStyle x self = msg_send ~self ~cmd:(selector "setDatePickerStyle:") ~typ:(ullong @-> returning (void)) x
+let setDatePickerElements x self = msg_send ~self ~cmd:(selector "setDatePickerElements:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setDatePickerMode x self = msg_send ~self ~cmd:(selector "setDatePickerMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setDatePickerStyle x self = msg_send ~self ~cmd:(selector "setDatePickerStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDateValue x self = msg_send ~self ~cmd:(selector "setDateValue:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDrawsBackground x self = msg_send ~self ~cmd:(selector "setDrawsBackground:") ~typ:(bool @-> returning (void)) x

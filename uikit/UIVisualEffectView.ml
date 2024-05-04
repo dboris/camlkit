@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIVisualEffectView"
 
-module Class = struct
+module C = struct
   let photoSmallAttributionVisualEffectView self = msg_send ~self ~cmd:(selector "photoSmallAttributionVisualEffectView") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

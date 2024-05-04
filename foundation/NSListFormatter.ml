@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSListFormatter"
 
-module Class = struct
+module C = struct
   let localizedStringByJoiningStrings x self = msg_send ~self ~cmd:(selector "localizedStringByJoiningStrings:") ~typ:(id @-> returning (id)) x
 end
 

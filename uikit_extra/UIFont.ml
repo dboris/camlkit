@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFont"
 
-module Class = struct
+module C = struct
   let boldSystemFontOfSize x self = msg_send ~self ~cmd:(selector "boldSystemFontOfSize:") ~typ:(double @-> returning (id)) x
   let buttonFontSize self = msg_send ~self ~cmd:(selector "buttonFontSize") ~typ:(returning (double))
   let classFallbacksForKeyedArchiver self = msg_send ~self ~cmd:(selector "classFallbacksForKeyedArchiver") ~typ:(returning (id))

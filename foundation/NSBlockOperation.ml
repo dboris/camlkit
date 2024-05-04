@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSBlockOperation"
 
-module Class = struct
+module C = struct
   let blockOperationWithBlock x self = msg_send ~self ~cmd:(selector "blockOperationWithBlock:") ~typ:(ptr void @-> returning (id)) x
 end
 

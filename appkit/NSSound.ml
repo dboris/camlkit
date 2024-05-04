@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "NSSound"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let canInitWithPasteboard x self = msg_send ~self ~cmd:(selector "canInitWithPasteboard:") ~typ:(id @-> returning (bool)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let playSound x ~flags ~completionHandler self = msg_send ~self ~cmd:(selector "playSound:flags:completionHandler:") ~typ:(id @-> ullong @-> ptr void @-> returning (bool)) x flags completionHandler
+  let playSound x ~flags ~completionHandler self = msg_send ~self ~cmd:(selector "playSound:flags:completionHandler:") ~typ:(id @-> ullong @-> ptr void @-> returning (bool)) x (ULLong.of_int flags) completionHandler
   let readableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "readableTypesForPasteboard:") ~typ:(id @-> returning (id)) x
   let readingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "readingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning (ullong)) x pasteboard
   let soundNamed x self = msg_send ~self ~cmd:(selector "soundNamed:") ~typ:(id @-> returning (id)) x

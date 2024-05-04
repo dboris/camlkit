@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebFormDateTimePeripheral"
 
-module Class = struct
+module C = struct
   let createPeripheralWithDOMHTMLInputElement x self = msg_send ~self ~cmd:(selector "createPeripheralWithDOMHTMLInputElement:") ~typ:(id @-> returning (id)) x
 end
 

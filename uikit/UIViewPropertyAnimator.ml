@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "UIViewPropertyAnimator"
 
-module Class = struct
+module C = struct
   let animator x ~isObserving self = msg_send ~self ~cmd:(selector "animator:isObserving:") ~typ:(id @-> id @-> returning (void)) x isObserving
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let observedsOfAnimatorWithTrackingId x self = msg_send ~self ~cmd:(selector "observedsOfAnimatorWithTrackingId:") ~typ:(id @-> returning (id)) x
   let removeAllObservedForObservingAnimatorWithId x self = msg_send ~self ~cmd:(selector "removeAllObservedForObservingAnimatorWithId:") ~typ:(id @-> returning (void)) x
   let removeObserved x ~forObservingAnimatorWithId self = msg_send ~self ~cmd:(selector "removeObserved:forObservingAnimatorWithId:") ~typ:(id @-> id @-> returning (void)) x forObservingAnimatorWithId
-  let runningPropertyAnimatorWithDuration x ~delay ~options ~animations ~completion self = msg_send ~self ~cmd:(selector "runningPropertyAnimatorWithDuration:delay:options:animations:completion:") ~typ:(double @-> double @-> ullong @-> ptr void @-> ptr void @-> returning (id)) x delay options animations completion
+  let runningPropertyAnimatorWithDuration x ~delay ~options ~animations ~completion self = msg_send ~self ~cmd:(selector "runningPropertyAnimatorWithDuration:delay:options:animations:completion:") ~typ:(double @-> double @-> ullong @-> ptr void @-> ptr void @-> returning (id)) x delay (ULLong.of_int options) animations completion
 end
 
 let addAnimations x self = msg_send ~self ~cmd:(selector "addAnimations:") ~typ:(ptr void @-> returning (void)) x
@@ -31,14 +31,15 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let delay self = msg_send ~self ~cmd:(selector "delay") ~typ:(returning (double))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let duration self = msg_send ~self ~cmd:(selector "duration") ~typ:(returning (double))
-let finalizeStoppedAnimationWithPosition x self = msg_send ~self ~cmd:(selector "finalizeStoppedAnimationWithPosition:") ~typ:(llong @-> returning (void)) x
-let finishAnimationAtPosition x self = msg_send ~self ~cmd:(selector "finishAnimationAtPosition:") ~typ:(llong @-> returning (void)) x
+let finalizeStoppedAnimationWithPosition x self = msg_send ~self ~cmd:(selector "finalizeStoppedAnimationWithPosition:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let finishAnimationAtPosition x self = msg_send ~self ~cmd:(selector "finishAnimationAtPosition:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let fractionComplete self = msg_send ~self ~cmd:(selector "fractionComplete") ~typ:(returning (double))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithDuration x ~timingParameters self = msg_send ~self ~cmd:(selector "initWithDuration:timingParameters:") ~typ:(double @-> id @-> returning (id)) x timingParameters
-let initWithDuration1 x ~curve ~animations self = msg_send ~self ~cmd:(selector "initWithDuration:curve:animations:") ~typ:(double @-> llong @-> ptr void @-> returning (id)) x curve animations
+let initWithDuration1 x ~curve ~animations self = msg_send ~self ~cmd:(selector "initWithDuration:curve:animations:") ~typ:(double @-> llong @-> ptr void @-> returning (id)) x (LLong.of_int curve) animations
 let initWithDuration2 x ~dampingRatio ~animations self = msg_send ~self ~cmd:(selector "initWithDuration:dampingRatio:animations:") ~typ:(double @-> double @-> ptr void @-> returning (id)) x dampingRatio animations
 let initWithDuration3 x ~controlPoint1 ~controlPoint2 ~animations self = msg_send ~self ~cmd:(selector "initWithDuration:controlPoint1:controlPoint2:animations:") ~typ:(double @-> CGPoint.t @-> CGPoint.t @-> ptr void @-> returning (id)) x controlPoint1 controlPoint2 animations
+let initWithMass x ~stiffness ~damping ~initialVelocity ~animations self = msg_send ~self ~cmd:(selector "initWithMass:stiffness:damping:initialVelocity:animations:") ~typ:(double @-> double @-> double @-> ptr void @-> ptr void @-> returning (id)) x stiffness damping initialVelocity animations
 let interactionProgress x ~didEnd self = msg_send ~self ~cmd:(selector "interactionProgress:didEnd:") ~typ:(id @-> bool @-> returning (void)) x didEnd
 let interactionProgressDidUpdate x self = msg_send ~self ~cmd:(selector "interactionProgressDidUpdate:") ~typ:(id @-> returning (void)) x
 let internalDuration self = msg_send ~self ~cmd:(selector "internalDuration") ~typ:(returning (double))

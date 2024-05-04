@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarItem"
 
-module Class = struct
+module C = struct
   let addSystemTrayItem x self = msg_send ~self ~cmd:(selector "addSystemTrayItem:") ~typ:(id @-> returning (void)) x
   let addTouchIDItem x self = msg_send ~self ~cmd:(selector "addTouchIDItem:") ~typ:(id @-> returning (void)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

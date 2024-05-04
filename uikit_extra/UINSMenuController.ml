@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSMenuController"
 
-module Class = struct
+module C = struct
   let sharedMenuController self = msg_send ~self ~cmd:(selector "sharedMenuController") ~typ:(returning (id))
 end
 
@@ -35,7 +35,7 @@ let setValidateItem x self = msg_send ~self ~cmd:(selector "setValidateItem:") ~
 let sharingServicePicker x ~didChooseSharingService self = msg_send ~self ~cmd:(selector "sharingServicePicker:didChooseSharingService:") ~typ:(id @-> id @-> returning (void)) x didChooseSharingService
 let sharingServicePicker' x ~sharingServicesForItems ~proposedSharingServices self = msg_send ~self ~cmd:(selector "sharingServicePicker:sharingServicesForItems:proposedSharingServices:") ~typ:(id @-> id @-> id @-> returning (id)) x sharingServicesForItems proposedSharingServices
 let showContextMenu x ~inWindow ~atLocationInWindow ~activityItemsConfiguration self = msg_send ~self ~cmd:(selector "showContextMenu:inWindow:atLocationInWindow:activityItemsConfiguration:") ~typ:(id @-> id @-> CGPoint.t @-> id @-> returning (void)) x inWindow atLocationInWindow activityItemsConfiguration
-let showDropdownMenu x ~fromControlRect ~inWindow ~attachmentEdge ~alignmentEdge ~activityItemsConfiguration self = msg_send ~self ~cmd:(selector "showDropdownMenu:fromControlRect:inWindow:attachmentEdge:alignmentEdge:activityItemsConfiguration:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> ullong @-> id @-> returning (void)) x fromControlRect inWindow attachmentEdge alignmentEdge activityItemsConfiguration
+let showDropdownMenu x ~fromControlRect ~inWindow ~attachmentEdge ~alignmentEdge ~activityItemsConfiguration self = msg_send ~self ~cmd:(selector "showDropdownMenu:fromControlRect:inWindow:attachmentEdge:alignmentEdge:activityItemsConfiguration:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> ullong @-> id @-> returning (void)) x fromControlRect inWindow (ULLong.of_int attachmentEdge) (ULLong.of_int alignmentEdge) activityItemsConfiguration
 let showSharingMenuInNSWindow x ~atLocationInWindow ~activityItemsConfiguration self = msg_send ~self ~cmd:(selector "showSharingMenuInNSWindow:atLocationInWindow:activityItemsConfiguration:") ~typ:(id @-> CGPoint.t @-> id @-> returning (void)) x atLocationInWindow activityItemsConfiguration
 let validateItem self = msg_send ~self ~cmd:(selector "validateItem") ~typ:(returning (ptr void))
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning (bool)) x

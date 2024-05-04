@@ -8,16 +8,16 @@ open Foundation
 
 let _class_ = get_class "NSTitledFrame"
 
-module Class = struct
-  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
-  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+module C = struct
+  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let minContentSizeForMinFrameSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minContentSizeForMinFrameSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
-  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
-  let minFrameWidthWithTitle x ~styleMask self = msg_send ~self ~cmd:(selector "minFrameWidthWithTitle:styleMask:") ~typ:(id @-> ullong @-> returning (double)) x styleMask
-  let sizeOfTitlebarButtons x self = msg_send_stret ~self ~cmd:(selector "sizeOfTitlebarButtons:") ~typ:(ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x
-  let windowTitlebarLinesSpacingWidth x self = msg_send ~self ~cmd:(selector "windowTitlebarLinesSpacingWidth:") ~typ:(ullong @-> returning (double)) x
-  let windowTitlebarTitleLinesSpacingWidth x self = msg_send ~self ~cmd:(selector "windowTitlebarTitleLinesSpacingWidth:") ~typ:(ullong @-> returning (double)) x
+  let minContentSizeForMinFrameSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minContentSizeForMinFrameSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
+  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
+  let minFrameWidthWithTitle x ~styleMask self = msg_send ~self ~cmd:(selector "minFrameWidthWithTitle:styleMask:") ~typ:(id @-> ullong @-> returning (double)) x (ULLong.of_int styleMask)
+  let sizeOfTitlebarButtons x self = msg_send_stret ~self ~cmd:(selector "sizeOfTitlebarButtons:") ~typ:(ullong @-> returning (CGSize.t)) ~return_type:CGSize.t (ULLong.of_int x)
+  let windowTitlebarLinesSpacingWidth x self = msg_send ~self ~cmd:(selector "windowTitlebarLinesSpacingWidth:") ~typ:(ullong @-> returning (double)) (ULLong.of_int x)
+  let windowTitlebarTitleLinesSpacingWidth x self = msg_send ~self ~cmd:(selector "windowTitlebarTitleLinesSpacingWidth:") ~typ:(ullong @-> returning (double)) (ULLong.of_int x)
 end
 
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning (bool)) x

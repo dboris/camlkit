@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAlertControllerVisualStyleActionSheet"
 
-module Class = struct
+module C = struct
   let interfaceActionPresentationStyle self = msg_send ~self ~cmd:(selector "interfaceActionPresentationStyle") ~typ:(returning (llong))
   let positionContentsOfAlertController x ~alertContentView ~availableSpaceView ~visualStyle ~updatableConstraints self = msg_send ~self ~cmd:(selector "positionContentsOfAlertController:alertContentView:availableSpaceView:visualStyle:updatableConstraints:") ~typ:(id @-> id @-> id @-> id @-> id @-> returning (void)) x alertContentView availableSpaceView visualStyle updatableConstraints
 end

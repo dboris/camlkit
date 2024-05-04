@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPDFAnnotation"
 
-module Class = struct
+module C = struct
   let newAnnotationWithPage x ~fromArchive self = msg_send ~self ~cmd:(selector "newAnnotationWithPage:fromArchive:") ~typ:(id @-> id @-> returning (id)) x fromArchive
 end
 
@@ -56,11 +56,11 @@ let setContents x self = msg_send ~self ~cmd:(selector "setContents:") ~typ:(id 
 let setData x self = msg_send ~self ~cmd:(selector "setData:") ~typ:(id @-> returning (void)) x
 let setDrawingLayer x self = msg_send ~self ~cmd:(selector "setDrawingLayer:") ~typ:(id @-> returning (void)) x
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning (void)) x
-let setIndex x self = msg_send ~self ~cmd:(selector "setIndex:") ~typ:(llong @-> returning (void)) x
+let setIndex x self = msg_send ~self ~cmd:(selector "setIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPage x self = msg_send ~self ~cmd:(selector "setPage:") ~typ:(id @-> returning (void)) x
 let setPageView x self = msg_send ~self ~cmd:(selector "setPageView:") ~typ:(id @-> returning (void)) x
 let setPopup x self = msg_send ~self ~cmd:(selector "setPopup:") ~typ:(id @-> returning (void)) x
 let setSelection x self = msg_send ~self ~cmd:(selector "setSelection:") ~typ:(id @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(ullong @-> returning (void)) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning (ullong))
 let viewClass self = msg_send ~self ~cmd:(selector "viewClass") ~typ:(returning (_Class))

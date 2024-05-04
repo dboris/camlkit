@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISceneConfiguration"
 
-module Class = struct
+module C = struct
   let configurationWithName x ~sessionRole self = msg_send ~self ~cmd:(selector "configurationWithName:sessionRole:") ~typ:(id @-> id @-> returning (id)) x sessionRole
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWrapperCellView"
 
-module Class = struct
+module C = struct
   let cellClass self = msg_send ~self ~cmd:(selector "cellClass") ~typ:(returning (_Class))
 end
 
@@ -20,7 +20,7 @@ let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:
 let isGroupRowStyle self = msg_send ~self ~cmd:(selector "isGroupRowStyle") ~typ:(returning (bool))
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning (bool))
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning (void)) x
-let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning (void)) x
+let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCell x self = msg_send ~self ~cmd:(selector "setCell:") ~typ:(id @-> returning (void)) x
 let setGroupRowStyle x self = msg_send ~self ~cmd:(selector "setGroupRowStyle:") ~typ:(bool @-> returning (void)) x
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x

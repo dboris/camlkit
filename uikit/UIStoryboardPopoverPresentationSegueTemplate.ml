@@ -19,4 +19,4 @@ let permittedArrowDirections self = msg_send ~self ~cmd:(selector "permittedArro
 let setAnchorBarButtonItem x self = msg_send ~self ~cmd:(selector "setAnchorBarButtonItem:") ~typ:(id @-> returning (void)) x
 let setAnchorView x self = msg_send ~self ~cmd:(selector "setAnchorView:") ~typ:(id @-> returning (void)) x
 let setPassthroughViews x self = msg_send ~self ~cmd:(selector "setPassthroughViews:") ~typ:(id @-> returning (void)) x
-let setPermittedArrowDirections x self = msg_send ~self ~cmd:(selector "setPermittedArrowDirections:") ~typ:(ullong @-> returning (void)) x
+let setPermittedArrowDirections x self = msg_send ~self ~cmd:(selector "setPermittedArrowDirections:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

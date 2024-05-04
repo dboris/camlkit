@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSCorrectionCheckingResult"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -15,5 +15,5 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithRange x ~replacementString ~alternativeStrings self = msg_send ~self ~cmd:(selector "initWithRange:replacementString:alternativeStrings:") ~typ:(NSRange.t @-> id @-> id @-> returning (id)) x replacementString alternativeStrings
-let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) x
+let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning (ullong))

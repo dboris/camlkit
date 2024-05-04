@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UISSlotLocalContent"
 
-module Class = struct
-  let contentWithDrawing x ~scale ~range self = msg_send ~self ~cmd:(selector "contentWithDrawing:scale:range:") ~typ:(id @-> bool @-> ullong @-> returning (id)) x scale range
+module C = struct
+  let contentWithDrawing x ~scale ~range self = msg_send ~self ~cmd:(selector "contentWithDrawing:scale:range:") ~typ:(id @-> bool @-> ullong @-> returning (id)) x scale (ULLong.of_int range)
 end
 
 let contentScale self = msg_send ~self ~cmd:(selector "contentScale") ~typ:(returning (bool))

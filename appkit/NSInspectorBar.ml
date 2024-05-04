@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInspectorBar"
 
-module Class = struct
+module C = struct
   let standardItemControllerClass self = msg_send ~self ~cmd:(selector "standardItemControllerClass") ~typ:(returning (_Class))
   let standardTextItemIdentifiers self = msg_send ~self ~cmd:(selector "standardTextItemIdentifiers") ~typ:(returning (id))
 end

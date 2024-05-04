@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICandidateViewController"
 
-module Class = struct
+module C = struct
   let preferredCandidateBarHeightForTraitCollection x self = msg_send ~self ~cmd:(selector "preferredCandidateBarHeightForTraitCollection:") ~typ:(id @-> returning (double)) x
 end
 

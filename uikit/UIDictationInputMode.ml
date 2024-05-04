@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDictationInputMode"
 
-module Class = struct
+module C = struct
   let currentInputModeSupportsDictation self = msg_send ~self ~cmd:(selector "currentInputModeSupportsDictation") ~typ:(returning (bool))
 end
 

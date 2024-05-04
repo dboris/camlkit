@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCollectionViewGridLayout"
 
-module Class = struct
+module C = struct
   let itemLayoutIsSequential self = msg_send ~self ~cmd:(selector "itemLayoutIsSequential") ~typ:(returning (bool))
 end
 
@@ -31,9 +31,10 @@ let minimumLineSpacing self = msg_send ~self ~cmd:(selector "minimumLineSpacing"
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning (void))
 let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning (llong))
 let setBackgroundColors x self = msg_send ~self ~cmd:(selector "setBackgroundColors:") ~typ:(id @-> returning (void)) x
+let setMargins x self = msg_send ~self ~cmd:(selector "setMargins:") ~typ:(ptr void @-> returning (void)) x
 let setMaximumItemSize x self = msg_send ~self ~cmd:(selector "setMaximumItemSize:") ~typ:(CGSize.t @-> returning (void)) x
-let setMaximumNumberOfColumns x self = msg_send ~self ~cmd:(selector "setMaximumNumberOfColumns:") ~typ:(ullong @-> returning (void)) x
-let setMaximumNumberOfRows x self = msg_send ~self ~cmd:(selector "setMaximumNumberOfRows:") ~typ:(ullong @-> returning (void)) x
+let setMaximumNumberOfColumns x self = msg_send ~self ~cmd:(selector "setMaximumNumberOfColumns:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setMaximumNumberOfRows x self = msg_send ~self ~cmd:(selector "setMaximumNumberOfRows:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMinimumInteritemSpacing x self = msg_send ~self ~cmd:(selector "setMinimumInteritemSpacing:") ~typ:(double @-> returning (void)) x
 let setMinimumItemSize x self = msg_send ~self ~cmd:(selector "setMinimumItemSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setMinimumLineSpacing x self = msg_send ~self ~cmd:(selector "setMinimumLineSpacing:") ~typ:(double @-> returning (void)) x

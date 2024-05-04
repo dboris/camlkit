@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWindowController"
 
-module Class = struct
+module C = struct
   let windowControllerForWindow x self = msg_send ~self ~cmd:(selector "windowControllerForWindow:") ~typ:(id @-> returning (id)) x
   let windowWillBeDeallocated x self = msg_send ~self ~cmd:(selector "windowWillBeDeallocated:") ~typ:(id @-> returning (void)) x
 end

@@ -22,4 +22,4 @@ let setAcceptsColorDrops x self = msg_send ~self ~cmd:(selector "setAcceptsColor
 let setActsLikeButton x self = msg_send ~self ~cmd:(selector "setActsLikeButton:") ~typ:(bool @-> returning (void)) x
 let setAppearanceForRenderingColor x self = msg_send ~self ~cmd:(selector "setAppearanceForRenderingColor:") ~typ:(id @-> returning (void)) x
 let setColor x self = msg_send ~self ~cmd:(selector "setColor:") ~typ:(id @-> returning (void)) x
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

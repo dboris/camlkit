@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewAnimationStyleDirectional"
 
-module Class = struct
+module C = struct
   let animationStyleAnimated x ~duration ~outDirection self = msg_send ~self ~cmd:(selector "animationStyleAnimated:duration:outDirection:") ~typ:(bool @-> double @-> int @-> returning (id)) x duration outDirection
 end
 

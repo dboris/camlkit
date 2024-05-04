@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserScriptTask"
 
-module Class = struct
+module C = struct
   let badFileError x self = msg_send ~self ~cmd:(selector "badFileError:") ~typ:(id @-> returning (id)) x
   let isValidScriptFile x ~error self = msg_send ~self ~cmd:(selector "isValidScriptFile:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
 end

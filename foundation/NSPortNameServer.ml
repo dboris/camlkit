@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSPortNameServer"
 
-module Class = struct
+module C = struct
   let defaultPortNameServer self = msg_send ~self ~cmd:(selector "defaultPortNameServer") ~typ:(returning (id))
   let systemDefaultPortNameServer self = msg_send ~self ~cmd:(selector "systemDefaultPortNameServer") ~typ:(returning (id))
 end

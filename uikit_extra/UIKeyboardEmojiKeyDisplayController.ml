@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardEmojiKeyDisplayController"
 
-module Class = struct
-  let classForCategoryControl x self = msg_send ~self ~cmd:(selector "classForCategoryControl:") ~typ:(llong @-> returning (_Class)) x
-  let classForInputView x self = msg_send ~self ~cmd:(selector "classForInputView:") ~typ:(llong @-> returning (_Class)) x
+module C = struct
+  let classForCategoryControl x self = msg_send ~self ~cmd:(selector "classForCategoryControl:") ~typ:(llong @-> returning (_Class)) (LLong.of_int x)
+  let classForInputView x self = msg_send ~self ~cmd:(selector "classForInputView:") ~typ:(llong @-> returning (_Class)) (LLong.of_int x)
   let writeEmojiDefaultsAndReleaseActiveInputView self = msg_send ~self ~cmd:(selector "writeEmojiDefaultsAndReleaseActiveInputView") ~typ:(returning (void))
 end
 
@@ -25,10 +25,10 @@ let inputView self = msg_send ~self ~cmd:(selector "inputView") ~typ:(returning 
 let lastUsedVariantEmojiForEmojiString x self = msg_send ~self ~cmd:(selector "lastUsedVariantEmojiForEmojiString:") ~typ:(id @-> returning (id)) x
 let lastViewedCategory self = msg_send ~self ~cmd:(selector "lastViewedCategory") ~typ:(returning (id))
 let lastVisibleFirstEmojiIndexforCategory x self = msg_send ~self ~cmd:(selector "lastVisibleFirstEmojiIndexforCategory:") ~typ:(id @-> returning (llong)) x
-let recentEmojiAtIndex x ~size self = msg_send ~self ~cmd:(selector "recentEmojiAtIndex:size:") ~typ:(llong @-> ptr (ullong) @-> returning (id)) x size
+let recentEmojiAtIndex x ~size self = msg_send ~self ~cmd:(selector "recentEmojiAtIndex:size:") ~typ:(llong @-> ptr (ullong) @-> returning (id)) (LLong.of_int x) size
 let recents self = msg_send ~self ~cmd:(selector "recents") ~typ:(returning (id))
 let reloadCategoryForOffsetPercentage x ~withSender self = msg_send ~self ~cmd:(selector "reloadCategoryForOffsetPercentage:withSender:") ~typ:(double @-> id @-> returning (llong)) x withSender
-let reloadForCategory x ~withSender self = msg_send ~self ~cmd:(selector "reloadForCategory:withSender:") ~typ:(llong @-> id @-> returning (void)) x withSender
+let reloadForCategory x ~withSender self = msg_send ~self ~cmd:(selector "reloadForCategory:withSender:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) withSender
 let setCategoryView x self = msg_send ~self ~cmd:(selector "setCategoryView:") ~typ:(id @-> returning (void)) x
 let setInputView x self = msg_send ~self ~cmd:(selector "setInputView:") ~typ:(id @-> returning (void)) x
 let setLastViewedCategory x self = msg_send ~self ~cmd:(selector "setLastViewedCategory:") ~typ:(id @-> returning (void)) x

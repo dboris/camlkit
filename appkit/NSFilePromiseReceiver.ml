@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFilePromiseReceiver"
 
-module Class = struct
+module C = struct
   let acceptableDragTypes self = msg_send ~self ~cmd:(selector "acceptableDragTypes") ~typ:(returning (id))
   let readableDraggedTypes self = msg_send ~self ~cmd:(selector "readableDraggedTypes") ~typ:(returning (id))
   let readableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "readableTypesForPasteboard:") ~typ:(id @-> returning (id)) x

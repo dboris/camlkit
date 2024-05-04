@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIMovieScrubber"
 
-module Class = struct
+module C = struct
   let timeStringForSeconds x ~forceFullWidthComponents ~isElapsed self = msg_send ~self ~cmd:(selector "timeStringForSeconds:forceFullWidthComponents:isElapsed:") ~typ:(int @-> bool @-> bool @-> returning (id)) x forceFullWidthComponents isElapsed
 end
 

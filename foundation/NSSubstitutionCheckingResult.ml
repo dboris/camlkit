@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSubstitutionCheckingResult"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -16,4 +16,4 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithRange x ~replacementString self = msg_send ~self ~cmd:(selector "initWithRange:replacementString:") ~typ:(NSRange.t @-> id @-> returning (id)) x replacementString
 let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
 let replacementString self = msg_send ~self ~cmd:(selector "replacementString") ~typ:(returning (id))
-let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) x
+let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) (LLong.of_int x)

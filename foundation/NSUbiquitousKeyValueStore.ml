@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUbiquitousKeyValueStore"
 
-module Class = struct
+module C = struct
   let additionalStoreWithIdentifier x self = msg_send ~self ~cmd:(selector "additionalStoreWithIdentifier:") ~typ:(id @-> returning (id)) x
   let defaultStore self = msg_send ~self ~cmd:(selector "defaultStore") ~typ:(returning (id))
 end
@@ -21,8 +21,8 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithBundleIdentifier x self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:") ~typ:(id @-> returning (id)) x
 let initWithBundleIdentifier1 x ~storeIdentifier self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:") ~typ:(id @-> id @-> returning (id)) x storeIdentifier
 let initWithBundleIdentifier2 x ~storeIdentifier ~additionalStore self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:additionalStore:") ~typ:(id @-> id @-> bool @-> returning (id)) x storeIdentifier additionalStore
-let initWithBundleIdentifier3 x ~storeIdentifier ~additionalStore ~storeType self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:additionalStore:storeType:") ~typ:(id @-> id @-> bool @-> llong @-> returning (id)) x storeIdentifier additionalStore storeType
-let initWithStoreIdentifier x ~type_ self = msg_send ~self ~cmd:(selector "initWithStoreIdentifier:type:") ~typ:(id @-> llong @-> returning (id)) x type_
+let initWithBundleIdentifier3 x ~storeIdentifier ~additionalStore ~storeType self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:additionalStore:storeType:") ~typ:(id @-> id @-> bool @-> llong @-> returning (id)) x storeIdentifier additionalStore (LLong.of_int storeType)
+let initWithStoreIdentifier x ~type_ self = msg_send ~self ~cmd:(selector "initWithStoreIdentifier:type:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int type_)
 let longLongForKey x self = msg_send ~self ~cmd:(selector "longLongForKey:") ~typ:(id @-> returning (llong)) x
 let maximumDataLengthPerKey self = msg_send ~self ~cmd:(selector "maximumDataLengthPerKey") ~typ:(returning (ullong))
 let maximumKeyCount self = msg_send ~self ~cmd:(selector "maximumKeyCount") ~typ:(returning (ullong))
@@ -36,7 +36,7 @@ let setBool x ~forKey self = msg_send ~self ~cmd:(selector "setBool:forKey:") ~t
 let setData x ~forKey self = msg_send ~self ~cmd:(selector "setData:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let setDictionary x ~forKey self = msg_send ~self ~cmd:(selector "setDictionary:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let setDouble x ~forKey self = msg_send ~self ~cmd:(selector "setDouble:forKey:") ~typ:(double @-> id @-> returning (void)) x forKey
-let setLongLong x ~forKey self = msg_send ~self ~cmd:(selector "setLongLong:forKey:") ~typ:(llong @-> id @-> returning (void)) x forKey
+let setLongLong x ~forKey self = msg_send ~self ~cmd:(selector "setLongLong:forKey:") ~typ:(llong @-> id @-> returning (void)) (LLong.of_int x) forKey
 let setObject x ~forKey self = msg_send ~self ~cmd:(selector "setObject:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let setString x ~forKey self = msg_send ~self ~cmd:(selector "setString:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let stringForKey x self = msg_send ~self ~cmd:(selector "stringForKey:") ~typ:(id @-> returning (id)) x

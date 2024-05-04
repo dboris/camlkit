@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSecureTextView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let secureTextViewForWindow x self = msg_send ~self ~cmd:(selector "secureTextViewForWindow:") ~typ:(id @-> returning (id)) x
 end
@@ -51,6 +51,6 @@ let textCheckingController self = msg_send ~self ~cmd:(selector "textCheckingCon
 let updateCandidates self = msg_send ~self ~cmd:(selector "updateCandidates") ~typ:(returning (void))
 let updateTrackingAreas self = msg_send ~self ~cmd:(selector "updateTrackingAreas") ~typ:(returning (void))
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning (bool)) x
-let view x ~stringForToolTip ~point ~userData self = msg_send ~self ~cmd:(selector "view:stringForToolTip:point:userData:") ~typ:(id @-> llong @-> CGPoint.t @-> ptr (void) @-> returning (id)) x stringForToolTip point userData
+let view x ~stringForToolTip ~point ~userData self = msg_send ~self ~cmd:(selector "view:stringForToolTip:point:userData:") ~typ:(id @-> llong @-> CGPoint.t @-> ptr (void) @-> returning (id)) x (LLong.of_int stringForToolTip) point userData
 let writablePasteboardTypes self = msg_send ~self ~cmd:(selector "writablePasteboardTypes") ~typ:(returning (id))
 let writeSelectionToPasteboard x ~type_ self = msg_send ~self ~cmd:(selector "writeSelectionToPasteboard:type:") ~typ:(id @-> id @-> returning (bool)) x type_

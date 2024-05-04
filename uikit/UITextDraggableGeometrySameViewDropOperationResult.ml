@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextDraggableGeometrySameViewDropOperationResult"
 
-module Class = struct
+module C = struct
   let resultWithRange x ~targetedPreviewProvider self = msg_send ~self ~cmd:(selector "resultWithRange:targetedPreviewProvider:") ~typ:(id @-> ptr void @-> returning (id)) x targetedPreviewProvider
 end
 

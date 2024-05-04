@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewAnimationStyleExtraView"
 
-module Class = struct
+module C = struct
   let extraView x ~withAlignment ~animation ~onSnapshot self = msg_send ~self ~cmd:(selector "extraView:withAlignment:animation:onSnapshot:") ~typ:(id @-> int @-> ptr void @-> bool @-> returning (id)) x withAlignment animation onSnapshot
 end
 

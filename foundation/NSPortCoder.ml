@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSPortCoder"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let portCoderWithReceivePort x ~sendPort ~components self = msg_send ~self ~cmd:(selector "portCoderWithReceivePort:sendPort:components:") ~typ:(id @-> id @-> id @-> returning (id)) x sendPort components
 end

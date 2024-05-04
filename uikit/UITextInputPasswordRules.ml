@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextInputPasswordRules"
 
-module Class = struct
+module C = struct
   let passwordRulesWithDescriptor x self = msg_send ~self ~cmd:(selector "passwordRulesWithDescriptor:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

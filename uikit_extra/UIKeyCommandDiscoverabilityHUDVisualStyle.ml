@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyCommandDiscoverabilityHUDVisualStyle"
 
-module Class = struct
+module C = struct
   let visualStyleForTraitCollection x self = msg_send ~self ~cmd:(selector "visualStyleForTraitCollection:") ~typ:(id @-> returning (id)) x
 end
 

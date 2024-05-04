@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIEventAttributionView"
 
-module Class = struct
+module C = struct
   let lastEventMessage self = msg_send ~self ~cmd:(selector "lastEventMessage") ~typ:(returning (id))
   let setLastEventMessage x self = msg_send ~self ~cmd:(selector "setLastEventMessage:") ~typ:(id @-> returning (void)) x
 end

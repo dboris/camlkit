@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDebuggingIvarTableViewCell"
 
-let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) x reuseIdentifier
+let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) reuseIdentifier
 let ivar self = msg_send ~self ~cmd:(selector "ivar") ~typ:(returning (id))
 let nameLabel self = msg_send ~self ~cmd:(selector "nameLabel") ~typ:(returning (id))
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning (void))

@@ -10,7 +10,7 @@ let _class_ = get_class "UIInterpolatingMotionEffect"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithKeyPath x ~type_ self = msg_send ~self ~cmd:(selector "initWithKeyPath:type:") ~typ:(id @-> llong @-> returning (id)) x type_
+let initWithKeyPath x ~type_ self = msg_send ~self ~cmd:(selector "initWithKeyPath:type:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int type_)
 let keyPath self = msg_send ~self ~cmd:(selector "keyPath") ~typ:(returning (id))
 let maximumRelativeValue self = msg_send ~self ~cmd:(selector "maximumRelativeValue") ~typ:(returning (id))
 let minimumRelativeValue self = msg_send ~self ~cmd:(selector "minimumRelativeValue") ~typ:(returning (id))

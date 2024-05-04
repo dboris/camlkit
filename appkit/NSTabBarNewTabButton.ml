@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTabBarNewTabButton"
 
-module Class = struct
+module C = struct
   let installNewTabButtonInView x self = msg_send ~self ~cmd:(selector "installNewTabButtonInView:") ~typ:(id @-> returning (id)) x
   let width self = msg_send ~self ~cmd:(selector "width") ~typ:(returning (double))
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITapRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -44,17 +44,17 @@ let pressesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "pressesEnded
 let setAllowableMovement x self = msg_send ~self ~cmd:(selector "setAllowableMovement:") ~typ:(double @-> returning (void)) x
 let setAllowableSeparation x self = msg_send ~self ~cmd:(selector "setAllowableSeparation:") ~typ:(double @-> returning (void)) x
 let setAllowableTouchTimeSeparation x self = msg_send ~self ~cmd:(selector "setAllowableTouchTimeSeparation:") ~typ:(double @-> returning (void)) x
-let setButtonMaskRequired x self = msg_send ~self ~cmd:(selector "setButtonMaskRequired:") ~typ:(llong @-> returning (void)) x
+let setButtonMaskRequired x self = msg_send ~self ~cmd:(selector "setButtonMaskRequired:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setContinuousTapRecognition x self = msg_send ~self ~cmd:(selector "setContinuousTapRecognition:") ~typ:(bool @-> returning (void)) x
 let setCountsOnlyActiveTouches x self = msg_send ~self ~cmd:(selector "setCountsOnlyActiveTouches:") ~typ:(bool @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setExclusiveDirectionalAxis x self = msg_send ~self ~cmd:(selector "setExclusiveDirectionalAxis:") ~typ:(llong @-> returning (void)) x
+let setExclusiveDirectionalAxis x self = msg_send ~self ~cmd:(selector "setExclusiveDirectionalAxis:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMaximumIntervalBetweenSuccessiveTaps x self = msg_send ~self ~cmd:(selector "setMaximumIntervalBetweenSuccessiveTaps:") ~typ:(double @-> returning (void)) x
 let setMaximumSingleTapDuration x self = msg_send ~self ~cmd:(selector "setMaximumSingleTapDuration:") ~typ:(double @-> returning (void)) x
 let setMaximumTapDuration x self = msg_send ~self ~cmd:(selector "setMaximumTapDuration:") ~typ:(double @-> returning (void)) x
 let setMinimumTapDuration x self = msg_send ~self ~cmd:(selector "setMinimumTapDuration:") ~typ:(double @-> returning (void)) x
-let setNumberOfTapsRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTapsRequired:") ~typ:(ullong @-> returning (void)) x
-let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfTapsRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTapsRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let startMultitouchTimer x self = msg_send ~self ~cmd:(selector "startMultitouchTimer:") ~typ:(double @-> returning (void)) x
 let startTapTimer x self = msg_send ~self ~cmd:(selector "startTapTimer:") ~typ:(double @-> returning (void)) x
 let tooSlow x self = msg_send ~self ~cmd:(selector "tooSlow:") ~typ:(id @-> returning (void)) x

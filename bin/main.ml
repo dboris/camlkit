@@ -11,8 +11,8 @@ let app_window () =
     alloc NSWindow._class_
     |> NSWindow.initWithContentRect
       (CGRect.make ~x: 0. ~y: 0. ~width: win_width ~height: win_height)
-      ~styleMask: (combine_options Types.StyleMask.[titled; closable; resizable])
-      ~backing: Types.BackingStoreType.buffered
+      ~styleMask: (Objc.ULLong.to_int @@ combine_options Appkit_global.StyleMask.[titled; closable; resizable])
+      ~backing: Appkit_._NSBackingStoreBuffered
       ~defer: false
   in
   win
@@ -45,7 +45,7 @@ let make_button ~title ~frame ~target ~action =
 
 let main () =
   let _ = new_object "NSAutoreleasePool"
-  and app = NSApplication._class_ |> NSApplication.Class.sharedApplication
+  and app = NSApplication._class_ |> NSApplication.C.sharedApplication
   and win = app_window ()
   (* and url = NSURL.new_url "http://example.com/" *)
   in
@@ -65,8 +65,8 @@ let main () =
   in
   win |> NSWindow.contentView |> NSView.addSubview btn;
   (* win |> content_view |> add_subview wv; *)
-  assert (app |>
-    NSApplication.setActivationPolicy Types.ActivationPolicy.regular);
+  assert (app |> NSApplication.setActivationPolicy
+    Appkit_._NSApplicationActivationPolicyRegular);
   app |> NSApplication.activateIgnoringOtherApps true;
   NSApplication.run app
 

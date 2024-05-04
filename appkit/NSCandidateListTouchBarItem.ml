@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCandidateListTouchBarItem"
 
-module Class = struct
+module C = struct
   let candidateBarAppearance self = msg_send ~self ~cmd:(selector "candidateBarAppearance") ~typ:(returning (id))
   let keyPathsForValuesAffectingView self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingView") ~typ:(returning (id))
   let standardWidth self = msg_send ~self ~cmd:(selector "standardWidth") ~typ:(returning (double))
@@ -38,7 +38,7 @@ let setAllowsTextInputContextCandidates x self = msg_send ~self ~cmd:(selector "
 let setAttributedStringForCandidate x self = msg_send ~self ~cmd:(selector "setAttributedStringForCandidate:") ~typ:(ptr void @-> returning (void)) x
 let setCandidates x ~forSelectedRange ~inString self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:inString:") ~typ:(id @-> NSRange.t @-> id @-> returning (void)) x forSelectedRange inString
 let setCandidates1 x ~forSelectedRange ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange inString rect view completionHandler
-let setCandidates2 x ~forSelectedRange ~offset ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange offset inString rect view completionHandler
+let setCandidates2 x ~forSelectedRange ~offset ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange (ULLong.of_int offset) inString rect view completionHandler
 let setClient x self = msg_send ~self ~cmd:(selector "setClient:") ~typ:(id @-> returning (void)) x
 let setCollapsed x self = msg_send ~self ~cmd:(selector "setCollapsed:") ~typ:(bool @-> returning (void)) x
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning (void)) x

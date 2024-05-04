@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebBrowserView"
 
-module Class = struct
+module C = struct
   let getUIWebBrowserViewForWebFrame x self = msg_send ~self ~cmd:(selector "getUIWebBrowserViewForWebFrame:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -77,6 +77,7 @@ let shouldIgnoreWebTouch self = msg_send ~self ~cmd:(selector "shouldIgnoreWebTo
 let simulateDidScroll self = msg_send ~self ~cmd:(selector "simulateDidScroll") ~typ:(returning (void))
 let textDocument self = msg_send ~self ~cmd:(selector "textDocument") ~typ:(returning (id))
 let textFormElement self = msg_send ~self ~cmd:(selector "textFormElement") ~typ:(returning (id))
+let updateBoundariesOfScrollView x ~withScales self = msg_send ~self ~cmd:(selector "updateBoundariesOfScrollView:withScales:") ~typ:(id @-> ptr void @-> returning (void)) x withScales
 let webView x ~didFinishLoadForFrame self = msg_send ~self ~cmd:(selector "webView:didFinishLoadForFrame:") ~typ:(id @-> id @-> returning (void)) x didFinishLoadForFrame
 let webView1 x ~didFirstLayoutInFrame self = msg_send ~self ~cmd:(selector "webView:didFirstLayoutInFrame:") ~typ:(id @-> id @-> returning (void)) x didFirstLayoutInFrame
 let webView2 x ~didFirstVisuallyNonEmptyLayoutInFrame self = msg_send ~self ~cmd:(selector "webView:didFirstVisuallyNonEmptyLayoutInFrame:") ~typ:(id @-> id @-> returning (void)) x didFirstVisuallyNonEmptyLayoutInFrame

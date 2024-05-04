@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIBarAppearance"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -31,13 +31,13 @@ let idiom self = msg_send ~self ~cmd:(selector "idiom") ~typ:(returning (llong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithBarAppearance x self = msg_send ~self ~cmd:(selector "initWithBarAppearance:") ~typ:(id @-> returning (id)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithIdiom x self = msg_send ~self ~cmd:(selector "initWithIdiom:") ~typ:(llong @-> returning (id)) x
+let initWithIdiom x self = msg_send ~self ~cmd:(selector "initWithIdiom:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBackgroundEffect x self = msg_send ~self ~cmd:(selector "setBackgroundEffect:") ~typ:(id @-> returning (void)) x
 let setBackgroundEffects x self = msg_send ~self ~cmd:(selector "setBackgroundEffects:") ~typ:(id @-> returning (void)) x
 let setBackgroundImage x self = msg_send ~self ~cmd:(selector "setBackgroundImage:") ~typ:(id @-> returning (void)) x
-let setBackgroundImageContentMode x self = msg_send ~self ~cmd:(selector "setBackgroundImageContentMode:") ~typ:(llong @-> returning (void)) x
+let setBackgroundImageContentMode x self = msg_send ~self ~cmd:(selector "setBackgroundImageContentMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setShadowColor x self = msg_send ~self ~cmd:(selector "setShadowColor:") ~typ:(id @-> returning (void)) x
 let setShadowEffect x self = msg_send ~self ~cmd:(selector "setShadowEffect:") ~typ:(id @-> returning (void)) x
 let setShadowImage x self = msg_send ~self ~cmd:(selector "setShadowImage:") ~typ:(id @-> returning (void)) x

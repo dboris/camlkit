@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSTableViewCellProxy"
 
-module Class = struct
-  let cellForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "cellForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-  let cellForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "cellForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+module C = struct
+  let cellForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "cellForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+  let cellForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "cellForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 end
 
 let accessibilityBoundsForRangeAttributeForParameter x self = msg_send ~self ~cmd:(selector "accessibilityBoundsForRangeAttributeForParameter:") ~typ:(id @-> returning (id)) x
@@ -35,8 +35,8 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let editor self = msg_send ~self ~cmd:(selector "editor") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 let isBeingEdited self = msg_send ~self ~cmd:(selector "isBeingEdited") ~typ:(returning (bool))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let realElement self = msg_send ~self ~cmd:(selector "realElement") ~typ:(returning (id))

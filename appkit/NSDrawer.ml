@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDrawer"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -44,7 +44,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let flushBufferedKeyEvents self = msg_send ~self ~cmd:(selector "flushBufferedKeyEvents") ~typ:(returning (void))
 let helpRequested x self = msg_send ~self ~cmd:(selector "helpRequested:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithContentSize x ~preferredEdge self = msg_send ~self ~cmd:(selector "initWithContentSize:preferredEdge:") ~typ:(CGSize.t @-> ullong @-> returning (id)) x preferredEdge
+let initWithContentSize x ~preferredEdge self = msg_send ~self ~cmd:(selector "initWithContentSize:preferredEdge:") ~typ:(CGSize.t @-> ullong @-> returning (id)) x (ULLong.of_int preferredEdge)
 let interpretKeyEvents x self = msg_send ~self ~cmd:(selector "interpretKeyEvents:") ~typ:(id @-> returning (void)) x
 let isOpen self = msg_send ~self ~cmd:(selector "isOpen") ~typ:(returning (bool))
 let leadingOffset self = msg_send ~self ~cmd:(selector "leadingOffset") ~typ:(returning (double))
@@ -53,7 +53,7 @@ let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning (id))
 let minContentSize self = msg_send_stret ~self ~cmd:(selector "minContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let open_ self = msg_send ~self ~cmd:(selector "open") ~typ:(returning (void))
 let open_' x self = msg_send ~self ~cmd:(selector "open:") ~typ:(id @-> returning (void)) x
-let openOnEdge x self = msg_send ~self ~cmd:(selector "openOnEdge:") ~typ:(ullong @-> returning (void)) x
+let openOnEdge x self = msg_send ~self ~cmd:(selector "openOnEdge:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let parentWindow self = msg_send ~self ~cmd:(selector "parentWindow") ~typ:(returning (id))
 let performKeyEquivalent x self = msg_send ~self ~cmd:(selector "performKeyEquivalent:") ~typ:(id @-> returning (bool)) x
 let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning (ullong))
@@ -67,7 +67,7 @@ let setMaxContentSize x self = msg_send ~self ~cmd:(selector "setMaxContentSize:
 let setMenu x self = msg_send ~self ~cmd:(selector "setMenu:") ~typ:(id @-> returning (void)) x
 let setMinContentSize x self = msg_send ~self ~cmd:(selector "setMinContentSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setParentWindow x self = msg_send ~self ~cmd:(selector "setParentWindow:") ~typ:(id @-> returning (void)) x
-let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) x
+let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setTrailingOffset x self = msg_send ~self ~cmd:(selector "setTrailingOffset:") ~typ:(double @-> returning (void)) x
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let toggle x self = msg_send ~self ~cmd:(selector "toggle:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSUIHeartBeat"
 
-module Class = struct
+module C = struct
   let heartBeatCycle self = msg_send ~self ~cmd:(selector "heartBeatCycle") ~typ:(returning (double))
   let isHeartBeatThread self = msg_send ~self ~cmd:(selector "isHeartBeatThread") ~typ:(returning (bool))
   let setHeartBeatCycle x self = msg_send ~self ~cmd:(selector "setHeartBeatCycle:") ~typ:(double @-> returning (void)) x

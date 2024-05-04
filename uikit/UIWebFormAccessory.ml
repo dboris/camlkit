@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebFormAccessory"
 
-module Class = struct
+module C = struct
   let toolbarWithItems x self = msg_send ~self ~cmd:(selector "toolbarWithItems:") ~typ:(id @-> returning (id)) x
 end
 

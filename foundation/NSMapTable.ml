@@ -5,10 +5,10 @@ open Objc
 
 let _class_ = get_class "NSMapTable"
 
-module Class = struct
+module C = struct
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
-  let mapTableWithKeyOptions x ~valueOptions self = msg_send ~self ~cmd:(selector "mapTableWithKeyOptions:valueOptions:") ~typ:(ullong @-> ullong @-> returning (id)) x valueOptions
+  let mapTableWithKeyOptions x ~valueOptions self = msg_send ~self ~cmd:(selector "mapTableWithKeyOptions:valueOptions:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int valueOptions)
   let mapTableWithStrongToStrongObjects self = msg_send ~self ~cmd:(selector "mapTableWithStrongToStrongObjects") ~typ:(returning (id))
   let mapTableWithStrongToWeakObjects self = msg_send ~self ~cmd:(selector "mapTableWithStrongToWeakObjects") ~typ:(returning (id))
   let mapTableWithWeakToStrongObjects self = msg_send ~self ~cmd:(selector "mapTableWithWeakToStrongObjects") ~typ:(returning (id))
@@ -26,7 +26,7 @@ let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(re
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects (ULLong.of_int count)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let dictionaryRepresentation self = msg_send ~self ~cmd:(selector "dictionaryRepresentation") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
@@ -35,8 +35,8 @@ let existingItemForSetItem x ~forAbsentKey self = msg_send ~self ~cmd:(selector 
 let getKeys x ~values self = msg_send ~self ~cmd:(selector "getKeys:values:") ~typ:(ptr (ptr (void)) @-> ptr (ptr (void)) @-> returning (ullong)) x values
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithKeyOptions x ~valueOptions ~capacity self = msg_send ~self ~cmd:(selector "initWithKeyOptions:valueOptions:capacity:") ~typ:(ullong @-> ullong @-> ullong @-> returning (id)) x valueOptions capacity
-let initWithKeyPointerFunctions x ~valuePointerFunctions ~capacity self = msg_send ~self ~cmd:(selector "initWithKeyPointerFunctions:valuePointerFunctions:capacity:") ~typ:(id @-> id @-> ullong @-> returning (id)) x valuePointerFunctions capacity
+let initWithKeyOptions x ~valueOptions ~capacity self = msg_send ~self ~cmd:(selector "initWithKeyOptions:valueOptions:capacity:") ~typ:(ullong @-> ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int valueOptions) (ULLong.of_int capacity)
+let initWithKeyPointerFunctions x ~valuePointerFunctions ~capacity self = msg_send ~self ~cmd:(selector "initWithKeyPointerFunctions:valuePointerFunctions:capacity:") ~typ:(id @-> id @-> ullong @-> returning (id)) x valuePointerFunctions (ULLong.of_int capacity)
 let keyEnumerator self = msg_send ~self ~cmd:(selector "keyEnumerator") ~typ:(returning (id))
 let keyPointerFunctions self = msg_send ~self ~cmd:(selector "keyPointerFunctions") ~typ:(returning (id))
 let mapMember x ~originalKey ~value self = msg_send ~self ~cmd:(selector "mapMember:originalKey:value:") ~typ:(ptr (void) @-> ptr (ptr (void)) @-> ptr (ptr (void)) @-> returning (bool)) x originalKey value

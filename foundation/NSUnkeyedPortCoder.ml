@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUnkeyedPortCoder"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
 end
 
@@ -24,7 +24,7 @@ let decodeValueOfObjCType x ~at self = msg_send ~self ~cmd:(selector "decodeValu
 let dispatch self = msg_send ~self ~cmd:(selector "dispatch") ~typ:(returning (void))
 let encodeBycopyObject x self = msg_send ~self ~cmd:(selector "encodeBycopyObject:") ~typ:(id @-> returning (void)) x
 let encodeByrefObject x self = msg_send ~self ~cmd:(selector "encodeByrefObject:") ~typ:(id @-> returning (void)) x
-let encodeBytes x ~length self = msg_send ~self ~cmd:(selector "encodeBytes:length:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x length
+let encodeBytes x ~length self = msg_send ~self ~cmd:(selector "encodeBytes:length:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x (ULLong.of_int length)
 let encodeDataObject x self = msg_send ~self ~cmd:(selector "encodeDataObject:") ~typ:(id @-> returning (void)) x
 let encodeInvocation x self = msg_send ~self ~cmd:(selector "encodeInvocation:") ~typ:(id @-> returning (void)) x
 let encodeObject x ~isBycopy ~isByref self = msg_send ~self ~cmd:(selector "encodeObject:isBycopy:isByref:") ~typ:(id @-> bool @-> bool @-> returning (void)) x isBycopy isByref

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSInvocation"
 
-module Class = struct
+module C = struct
   let invocationWithMethodSignature x self = msg_send ~self ~cmd:(selector "invocationWithMethodSignature:") ~typ:(id @-> returning (id)) x
 end
 
@@ -13,7 +13,7 @@ let argumentsRetained self = msg_send ~self ~cmd:(selector "argumentsRetained") 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
-let getArgument x ~atIndex self = msg_send ~self ~cmd:(selector "getArgument:atIndex:") ~typ:(ptr (void) @-> llong @-> returning (void)) x atIndex
+let getArgument x ~atIndex self = msg_send ~self ~cmd:(selector "getArgument:atIndex:") ~typ:(ptr (void) @-> llong @-> returning (void)) x (LLong.of_int atIndex)
 let getReturnValue x self = msg_send ~self ~cmd:(selector "getReturnValue:") ~typ:(ptr (void) @-> returning (void)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let invoke self = msg_send ~self ~cmd:(selector "invoke") ~typ:(returning (void))
@@ -23,7 +23,7 @@ let invokeWithTarget x self = msg_send ~self ~cmd:(selector "invokeWithTarget:")
 let methodSignature self = msg_send ~self ~cmd:(selector "methodSignature") ~typ:(returning (id))
 let retainArguments self = msg_send ~self ~cmd:(selector "retainArguments") ~typ:(returning (void))
 let selector_ self = msg_send ~self ~cmd:(selector "selector") ~typ:(returning (_SEL))
-let setArgument x ~atIndex self = msg_send ~self ~cmd:(selector "setArgument:atIndex:") ~typ:(ptr (void) @-> llong @-> returning (void)) x atIndex
+let setArgument x ~atIndex self = msg_send ~self ~cmd:(selector "setArgument:atIndex:") ~typ:(ptr (void) @-> llong @-> returning (void)) x (LLong.of_int atIndex)
 let setReturnValue x self = msg_send ~self ~cmd:(selector "setReturnValue:") ~typ:(ptr (void) @-> returning (void)) x
 let setSelector x self = msg_send ~self ~cmd:(selector "setSelector:") ~typ:(_SEL @-> returning (void)) x
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x

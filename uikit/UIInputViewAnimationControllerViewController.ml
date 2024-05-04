@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewAnimationControllerViewController"
 
-module Class = struct
+module C = struct
   let controllerWithContext x self = msg_send ~self ~cmd:(selector "controllerWithContext:") ~typ:(id @-> returning (id)) x
 end
 

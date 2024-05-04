@@ -8,12 +8,12 @@ open Foundation
 
 let _class_ = get_class "UIImagePickerController"
 
-module Class = struct
-  let availableCaptureModesForCameraDevice x self = msg_send ~self ~cmd:(selector "availableCaptureModesForCameraDevice:") ~typ:(llong @-> returning (id)) x
-  let availableMediaTypesForSourceType x self = msg_send ~self ~cmd:(selector "availableMediaTypesForSourceType:") ~typ:(llong @-> returning (id)) x
-  let isCameraDeviceAvailable x self = msg_send ~self ~cmd:(selector "isCameraDeviceAvailable:") ~typ:(llong @-> returning (bool)) x
-  let isFlashAvailableForCameraDevice x self = msg_send ~self ~cmd:(selector "isFlashAvailableForCameraDevice:") ~typ:(llong @-> returning (bool)) x
-  let isSourceTypeAvailable x self = msg_send ~self ~cmd:(selector "isSourceTypeAvailable:") ~typ:(llong @-> returning (bool)) x
+module C = struct
+  let availableCaptureModesForCameraDevice x self = msg_send ~self ~cmd:(selector "availableCaptureModesForCameraDevice:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+  let availableMediaTypesForSourceType x self = msg_send ~self ~cmd:(selector "availableMediaTypesForSourceType:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+  let isCameraDeviceAvailable x self = msg_send ~self ~cmd:(selector "isCameraDeviceAvailable:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
+  let isFlashAvailableForCameraDevice x self = msg_send ~self ~cmd:(selector "isFlashAvailableForCameraDevice:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
+  let isSourceTypeAvailable x self = msg_send ~self ~cmd:(selector "isSourceTypeAvailable:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 end
 
 let allowsEditing self = msg_send ~self ~cmd:(selector "allowsEditing") ~typ:(returning (bool))
@@ -38,20 +38,21 @@ let photosExtension self = msg_send ~self ~cmd:(selector "photosExtension") ~typ
 let requestViewControllerFromPhotoPickerWithRequestIdentifier x self = msg_send ~self ~cmd:(selector "requestViewControllerFromPhotoPickerWithRequestIdentifier:") ~typ:(id @-> returning (void)) x
 let setAllowsEditing x self = msg_send ~self ~cmd:(selector "setAllowsEditing:") ~typ:(bool @-> returning (void)) x
 let setAllowsImageEditing x self = msg_send ~self ~cmd:(selector "setAllowsImageEditing:") ~typ:(bool @-> returning (void)) x
-let setCameraCaptureMode x self = msg_send ~self ~cmd:(selector "setCameraCaptureMode:") ~typ:(llong @-> returning (void)) x
-let setCameraDevice x self = msg_send ~self ~cmd:(selector "setCameraDevice:") ~typ:(llong @-> returning (void)) x
-let setCameraFlashMode x self = msg_send ~self ~cmd:(selector "setCameraFlashMode:") ~typ:(llong @-> returning (void)) x
+let setCameraCaptureMode x self = msg_send ~self ~cmd:(selector "setCameraCaptureMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setCameraDevice x self = msg_send ~self ~cmd:(selector "setCameraDevice:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setCameraFlashMode x self = msg_send ~self ~cmd:(selector "setCameraFlashMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCameraOverlayView x self = msg_send ~self ~cmd:(selector "setCameraOverlayView:") ~typ:(id @-> returning (void)) x
-let setImageExportPreset x self = msg_send ~self ~cmd:(selector "setImageExportPreset:") ~typ:(llong @-> returning (void)) x
+let setCameraViewTransform x self = msg_send ~self ~cmd:(selector "setCameraViewTransform:") ~typ:(ptr void @-> returning (void)) x
+let setImageExportPreset x self = msg_send ~self ~cmd:(selector "setImageExportPreset:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMediaTypes x self = msg_send ~self ~cmd:(selector "setMediaTypes:") ~typ:(id @-> returning (void)) x
 let setPhotoPickerViewControllerTitle x self = msg_send ~self ~cmd:(selector "setPhotoPickerViewControllerTitle:") ~typ:(id @-> returning (void)) x
 let setPhotosExtension x self = msg_send ~self ~cmd:(selector "setPhotosExtension:") ~typ:(id @-> returning (void)) x
 let setShowsCameraControls x self = msg_send ~self ~cmd:(selector "setShowsCameraControls:") ~typ:(bool @-> returning (void)) x
-let setSourceType x self = msg_send ~self ~cmd:(selector "setSourceType:") ~typ:(llong @-> returning (void)) x
+let setSourceType x self = msg_send ~self ~cmd:(selector "setSourceType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setVideoExportPreset x self = msg_send ~self ~cmd:(selector "setVideoExportPreset:") ~typ:(id @-> returning (void)) x
 let setVideoMaximumDuration x self = msg_send ~self ~cmd:(selector "setVideoMaximumDuration:") ~typ:(double @-> returning (void)) x
-let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning (void)) x
-let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) x
+let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let showsCameraControls self = msg_send ~self ~cmd:(selector "showsCameraControls") ~typ:(returning (bool))
 let sourceType self = msg_send ~self ~cmd:(selector "sourceType") ~typ:(returning (llong))
 let startVideoCapture self = msg_send ~self ~cmd:(selector "startVideoCapture") ~typ:(returning (bool))

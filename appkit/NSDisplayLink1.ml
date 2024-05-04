@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDisplayLink1"
 
-module Class = struct
+module C = struct
   let currentTimestamp self = msg_send ~self ~cmd:(selector "currentTimestamp") ~typ:(returning (double))
   let displayLinkForScreen x ~handler self = msg_send ~self ~cmd:(selector "displayLinkForScreen:handler:") ~typ:(id @-> ptr void @-> returning (id)) x handler
 end

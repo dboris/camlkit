@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetNotificationInfo"
 
-module Class = struct
+module C = struct
   let info self = msg_send ~self ~cmd:(selector "info") ~typ:(returning (id))
 end
 
@@ -36,7 +36,7 @@ let privateUserInfo self = msg_send ~self ~cmd:(selector "privateUserInfo") ~typ
 let rotationUserInfo self = msg_send ~self ~cmd:(selector "rotationUserInfo") ~typ:(returning (id))
 let setAssistantFrame x self = msg_send ~self ~cmd:(selector "setAssistantFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setAssistantOnScreenOnly x self = msg_send ~self ~cmd:(selector "setAssistantOnScreenOnly:") ~typ:(bool @-> returning (void)) x
-let setAssistantPosition x self = msg_send ~self ~cmd:(selector "setAssistantPosition:") ~typ:(ullong @-> returning (void)) x
+let setAssistantPosition x self = msg_send ~self ~cmd:(selector "setAssistantPosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setBeginCenter x self = msg_send ~self ~cmd:(selector "setBeginCenter:") ~typ:(CGPoint.t @-> returning (void)) x
 let setBeginFrame x self = msg_send ~self ~cmd:(selector "setBeginFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x
@@ -46,7 +46,7 @@ let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(dou
 let setEndCenter x self = msg_send ~self ~cmd:(selector "setEndCenter:") ~typ:(CGPoint.t @-> returning (void)) x
 let setEndFrame x self = msg_send ~self ~cmd:(selector "setEndFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setForceNotification x self = msg_send ~self ~cmd:(selector "setForceNotification:") ~typ:(bool @-> returning (void)) x
-let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) x
+let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setWasCausedRemotely x self = msg_send ~self ~cmd:(selector "setWasCausedRemotely:") ~typ:(bool @-> returning (void)) x
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning (id))
 let wasCausedRemotely self = msg_send ~self ~cmd:(selector "wasCausedRemotely") ~typ:(returning (bool))

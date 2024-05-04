@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIListContentTextProperties"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -33,16 +33,16 @@ let numberOfLines self = msg_send ~self ~cmd:(selector "numberOfLines") ~typ:(re
 let resolvedColor self = msg_send ~self ~cmd:(selector "resolvedColor") ~typ:(returning (id))
 let setAdjustsFontForContentSizeCategory x self = msg_send ~self ~cmd:(selector "setAdjustsFontForContentSizeCategory:") ~typ:(bool @-> returning (void)) x
 let setAdjustsFontSizeToFitWidth x self = msg_send ~self ~cmd:(selector "setAdjustsFontSizeToFitWidth:") ~typ:(bool @-> returning (void)) x
-let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) x
+let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setAllowsDefaultTighteningForTruncation x self = msg_send ~self ~cmd:(selector "setAllowsDefaultTighteningForTruncation:") ~typ:(bool @-> returning (void)) x
 let setAttributedText x self = msg_send ~self ~cmd:(selector "setAttributedText:") ~typ:(id @-> returning (void)) x
 let setColor x self = msg_send ~self ~cmd:(selector "setColor:") ~typ:(id @-> returning (void)) x
 let setColorTransformer x self = msg_send ~self ~cmd:(selector "setColorTransformer:") ~typ:(ptr void @-> returning (void)) x
 let setFont x self = msg_send ~self ~cmd:(selector "setFont:") ~typ:(id @-> returning (void)) x
-let setLineBreakMode x self = msg_send ~self ~cmd:(selector "setLineBreakMode:") ~typ:(llong @-> returning (void)) x
+let setLineBreakMode x self = msg_send ~self ~cmd:(selector "setLineBreakMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMinimumScaleFactor x self = msg_send ~self ~cmd:(selector "setMinimumScaleFactor:") ~typ:(double @-> returning (void)) x
-let setNumberOfLines x self = msg_send ~self ~cmd:(selector "setNumberOfLines:") ~typ:(llong @-> returning (void)) x
+let setNumberOfLines x self = msg_send ~self ~cmd:(selector "setNumberOfLines:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setText x self = msg_send ~self ~cmd:(selector "setText:") ~typ:(id @-> returning (void)) x
-let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(llong @-> returning (void)) x
+let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning (id))
 let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning (llong))

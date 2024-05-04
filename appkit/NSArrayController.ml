@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSArrayController"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
 let add x self = msg_send ~self ~cmd:(selector "add:") ~typ:(id @-> returning (void)) x
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x
 let addObjects x self = msg_send ~self ~cmd:(selector "addObjects:") ~typ:(id @-> returning (void)) x
-let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath options context
+let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath (ULLong.of_int options) context
 let addRangeOfInterest x self = msg_send ~self ~cmd:(selector "addRangeOfInterest:") ~typ:(NSRange.t @-> returning (void)) x
 let addSelectedObjects x self = msg_send ~self ~cmd:(selector "addSelectedObjects:") ~typ:(id @-> returning (bool)) x
 let addSelectionIndexes x self = msg_send ~self ~cmd:(selector "addSelectionIndexes:") ~typ:(id @-> returning (bool)) x
@@ -40,14 +40,14 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let filterPredicate self = msg_send ~self ~cmd:(selector "filterPredicate") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let insert x self = msg_send ~self ~cmd:(selector "insert:") ~typ:(id @-> returning (void)) x
-let insertObject x ~atArrangedObjectIndex self = msg_send ~self ~cmd:(selector "insertObject:atArrangedObjectIndex:") ~typ:(id @-> ullong @-> returning (void)) x atArrangedObjectIndex
+let insertObject x ~atArrangedObjectIndex self = msg_send ~self ~cmd:(selector "insertObject:atArrangedObjectIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int atArrangedObjectIndex)
 let insertObjects x ~atArrangedObjectIndexes self = msg_send ~self ~cmd:(selector "insertObjects:atArrangedObjectIndexes:") ~typ:(id @-> id @-> returning (void)) x atArrangedObjectIndexes
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> ptr (void) @-> returning (void)) x ofObject change context
 let preservesSelection self = msg_send ~self ~cmd:(selector "preservesSelection") ~typ:(returning (bool))
 let rearrangeObjects self = msg_send ~self ~cmd:(selector "rearrangeObjects") ~typ:(returning (void))
 let remove x self = msg_send ~self ~cmd:(selector "remove:") ~typ:(id @-> returning (void)) x
 let removeObject x self = msg_send ~self ~cmd:(selector "removeObject:") ~typ:(id @-> returning (void)) x
-let removeObjectAtArrangedObjectIndex x self = msg_send ~self ~cmd:(selector "removeObjectAtArrangedObjectIndex:") ~typ:(ullong @-> returning (void)) x
+let removeObjectAtArrangedObjectIndex x self = msg_send ~self ~cmd:(selector "removeObjectAtArrangedObjectIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let removeObjects x self = msg_send ~self ~cmd:(selector "removeObjects:") ~typ:(id @-> returning (void)) x
 let removeObjectsAtArrangedObjectIndexes x self = msg_send ~self ~cmd:(selector "removeObjectsAtArrangedObjectIndexes:") ~typ:(id @-> returning (void)) x
 let removeSelectedObjects x self = msg_send ~self ~cmd:(selector "removeSelectedObjects:") ~typ:(id @-> returning (bool)) x
@@ -67,7 +67,7 @@ let setFilterPredicate x self = msg_send ~self ~cmd:(selector "setFilterPredicat
 let setManagedObjectContext x self = msg_send ~self ~cmd:(selector "setManagedObjectContext:") ~typ:(id @-> returning (void)) x
 let setPreservesSelection x self = msg_send ~self ~cmd:(selector "setPreservesSelection:") ~typ:(bool @-> returning (void)) x
 let setSelectedObjects x self = msg_send ~self ~cmd:(selector "setSelectedObjects:") ~typ:(id @-> returning (bool)) x
-let setSelectionIndex x self = msg_send ~self ~cmd:(selector "setSelectionIndex:") ~typ:(ullong @-> returning (bool)) x
+let setSelectionIndex x self = msg_send ~self ~cmd:(selector "setSelectionIndex:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
 let setSelectionIndexes x self = msg_send ~self ~cmd:(selector "setSelectionIndexes:") ~typ:(id @-> returning (bool)) x
 let setSelectsInsertedObjects x self = msg_send ~self ~cmd:(selector "setSelectsInsertedObjects:") ~typ:(bool @-> returning (void)) x
 let setSortDescriptors x self = msg_send ~self ~cmd:(selector "setSortDescriptors:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrubberRoundedSelectionBackgroundView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
 end
 

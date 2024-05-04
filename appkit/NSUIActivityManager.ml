@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSUIActivityManager"
 
-module Class = struct
+module C = struct
   let sharedManager self = msg_send ~self ~cmd:(selector "sharedManager") ~typ:(returning (id))
 end
 

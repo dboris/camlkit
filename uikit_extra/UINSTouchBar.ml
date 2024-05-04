@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSTouchBar"
 
-module Class = struct
+module C = struct
   let sharedTouchBar self = msg_send ~self ~cmd:(selector "sharedTouchBar") ~typ:(returning (id))
 end
 

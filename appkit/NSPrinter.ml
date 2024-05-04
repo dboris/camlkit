@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPrinter"
 
-module Class = struct
+module C = struct
   let printerNames self = msg_send ~self ~cmd:(selector "printerNames") ~typ:(returning (id))
   let printerTypes self = msg_send ~self ~cmd:(selector "printerTypes") ~typ:(returning (id))
   let printerWithName x self = msg_send ~self ~cmd:(selector "printerWithName:") ~typ:(id @-> returning (id)) x

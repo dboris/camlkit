@@ -8,9 +8,10 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacementFloating"
 
-module Class = struct
+module C = struct
   let frameAtOffset x ~keyboardSize ~screenSize self = msg_send_stret ~self ~cmd:(selector "frameAtOffset:keyboardSize:screenSize:") ~typ:(CGPoint.t @-> CGSize.t @-> CGSize.t @-> returning (CGRect.t)) ~return_type:CGRect.t x keyboardSize screenSize
   let infoWithPoint x ~forOwner self = msg_send ~self ~cmd:(selector "infoWithPoint:forOwner:") ~typ:(CGPoint.t @-> id @-> returning (id)) x forOwner
+  let placementWithUndockedOffset x ~chromeBuffer ~floatingWidth self = msg_send ~self ~cmd:(selector "placementWithUndockedOffset:chromeBuffer:floatingWidth:") ~typ:(CGPoint.t @-> ptr void @-> double @-> returning (id)) x chromeBuffer floatingWidth
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -24,7 +25,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let expiringPlacement self = msg_send ~self ~cmd:(selector "expiringPlacement") ~typ:(returning (id))
 let floatingWidth self = msg_send ~self ~cmd:(selector "floatingWidth") ~typ:(returning (double))
 let horizontalConstraintForInputViewSet x ~hostView ~containerView self = msg_send ~self ~cmd:(selector "horizontalConstraintForInputViewSet:hostView:containerView:") ~typ:(id @-> id @-> id @-> returning (id)) x hostView containerView
-let indexForPurpose x self = msg_send ~self ~cmd:(selector "indexForPurpose:") ~typ:(ullong @-> returning (ullong)) x
+let indexForPurpose x self = msg_send ~self ~cmd:(selector "indexForPurpose:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isFloating self = msg_send ~self ~cmd:(selector "isFloating") ~typ:(returning (bool))

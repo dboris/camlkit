@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardTransitionSlice"
 
-module Class = struct
+module C = struct
   let sliceWithStart x ~end_ self = msg_send ~self ~cmd:(selector "sliceWithStart:end:") ~typ:(CGRect.t @-> CGRect.t @-> returning (id)) x end_
 end
 

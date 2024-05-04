@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSExtension"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let beginMatchingExtensionsWithAttributes x ~completion self = msg_send ~self ~cmd:(selector "beginMatchingExtensionsWithAttributes:completion:") ~typ:(id @-> ptr void @-> returning (id)) x completion
   let endMatchingExtensions x self = msg_send ~self ~cmd:(selector "endMatchingExtensions:") ~typ:(id @-> returning (void)) x
@@ -26,9 +26,9 @@ let attemptOptOut x self = msg_send ~self ~cmd:(selector "attemptOptOut:") ~typ:
 let beginExtensionRequestWithInputItems x ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithInputItems:completion:") ~typ:(id @-> ptr void @-> returning (void)) x completion
 let beginExtensionRequestWithInputItems1 x ~error self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithInputItems:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let beginExtensionRequestWithInputItems2 x ~listenerEndpoint ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithInputItems:listenerEndpoint:completion:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x listenerEndpoint completion
-let beginExtensionRequestWithOptions x ~inputItems ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:completion:") ~typ:(ullong @-> id @-> ptr void @-> returning (void)) x inputItems completion
-let beginExtensionRequestWithOptions1 x ~inputItems ~error self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) x inputItems error
-let beginExtensionRequestWithOptions2 x ~inputItems ~listenerEndpoint ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:listenerEndpoint:completion:") ~typ:(ullong @-> id @-> id @-> ptr void @-> returning (void)) x inputItems listenerEndpoint completion
+let beginExtensionRequestWithOptions x ~inputItems ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:completion:") ~typ:(ullong @-> id @-> ptr void @-> returning (void)) (ULLong.of_int x) inputItems completion
+let beginExtensionRequestWithOptions1 x ~inputItems ~error self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) inputItems error
+let beginExtensionRequestWithOptions2 x ~inputItems ~listenerEndpoint ~completion self = msg_send ~self ~cmd:(selector "beginExtensionRequestWithOptions:inputItems:listenerEndpoint:completion:") ~typ:(ullong @-> id @-> id @-> ptr void @-> returning (void)) (ULLong.of_int x) inputItems listenerEndpoint completion
 let cancelExtensionRequestWithIdentifier x self = msg_send ~self ~cmd:(selector "cancelExtensionRequestWithIdentifier:") ~typ:(id @-> returning (void)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let objectForInfoDictionaryKey x self = msg_send ~self ~cmd:(selector "objectForInfoDictionaryKey:") ~typ:(id @-> returning (id)) x

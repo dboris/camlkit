@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBKeyplaneChangeContext"
 
-module Class = struct
+module C = struct
   let keyplaneChangeContext self = msg_send ~self ~cmd:(selector "keyplaneChangeContext") ~typ:(returning (id))
   let keyplaneChangeContextWithSize x self = msg_send ~self ~cmd:(selector "keyplaneChangeContextWithSize:") ~typ:(CGSize.t @-> returning (id)) x
 end

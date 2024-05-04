@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UISwipeAction"
 
-module Class = struct
-  let swipeActionWithStyle x ~title ~handler self = msg_send ~self ~cmd:(selector "swipeActionWithStyle:title:handler:") ~typ:(llong @-> id @-> ptr void @-> returning (id)) x title handler
+module C = struct
+  let swipeActionWithStyle x ~title ~handler self = msg_send ~self ~cmd:(selector "swipeActionWithStyle:title:handler:") ~typ:(llong @-> id @-> ptr void @-> returning (id)) (LLong.of_int x) title handler
 end
 
 let backgroundEffect self = msg_send ~self ~cmd:(selector "backgroundEffect") ~typ:(returning (id))

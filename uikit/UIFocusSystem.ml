@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFocusSystem"
 
-module Class = struct
+module C = struct
   let environment x ~containsEnvironment self = msg_send ~self ~cmd:(selector "environment:containsEnvironment:") ~typ:(id @-> id @-> returning (bool)) x containsEnvironment
   let focusSystemForEnvironment x self = msg_send ~self ~cmd:(selector "focusSystemForEnvironment:") ~typ:(id @-> returning (id)) x
   let registerURL x ~forSoundIdentifier self = msg_send ~self ~cmd:(selector "registerURL:forSoundIdentifier:") ~typ:(id @-> id @-> returning (void)) x forSoundIdentifier

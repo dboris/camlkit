@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRectSet"
 
-module Class = struct
+module C = struct
   let emptyRectSet self = msg_send ~self ~cmd:(selector "emptyRectSet") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -23,7 +23,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let fill self = msg_send ~self ~cmd:(selector "fill") ~typ:(returning (void))
 let fillExactInterior self = msg_send ~self ~cmd:(selector "fillExactInterior") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithCopyOfRects x ~count ~bounds self = msg_send ~self ~cmd:(selector "initWithCopyOfRects:count:bounds:") ~typ:(ptr (CGRect.t) @-> ullong @-> CGRect.t @-> returning (id)) x count bounds
+let initWithCopyOfRects x ~count ~bounds self = msg_send ~self ~cmd:(selector "initWithCopyOfRects:count:bounds:") ~typ:(ptr (CGRect.t) @-> ullong @-> CGRect.t @-> returning (id)) x (ULLong.of_int count) bounds
 let initWithRect x self = msg_send ~self ~cmd:(selector "initWithRect:") ~typ:(CGRect.t @-> returning (id)) x
 let initWithRegion x self = msg_send ~self ~cmd:(selector "initWithRegion:") ~typ:(id @-> returning (id)) x
 let intersectWithRect x self = msg_send ~self ~cmd:(selector "intersectWithRect:") ~typ:(CGRect.t @-> returning (void)) x

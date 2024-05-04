@@ -5,11 +5,12 @@ open Objc
 
 let _class_ = get_class "NSValue"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let value x ~withObjCType self = msg_send ~self ~cmd:(selector "value:withObjCType:") ~typ:(ptr (void) @-> string @-> returning (id)) x withObjCType
   let valueWithBytes x ~objCType self = msg_send ~self ~cmd:(selector "valueWithBytes:objCType:") ~typ:(ptr (void) @-> string @-> returning (id)) x objCType
+  let valueWithEdgeInsets x self = msg_send ~self ~cmd:(selector "valueWithEdgeInsets:") ~typ:(ptr void @-> returning (id)) x
   let valueWithNonretainedObject x self = msg_send ~self ~cmd:(selector "valueWithNonretainedObject:") ~typ:(id @-> returning (id)) x
   let valueWithPoint x self = msg_send ~self ~cmd:(selector "valueWithPoint:") ~typ:(CGPoint.t @-> returning (id)) x
   let valueWithPointer x self = msg_send ~self ~cmd:(selector "valueWithPointer:") ~typ:(ptr (void) @-> returning (id)) x
@@ -24,7 +25,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let getValue x self = msg_send ~self ~cmd:(selector "getValue:") ~typ:(ptr (void) @-> returning (void)) x
-let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x size
+let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x (ULLong.of_int size)
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithBytes x ~objCType self = msg_send ~self ~cmd:(selector "initWithBytes:objCType:") ~typ:(ptr (void) @-> string @-> returning (id)) x objCType

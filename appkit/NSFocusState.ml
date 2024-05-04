@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFocusState"
 
-module Class = struct
+module C = struct
   let sharedFocusState self = msg_send ~self ~cmd:(selector "sharedFocusState") ~typ:(returning (id))
 end
 

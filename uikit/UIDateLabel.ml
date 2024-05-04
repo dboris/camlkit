@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDateLabel"
 
-module Class = struct
+module C = struct
   let amString self = msg_send ~self ~cmd:(selector "amString") ~typ:(returning (id))
   let defaultFont self = msg_send ~self ~cmd:(selector "defaultFont") ~typ:(returning (id))
   let pmString self = msg_send ~self ~cmd:(selector "pmString") ~typ:(returning (id))

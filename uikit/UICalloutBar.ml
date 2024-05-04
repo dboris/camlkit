@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICalloutBar"
 
-module Class = struct
+module C = struct
   let activeCalloutBar self = msg_send ~self ~cmd:(selector "activeCalloutBar") ~typ:(returning (id))
   let fadeSharedCalloutBar self = msg_send ~self ~cmd:(selector "fadeSharedCalloutBar") ~typ:(returning (void))
   let fadeSharedCalloutBarFromTargetView x self = msg_send ~self ~cmd:(selector "fadeSharedCalloutBarFromTargetView:") ~typ:(id @-> returning (void)) x
@@ -27,7 +27,7 @@ let appearAnimationDidStopWithContext x self = msg_send ~self ~cmd:(selector "ap
 let applicationDidAddDeactivationReason x self = msg_send ~self ~cmd:(selector "applicationDidAddDeactivationReason:") ~typ:(id @-> returning (void)) x
 let arrowDirection self = msg_send ~self ~cmd:(selector "arrowDirection") ~typ:(returning (int))
 let buttonHighlighted x ~highlighted self = msg_send ~self ~cmd:(selector "buttonHighlighted:highlighted:") ~typ:(id @-> bool @-> returning (void)) x highlighted
-let buttonHovered x ~index ~hovered self = msg_send ~self ~cmd:(selector "buttonHovered:index:hovered:") ~typ:(id @-> llong @-> bool @-> returning (void)) x index hovered
+let buttonHovered x ~index ~hovered self = msg_send ~self ~cmd:(selector "buttonHovered:index:hovered:") ~typ:(id @-> llong @-> bool @-> returning (void)) x (LLong.of_int index) hovered
 let buttonPressed x self = msg_send ~self ~cmd:(selector "buttonPressed:") ~typ:(id @-> returning (void)) x
 let calculateControlFrameForCalloutSize x ~below self = msg_send ~self ~cmd:(selector "calculateControlFrameForCalloutSize:below:") ~typ:(CGSize.t @-> bool @-> returning (bool)) x below
 let calculateControlFrameForCalloutSize' x ~right self = msg_send ~self ~cmd:(selector "calculateControlFrameForCalloutSize:right:") ~typ:(CGSize.t @-> bool @-> returning (bool)) x right

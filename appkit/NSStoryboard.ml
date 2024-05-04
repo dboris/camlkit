@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStoryboard"
 
-module Class = struct
+module C = struct
   let mainStoryboard self = msg_send ~self ~cmd:(selector "mainStoryboard") ~typ:(returning (id))
   let storyboardWithName x ~bundle self = msg_send ~self ~cmd:(selector "storyboardWithName:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
 end

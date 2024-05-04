@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIStackView"
 
-module Class = struct
+module C = struct
   let layerClass self = msg_send ~self ~cmd:(selector "layerClass") ~typ:(returning (_Class))
 end
 
@@ -22,17 +22,17 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let initWithArrangedSubviews x self = msg_send ~self ~cmd:(selector "initWithArrangedSubviews:") ~typ:(id @-> returning (id)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let insertArrangedSubview x ~atIndex self = msg_send ~self ~cmd:(selector "insertArrangedSubview:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x atIndex
+let insertArrangedSubview x ~atIndex self = msg_send ~self ~cmd:(selector "insertArrangedSubview:atIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int atIndex)
 let isBaselineRelativeArrangement self = msg_send ~self ~cmd:(selector "isBaselineRelativeArrangement") ~typ:(returning (bool))
 let isLayoutMarginsRelativeArrangement self = msg_send ~self ~cmd:(selector "isLayoutMarginsRelativeArrangement") ~typ:(returning (bool))
 let removeArrangedSubview x self = msg_send ~self ~cmd:(selector "removeArrangedSubview:") ~typ:(id @-> returning (void)) x
-let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) x
+let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setArrangedSubviews x self = msg_send ~self ~cmd:(selector "setArrangedSubviews:") ~typ:(id @-> returning (void)) x
-let setAxis x self = msg_send ~self ~cmd:(selector "setAxis:") ~typ:(llong @-> returning (void)) x
+let setAxis x self = msg_send ~self ~cmd:(selector "setAxis:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBaselineRelativeArrangement x self = msg_send ~self ~cmd:(selector "setBaselineRelativeArrangement:") ~typ:(bool @-> returning (void)) x
 let setCustomSpacing x ~afterView self = msg_send ~self ~cmd:(selector "setCustomSpacing:afterView:") ~typ:(double @-> id @-> returning (void)) x afterView
-let setDistribution x self = msg_send ~self ~cmd:(selector "setDistribution:") ~typ:(llong @-> returning (void)) x
+let setDistribution x self = msg_send ~self ~cmd:(selector "setDistribution:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLayoutMarginsRelativeArrangement x self = msg_send ~self ~cmd:(selector "setLayoutMarginsRelativeArrangement:") ~typ:(bool @-> returning (void)) x
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning (void)) x
 let setSpacing x self = msg_send ~self ~cmd:(selector "setSpacing:") ~typ:(double @-> returning (void)) x

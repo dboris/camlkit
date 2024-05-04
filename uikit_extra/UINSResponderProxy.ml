@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSResponderProxy"
 
-module Class = struct
+module C = struct
   let responderProxySearchingFromAppWithTargetForAction x ~sender self = msg_send ~self ~cmd:(selector "responderProxySearchingFromAppWithTargetForAction:sender:") ~typ:(_SEL @-> id @-> returning (id)) x sender
   let responderProxySearchingFromFirstResponderWithTargetForAction x ~sender ~inputView self = msg_send ~self ~cmd:(selector "responderProxySearchingFromFirstResponderWithTargetForAction:sender:inputView:") ~typ:(_SEL @-> id @-> id @-> returning (id)) x sender inputView
   let responderProxySearchingFromWindowWithTargetForAction x ~sender ~window self = msg_send ~self ~cmd:(selector "responderProxySearchingFromWindowWithTargetForAction:sender:window:") ~typ:(_SEL @-> id @-> id @-> returning (id)) x sender window

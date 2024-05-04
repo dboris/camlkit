@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSOcclusionDetectionView"
 
-module Class = struct
+module C = struct
   let supportsEventShapeDetection self = msg_send ~self ~cmd:(selector "supportsEventShapeDetection") ~typ:(returning (bool))
 end
 
@@ -20,6 +20,7 @@ let isOccluded self = msg_send ~self ~cmd:(selector "isOccluded") ~typ:(returnin
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> ptr (void) @-> returning (void)) x ofObject change context
 let setDisableDetection x self = msg_send ~self ~cmd:(selector "setDisableDetection:") ~typ:(bool @-> returning (void)) x
 let setIgnoresWindowOcclusion x self = msg_send ~self ~cmd:(selector "setIgnoresWindowOcclusion:") ~typ:(bool @-> returning (void)) x
+let setRegionOfInterestInsets x self = msg_send ~self ~cmd:(selector "setRegionOfInterestInsets:") ~typ:(ptr void @-> returning (void)) x
 let validateNoOcclusionSinceToken x self = msg_send ~self ~cmd:(selector "validateNoOcclusionSinceToken:") ~typ:(id @-> returning (bool)) x
 let viewDidMoveToWindow self = msg_send ~self ~cmd:(selector "viewDidMoveToWindow") ~typ:(returning (void))
 let viewGeometryDidChangeNotification x self = msg_send ~self ~cmd:(selector "viewGeometryDidChangeNotification:") ~typ:(id @-> returning (void)) x

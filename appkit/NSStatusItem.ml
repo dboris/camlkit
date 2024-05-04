@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStatusItem"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingEffectiveAppearance self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingEffectiveAppearance") ~typ:(returning (id))
 end
 
@@ -34,14 +34,14 @@ let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning (doubl
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning (id))
 let popUpStatusItemMenu x self = msg_send ~self ~cmd:(selector "popUpStatusItemMenu:") ~typ:(id @-> returning (void)) x
 let screen self = msg_send ~self ~cmd:(selector "screen") ~typ:(returning (id))
-let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning (llong)) x
+let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning (llong)) (ULLong.of_int x)
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning (void)) x
 let setAllowsVibrancy x self = msg_send ~self ~cmd:(selector "setAllowsVibrancy:") ~typ:(bool @-> returning (void)) x
 let setAlternateImage x self = msg_send ~self ~cmd:(selector "setAlternateImage:") ~typ:(id @-> returning (void)) x
 let setAppearance x self = msg_send ~self ~cmd:(selector "setAppearance:") ~typ:(id @-> returning (void)) x
 let setAttributedTitle x self = msg_send ~self ~cmd:(selector "setAttributedTitle:") ~typ:(id @-> returning (void)) x
 let setAutosaveName x self = msg_send ~self ~cmd:(selector "setAutosaveName:") ~typ:(id @-> returning (void)) x
-let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(ullong @-> returning (void)) x
+let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDoubleAction x self = msg_send ~self ~cmd:(selector "setDoubleAction:") ~typ:(_SEL @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITableViewCellContentView"
 
-module Class = struct
+module C = struct
   let classFallbacksForKeyedArchiver self = msg_send ~self ~cmd:(selector "classFallbacksForKeyedArchiver") ~typ:(returning (id))
 end
 

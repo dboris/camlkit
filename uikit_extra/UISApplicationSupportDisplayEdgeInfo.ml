@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISApplicationSupportDisplayEdgeInfo"
 
-module Class = struct
+module C = struct
   let defaultDisplayEdgeInfo self = msg_send ~self ~cmd:(selector "defaultDisplayEdgeInfo") ~typ:(returning (id))
   let defaultDisplayEdgeInfoForceInsets x self = msg_send ~self ~cmd:(selector "defaultDisplayEdgeInfoForceInsets:") ~typ:(bool @-> returning (id)) x
 end

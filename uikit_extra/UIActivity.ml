@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIActivity"
 
-module Class = struct
+module C = struct
   let activityCategory self = msg_send ~self ~cmd:(selector "activityCategory") ~typ:(returning (llong))
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSDock"
 
-module Class = struct
+module C = struct
   let currentDockForDisplayConfiguration x self = msg_send ~self ~cmd:(selector "currentDockForDisplayConfiguration:") ~typ:(id @-> returning (id)) x
 end
 

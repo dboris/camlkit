@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardMediaServiceRemoteViewController"
 
-module Class = struct
+module C = struct
   let exportedInterface self = msg_send ~self ~cmd:(selector "exportedInterface") ~typ:(returning (id))
   let requestCardViewControllerWithConnectionHandler x self = msg_send ~self ~cmd:(selector "requestCardViewControllerWithConnectionHandler:") ~typ:(ptr void @-> returning (id)) x
   let requestInlineViewControllerWithConnectionHandler x self = msg_send ~self ~cmd:(selector "requestInlineViewControllerWithConnectionHandler:") ~typ:(ptr void @-> returning (id)) x

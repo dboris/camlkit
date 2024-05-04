@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorProfile"
 
-module Class = struct
+module C = struct
   let availableProfiles self = msg_send ~self ~cmd:(selector "availableProfiles") ~typ:(returning (id))
 end
 

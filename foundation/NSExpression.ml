@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSExpression"
 
-module Class = struct
+module C = struct
   let expressionForAggregate x self = msg_send ~self ~cmd:(selector "expressionForAggregate:") ~typ:(id @-> returning (id)) x
   let expressionForAnyKey self = msg_send ~self ~cmd:(selector "expressionForAnyKey") ~typ:(returning (id))
   let expressionForBlock x ~arguments self = msg_send ~self ~cmd:(selector "expressionForBlock:arguments:") ~typ:(ptr void @-> id @-> returning (id)) x arguments
@@ -29,7 +29,7 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x flags
+let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int flags)
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning (void))
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning (id))
 let collection self = msg_send ~self ~cmd:(selector "collection") ~typ:(returning (id))
@@ -43,7 +43,7 @@ let expressionValueWithObject x ~context self = msg_send ~self ~cmd:(selector "e
 let falseExpression self = msg_send ~self ~cmd:(selector "falseExpression") ~typ:(returning (id))
 let function_ self = msg_send ~self ~cmd:(selector "function") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithExpressionType x self = msg_send ~self ~cmd:(selector "initWithExpressionType:") ~typ:(ullong @-> returning (id)) x
+let initWithExpressionType x self = msg_send ~self ~cmd:(selector "initWithExpressionType:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let keyPath self = msg_send ~self ~cmd:(selector "keyPath") ~typ:(returning (id))
 let leftExpression self = msg_send ~self ~cmd:(selector "leftExpression") ~typ:(returning (id))
 let operand self = msg_send ~self ~cmd:(selector "operand") ~typ:(returning (id))

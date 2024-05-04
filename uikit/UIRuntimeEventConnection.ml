@@ -15,5 +15,5 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let eventMask self = msg_send ~self ~cmd:(selector "eventMask") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let setEventMask x self = msg_send ~self ~cmd:(selector "setEventMask:") ~typ:(ullong @-> returning (void)) x
+let setEventMask x self = msg_send ~self ~cmd:(selector "setEventMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))

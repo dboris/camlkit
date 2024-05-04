@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorGamut"
 
-module Class = struct
+module C = struct
   let emptyGamut self = msg_send ~self ~cmd:(selector "emptyGamut") ~typ:(returning (id))
   let gamutWithCGColorSpace x self = msg_send ~self ~cmd:(selector "gamutWithCGColorSpace:") ~typ:(ptr void @-> returning (id)) x
   let infiniteGamut self = msg_send ~self ~cmd:(selector "infiniteGamut") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIThreadSafeNode"
 
-module Class = struct
+module C = struct
   let threadSafeNodeWithNode x self = msg_send ~self ~cmd:(selector "threadSafeNodeWithNode:") ~typ:(id @-> returning (id)) x
 end
 

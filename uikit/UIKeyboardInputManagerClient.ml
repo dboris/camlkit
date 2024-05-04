@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardInputManagerClient"
 
-module Class = struct
+module C = struct
   let instancesRespondToSelector x self = msg_send ~self ~cmd:(selector "instancesRespondToSelector:") ~typ:(_SEL @-> returning (bool)) x
 end
 

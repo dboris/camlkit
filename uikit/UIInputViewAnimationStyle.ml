@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewAnimationStyle"
 
-module Class = struct
+module C = struct
   let animationStyleAnimated x ~duration self = msg_send ~self ~cmd:(selector "animationStyleAnimated:duration:") ~typ:(bool @-> double @-> returning (id)) x duration
   let animationStyleDefault self = msg_send ~self ~cmd:(selector "animationStyleDefault") ~typ:(returning (id))
   let animationStyleImmediate self = msg_send ~self ~cmd:(selector "animationStyleImmediate") ~typ:(returning (id))
@@ -33,7 +33,7 @@ let legacyAnimationCopy self = msg_send ~self ~cmd:(selector "legacyAnimationCop
 let setAnimated x self = msg_send ~self ~cmd:(selector "setAnimated:") ~typ:(bool @-> returning (void)) x
 let setDontMerge x self = msg_send ~self ~cmd:(selector "setDontMerge:") ~typ:(bool @-> returning (void)) x
 let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(double @-> returning (void)) x
-let setExtraOptions x self = msg_send ~self ~cmd:(selector "setExtraOptions:") ~typ:(ullong @-> returning (void)) x
+let setExtraOptions x self = msg_send ~self ~cmd:(selector "setExtraOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setForce x self = msg_send ~self ~cmd:(selector "setForce:") ~typ:(bool @-> returning (void)) x
 let setInteractivelyCancelled x self = msg_send ~self ~cmd:(selector "setInteractivelyCancelled:") ~typ:(bool @-> returning (void)) x
 let startPlacementForInputViewSet x ~currentPlacement self = msg_send ~self ~cmd:(selector "startPlacementForInputViewSet:currentPlacement:") ~typ:(id @-> id @-> returning (id)) x currentPlacement

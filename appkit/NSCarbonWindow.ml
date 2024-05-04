@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSCarbonWindow"
 
-module Class = struct
-  let frameViewClassForStyleMask x self = msg_send ~self ~cmd:(selector "frameViewClassForStyleMask:") ~typ:(ullong @-> returning (_Class)) x
-  let setWindowLevelOfWindowGroupForWindowRef x ~toLevel self = msg_send ~self ~cmd:(selector "setWindowLevelOfWindowGroupForWindowRef:toLevel:") ~typ:(ptr void @-> llong @-> returning (void)) x toLevel
+module C = struct
+  let frameViewClassForStyleMask x self = msg_send ~self ~cmd:(selector "frameViewClassForStyleMask:") ~typ:(ullong @-> returning (_Class)) (ULLong.of_int x)
+  let setWindowLevelOfWindowGroupForWindowRef x ~toLevel self = msg_send ~self ~cmd:(selector "setWindowLevelOfWindowGroupForWindowRef:toLevel:") ~typ:(ptr void @-> llong @-> returning (void)) x (LLong.of_int toLevel)
 end
 
 let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ:(returning (void))
@@ -28,10 +28,11 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let display self = msg_send ~self ~cmd:(selector "display") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let handleCarbonBoundsChange self = msg_send ~self ~cmd:(selector "handleCarbonBoundsChange") ~typ:(returning (void))
+let handleMouseDownEvent x ~at ~inPart ~withMods self = msg_send ~self ~cmd:(selector "handleMouseDownEvent:at:inPart:withMods:") ~typ:(ptr void @-> ptr void @-> short @-> uint @-> returning (int)) x at inPart withMods
 let initWithCarbonWindowRef x ~takingOwnership self = msg_send ~self ~cmd:(selector "initWithCarbonWindowRef:takingOwnership:") ~typ:(ptr void @-> bool @-> returning (id)) x takingOwnership
 let initWithCarbonWindowRef' x ~takingOwnership ~disableOrdering self = msg_send ~self ~cmd:(selector "initWithCarbonWindowRef:takingOwnership:disableOrdering:") ~typ:(ptr void @-> bool @-> bool @-> returning (id)) x takingOwnership disableOrdering
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x styleMask backing defer
+let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer
 let isExcludedFromWindowsMenu self = msg_send ~self ~cmd:(selector "isExcludedFromWindowsMenu") ~typ:(returning (bool))
 let level self = msg_send ~self ~cmd:(selector "level") ~typ:(returning (llong))
 let paste x self = msg_send ~self ~cmd:(selector "paste:") ~typ:(id @-> returning (void)) x
@@ -49,8 +50,8 @@ let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~ty
 let setCwFlags x self = msg_send ~self ~cmd:(selector "setCwFlags:") ~typ:(uint @-> returning (void)) x
 let setHasShadow x self = msg_send ~self ~cmd:(selector "setHasShadow:") ~typ:(bool @-> returning (void)) x
 let setHidesOnDeactivate x self = msg_send ~self ~cmd:(selector "setHidesOnDeactivate:") ~typ:(bool @-> returning (void)) x
-let setLevel x self = msg_send ~self ~cmd:(selector "setLevel:") ~typ:(llong @-> returning (void)) x
-let setStyleMask x self = msg_send ~self ~cmd:(selector "setStyleMask:") ~typ:(ullong @-> returning (void)) x
+let setLevel x self = msg_send ~self ~cmd:(selector "setLevel:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setStyleMask x self = msg_send ~self ~cmd:(selector "setStyleMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let startRectForSheet x self = msg_send_stret ~self ~cmd:(selector "startRectForSheet:") ~typ:(id @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let undo x self = msg_send ~self ~cmd:(selector "undo:") ~typ:(id @-> returning (void)) x
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning (bool)) x

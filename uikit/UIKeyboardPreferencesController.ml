@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardPreferencesController"
 
-module Class = struct
+module C = struct
   let sharedPreferencesController self = msg_send ~self ~cmd:(selector "sharedPreferencesController") ~typ:(returning (id))
 end
 
@@ -32,15 +32,15 @@ let preferencesControllerChanged x self = msg_send ~self ~cmd:(selector "prefere
 let respondsToSelector x self = msg_send ~self ~cmd:(selector "respondsToSelector:") ~typ:(_SEL @-> returning (bool)) x
 let rivenSizeFactor x self = msg_send ~self ~cmd:(selector "rivenSizeFactor:") ~typ:(double @-> returning (double)) x
 let saveInputModes x self = msg_send ~self ~cmd:(selector "saveInputModes:") ~typ:(id @-> returning (void)) x
-let setCompactAssistantBarPersistentLocation x self = msg_send ~self ~cmd:(selector "setCompactAssistantBarPersistentLocation:") ~typ:(llong @-> returning (void)) x
+let setCompactAssistantBarPersistentLocation x self = msg_send ~self ~cmd:(selector "setCompactAssistantBarPersistentLocation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setEnableProKeyboard x self = msg_send ~self ~cmd:(selector "setEnableProKeyboard:") ~typ:(bool @-> returning (void)) x
 let setEnabledDictationLanguages x self = msg_send ~self ~cmd:(selector "setEnabledDictationLanguages:") ~typ:(id @-> returning (void)) x
-let setHandBias x self = msg_send ~self ~cmd:(selector "setHandBias:") ~typ:(llong @-> returning (void)) x
+let setHandBias x self = msg_send ~self ~cmd:(selector "setHandBias:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLanguageAwareInputModeLastUsed x self = msg_send ~self ~cmd:(selector "setLanguageAwareInputModeLastUsed:") ~typ:(id @-> returning (void)) x
 let setLastUsedDictationLanguages x self = msg_send ~self ~cmd:(selector "setLastUsedDictationLanguages:") ~typ:(id @-> returning (void)) x
 let setValue x ~forKey self = msg_send ~self ~cmd:(selector "setValue:forKey:") ~typ:(id @-> int @-> returning (void)) x forKey
 let setValue' x ~forPreferenceKey self = msg_send ~self ~cmd:(selector "setValue:forPreferenceKey:") ~typ:(id @-> id @-> returning (void)) x forPreferenceKey
-let setVisceral x self = msg_send ~self ~cmd:(selector "setVisceral:") ~typ:(llong @-> returning (void)) x
+let setVisceral x self = msg_send ~self ~cmd:(selector "setVisceral:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let spaceConfirmationEnabled self = msg_send ~self ~cmd:(selector "spaceConfirmationEnabled") ~typ:(returning (bool))
 let synchronizePreferences self = msg_send ~self ~cmd:(selector "synchronizePreferences") ~typ:(returning (void))
 let touchSynchronizePreferencesTimer self = msg_send ~self ~cmd:(selector "touchSynchronizePreferencesTimer") ~typ:(returning (void))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptPropertyDescription"
 
-module Class = struct
+module C = struct
   let propertyDescriptionFromKey x ~implDeclaration ~presoDeclaration ~suiteName ~className self = msg_send ~self ~cmd:(selector "propertyDescriptionFromKey:implDeclaration:presoDeclaration:suiteName:className:") ~typ:(id @-> id @-> id @-> id @-> id @-> returning (id)) x implDeclaration presoDeclaration suiteName className
 end
 
@@ -18,7 +18,7 @@ let appleEventCode self = msg_send ~self ~cmd:(selector "appleEventCode") ~typ:(
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let fullTypeName self = msg_send ~self ~cmd:(selector "fullTypeName") ~typ:(returning (id))
-let initWithKey x ~type_ ~access ~isHidden ~accessGroupDescriptions self = msg_send ~self ~cmd:(selector "initWithKey:type:access:isHidden:accessGroupDescriptions:") ~typ:(id @-> id @-> ullong @-> bool @-> id @-> returning (id)) x type_ access isHidden accessGroupDescriptions
+let initWithKey x ~type_ ~access ~isHidden ~accessGroupDescriptions self = msg_send ~self ~cmd:(selector "initWithKey:type:access:isHidden:accessGroupDescriptions:") ~typ:(id @-> id @-> ullong @-> bool @-> id @-> returning (id)) x type_ (ULLong.of_int access) isHidden accessGroupDescriptions
 let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning (bool))
 let key self = msg_send ~self ~cmd:(selector "key") ~typ:(returning (id))
 let matchesAppleEventCode x self = msg_send ~self ~cmd:(selector "matchesAppleEventCode:") ~typ:(uint @-> returning (bool)) x

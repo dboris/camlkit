@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIManagedDocument"
 
-module Class = struct
+module C = struct
   let additionalContentPathComponent self = msg_send ~self ~cmd:(selector "additionalContentPathComponent") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let isPersistentStoreSynchronizedViaUbiquitousContentWithOptions x self = msg_send ~self ~cmd:(selector "isPersistentStoreSynchronizedViaUbiquitousContentWithOptions:") ~typ:(id @-> returning (bool)) x
@@ -31,5 +31,5 @@ let revertToContentsOfURL x ~completionHandler self = msg_send ~self ~cmd:(selec
 let setModelConfiguration x self = msg_send ~self ~cmd:(selector "setModelConfiguration:") ~typ:(id @-> returning (void)) x
 let setPersistentStoreOptions x self = msg_send ~self ~cmd:(selector "setPersistentStoreOptions:") ~typ:(id @-> returning (void)) x
 let writeAdditionalContent x ~toURL ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeAdditionalContent:toURL:originalContentsURL:error:") ~typ:(id @-> id @-> id @-> ptr (id) @-> returning (bool)) x toURL originalContentsURL error
-let writeContents x ~andAttributes ~safelyToURL ~forSaveOperation ~error self = msg_send ~self ~cmd:(selector "writeContents:andAttributes:safelyToURL:forSaveOperation:error:") ~typ:(id @-> id @-> id @-> llong @-> ptr (id) @-> returning (bool)) x andAttributes safelyToURL forSaveOperation error
-let writeContents' x ~toURL ~forSaveOperation ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeContents:toURL:forSaveOperation:originalContentsURL:error:") ~typ:(id @-> id @-> llong @-> id @-> ptr (id) @-> returning (bool)) x toURL forSaveOperation originalContentsURL error
+let writeContents x ~andAttributes ~safelyToURL ~forSaveOperation ~error self = msg_send ~self ~cmd:(selector "writeContents:andAttributes:safelyToURL:forSaveOperation:error:") ~typ:(id @-> id @-> id @-> llong @-> ptr (id) @-> returning (bool)) x andAttributes safelyToURL (LLong.of_int forSaveOperation) error
+let writeContents' x ~toURL ~forSaveOperation ~originalContentsURL ~error self = msg_send ~self ~cmd:(selector "writeContents:toURL:forSaveOperation:originalContentsURL:error:") ~typ:(id @-> id @-> llong @-> id @-> ptr (id) @-> returning (bool)) x toURL (LLong.of_int forSaveOperation) originalContentsURL error

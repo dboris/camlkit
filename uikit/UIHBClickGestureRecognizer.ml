@@ -16,5 +16,5 @@ let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCha
 let pressesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "pressesEnded:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let pressesEventDidReceiveTerminal x self = msg_send ~self ~cmd:(selector "pressesEventDidReceiveTerminal:") ~typ:(id @-> returning (void)) x
 let recognizesOnPressPhaseBegan self = msg_send ~self ~cmd:(selector "recognizesOnPressPhaseBegan") ~typ:(returning (bool))
-let setClickCount x self = msg_send ~self ~cmd:(selector "setClickCount:") ~typ:(ullong @-> returning (void)) x
+let setClickCount x self = msg_send ~self ~cmd:(selector "setClickCount:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRecognizesOnPressPhaseBegan x self = msg_send ~self ~cmd:(selector "setRecognizesOnPressPhaseBegan:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarEscapeKeyViewController"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingPreferredSize self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingPreferredSize") ~typ:(returning (id))
 end
 

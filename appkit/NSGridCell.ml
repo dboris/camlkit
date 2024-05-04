@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSGridCell"
 
-module Class = struct
+module C = struct
   let emptyContentView self = msg_send ~self ~cmd:(selector "emptyContentView") ~typ:(returning (id))
 end
 
@@ -26,8 +26,8 @@ let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning (id))
 let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(returning (llong))
 let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~typ:(id @-> returning (void)) x
 let setCustomPlacementConstraints x self = msg_send ~self ~cmd:(selector "setCustomPlacementConstraints:") ~typ:(id @-> returning (void)) x
-let setRowAlignment x self = msg_send ~self ~cmd:(selector "setRowAlignment:") ~typ:(llong @-> returning (void)) x
-let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning (void)) x
-let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning (void)) x
+let setRowAlignment x self = msg_send ~self ~cmd:(selector "setRowAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning (llong))
 let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning (llong))

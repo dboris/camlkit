@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFormCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -52,12 +52,12 @@ let setPlaceholderAttributedString x self = msg_send ~self ~cmd:(selector "setPl
 let setPlaceholderString x self = msg_send ~self ~cmd:(selector "setPlaceholderString:") ~typ:(id @-> returning (void)) x
 let setPreferredTextFieldWidth x self = msg_send ~self ~cmd:(selector "setPreferredTextFieldWidth:") ~typ:(double @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
-let setTitleAlignment x self = msg_send ~self ~cmd:(selector "setTitleAlignment:") ~typ:(llong @-> returning (void)) x
-let setTitleBaseWritingDirection x self = msg_send ~self ~cmd:(selector "setTitleBaseWritingDirection:") ~typ:(llong @-> returning (void)) x
+let setTitleAlignment x self = msg_send ~self ~cmd:(selector "setTitleAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setTitleBaseWritingDirection x self = msg_send ~self ~cmd:(selector "setTitleBaseWritingDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTitleFont x self = msg_send ~self ~cmd:(selector "setTitleFont:") ~typ:(id @-> returning (void)) x
 let setTitleWidth x self = msg_send ~self ~cmd:(selector "setTitleWidth:") ~typ:(double @-> returning (void)) x
 let setTitleWithMnemonic x self = msg_send ~self ~cmd:(selector "setTitleWithMnemonic:") ~typ:(id @-> returning (void)) x
-let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning (id))
 let titleAlignment self = msg_send ~self ~cmd:(selector "titleAlignment") ~typ:(returning (llong))
 let titleBaseWritingDirection self = msg_send ~self ~cmd:(selector "titleBaseWritingDirection") ~typ:(returning (llong))

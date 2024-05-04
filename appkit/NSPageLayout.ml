@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPageLayout"
 
-module Class = struct
+module C = struct
   let pageLayout self = msg_send ~self ~cmd:(selector "pageLayout") ~typ:(returning (id))
 end
 

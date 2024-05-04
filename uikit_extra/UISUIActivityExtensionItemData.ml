@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISUIActivityExtensionItemData"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -29,6 +29,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let itemProviderOrExtensionItemWithMetadataToUUID self = msg_send ~self ~cmd:(selector "itemProviderOrExtensionItemWithMetadataToUUID") ~typ:(returning (ptr void))
 let openURLAnnotationsByURL self = msg_send ~self ~cmd:(selector "openURLAnnotationsByURL") ~typ:(returning (id))
+let prepareForSendingAsCompletionToHostWithAuditToken x self = msg_send ~self ~cmd:(selector "prepareForSendingAsCompletionToHostWithAuditToken:") ~typ:(ptr void @-> returning (void)) x
 let prepareForSendingToExtension x self = msg_send ~self ~cmd:(selector "prepareForSendingToExtension:") ~typ:(id @-> returning (void)) x
 let previewImageDataByItemUUID self = msg_send ~self ~cmd:(selector "previewImageDataByItemUUID") ~typ:(returning (id))
 let previewImageDataForItem x self = msg_send ~self ~cmd:(selector "previewImageDataForItem:") ~typ:(id @-> returning (id)) x

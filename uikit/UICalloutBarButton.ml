@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICalloutBarButton"
 
-module Class = struct
+module C = struct
   let buttonWithImage x ~action ~type_ ~inView self = msg_send ~self ~cmd:(selector "buttonWithImage:action:type:inView:") ~typ:(id @-> _SEL @-> int @-> id @-> returning (id)) x action type_ inView
   let buttonWithTitle x ~action ~type_ ~inView self = msg_send ~self ~cmd:(selector "buttonWithTitle:action:type:inView:") ~typ:(id @-> _SEL @-> int @-> id @-> returning (id)) x action type_ inView
   let buttonWithTitle1 x ~image ~action ~type_ ~inView self = msg_send ~self ~cmd:(selector "buttonWithTitle:image:action:type:inView:") ~typ:(id @-> id @-> _SEL @-> int @-> id @-> returning (id)) x image action type_ inView
@@ -49,7 +49,7 @@ let setDontDismiss x self = msg_send ~self ~cmd:(selector "setDontDismiss:") ~ty
 let setForceFlash x self = msg_send ~self ~cmd:(selector "setForceFlash:") ~typ:(bool @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setImageVerticalAdjust x self = msg_send ~self ~cmd:(selector "setImageVerticalAdjust:") ~typ:(double @-> returning (void)) x
-let setPage x self = msg_send ~self ~cmd:(selector "setPage:") ~typ:(llong @-> returning (void)) x
+let setPage x self = msg_send ~self ~cmd:(selector "setPage:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTextReplacement x self = msg_send ~self ~cmd:(selector "setTextReplacement:") ~typ:(id @-> returning (void)) x
 let setupWithImage x ~action ~type_ self = msg_send ~self ~cmd:(selector "setupWithImage:action:type:") ~typ:(id @-> _SEL @-> int @-> returning (void)) x action type_
 let setupWithTitle x ~action ~type_ self = msg_send ~self ~cmd:(selector "setupWithTitle:action:type:") ~typ:(id @-> _SEL @-> int @-> returning (void)) x action type_

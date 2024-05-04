@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarClippedItemsIndicator"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let isItemShownInPopupIfSoleEntry x self = msg_send ~self ~cmd:(selector "isItemShownInPopupIfSoleEntry:") ~typ:(id @-> returning (bool)) x
   let isMenuItemValidForDisplayInPopUp x self = msg_send ~self ~cmd:(selector "isMenuItemValidForDisplayInPopUp:") ~typ:(id @-> returning (bool)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextFormattingCoordinator"
 
-module Class = struct
+module C = struct
   let isFontPanelVisible self = msg_send ~self ~cmd:(selector "isFontPanelVisible") ~typ:(returning (bool))
   let textFormattingCoordinatorForWindowScene x self = msg_send ~self ~cmd:(selector "textFormattingCoordinatorForWindowScene:") ~typ:(id @-> returning (id)) x
   let toggleFontPanel x self = msg_send ~self ~cmd:(selector "toggleFontPanel:") ~typ:(id @-> returning (void)) x

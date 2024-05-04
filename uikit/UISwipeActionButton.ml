@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwipeActionButton"
 
-module Class = struct
+module C = struct
   let defaultButtonWidth self = msg_send ~self ~cmd:(selector "defaultButtonWidth") ~typ:(returning (double))
   let titleFont self = msg_send ~self ~cmd:(selector "titleFont") ~typ:(returning (id))
   let titleFontOfSize x self = msg_send ~self ~cmd:(selector "titleFontOfSize:") ~typ:(double @-> returning (id)) x
@@ -26,6 +26,6 @@ let setBackgroundView x self = msg_send ~self ~cmd:(selector "setBackgroundView:
 let setDefaultBackgroundColor x self = msg_send ~self ~cmd:(selector "setDefaultBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setHighlightedBackgroundColor x self = msg_send ~self ~cmd:(selector "setHighlightedBackgroundColor:") ~typ:(id @-> returning (void)) x
-let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let sourceView self = msg_send ~self ~cmd:(selector "sourceView") ~typ:(returning (id))
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning (void)) x

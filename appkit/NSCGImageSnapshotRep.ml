@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGImageSnapshotRep"
 
-module Class = struct
+module C = struct
   let classFallbacksForKeyedArchiver self = msg_send ~self ~cmd:(selector "classFallbacksForKeyedArchiver") ~typ:(returning (id))
   let lockFocusForCreatingCGImageWithRect x ~context ~hints ~flipped self = msg_send ~self ~cmd:(selector "lockFocusForCreatingCGImageWithRect:context:hints:flipped:") ~typ:(CGRect.t @-> id @-> id @-> bool @-> returning (void)) x context hints flipped
   let lockFocusForCreatingSnapshotWithRect x ~context ~hints ~flipped self = msg_send ~self ~cmd:(selector "lockFocusForCreatingSnapshotWithRect:context:hints:flipped:") ~typ:(CGRect.t @-> id @-> id @-> bool @-> returning (void)) x context hints flipped

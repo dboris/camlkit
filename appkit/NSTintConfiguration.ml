@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTintConfiguration"
 
-module Class = struct
+module C = struct
   let defaultTintConfiguration self = msg_send ~self ~cmd:(selector "defaultTintConfiguration") ~typ:(returning (id))
   let monochromeTintConfiguration self = msg_send ~self ~cmd:(selector "monochromeTintConfiguration") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

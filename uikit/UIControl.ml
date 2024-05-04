@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIControl"
 
-let actionsForTarget x ~forControlEvent self = msg_send ~self ~cmd:(selector "actionsForTarget:forControlEvent:") ~typ:(id @-> ullong @-> returning (id)) x forControlEvent
-let addAction x ~forControlEvents self = msg_send ~self ~cmd:(selector "addAction:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x forControlEvents
-let addTarget x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning (void)) x action forControlEvents
+let actionsForTarget x ~forControlEvent self = msg_send ~self ~cmd:(selector "actionsForTarget:forControlEvent:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int forControlEvent)
+let addAction x ~forControlEvents self = msg_send ~self ~cmd:(selector "addAction:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forControlEvents)
+let addTarget x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning (void)) x action (ULLong.of_int forControlEvents)
 let addTarget' x ~action ~forEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forEvents:") ~typ:(id @-> _SEL @-> int @-> returning (void)) x action forEvents
 let allControlEvents self = msg_send ~self ~cmd:(selector "allControlEvents") ~typ:(returning (ullong))
 let allTargets self = msg_send ~self ~cmd:(selector "allTargets") ~typ:(returning (id))
@@ -54,16 +54,16 @@ let menuAttachmentPointForConfiguration x self = msg_send_stret ~self ~cmd:(sele
 let pointMostlyInside x ~withEvent self = msg_send ~self ~cmd:(selector "pointMostlyInside:withEvent:") ~typ:(CGPoint.t @-> id @-> returning (bool)) x withEvent
 let pointerInteraction self = msg_send ~self ~cmd:(selector "pointerInteraction") ~typ:(returning (id))
 let pointerInteraction' x ~regionForRequest ~defaultRegion self = msg_send ~self ~cmd:(selector "pointerInteraction:regionForRequest:defaultRegion:") ~typ:(id @-> id @-> id @-> returning (id)) x regionForRequest defaultRegion
-let removeAction x ~forControlEvents self = msg_send ~self ~cmd:(selector "removeAction:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x forControlEvents
-let removeActionForIdentifier x ~forControlEvents self = msg_send ~self ~cmd:(selector "removeActionForIdentifier:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x forControlEvents
+let removeAction x ~forControlEvents self = msg_send ~self ~cmd:(selector "removeAction:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forControlEvents)
+let removeActionForIdentifier x ~forControlEvents self = msg_send ~self ~cmd:(selector "removeActionForIdentifier:forControlEvents:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forControlEvents)
 let removeTarget x ~forEvents self = msg_send ~self ~cmd:(selector "removeTarget:forEvents:") ~typ:(id @-> int @-> returning (void)) x forEvents
-let removeTarget' x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "removeTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning (void)) x action forControlEvents
+let removeTarget' x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "removeTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning (void)) x action (ULLong.of_int forControlEvents)
 let requiresDisplayOnTracking self = msg_send ~self ~cmd:(selector "requiresDisplayOnTracking") ~typ:(returning (bool))
 let sendAction x self = msg_send ~self ~cmd:(selector "sendAction:") ~typ:(id @-> returning (void)) x
 let sendAction' x ~to_ ~forEvent self = msg_send ~self ~cmd:(selector "sendAction:to:forEvent:") ~typ:(_SEL @-> id @-> id @-> returning (void)) x to_ forEvent
-let sendActionsForControlEvents x self = msg_send ~self ~cmd:(selector "sendActionsForControlEvents:") ~typ:(ullong @-> returning (void)) x
-let setContentHorizontalAlignment x self = msg_send ~self ~cmd:(selector "setContentHorizontalAlignment:") ~typ:(llong @-> returning (void)) x
-let setContentVerticalAlignment x self = msg_send ~self ~cmd:(selector "setContentVerticalAlignment:") ~typ:(llong @-> returning (void)) x
+let sendActionsForControlEvents x self = msg_send ~self ~cmd:(selector "sendActionsForControlEvents:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setContentHorizontalAlignment x self = msg_send ~self ~cmd:(selector "setContentHorizontalAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setContentVerticalAlignment x self = msg_send ~self ~cmd:(selector "setContentVerticalAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setContextMenuEnabled x self = msg_send ~self ~cmd:(selector "setContextMenuEnabled:") ~typ:(bool @-> returning (void)) x
 let setContextMenuInteractionEnabled x self = msg_send ~self ~cmd:(selector "setContextMenuInteractionEnabled:") ~typ:(bool @-> returning (void)) x
 let setContextMenuIsPrimary x self = msg_send ~self ~cmd:(selector "setContextMenuIsPrimary:") ~typ:(bool @-> returning (void)) x

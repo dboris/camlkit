@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKTextInputWindowController"
 
-module Class = struct
+module C = struct
   let sharedTextInputWindowController self = msg_send ~self ~cmd:(selector "sharedTextInputWindowController") ~typ:(returning (id))
 end
 

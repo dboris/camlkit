@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITableViewRow"
 
-module Class = struct
+module C = struct
   let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning (id))
 end
 
@@ -19,4 +19,4 @@ let indentationLevel self = msg_send ~self ~cmd:(selector "indentationLevel") ~t
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let setCell x self = msg_send ~self ~cmd:(selector "setCell:") ~typ:(id @-> returning (void)) x
 let setHeight x self = msg_send ~self ~cmd:(selector "setHeight:") ~typ:(double @-> returning (void)) x
-let setIndentationLevel x self = msg_send ~self ~cmd:(selector "setIndentationLevel:") ~typ:(llong @-> returning (void)) x
+let setIndentationLevel x self = msg_send ~self ~cmd:(selector "setIndentationLevel:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

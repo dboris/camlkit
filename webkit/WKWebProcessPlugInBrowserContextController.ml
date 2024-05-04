@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebProcessPlugInBrowserContextController"
 
-module Class = struct
+module C = struct
   let lookUpBrowsingContextFromHandle x self = msg_send ~self ~cmd:(selector "lookUpBrowsingContextFromHandle:") ~typ:(id @-> returning (id)) x
 end
 

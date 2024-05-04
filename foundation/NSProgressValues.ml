@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSProgressValues"
 
-module Class = struct
+module C = struct
   let decodableClasses self = msg_send ~self ~cmd:(selector "decodableClasses") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
@@ -20,9 +20,9 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isFinished self = msg_send ~self ~cmd:(selector "isFinished") ~typ:(returning (bool))
 let isIndeterminate self = msg_send ~self ~cmd:(selector "isIndeterminate") ~typ:(returning (bool))
-let setCompletedUnitCount x self = msg_send ~self ~cmd:(selector "setCompletedUnitCount:") ~typ:(llong @-> returning (void)) x
+let setCompletedUnitCount x self = msg_send ~self ~cmd:(selector "setCompletedUnitCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFinished x self = msg_send ~self ~cmd:(selector "setFinished:") ~typ:(bool @-> returning (void)) x
 let setFractionCompleted x self = msg_send ~self ~cmd:(selector "setFractionCompleted:") ~typ:(double @-> returning (void)) x
 let setIndeterminate x self = msg_send ~self ~cmd:(selector "setIndeterminate:") ~typ:(bool @-> returning (void)) x
-let setTotalUnitCount x self = msg_send ~self ~cmd:(selector "setTotalUnitCount:") ~typ:(llong @-> returning (void)) x
+let setTotalUnitCount x self = msg_send ~self ~cmd:(selector "setTotalUnitCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let totalUnitCount self = msg_send ~self ~cmd:(selector "totalUnitCount") ~typ:(returning (llong))

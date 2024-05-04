@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSHidManager"
 
-module Class = struct
+module C = struct
   let sharedHidManager self = msg_send ~self ~cmd:(selector "sharedHidManager") ~typ:(returning (id))
 end
 

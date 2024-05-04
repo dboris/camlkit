@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFocusRingManager"
 
-module Class = struct
+module C = struct
   let focusRingAvailable self = msg_send ~self ~cmd:(selector "focusRingAvailable") ~typ:(returning (bool))
   let manager self = msg_send ~self ~cmd:(selector "manager") ~typ:(returning (id))
   let moveRingToFocusItem x self = msg_send ~self ~cmd:(selector "moveRingToFocusItem:") ~typ:(id @-> returning (void)) x

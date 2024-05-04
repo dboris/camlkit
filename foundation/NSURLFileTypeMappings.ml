@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSURLFileTypeMappings"
 
-module Class = struct
+module C = struct
   let sharedMappings self = msg_send ~self ~cmd:(selector "sharedMappings") ~typ:(returning (id))
 end
 

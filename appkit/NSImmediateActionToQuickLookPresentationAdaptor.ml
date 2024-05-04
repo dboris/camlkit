@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSImmediateActionToQuickLookPresentationAdaptor"
 
-module Class = struct
+module C = struct
   let isForceClickPossibleFromEvent x self = msg_send ~self ~cmd:(selector "isForceClickPossibleFromEvent:") ~typ:(id @-> returning (bool)) x
 end
 
@@ -23,7 +23,7 @@ let presentQuickLookInView x self = msg_send ~self ~cmd:(selector "presentQuickL
 let presentationState self = msg_send ~self ~cmd:(selector "presentationState") ~typ:(returning (llong))
 let setAnimationController x self = msg_send ~self ~cmd:(selector "setAnimationController:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setPresentationState x self = msg_send ~self ~cmd:(selector "setPresentationState:") ~typ:(llong @-> returning (void)) x
+let setPresentationState x self = msg_send ~self ~cmd:(selector "setPresentationState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

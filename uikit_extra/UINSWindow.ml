@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSWindow"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingContentLayoutGuide self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingContentLayoutGuide") ~typ:(returning (id))
 end
 

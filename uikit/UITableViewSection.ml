@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITableViewSection"
 
-module Class = struct
+module C = struct
   let sectionWithRows x self = msg_send ~self ~cmd:(selector "sectionWithRows:") ~typ:(id @-> returning (id)) x
 end
 

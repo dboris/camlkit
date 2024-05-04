@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSBundle"
 
-module Class = struct
+module C = struct
   let _URLForResource x ~withExtension ~subdirectory ~inBundleWithURL self = msg_send ~self ~cmd:(selector "URLForResource:withExtension:subdirectory:inBundleWithURL:") ~typ:(id @-> id @-> id @-> id @-> returning (id)) x withExtension subdirectory inBundleWithURL
   let _URLsForResourcesWithExtension x ~subdirectory ~inBundleWithURL self = msg_send ~self ~cmd:(selector "URLsForResourcesWithExtension:subdirectory:inBundleWithURL:") ~typ:(id @-> id @-> id @-> returning (id)) x subdirectory inBundleWithURL
   let allBundles self = msg_send ~self ~cmd:(selector "allBundles") ~typ:(returning (id))
@@ -16,7 +16,7 @@ module Class = struct
   let bundleWithURL x self = msg_send ~self ~cmd:(selector "bundleWithURL:") ~typ:(id @-> returning (id)) x
   let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
   let findBundleResourceURLsCallingMethod x ~baseURL ~passingTest self = msg_send ~self ~cmd:(selector "findBundleResourceURLsCallingMethod:baseURL:passingTest:") ~typ:(_SEL @-> id @-> ptr void @-> returning (id)) x baseURL passingTest
-  let findBundleResources x ~callingMethod ~directory ~languages ~name ~types ~limit self = msg_send ~self ~cmd:(selector "findBundleResources:callingMethod:directory:languages:name:types:limit:") ~typ:(id @-> _SEL @-> id @-> id @-> id @-> id @-> ullong @-> returning (id)) x callingMethod directory languages name types limit
+  let findBundleResources x ~callingMethod ~directory ~languages ~name ~types ~limit self = msg_send ~self ~cmd:(selector "findBundleResources:callingMethod:directory:languages:name:types:limit:") ~typ:(id @-> _SEL @-> id @-> id @-> id @-> id @-> ullong @-> returning (id)) x callingMethod directory languages name types (ULLong.of_int limit)
   let loadedBundles self = msg_send ~self ~cmd:(selector "loadedBundles") ~typ:(returning (id))
   let mainBundle self = msg_send ~self ~cmd:(selector "mainBundle") ~typ:(returning (id))
   let pathForResource x ~ofType ~inDirectory self = msg_send ~self ~cmd:(selector "pathForResource:ofType:inDirectory:") ~typ:(id @-> id @-> id @-> returning (id)) x ofType inDirectory

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSUserDefaultsController"
 
-module Class = struct
+module C = struct
   let sharedUserDefaultsController self = msg_send ~self ~cmd:(selector "sharedUserDefaultsController") ~typ:(returning (id))
 end
 

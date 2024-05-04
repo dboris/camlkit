@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSURLKeyValuePair"
 
-module Class = struct
+module C = struct
   let pair self = msg_send ~self ~cmd:(selector "pair") ~typ:(returning (id))
   let pairWithKey x ~value self = msg_send ~self ~cmd:(selector "pairWithKey:value:") ~typ:(id @-> id @-> returning (id)) x value
 end

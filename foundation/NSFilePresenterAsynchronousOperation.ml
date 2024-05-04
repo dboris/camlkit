@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFilePresenterAsynchronousOperation"
 
-module Class = struct
+module C = struct
   let operationWithBlock x self = msg_send ~self ~cmd:(selector "operationWithBlock:") ~typ:(ptr void @-> returning (id)) x
 end
 

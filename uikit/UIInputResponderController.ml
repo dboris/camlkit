@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "UIInputResponderController"
 
-module Class = struct
+module C = struct
   let activeInputResponderController self = msg_send ~self ~cmd:(selector "activeInputResponderController") ~typ:(returning (id))
   let interfaceOrientation self = msg_send ~self ~cmd:(selector "interfaceOrientation") ~typ:(returning (llong))
   let performOnControllers x self = msg_send ~self ~cmd:(selector "performOnControllers:") ~typ:(ptr void @-> returning (void)) x
-  let setInterfaceOrientation x self = msg_send ~self ~cmd:(selector "setInterfaceOrientation:") ~typ:(llong @-> returning (void)) x
+  let setInterfaceOrientation x self = msg_send ~self ~cmd:(selector "setInterfaceOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 end
 
 let addVisibilityObserver x self = msg_send ~self ~cmd:(selector "addVisibilityObserver:") ~typ:(id @-> returning (void)) x

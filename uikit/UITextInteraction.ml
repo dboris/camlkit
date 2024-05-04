@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UITextInteraction"
 
-module Class = struct
-  let textInteractionForMode x self = msg_send ~self ~cmd:(selector "textInteractionForMode:") ~typ:(llong @-> returning (id)) x
-  let textInteractionsForSet x self = msg_send ~self ~cmd:(selector "textInteractionsForSet:") ~typ:(llong @-> returning (id)) x
+module C = struct
+  let textInteractionForMode x self = msg_send ~self ~cmd:(selector "textInteractionForMode:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+  let textInteractionsForSet x self = msg_send ~self ~cmd:(selector "textInteractionsForSet:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 end
 
 let addChild x self = msg_send ~self ~cmd:(selector "addChild:") ~typ:(id @-> returning (void)) x

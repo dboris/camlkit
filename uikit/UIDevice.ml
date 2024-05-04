@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDevice"
 
-module Class = struct
+module C = struct
   let currentDevice self = msg_send ~self ~cmd:(selector "currentDevice") ~typ:(returning (id))
   let currentDeviceOrientationAllowingAmbiguous x self = msg_send ~self ~cmd:(selector "currentDeviceOrientationAllowingAmbiguous:") ~typ:(bool @-> returning (llong)) x
   let modelSpecificLocalizedStringKeyForKey x self = msg_send ~self ~cmd:(selector "modelSpecificLocalizedStringKeyForKey:") ~typ:(id @-> returning (id)) x
@@ -33,8 +33,8 @@ let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(return
 let playInputClick self = msg_send ~self ~cmd:(selector "playInputClick") ~typ:(returning (void))
 let proximityState self = msg_send ~self ~cmd:(selector "proximityState") ~typ:(returning (bool))
 let setBatteryMonitoringEnabled x self = msg_send ~self ~cmd:(selector "setBatteryMonitoringEnabled:") ~typ:(bool @-> returning (void)) x
-let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) x
-let setOrientation' x ~animated self = msg_send ~self ~cmd:(selector "setOrientation:animated:") ~typ:(llong @-> bool @-> returning (void)) x animated
+let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setOrientation' x ~animated self = msg_send ~self ~cmd:(selector "setOrientation:animated:") ~typ:(llong @-> bool @-> returning (void)) (LLong.of_int x) animated
 let setProximityMonitoringEnabled x self = msg_send ~self ~cmd:(selector "setProximityMonitoringEnabled:") ~typ:(bool @-> returning (void)) x
 let systemName self = msg_send ~self ~cmd:(selector "systemName") ~typ:(returning (id))
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning (id))

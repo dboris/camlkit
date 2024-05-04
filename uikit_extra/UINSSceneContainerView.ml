@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSSceneContainerView"
 
-module Class = struct
+module C = struct
   let requiresConstraintBasedLayout self = msg_send ~self ~cmd:(selector "requiresConstraintBasedLayout") ~typ:(returning (bool))
 end
 

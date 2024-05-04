@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDimmingView"
 
-module Class = struct
+module C = struct
   let defaultDimmingColor self = msg_send ~self ~cmd:(selector "defaultDimmingColor") ~typ:(returning (id))
 end
 

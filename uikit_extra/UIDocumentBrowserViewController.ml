@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDocumentBrowserViewController"
 
-module Class = struct
+module C = struct
   let placeholderURLForDownloadsFolder self = msg_send ~self ~cmd:(selector "placeholderURLForDownloadsFolder") ~typ:(returning (id))
 end
 
@@ -56,8 +56,8 @@ let failedToImportDocumentAtURL x ~error self = msg_send ~self ~cmd:(selector "f
 let forwardHostSceneIdentifier x self = msg_send ~self ~cmd:(selector "forwardHostSceneIdentifier:") ~typ:(id @-> returning (void)) x
 let getTrackingViews x ~remoteButtons ~fromBarButtons self = msg_send ~self ~cmd:(selector "getTrackingViews:remoteButtons:fromBarButtons:") ~typ:(ptr (id) @-> ptr (id) @-> id @-> returning (void)) x remoteButtons fromBarButtons
 let importDocumentAtURL x ~byMoving ~toCurrentBrowserLocationWithCompletion self = msg_send ~self ~cmd:(selector "importDocumentAtURL:byMoving:toCurrentBrowserLocationWithCompletion:") ~typ:(id @-> bool @-> ptr void @-> returning (void)) x byMoving toCurrentBrowserLocationWithCompletion
-let importDocumentAtURL1 x ~mode ~toCurrentBrowserLocationWithCompletion self = msg_send ~self ~cmd:(selector "importDocumentAtURL:mode:toCurrentBrowserLocationWithCompletion:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x mode toCurrentBrowserLocationWithCompletion
-let importDocumentAtURL2 x ~nextToDocumentAtURL ~mode ~completionHandler self = msg_send ~self ~cmd:(selector "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x nextToDocumentAtURL mode completionHandler
+let importDocumentAtURL1 x ~mode ~toCurrentBrowserLocationWithCompletion self = msg_send ~self ~cmd:(selector "importDocumentAtURL:mode:toCurrentBrowserLocationWithCompletion:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x (ULLong.of_int mode) toCurrentBrowserLocationWithCompletion
+let importDocumentAtURL2 x ~nextToDocumentAtURL ~mode ~completionHandler self = msg_send ~self ~cmd:(selector "importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x nextToDocumentAtURL (ULLong.of_int mode) completionHandler
 let inBrowserTintColor self = msg_send ~self ~cmd:(selector "inBrowserTintColor") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initForOpeningContentTypes x self = msg_send ~self ~cmd:(selector "initForOpeningContentTypes:") ~typ:(id @-> returning (id)) x
@@ -73,7 +73,7 @@ let localizedCreateDocumentActionTitle self = msg_send ~self ~cmd:(selector "loc
 let performKeyCommandNoOpOnHostSide x self = msg_send ~self ~cmd:(selector "performKeyCommandNoOpOnHostSide:") ~typ:(id @-> returning (void)) x
 let preferredStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredStatusBarStyle") ~typ:(returning (llong))
 let prepareItems x ~usingBookmark ~completionBlock self = msg_send ~self ~cmd:(selector "prepareItems:usingBookmark:completionBlock:") ~typ:(id @-> bool @-> ptr void @-> returning (void)) x usingBookmark completionBlock
-let prepareItems' x ~forMode ~usingBookmark ~completionBlock self = msg_send ~self ~cmd:(selector "prepareItems:forMode:usingBookmark:completionBlock:") ~typ:(id @-> ullong @-> bool @-> ptr void @-> returning (void)) x forMode usingBookmark completionBlock
+let prepareItems' x ~forMode ~usingBookmark ~completionBlock self = msg_send ~self ~cmd:(selector "prepareItems:forMode:usingBookmark:completionBlock:") ~typ:(id @-> ullong @-> bool @-> ptr void @-> returning (void)) x (ULLong.of_int forMode) usingBookmark completionBlock
 let presentDocumentBrowserTimer self = msg_send ~self ~cmd:(selector "presentDocumentBrowserTimer") ~typ:(returning (id))
 let presentViewController x ~animated ~completion self = msg_send ~self ~cmd:(selector "presentViewController:animated:completion:") ~typ:(id @-> bool @-> ptr void @-> returning (void)) x animated completion
 let presentationTransitionWillBeginNotificationListener self = msg_send ~self ~cmd:(selector "presentationTransitionWillBeginNotificationListener") ~typ:(returning (id))
@@ -100,7 +100,7 @@ let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColo
 let setBackgroundTintColor x self = msg_send ~self ~cmd:(selector "setBackgroundTintColor:") ~typ:(id @-> returning (void)) x
 let setBadgeTintColor x self = msg_send ~self ~cmd:(selector "setBadgeTintColor:") ~typ:(id @-> returning (void)) x
 let setBridgedDocumentBrowserViewController x self = msg_send ~self ~cmd:(selector "setBridgedDocumentBrowserViewController:") ~typ:(id @-> returning (void)) x
-let setBrowserUserInterfaceStyle x self = msg_send ~self ~cmd:(selector "setBrowserUserInterfaceStyle:") ~typ:(ullong @-> returning (void)) x
+let setBrowserUserInterfaceStyle x self = msg_send ~self ~cmd:(selector "setBrowserUserInterfaceStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setConfiguration x self = msg_send ~self ~cmd:(selector "setConfiguration:") ~typ:(id @-> returning (void)) x
 let setCreateButtonAspectRatio x self = msg_send ~self ~cmd:(selector "setCreateButtonAspectRatio:") ~typ:(double @-> returning (void)) x
 let setCreateButtonColor x self = msg_send ~self ~cmd:(selector "setCreateButtonColor:") ~typ:(id @-> returning (void)) x

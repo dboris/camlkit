@@ -19,4 +19,4 @@ let setDraggingDestinationWindow x self = msg_send ~self ~cmd:(selector "setDrag
 let setDraggingItem x self = msg_send ~self ~cmd:(selector "setDraggingItem:") ~typ:(id @-> returning (void)) x
 let setDraggingLocation x self = msg_send ~self ~cmd:(selector "setDraggingLocation:") ~typ:(CGPoint.t @-> returning (void)) x
 let setDraggingSource x self = msg_send ~self ~cmd:(selector "setDraggingSource:") ~typ:(id @-> returning (void)) x
-let setDraggingSourceOperationMask x self = msg_send ~self ~cmd:(selector "setDraggingSourceOperationMask:") ~typ:(ullong @-> returning (void)) x
+let setDraggingSourceOperationMask x self = msg_send ~self ~cmd:(selector "setDraggingSourceOperationMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

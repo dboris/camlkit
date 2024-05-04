@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorPickerSliderCMYKArtworkProvider"
 
-module Class = struct
+module C = struct
   let blackArtworkProvider self = msg_send ~self ~cmd:(selector "blackArtworkProvider") ~typ:(returning (id))
   let cyanArtworkProvider self = msg_send ~self ~cmd:(selector "cyanArtworkProvider") ~typ:(returning (id))
   let magentaArtworkProvider self = msg_send ~self ~cmd:(selector "magentaArtworkProvider") ~typ:(returning (id))
@@ -17,7 +17,7 @@ end
 
 let accessibilityValueStringForValue x self = msg_send ~self ~cmd:(selector "accessibilityValueStringForValue:") ~typ:(double @-> returning (id)) x
 let formattedValue x self = msg_send ~self ~cmd:(selector "formattedValue:") ~typ:(double @-> returning (id)) x
-let initWithComponent x self = msg_send ~self ~cmd:(selector "initWithComponent:") ~typ:(llong @-> returning (id)) x
+let initWithComponent x self = msg_send ~self ~cmd:(selector "initWithComponent:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let lightnessForValue x ~baseColor ~horizontallyFlipped ~allowedColorSpaces self = msg_send ~self ~cmd:(selector "lightnessForValue:baseColor:horizontallyFlipped:allowedColorSpaces:") ~typ:(double @-> id @-> bool @-> id @-> returning (double)) x baseColor horizontallyFlipped allowedColorSpaces
 let sliderLabel self = msg_send ~self ~cmd:(selector "sliderLabel") ~typ:(returning (id))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXMLNSNumberTransformerName"
 
-module Class = struct
+module C = struct
   let allowsReverseTransformation self = msg_send ~self ~cmd:(selector "allowsReverseTransformation") ~typ:(returning (bool))
   let transformedValueClass self = msg_send ~self ~cmd:(selector "transformedValueClass") ~typ:(returning (_Class))
 end

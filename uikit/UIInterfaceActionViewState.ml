@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionViewState"
 
-module Class = struct
+module C = struct
   let viewStateForActionRepresentationView x ~action self = msg_send ~self ~cmd:(selector "viewStateForActionRepresentationView:action:") ~typ:(id @-> id @-> returning (id)) x action
   let viewStateForActionRepresentationViewDescendantView x ~action self = msg_send ~self ~cmd:(selector "viewStateForActionRepresentationViewDescendantView:action:") ~typ:(id @-> id @-> returning (id)) x action
   let viewStateForAlertControllerActionView x self = msg_send ~self ~cmd:(selector "viewStateForAlertControllerActionView:") ~typ:(id @-> returning (id)) x

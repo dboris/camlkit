@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSCGLSurface"
 
-module Class = struct
-  let surfaceWithID x self = msg_send ~self ~cmd:(selector "surfaceWithID:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let surfaceWithID x self = msg_send ~self ~cmd:(selector "surfaceWithID:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 end
 
 let attachCGLContext x self = msg_send ~self ~cmd:(selector "attachCGLContext:") ~typ:(id @-> returning (bool)) x

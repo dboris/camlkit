@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSApplicationDelegate"
 
-module Class = struct
+module C = struct
   let restoreWindowWithIdentifier x ~state ~completionHandler self = msg_send ~self ~cmd:(selector "restoreWindowWithIdentifier:state:completionHandler:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x state completionHandler
   let runBlockWhenSharedDelegateBecomesAvailable x self = msg_send ~self ~cmd:(selector "runBlockWhenSharedDelegateBecomesAvailable:") ~typ:(ptr void @-> returning (bool)) x
   let sharedDelegate self = msg_send ~self ~cmd:(selector "sharedDelegate") ~typ:(returning (id))
@@ -89,7 +89,7 @@ let hostWindowForUIWindow x self = msg_send ~self ~cmd:(selector "hostWindowForU
 let implicitTabbingIdentifierForSceneIdentifier x self = msg_send ~self ~cmd:(selector "implicitTabbingIdentifierForSceneIdentifier:") ~typ:(id @-> returning (id)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let insertValue x ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "insertValue:inPropertyWithKey:") ~typ:(id @-> id @-> returning (void)) x inPropertyWithKey
-let insertValue' x ~atIndex ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "insertValue:atIndex:inPropertyWithKey:") ~typ:(id @-> ullong @-> id @-> returning (void)) x atIndex inPropertyWithKey
+let insertValue' x ~atIndex ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "insertValue:atIndex:inPropertyWithKey:") ~typ:(id @-> ullong @-> id @-> returning (void)) x (ULLong.of_int atIndex) inPropertyWithKey
 let installHandleUIKeyCommandEventHandler x self = msg_send ~self ~cmd:(selector "installHandleUIKeyCommandEventHandler:") ~typ:(ptr void @-> returning (void)) x
 let installIsUIKeyCommandEventHandler x self = msg_send ~self ~cmd:(selector "installIsUIKeyCommandEventHandler:") ~typ:(ptr void @-> returning (void)) x
 let isAppExtension self = msg_send ~self ~cmd:(selector "isAppExtension") ~typ:(returning (bool))
@@ -123,8 +123,8 @@ let printingFinished x self = msg_send ~self ~cmd:(selector "printingFinished:")
 let readSelectionFromPasteboardWithName self = msg_send ~self ~cmd:(selector "readSelectionFromPasteboardWithName") ~typ:(returning (ptr void))
 let receivedTestURLCallback self = msg_send ~self ~cmd:(selector "receivedTestURLCallback") ~typ:(returning (ptr void))
 let registeredForAccessibilityNotifications self = msg_send ~self ~cmd:(selector "registeredForAccessibilityNotifications") ~typ:(returning (bool))
-let removeValueAtIndex x ~fromPropertyWithKey self = msg_send ~self ~cmd:(selector "removeValueAtIndex:fromPropertyWithKey:") ~typ:(ullong @-> id @-> returning (void)) x fromPropertyWithKey
-let replaceValueAtIndex x ~inPropertyWithKey ~withValue self = msg_send ~self ~cmd:(selector "replaceValueAtIndex:inPropertyWithKey:withValue:") ~typ:(ullong @-> id @-> id @-> returning (void)) x inPropertyWithKey withValue
+let removeValueAtIndex x ~fromPropertyWithKey self = msg_send ~self ~cmd:(selector "removeValueAtIndex:fromPropertyWithKey:") ~typ:(ullong @-> id @-> returning (void)) (ULLong.of_int x) fromPropertyWithKey
+let replaceValueAtIndex x ~inPropertyWithKey ~withValue self = msg_send ~self ~cmd:(selector "replaceValueAtIndex:inPropertyWithKey:withValue:") ~typ:(ullong @-> id @-> id @-> returning (void)) (ULLong.of_int x) inPropertyWithKey withValue
 let reportAppLaunchCompleteCallback self = msg_send ~self ~cmd:(selector "reportAppLaunchCompleteCallback") ~typ:(returning (ptr void))
 let requestHostingSceneCreationWithPersistentIdentifierCallback self = msg_send ~self ~cmd:(selector "requestHostingSceneCreationWithPersistentIdentifierCallback") ~typ:(returning (ptr void))
 let requestSceneDestructionForSceneIdentifierCallback self = msg_send ~self ~cmd:(selector "requestSceneDestructionForSceneIdentifierCallback") ~typ:(returning (ptr void))
@@ -237,7 +237,7 @@ let updateMainSceneIdentifier x self = msg_send ~self ~cmd:(selector "updateMain
 let updatePointerLockStateForSceneIdentifierCallback self = msg_send ~self ~cmd:(selector "updatePointerLockStateForSceneIdentifierCallback") ~typ:(returning (ptr void))
 let updateSubtitle x ~forWindowController self = msg_send ~self ~cmd:(selector "updateSubtitle:forWindowController:") ~typ:(id @-> id @-> returning (void)) x forWindowController
 let updateTitle x ~forWindowController self = msg_send ~self ~cmd:(selector "updateTitle:forWindowController:") ~typ:(id @-> id @-> returning (void)) x forWindowController
-let valueAtIndex x ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "valueAtIndex:inPropertyWithKey:") ~typ:(ullong @-> id @-> returning (id)) x inPropertyWithKey
+let valueAtIndex x ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "valueAtIndex:inPropertyWithKey:") ~typ:(ullong @-> id @-> returning (id)) (ULLong.of_int x) inPropertyWithKey
 let valueForKey x self = msg_send ~self ~cmd:(selector "valueForKey:") ~typ:(id @-> returning (id)) x
 let valueWithName x ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "valueWithName:inPropertyWithKey:") ~typ:(id @-> id @-> returning (id)) x inPropertyWithKey
 let valueWithUniqueID x ~inPropertyWithKey self = msg_send ~self ~cmd:(selector "valueWithUniqueID:inPropertyWithKey:") ~typ:(id @-> id @-> returning (id)) x inPropertyWithKey

@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UICommandAlternate"
 
-module Class = struct
-  let alternateWithTitle x ~action ~modifierFlags self = msg_send ~self ~cmd:(selector "alternateWithTitle:action:modifierFlags:") ~typ:(id @-> _SEL @-> llong @-> returning (id)) x action modifierFlags
+module C = struct
+  let alternateWithTitle x ~action ~modifierFlags self = msg_send ~self ~cmd:(selector "alternateWithTitle:action:modifierFlags:") ~typ:(id @-> _SEL @-> llong @-> returning (id)) x action (LLong.of_int modifierFlags)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,8 +18,8 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithModifierFlags x self = msg_send ~self ~cmd:(selector "initWithModifierFlags:") ~typ:(llong @-> returning (id)) x
-let initWithTitle x ~action ~modifierFlags self = msg_send ~self ~cmd:(selector "initWithTitle:action:modifierFlags:") ~typ:(id @-> _SEL @-> llong @-> returning (id)) x action modifierFlags
+let initWithModifierFlags x self = msg_send ~self ~cmd:(selector "initWithModifierFlags:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+let initWithTitle x ~action ~modifierFlags self = msg_send ~self ~cmd:(selector "initWithTitle:action:modifierFlags:") ~typ:(id @-> _SEL @-> llong @-> returning (id)) x action (LLong.of_int modifierFlags)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning (llong))
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning (id))

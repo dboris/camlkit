@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICellAccessoryCustomView"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -17,7 +17,7 @@ let customView self = msg_send ~self ~cmd:(selector "customView") ~typ:(returnin
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithCustomView x ~placement self = msg_send ~self ~cmd:(selector "initWithCustomView:placement:") ~typ:(id @-> llong @-> returning (id)) x placement
+let initWithCustomView x ~placement self = msg_send ~self ~cmd:(selector "initWithCustomView:placement:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int placement)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let maintainsFixedSize self = msg_send ~self ~cmd:(selector "maintainsFixedSize") ~typ:(returning (bool))
 let placement self = msg_send ~self ~cmd:(selector "placement") ~typ:(returning (llong))

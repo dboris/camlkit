@@ -5,16 +5,16 @@ open Objc
 
 let _class_ = get_class "NSPointerFunctions"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
-  let pointerFunctionsWithOptions x self = msg_send ~self ~cmd:(selector "pointerFunctionsWithOptions:") ~typ:(ullong @-> returning (id)) x
+  let pointerFunctionsWithOptions x self = msg_send ~self ~cmd:(selector "pointerFunctionsWithOptions:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 end
 
 let acquireFunction self = msg_send ~self ~cmd:(selector "acquireFunction") ~typ:(returning (ptr (ptr void)))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let descriptionFunction self = msg_send ~self ~cmd:(selector "descriptionFunction") ~typ:(returning (ptr (ptr void)))
 let hashFunction self = msg_send ~self ~cmd:(selector "hashFunction") ~typ:(returning (ptr (ptr void)))
-let initWithOptions x self = msg_send ~self ~cmd:(selector "initWithOptions:") ~typ:(ullong @-> returning (id)) x
+let initWithOptions x self = msg_send ~self ~cmd:(selector "initWithOptions:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let isEqualFunction self = msg_send ~self ~cmd:(selector "isEqualFunction") ~typ:(returning (ptr (ptr void)))
 let relinquishFunction self = msg_send ~self ~cmd:(selector "relinquishFunction") ~typ:(returning (ptr (ptr void)))
 let setAcquireFunction x self = msg_send ~self ~cmd:(selector "setAcquireFunction:") ~typ:(ptr (ptr void) @-> returning (void)) x

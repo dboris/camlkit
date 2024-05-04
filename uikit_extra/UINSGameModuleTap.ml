@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSGameModuleTap"
 
-module Class = struct
+module C = struct
   let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 end
 
@@ -24,6 +24,6 @@ let keyUp x self = msg_send ~self ~cmd:(selector "keyUp:") ~typ:(id @-> returnin
 let logAnalyticsPayload x self = msg_send ~self ~cmd:(selector "logAnalyticsPayload:") ~typ:(id @-> returning (void)) x
 let modifierFlagBit self = msg_send ~self ~cmd:(selector "modifierFlagBit") ~typ:(returning (llong))
 let normalizedLocation self = msg_send_stret ~self ~cmd:(selector "normalizedLocation") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let setKeyCode x self = msg_send ~self ~cmd:(selector "setKeyCode:") ~typ:(llong @-> returning (void)) x
-let setModifierFlagBit x self = msg_send ~self ~cmd:(selector "setModifierFlagBit:") ~typ:(llong @-> returning (void)) x
+let setKeyCode x self = msg_send ~self ~cmd:(selector "setKeyCode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setModifierFlagBit x self = msg_send ~self ~cmd:(selector "setModifierFlagBit:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setNormalizedLocation x self = msg_send ~self ~cmd:(selector "setNormalizedLocation:") ~typ:(CGPoint.t @-> returning (void)) x

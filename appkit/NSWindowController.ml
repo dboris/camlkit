@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWindowController"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let windowControllerWithContentViewController x self = msg_send ~self ~cmd:(selector "windowControllerWithContentViewController:") ~typ:(id @-> returning (id)) x
 end
@@ -32,7 +32,7 @@ let performSegueWithIdentifier x ~sender self = msg_send ~self ~cmd:(selector "p
 let prepareForSegue x ~sender self = msg_send ~self ~cmd:(selector "prepareForSegue:sender:") ~typ:(id @-> id @-> returning (void)) x sender
 let presentError x self = msg_send ~self ~cmd:(selector "presentError:") ~typ:(id @-> returning (bool)) x
 let presentError' x ~modalForWindow ~delegate ~didPresentSelector ~contextInfo self = msg_send ~self ~cmd:(selector "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:") ~typ:(id @-> id @-> id @-> _SEL @-> ptr (void) @-> returning (void)) x modalForWindow delegate didPresentSelector contextInfo
-let presentViewController x ~asPopoverRelativeToRect ~ofView ~preferredEdge ~behavior self = msg_send ~self ~cmd:(selector "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> llong @-> returning (void)) x asPopoverRelativeToRect ofView preferredEdge behavior
+let presentViewController x ~asPopoverRelativeToRect ~ofView ~preferredEdge ~behavior self = msg_send ~self ~cmd:(selector "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> llong @-> returning (void)) x asPopoverRelativeToRect ofView (ULLong.of_int preferredEdge) (LLong.of_int behavior)
 let presentingViewController self = msg_send ~self ~cmd:(selector "presentingViewController") ~typ:(returning (id))
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (void))
 let setContentViewController x self = msg_send ~self ~cmd:(selector "setContentViewController:") ~typ:(id @-> returning (void)) x

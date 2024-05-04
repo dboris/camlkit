@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "UIKit_PKSubsystem"
 
-module Class = struct
+module C = struct
   let initForPlugInKit self = msg_send ~self ~cmd:(selector "initForPlugInKit") ~typ:(returning (id))
   let initForPlugInKitWithOptions x self = msg_send ~self ~cmd:(selector "initForPlugInKitWithOptions:") ~typ:(id @-> returning (id)) x
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))

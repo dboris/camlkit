@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSTextInput"
 
-module Class = struct
+module C = struct
   let sharedTextInput self = msg_send ~self ~cmd:(selector "sharedTextInput") ~typ:(returning (id))
 end
 

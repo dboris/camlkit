@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCandidateViewImageRenderer"
 
-module Class = struct
+module C = struct
   let sharedImageRenderer self = msg_send ~self ~cmd:(selector "sharedImageRenderer") ~typ:(returning (id))
 end
 
@@ -16,6 +16,7 @@ let drawGradientImage x ~startPoint ~endPoint ~applyScale self = msg_send ~self 
 let edgeMaskImageForRightSide x self = msg_send ~self ~cmd:(selector "edgeMaskImageForRightSide:") ~typ:(bool @-> returning (id)) x
 let extensionMaskImage self = msg_send ~self ~cmd:(selector "extensionMaskImage") ~typ:(returning (id))
 let handwritingCellBackgroundImageForDarkKeyboard x ~highlighted self = msg_send ~self ~cmd:(selector "handwritingCellBackgroundImageForDarkKeyboard:highlighted:") ~typ:(bool @-> bool @-> returning (id)) x highlighted
+let highlightedBarCellBackgroundImageWithColor x ~insets self = msg_send ~self ~cmd:(selector "highlightedBarCellBackgroundImageWithColor:insets:") ~typ:(id @-> ptr void @-> returning (id)) x insets
 let imageCache self = msg_send ~self ~cmd:(selector "imageCache") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let pocketShadowImageForDarkKeyboard x ~fadesToBottom ~drawShadow ~topPadding ~bottomPadding ~height self = msg_send ~self ~cmd:(selector "pocketShadowImageForDarkKeyboard:fadesToBottom:drawShadow:topPadding:bottomPadding:height:") ~typ:(bool @-> bool @-> bool @-> double @-> double @-> double @-> returning (id)) x fadesToBottom drawShadow topPadding bottomPadding height

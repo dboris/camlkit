@@ -18,4 +18,4 @@ let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void))
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning (void))
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) x
+let setImageAlignment x self = msg_send ~self ~cmd:(selector "setImageAlignment:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

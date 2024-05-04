@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPencilInteraction"
 
-module Class = struct
+module C = struct
   let hasSeenPencilPairingUI self = msg_send ~self ~cmd:(selector "hasSeenPencilPairingUI") ~typ:(returning (bool))
   let preferredTapAction self = msg_send ~self ~cmd:(selector "preferredTapAction") ~typ:(returning (llong))
   let prefersPencilOnlyDrawing self = msg_send ~self ~cmd:(selector "prefersPencilOnlyDrawing") ~typ:(returning (bool))

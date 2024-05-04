@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSliderAccessoryBehavior"
 
-module Class = struct
+module C = struct
   let automaticBehavior self = msg_send ~self ~cmd:(selector "automaticBehavior") ~typ:(returning (id))
   let behaviorWithHandler x self = msg_send ~self ~cmd:(selector "behaviorWithHandler:") ~typ:(ptr void @-> returning (id)) x
   let behaviorWithTarget x ~action self = msg_send ~self ~cmd:(selector "behaviorWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action

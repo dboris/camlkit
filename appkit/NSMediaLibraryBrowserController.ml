@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSMediaLibraryBrowserController"
 
-module Class = struct
-  let maskForMediaTypeEnum x self = msg_send ~self ~cmd:(selector "maskForMediaTypeEnum:") ~typ:(ullong @-> returning (ullong)) x
-  let mediaTypeEnumForMask x self = msg_send ~self ~cmd:(selector "mediaTypeEnumForMask:") ~typ:(ullong @-> returning (ullong)) x
+module C = struct
+  let maskForMediaTypeEnum x self = msg_send ~self ~cmd:(selector "maskForMediaTypeEnum:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
+  let mediaTypeEnumForMask x self = msg_send ~self ~cmd:(selector "mediaTypeEnumForMask:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
   let sharedMediaLibraryBrowserController self = msg_send ~self ~cmd:(selector "sharedMediaLibraryBrowserController") ~typ:(returning (id))
 end
 
@@ -25,6 +25,6 @@ let orderFront x self = msg_send ~self ~cmd:(selector "orderFront:") ~typ:(id @-
 let orderOut x self = msg_send ~self ~cmd:(selector "orderOut:") ~typ:(id @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setFrameAutosaveName x self = msg_send ~self ~cmd:(selector "setFrameAutosaveName:") ~typ:(id @-> returning (void)) x
-let setMediaLibraries x self = msg_send ~self ~cmd:(selector "setMediaLibraries:") ~typ:(ullong @-> returning (void)) x
+let setMediaLibraries x self = msg_send ~self ~cmd:(selector "setMediaLibraries:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setVisible x self = msg_send ~self ~cmd:(selector "setVisible:") ~typ:(bool @-> returning (void)) x
 let togglePanel x self = msg_send ~self ~cmd:(selector "togglePanel:") ~typ:(id @-> returning (void)) x

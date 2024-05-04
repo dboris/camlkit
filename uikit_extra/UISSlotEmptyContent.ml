@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISSlotEmptyContent"
 
-module Class = struct
+module C = struct
   let contentWithSize x self = msg_send ~self ~cmd:(selector "contentWithSize:") ~typ:(CGSize.t @-> returning (id)) x
 end
 

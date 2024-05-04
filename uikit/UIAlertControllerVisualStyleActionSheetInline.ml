@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAlertControllerVisualStyleActionSheetInline"
 
-module Class = struct
+module C = struct
   let interfaceActionPresentationStyle self = msg_send ~self ~cmd:(selector "interfaceActionPresentationStyle") ~typ:(returning (llong))
   let positionContentsOfAlertController x ~alertContentView ~availableSpaceView ~visualStyle ~updatableConstraints self = msg_send ~self ~cmd:(selector "positionContentsOfAlertController:alertContentView:availableSpaceView:visualStyle:updatableConstraints:") ~typ:(id @-> id @-> id @-> id @-> id @-> returning (void)) x alertContentView availableSpaceView visualStyle updatableConstraints
 end
@@ -20,7 +20,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let dimmingViewForAlertController x self = msg_send ~self ~cmd:(selector "dimmingViewForAlertController:") ~typ:(id @-> returning (id)) x
 let headerView self = msg_send ~self ~cmd:(selector "headerView") ~typ:(returning (id))
 let hideCancelAction x ~inAlertController self = msg_send ~self ~cmd:(selector "hideCancelAction:inAlertController:") ~typ:(id @-> id @-> returning (bool)) x inAlertController
-let interactionProgressForTransitionOfType x ~forAlertController self = msg_send ~self ~cmd:(selector "interactionProgressForTransitionOfType:forAlertController:") ~typ:(llong @-> id @-> returning (id)) x forAlertController
+let interactionProgressForTransitionOfType x ~forAlertController self = msg_send ~self ~cmd:(selector "interactionProgressForTransitionOfType:forAlertController:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) forAlertController
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let minimumWidth self = msg_send ~self ~cmd:(selector "minimumWidth") ~typ:(returning (double))
 let permittedActionLayoutDirection self = msg_send ~self ~cmd:(selector "permittedActionLayoutDirection") ~typ:(returning (llong))
@@ -35,4 +35,4 @@ let shouldPreserveRespondersAcrossWindows self = msg_send ~self ~cmd:(selector "
 let sourceViewSnapshot self = msg_send ~self ~cmd:(selector "sourceViewSnapshot") ~typ:(returning (id))
 let tintColorForAlertController x self = msg_send ~self ~cmd:(selector "tintColorForAlertController:") ~typ:(id @-> returning (id)) x
 let transitionDurationForPresentation x ~ofAlertController self = msg_send ~self ~cmd:(selector "transitionDurationForPresentation:ofAlertController:") ~typ:(bool @-> id @-> returning (double)) x ofAlertController
-let transitionOfType x ~shouldBeInteractiveForAlertController self = msg_send ~self ~cmd:(selector "transitionOfType:shouldBeInteractiveForAlertController:") ~typ:(llong @-> id @-> returning (bool)) x shouldBeInteractiveForAlertController
+let transitionOfType x ~shouldBeInteractiveForAlertController self = msg_send ~self ~cmd:(selector "transitionOfType:shouldBeInteractiveForAlertController:") ~typ:(llong @-> id @-> returning (bool)) (LLong.of_int x) shouldBeInteractiveForAlertController

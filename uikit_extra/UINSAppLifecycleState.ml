@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UINSAppLifecycleState"
 
-module Class = struct
-  let nameForStateIdentifier x self = msg_send ~self ~cmd:(selector "nameForStateIdentifier:") ~typ:(llong @-> returning (id)) x
+module C = struct
+  let nameForStateIdentifier x self = msg_send ~self ~cmd:(selector "nameForStateIdentifier:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 end
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarFullScreenContentView"
 
-module Class = struct
+module C = struct
   let heightForToolbarViewHeight x self = msg_send ~self ~cmd:(selector "heightForToolbarViewHeight:") ~typ:(double @-> returning (double)) x
 end
 

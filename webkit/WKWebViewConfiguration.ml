@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebViewConfiguration"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -28,14 +28,14 @@ let setAllowsAirPlayForMediaPlayback x self = msg_send ~self ~cmd:(selector "set
 let setApplicationNameForUserAgent x self = msg_send ~self ~cmd:(selector "setApplicationNameForUserAgent:") ~typ:(id @-> returning (void)) x
 let setDefaultWebpagePreferences x self = msg_send ~self ~cmd:(selector "setDefaultWebpagePreferences:") ~typ:(id @-> returning (void)) x
 let setLimitsNavigationsToAppBoundDomains x self = msg_send ~self ~cmd:(selector "setLimitsNavigationsToAppBoundDomains:") ~typ:(bool @-> returning (void)) x
-let setMediaTypesRequiringUserActionForPlayback x self = msg_send ~self ~cmd:(selector "setMediaTypesRequiringUserActionForPlayback:") ~typ:(ullong @-> returning (void)) x
+let setMediaTypesRequiringUserActionForPlayback x self = msg_send ~self ~cmd:(selector "setMediaTypesRequiringUserActionForPlayback:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setPreferences x self = msg_send ~self ~cmd:(selector "setPreferences:") ~typ:(id @-> returning (void)) x
 let setProcessPool x self = msg_send ~self ~cmd:(selector "setProcessPool:") ~typ:(id @-> returning (void)) x
 let setSuppressesIncrementalRendering x self = msg_send ~self ~cmd:(selector "setSuppressesIncrementalRendering:") ~typ:(bool @-> returning (void)) x
 let setURLSchemeHandler x ~forURLScheme self = msg_send ~self ~cmd:(selector "setURLSchemeHandler:forURLScheme:") ~typ:(id @-> id @-> returning (void)) x forURLScheme
 let setUpgradeKnownHostsToHTTPS x self = msg_send ~self ~cmd:(selector "setUpgradeKnownHostsToHTTPS:") ~typ:(bool @-> returning (void)) x
 let setUserContentController x self = msg_send ~self ~cmd:(selector "setUserContentController:") ~typ:(id @-> returning (void)) x
-let setUserInterfaceDirectionPolicy x self = msg_send ~self ~cmd:(selector "setUserInterfaceDirectionPolicy:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceDirectionPolicy x self = msg_send ~self ~cmd:(selector "setUserInterfaceDirectionPolicy:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setWebsiteDataStore x self = msg_send ~self ~cmd:(selector "setWebsiteDataStore:") ~typ:(id @-> returning (void)) x
 let suppressesIncrementalRendering self = msg_send ~self ~cmd:(selector "suppressesIncrementalRendering") ~typ:(returning (bool))
 let upgradeKnownHostsToHTTPS self = msg_send ~self ~cmd:(selector "upgradeKnownHostsToHTTPS") ~typ:(returning (bool))

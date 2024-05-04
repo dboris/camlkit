@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINavigationBarAppearance"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -24,5 +24,6 @@ let setBackIndicatorImage x ~transitionMaskImage self = msg_send ~self ~cmd:(sel
 let setButtonAppearance x self = msg_send ~self ~cmd:(selector "setButtonAppearance:") ~typ:(id @-> returning (void)) x
 let setDoneButtonAppearance x self = msg_send ~self ~cmd:(selector "setDoneButtonAppearance:") ~typ:(id @-> returning (void)) x
 let setLargeTitleTextAttributes x self = msg_send ~self ~cmd:(selector "setLargeTitleTextAttributes:") ~typ:(id @-> returning (void)) x
+let setTitlePositionAdjustment x self = msg_send ~self ~cmd:(selector "setTitlePositionAdjustment:") ~typ:(ptr void @-> returning (void)) x
 let setTitleTextAttributes x self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:") ~typ:(id @-> returning (void)) x
 let titleTextAttributes self = msg_send ~self ~cmd:(selector "titleTextAttributes") ~typ:(returning (id))

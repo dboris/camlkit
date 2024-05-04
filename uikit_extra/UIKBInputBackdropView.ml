@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBInputBackdropView"
 
-module Class = struct
+module C = struct
   let requiresConstraintBasedLayout self = msg_send ~self ~cmd:(selector "requiresConstraintBasedLayout") ~typ:(returning (bool))
 end
 
@@ -23,8 +23,8 @@ let inputBackdropFullView self = msg_send ~self ~cmd:(selector "inputBackdropFul
 let inputBackdropLeftView self = msg_send ~self ~cmd:(selector "inputBackdropLeftView") ~typ:(returning (id))
 let inputBackdropRightView self = msg_send ~self ~cmd:(selector "inputBackdropRightView") ~typ:(returning (id))
 let layoutInputBackdropToFullWithRect x self = msg_send ~self ~cmd:(selector "layoutInputBackdropToFullWithRect:") ~typ:(CGRect.t @-> returning (void)) x
-let layoutInputBackdropToSplitWithHeight x ~innerCorners self = msg_send ~self ~cmd:(selector "layoutInputBackdropToSplitWithHeight:innerCorners:") ~typ:(double @-> ullong @-> returning (void)) x innerCorners
-let layoutInputBackdropToSplitWithLeftViewRect x ~andRightViewRect ~innerCorners self = msg_send ~self ~cmd:(selector "layoutInputBackdropToSplitWithLeftViewRect:andRightViewRect:innerCorners:") ~typ:(CGRect.t @-> CGRect.t @-> ullong @-> returning (void)) x andRightViewRect innerCorners
+let layoutInputBackdropToSplitWithHeight x ~innerCorners self = msg_send ~self ~cmd:(selector "layoutInputBackdropToSplitWithHeight:innerCorners:") ~typ:(double @-> ullong @-> returning (void)) x (ULLong.of_int innerCorners)
+let layoutInputBackdropToSplitWithLeftViewRect x ~andRightViewRect ~innerCorners self = msg_send ~self ~cmd:(selector "layoutInputBackdropToSplitWithLeftViewRect:andRightViewRect:innerCorners:") ~typ:(CGRect.t @-> CGRect.t @-> ullong @-> returning (void)) x andRightViewRect (ULLong.of_int innerCorners)
 let leftWidthConstraint self = msg_send ~self ~cmd:(selector "leftWidthConstraint") ~typ:(returning (id))
 let leftWidthDiff self = msg_send ~self ~cmd:(selector "leftWidthDiff") ~typ:(returning (double))
 let prepareForSnapshotting self = msg_send ~self ~cmd:(selector "prepareForSnapshotting") ~typ:(returning (void))
@@ -41,7 +41,7 @@ let setInputBackdropLeftView x self = msg_send ~self ~cmd:(selector "setInputBac
 let setInputBackdropRightView x self = msg_send ~self ~cmd:(selector "setInputBackdropRightView:") ~typ:(id @-> returning (void)) x
 let setLeftWidthConstraint x self = msg_send ~self ~cmd:(selector "setLeftWidthConstraint:") ~typ:(id @-> returning (void)) x
 let setLeftWidthDiff x self = msg_send ~self ~cmd:(selector "setLeftWidthDiff:") ~typ:(double @-> returning (void)) x
-let setProgress x ~withFrame ~innerCorners self = msg_send ~self ~cmd:(selector "setProgress:withFrame:innerCorners:") ~typ:(double @-> CGRect.t @-> ullong @-> returning (void)) x withFrame innerCorners
+let setProgress x ~withFrame ~innerCorners self = msg_send ~self ~cmd:(selector "setProgress:withFrame:innerCorners:") ~typ:(double @-> CGRect.t @-> ullong @-> returning (void)) x withFrame (ULLong.of_int innerCorners)
 let setRightWidthConstraint x self = msg_send ~self ~cmd:(selector "setRightWidthConstraint:") ~typ:(id @-> returning (void)) x
 let setRightWidthDiff x self = msg_send ~self ~cmd:(selector "setRightWidthDiff:") ~typ:(double @-> returning (void)) x
 let setSplitConstraints x self = msg_send ~self ~cmd:(selector "setSplitConstraints:") ~typ:(id @-> returning (void)) x
@@ -50,4 +50,4 @@ let splitConstraints self = msg_send ~self ~cmd:(selector "splitConstraints") ~t
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning (llong))
 let tallHeight self = msg_send ~self ~cmd:(selector "tallHeight") ~typ:(returning (double))
 let textEffectsVisibilityLevel self = msg_send ~self ~cmd:(selector "textEffectsVisibilityLevel") ~typ:(returning (int))
-let transitionToStyle x ~isSplit self = msg_send ~self ~cmd:(selector "transitionToStyle:isSplit:") ~typ:(llong @-> bool @-> returning (void)) x isSplit
+let transitionToStyle x ~isSplit self = msg_send ~self ~cmd:(selector "transitionToStyle:isSplit:") ~typ:(llong @-> bool @-> returning (void)) (LLong.of_int x) isSplit

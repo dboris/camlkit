@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextPositionImpl"
 
-module Class = struct
+module C = struct
   let wrapWebVisiblePosition x self = msg_send ~self ~cmd:(selector "wrapWebVisiblePosition:") ~typ:(id @-> returning (id)) x
 end
 

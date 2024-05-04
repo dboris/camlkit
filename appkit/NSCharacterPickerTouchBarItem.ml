@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCharacterPickerTouchBarItem"
 
-module Class = struct
+module C = struct
   let characterPickerTouchBarItem self = msg_send ~self ~cmd:(selector "characterPickerTouchBarItem") ~typ:(returning (id))
 end
 

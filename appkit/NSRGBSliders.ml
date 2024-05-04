@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRGBSliders"
 
-module Class = struct
+module C = struct
   let genericColorSpace self = msg_send ~self ~cmd:(selector "genericColorSpace") ~typ:(returning (id))
 end
 
@@ -19,7 +19,7 @@ let hexAction x self = msg_send ~self ~cmd:(selector "hexAction:") ~typ:(id @-> 
 let provideNewSubview x self = msg_send ~self ~cmd:(selector "provideNewSubview:") ~typ:(id @-> returning (id)) x
 let regularColorIfPossible x self = msg_send ~self ~cmd:(selector "regularColorIfPossible:") ~typ:(id @-> returning (id)) x
 let rgbView self = msg_send ~self ~cmd:(selector "rgbView") ~typ:(returning (id))
-let setEntryMode x self = msg_send ~self ~cmd:(selector "setEntryMode:") ~typ:(llong @-> returning (void)) x
+let setEntryMode x self = msg_send ~self ~cmd:(selector "setEntryMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMatchedColor x self = msg_send ~self ~cmd:(selector "setMatchedColor:") ~typ:(id @-> returning (void)) x
 let setRgbView x self = msg_send ~self ~cmd:(selector "setRgbView:") ~typ:(id @-> returning (void)) x
 let takeColorSpaceFrom x self = msg_send ~self ~cmd:(selector "takeColorSpaceFrom:") ~typ:(id @-> returning (void)) x

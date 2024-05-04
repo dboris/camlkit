@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTrackingArea"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -18,8 +18,8 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let gestureBehaviors self = msg_send ~self ~cmd:(selector "gestureBehaviors") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithRect x ~options ~owner ~userInfo self = msg_send ~self ~cmd:(selector "initWithRect:options:owner:userInfo:") ~typ:(CGRect.t @-> ullong @-> id @-> id @-> returning (id)) x options owner userInfo
-let initWithRect' x ~options ~pressureConfigurations ~owner ~userInfo self = msg_send ~self ~cmd:(selector "initWithRect:options:pressureConfigurations:owner:userInfo:") ~typ:(CGRect.t @-> ullong @-> id @-> id @-> id @-> returning (id)) x options pressureConfigurations owner userInfo
+let initWithRect x ~options ~owner ~userInfo self = msg_send ~self ~cmd:(selector "initWithRect:options:owner:userInfo:") ~typ:(CGRect.t @-> ullong @-> id @-> id @-> returning (id)) x (ULLong.of_int options) owner userInfo
+let initWithRect' x ~options ~pressureConfigurations ~owner ~userInfo self = msg_send ~self ~cmd:(selector "initWithRect:options:pressureConfigurations:owner:userInfo:") ~typ:(CGRect.t @-> ullong @-> id @-> id @-> id @-> returning (id)) x (ULLong.of_int options) pressureConfigurations owner userInfo
 let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning (void)) x
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning (ullong))
 let owner self = msg_send ~self ~cmd:(selector "owner") ~typ:(returning (id))

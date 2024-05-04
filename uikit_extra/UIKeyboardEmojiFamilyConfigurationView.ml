@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardEmojiFamilyConfigurationView"
 
-module Class = struct
+module C = struct
   let preferredContentViewSizeForKey x ~withTraits self = msg_send_stret ~self ~cmd:(selector "preferredContentViewSizeForKey:withTraits:") ~typ:(id @-> id @-> returning (CGSize.t)) ~return_type:CGSize.t x withTraits
 end
 

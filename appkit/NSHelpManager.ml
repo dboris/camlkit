@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSHelpManager"
 
-module Class = struct
+module C = struct
   let isContextHelpModeActive self = msg_send ~self ~cmd:(selector "isContextHelpModeActive") ~typ:(returning (bool))
   let setContextHelpModeActive x self = msg_send ~self ~cmd:(selector "setContextHelpModeActive:") ~typ:(bool @-> returning (void)) x
   let sharedHelpManager self = msg_send ~self ~cmd:(selector "sharedHelpManager") ~typ:(returning (id))
@@ -23,4 +23,4 @@ let registerHelpBook self = msg_send ~self ~cmd:(selector "registerHelpBook") ~t
 let removeContextHelpForObject x self = msg_send ~self ~cmd:(selector "removeContextHelpForObject:") ~typ:(id @-> returning (void)) x
 let setContextHelp x ~forObject self = msg_send ~self ~cmd:(selector "setContextHelp:forObject:") ~typ:(id @-> id @-> returning (void)) x forObject
 let showContextHelpForObject x ~locationHint self = msg_send ~self ~cmd:(selector "showContextHelpForObject:locationHint:") ~typ:(id @-> CGPoint.t @-> returning (bool)) x locationHint
-let showHelpFile x ~context self = msg_send ~self ~cmd:(selector "showHelpFile:context:") ~typ:(id @-> llong @-> returning (void)) x context
+let showHelpFile x ~context self = msg_send ~self ~cmd:(selector "showHelpFile:context:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int context)

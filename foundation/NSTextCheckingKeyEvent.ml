@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSTextCheckingKeyEvent"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,7 +18,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let flags self = msg_send ~self ~cmd:(selector "flags") ~typ:(returning (ullong))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithKeyboardLayoutType x ~keyboardType ~identifier ~primaryLanguage ~flags ~timestamp ~characters ~charactersIgnoringModifiers self = msg_send ~self ~cmd:(selector "initWithKeyboardLayoutType:keyboardType:identifier:primaryLanguage:flags:timestamp:characters:charactersIgnoringModifiers:") ~typ:(llong @-> ullong @-> id @-> id @-> ullong @-> double @-> id @-> id @-> returning (id)) x keyboardType identifier primaryLanguage flags timestamp characters charactersIgnoringModifiers
+let initWithKeyboardLayoutType x ~keyboardType ~identifier ~primaryLanguage ~flags ~timestamp ~characters ~charactersIgnoringModifiers self = msg_send ~self ~cmd:(selector "initWithKeyboardLayoutType:keyboardType:identifier:primaryLanguage:flags:timestamp:characters:charactersIgnoringModifiers:") ~typ:(llong @-> ullong @-> id @-> id @-> ullong @-> double @-> id @-> id @-> returning (id)) (LLong.of_int x) (ULLong.of_int keyboardType) identifier primaryLanguage (ULLong.of_int flags) timestamp characters charactersIgnoringModifiers
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let keyboardLayoutIdentifier self = msg_send ~self ~cmd:(selector "keyboardLayoutIdentifier") ~typ:(returning (id))
 let keyboardLayoutType self = msg_send ~self ~cmd:(selector "keyboardLayoutType") ~typ:(returning (llong))

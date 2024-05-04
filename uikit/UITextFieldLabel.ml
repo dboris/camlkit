@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextFieldLabel"
 
-module Class = struct
+module C = struct
   let defaultFont self = msg_send ~self ~cmd:(selector "defaultFont") ~typ:(returning (id))
 end
 

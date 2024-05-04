@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebElementAction"
 
-module Class = struct
+module C = struct
   let customElementActionWithTitle x ~actionHandler self = msg_send ~self ~cmd:(selector "customElementActionWithTitle:actionHandler:") ~typ:(id @-> ptr void @-> returning (id)) x actionHandler
   let standardElementActionWithType x self = msg_send ~self ~cmd:(selector "standardElementActionWithType:") ~typ:(int @-> returning (id)) x
   let standardElementActionWithType' x ~customTitle ~context self = msg_send ~self ~cmd:(selector "standardElementActionWithType:customTitle:context:") ~typ:(int @-> id @-> id @-> returning (id)) x customTitle context

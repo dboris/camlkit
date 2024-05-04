@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIToolTipConfiguration"
 
-module Class = struct
+module C = struct
   let configurationWithToolTip x self = msg_send ~self ~cmd:(selector "configurationWithToolTip:") ~typ:(id @-> returning (id)) x
   let configurationWithToolTip' x ~inRect self = msg_send ~self ~cmd:(selector "configurationWithToolTip:inRect:") ~typ:(id @-> CGRect.t @-> returning (id)) x inRect
 end

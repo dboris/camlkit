@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISystemNavigationActionDestinationContext"
 
-module Class = struct
+module C = struct
   let systemNavigationActionContextWithTitle x ~andURL self = msg_send ~self ~cmd:(selector "systemNavigationActionContextWithTitle:andURL:") ~typ:(id @-> id @-> returning (id)) x andURL
   let systemNavigationActionContextWithTitle1 x ~bundleId self = msg_send ~self ~cmd:(selector "systemNavigationActionContextWithTitle:bundleId:") ~typ:(id @-> id @-> returning (id)) x bundleId
   let systemNavigationActionContextWithTitle2 x ~sceneIdentifier self = msg_send ~self ~cmd:(selector "systemNavigationActionContextWithTitle:sceneIdentifier:") ~typ:(id @-> id @-> returning (id)) x sceneIdentifier

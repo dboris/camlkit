@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBEditingGesturesIntroduction"
 
-module Class = struct
+module C = struct
   let shouldShowEditingIntroduction self = msg_send ~self ~cmd:(selector "shouldShowEditingIntroduction") ~typ:(returning (bool))
 end
 

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserAutomatorTask"
 
-module Class = struct
+module C = struct
   let isValidScriptFile x ~error self = msg_send ~self ~cmd:(selector "isValidScriptFile:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
 end
 

@@ -14,4 +14,4 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let setBannerType x self = msg_send ~self ~cmd:(selector "setBannerType:") ~typ:(llong @-> returning (void)) x
+let setBannerType x self = msg_send ~self ~cmd:(selector "setBannerType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

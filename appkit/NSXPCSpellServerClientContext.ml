@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSXPCSpellServerClientContext"
 
-module Class = struct
+module C = struct
   let signalWaiter x self = msg_send ~self ~cmd:(selector "signalWaiter:") ~typ:(id @-> returning (void)) x
 end
 

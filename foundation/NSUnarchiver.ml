@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUnarchiver"
 
-module Class = struct
+module C = struct
   let classNameDecodedForArchiveClassName x self = msg_send ~self ~cmd:(selector "classNameDecodedForArchiveClassName:") ~typ:(id @-> returning (id)) x
   let decodeClassName x ~asClassName self = msg_send ~self ~cmd:(selector "decodeClassName:asClassName:") ~typ:(id @-> id @-> returning (void)) x asClassName
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -16,7 +16,7 @@ end
 let classNameDecodedForArchiveClassName x self = msg_send ~self ~cmd:(selector "classNameDecodedForArchiveClassName:") ~typ:(id @-> returning (id)) x
 let data self = msg_send ~self ~cmd:(selector "data") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x count at
+let decodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "decodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x (ULLong.of_int count) at
 let decodeBytesWithReturnedLength x self = msg_send ~self ~cmd:(selector "decodeBytesWithReturnedLength:") ~typ:(ptr (ullong) @-> returning (ptr (void))) x
 let decodeClassName x ~asClassName self = msg_send ~self ~cmd:(selector "decodeClassName:asClassName:") ~typ:(id @-> id @-> returning (void)) x asClassName
 let decodeDataObject self = msg_send ~self ~cmd:(selector "decodeDataObject") ~typ:(returning (id))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSTimeZone"
 
-module Class = struct
+module C = struct
   let abbreviationDictionary self = msg_send ~self ~cmd:(selector "abbreviationDictionary") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let defaultTimeZone self = msg_send ~self ~cmd:(selector "defaultTimeZone") ~typ:(returning (id))
@@ -17,7 +17,7 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let systemTimeZone self = msg_send ~self ~cmd:(selector "systemTimeZone") ~typ:(returning (id))
   let timeZoneDataVersion self = msg_send ~self ~cmd:(selector "timeZoneDataVersion") ~typ:(returning (id))
-  let timeZoneForSecondsFromGMT x self = msg_send ~self ~cmd:(selector "timeZoneForSecondsFromGMT:") ~typ:(llong @-> returning (id)) x
+  let timeZoneForSecondsFromGMT x self = msg_send ~self ~cmd:(selector "timeZoneForSecondsFromGMT:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
   let timeZoneWithAbbreviation x self = msg_send ~self ~cmd:(selector "timeZoneWithAbbreviation:") ~typ:(id @-> returning (id)) x
   let timeZoneWithName x self = msg_send ~self ~cmd:(selector "timeZoneWithName:") ~typ:(id @-> returning (id)) x
   let timeZoneWithName' x ~data self = msg_send ~self ~cmd:(selector "timeZoneWithName:data:") ~typ:(id @-> id @-> returning (id)) x data
@@ -40,7 +40,7 @@ let isDaylightSavingTime self = msg_send ~self ~cmd:(selector "isDaylightSavingT
 let isDaylightSavingTimeForDate x self = msg_send ~self ~cmd:(selector "isDaylightSavingTimeForDate:") ~typ:(id @-> returning (bool)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isEqualToTimeZone x self = msg_send ~self ~cmd:(selector "isEqualToTimeZone:") ~typ:(id @-> returning (bool)) x
-let localizedName x ~locale self = msg_send ~self ~cmd:(selector "localizedName:locale:") ~typ:(llong @-> id @-> returning (id)) x locale
+let localizedName x ~locale self = msg_send ~self ~cmd:(selector "localizedName:locale:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) locale
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let nextDaylightSavingTimeTransition self = msg_send ~self ~cmd:(selector "nextDaylightSavingTimeTransition") ~typ:(returning (id))
 let nextDaylightSavingTimeTransitionAfterDate x self = msg_send ~self ~cmd:(selector "nextDaylightSavingTimeTransitionAfterDate:") ~typ:(id @-> returning (id)) x

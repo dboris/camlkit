@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITabBarAppearance"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -21,7 +21,7 @@ let setCompactInlineLayoutAppearance x self = msg_send ~self ~cmd:(selector "set
 let setInlineLayoutAppearance x self = msg_send ~self ~cmd:(selector "setInlineLayoutAppearance:") ~typ:(id @-> returning (void)) x
 let setSelectionIndicatorImage x self = msg_send ~self ~cmd:(selector "setSelectionIndicatorImage:") ~typ:(id @-> returning (void)) x
 let setSelectionIndicatorTintColor x self = msg_send ~self ~cmd:(selector "setSelectionIndicatorTintColor:") ~typ:(id @-> returning (void)) x
-let setStackedItemPositioning x self = msg_send ~self ~cmd:(selector "setStackedItemPositioning:") ~typ:(llong @-> returning (void)) x
+let setStackedItemPositioning x self = msg_send ~self ~cmd:(selector "setStackedItemPositioning:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setStackedItemSpacing x self = msg_send ~self ~cmd:(selector "setStackedItemSpacing:") ~typ:(double @-> returning (void)) x
 let setStackedItemWidth x self = msg_send ~self ~cmd:(selector "setStackedItemWidth:") ~typ:(double @-> returning (void)) x
 let setStackedLayoutAppearance x self = msg_send ~self ~cmd:(selector "setStackedLayoutAppearance:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMenuItemCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let prefersTrackingUntilMouseUp self = msg_send ~self ~cmd:(selector "prefersTrackingUntilMouseUp") ~typ:(returning (bool))
 end
@@ -51,7 +51,7 @@ let setMenuView x self = msg_send ~self ~cmd:(selector "setMenuView:") ~typ:(id 
 let setNeedsDisplay x self = msg_send ~self ~cmd:(selector "setNeedsDisplay:") ~typ:(bool @-> returning (void)) x
 let setNeedsSizing x self = msg_send ~self ~cmd:(selector "setNeedsSizing:") ~typ:(bool @-> returning (void)) x
 let setRepresentedObject x self = msg_send ~self ~cmd:(selector "setRepresentedObject:") ~typ:(id @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let stateImageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "stateImageRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let stateImageWidth self = msg_send ~self ~cmd:(selector "stateImageWidth") ~typ:(returning (double))

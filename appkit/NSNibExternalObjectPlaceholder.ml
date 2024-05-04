@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSNibExternalObjectPlaceholder"
 
-module Class = struct
+module C = struct
   let addMappingFromIdentifier x ~toEntry ~forCoder self = msg_send ~self ~cmd:(selector "addMappingFromIdentifier:toEntry:forCoder:") ~typ:(id @-> id @-> id @-> returning (void)) x toEntry forCoder
   let addMappings x ~forCoder self = msg_send ~self ~cmd:(selector "addMappings:forCoder:") ~typ:(id @-> id @-> returning (void)) x forCoder
   let mappedEntryForCoder x ~withIdentifier self = msg_send ~self ~cmd:(selector "mappedEntryForCoder:withIdentifier:") ~typ:(id @-> id @-> returning (id)) x withIdentifier

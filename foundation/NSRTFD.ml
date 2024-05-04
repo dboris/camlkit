@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSRTFD"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -24,7 +24,7 @@ let createUniqueKey x self = msg_send ~self ~cmd:(selector "createUniqueKey:") ~
 let dataForFile x self = msg_send ~self ~cmd:(selector "dataForFile:") ~typ:(id @-> returning (id)) x
 let dataRepresentation self = msg_send ~self ~cmd:(selector "dataRepresentation") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let freeSerialized x ~length self = msg_send ~self ~cmd:(selector "freeSerialized:length:") ~typ:(ptr (void) @-> ullong @-> returning (id)) x length
+let freeSerialized x ~length self = msg_send ~self ~cmd:(selector "freeSerialized:length:") ~typ:(ptr (void) @-> ullong @-> returning (id)) x (ULLong.of_int length)
 let getDirInfo x self = msg_send ~self ~cmd:(selector "getDirInfo:") ~typ:(bool @-> returning (id)) x
 let getDocument x ~docInfo self = msg_send ~self ~cmd:(selector "getDocument:docInfo:") ~typ:(id @-> id @-> returning (id)) x docInfo
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -32,12 +32,12 @@ let initFromDocument x ~error self = msg_send ~self ~cmd:(selector "initFromDocu
 let initFromElement x ~ofDocument self = msg_send ~self ~cmd:(selector "initFromElement:ofDocument:") ~typ:(id @-> id @-> returning (id)) x ofDocument
 let initFromSerialized x self = msg_send ~self ~cmd:(selector "initFromSerialized:") ~typ:(id @-> returning (id)) x
 let initUnixFile x self = msg_send ~self ~cmd:(selector "initUnixFile:") ~typ:(id @-> returning (ullong)) x
-let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) x
+let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let initWithContentsOfFile x self = msg_send ~self ~cmd:(selector "initWithContentsOfFile:") ~typ:(id @-> returning (id)) x
 let initWithDataRepresentation x self = msg_send ~self ~cmd:(selector "initWithDataRepresentation:") ~typ:(id @-> returning (id)) x
 let initWithDictionary x self = msg_send ~self ~cmd:(selector "initWithDictionary:") ~typ:(id @-> returning (id)) x
 let initWithDictionary' x ~copyItems self = msg_send ~self ~cmd:(selector "initWithDictionary:copyItems:") ~typ:(id @-> bool @-> returning (id)) x copyItems
-let initWithObjects x ~forKeys ~count self = msg_send ~self ~cmd:(selector "initWithObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (id)) x forKeys count
+let initWithObjects x ~forKeys ~count self = msg_send ~self ~cmd:(selector "initWithObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (id)) x forKeys (ULLong.of_int count)
 let initWithPasteboardDataRepresentation x self = msg_send ~self ~cmd:(selector "initWithPasteboardDataRepresentation:") ~typ:(id @-> returning (id)) x
 let insertItem x ~path ~dirInfo ~zone ~plist self = msg_send ~self ~cmd:(selector "insertItem:path:dirInfo:zone:plist:") ~typ:(id @-> id @-> id @-> id @-> id @-> returning (ullong)) x path dirInfo zone plist
 let internalSaveTo x ~removeBackup ~errorHandler self = msg_send ~self ~cmd:(selector "internalSaveTo:removeBackup:errorHandler:") ~typ:(id @-> bool @-> id @-> returning (ullong)) x removeBackup errorHandler

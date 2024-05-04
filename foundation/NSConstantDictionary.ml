@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSConstantDictionary"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
@@ -17,15 +17,15 @@ let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(return
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects (ULLong.of_int count)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let enumerateKeysAndObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateKeysAndObjectsWithOptions:usingBlock:") ~typ:(ullong @-> ptr void @-> returning (void)) x usingBlock
-let getObjects x ~andKeys ~count self = msg_send ~self ~cmd:(selector "getObjects:andKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (void)) x andKeys count
+let enumerateKeysAndObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateKeysAndObjectsWithOptions:usingBlock:") ~typ:(ullong @-> ptr void @-> returning (void)) (ULLong.of_int x) usingBlock
+let getObjects x ~andKeys ~count self = msg_send ~self ~cmd:(selector "getObjects:andKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (void)) x andKeys (ULLong.of_int count)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithObjects x ~forKeys ~count self = msg_send ~self ~cmd:(selector "initWithObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (id)) x forKeys count
+let initWithObjects x ~forKeys ~count self = msg_send ~self ~cmd:(selector "initWithObjects:forKeys:count:") ~typ:(ptr (id) @-> ptr (id) @-> ullong @-> returning (id)) x forKeys (ULLong.of_int count)
 let keyEnumerator self = msg_send ~self ~cmd:(selector "keyEnumerator") ~typ:(returning (id))
-let keyOfEntryWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "keyOfEntryWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (id)) x passingTest
-let keysOfEntriesWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "keysOfEntriesWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (id)) x passingTest
+let keyOfEntryWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "keyOfEntryWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (id)) (ULLong.of_int x) passingTest
+let keysOfEntriesWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "keysOfEntriesWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (id)) (ULLong.of_int x) passingTest
 let mutableCopy self = msg_send ~self ~cmd:(selector "mutableCopy") ~typ:(returning (id))
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:(id @-> returning (id)) x
 let objectEnumerator self = msg_send ~self ~cmd:(selector "objectEnumerator") ~typ:(returning (id))

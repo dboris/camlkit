@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserNotification"
 
-module Class = struct
+module C = struct
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

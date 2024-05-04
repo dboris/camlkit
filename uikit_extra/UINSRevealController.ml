@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSRevealController"
 
-module Class = struct
+module C = struct
   let sharedRevealController self = msg_send ~self ~cmd:(selector "sharedRevealController") ~typ:(returning (id))
 end
 

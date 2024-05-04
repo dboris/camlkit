@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPrintInfoRequest"
 
-module Class = struct
+module C = struct
   let requestInfoForPrinter x self = msg_send ~self ~cmd:(selector "requestInfoForPrinter:") ~typ:(id @-> returning (id)) x
 end
 

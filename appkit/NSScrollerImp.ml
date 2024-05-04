@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "NSScrollerImp"
 
-module Class = struct
-  let scrollerImpClassForStyle x ~controlSize self = msg_send ~self ~cmd:(selector "scrollerImpClassForStyle:controlSize:") ~typ:(llong @-> ullong @-> returning (_Class)) x controlSize
-  let scrollerImpWithStyle x ~controlSize ~horizontal ~replacingScrollerImp self = msg_send ~self ~cmd:(selector "scrollerImpWithStyle:controlSize:horizontal:replacingScrollerImp:") ~typ:(llong @-> ullong @-> bool @-> id @-> returning (id)) x controlSize horizontal replacingScrollerImp
+module C = struct
+  let scrollerImpClassForStyle x ~controlSize self = msg_send ~self ~cmd:(selector "scrollerImpClassForStyle:controlSize:") ~typ:(llong @-> ullong @-> returning (_Class)) (LLong.of_int x) (ULLong.of_int controlSize)
+  let scrollerImpWithStyle x ~controlSize ~horizontal ~replacingScrollerImp self = msg_send ~self ~cmd:(selector "scrollerImpWithStyle:controlSize:horizontal:replacingScrollerImp:") ~typ:(llong @-> ullong @-> bool @-> id @-> returning (id)) (LLong.of_int x) (ULLong.of_int controlSize) horizontal replacingScrollerImp
   let scrollerWidth self = msg_send ~self ~cmd:(selector "scrollerWidth") ~typ:(returning (double))
-  let scrollerWidthForControlSize x ~scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerWidthForControlSize:scrollerStyle:") ~typ:(ullong @-> llong @-> returning (double)) x scrollerStyle
+  let scrollerWidthForControlSize x ~scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerWidthForControlSize:scrollerStyle:") ~typ:(ullong @-> llong @-> returning (double)) (ULLong.of_int x) (LLong.of_int scrollerStyle)
 end
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
@@ -33,7 +33,7 @@ let drawKnobSlotInRect x ~highlight self = msg_send ~self ~cmd:(selector "drawKn
 let drawKnobSlotInRect' x ~highlight ~alpha self = msg_send ~self ~cmd:(selector "drawKnobSlotInRect:highlight:alpha:") ~typ:(CGRect.t @-> bool @-> double @-> returning (void)) x highlight alpha
 let drawKnobWithAlpha x self = msg_send ~self ~cmd:(selector "drawKnobWithAlpha:") ~typ:(double @-> returning (void)) x
 let effectiveAppearance self = msg_send ~self ~cmd:(selector "effectiveAppearance") ~typ:(returning (id))
-let expandedRectForPart x self = msg_send_stret ~self ~cmd:(selector "expandedRectForPart:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x
+let expandedRectForPart x self = msg_send_stret ~self ~cmd:(selector "expandedRectForPart:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t (ULLong.of_int x)
 let expansionTransitionProgress self = msg_send ~self ~cmd:(selector "expansionTransitionProgress") ~typ:(returning (double))
 let hitTestForLocalPoint x self = msg_send ~self ~cmd:(selector "hitTestForLocalPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -60,7 +60,7 @@ let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~c
 let overlayScrollerState self = msg_send ~self ~cmd:(selector "overlayScrollerState") ~typ:(returning (ullong))
 let presentationValue self = msg_send ~self ~cmd:(selector "presentationValue") ~typ:(returning (double))
 let rangeIndicatorAlpha self = msg_send ~self ~cmd:(selector "rangeIndicatorAlpha") ~typ:(returning (double))
-let rectForPart x self = msg_send_stret ~self ~cmd:(selector "rectForPart:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x
+let rectForPart x self = msg_send_stret ~self ~cmd:(selector "rectForPart:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t (ULLong.of_int x)
 let removeTrackingAreas self = msg_send ~self ~cmd:(selector "removeTrackingAreas") ~typ:(returning (void))
 let scroller self = msg_send ~self ~cmd:(selector "scroller") ~typ:(returning (id))
 let scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerStyle") ~typ:(returning (llong))
@@ -76,11 +76,11 @@ let setHorizontal x self = msg_send ~self ~cmd:(selector "setHorizontal:") ~typ:
 let setKnobAlpha x self = msg_send ~self ~cmd:(selector "setKnobAlpha:") ~typ:(double @-> returning (void)) x
 let setKnobLayer x self = msg_send ~self ~cmd:(selector "setKnobLayer:") ~typ:(id @-> returning (void)) x
 let setKnobProportion x self = msg_send ~self ~cmd:(selector "setKnobProportion:") ~typ:(double @-> returning (void)) x
-let setKnobStyle x self = msg_send ~self ~cmd:(selector "setKnobStyle:") ~typ:(llong @-> returning (void)) x
+let setKnobStyle x self = msg_send ~self ~cmd:(selector "setKnobStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLayer x self = msg_send ~self ~cmd:(selector "setLayer:") ~typ:(id @-> returning (void)) x
 let setNeedsDisplay x self = msg_send ~self ~cmd:(selector "setNeedsDisplay:") ~typ:(bool @-> returning (void)) x
 let setNeedsDisplayInRect x self = msg_send ~self ~cmd:(selector "setNeedsDisplayInRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setOverlayScrollerState x ~forceImmediately self = msg_send ~self ~cmd:(selector "setOverlayScrollerState:forceImmediately:") ~typ:(ullong @-> bool @-> returning (void)) x forceImmediately
+let setOverlayScrollerState x ~forceImmediately self = msg_send ~self ~cmd:(selector "setOverlayScrollerState:forceImmediately:") ~typ:(ullong @-> bool @-> returning (void)) (ULLong.of_int x) forceImmediately
 let setPresentationValue x self = msg_send ~self ~cmd:(selector "setPresentationValue:") ~typ:(double @-> returning (void)) x
 let setRangeIndicatorAlpha x self = msg_send ~self ~cmd:(selector "setRangeIndicatorAlpha:") ~typ:(double @-> returning (void)) x
 let setScroller x self = msg_send ~self ~cmd:(selector "setScroller:") ~typ:(id @-> returning (void)) x
@@ -91,7 +91,7 @@ let setTrackLayer x self = msg_send ~self ~cmd:(selector "setTrackLayer:") ~typ:
 let setTracking x self = msg_send ~self ~cmd:(selector "setTracking:") ~typ:(bool @-> returning (void)) x
 let setUiStateTransitionProgress x self = msg_send ~self ~cmd:(selector "setUiStateTransitionProgress:") ~typ:(double @-> returning (void)) x
 let setUsePresentationValue x self = msg_send ~self ~cmd:(selector "setUsePresentationValue:") ~typ:(bool @-> returning (void)) x
-let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let shouldDrawRolloverState self = msg_send ~self ~cmd:(selector "shouldDrawRolloverState") ~typ:(returning (bool))
 let shouldUsePresentationValue self = msg_send ~self ~cmd:(selector "shouldUsePresentationValue") ~typ:(returning (bool))
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))

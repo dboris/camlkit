@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextSelectionRect"
 
-module Class = struct
+module C = struct
   let endCustomSelectionPathFromRects x self = msg_send ~self ~cmd:(selector "endCustomSelectionPathFromRects:") ~typ:(id @-> returning (id)) x
   let endEdgeFromRects x self = msg_send_stret ~self ~cmd:(selector "endEdgeFromRects:") ~typ:(id @-> returning (CGRect.t)) ~return_type:CGRect.t x
   let endIsHorizontal x self = msg_send ~self ~cmd:(selector "endIsHorizontal:") ~typ:(id @-> returning (bool)) x

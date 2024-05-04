@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICollectionViewCellRegistration"
 
-module Class = struct
+module C = struct
   let registrationWithCellClass x ~configurationHandler self = msg_send ~self ~cmd:(selector "registrationWithCellClass:configurationHandler:") ~typ:(_Class @-> ptr void @-> returning (id)) x configurationHandler
   let registrationWithCellNib x ~configurationHandler self = msg_send ~self ~cmd:(selector "registrationWithCellNib:configurationHandler:") ~typ:(id @-> ptr void @-> returning (id)) x configurationHandler
 end

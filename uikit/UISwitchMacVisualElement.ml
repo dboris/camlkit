@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwitchMacVisualElement"
 
-module Class = struct
+module C = struct
   let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 

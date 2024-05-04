@@ -17,5 +17,5 @@ let resourceCatalogName self = msg_send ~self ~cmd:(selector "resourceCatalogNam
 let resourceRenderingMode self = msg_send ~self ~cmd:(selector "resourceRenderingMode") ~typ:(returning (llong))
 let resourceSymbolImageConfiguration self = msg_send ~self ~cmd:(selector "resourceSymbolImageConfiguration") ~typ:(returning (id))
 let setResourceCatalogName x self = msg_send ~self ~cmd:(selector "setResourceCatalogName:") ~typ:(id @-> returning (void)) x
-let setResourceRenderingMode x self = msg_send ~self ~cmd:(selector "setResourceRenderingMode:") ~typ:(llong @-> returning (void)) x
+let setResourceRenderingMode x self = msg_send ~self ~cmd:(selector "setResourceRenderingMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setResourceSymbolImageConfiguration x self = msg_send ~self ~cmd:(selector "setResourceSymbolImageConfiguration:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebsiteDataStore"
 
-module Class = struct
+module C = struct
   let allWebsiteDataTypes self = msg_send ~self ~cmd:(selector "allWebsiteDataTypes") ~typ:(returning (id))
   let defaultDataStore self = msg_send ~self ~cmd:(selector "defaultDataStore") ~typ:(returning (id))
   let nonPersistentDataStore self = msg_send ~self ~cmd:(selector "nonPersistentDataStore") ~typ:(returning (id))

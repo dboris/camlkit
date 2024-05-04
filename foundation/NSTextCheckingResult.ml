@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSTextCheckingResult"
 
-module Class = struct
+module C = struct
   let addressCheckingResultWithRange x ~components self = msg_send ~self ~cmd:(selector "addressCheckingResultWithRange:components:") ~typ:(NSRange.t @-> id @-> returning (id)) x components
   let correctionCheckingResultWithRange x ~replacementString self = msg_send ~self ~cmd:(selector "correctionCheckingResultWithRange:replacementString:") ~typ:(NSRange.t @-> id @-> returning (id)) x replacementString
   let correctionCheckingResultWithRange' x ~replacementString ~alternativeStrings self = msg_send ~self ~cmd:(selector "correctionCheckingResultWithRange:replacementString:alternativeStrings:") ~typ:(NSRange.t @-> id @-> id @-> returning (id)) x replacementString alternativeStrings
@@ -18,7 +18,7 @@ module Class = struct
   let orthographyCheckingResultWithRange x ~orthography self = msg_send ~self ~cmd:(selector "orthographyCheckingResultWithRange:orthography:") ~typ:(NSRange.t @-> id @-> returning (id)) x orthography
   let phoneNumberCheckingResultWithRange x ~phoneNumber self = msg_send ~self ~cmd:(selector "phoneNumberCheckingResultWithRange:phoneNumber:") ~typ:(NSRange.t @-> id @-> returning (id)) x phoneNumber
   let quoteCheckingResultWithRange x ~replacementString self = msg_send ~self ~cmd:(selector "quoteCheckingResultWithRange:replacementString:") ~typ:(NSRange.t @-> id @-> returning (id)) x replacementString
-  let regularExpressionCheckingResultWithRanges x ~count ~regularExpression self = msg_send ~self ~cmd:(selector "regularExpressionCheckingResultWithRanges:count:regularExpression:") ~typ:(ptr (NSRange.t) @-> ullong @-> id @-> returning (id)) x count regularExpression
+  let regularExpressionCheckingResultWithRanges x ~count ~regularExpression self = msg_send ~self ~cmd:(selector "regularExpressionCheckingResultWithRanges:count:regularExpression:") ~typ:(ptr (NSRange.t) @-> ullong @-> id @-> returning (id)) x (ULLong.of_int count) regularExpression
   let replacementCheckingResultWithRange x ~replacementString self = msg_send ~self ~cmd:(selector "replacementCheckingResultWithRange:replacementString:") ~typ:(NSRange.t @-> id @-> returning (id)) x replacementString
   let spellCheckingResultWithRange x self = msg_send ~self ~cmd:(selector "spellCheckingResultWithRange:") ~typ:(NSRange.t @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -43,12 +43,12 @@ let numberOfRanges self = msg_send ~self ~cmd:(selector "numberOfRanges") ~typ:(
 let orthography self = msg_send ~self ~cmd:(selector "orthography") ~typ:(returning (id))
 let phoneNumber self = msg_send ~self ~cmd:(selector "phoneNumber") ~typ:(returning (id))
 let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
-let rangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "rangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
+let rangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "rangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t (ULLong.of_int x)
 let rangeWithName x self = msg_send_stret ~self ~cmd:(selector "rangeWithName:") ~typ:(id @-> returning (NSRange.t)) ~return_type:NSRange.t x
 let referenceDate self = msg_send ~self ~cmd:(selector "referenceDate") ~typ:(returning (id))
 let regularExpression self = msg_send ~self ~cmd:(selector "regularExpression") ~typ:(returning (id))
 let replacementString self = msg_send ~self ~cmd:(selector "replacementString") ~typ:(returning (id))
-let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) x
+let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning (ullong))
 let timeIsApproximate self = msg_send ~self ~cmd:(selector "timeIsApproximate") ~typ:(returning (bool))
 let timeIsPast self = msg_send ~self ~cmd:(selector "timeIsPast") ~typ:(returning (bool))

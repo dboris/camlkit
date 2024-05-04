@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAirDropNode"
 
-module Class = struct
+module C = struct
   let nodeWithImageSlotID x ~labelSlotID ~transportSlotID self = msg_send ~self ~cmd:(selector "nodeWithImageSlotID:labelSlotID:transportSlotID:") ~typ:(uint @-> uint @-> uint @-> returning (id)) x labelSlotID transportSlotID
   let nodeWithSuggestionNode x ~wantsPeopleSuggestionData self = msg_send ~self ~cmd:(selector "nodeWithSuggestionNode:wantsPeopleSuggestionData:") ~typ:(id @-> bool @-> returning (id)) x wantsPeopleSuggestionData
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

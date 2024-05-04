@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFilterServicesPasteboard"
 
-module Class = struct
+module C = struct
   let filterPasteboardWithData x ~ofType self = msg_send ~self ~cmd:(selector "filterPasteboardWithData:ofType:") ~typ:(id @-> id @-> returning (id)) x ofType
   let filterPasteboardWithPasteboard x self = msg_send ~self ~cmd:(selector "filterPasteboardWithPasteboard:") ~typ:(id @-> returning (id)) x
 end

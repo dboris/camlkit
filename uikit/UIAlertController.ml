@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIAlertController"
 
-module Class = struct
-  let alertControllerWithTitle x ~message ~preferredStyle self = msg_send ~self ~cmd:(selector "alertControllerWithTitle:message:preferredStyle:") ~typ:(id @-> id @-> llong @-> returning (id)) x message preferredStyle
+module C = struct
+  let alertControllerWithTitle x ~message ~preferredStyle self = msg_send ~self ~cmd:(selector "alertControllerWithTitle:message:preferredStyle:") ~typ:(id @-> id @-> llong @-> returning (id)) x message (LLong.of_int preferredStyle)
 end
 
 let actions self = msg_send ~self ~cmd:(selector "actions") ~typ:(returning (id))
@@ -42,9 +42,9 @@ let setContentViewController x self = msg_send ~self ~cmd:(selector "setContentV
 let setCoordinatedActionPerformingDelegate x self = msg_send ~self ~cmd:(selector "setCoordinatedActionPerformingDelegate:") ~typ:(id @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
 let setMessage x self = msg_send ~self ~cmd:(selector "setMessage:") ~typ:(id @-> returning (void)) x
-let setModalPresentationStyle x self = msg_send ~self ~cmd:(selector "setModalPresentationStyle:") ~typ:(llong @-> returning (void)) x
+let setModalPresentationStyle x self = msg_send ~self ~cmd:(selector "setModalPresentationStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPreferredAction x self = msg_send ~self ~cmd:(selector "setPreferredAction:") ~typ:(id @-> returning (void)) x
-let setPreferredStyle x self = msg_send ~self ~cmd:(selector "setPreferredStyle:") ~typ:(llong @-> returning (void)) x
+let setPreferredStyle x self = msg_send ~self ~cmd:(selector "setPreferredStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSpringLoaded x self = msg_send ~self ~cmd:(selector "setSpringLoaded:") ~typ:(bool @-> returning (void)) x
 let setTemporaryAnimationCoordinator x self = msg_send ~self ~cmd:(selector "setTemporaryAnimationCoordinator:") ~typ:(id @-> returning (void)) x
 let setTextFieldsCanBecomeFirstResponder x self = msg_send ~self ~cmd:(selector "setTextFieldsCanBecomeFirstResponder:") ~typ:(bool @-> returning (void)) x
@@ -65,5 +65,5 @@ let viewWillAppear x self = msg_send ~self ~cmd:(selector "viewWillAppear:") ~ty
 let viewWillDisappear x self = msg_send ~self ~cmd:(selector "viewWillDisappear:") ~typ:(bool @-> returning (void)) x
 let viewWillLayoutSubviews self = msg_send ~self ~cmd:(selector "viewWillLayoutSubviews") ~typ:(returning (void))
 let viewWillTransitionToSize x ~withTransitionCoordinator self = msg_send ~self ~cmd:(selector "viewWillTransitionToSize:withTransitionCoordinator:") ~typ:(CGSize.t @-> id @-> returning (void)) x withTransitionCoordinator
-let visualStyleForAlertControllerStyle x ~traitCollection ~descriptor self = msg_send ~self ~cmd:(selector "visualStyleForAlertControllerStyle:traitCollection:descriptor:") ~typ:(llong @-> id @-> id @-> returning (id)) x traitCollection descriptor
+let visualStyleForAlertControllerStyle x ~traitCollection ~descriptor self = msg_send ~self ~cmd:(selector "visualStyleForAlertControllerStyle:traitCollection:descriptor:") ~typ:(llong @-> id @-> id @-> returning (id)) (LLong.of_int x) traitCollection descriptor
 let willTransitionToTraitCollection x ~withTransitionCoordinator self = msg_send ~self ~cmd:(selector "willTransitionToTraitCollection:withTransitionCoordinator:") ~typ:(id @-> id @-> returning (void)) x withTransitionCoordinator

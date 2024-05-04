@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPersistentUIRecord"
 
-module Class = struct
+module C = struct
   let coalesceRecords x self = msg_send ~self ~cmd:(selector "coalesceRecords:") ~typ:(id @-> returning (void)) x
   let parseOneRecordFromReadBlock x ~withDecryptionKeys self = msg_send ~self ~cmd:(selector "parseOneRecordFromReadBlock:withDecryptionKeys:") ~typ:(ptr void @-> id @-> returning (id)) x withDecryptionKeys
 end
@@ -30,11 +30,12 @@ let keyPathStateOfClasses x ~forKey ~requireSecureCoding ~returningValue self = 
 let keyedState self = msg_send ~self ~cmd:(selector "keyedState") ~typ:(returning (id))
 let mergeFromRecord x self = msg_send ~self ~cmd:(selector "mergeFromRecord:") ~typ:(id @-> returning (void)) x
 let openedPushStateUnarchiversRequiringSecureCoding x self = msg_send ~self ~cmd:(selector "openedPushStateUnarchiversRequiringSecureCoding:") ~typ:(bool @-> returning (id)) x
-let parsePayloadFromData x ~length self = msg_send ~self ~cmd:(selector "parsePayloadFromData:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x length
+let parsePayloadFromData x ~length self = msg_send ~self ~cmd:(selector "parsePayloadFromData:length:") ~typ:(ptr (void) @-> ullong @-> returning (bool)) x (ULLong.of_int length)
 let persistentID self = msg_send ~self ~cmd:(selector "persistentID") ~typ:(returning (id))
 let securityScopedBookmarks self = msg_send ~self ~cmd:(selector "securityScopedBookmarks") ~typ:(returning (id))
 let setArchivedState x self = msg_send ~self ~cmd:(selector "setArchivedState:") ~typ:(id @-> returning (void)) x
 let setEncodedKeyedState x ~forKey self = msg_send ~self ~cmd:(selector "setEncodedKeyedState:forKey:") ~typ:(id @-> id @-> returning (void)) x forKey
 let setEncodedKeyedState' x ~forKey ~type_ self = msg_send ~self ~cmd:(selector "setEncodedKeyedState:forKey:type:") ~typ:(id @-> id @-> int @-> returning (void)) x forKey type_
+let setEncryptionKey x self = msg_send ~self ~cmd:(selector "setEncryptionKey:") ~typ:(ptr void @-> returning (void)) x
 let setIsCarbonWindow x self = msg_send ~self ~cmd:(selector "setIsCarbonWindow:") ~typ:(bool @-> returning (void)) x
 let windowID self = msg_send ~self ~cmd:(selector "windowID") ~typ:(returning (uint))

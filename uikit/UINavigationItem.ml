@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "UINavigationItem"
 
-module Class = struct
+module C = struct
   let defaultFont self = msg_send ~self ~cmd:(selector "defaultFont") ~typ:(returning (id))
 end
 
-let appearance x ~categoriesChanged self = msg_send ~self ~cmd:(selector "appearance:categoriesChanged:") ~typ:(id @-> llong @-> returning (void)) x categoriesChanged
+let appearance x ~categoriesChanged self = msg_send ~self ~cmd:(selector "appearance:categoriesChanged:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int categoriesChanged)
 let backBarButtonItem self = msg_send ~self ~cmd:(selector "backBarButtonItem") ~typ:(returning (id))
 let backButtonDisplayMode self = msg_send ~self ~cmd:(selector "backButtonDisplayMode") ~typ:(returning (llong))
 let backButtonTitle self = msg_send ~self ~cmd:(selector "backButtonTitle") ~typ:(returning (id))
@@ -46,7 +46,7 @@ let rightBarButtonItems self = msg_send ~self ~cmd:(selector "rightBarButtonItem
 let scrollEdgeAppearance self = msg_send ~self ~cmd:(selector "scrollEdgeAppearance") ~typ:(returning (id))
 let searchController self = msg_send ~self ~cmd:(selector "searchController") ~typ:(returning (id))
 let setBackBarButtonItem x self = msg_send ~self ~cmd:(selector "setBackBarButtonItem:") ~typ:(id @-> returning (void)) x
-let setBackButtonDisplayMode x self = msg_send ~self ~cmd:(selector "setBackButtonDisplayMode:") ~typ:(llong @-> returning (void)) x
+let setBackButtonDisplayMode x self = msg_send ~self ~cmd:(selector "setBackButtonDisplayMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBackButtonTitle x self = msg_send ~self ~cmd:(selector "setBackButtonTitle:") ~typ:(id @-> returning (void)) x
 let setCompactAppearance x self = msg_send ~self ~cmd:(selector "setCompactAppearance:") ~typ:(id @-> returning (void)) x
 let setCompactScrollEdgeAppearance x self = msg_send ~self ~cmd:(selector "setCompactScrollEdgeAppearance:") ~typ:(id @-> returning (void)) x
@@ -63,7 +63,8 @@ let setCustomTitleView x self = msg_send ~self ~cmd:(selector "setCustomTitleVie
 let setHidesBackButton x self = msg_send ~self ~cmd:(selector "setHidesBackButton:") ~typ:(bool @-> returning (void)) x
 let setHidesBackButton' x ~animated self = msg_send ~self ~cmd:(selector "setHidesBackButton:animated:") ~typ:(bool @-> bool @-> returning (void)) x animated
 let setHidesSearchBarWhenScrolling x self = msg_send ~self ~cmd:(selector "setHidesSearchBarWhenScrolling:") ~typ:(bool @-> returning (void)) x
-let setLargeTitleDisplayMode x self = msg_send ~self ~cmd:(selector "setLargeTitleDisplayMode:") ~typ:(llong @-> returning (void)) x
+let setLargeTitleDisplayMode x self = msg_send ~self ~cmd:(selector "setLargeTitleDisplayMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setLargeTitleInsets x self = msg_send ~self ~cmd:(selector "setLargeTitleInsets:") ~typ:(ptr void @-> returning (void)) x
 let setLeftBarButtonItem x self = msg_send ~self ~cmd:(selector "setLeftBarButtonItem:") ~typ:(id @-> returning (void)) x
 let setLeftBarButtonItem' x ~animated self = msg_send ~self ~cmd:(selector "setLeftBarButtonItem:animated:") ~typ:(id @-> bool @-> returning (void)) x animated
 let setLeftBarButtonItems x self = msg_send ~self ~cmd:(selector "setLeftBarButtonItems:") ~typ:(id @-> returning (void)) x
@@ -79,7 +80,7 @@ let setRightBarButtonItems' x ~animated self = msg_send ~self ~cmd:(selector "se
 let setScrollEdgeAppearance x self = msg_send ~self ~cmd:(selector "setScrollEdgeAppearance:") ~typ:(id @-> returning (void)) x
 let setSearchController x self = msg_send ~self ~cmd:(selector "setSearchController:") ~typ:(id @-> returning (void)) x
 let setStandardAppearance x self = msg_send ~self ~cmd:(selector "setStandardAppearance:") ~typ:(id @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
 let setTitleView x self = msg_send ~self ~cmd:(selector "setTitleView:") ~typ:(id @-> returning (void)) x
 let setUseRelativeLargeTitleInsets x self = msg_send ~self ~cmd:(selector "setUseRelativeLargeTitleInsets:") ~typ:(bool @-> returning (void)) x

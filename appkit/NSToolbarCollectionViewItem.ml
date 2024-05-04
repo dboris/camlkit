@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarCollectionViewItem"
 
-module Class = struct
+module C = struct
   let labelFont self = msg_send ~self ~cmd:(selector "labelFont") ~typ:(returning (id))
   let labelForPaletteLabelString x self = msg_send ~self ~cmd:(selector "labelForPaletteLabelString:") ~typ:(id @-> returning (id)) x
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSplitViewItem"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfCollapsed self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfCollapsed") ~typ:(returning (bool))
   let contentListWithViewController x self = msg_send ~self ~cmd:(selector "contentListWithViewController:") ~typ:(id @-> returning (id)) x
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
@@ -60,10 +60,10 @@ let setAppearance x self = msg_send ~self ~cmd:(selector "setAppearance:") ~typ:
 let setAutoHidesWhenFullscreen x self = msg_send ~self ~cmd:(selector "setAutoHidesWhenFullscreen:") ~typ:(bool @-> returning (void)) x
 let setAutomaticMaximumSize x self = msg_send ~self ~cmd:(selector "setAutomaticMaximumSize:") ~typ:(double @-> returning (void)) x
 let setAutomaticMaximumThickness x self = msg_send ~self ~cmd:(selector "setAutomaticMaximumThickness:") ~typ:(double @-> returning (void)) x
-let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(llong @-> returning (void)) x
+let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCanCollapse x self = msg_send ~self ~cmd:(selector "setCanCollapse:") ~typ:(bool @-> returning (void)) x
 let setCanCollapseFromWindowResize x self = msg_send ~self ~cmd:(selector "setCanCollapseFromWindowResize:") ~typ:(bool @-> returning (void)) x
-let setCollapseBehavior x self = msg_send ~self ~cmd:(selector "setCollapseBehavior:") ~typ:(llong @-> returning (void)) x
+let setCollapseBehavior x self = msg_send ~self ~cmd:(selector "setCollapseBehavior:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCollapsed x self = msg_send ~self ~cmd:(selector "setCollapsed:") ~typ:(bool @-> returning (void)) x
 let setHasUserSetSize x self = msg_send ~self ~cmd:(selector "setHasUserSetSize:") ~typ:(bool @-> returning (void)) x
 let setHoldingPriority x self = msg_send ~self ~cmd:(selector "setHoldingPriority:") ~typ:(float @-> returning (void)) x
@@ -79,7 +79,7 @@ let setPrefersPreservingSiblingSizesOnCollapse x self = msg_send ~self ~cmd:(sel
 let setRevealsOnEdgeHoverInFullscreen x self = msg_send ~self ~cmd:(selector "setRevealsOnEdgeHoverInFullscreen:") ~typ:(bool @-> returning (void)) x
 let setSidebar x self = msg_send ~self ~cmd:(selector "setSidebar:") ~typ:(bool @-> returning (void)) x
 let setSpringLoaded x self = msg_send ~self ~cmd:(selector "setSpringLoaded:") ~typ:(bool @-> returning (void)) x
-let setTitlebarSeparatorStyle x self = msg_send ~self ~cmd:(selector "setTitlebarSeparatorStyle:") ~typ:(llong @-> returning (void)) x
+let setTitlebarSeparatorStyle x self = msg_send ~self ~cmd:(selector "setTitlebarSeparatorStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setViewController x self = msg_send ~self ~cmd:(selector "setViewController:") ~typ:(id @-> returning (void)) x
 let titlebarSeparatorStyle self = msg_send ~self ~cmd:(selector "titlebarSeparatorStyle") ~typ:(returning (llong))
 let viewController self = msg_send ~self ~cmd:(selector "viewController") ~typ:(returning (id))

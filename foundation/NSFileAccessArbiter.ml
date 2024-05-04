@@ -5,13 +5,13 @@ open Objc
 
 let _class_ = get_class "NSFileAccessArbiter"
 
-module Class = struct
+module C = struct
   let ensureProvidersIfNecessaryForClaim x ~user ~atLocations ~queue ~thenContinue self = msg_send ~self ~cmd:(selector "ensureProvidersIfNecessaryForClaim:user:atLocations:queue:thenContinue:") ~typ:(id @-> uint @-> id @-> id @-> ptr void @-> returning (void)) x user atLocations queue thenContinue
   let entitlementForConnection x ~key self = msg_send ~self ~cmd:(selector "entitlementForConnection:key:") ~typ:(id @-> id @-> returning (id)) x key
 end
 
-let addPresenter x ~withID ~fileURL ~lastPresentedItemEventIdentifier ~ubiquityAttributes ~options ~responses self = msg_send ~self ~cmd:(selector "addPresenter:withID:fileURL:lastPresentedItemEventIdentifier:ubiquityAttributes:options:responses:") ~typ:(id @-> id @-> id @-> id @-> id @-> ullong @-> ullong @-> returning (void)) x withID fileURL lastPresentedItemEventIdentifier ubiquityAttributes options responses
-let addProvider x ~withID ~uniqueID ~forProvidedItemsURL ~options ~withServer ~reply self = msg_send ~self ~cmd:(selector "addProvider:withID:uniqueID:forProvidedItemsURL:options:withServer:reply:") ~typ:(id @-> id @-> id @-> id @-> ullong @-> id @-> ptr void @-> returning (void)) x withID uniqueID forProvidedItemsURL options withServer reply
+let addPresenter x ~withID ~fileURL ~lastPresentedItemEventIdentifier ~ubiquityAttributes ~options ~responses self = msg_send ~self ~cmd:(selector "addPresenter:withID:fileURL:lastPresentedItemEventIdentifier:ubiquityAttributes:options:responses:") ~typ:(id @-> id @-> id @-> id @-> id @-> ullong @-> ullong @-> returning (void)) x withID fileURL lastPresentedItemEventIdentifier ubiquityAttributes (ULLong.of_int options) (ULLong.of_int responses)
+let addProvider x ~withID ~uniqueID ~forProvidedItemsURL ~options ~withServer ~reply self = msg_send ~self ~cmd:(selector "addProvider:withID:uniqueID:forProvidedItemsURL:options:withServer:reply:") ~typ:(id @-> id @-> id @-> id @-> ullong @-> id @-> ptr void @-> returning (void)) x withID uniqueID forProvidedItemsURL (ULLong.of_int options) withServer reply
 let cancelAccessClaimForID x self = msg_send ~self ~cmd:(selector "cancelAccessClaimForID:") ~typ:(id @-> returning (void)) x
 let cancelMaterializationWithRequestID x self = msg_send ~self ~cmd:(selector "cancelMaterializationWithRequestID:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))

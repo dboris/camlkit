@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBProductivityPinchGestureRecognizer"
 
-module Class = struct
+module C = struct
   let productivityPinchGestureRecognizerWithTarget x ~action ~delegate self = msg_send ~self ~cmd:(selector "productivityPinchGestureRecognizerWithTarget:action:delegate:") ~typ:(id @-> _SEL @-> id @-> returning (id)) x action delegate
 end
 
@@ -41,7 +41,7 @@ let setBeginTouchLocations x self = msg_send ~self ~cmd:(selector "setBeginTouch
 let setTooMuchSingleMovement x self = msg_send ~self ~cmd:(selector "setTooMuchSingleMovement:") ~typ:(bool @-> returning (void)) x
 let shouldBeRequiredToFailByGestureRecognizer x self = msg_send ~self ~cmd:(selector "shouldBeRequiredToFailByGestureRecognizer:") ~typ:(id @-> returning (bool)) x
 let startMultitouchTimer x self = msg_send ~self ~cmd:(selector "startMultitouchTimer:") ~typ:(double @-> returning (void)) x
-let sufficientMotionInDirection x ~withLocation ~withScale ~withAngle self = msg_send ~self ~cmd:(selector "sufficientMotionInDirection:withLocation:withScale:withAngle:") ~typ:(llong @-> CGPoint.t @-> double @-> double @-> returning (bool)) x withLocation withScale withAngle
+let sufficientMotionInDirection x ~withLocation ~withScale ~withAngle self = msg_send ~self ~cmd:(selector "sufficientMotionInDirection:withLocation:withScale:withAngle:") ~typ:(llong @-> CGPoint.t @-> double @-> double @-> returning (bool)) (LLong.of_int x) withLocation withScale withAngle
 let tooMuchSingleMovement self = msg_send ~self ~cmd:(selector "tooMuchSingleMovement") ~typ:(returning (bool))
 let touchesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "touchesBegan:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let touchesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "touchesCancelled:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent

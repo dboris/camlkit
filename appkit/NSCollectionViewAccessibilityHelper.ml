@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSCollectionViewAccessibilityHelper"
 
 let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning (ullong)) x
-let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x index maxCount
+let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityChildren self = msg_send ~self ~cmd:(selector "accessibilityChildren") ~typ:(returning (id))
 let accessibilityColumnCount self = msg_send ~self ~cmd:(selector "accessibilityColumnCount") ~typ:(returning (llong))
 let accessibilityDidEndScrolling self = msg_send ~self ~cmd:(selector "accessibilityDidEndScrolling") ~typ:(returning (void))

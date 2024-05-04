@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSSharingService"
 
-module Class = struct
+module C = struct
   let getSharingServiceNamed x ~completion self = msg_send ~self ~cmd:(selector "getSharingServiceNamed:completion:") ~typ:(id @-> ptr void @-> returning (void)) x completion
   let getSharingServicesForItems x ~completion self = msg_send ~self ~cmd:(selector "getSharingServicesForItems:completion:") ~typ:(id @-> ptr void @-> returning (void)) x completion
-  let getSharingServicesForItems' x ~mask ~completion self = msg_send ~self ~cmd:(selector "getSharingServicesForItems:mask:completion:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x mask completion
+  let getSharingServicesForItems' x ~mask ~completion self = msg_send ~self ~cmd:(selector "getSharingServicesForItems:mask:completion:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x (ULLong.of_int mask) completion
   let sharingServiceNamed x self = msg_send ~self ~cmd:(selector "sharingServiceNamed:") ~typ:(id @-> returning (id)) x
-  let sharingServicesForAttributedString x ~range ~mask self = msg_send ~self ~cmd:(selector "sharingServicesForAttributedString:range:mask:") ~typ:(id @-> NSRange.t @-> ullong @-> returning (id)) x range mask
+  let sharingServicesForAttributedString x ~range ~mask self = msg_send ~self ~cmd:(selector "sharingServicesForAttributedString:range:mask:") ~typ:(id @-> NSRange.t @-> ullong @-> returning (id)) x range (ULLong.of_int mask)
   let sharingServicesForItems x self = msg_send ~self ~cmd:(selector "sharingServicesForItems:") ~typ:(id @-> returning (id)) x
-  let sharingServicesForItems' x ~mask self = msg_send ~self ~cmd:(selector "sharingServicesForItems:mask:") ~typ:(id @-> ullong @-> returning (id)) x mask
+  let sharingServicesForItems' x ~mask self = msg_send ~self ~cmd:(selector "sharingServicesForItems:mask:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int mask)
 end
 
 let accountName self = msg_send ~self ~cmd:(selector "accountName") ~typ:(returning (id))
@@ -28,7 +28,7 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (i
 let dismissWithCompletion x self = msg_send ~self ~cmd:(selector "dismissWithCompletion:") ~typ:(ptr void @-> returning (void)) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithName x ~title ~image ~alternateImage ~type_ ~handler self = msg_send ~self ~cmd:(selector "initWithName:title:image:alternateImage:type:handler:") ~typ:(id @-> id @-> id @-> id @-> llong @-> ptr void @-> returning (id)) x title image alternateImage type_ handler
+let initWithName x ~title ~image ~alternateImage ~type_ ~handler self = msg_send ~self ~cmd:(selector "initWithName:title:image:alternateImage:type:handler:") ~typ:(id @-> id @-> id @-> id @-> llong @-> ptr void @-> returning (id)) x title image alternateImage (LLong.of_int type_) handler
 let initWithTitle x ~image ~alternateImage ~handler self = msg_send ~self ~cmd:(selector "initWithTitle:image:alternateImage:handler:") ~typ:(id @-> id @-> id @-> ptr void @-> returning (id)) x image alternateImage handler
 let isCatalyst self = msg_send ~self ~cmd:(selector "isCatalyst") ~typ:(returning (bool))
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))

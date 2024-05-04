@@ -8,21 +8,21 @@ open Foundation
 
 let _class_ = get_class "NSTableRow"
 
-module Class = struct
-  let tableRow x ~ofTableView self = msg_send ~self ~cmd:(selector "tableRow:ofTableView:") ~typ:(llong @-> id @-> returning (id)) x ofTableView
+module C = struct
+  let tableRow x ~ofTableView self = msg_send ~self ~cmd:(selector "tableRow:ofTableView:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) ofTableView
 end
 
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning (id)) x
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning (id))
 let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning (ullong)) x
-let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x index maxCount
+let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))
 let accessibilityAttributeValue x self = msg_send ~self ~cmd:(selector "accessibilityAttributeValue:") ~typ:(id @-> returning (id)) x
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning (id))
 let accessibilityChildrenInNavigationOrderAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenInNavigationOrderAttribute") ~typ:(returning (id))
 let accessibilityCustomActions self = msg_send ~self ~cmd:(selector "accessibilityCustomActions") ~typ:(returning (id))
 let accessibilityFocusedUIElement self = msg_send ~self ~cmd:(selector "accessibilityFocusedUIElement") ~typ:(returning (id))
-let accessibilityHasOutlineColumnMockGroupForRow x ~column self = msg_send ~self ~cmd:(selector "accessibilityHasOutlineColumnMockGroupForRow:column:") ~typ:(llong @-> llong @-> returning (bool)) x column
+let accessibilityHasOutlineColumnMockGroupForRow x ~column self = msg_send ~self ~cmd:(selector "accessibilityHasOutlineColumnMockGroupForRow:column:") ~typ:(llong @-> llong @-> returning (bool)) (LLong.of_int x) (LLong.of_int column)
 let accessibilityHitTest x self = msg_send ~self ~cmd:(selector "accessibilityHitTest:") ~typ:(CGPoint.t @-> returning (id)) x
 let accessibilityIndexAttribute self = msg_send ~self ~cmd:(selector "accessibilityIndexAttribute") ~typ:(returning (id))
 let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning (ullong)) x
@@ -57,6 +57,6 @@ let accessibilityWindowAttribute self = msg_send ~self ~cmd:(selector "accessibi
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let deepestAccessibilityDescendants self = msg_send ~self ~cmd:(selector "deepestAccessibilityDescendants") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let initWithRow x ~ofTableView self = msg_send ~self ~cmd:(selector "initWithRow:ofTableView:") ~typ:(llong @-> id @-> returning (id)) x ofTableView
+let initWithRow x ~ofTableView self = msg_send ~self ~cmd:(selector "initWithRow:ofTableView:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) ofTableView
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning (llong))

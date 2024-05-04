@@ -8,9 +8,13 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderFactory"
 
-module Class = struct
-  let cacheKeyForString x ~withRenderFlags ~renderingContext self = msg_send ~self ~cmd:(selector "cacheKeyForString:withRenderFlags:renderingContext:") ~typ:(id @-> llong @-> id @-> returning (id)) x withRenderFlags renderingContext
+module C = struct
+  let cacheKeyForString x ~withRenderFlags ~renderingContext self = msg_send ~self ~cmd:(selector "cacheKeyForString:withRenderFlags:renderingContext:") ~typ:(id @-> llong @-> id @-> returning (id)) x (LLong.of_int withRenderFlags) renderingContext
   let couldUseGlyphSelectorForDisplayString x self = msg_send ~self ~cmd:(selector "couldUseGlyphSelectorForDisplayString:") ~typ:(id @-> returning (bool)) x
+  let factoryClassForVisualStyle x ~renderingContext self = msg_send ~self ~cmd:(selector "factoryClassForVisualStyle:renderingContext:") ~typ:(ptr void @-> id @-> returning (_Class)) x renderingContext
+  let factoryForVisualStyle x ~renderingContext self = msg_send ~self ~cmd:(selector "factoryForVisualStyle:renderingContext:") ~typ:(ptr void @-> id @-> returning (id)) x renderingContext
+  let factoryForVisualStyle' x ~renderingContext ~skipLayoutSegments self = msg_send ~self ~cmd:(selector "factoryForVisualStyle:renderingContext:skipLayoutSegments:") ~typ:(ptr void @-> id @-> bool @-> returning (id)) x renderingContext skipLayoutSegments
+  let lightweightFactoryForVisualStyle x ~renderingContext self = msg_send ~self ~cmd:(selector "lightweightFactoryForVisualStyle:renderingContext:") ~typ:(ptr void @-> id @-> returning (id)) x renderingContext
   let segmentedControlColor x self = msg_send ~self ~cmd:(selector "segmentedControlColor:") ~typ:(bool @-> returning (id)) x
 end
 

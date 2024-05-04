@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorListPickerScrubberLayout"
 
-module Class = struct
+module C = struct
   let layoutAttributesClass self = msg_send ~self ~cmd:(selector "layoutAttributesClass") ~typ:(returning (_Class))
 end
 
 let highlightedItemHeight self = msg_send ~self ~cmd:(selector "highlightedItemHeight") ~typ:(returning (double))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let itemHeight self = msg_send ~self ~cmd:(selector "itemHeight") ~typ:(returning (double))
-let layoutAttributesForItemAtIndex x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndex:") ~typ:(llong @-> returning (id)) x
+let layoutAttributesForItemAtIndex x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let layoutAttributesForItemsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemsInRect:") ~typ:(CGRect.t @-> returning (id)) x
 let scrubberContentSize self = msg_send_stret ~self ~cmd:(selector "scrubberContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let selectedItemHeight self = msg_send ~self ~cmd:(selector "selectedItemHeight") ~typ:(returning (double))

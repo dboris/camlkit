@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSMenuItem"
 
-module Class = struct
+module C = struct
   let separatorItem self = msg_send ~self ~cmd:(selector "separatorItem") ~typ:(returning (id))
 end
 
@@ -30,18 +30,18 @@ let setAlternate x self = msg_send ~self ~cmd:(selector "setAlternate:") ~typ:(b
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setInitialTarget x self = msg_send ~self ~cmd:(selector "setInitialTarget:") ~typ:(id @-> returning (void)) x
 let setKeyEquivalent x self = msg_send ~self ~cmd:(selector "setKeyEquivalent:") ~typ:(id @-> returning (void)) x
-let setKeyEquivalentModifiers x self = msg_send ~self ~cmd:(selector "setKeyEquivalentModifiers:") ~typ:(ullong @-> returning (void)) x
+let setKeyEquivalentModifiers x self = msg_send ~self ~cmd:(selector "setKeyEquivalentModifiers:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setParentMenu x self = msg_send ~self ~cmd:(selector "setParentMenu:") ~typ:(id @-> returning (void)) x
 let setReplacedBySubmenuItems x self = msg_send ~self ~cmd:(selector "setReplacedBySubmenuItems:") ~typ:(bool @-> returning (void)) x
 let setRvHighlighter x self = msg_send ~self ~cmd:(selector "setRvHighlighter:") ~typ:(id @-> returning (void)) x
 let setRvItem x self = msg_send ~self ~cmd:(selector "setRvItem:") ~typ:(id @-> returning (void)) x
 let setSeparatorItem x self = msg_send ~self ~cmd:(selector "setSeparatorItem:") ~typ:(bool @-> returning (void)) x
 let setSourceUIMenuElement x self = msg_send ~self ~cmd:(selector "setSourceUIMenuElement:") ~typ:(id @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSubmenu x self = msg_send ~self ~cmd:(selector "setSubmenu:") ~typ:(id @-> returning (void)) x
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
-let setType x self = msg_send ~self ~cmd:(selector "setType:") ~typ:(llong @-> returning (void)) x
+let setType x self = msg_send ~self ~cmd:(selector "setType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let sourceUIMenuElement self = msg_send ~self ~cmd:(selector "sourceUIMenuElement") ~typ:(returning (id))
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let submenu self = msg_send ~self ~cmd:(selector "submenu") ~typ:(returning (id))

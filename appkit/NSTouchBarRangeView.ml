@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarRangeView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
   let monoHandleSize self = msg_send_stret ~self ~cmd:(selector "monoHandleSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
@@ -23,7 +23,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
-let setHandleMask x self = msg_send ~self ~cmd:(selector "setHandleMask:") ~typ:(ullong @-> returning (void)) x
+let setHandleMask x self = msg_send ~self ~cmd:(selector "setHandleMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning (void)) x
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning (id))
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning (void))

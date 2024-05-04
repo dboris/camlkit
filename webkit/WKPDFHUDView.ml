@@ -10,6 +10,7 @@ let _class_ = get_class "WKPDFHUDView"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning (id)) x
+let initWithFrame x ~pluginIdentifier ~page self = msg_send ~self ~cmd:(selector "initWithFrame:pluginIdentifier:page:") ~typ:(CGRect.t @-> ptr void @-> ptr (void) @-> returning (id)) x pluginIdentifier page
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning (void)) x
 let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning (void)) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning (void)) x

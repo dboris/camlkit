@@ -5,10 +5,10 @@ open Objc
 
 let _class_ = get_class "NSStream"
 
-module Class = struct
-  let getBoundStreamsWithBufferSize x ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getBoundStreamsWithBufferSize:inputStream:outputStream:") ~typ:(ullong @-> ptr (id) @-> ptr (id) @-> returning (void)) x inputStream outputStream
-  let getStreamsToHost x ~port ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getStreamsToHost:port:inputStream:outputStream:") ~typ:(id @-> llong @-> ptr (id) @-> ptr (id) @-> returning (void)) x port inputStream outputStream
-  let getStreamsToHostWithName x ~port ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getStreamsToHostWithName:port:inputStream:outputStream:") ~typ:(id @-> llong @-> ptr (id) @-> ptr (id) @-> returning (void)) x port inputStream outputStream
+module C = struct
+  let getBoundStreamsWithBufferSize x ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getBoundStreamsWithBufferSize:inputStream:outputStream:") ~typ:(ullong @-> ptr (id) @-> ptr (id) @-> returning (void)) (ULLong.of_int x) inputStream outputStream
+  let getStreamsToHost x ~port ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getStreamsToHost:port:inputStream:outputStream:") ~typ:(id @-> llong @-> ptr (id) @-> ptr (id) @-> returning (void)) x (LLong.of_int port) inputStream outputStream
+  let getStreamsToHostWithName x ~port ~inputStream ~outputStream self = msg_send ~self ~cmd:(selector "getStreamsToHostWithName:port:inputStream:outputStream:") ~typ:(id @-> llong @-> ptr (id) @-> ptr (id) @-> returning (void)) x (LLong.of_int port) inputStream outputStream
 end
 
 let close self = msg_send ~self ~cmd:(selector "close") ~typ:(returning (void))

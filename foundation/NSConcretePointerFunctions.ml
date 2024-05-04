@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSConcretePointerFunctions"
 
-module Class = struct
+module C = struct
   let initializeBackingStore x ~sentinel self = msg_send ~self ~cmd:(selector "initializeBackingStore:sentinel:") ~typ:(ptr void @-> bool @-> returning (void)) x sentinel
-  let initializeSlice x ~withOptions self = msg_send ~self ~cmd:(selector "initializeSlice:withOptions:") ~typ:(ptr void @-> ullong @-> returning (bool)) x withOptions
+  let initializeSlice x ~withOptions self = msg_send ~self ~cmd:(selector "initializeSlice:withOptions:") ~typ:(ptr void @-> ullong @-> returning (bool)) x (ULLong.of_int withOptions)
 end
 
 let acquireFunction self = msg_send ~self ~cmd:(selector "acquireFunction") ~typ:(returning (ptr (ptr void)))
@@ -15,7 +15,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let descriptionFunction self = msg_send ~self ~cmd:(selector "descriptionFunction") ~typ:(returning (ptr (ptr void)))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let hashFunction self = msg_send ~self ~cmd:(selector "hashFunction") ~typ:(returning (ptr (ptr void)))
-let initWithOptions x self = msg_send ~self ~cmd:(selector "initWithOptions:") ~typ:(ullong @-> returning (id)) x
+let initWithOptions x self = msg_send ~self ~cmd:(selector "initWithOptions:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isEqualFunction self = msg_send ~self ~cmd:(selector "isEqualFunction") ~typ:(returning (ptr (ptr void)))
 let relinquishFunction self = msg_send ~self ~cmd:(selector "relinquishFunction") ~typ:(returning (ptr (ptr void)))

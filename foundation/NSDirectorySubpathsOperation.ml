@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDirectorySubpathsOperation"
 
-module Class = struct
+module C = struct
   let directorySubpathsOperationAtPath x self = msg_send ~self ~cmd:(selector "directorySubpathsOperationAtPath:") ~typ:(id @-> returning (id)) x
 end
 

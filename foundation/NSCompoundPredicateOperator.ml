@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSCompoundPredicateOperator"
 
-module Class = struct
+module C = struct
   let andPredicateOperator self = msg_send ~self ~cmd:(selector "andPredicateOperator") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let notPredicateOperator self = msg_send ~self ~cmd:(selector "notPredicateOperator") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPresentationController"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -54,7 +54,7 @@ let setNeedsFocusUpdate self = msg_send ~self ~cmd:(selector "setNeedsFocusUpdat
 let setOverrideTraitCollection x self = msg_send ~self ~cmd:(selector "setOverrideTraitCollection:") ~typ:(id @-> returning (void)) x
 let setSourceRect x self = msg_send ~self ~cmd:(selector "setSourceRect:") ~typ:(CGRect.t @-> returning (void)) x
 let setSourceView x self = msg_send ~self ~cmd:(selector "setSourceView:") ~typ:(id @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let shouldPresentInFullscreen self = msg_send ~self ~cmd:(selector "shouldPresentInFullscreen") ~typ:(returning (bool))
 let shouldRemovePresentersView self = msg_send ~self ~cmd:(selector "shouldRemovePresentersView") ~typ:(returning (bool))
 let shouldUpdateFocusInContext x self = msg_send ~self ~cmd:(selector "shouldUpdateFocusInContext:") ~typ:(id @-> returning (bool)) x

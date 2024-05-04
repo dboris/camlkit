@@ -9,6 +9,7 @@ open Foundation
 let _class_ = get_class "UIKeyboardLayoutGuide"
 
 let addsHeightWhenUndocked self = msg_send ~self ~cmd:(selector "addsHeightWhenUndocked") ~typ:(returning (bool))
+let changeOffsetConstants x self = msg_send ~self ~cmd:(selector "changeOffsetConstants:") ~typ:(ptr void @-> returning (void)) x
 let changeSizingConstants x self = msg_send ~self ~cmd:(selector "changeSizingConstants:") ~typ:(CGSize.t @-> returning (void)) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let followsUndockedKeyboard self = msg_send ~self ~cmd:(selector "followsUndockedKeyboard") ~typ:(returning (bool))
@@ -23,6 +24,7 @@ let setAddsHeightWhenUndocked x self = msg_send ~self ~cmd:(selector "setAddsHei
 let setDocked x self = msg_send ~self ~cmd:(selector "setDocked:") ~typ:(bool @-> returning (void)) x
 let setFollowsUndockedKeyboard x self = msg_send ~self ~cmd:(selector "setFollowsUndockedKeyboard:") ~typ:(bool @-> returning (void)) x
 let setHasPausedEdges x self = msg_send ~self ~cmd:(selector "setHasPausedEdges:") ~typ:(bool @-> returning (void)) x
+let setPreviousOffset x self = msg_send ~self ~cmd:(selector "setPreviousOffset:") ~typ:(ptr void @-> returning (void)) x
 let setPreviousSize x self = msg_send ~self ~cmd:(selector "setPreviousSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setTransitioning x self = msg_send ~self ~cmd:(selector "setTransitioning:") ~typ:(bool @-> returning (void)) x
 let setWindowGuide x self = msg_send ~self ~cmd:(selector "setWindowGuide:") ~typ:(bool @-> returning (void)) x

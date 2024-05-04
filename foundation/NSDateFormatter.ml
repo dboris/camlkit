@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSDateFormatter"
 
-module Class = struct
-  let dateFormatFromTemplate x ~options ~locale self = msg_send ~self ~cmd:(selector "dateFormatFromTemplate:options:locale:") ~typ:(id @-> ullong @-> id @-> returning (id)) x options locale
+module C = struct
+  let dateFormatFromTemplate x ~options ~locale self = msg_send ~self ~cmd:(selector "dateFormatFromTemplate:options:locale:") ~typ:(id @-> ullong @-> id @-> returning (id)) x (ULLong.of_int options) locale
   let defaultFormatterBehavior self = msg_send ~self ~cmd:(selector "defaultFormatterBehavior") ~typ:(returning (ullong))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let localizedStringFromDate x ~dateStyle ~timeStyle self = msg_send ~self ~cmd:(selector "localizedStringFromDate:dateStyle:timeStyle:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x dateStyle timeStyle
-  let setDefaultFormatterBehavior x self = msg_send ~self ~cmd:(selector "setDefaultFormatterBehavior:") ~typ:(ullong @-> returning (void)) x
+  let localizedStringFromDate x ~dateStyle ~timeStyle self = msg_send ~self ~cmd:(selector "localizedStringFromDate:dateStyle:timeStyle:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int dateStyle) (ULLong.of_int timeStyle)
+  let setDefaultFormatterBehavior x self = msg_send ~self ~cmd:(selector "setDefaultFormatterBehavior:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 end
 
 let _AMSymbol self = msg_send ~self ~cmd:(selector "AMSymbol") ~typ:(returning (id))
@@ -44,12 +44,12 @@ let receiveObservedValue x self = msg_send ~self ~cmd:(selector "receiveObserved
 let setAMSymbol x self = msg_send ~self ~cmd:(selector "setAMSymbol:") ~typ:(id @-> returning (void)) x
 let setCalendar x self = msg_send ~self ~cmd:(selector "setCalendar:") ~typ:(id @-> returning (void)) x
 let setDateFormat x self = msg_send ~self ~cmd:(selector "setDateFormat:") ~typ:(id @-> returning (void)) x
-let setDateStyle x self = msg_send ~self ~cmd:(selector "setDateStyle:") ~typ:(ullong @-> returning (void)) x
+let setDateStyle x self = msg_send ~self ~cmd:(selector "setDateStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDefaultDate x self = msg_send ~self ~cmd:(selector "setDefaultDate:") ~typ:(id @-> returning (void)) x
 let setDoesRelativeDateFormatting x self = msg_send ~self ~cmd:(selector "setDoesRelativeDateFormatting:") ~typ:(bool @-> returning (void)) x
 let setEraSymbols x self = msg_send ~self ~cmd:(selector "setEraSymbols:") ~typ:(id @-> returning (void)) x
-let setFormatterBehavior x self = msg_send ~self ~cmd:(selector "setFormatterBehavior:") ~typ:(ullong @-> returning (void)) x
-let setFormattingContext x self = msg_send ~self ~cmd:(selector "setFormattingContext:") ~typ:(llong @-> returning (void)) x
+let setFormatterBehavior x self = msg_send ~self ~cmd:(selector "setFormatterBehavior:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setFormattingContext x self = msg_send ~self ~cmd:(selector "setFormattingContext:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setGeneratesCalendarDates x self = msg_send ~self ~cmd:(selector "setGeneratesCalendarDates:") ~typ:(bool @-> returning (void)) x
 let setGregorianStartDate x self = msg_send ~self ~cmd:(selector "setGregorianStartDate:") ~typ:(id @-> returning (void)) x
 let setLenient x self = msg_send ~self ~cmd:(selector "setLenient:") ~typ:(bool @-> returning (void)) x
@@ -68,7 +68,7 @@ let setShortWeekdaySymbols x self = msg_send ~self ~cmd:(selector "setShortWeekd
 let setStandaloneMonthSymbols x self = msg_send ~self ~cmd:(selector "setStandaloneMonthSymbols:") ~typ:(id @-> returning (void)) x
 let setStandaloneQuarterSymbols x self = msg_send ~self ~cmd:(selector "setStandaloneQuarterSymbols:") ~typ:(id @-> returning (void)) x
 let setStandaloneWeekdaySymbols x self = msg_send ~self ~cmd:(selector "setStandaloneWeekdaySymbols:") ~typ:(id @-> returning (void)) x
-let setTimeStyle x self = msg_send ~self ~cmd:(selector "setTimeStyle:") ~typ:(ullong @-> returning (void)) x
+let setTimeStyle x self = msg_send ~self ~cmd:(selector "setTimeStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setTimeZone x self = msg_send ~self ~cmd:(selector "setTimeZone:") ~typ:(id @-> returning (void)) x
 let setTwoDigitStartDate x self = msg_send ~self ~cmd:(selector "setTwoDigitStartDate:") ~typ:(id @-> returning (void)) x
 let setVeryShortMonthSymbols x self = msg_send ~self ~cmd:(selector "setVeryShortMonthSymbols:") ~typ:(id @-> returning (void)) x

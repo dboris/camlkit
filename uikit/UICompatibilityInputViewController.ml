@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "UICompatibilityInputViewController"
 
-module Class = struct
+module C = struct
   let applicationDidReceiveMemoryWarning x self = msg_send ~self ~cmd:(selector "applicationDidReceiveMemoryWarning:") ~typ:(id @-> returning (void)) x
   let deferredInputModeControllerWithKeyboard x self = msg_send ~self ~cmd:(selector "deferredInputModeControllerWithKeyboard:") ~typ:(id @-> returning (id)) x
-  let inputSnapshotViewForInputMode x ~orientation self = msg_send ~self ~cmd:(selector "inputSnapshotViewForInputMode:orientation:") ~typ:(id @-> llong @-> returning (id)) x orientation
+  let inputSnapshotViewForInputMode x ~orientation self = msg_send ~self ~cmd:(selector "inputSnapshotViewForInputMode:orientation:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int orientation)
   let inputViewControllerWithView x self = msg_send ~self ~cmd:(selector "inputViewControllerWithView:") ~typ:(id @-> returning (id)) x
 end
 
@@ -22,7 +22,7 @@ let childCompatibilityController self = msg_send ~self ~cmd:(selector "childComp
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let didFinishTranslation self = msg_send ~self ~cmd:(selector "didFinishTranslation") ~typ:(returning (void))
 let didMoveToParentViewController x self = msg_send ~self ~cmd:(selector "didMoveToParentViewController:") ~typ:(id @-> returning (void)) x
-let didRotateFromInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didRotateFromInterfaceOrientation:") ~typ:(llong @-> returning (void)) x
+let didRotateFromInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didRotateFromInterfaceOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let didSuspend x self = msg_send ~self ~cmd:(selector "didSuspend:") ~typ:(id @-> returning (void)) x
 let finishSplitTransition x self = msg_send ~self ~cmd:(selector "finishSplitTransition:") ~typ:(bool @-> returning (void)) x
 let focusSafeAreaLayoutGuide self = msg_send ~self ~cmd:(selector "focusSafeAreaLayoutGuide") ~typ:(returning (id))
@@ -53,7 +53,7 @@ let validateInputModeIsDisplayed self = msg_send ~self ~cmd:(selector "validateI
 let viewDidLayoutSubviews self = msg_send ~self ~cmd:(selector "viewDidLayoutSubviews") ~typ:(returning (void))
 let viewWillAppear x self = msg_send ~self ~cmd:(selector "viewWillAppear:") ~typ:(bool @-> returning (void)) x
 let viewWillDisappear x self = msg_send ~self ~cmd:(selector "viewWillDisappear:") ~typ:(bool @-> returning (void)) x
-let willAnimateRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
+let willAnimateRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration
 let willBeginTranslation self = msg_send ~self ~cmd:(selector "willBeginTranslation") ~typ:(returning (void))
 let willResume x self = msg_send ~self ~cmd:(selector "willResume:") ~typ:(id @-> returning (void)) x
-let willRotateToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willRotateToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
+let willRotateToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willRotateToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration

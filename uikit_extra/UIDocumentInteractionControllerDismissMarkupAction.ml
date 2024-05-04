@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDocumentInteractionControllerDismissMarkupAction"
 
-module Class = struct
+module C = struct
   let actionWithTitle x ~handler self = msg_send ~self ~cmd:(selector "actionWithTitle:handler:") ~typ:(id @-> ptr void @-> returning (id)) x handler
 end
 

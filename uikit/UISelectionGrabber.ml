@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISelectionGrabber"
 
-module Class = struct
+module C = struct
   let layerClass self = msg_send ~self ~cmd:(selector "layerClass") ~typ:(returning (_Class))
 end
 
@@ -62,11 +62,11 @@ let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t 
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning (void)) x
 let setIsDotted x self = msg_send ~self ~cmd:(selector "setIsDotted:") ~typ:(bool @-> returning (void)) x
 let setNavigationTransitionFlattened x self = msg_send ~self ~cmd:(selector "setNavigationTransitionFlattened:") ~typ:(bool @-> returning (void)) x
-let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) x
+let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSheetFlattened x self = msg_send ~self ~cmd:(selector "setSheetFlattened:") ~typ:(bool @-> returning (void)) x
 let shapeLayer self = msg_send ~self ~cmd:(selector "shapeLayer") ~typ:(returning (id))
 let sheetFlattened self = msg_send ~self ~cmd:(selector "sheetFlattened") ~typ:(returning (bool))
-let transitionDot x ~completion self = msg_send ~self ~cmd:(selector "transitionDot:completion:") ~typ:(llong @-> ptr void @-> returning (void)) x completion
+let transitionDot x ~completion self = msg_send ~self ~cmd:(selector "transitionDot:completion:") ~typ:(llong @-> ptr void @-> returning (void)) (LLong.of_int x) completion
 let updateDot self = msg_send ~self ~cmd:(selector "updateDot") ~typ:(returning (void))
 let updatePathForBoundsChangeIfNecessary self = msg_send ~self ~cmd:(selector "updatePathForBoundsChangeIfNecessary") ~typ:(returning (void))
 let willMoveToWindow x self = msg_send ~self ~cmd:(selector "willMoveToWindow:") ~typ:(id @-> returning (void)) x

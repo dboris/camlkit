@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDynamicSystemColor"
 
-module Class = struct
+module C = struct
   let alternateSecondarySelectedControlColor self = msg_send ~self ~cmd:(selector "alternateSecondarySelectedControlColor") ~typ:(returning (id))
   let alternateSelectedControlColor self = msg_send ~self ~cmd:(selector "alternateSelectedControlColor") ~typ:(returning (id))
   let alternateSelectedControlTextColor self = msg_send ~self ~cmd:(selector "alternateSelectedControlTextColor") ~typ:(returning (id))

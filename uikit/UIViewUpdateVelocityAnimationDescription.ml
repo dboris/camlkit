@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIViewUpdateVelocityAnimationDescription"
 
-module Class = struct
+module C = struct
   let descriptionWithVelocity x ~targetVelocity self = msg_send ~self ~cmd:(selector "descriptionWithVelocity:targetVelocity:") ~typ:(id @-> id @-> returning (id)) x targetVelocity
 end
 

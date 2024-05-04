@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIBarButtonAction"
 
-module Class = struct
+module C = struct
   let actionWithImage x ~handler self = msg_send ~self ~cmd:(selector "actionWithImage:handler:") ~typ:(id @-> ptr void @-> returning (id)) x handler
   let actionWithTitle x ~handler self = msg_send ~self ~cmd:(selector "actionWithTitle:handler:") ~typ:(id @-> ptr void @-> returning (id)) x handler
 end

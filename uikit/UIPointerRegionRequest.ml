@@ -12,4 +12,4 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let location self = msg_send_stret ~self ~cmd:(selector "location") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let modifiers self = msg_send ~self ~cmd:(selector "modifiers") ~typ:(returning (llong))
 let setLocation x self = msg_send ~self ~cmd:(selector "setLocation:") ~typ:(CGPoint.t @-> returning (void)) x
-let setModifiers x self = msg_send ~self ~cmd:(selector "setModifiers:") ~typ:(llong @-> returning (void)) x
+let setModifiers x self = msg_send ~self ~cmd:(selector "setModifiers:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

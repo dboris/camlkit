@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPersistentUIManager"
 
-module Class = struct
+module C = struct
   let copyDebugDumpStateDirectory x self = msg_send ~self ~cmd:(selector "copyDebugDumpStateDirectory:") ~typ:(id @-> returning (id)) x
   let copyPersistentCarbonWindowDictionariesForBundleID x self = msg_send ~self ~cmd:(selector "copyPersistentCarbonWindowDictionariesForBundleID:") ~typ:(id @-> returning (id)) x
   let nibDecoder x ~didDecodeObject self = msg_send ~self ~cmd:(selector "nibDecoder:didDecodeObject:") ~typ:(id @-> id @-> returning (void)) x didDecodeObject

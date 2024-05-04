@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRuleEditorViewSlice"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -23,5 +23,5 @@ let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> 
 let rightMouseDown x self = msg_send ~self ~cmd:(selector "rightMouseDown:") ~typ:(id @-> returning (void)) x
 let rowIndex self = msg_send ~self ~cmd:(selector "rowIndex") ~typ:(returning (llong))
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
-let setIndentation x self = msg_send ~self ~cmd:(selector "setIndentation:") ~typ:(llong @-> returning (void)) x
-let setRowIndex x self = msg_send ~self ~cmd:(selector "setRowIndex:") ~typ:(llong @-> returning (void)) x
+let setIndentation x self = msg_send ~self ~cmd:(selector "setIndentation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setRowIndex x self = msg_send ~self ~cmd:(selector "setRowIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

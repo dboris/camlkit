@@ -8,15 +8,15 @@ open Foundation
 
 let _class_ = get_class "UITableViewCellLayoutManagerSourceList"
 
-module Class = struct
+module C = struct
   let sharedLayoutManager self = msg_send ~self ~cmd:(selector "sharedLayoutManager") ~typ:(returning (id))
 end
 
 let accessoryShouldAppearForCell x self = msg_send ~self ~cmd:(selector "accessoryShouldAppearForCell:") ~typ:(id @-> returning (bool)) x
 let accessoryShouldFadeForCell x self = msg_send ~self ~cmd:(selector "accessoryShouldFadeForCell:") ~typ:(id @-> returning (bool)) x
 let defaultImageViewForCell x self = msg_send ~self ~cmd:(selector "defaultImageViewForCell:") ~typ:(id @-> returning (id)) x
-let defaultTextLabelFontForCellStyle x self = msg_send ~self ~cmd:(selector "defaultTextLabelFontForCellStyle:") ~typ:(llong @-> returning (id)) x
-let defaultTextLabelFontSizeForCellStyle x self = msg_send ~self ~cmd:(selector "defaultTextLabelFontSizeForCellStyle:") ~typ:(llong @-> returning (double)) x
+let defaultTextLabelFontForCellStyle x self = msg_send ~self ~cmd:(selector "defaultTextLabelFontForCellStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+let defaultTextLabelFontSizeForCellStyle x self = msg_send ~self ~cmd:(selector "defaultTextLabelFontSizeForCellStyle:") ~typ:(llong @-> returning (double)) (LLong.of_int x)
 let editControlShouldAppearForCell x self = msg_send ~self ~cmd:(selector "editControlShouldAppearForCell:") ~typ:(id @-> returning (bool)) x
 let editControlShouldFadeForCell x self = msg_send ~self ~cmd:(selector "editControlShouldFadeForCell:") ~typ:(id @-> returning (bool)) x
 let editableTextFieldForCell x self = msg_send ~self ~cmd:(selector "editableTextFieldForCell:") ~typ:(id @-> returning (id)) x

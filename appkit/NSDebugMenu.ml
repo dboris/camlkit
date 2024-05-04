@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDebugMenu"
 
-module Class = struct
+module C = struct
   let appKitDebugMenuItemProviders self = msg_send ~self ~cmd:(selector "appKitDebugMenuItemProviders") ~typ:(returning (id))
   let createDebugMenuItem self = msg_send ~self ~cmd:(selector "createDebugMenuItem") ~typ:(returning (id))
   let debugMenuInMenu x self = msg_send ~self ~cmd:(selector "debugMenuInMenu:") ~typ:(id @-> returning (id)) x

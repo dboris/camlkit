@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "UIKBKeyView"
 
-module Class = struct
+module C = struct
   let wantsScreenTraits self = msg_send ~self ~cmd:(selector "wantsScreenTraits") ~typ:(returning (bool))
 end
 
-let allowBackgroundCachingForRenderFlags x self = msg_send ~self ~cmd:(selector "allowBackgroundCachingForRenderFlags:") ~typ:(llong @-> returning (bool)) x
+let allowBackgroundCachingForRenderFlags x self = msg_send ~self ~cmd:(selector "allowBackgroundCachingForRenderFlags:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let assetIdiom self = msg_send ~self ~cmd:(selector "assetIdiom") ~typ:(returning (llong))
 let cacheDeferable self = msg_send ~self ~cmd:(selector "cacheDeferable") ~typ:(returning (bool))
 let cacheKey self = msg_send ~self ~cmd:(selector "cacheKey") ~typ:(returning (id))
@@ -45,7 +45,7 @@ let initWithFrame' x ~keyplane ~key ~screenTraits self = msg_send ~self ~cmd:(se
 let keepNonPersistent self = msg_send ~self ~cmd:(selector "keepNonPersistent") ~typ:(returning (bool))
 let key self = msg_send ~self ~cmd:(selector "key") ~typ:(returning (id))
 let keyplane self = msg_send ~self ~cmd:(selector "keyplane") ~typ:(returning (id))
-let layerForRenderFlags x self = msg_send ~self ~cmd:(selector "layerForRenderFlags:") ~typ:(llong @-> returning (id)) x
+let layerForRenderFlags x self = msg_send ~self ~cmd:(selector "layerForRenderFlags:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let popupMenu self = msg_send ~self ~cmd:(selector "popupMenu") ~typ:(returning (id))
 let prepareForDisplay self = msg_send ~self ~cmd:(selector "prepareForDisplay") ~typ:(returning (void))
 let removeFromSuperview self = msg_send ~self ~cmd:(selector "removeFromSuperview") ~typ:(returning (void))
@@ -54,10 +54,10 @@ let renderConfig self = msg_send ~self ~cmd:(selector "renderConfig") ~typ:(retu
 let renderFlagsForTraits x self = msg_send ~self ~cmd:(selector "renderFlagsForTraits:") ~typ:(id @-> returning (id)) x
 let requiresSublayers self = msg_send ~self ~cmd:(selector "requiresSublayers") ~typ:(returning (bool))
 let screenTraits self = msg_send ~self ~cmd:(selector "screenTraits") ~typ:(returning (id))
-let setCachedAnchorCorner x self = msg_send ~self ~cmd:(selector "setCachedAnchorCorner:") ~typ:(ullong @-> returning (void)) x
+let setCachedAnchorCorner x self = msg_send ~self ~cmd:(selector "setCachedAnchorCorner:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setCachedControlKeyRenderingPreference x self = msg_send ~self ~cmd:(selector "setCachedControlKeyRenderingPreference:") ~typ:(bool @-> returning (void)) x
-let setCachedSelector x self = msg_send ~self ~cmd:(selector "setCachedSelector:") ~typ:(llong @-> returning (void)) x
-let setCachedShiftState x self = msg_send ~self ~cmd:(selector "setCachedShiftState:") ~typ:(ullong @-> returning (void)) x
+let setCachedSelector x self = msg_send ~self ~cmd:(selector "setCachedSelector:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setCachedShiftState x self = msg_send ~self ~cmd:(selector "setCachedShiftState:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setCachedTraitsHashString x self = msg_send ~self ~cmd:(selector "setCachedTraitsHashString:") ~typ:(id @-> returning (void)) x
 let setDrawFrame x self = msg_send ~self ~cmd:(selector "setDrawFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setEndingTransitionDuration x self = msg_send ~self ~cmd:(selector "setEndingTransitionDuration:") ~typ:(double @-> returning (void)) x

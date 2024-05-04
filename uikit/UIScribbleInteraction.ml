@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIScribbleInteraction"
 
-module Class = struct
+module C = struct
   let isPencilInputExpected self = msg_send ~self ~cmd:(selector "isPencilInputExpected") ~typ:(returning (bool))
 end
 

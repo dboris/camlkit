@@ -15,4 +15,4 @@ let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesC
 let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesChanged:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let pressesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "pressesEnded:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let pressesEventDidReceiveTerminal x self = msg_send ~self ~cmd:(selector "pressesEventDidReceiveTerminal:") ~typ:(id @-> returning (void)) x
-let setNumberOfClicksRequired x self = msg_send ~self ~cmd:(selector "setNumberOfClicksRequired:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfClicksRequired x self = msg_send ~self ~cmd:(selector "setNumberOfClicksRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

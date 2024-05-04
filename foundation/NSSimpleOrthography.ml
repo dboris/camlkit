@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSimpleOrthography"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let orthographyWithFlags x self = msg_send ~self ~cmd:(selector "orthographyWithFlags:") ~typ:(uint @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

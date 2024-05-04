@@ -5,8 +5,8 @@ open Objc
 
 let _class_ = get_class "NSAllDescendantPathsEnumerator"
 
-module Class = struct
-  let newWithPath x ~prepend ~attributes ~cross ~depth self = msg_send ~self ~cmd:(selector "newWithPath:prepend:attributes:cross:depth:") ~typ:(id @-> id @-> id @-> bool @-> ullong @-> returning (id)) x prepend attributes cross depth
+module C = struct
+  let newWithPath x ~prepend ~attributes ~cross ~depth self = msg_send ~self ~cmd:(selector "newWithPath:prepend:attributes:cross:depth:") ~typ:(id @-> id @-> id @-> bool @-> ullong @-> returning (id)) x prepend attributes cross (ULLong.of_int depth)
 end
 
 let currentSubdirectoryAttributes self = msg_send ~self ~cmd:(selector "currentSubdirectoryAttributes") ~typ:(returning (id))

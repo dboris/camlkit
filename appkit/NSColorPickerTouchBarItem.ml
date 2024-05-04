@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorPickerTouchBarItem"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfColor self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfColor") ~typ:(returning (bool))
   let colorPickerWithIdentifier x self = msg_send ~self ~cmd:(selector "colorPickerWithIdentifier:") ~typ:(id @-> returning (id)) x
   let colorPickerWithIdentifier1 x ~buttonImage self = msg_send ~self ~cmd:(selector "colorPickerWithIdentifier:buttonImage:") ~typ:(id @-> id @-> returning (id)) x buttonImage
@@ -26,7 +26,7 @@ let buttonTitle self = msg_send ~self ~cmd:(selector "buttonTitle") ~typ:(return
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning (id))
 let colorList self = msg_send ~self ~cmd:(selector "colorList") ~typ:(returning (id))
 let colorListSupportsPressAndHoldVariants self = msg_send ~self ~cmd:(selector "colorListSupportsPressAndHoldVariants") ~typ:(returning (bool))
-let colorPicker x ~didChangeCurrentModeFrom ~to_ self = msg_send ~self ~cmd:(selector "colorPicker:didChangeCurrentModeFrom:to:") ~typ:(id @-> llong @-> llong @-> returning (void)) x didChangeCurrentModeFrom to_
+let colorPicker x ~didChangeCurrentModeFrom ~to_ self = msg_send ~self ~cmd:(selector "colorPicker:didChangeCurrentModeFrom:to:") ~typ:(id @-> llong @-> llong @-> returning (void)) x (LLong.of_int didChangeCurrentModeFrom) (LLong.of_int to_)
 let colorPickerViewController x ~didSelectColor self = msg_send ~self ~cmd:(selector "colorPickerViewController:didSelectColor:") ~typ:(id @-> id @-> returning (void)) x didSelectColor
 let colorPickerViewControllerDidCancel x self = msg_send ~self ~cmd:(selector "colorPickerViewControllerDidCancel:") ~typ:(id @-> returning (void)) x
 let colorPickerViewControllerDidEnd x self = msg_send ~self ~cmd:(selector "colorPickerViewControllerDidEnd:") ~typ:(id @-> returning (void)) x
@@ -52,7 +52,7 @@ let setColorList x self = msg_send ~self ~cmd:(selector "setColorList:") ~typ:(i
 let setColorListSupportsPressAndHoldVariants x self = msg_send ~self ~cmd:(selector "setColorListSupportsPressAndHoldVariants:") ~typ:(bool @-> returning (void)) x
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
-let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(llong @-> returning (void)) x
+let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setShowsAlpha x self = msg_send ~self ~cmd:(selector "setShowsAlpha:") ~typ:(bool @-> returning (void)) x
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let showPopover x self = msg_send ~self ~cmd:(selector "showPopover:") ~typ:(id @-> returning (void)) x

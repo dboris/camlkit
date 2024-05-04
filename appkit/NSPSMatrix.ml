@@ -8,8 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSPSMatrix"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
+  let matrixWithCGAffineTransform x self = msg_send ~self ~cmd:(selector "matrixWithCGAffineTransform:") ~typ:(ptr void @-> returning (id)) x
 end
 
 let concat x self = msg_send ~self ~cmd:(selector "concat:") ~typ:(id @-> returning (id)) x

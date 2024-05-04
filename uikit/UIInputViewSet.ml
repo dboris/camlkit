@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSet"
 
-module Class = struct
+module C = struct
   let emptyInputSet self = msg_send ~self ~cmd:(selector "emptyInputSet") ~typ:(returning (id))
   let inputSetWithInputView x ~accessoryView self = msg_send ~self ~cmd:(selector "inputSetWithInputView:accessoryView:") ~typ:(id @-> id @-> returning (id)) x accessoryView
   let inputSetWithInputView' x ~accessoryView ~assistantView self = msg_send ~self ~cmd:(selector "inputSetWithInputView:accessoryView:assistantView:") ~typ:(id @-> id @-> id @-> returning (id)) x accessoryView assistantView
@@ -28,7 +28,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let hasNonPlaceholderViews self = msg_send ~self ~cmd:(selector "hasNonPlaceholderViews") ~typ:(returning (bool))
 let hierarchyContainsView x self = msg_send ~self ~cmd:(selector "hierarchyContainsView:") ~typ:(id @-> returning (bool)) x
-let inSyncWithOrientation x ~forKeyboard self = msg_send ~self ~cmd:(selector "inSyncWithOrientation:forKeyboard:") ~typ:(llong @-> id @-> returning (bool)) x forKeyboard
+let inSyncWithOrientation x ~forKeyboard self = msg_send ~self ~cmd:(selector "inSyncWithOrientation:forKeyboard:") ~typ:(llong @-> id @-> returning (bool)) (LLong.of_int x) forKeyboard
 let inheritNullState x self = msg_send ~self ~cmd:(selector "inheritNullState:") ~typ:(id @-> returning (void)) x
 let initWithInputView x ~accessoryView ~assistantView ~isKeyboard self = msg_send ~self ~cmd:(selector "initWithInputView:accessoryView:assistantView:isKeyboard:") ~typ:(id @-> id @-> id @-> bool @-> returning (id)) x accessoryView assistantView isKeyboard
 let inputAccessoryView self = msg_send ~self ~cmd:(selector "inputAccessoryView") ~typ:(returning (id))

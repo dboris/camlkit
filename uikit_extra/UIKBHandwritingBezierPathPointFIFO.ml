@@ -8,6 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBHandwritingBezierPathPointFIFO"
 
+let addPoint x self = msg_send ~self ~cmd:(selector "addPoint:") ~typ:(ptr void @-> returning (void)) x
 let clear self = msg_send ~self ~cmd:(selector "clear") ~typ:(returning (void))
 let emissionHandler self = msg_send ~self ~cmd:(selector "emissionHandler") ~typ:(returning (ptr void))
 let flush self = msg_send ~self ~cmd:(selector "flush") ~typ:(returning (void))

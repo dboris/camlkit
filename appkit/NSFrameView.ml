@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "NSFrameView"
 
-module Class = struct
-  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
-  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
-  let initTitleCell x ~styleMask self = msg_send ~self ~cmd:(selector "initTitleCell:styleMask:") ~typ:(id @-> ullong @-> returning (void)) x styleMask
-  let minContentSizeForMinFrameSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minContentSizeForMinFrameSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
-  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
-  let minFrameWidthWithTitle x ~styleMask self = msg_send ~self ~cmd:(selector "minFrameWidthWithTitle:styleMask:") ~typ:(id @-> ullong @-> returning (double)) x styleMask
+module C = struct
+  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+  let initTitleCell x ~styleMask self = msg_send ~self ~cmd:(selector "initTitleCell:styleMask:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int styleMask)
+  let minContentSizeForMinFrameSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minContentSizeForMinFrameSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
+  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
+  let minFrameWidthWithTitle x ~styleMask self = msg_send ~self ~cmd:(selector "minFrameWidthWithTitle:styleMask:") ~typ:(id @-> ullong @-> returning (double)) x (ULLong.of_int styleMask)
 end
 
 let addSubview x self = msg_send ~self ~cmd:(selector "addSubview:") ~typ:(id @-> returning (void)) x
@@ -24,7 +24,7 @@ let closeButton self = msg_send ~self ~cmd:(selector "closeButton") ~typ:(return
 let contentAlpha self = msg_send ~self ~cmd:(selector "contentAlpha") ~typ:(returning (double))
 let contentFill self = msg_send ~self ~cmd:(selector "contentFill") ~typ:(returning (id))
 let contentRect self = msg_send_stret ~self ~cmd:(selector "contentRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let defaultTitleFont self = msg_send ~self ~cmd:(selector "defaultTitleFont") ~typ:(returning (id))
 let dragRectForFrameRect x self = msg_send_stret ~self ~cmd:(selector "dragRectForFrameRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
@@ -34,12 +34,12 @@ let drawThemeContentFill x ~inView self = msg_send ~self ~cmd:(selector "drawThe
 let drawWindowBackgroundRect x self = msg_send ~self ~cmd:(selector "drawWindowBackgroundRect:") ~typ:(CGRect.t @-> returning (void)) x
 let drawWindowBackgroundRegion x self = msg_send ~self ~cmd:(selector "drawWindowBackgroundRegion:") ~typ:(ptr void @-> returning (void)) x
 let frameNeedsDisplay self = msg_send ~self ~cmd:(selector "frameNeedsDisplay") ~typ:(returning (bool))
-let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
 let initTitleCell x self = msg_send ~self ~cmd:(selector "initTitleCell:") ~typ:(id @-> returning (void)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let initWithFrame' x ~styleMask ~owner self = msg_send ~self ~cmd:(selector "initWithFrame:styleMask:owner:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x styleMask owner
+let initWithFrame' x ~styleMask ~owner self = msg_send ~self ~cmd:(selector "initWithFrame:styleMask:owner:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x (ULLong.of_int styleMask) owner
 let minFrameSize self = msg_send_stret ~self ~cmd:(selector "minFrameSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
+let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
 let miniaturizedSize self = msg_send_stret ~self ~cmd:(selector "miniaturizedSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let minimizeButton self = msg_send ~self ~cmd:(selector "minimizeButton") ~typ:(returning (id))
 let representedFilename self = msg_send ~self ~cmd:(selector "representedFilename") ~typ:(returning (id))
@@ -50,7 +50,7 @@ let setIsClosable x self = msg_send ~self ~cmd:(selector "setIsClosable:") ~typ:
 let setIsResizable x self = msg_send ~self ~cmd:(selector "setIsResizable:") ~typ:(bool @-> returning (void)) x
 let setRepresentedFilename x self = msg_send ~self ~cmd:(selector "setRepresentedFilename:") ~typ:(id @-> returning (void)) x
 let setResizeIncrements x self = msg_send ~self ~cmd:(selector "setResizeIncrements:") ~typ:(CGSize.t @-> returning (void)) x
-let setStyleMask x self = msg_send ~self ~cmd:(selector "setStyleMask:") ~typ:(ullong @-> returning (void)) x
+let setStyleMask x self = msg_send ~self ~cmd:(selector "setStyleMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setSubtitle x self = msg_send ~self ~cmd:(selector "setSubtitle:") ~typ:(id @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
 let setTitle' x ~andDefeatWrap self = msg_send ~self ~cmd:(selector "setTitle:andDefeatWrap:") ~typ:(id @-> bool @-> returning (void)) x andDefeatWrap

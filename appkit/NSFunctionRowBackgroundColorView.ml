@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFunctionRowBackgroundColorView"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
 end
 

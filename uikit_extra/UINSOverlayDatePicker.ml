@@ -21,5 +21,5 @@ let setIsSettingDate x self = msg_send ~self ~cmd:(selector "setIsSettingDate:")
 let setLocale x self = msg_send ~self ~cmd:(selector "setLocale:") ~typ:(id @-> returning (void)) x
 let setOverlayView x self = msg_send ~self ~cmd:(selector "setOverlayView:") ~typ:(id @-> returning (void)) x
 let setTimeZone x self = msg_send ~self ~cmd:(selector "setTimeZone:") ~typ:(id @-> returning (void)) x
-let showOverlayDatePickerWithWindowFrame x ~window ~date ~font ~selectedElement ~mode self = msg_send ~self ~cmd:(selector "showOverlayDatePickerWithWindowFrame:window:date:font:selectedElement:mode:") ~typ:(CGRect.t @-> id @-> id @-> id @-> ullong @-> ullong @-> returning (void)) x window date font selectedElement mode
+let showOverlayDatePickerWithWindowFrame x ~window ~date ~font ~selectedElement ~mode self = msg_send ~self ~cmd:(selector "showOverlayDatePickerWithWindowFrame:window:date:font:selectedElement:mode:") ~typ:(CGRect.t @-> id @-> id @-> id @-> ullong @-> ullong @-> returning (void)) x window date font (ULLong.of_int selectedElement) (ULLong.of_int mode)
 let timeZone self = msg_send ~self ~cmd:(selector "timeZone") ~typ:(returning (id))

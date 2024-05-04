@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UINSApplicationSettingsRootNode"
 
-module Class = struct
+module C = struct
   let applicationSettingsRootNode self = msg_send ~self ~cmd:(selector "applicationSettingsRootNode") ~typ:(returning (id))
-  let applicationSettingsRootNodeFilteredByFilter x self = msg_send ~self ~cmd:(selector "applicationSettingsRootNodeFilteredByFilter:") ~typ:(llong @-> returning (id)) x
+  let applicationSettingsRootNodeFilteredByFilter x self = msg_send ~self ~cmd:(selector "applicationSettingsRootNodeFilteredByFilter:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 end
 
 let applicationGroupContainerIdentifier self = msg_send ~self ~cmd:(selector "applicationGroupContainerIdentifier") ~typ:(returning (id))

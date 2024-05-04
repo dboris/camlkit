@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UICellAccessory"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -21,7 +21,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning (bool))
 let reservedLayoutWidth self = msg_send ~self ~cmd:(selector "reservedLayoutWidth") ~typ:(returning (double))
-let setDisplayedState x self = msg_send ~self ~cmd:(selector "setDisplayedState:") ~typ:(llong @-> returning (void)) x
+let setDisplayedState x self = msg_send ~self ~cmd:(selector "setDisplayedState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning (void)) x
 let setReservedLayoutWidth x self = msg_send ~self ~cmd:(selector "setReservedLayoutWidth:") ~typ:(double @-> returning (void)) x
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning (void)) x

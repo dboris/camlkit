@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMetadataQuery"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let didEndPossibleFileOperation x self = msg_send ~self ~cmd:(selector "didEndPossibleFileOperation:") ~typ:(id @-> returning (void)) x
   let keyPathsForValuesAffectingValueForKey x self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingValueForKey:") ~typ:(id @-> returning (id)) x
@@ -19,7 +19,7 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (i
 let disableUpdates self = msg_send ~self ~cmd:(selector "disableUpdates") ~typ:(returning (void))
 let enableUpdates self = msg_send ~self ~cmd:(selector "enableUpdates") ~typ:(returning (void))
 let enumerateResultsUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateResultsUsingBlock:") ~typ:(ptr void @-> returning (void)) x
-let enumerateResultsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateResultsWithOptions:usingBlock:") ~typ:(ullong @-> ptr void @-> returning (void)) x usingBlock
+let enumerateResultsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateResultsWithOptions:usingBlock:") ~typ:(ullong @-> ptr void @-> returning (void)) (ULLong.of_int x) usingBlock
 let groupedResults self = msg_send ~self ~cmd:(selector "groupedResults") ~typ:(returning (id))
 let groupingAttributes self = msg_send ~self ~cmd:(selector "groupingAttributes") ~typ:(returning (id))
 let indexOfResult x self = msg_send ~self ~cmd:(selector "indexOfResult:") ~typ:(id @-> returning (ullong)) x
@@ -31,7 +31,7 @@ let notificationBatchingInterval self = msg_send ~self ~cmd:(selector "notificat
 let operationQueue self = msg_send ~self ~cmd:(selector "operationQueue") ~typ:(returning (id))
 let predicate self = msg_send ~self ~cmd:(selector "predicate") ~typ:(returning (id))
 let removeObserver x ~forKeyPath self = msg_send ~self ~cmd:(selector "removeObserver:forKeyPath:") ~typ:(id @-> id @-> returning (void)) x forKeyPath
-let resultAtIndex x self = msg_send ~self ~cmd:(selector "resultAtIndex:") ~typ:(ullong @-> returning (id)) x
+let resultAtIndex x self = msg_send ~self ~cmd:(selector "resultAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let resultCount self = msg_send ~self ~cmd:(selector "resultCount") ~typ:(returning (ullong))
 let results self = msg_send ~self ~cmd:(selector "results") ~typ:(returning (id))
 let searchItemURLs self = msg_send ~self ~cmd:(selector "searchItemURLs") ~typ:(returning (id))
@@ -52,4 +52,4 @@ let startQuery self = msg_send ~self ~cmd:(selector "startQuery") ~typ:(returnin
 let stopQuery self = msg_send ~self ~cmd:(selector "stopQuery") ~typ:(returning (void))
 let valueListAttributes self = msg_send ~self ~cmd:(selector "valueListAttributes") ~typ:(returning (id))
 let valueLists self = msg_send ~self ~cmd:(selector "valueLists") ~typ:(returning (id))
-let valueOfAttribute x ~forResultAtIndex self = msg_send ~self ~cmd:(selector "valueOfAttribute:forResultAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x forResultAtIndex
+let valueOfAttribute x ~forResultAtIndex self = msg_send ~self ~cmd:(selector "valueOfAttribute:forResultAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int forResultAtIndex)

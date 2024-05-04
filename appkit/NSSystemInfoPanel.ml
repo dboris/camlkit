@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSystemInfoPanel"
 
-module Class = struct
+module C = struct
   let sharedInfoPanel self = msg_send ~self ~cmd:(selector "sharedInfoPanel") ~typ:(returning (id))
   let updateOptions x self = msg_send ~self ~cmd:(selector "updateOptions:") ~typ:(id @-> returning (void)) x
   let updateOptionsWithApplicationIcon x self = msg_send ~self ~cmd:(selector "updateOptionsWithApplicationIcon:") ~typ:(id @-> returning (void)) x
@@ -49,7 +49,7 @@ let setVersionField x self = msg_send ~self ~cmd:(selector "setVersionField:") ~
 let showInfoPanel x self = msg_send ~self ~cmd:(selector "showInfoPanel:") ~typ:(id @-> returning (void)) x
 let sizeCopyrightView self = msg_send ~self ~cmd:(selector "sizeCopyrightView") ~typ:(returning (void))
 let sizeCreditsView self = msg_send ~self ~cmd:(selector "sizeCreditsView") ~typ:(returning (void))
-let textView x ~clickedOnLink ~atIndex self = msg_send ~self ~cmd:(selector "textView:clickedOnLink:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (bool)) x clickedOnLink atIndex
+let textView x ~clickedOnLink ~atIndex self = msg_send ~self ~cmd:(selector "textView:clickedOnLink:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (bool)) x clickedOnLink (ULLong.of_int atIndex)
 let unloadNib x self = msg_send ~self ~cmd:(selector "unloadNib:") ~typ:(bool @-> returning (void)) x
 let updateNib self = msg_send ~self ~cmd:(selector "updateNib") ~typ:(returning (void))
 let versionField self = msg_send ~self ~cmd:(selector "versionField") ~typ:(returning (id))

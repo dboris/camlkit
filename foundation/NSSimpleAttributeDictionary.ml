@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSimpleAttributeDictionary"
 
-module Class = struct
+module C = struct
   let emptyAttributeDictionary self = msg_send ~self ~cmd:(selector "emptyAttributeDictionary") ~typ:(returning (id))
   let newWithDictionary x self = msg_send ~self ~cmd:(selector "newWithDictionary:") ~typ:(id @-> returning (id)) x
 end

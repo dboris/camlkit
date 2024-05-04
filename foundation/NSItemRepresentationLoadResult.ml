@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSItemRepresentationLoadResult"
 
-module Class = struct
+module C = struct
   let resultWithData x ~urlWrapper ~cleanupHandler ~error self = msg_send ~self ~cmd:(selector "resultWithData:urlWrapper:cleanupHandler:error:") ~typ:(id @-> id @-> ptr void @-> id @-> returning (id)) x urlWrapper cleanupHandler error
   let resultWithError x self = msg_send ~self ~cmd:(selector "resultWithError:") ~typ:(id @-> returning (id)) x
 end

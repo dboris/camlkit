@@ -8,18 +8,18 @@ open Foundation
 
 let _class_ = get_class "NSCandidateListViewController"
 
-module Class = struct
+module C = struct
   let sharedPanel x self = msg_send ~self ~cmd:(selector "sharedPanel:") ~typ:(bool @-> returning (id)) x
   let standardWidth self = msg_send ~self ~cmd:(selector "standardWidth") ~typ:(returning (double))
 end
 
 let accessoryViewController self = msg_send ~self ~cmd:(selector "accessoryViewController") ~typ:(returning (id))
 let allowsCollapsing self = msg_send ~self ~cmd:(selector "allowsCollapsing") ~typ:(returning (bool))
-let candidateForTrackingIndex x ~candidateIndex self = msg_send ~self ~cmd:(selector "candidateForTrackingIndex:candidateIndex:") ~typ:(ullong @-> ptr (ullong) @-> returning (id)) x candidateIndex
+let candidateForTrackingIndex x ~candidateIndex self = msg_send ~self ~cmd:(selector "candidateForTrackingIndex:candidateIndex:") ~typ:(ullong @-> ptr (ullong) @-> returning (id)) (ULLong.of_int x) candidateIndex
 let candidates self = msg_send ~self ~cmd:(selector "candidates") ~typ:(returning (id))
 let client self = msg_send ~self ~cmd:(selector "client") ~typ:(returning (id))
 let completionHandler self = msg_send ~self ~cmd:(selector "completionHandler") ~typ:(returning (ptr void))
-let continueTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "continueTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) x index
+let continueTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "continueTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) (LLong.of_int x) (ULLong.of_int index)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let formattingBlock self = msg_send ~self ~cmd:(selector "formattingBlock") ~typ:(returning (ptr void))
@@ -37,8 +37,8 @@ let setAllowsCollapsing x self = msg_send ~self ~cmd:(selector "setAllowsCollaps
 let setCandidates x ~forSelectedRange ~inString self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:inString:") ~typ:(id @-> NSRange.t @-> id @-> returning (void)) x forSelectedRange inString
 let setCandidates1 x ~forSelectedRange ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange inString rect view completionHandler
 let setCandidates2 x ~forSelectedRange ~inString ~replacedString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:inString:replacedString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> id @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange inString replacedString rect view completionHandler
-let setCandidates3 x ~forSelectedRange ~offset ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange offset inString rect view completionHandler
-let setCandidates4 x ~forSelectedRange ~offset ~inString ~replacedString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:replacedString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange offset inString replacedString rect view completionHandler
+let setCandidates3 x ~forSelectedRange ~offset ~inString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange (ULLong.of_int offset) inString rect view completionHandler
+let setCandidates4 x ~forSelectedRange ~offset ~inString ~replacedString ~rect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "setCandidates:forSelectedRange:offset:inString:replacedString:rect:view:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forSelectedRange (ULLong.of_int offset) inString replacedString rect view completionHandler
 let setClient x self = msg_send ~self ~cmd:(selector "setClient:") ~typ:(id @-> returning (void)) x
 let setCollapsed x self = msg_send ~self ~cmd:(selector "setCollapsed:") ~typ:(bool @-> returning (void)) x
 let setCompletionHandler x self = msg_send ~self ~cmd:(selector "setCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
@@ -54,8 +54,8 @@ let shouldAnimateNextLayoutPass self = msg_send ~self ~cmd:(selector "shouldAnim
 let showCandidates x ~forString ~inRect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "showCandidates:forString:inRect:view:completionHandler:") ~typ:(id @-> id @-> CGRect.t @-> id @-> ptr void @-> returning (void)) x forString inRect view completionHandler
 let showPanel self = msg_send ~self ~cmd:(selector "showPanel") ~typ:(returning (void))
 let spellCheckerDidChangeCompletionCollapsed x self = msg_send ~self ~cmd:(selector "spellCheckerDidChangeCompletionCollapsed:") ~typ:(id @-> returning (void)) x
-let startTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "startTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) x index
-let stopTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "stopTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) x index
+let startTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "startTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) (LLong.of_int x) (ULLong.of_int index)
+let stopTrackingInSegmentType x ~index self = msg_send ~self ~cmd:(selector "stopTrackingInSegmentType:index:") ~typ:(llong @-> ullong @-> returning (void)) (LLong.of_int x) (ULLong.of_int index)
 let touchBarItem self = msg_send ~self ~cmd:(selector "touchBarItem") ~typ:(returning (id))
 let updateState self = msg_send ~self ~cmd:(selector "updateState") ~typ:(returning (void))
 let updateStateAndTitles x ~allowDelay self = msg_send ~self ~cmd:(selector "updateStateAndTitles:allowDelay:") ~typ:(bool @-> bool @-> returning (void)) x allowDelay

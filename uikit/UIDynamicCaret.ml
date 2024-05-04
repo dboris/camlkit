@@ -8,10 +8,10 @@ open Foundation
 
 let _class_ = get_class "UIDynamicCaret"
 
-let alternativeTappedAtIndex x self = msg_send ~self ~cmd:(selector "alternativeTappedAtIndex:") ~typ:(llong @-> returning (void)) x
+let alternativeTappedAtIndex x self = msg_send ~self ~cmd:(selector "alternativeTappedAtIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let alternativesView self = msg_send ~self ~cmd:(selector "alternativesView") ~typ:(returning (id))
 let backgroundImage self = msg_send ~self ~cmd:(selector "backgroundImage") ~typ:(returning (id))
-let candidateAcceptedAtIndex x self = msg_send ~self ~cmd:(selector "candidateAcceptedAtIndex:") ~typ:(ullong @-> returning (void)) x
+let candidateAcceptedAtIndex x self = msg_send ~self ~cmd:(selector "candidateAcceptedAtIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let candidateSet self = msg_send ~self ~cmd:(selector "candidateSet") ~typ:(returning (id))
 let currentCandidate self = msg_send ~self ~cmd:(selector "currentCandidate") ~typ:(returning (id))
 let currentIndex self = msg_send ~self ~cmd:(selector "currentIndex") ~typ:(returning (ullong))
@@ -40,7 +40,7 @@ let setIsActive x self = msg_send ~self ~cmd:(selector "setIsActive:") ~typ:(boo
 let setNoContentView x self = msg_send ~self ~cmd:(selector "setNoContentView:") ~typ:(id @-> returning (void)) x
 let setUIKeyboardCandidateListDelegate x self = msg_send ~self ~cmd:(selector "setUIKeyboardCandidateListDelegate:") ~typ:(id @-> returning (void)) x
 let showCandidate x self = msg_send ~self ~cmd:(selector "showCandidate:") ~typ:(id @-> returning (bool)) x
-let showCandidateAtIndex x self = msg_send ~self ~cmd:(selector "showCandidateAtIndex:") ~typ:(ullong @-> returning (void)) x
+let showCandidateAtIndex x self = msg_send ~self ~cmd:(selector "showCandidateAtIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let showCandidateInForwardDirection x ~granularity self = msg_send ~self ~cmd:(selector "showCandidateInForwardDirection:granularity:") ~typ:(bool @-> int @-> returning (void)) x granularity
 let statisticsIdentifier self = msg_send ~self ~cmd:(selector "statisticsIdentifier") ~typ:(returning (id))
 let touchesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "touchesBegan:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent

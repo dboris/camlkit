@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewController"
 
-module Class = struct
+module C = struct
   let presentDialogForAddingKeyboard self = msg_send ~self ~cmd:(selector "presentDialogForAddingKeyboard") ~typ:(returning (void))
 end
 

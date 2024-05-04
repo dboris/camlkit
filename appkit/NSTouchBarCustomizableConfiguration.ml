@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarCustomizableConfiguration"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingPresentedItemIdentifiers self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingPresentedItemIdentifiers") ~typ:(returning (id))
 end
 

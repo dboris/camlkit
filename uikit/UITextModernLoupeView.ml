@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextModernLoupeView"
 
-module Class = struct
+module C = struct
   let isModernLoupeEnabled self = msg_send ~self ~cmd:(selector "isModernLoupeEnabled") ~typ:(returning (bool))
 end
 

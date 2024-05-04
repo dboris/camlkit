@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "NSMenuToolbarItem"
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
-let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) x andSizeMode
+let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) (ULLong.of_int x) (ULLong.of_int andSizeMode)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning (id))

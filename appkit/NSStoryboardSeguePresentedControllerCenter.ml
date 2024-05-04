@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStoryboardSeguePresentedControllerCenter"
 
-module Class = struct
+module C = struct
   let defaultCenter self = msg_send ~self ~cmd:(selector "defaultCenter") ~typ:(returning (id))
 end
 

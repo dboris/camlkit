@@ -39,6 +39,6 @@ let accessibilityWindowAttribute self = msg_send ~self ~cmd:(selector "accessibi
 let column self = msg_send ~self ~cmd:(selector "column") ~typ:(returning (llong))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let initWithRow x ~column ~outlineView self = msg_send ~self ~cmd:(selector "initWithRow:column:outlineView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column outlineView
+let initWithRow x ~column ~outlineView self = msg_send ~self ~cmd:(selector "initWithRow:column:outlineView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) outlineView
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning (llong))

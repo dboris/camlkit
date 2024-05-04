@@ -8,15 +8,15 @@ open Foundation
 
 let _class_ = get_class "NSApplicationTestingController"
 
-module Class = struct
+module C = struct
   let performResizeTestOnWindow x ~preTestHandler ~postTestHandler self = msg_send ~self ~cmd:(selector "performResizeTestOnWindow:preTestHandler:postTestHandler:") ~typ:(id @-> ptr void @-> ptr void @-> returning (void)) x preTestHandler postTestHandler
   let sharedTestingController self = msg_send ~self ~cmd:(selector "sharedTestingController") ~typ:(returning (id))
 end
 
-let emitPPTEndTracePointForSubTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTEndTracePointForSubTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x identifier
-let emitPPTEndTracePointForTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTEndTracePointForTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x identifier
-let emitPPTStartTracePointForSubTestName x ~identifier ~testIdentifier self = msg_send ~self ~cmd:(selector "emitPPTStartTracePointForSubTestName:identifier:testIdentifier:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x identifier testIdentifier
-let emitPPTStartTracePointForTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTStartTracePointForTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x identifier
+let emitPPTEndTracePointForSubTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTEndTracePointForSubTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int identifier)
+let emitPPTEndTracePointForTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTEndTracePointForTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int identifier)
+let emitPPTStartTracePointForSubTestName x ~identifier ~testIdentifier self = msg_send ~self ~cmd:(selector "emitPPTStartTracePointForSubTestName:identifier:testIdentifier:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x (ULLong.of_int identifier) (ULLong.of_int testIdentifier)
+let emitPPTStartTracePointForTestName x ~identifier self = msg_send ~self ~cmd:(selector "emitPPTStartTracePointForTestName:identifier:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int identifier)
 let failedTest x self = msg_send ~self ~cmd:(selector "failedTest:") ~typ:(id @-> returning (void)) x
 let failedTest1 x ~withFailure self = msg_send ~self ~cmd:(selector "failedTest:withFailure:") ~typ:(id @-> id @-> returning (void)) x withFailure
 let failedTest2 x ~withResults self = msg_send ~self ~cmd:(selector "failedTest:withResults:") ~typ:(id @-> id @-> returning (void)) x withResults

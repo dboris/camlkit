@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWindowSharingSessionHostButton"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 

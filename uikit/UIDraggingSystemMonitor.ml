@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDraggingSystemMonitor"
 
-module Class = struct
+module C = struct
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end

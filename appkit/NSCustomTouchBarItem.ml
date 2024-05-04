@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCustomTouchBarItem"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfView self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfView") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfViewController self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfViewController") ~typ:(returning (bool))
 end
@@ -26,7 +26,7 @@ let preferredSizeForCustomizationPalette self = msg_send_stret ~self ~cmd:(selec
 let preferredZOrder self = msg_send ~self ~cmd:(selector "preferredZOrder") ~typ:(returning (double))
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning (void)) x
 let setPreferredPopoverTransposerClass x self = msg_send ~self ~cmd:(selector "setPreferredPopoverTransposerClass:") ~typ:(_Class @-> returning (void)) x
-let setPreferredPopoverTransposerPriority x self = msg_send ~self ~cmd:(selector "setPreferredPopoverTransposerPriority:") ~typ:(llong @-> returning (void)) x
+let setPreferredPopoverTransposerPriority x self = msg_send ~self ~cmd:(selector "setPreferredPopoverTransposerPriority:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPreferredSizeForCustomizationPalette x self = msg_send ~self ~cmd:(selector "setPreferredSizeForCustomizationPalette:") ~typ:(CGSize.t @-> returning (void)) x
 let setPreferredZOrder x self = msg_send ~self ~cmd:(selector "setPreferredZOrder:") ~typ:(double @-> returning (void)) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x

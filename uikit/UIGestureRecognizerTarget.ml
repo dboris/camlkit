@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIGestureRecognizerTarget"
 
-module Class = struct
+module C = struct
   let gestureTargetWithTarget x ~action self = msg_send ~self ~cmd:(selector "gestureTargetWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
 end
 

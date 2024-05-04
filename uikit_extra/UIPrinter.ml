@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPrinter"
 
-module Class = struct
+module C = struct
   let printerWithURL x self = msg_send ~self ~cmd:(selector "printerWithURL:") ~typ:(id @-> returning (id)) x
 end
 

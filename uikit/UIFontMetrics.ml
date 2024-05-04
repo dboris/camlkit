@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFontMetrics"
 
-module Class = struct
+module C = struct
   let defaultMetrics self = msg_send ~self ~cmd:(selector "defaultMetrics") ~typ:(returning (id))
   let metricsForTextStyle x self = msg_send ~self ~cmd:(selector "metricsForTextStyle:") ~typ:(id @-> returning (id)) x
   let scaledValueForValue x ~withTextStyle ~bodyLeading ~compatibleWithTraitCollection self = msg_send ~self ~cmd:(selector "scaledValueForValue:withTextStyle:bodyLeading:compatibleWithTraitCollection:") ~typ:(double @-> id @-> double @-> id @-> returning (double)) x withTextStyle bodyLeading compatibleWithTraitCollection

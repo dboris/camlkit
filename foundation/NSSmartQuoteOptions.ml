@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSmartQuoteOptions"
 
-module Class = struct
+module C = struct
   let smartQuoteOptionsForLocale x self = msg_send ~self ~cmd:(selector "smartQuoteOptionsForLocale:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

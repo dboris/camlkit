@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSScrubberLayoutAttributes"
 
-module Class = struct
-  let layoutAttributesForItemAtIndex x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndex:") ~typ:(llong @-> returning (id)) x
+module C = struct
+  let layoutAttributesForItemAtIndex x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 end
 
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning (double))
@@ -24,4 +24,4 @@ let itemIndex self = msg_send ~self ~cmd:(selector "itemIndex") ~typ:(returning 
 let setAlpha x self = msg_send ~self ~cmd:(selector "setAlpha:") ~typ:(double @-> returning (void)) x
 let setEscapesFromScrollView x self = msg_send ~self ~cmd:(selector "setEscapesFromScrollView:") ~typ:(bool @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
-let setItemIndex x self = msg_send ~self ~cmd:(selector "setItemIndex:") ~typ:(llong @-> returning (void)) x
+let setItemIndex x self = msg_send ~self ~cmd:(selector "setItemIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

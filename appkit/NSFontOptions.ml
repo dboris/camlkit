@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFontOptions"
 
-module Class = struct
+module C = struct
   let sharedFontOptions self = msg_send ~self ~cmd:(selector "sharedFontOptions") ~typ:(returning (id))
 end
 
@@ -44,7 +44,7 @@ let selectNextRangeForward x self = msg_send ~self ~cmd:(selector "selectNextRan
 let selectedAttributes self = msg_send ~self ~cmd:(selector "selectedAttributes") ~typ:(returning (id))
 let setOptionsAttributes x ~string_ self = msg_send ~self ~cmd:(selector "setOptionsAttributes:string:") ~typ:(id @-> id @-> returning (void)) x string_
 let setSelectedAttributes x ~isMultiple self = msg_send ~self ~cmd:(selector "setSelectedAttributes:isMultiple:") ~typ:(id @-> bool @-> returning (void)) x isMultiple
-let sheetDidEnd x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "sheetDidEnd:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x returnCode contextInfo
+let sheetDidEnd x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "sheetDidEnd:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x (LLong.of_int returnCode) contextInfo
 let storedAttributes self = msg_send ~self ~cmd:(selector "storedAttributes") ~typ:(returning (id))
 let stringForRange x self = msg_send ~self ~cmd:(selector "stringForRange:") ~typ:(NSRange.t @-> returning (id)) x
 let textView x ~shouldSetColor self = msg_send ~self ~cmd:(selector "textView:shouldSetColor:") ~typ:(id @-> id @-> returning (bool)) x shouldSetColor

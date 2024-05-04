@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSPinyinString"
 
-module Class = struct
+module C = struct
   let alternativesForInputString x self = msg_send ~self ~cmd:(selector "alternativesForInputString:") ~typ:(id @-> returning (id)) x
   let prefixesForInputString x self = msg_send ~self ~cmd:(selector "prefixesForInputString:") ~typ:(id @-> returning (id)) x
 end
 
-let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning (ushort)) x
+let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning (ushort)) (ULLong.of_int x)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
@@ -18,13 +18,13 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let indexOfFirstModification self = msg_send ~self ~cmd:(selector "indexOfFirstModification") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithString x ~syllableCount ~lastSyllableIsPartial ~score ~replacementCount ~transpositionCount ~insertionCount ~deletionCount ~rangeCount ~ranges self = msg_send ~self ~cmd:(selector "initWithString:syllableCount:lastSyllableIsPartial:score:replacementCount:transpositionCount:insertionCount:deletionCount:rangeCount:ranges:") ~typ:(id @-> ullong @-> bool @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ptr (NSRange.t) @-> returning (id)) x syllableCount lastSyllableIsPartial score replacementCount transpositionCount insertionCount deletionCount rangeCount ranges
-let initWithString' x ~syllableCount ~lastSyllableIsPartial ~score ~replacementCount ~transpositionCount ~insertionCount ~deletionCount ~indexOfFirstModification ~rangeCount ~ranges self = msg_send ~self ~cmd:(selector "initWithString:syllableCount:lastSyllableIsPartial:score:replacementCount:transpositionCount:insertionCount:deletionCount:indexOfFirstModification:rangeCount:ranges:") ~typ:(id @-> ullong @-> bool @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ptr (NSRange.t) @-> returning (id)) x syllableCount lastSyllableIsPartial score replacementCount transpositionCount insertionCount deletionCount indexOfFirstModification rangeCount ranges
+let initWithString x ~syllableCount ~lastSyllableIsPartial ~score ~replacementCount ~transpositionCount ~insertionCount ~deletionCount ~rangeCount ~ranges self = msg_send ~self ~cmd:(selector "initWithString:syllableCount:lastSyllableIsPartial:score:replacementCount:transpositionCount:insertionCount:deletionCount:rangeCount:ranges:") ~typ:(id @-> ullong @-> bool @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ptr (NSRange.t) @-> returning (id)) x (ULLong.of_int syllableCount) lastSyllableIsPartial (ULLong.of_int score) (ULLong.of_int replacementCount) (ULLong.of_int transpositionCount) (ULLong.of_int insertionCount) (ULLong.of_int deletionCount) (ULLong.of_int rangeCount) ranges
+let initWithString' x ~syllableCount ~lastSyllableIsPartial ~score ~replacementCount ~transpositionCount ~insertionCount ~deletionCount ~indexOfFirstModification ~rangeCount ~ranges self = msg_send ~self ~cmd:(selector "initWithString:syllableCount:lastSyllableIsPartial:score:replacementCount:transpositionCount:insertionCount:deletionCount:indexOfFirstModification:rangeCount:ranges:") ~typ:(id @-> ullong @-> bool @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> ptr (NSRange.t) @-> returning (id)) x (ULLong.of_int syllableCount) lastSyllableIsPartial (ULLong.of_int score) (ULLong.of_int replacementCount) (ULLong.of_int transpositionCount) (ULLong.of_int insertionCount) (ULLong.of_int deletionCount) (ULLong.of_int indexOfFirstModification) (ULLong.of_int rangeCount) ranges
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let lastSyllableIsPartial self = msg_send ~self ~cmd:(selector "lastSyllableIsPartial") ~typ:(returning (bool))
 let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning (ullong))
 let nonPinyinIndexSet self = msg_send ~self ~cmd:(selector "nonPinyinIndexSet") ~typ:(returning (id))
-let nonPinyinRangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "nonPinyinRangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
+let nonPinyinRangeAtIndex x self = msg_send_stret ~self ~cmd:(selector "nonPinyinRangeAtIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t (ULLong.of_int x)
 let numberOfDeletions self = msg_send ~self ~cmd:(selector "numberOfDeletions") ~typ:(returning (ullong))
 let numberOfInsertions self = msg_send ~self ~cmd:(selector "numberOfInsertions") ~typ:(returning (ullong))
 let numberOfNonPinyinRanges self = msg_send ~self ~cmd:(selector "numberOfNonPinyinRanges") ~typ:(returning (ullong))

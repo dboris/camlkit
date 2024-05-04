@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSMutableSet"
 
-module Class = struct
-  let setWithCapacity x self = msg_send ~self ~cmd:(selector "setWithCapacity:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let setWithCapacity x self = msg_send ~self ~cmd:(selector "setWithCapacity:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 end
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning (void)) x
-let addObjects x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (void)) x count
+let addObjects x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (void)) x (ULLong.of_int count)
 let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning (void)) x
 let addObjectsFromArray' x ~range self = msg_send ~self ~cmd:(selector "addObjectsFromArray:range:") ~typ:(id @-> NSRange.t @-> returning (void)) x range
 let addObjectsFromOrderedSet x self = msg_send ~self ~cmd:(selector "addObjectsFromOrderedSet:") ~typ:(id @-> returning (void)) x
@@ -18,8 +18,8 @@ let addObjectsFromOrderedSet' x ~range self = msg_send ~self ~cmd:(selector "add
 let addObjectsFromSet x self = msg_send ~self ~cmd:(selector "addObjectsFromSet:") ~typ:(id @-> returning (void)) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let filterUsingPredicate x self = msg_send ~self ~cmd:(selector "filterUsingPredicate:") ~typ:(id @-> returning (void)) x
-let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) x
-let initWithObjects x ~count self = msg_send ~self ~cmd:(selector "initWithObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (id)) x count
+let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+let initWithObjects x ~count self = msg_send ~self ~cmd:(selector "initWithObjects:count:") ~typ:(ptr (id) @-> ullong @-> returning (id)) x (ULLong.of_int count)
 let intersectOrderedSet x self = msg_send ~self ~cmd:(selector "intersectOrderedSet:") ~typ:(id @-> returning (void)) x
 let intersectSet x self = msg_send ~self ~cmd:(selector "intersectSet:") ~typ:(id @-> returning (void)) x
 let minusOrderedSet x self = msg_send ~self ~cmd:(selector "minusOrderedSet:") ~typ:(id @-> returning (void)) x
@@ -32,7 +32,7 @@ let removeObjectsInOrderedSet x self = msg_send ~self ~cmd:(selector "removeObje
 let removeObjectsInOrderedSet' x ~range self = msg_send ~self ~cmd:(selector "removeObjectsInOrderedSet:range:") ~typ:(id @-> NSRange.t @-> returning (void)) x range
 let removeObjectsInSet x self = msg_send ~self ~cmd:(selector "removeObjectsInSet:") ~typ:(id @-> returning (void)) x
 let removeObjectsPassingTest x self = msg_send ~self ~cmd:(selector "removeObjectsPassingTest:") ~typ:(ptr void @-> returning (void)) x
-let removeObjectsWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "removeObjectsWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (void)) x passingTest
+let removeObjectsWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "removeObjectsWithOptions:passingTest:") ~typ:(ullong @-> ptr void @-> returning (void)) (ULLong.of_int x) passingTest
 let replaceObject x self = msg_send ~self ~cmd:(selector "replaceObject:") ~typ:(id @-> returning (void)) x
 let setArray x self = msg_send ~self ~cmd:(selector "setArray:") ~typ:(id @-> returning (void)) x
 let setByAddingObjectsFromArray x self = msg_send ~self ~cmd:(selector "setByAddingObjectsFromArray:") ~typ:(id @-> returning (id)) x

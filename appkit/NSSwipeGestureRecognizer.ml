@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSwipeGestureRecognizer"
 
-module Class = struct
+module C = struct
   let touchBarMiniSwipeRecognizerWithTarget x ~action self = msg_send ~self ~cmd:(selector "touchBarMiniSwipeRecognizerWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
 end
 
@@ -39,14 +39,14 @@ let rightMouseDown x self = msg_send ~self ~cmd:(selector "rightMouseDown:") ~ty
 let rightMouseDragged x self = msg_send ~self ~cmd:(selector "rightMouseDragged:") ~typ:(id @-> returning (void)) x
 let rightMouseUp x self = msg_send ~self ~cmd:(selector "rightMouseUp:") ~typ:(id @-> returning (void)) x
 let setAllowedPrimaryMovementSlop x self = msg_send ~self ~cmd:(selector "setAllowedPrimaryMovementSlop:") ~typ:(double @-> returning (void)) x
-let setButtonMask x self = msg_send ~self ~cmd:(selector "setButtonMask:") ~typ:(ullong @-> returning (void)) x
-let setDirection x self = msg_send ~self ~cmd:(selector "setDirection:") ~typ:(ullong @-> returning (void)) x
+let setButtonMask x self = msg_send ~self ~cmd:(selector "setButtonMask:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setDirection x self = msg_send ~self ~cmd:(selector "setDirection:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMaximumDuration x self = msg_send ~self ~cmd:(selector "setMaximumDuration:") ~typ:(double @-> returning (void)) x
 let setMaximumPrimaryMovement x self = msg_send ~self ~cmd:(selector "setMaximumPrimaryMovement:") ~typ:(double @-> returning (void)) x
 let setMaximumSecondaryMovement x self = msg_send ~self ~cmd:(selector "setMaximumSecondaryMovement:") ~typ:(double @-> returning (void)) x
 let setMinimumPrimaryMovement x self = msg_send ~self ~cmd:(selector "setMinimumPrimaryMovement:") ~typ:(double @-> returning (void)) x
 let setMinimumSecondaryMovement x self = msg_send ~self ~cmd:(selector "setMinimumSecondaryMovement:") ~typ:(double @-> returning (void)) x
-let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRateOfMaximumMovementDecay x self = msg_send ~self ~cmd:(selector "setRateOfMaximumMovementDecay:") ~typ:(double @-> returning (void)) x
 let setRateOfMinimumMovementDecay x self = msg_send ~self ~cmd:(selector "setRateOfMinimumMovementDecay:") ~typ:(double @-> returning (void)) x
 let setRecognizesAfterEndPhase x self = msg_send ~self ~cmd:(selector "setRecognizesAfterEndPhase:") ~typ:(bool @-> returning (void)) x

@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIAutonomousSingleAppModeConfiguration"
 
-module Class = struct
+module C = struct
   let defaultConfiguration self = msg_send ~self ~cmd:(selector "defaultConfiguration") ~typ:(returning (id))
-  let defaultConfigurationForStyle x self = msg_send ~self ~cmd:(selector "defaultConfigurationForStyle:") ~typ:(ullong @-> returning (id)) x
+  let defaultConfigurationForStyle x self = msg_send ~self ~cmd:(selector "defaultConfigurationForStyle:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 end
 
 let allowsAutoLock self = msg_send ~self ~cmd:(selector "allowsAutoLock") ~typ:(returning (bool))
@@ -23,5 +23,5 @@ let setAllowsAutoLock x self = msg_send ~self ~cmd:(selector "setAllowsAutoLock:
 let setAllowsLockButton x self = msg_send ~self ~cmd:(selector "setAllowsLockButton:") ~typ:(bool @-> returning (void)) x
 let setAutomaticallyRelaunchesAfterAppCrash x self = msg_send ~self ~cmd:(selector "setAutomaticallyRelaunchesAfterAppCrash:") ~typ:(bool @-> returning (void)) x
 let setManagedConfigurationSettings x self = msg_send ~self ~cmd:(selector "setManagedConfigurationSettings:") ~typ:(id @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(ullong @-> returning (void)) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning (ullong))

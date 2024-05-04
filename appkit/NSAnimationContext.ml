@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSAnimationContext"
 
-module Class = struct
+module C = struct
   let activate self = msg_send ~self ~cmd:(selector "activate") ~typ:(returning (void))
   let addCommitHandler x self = msg_send ~self ~cmd:(selector "addCommitHandler:") ~typ:(ptr void @-> returning (void)) x
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x

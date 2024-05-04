@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileURLHandle"
 
-module Class = struct
+module C = struct
   let cachedHandleForURL x self = msg_send ~self ~cmd:(selector "cachedHandleForURL:") ~typ:(id @-> returning (id)) x
   let canInitWithURL x self = msg_send ~self ~cmd:(selector "canInitWithURL:") ~typ:(id @-> returning (bool)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

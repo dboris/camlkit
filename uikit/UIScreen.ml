@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIScreen"
 
-module Class = struct
+module C = struct
   let convertPoint x ~fromView self = msg_send_stret ~self ~cmd:(selector "convertPoint:fromView:") ~typ:(CGPoint.t @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x fromView
   let convertPoint' x ~toView self = msg_send_stret ~self ~cmd:(selector "convertPoint:toView:") ~typ:(CGPoint.t @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x toView
   let convertRect x ~fromView self = msg_send_stret ~self ~cmd:(selector "convertRect:fromView:") ~typ:(CGRect.t @-> id @-> returning (CGRect.t)) ~return_type:CGRect.t x fromView
@@ -65,7 +65,7 @@ let setCurrentMode x self = msg_send ~self ~cmd:(selector "setCurrentMode:") ~ty
 let setDisplayConfiguration x self = msg_send ~self ~cmd:(selector "setDisplayConfiguration:") ~typ:(id @-> returning (void)) x
 let setFocusEnabled x self = msg_send ~self ~cmd:(selector "setFocusEnabled:") ~typ:(bool @-> returning (void)) x
 let setNeedsFocusUpdate self = msg_send ~self ~cmd:(selector "setNeedsFocusUpdate") ~typ:(returning (void))
-let setOverscanCompensation x self = msg_send ~self ~cmd:(selector "setOverscanCompensation:") ~typ:(llong @-> returning (void)) x
+let setOverscanCompensation x self = msg_send ~self ~cmd:(selector "setOverscanCompensation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setWantsSoftwareDimming x self = msg_send ~self ~cmd:(selector "setWantsSoftwareDimming:") ~typ:(bool @-> returning (void)) x
 let shouldUpdateFocusInContext x self = msg_send ~self ~cmd:(selector "shouldUpdateFocusInContext:") ~typ:(id @-> returning (bool)) x
 let snapshot self = msg_send ~self ~cmd:(selector "snapshot") ~typ:(returning (id))

@@ -8,6 +8,6 @@ open Foundation
 
 let _class_ = get_class "UIKBAutoFillTestTagRequest"
 
-let initWithRequestType x ~view self = msg_send ~self ~cmd:(selector "initWithRequestType:view:") ~typ:(llong @-> id @-> returning (id)) x view
+let initWithRequestType x ~view self = msg_send ~self ~cmd:(selector "initWithRequestType:view:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) view
 let requestType self = msg_send ~self ~cmd:(selector "requestType") ~typ:(returning (llong))
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardAutomatic"
 
-module Class = struct
+module C = struct
   let activeInstance self = msg_send ~self ~cmd:(selector "activeInstance") ~typ:(returning (id))
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end
@@ -29,7 +29,7 @@ let pendingSupplementalCandidateToInsert self = msg_send ~self ~cmd:(selector "p
 let prepareForImplBoundsHeightChange x ~suppressNotification self = msg_send ~self ~cmd:(selector "prepareForImplBoundsHeightChange:suppressNotification:") ~typ:(double @-> bool @-> returning (void)) x suppressNotification
 let receivedCandidatesInCurrentInputMode self = msg_send ~self ~cmd:(selector "receivedCandidatesInCurrentInputMode") ~typ:(returning (bool))
 let setBlinkAssertion x self = msg_send ~self ~cmd:(selector "setBlinkAssertion:") ~typ:(id @-> returning (void)) x
-let setLastChooseSupplementalItemToInsertCallbackIdentifier x self = msg_send ~self ~cmd:(selector "setLastChooseSupplementalItemToInsertCallbackIdentifier:") ~typ:(ullong @-> returning (void)) x
+let setLastChooseSupplementalItemToInsertCallbackIdentifier x self = msg_send ~self ~cmd:(selector "setLastChooseSupplementalItemToInsertCallbackIdentifier:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setLastMatchedSupplementalCandidate x self = msg_send ~self ~cmd:(selector "setLastMatchedSupplementalCandidate:") ~typ:(id @-> returning (void)) x
 let setPendingSupplementalCandidateToInsert x self = msg_send ~self ~cmd:(selector "setPendingSupplementalCandidateToInsert:") ~typ:(id @-> returning (void)) x
 let setReceivedCandidatesInCurrentInputMode x self = msg_send ~self ~cmd:(selector "setReceivedCandidatesInCurrentInputMode:") ~typ:(bool @-> returning (void)) x

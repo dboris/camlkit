@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBHandwritingCandidateView"
 
-module Class = struct
+module C = struct
   let shadowYForBounds x ~shadowHeight self = msg_send ~self ~cmd:(selector "shadowYForBounds:shadowHeight:") ~typ:(CGRect.t @-> double @-> returning (double)) x shadowHeight
 end
 

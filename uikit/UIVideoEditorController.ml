@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIVideoEditorController"
 
-module Class = struct
+module C = struct
   let canEditVideoAtPath x self = msg_send ~self ~cmd:(selector "canEditVideoAtPath:") ~typ:(id @-> returning (bool)) x
 end
 
@@ -18,7 +18,7 @@ let editVideoViewControllerDidCancel x self = msg_send ~self ~cmd:(selector "edi
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let setVideoMaximumDuration x self = msg_send ~self ~cmd:(selector "setVideoMaximumDuration:") ~typ:(double @-> returning (void)) x
 let setVideoPath x self = msg_send ~self ~cmd:(selector "setVideoPath:") ~typ:(id @-> returning (void)) x
-let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning (void)) x
+let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let videoMaximumDuration self = msg_send ~self ~cmd:(selector "videoMaximumDuration") ~typ:(returning (double))
 let videoPath self = msg_send ~self ~cmd:(selector "videoPath") ~typ:(returning (id))
 let videoQuality self = msg_send ~self ~cmd:(selector "videoQuality") ~typ:(returning (llong))

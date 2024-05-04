@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIMenuSystem"
 
-module Class = struct
+module C = struct
   let contextSystem self = msg_send ~self ~cmd:(selector "contextSystem") ~typ:(returning (id))
   let mainSystem self = msg_send ~self ~cmd:(selector "mainSystem") ~typ:(returning (id))
 end

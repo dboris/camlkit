@@ -5,11 +5,11 @@ open Objc
 
 let _class_ = get_class "NSAggregateExpression"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x flags
+let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int flags)
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning (void))
 let collection self = msg_send ~self ~cmd:(selector "collection") ~typ:(returning (id))
 let constantValue self = msg_send ~self ~cmd:(selector "constantValue") ~typ:(returning (id))

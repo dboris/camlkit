@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPinchGestureRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -20,6 +20,7 @@ let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning (double)
 let scaleThreshold self = msg_send ~self ~cmd:(selector "scaleThreshold") ~typ:(returning (double))
 let setScale x self = msg_send ~self ~cmd:(selector "setScale:") ~typ:(double @-> returning (void)) x
 let setScaleThreshold x self = msg_send ~self ~cmd:(selector "setScaleThreshold:") ~typ:(double @-> returning (void)) x
+let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(ptr void @-> returning (void)) x
 let touchesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "touchesBegan:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let touchesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "touchesCancelled:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let touchesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "touchesEnded:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent

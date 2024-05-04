@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorPickerFavorites"
 
-module Class = struct
+module C = struct
   let preferredColorSwatchType self = msg_send ~self ~cmd:(selector "preferredColorSwatchType") ~typ:(returning (llong))
 end
 
 let allowedColorSpaces self = msg_send ~self ~cmd:(selector "allowedColorSpaces") ~typ:(returning (id))
 let allowsAlpha self = msg_send ~self ~cmd:(selector "allowsAlpha") ~typ:(returning (bool))
 let collectionView x ~itemForRepresentedObjectAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:itemForRepresentedObjectAtIndexPath:") ~typ:(id @-> id @-> returning (id)) x itemForRepresentedObjectAtIndexPath
-let collectionView' x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x numberOfItemsInSection
+let collectionView' x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x (LLong.of_int numberOfItemsInSection)
 let currentColor self = msg_send ~self ~cmd:(selector "currentColor") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITabBarController"
 
-module Class = struct
+module C = struct
   let doesOverridePreferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "doesOverridePreferredInterfaceOrientationForPresentation") ~typ:(returning (bool))
 end
 
@@ -29,8 +29,8 @@ let customizableViewControllers self = msg_send ~self ~cmd:(selector "customizab
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning (void)) x
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
-let didAnimateFirstHalfOfRotationToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didAnimateFirstHalfOfRotationToInterfaceOrientation:") ~typ:(llong @-> returning (void)) x
-let didRotateFromInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didRotateFromInterfaceOrientation:") ~typ:(llong @-> returning (void)) x
+let didAnimateFirstHalfOfRotationToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didAnimateFirstHalfOfRotationToInterfaceOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let didRotateFromInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didRotateFromInterfaceOrientation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encodeRestorableStateWithCoder:") ~typ:(id @-> returning (void)) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hideBarWithTransition x self = msg_send ~self ~cmd:(selector "hideBarWithTransition:") ~typ:(int @-> returning (void)) x
@@ -57,7 +57,7 @@ let setCustomizableViewControllers x self = msg_send ~self ~cmd:(selector "setCu
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setMoreChildViewControllers x self = msg_send ~self ~cmd:(selector "setMoreChildViewControllers:") ~typ:(id @-> returning (void)) x
 let setRestorationIdentifier x self = msg_send ~self ~cmd:(selector "setRestorationIdentifier:") ~typ:(id @-> returning (void)) x
-let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(ullong @-> returning (void)) x
+let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setSelectedViewController x self = msg_send ~self ~cmd:(selector "setSelectedViewController:") ~typ:(id @-> returning (void)) x
 let setShowsEditButtonOnLeft x self = msg_send ~self ~cmd:(selector "setShowsEditButtonOnLeft:") ~typ:(bool @-> returning (void)) x
 let setTabBar x self = msg_send ~self ~cmd:(selector "setTabBar:") ~typ:(id @-> returning (void)) x
@@ -66,7 +66,7 @@ let setTransientViewController' x ~animated self = msg_send ~self ~cmd:(selector
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let setViewControllers x self = msg_send ~self ~cmd:(selector "setViewControllers:") ~typ:(id @-> returning (void)) x
 let setViewControllers' x ~animated self = msg_send ~self ~cmd:(selector "setViewControllers:animated:") ~typ:(id @-> bool @-> returning (void)) x animated
-let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) x
+let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let shouldUpdateFocusInContext x self = msg_send ~self ~cmd:(selector "shouldUpdateFocusInContext:") ~typ:(id @-> returning (bool)) x
 let showBarWithTransition x self = msg_send ~self ~cmd:(selector "showBarWithTransition:") ~typ:(int @-> returning (void)) x
 let showBarWithTransition' x ~duration self = msg_send ~self ~cmd:(selector "showBarWithTransition:duration:") ~typ:(int @-> double @-> returning (void)) x duration
@@ -94,8 +94,8 @@ let viewDidLoad self = msg_send ~self ~cmd:(selector "viewDidLoad") ~typ:(return
 let viewWillAppear x self = msg_send ~self ~cmd:(selector "viewWillAppear:") ~typ:(bool @-> returning (void)) x
 let viewWillDisappear x self = msg_send ~self ~cmd:(selector "viewWillDisappear:") ~typ:(bool @-> returning (void)) x
 let viewWillTransitionToSize x ~withTransitionCoordinator self = msg_send ~self ~cmd:(selector "viewWillTransitionToSize:withTransitionCoordinator:") ~typ:(CGSize.t @-> id @-> returning (void)) x withTransitionCoordinator
-let willAnimateFirstHalfOfRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateFirstHalfOfRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
-let willAnimateRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
-let willAnimateSecondHalfOfRotationFromInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateSecondHalfOfRotationFromInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
-let willRotateToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willRotateToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) x duration
+let willAnimateFirstHalfOfRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateFirstHalfOfRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration
+let willAnimateRotationToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateRotationToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration
+let willAnimateSecondHalfOfRotationFromInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willAnimateSecondHalfOfRotationFromInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration
+let willRotateToInterfaceOrientation x ~duration self = msg_send ~self ~cmd:(selector "willRotateToInterfaceOrientation:duration:") ~typ:(llong @-> double @-> returning (void)) (LLong.of_int x) duration
 let willTransitionToTraitCollection x ~withTransitionCoordinator self = msg_send ~self ~cmd:(selector "willTransitionToTraitCollection:withTransitionCoordinator:") ~typ:(id @-> id @-> returning (void)) x withTransitionCoordinator

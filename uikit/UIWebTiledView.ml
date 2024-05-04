@@ -45,6 +45,7 @@ let setTileSize x self = msg_send ~self ~cmd:(selector "setTileSize:") ~typ:(CGS
 let setTilesOpaque x self = msg_send ~self ~cmd:(selector "setTilesOpaque:") ~typ:(bool @-> returning (void)) x
 let setTilingArea x self = msg_send ~self ~cmd:(selector "setTilingArea:") ~typ:(int @-> returning (void)) x
 let setTilingEnabled x self = msg_send ~self ~cmd:(selector "setTilingEnabled:") ~typ:(bool @-> returning (void)) x
+let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(ptr void @-> returning (void)) x
 let setWAKWindow x self = msg_send ~self ~cmd:(selector "setWAKWindow:") ~typ:(id @-> returning (void)) x
 let tileDrawingEnabled self = msg_send ~self ~cmd:(selector "tileDrawingEnabled") ~typ:(returning (bool))
 let tileSize self = msg_send_stret ~self ~cmd:(selector "tileSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

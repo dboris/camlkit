@@ -5,8 +5,8 @@ open Objc
 
 let _class_ = get_class "NSDateComponentsFormatter"
 
-module Class = struct
-  let localizedStringFromDateComponents x ~unitsStyle self = msg_send ~self ~cmd:(selector "localizedStringFromDateComponents:unitsStyle:") ~typ:(id @-> llong @-> returning (id)) x unitsStyle
+module C = struct
+  let localizedStringFromDateComponents x ~unitsStyle self = msg_send ~self ~cmd:(selector "localizedStringFromDateComponents:unitsStyle:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int unitsStyle)
 end
 
 let allowedUnits self = msg_send ~self ~cmd:(selector "allowedUnits") ~typ:(returning (ullong))
@@ -26,17 +26,17 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let maximumUnitCount self = msg_send ~self ~cmd:(selector "maximumUnitCount") ~typ:(returning (llong))
 let receiveObservedValue x self = msg_send ~self ~cmd:(selector "receiveObservedValue:") ~typ:(id @-> returning (void)) x
 let referenceDate self = msg_send ~self ~cmd:(selector "referenceDate") ~typ:(returning (id))
-let setAllowedUnits x self = msg_send ~self ~cmd:(selector "setAllowedUnits:") ~typ:(ullong @-> returning (void)) x
+let setAllowedUnits x self = msg_send ~self ~cmd:(selector "setAllowedUnits:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setAllowsFractionalUnits x self = msg_send ~self ~cmd:(selector "setAllowsFractionalUnits:") ~typ:(bool @-> returning (void)) x
 let setCalendar x self = msg_send ~self ~cmd:(selector "setCalendar:") ~typ:(id @-> returning (void)) x
 let setCollapsesLargestUnit x self = msg_send ~self ~cmd:(selector "setCollapsesLargestUnit:") ~typ:(bool @-> returning (void)) x
-let setFormattingContext x self = msg_send ~self ~cmd:(selector "setFormattingContext:") ~typ:(llong @-> returning (void)) x
+let setFormattingContext x self = msg_send ~self ~cmd:(selector "setFormattingContext:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setIncludesApproximationPhrase x self = msg_send ~self ~cmd:(selector "setIncludesApproximationPhrase:") ~typ:(bool @-> returning (void)) x
 let setIncludesTimeRemainingPhrase x self = msg_send ~self ~cmd:(selector "setIncludesTimeRemainingPhrase:") ~typ:(bool @-> returning (void)) x
-let setMaximumUnitCount x self = msg_send ~self ~cmd:(selector "setMaximumUnitCount:") ~typ:(llong @-> returning (void)) x
+let setMaximumUnitCount x self = msg_send ~self ~cmd:(selector "setMaximumUnitCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setReferenceDate x self = msg_send ~self ~cmd:(selector "setReferenceDate:") ~typ:(id @-> returning (void)) x
-let setUnitsStyle x self = msg_send ~self ~cmd:(selector "setUnitsStyle:") ~typ:(llong @-> returning (void)) x
-let setZeroFormattingBehavior x self = msg_send ~self ~cmd:(selector "setZeroFormattingBehavior:") ~typ:(ullong @-> returning (void)) x
+let setUnitsStyle x self = msg_send ~self ~cmd:(selector "setUnitsStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setZeroFormattingBehavior x self = msg_send ~self ~cmd:(selector "setZeroFormattingBehavior:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning (id)) x
 let stringForObjectValue' x ~withReferenceDate self = msg_send ~self ~cmd:(selector "stringForObjectValue:withReferenceDate:") ~typ:(id @-> id @-> returning (id)) x withReferenceDate
 let stringFromDate x ~toDate self = msg_send ~self ~cmd:(selector "stringFromDate:toDate:") ~typ:(id @-> id @-> returning (id)) x toDate

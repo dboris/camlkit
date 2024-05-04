@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSFileAccessClaim"
 
-module Class = struct
-  let canNewWriteOfItemAtLocation x ~options ~safelyOverlapExistingWriteOfItemAtLocation ~options_ self = msg_send ~self ~cmd:(selector "canNewWriteOfItemAtLocation:options:safelyOverlapExistingWriteOfItemAtLocation:options:") ~typ:(id @-> ullong @-> id @-> ullong @-> returning (bool)) x options safelyOverlapExistingWriteOfItemAtLocation options_
-  let canReadingItemAtLocation x ~options ~safelyOverlapNewWriting ~ofItemAtLocation ~options_ self = msg_send ~self ~cmd:(selector "canReadingItemAtLocation:options:safelyOverlapNewWriting:ofItemAtLocation:options:") ~typ:(id @-> ullong @-> bool @-> id @-> ullong @-> returning (bool)) x options safelyOverlapNewWriting ofItemAtLocation options_
+module C = struct
+  let canNewWriteOfItemAtLocation x ~options ~safelyOverlapExistingWriteOfItemAtLocation ~options_ self = msg_send ~self ~cmd:(selector "canNewWriteOfItemAtLocation:options:safelyOverlapExistingWriteOfItemAtLocation:options:") ~typ:(id @-> ullong @-> id @-> ullong @-> returning (bool)) x (ULLong.of_int options) safelyOverlapExistingWriteOfItemAtLocation (ULLong.of_int options_)
+  let canReadingItemAtLocation x ~options ~safelyOverlapNewWriting ~ofItemAtLocation ~options_ self = msg_send ~self ~cmd:(selector "canReadingItemAtLocation:options:safelyOverlapNewWriting:ofItemAtLocation:options:") ~typ:(id @-> ullong @-> bool @-> id @-> ullong @-> returning (bool)) x (ULLong.of_int options) safelyOverlapNewWriting ofItemAtLocation (ULLong.of_int options_)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -46,16 +46,16 @@ let initWithClient x ~claimID ~purposeID self = msg_send ~self ~cmd:(selector "i
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let invokeClaimer self = msg_send ~self ~cmd:(selector "invokeClaimer") ~typ:(returning (void))
 let isBlockedByClaimWithPurposeID x self = msg_send ~self ~cmd:(selector "isBlockedByClaimWithPurposeID:") ~typ:(id @-> returning (bool)) x
-let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
-let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
+let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
+let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
 let isGranted self = msg_send ~self ~cmd:(selector "isGranted") ~typ:(returning (bool))
 let isRevoked self = msg_send ~self ~cmd:(selector "isRevoked") ~typ:(returning (bool))
 let itemAtLocation x ~wasReplacedByItemAtLocation self = msg_send ~self ~cmd:(selector "itemAtLocation:wasReplacedByItemAtLocation:") ~typ:(id @-> id @-> returning (void)) x wasReplacedByItemAtLocation
 let makePresentersOfItemAtLocation x ~orContainedItem ~relinquishUsingProcedureGetter self = msg_send ~self ~cmd:(selector "makePresentersOfItemAtLocation:orContainedItem:relinquishUsingProcedureGetter:") ~typ:(id @-> bool @-> ptr void @-> returning (void)) x orContainedItem relinquishUsingProcedureGetter
 let makeProviderOfItemAtLocation x ~providePhysicalURLThenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:providePhysicalURLThenContinue:") ~typ:(id @-> ptr void @-> returning (void)) x providePhysicalURLThenContinue
-let makeProviderOfItemAtLocation1 x ~provideIfNecessaryWithOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideIfNecessaryWithOptions:thenContinue:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x provideIfNecessaryWithOptions thenContinue
-let makeProviderOfItemAtLocation2 x ~provideOrAttachPhysicalURLIfNecessaryForPurposeID ~readingOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideOrAttachPhysicalURLIfNecessaryForPurposeID:readingOptions:thenContinue:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x provideOrAttachPhysicalURLIfNecessaryForPurposeID readingOptions thenContinue
-let makeProviderOfItemAtLocation3 x ~provideOrAttachPhysicalURLIfNecessaryForPurposeID ~writingOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideOrAttachPhysicalURLIfNecessaryForPurposeID:writingOptions:thenContinue:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x provideOrAttachPhysicalURLIfNecessaryForPurposeID writingOptions thenContinue
+let makeProviderOfItemAtLocation1 x ~provideIfNecessaryWithOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideIfNecessaryWithOptions:thenContinue:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x (ULLong.of_int provideIfNecessaryWithOptions) thenContinue
+let makeProviderOfItemAtLocation2 x ~provideOrAttachPhysicalURLIfNecessaryForPurposeID ~readingOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideOrAttachPhysicalURLIfNecessaryForPurposeID:readingOptions:thenContinue:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x provideOrAttachPhysicalURLIfNecessaryForPurposeID (ULLong.of_int readingOptions) thenContinue
+let makeProviderOfItemAtLocation3 x ~provideOrAttachPhysicalURLIfNecessaryForPurposeID ~writingOptions ~thenContinue self = msg_send ~self ~cmd:(selector "makeProviderOfItemAtLocation:provideOrAttachPhysicalURLIfNecessaryForPurposeID:writingOptions:thenContinue:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x provideOrAttachPhysicalURLIfNecessaryForPurposeID (ULLong.of_int writingOptions) thenContinue
 let makeProvidersProvideItemsForReadingLocations x ~options ~andWritingLocationsIfNecessary ~options_ ~thenContinue self = msg_send ~self ~cmd:(selector "makeProvidersProvideItemsForReadingLocations:options:andWritingLocationsIfNecessary:options:thenContinue:") ~typ:(id @-> ptr (ullong) @-> id @-> ptr (ullong) @-> ptr void @-> returning (void)) x options andWritingLocationsIfNecessary options_ thenContinue
 let pendingClaims self = msg_send ~self ~cmd:(selector "pendingClaims") ~typ:(returning (id))
 let prepareClaimForGrantingWithArbiterQueue x self = msg_send ~self ~cmd:(selector "prepareClaimForGrantingWithArbiterQueue:") ~typ:(id @-> returning (void)) x
@@ -73,10 +73,10 @@ let setShouldEnableMaterializationDuringAccessorBlock x self = msg_send ~self ~c
 let shouldBeRevokedPriorToInvokingAccessor self = msg_send ~self ~cmd:(selector "shouldBeRevokedPriorToInvokingAccessor") ~typ:(returning (bool))
 let shouldCancelInsteadOfWaiting self = msg_send ~self ~cmd:(selector "shouldCancelInsteadOfWaiting") ~typ:(returning (bool))
 let shouldEnableMaterializationDuringAccessorBlock self = msg_send ~self ~cmd:(selector "shouldEnableMaterializationDuringAccessorBlock") ~typ:(returning (bool))
-let shouldInformProvidersAboutEndOfWriteWithOptions x self = msg_send ~self ~cmd:(selector "shouldInformProvidersAboutEndOfWriteWithOptions:") ~typ:(ullong @-> returning (bool)) x
-let shouldMakeProviderProvideItemAtLocation x ~withOptions self = msg_send ~self ~cmd:(selector "shouldMakeProviderProvideItemAtLocation:withOptions:") ~typ:(id @-> ullong @-> returning (bool)) x withOptions
-let shouldReadingWithOptions x ~causePresenterToRelinquish self = msg_send ~self ~cmd:(selector "shouldReadingWithOptions:causePresenterToRelinquish:") ~typ:(ullong @-> id @-> returning (bool)) x causePresenterToRelinquish
-let shouldWritingWithOptions x ~causePresenterToRelinquish self = msg_send ~self ~cmd:(selector "shouldWritingWithOptions:causePresenterToRelinquish:") ~typ:(ullong @-> id @-> returning (bool)) x causePresenterToRelinquish
+let shouldInformProvidersAboutEndOfWriteWithOptions x self = msg_send ~self ~cmd:(selector "shouldInformProvidersAboutEndOfWriteWithOptions:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
+let shouldMakeProviderProvideItemAtLocation x ~withOptions self = msg_send ~self ~cmd:(selector "shouldMakeProviderProvideItemAtLocation:withOptions:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int withOptions)
+let shouldReadingWithOptions x ~causePresenterToRelinquish self = msg_send ~self ~cmd:(selector "shouldReadingWithOptions:causePresenterToRelinquish:") ~typ:(ullong @-> id @-> returning (bool)) (ULLong.of_int x) causePresenterToRelinquish
+let shouldWritingWithOptions x ~causePresenterToRelinquish self = msg_send ~self ~cmd:(selector "shouldWritingWithOptions:causePresenterToRelinquish:") ~typ:(ullong @-> id @-> returning (bool)) (ULLong.of_int x) causePresenterToRelinquish
 let startObservingClientState self = msg_send ~self ~cmd:(selector "startObservingClientState") ~typ:(returning (void))
 let unblock self = msg_send ~self ~cmd:(selector "unblock") ~typ:(returning (void))
 let unblockClaimerForReason x self = msg_send ~self ~cmd:(selector "unblockClaimerForReason:") ~typ:(id @-> returning (void)) x

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSNull"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let null self = msg_send ~self ~cmd:(selector "null") ~typ:(returning (id))
   let scriptingMissingValueWithDescriptor x self = msg_send ~self ~cmd:(selector "scriptingMissingValueWithDescriptor:") ~typ:(id @-> returning (id)) x

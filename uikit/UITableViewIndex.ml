@@ -25,6 +25,7 @@ let pastBottom self = msg_send ~self ~cmd:(selector "pastBottom") ~typ:(returnin
 let pastTop self = msg_send ~self ~cmd:(selector "pastTop") ~typ:(returning (bool))
 let selectedSection self = msg_send ~self ~cmd:(selector "selectedSection") ~typ:(returning (llong))
 let selectedSectionTitle self = msg_send ~self ~cmd:(selector "selectedSectionTitle") ~typ:(returning (id))
+let setDrawingInsets x self = msg_send ~self ~cmd:(selector "setDrawingInsets:") ~typ:(ptr void @-> returning (void)) x
 let setFont x self = msg_send ~self ~cmd:(selector "setFont:") ~typ:(id @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setIndexBackgroundColor x self = msg_send ~self ~cmd:(selector "setIndexBackgroundColor:") ~typ:(id @-> returning (void)) x

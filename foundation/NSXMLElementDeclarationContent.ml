@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXMLElementDeclarationContent"
 
-module Class = struct
+module C = struct
   let createElementContent x self = msg_send ~self ~cmd:(selector "createElementContent:") ~typ:(ptr void @-> returning (id)) x
   let createElementContentFromString x self = msg_send ~self ~cmd:(selector "createElementContentFromString:") ~typ:(id @-> returning (id)) x
 end
@@ -14,7 +14,7 @@ let _XMLStringSequenceStarted x ~choiceStarted ~appendingToString self = msg_sen
 let contentKind self = msg_send ~self ~cmd:(selector "contentKind") ~typ:(returning (ullong))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let initWithContentKind x ~occurrence self = msg_send ~self ~cmd:(selector "initWithContentKind:occurrence:") ~typ:(ullong @-> ullong @-> returning (id)) x occurrence
+let initWithContentKind x ~occurrence self = msg_send ~self ~cmd:(selector "initWithContentKind:occurrence:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int occurrence)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let leftChild self = msg_send ~self ~cmd:(selector "leftChild") ~typ:(returning (id))
 let libxml2Content self = msg_send ~self ~cmd:(selector "libxml2Content") ~typ:(returning (ptr void))

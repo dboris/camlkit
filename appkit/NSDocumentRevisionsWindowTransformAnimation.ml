@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDocumentRevisionsWindowTransformAnimation"
 
-module Class = struct
+module C = struct
   let resetTransformForWindow x self = msg_send ~self ~cmd:(selector "resetTransformForWindow:") ~typ:(id @-> returning (void)) x
 end
 
@@ -20,9 +20,9 @@ let frameForProgress x self = msg_send_stret ~self ~cmd:(selector "frameForProgr
 let initWithWindow x ~startFrame ~targetFrame self = msg_send ~self ~cmd:(selector "initWithWindow:startFrame:targetFrame:") ~typ:(id @-> CGRect.t @-> CGRect.t @-> returning (id)) x startFrame targetFrame
 let initWithWindow1 x ~startFrame ~targetFrame ~hop self = msg_send ~self ~cmd:(selector "initWithWindow:startFrame:targetFrame:hop:") ~typ:(id @-> CGRect.t @-> CGRect.t @-> bool @-> returning (id)) x startFrame targetFrame hop
 let initWithWindow2 x ~startFrame ~targetFrame ~startSize ~targetSize ~hop self = msg_send ~self ~cmd:(selector "initWithWindow:startFrame:targetFrame:startSize:targetSize:hop:") ~typ:(id @-> CGRect.t @-> CGRect.t @-> CGSize.t @-> CGSize.t @-> bool @-> returning (id)) x startFrame targetFrame startSize targetSize hop
-let keyFramesForAnimationWithSteps x ~evaluator self = msg_send ~self ~cmd:(selector "keyFramesForAnimationWithSteps:evaluator:") ~typ:(ullong @-> ptr void @-> returning (id)) x evaluator
+let keyFramesForAnimationWithSteps x ~evaluator self = msg_send ~self ~cmd:(selector "keyFramesForAnimationWithSteps:evaluator:") ~typ:(ullong @-> ptr void @-> returning (id)) (ULLong.of_int x) evaluator
 let scaleForProgress x self = msg_send_stret ~self ~cmd:(selector "scaleForProgress:") ~typ:(double @-> returning (CGSize.t)) ~return_type:CGSize.t x
-let setAnimationCurve x self = msg_send ~self ~cmd:(selector "setAnimationCurve:") ~typ:(ullong @-> returning (void)) x
+let setAnimationCurve x self = msg_send ~self ~cmd:(selector "setAnimationCurve:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setCompletionHandler x self = msg_send ~self ~cmd:(selector "setCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
 let setCurrentProgress x self = msg_send ~self ~cmd:(selector "setCurrentProgress:") ~typ:(float @-> returning (void)) x
 let setPrefersWindowTransform x self = msg_send ~self ~cmd:(selector "setPrefersWindowTransform:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacementOffScreenDownForFloatingAssistant"
 
-module Class = struct
+module C = struct
   let placement self = msg_send ~self ~cmd:(selector "placement") ~typ:(returning (id))
 end
 

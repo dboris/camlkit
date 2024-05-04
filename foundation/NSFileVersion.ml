@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSFileVersion"
 
-module Class = struct
-  let addVersionOfItemAtURL x ~withContentsOfURL ~options ~error self = msg_send ~self ~cmd:(selector "addVersionOfItemAtURL:withContentsOfURL:options:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (id)) x withContentsOfURL options error
+module C = struct
+  let addVersionOfItemAtURL x ~withContentsOfURL ~options ~error self = msg_send ~self ~cmd:(selector "addVersionOfItemAtURL:withContentsOfURL:options:error:") ~typ:(id @-> id @-> ullong @-> ptr (id) @-> returning (id)) x withContentsOfURL (ULLong.of_int options) error
   let currentVersionOfItemAtURL x self = msg_send ~self ~cmd:(selector "currentVersionOfItemAtURL:") ~typ:(id @-> returning (id)) x
   let discoverUbiquitousVersionsOfItemAtURL x ~completionHandler self = msg_send ~self ~cmd:(selector "discoverUbiquitousVersionsOfItemAtURL:completionHandler:") ~typ:(id @-> ptr void @-> returning (void)) x completionHandler
   let getNonlocalVersionsOfItemAtURL x ~completionHandler self = msg_send ~self ~cmd:(selector "getNonlocalVersionsOfItemAtURL:completionHandler:") ~typ:(id @-> ptr void @-> returning (void)) x completionHandler
-  let getNonlocalVersionsOfItemAtURL' x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "getNonlocalVersionsOfItemAtURL:options:completionHandler:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x options completionHandler
+  let getNonlocalVersionsOfItemAtURL' x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "getNonlocalVersionsOfItemAtURL:options:completionHandler:") ~typ:(id @-> ullong @-> ptr void @-> returning (void)) x (ULLong.of_int options) completionHandler
   let keyPathsForValuesAffectingValueForKey x self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingValueForKey:") ~typ:(id @-> returning (id)) x
   let otherVersionsOfItemAtURL x self = msg_send ~self ~cmd:(selector "otherVersionsOfItemAtURL:") ~typ:(id @-> returning (id)) x
   let removeOtherVersionsOfItemAtURL x ~error self = msg_send ~self ~cmd:(selector "removeOtherVersionsOfItemAtURL:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
@@ -42,7 +42,7 @@ let originatorName self = msg_send ~self ~cmd:(selector "originatorName") ~typ:(
 let originatorNameComponents self = msg_send ~self ~cmd:(selector "originatorNameComponents") ~typ:(returning (id))
 let persistentIdentifier self = msg_send ~self ~cmd:(selector "persistentIdentifier") ~typ:(returning (id))
 let removeAndReturnError x self = msg_send ~self ~cmd:(selector "removeAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
-let replaceItemAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "replaceItemAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x options error
+let replaceItemAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "replaceItemAtURL:options:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (id)) x (ULLong.of_int options) error
 let restoreOverItemAtURL x ~error self = msg_send ~self ~cmd:(selector "restoreOverItemAtURL:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let setDiscardable x self = msg_send ~self ~cmd:(selector "setDiscardable:") ~typ:(bool @-> returning (void)) x
 let setResolved x self = msg_send ~self ~cmd:(selector "setResolved:") ~typ:(bool @-> returning (void)) x

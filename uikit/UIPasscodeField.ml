@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPasscodeField"
 
-module Class = struct
+module C = struct
   let defaultHeight self = msg_send ~self ~cmd:(selector "defaultHeight") ~typ:(returning (double))
   let textFieldClass self = msg_send ~self ~cmd:(selector "textFieldClass") ~typ:(returning (_Class))
 end
@@ -24,9 +24,9 @@ let isFirstResponder self = msg_send ~self ~cmd:(selector "isFirstResponder") ~t
 let numberOfEntryFields self = msg_send ~self ~cmd:(selector "numberOfEntryFields") ~typ:(returning (int))
 let okButtonClicked x self = msg_send ~self ~cmd:(selector "okButtonClicked:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setKeyboardType x self = msg_send ~self ~cmd:(selector "setKeyboardType:") ~typ:(llong @-> returning (void)) x
-let setKeyboardType1 x ~appearance self = msg_send ~self ~cmd:(selector "setKeyboardType:appearance:") ~typ:(llong @-> llong @-> returning (void)) x appearance
-let setKeyboardType2 x ~appearance ~emptyContentReturnKeyType self = msg_send ~self ~cmd:(selector "setKeyboardType:appearance:emptyContentReturnKeyType:") ~typ:(llong @-> llong @-> int @-> returning (void)) x appearance emptyContentReturnKeyType
+let setKeyboardType x self = msg_send ~self ~cmd:(selector "setKeyboardType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setKeyboardType1 x ~appearance self = msg_send ~self ~cmd:(selector "setKeyboardType:appearance:") ~typ:(llong @-> llong @-> returning (void)) (LLong.of_int x) (LLong.of_int appearance)
+let setKeyboardType2 x ~appearance ~emptyContentReturnKeyType self = msg_send ~self ~cmd:(selector "setKeyboardType:appearance:emptyContentReturnKeyType:") ~typ:(llong @-> llong @-> int @-> returning (void)) (LLong.of_int x) (LLong.of_int appearance) emptyContentReturnKeyType
 let setNumberOfEntryFields x self = msg_send ~self ~cmd:(selector "setNumberOfEntryFields:") ~typ:(int @-> returning (void)) x
 let setNumberOfEntryFields' x ~opaqueBackground self = msg_send ~self ~cmd:(selector "setNumberOfEntryFields:opaqueBackground:") ~typ:(int @-> bool @-> returning (void)) x opaqueBackground
 let setShowsOKButton x self = msg_send ~self ~cmd:(selector "setShowsOKButton:") ~typ:(bool @-> returning (void)) x

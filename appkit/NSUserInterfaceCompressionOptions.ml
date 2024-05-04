@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSUserInterfaceCompressionOptions"
 
-module Class = struct
+module C = struct
   let breakEqualWidthsOption self = msg_send ~self ~cmd:(selector "breakEqualWidthsOption") ~typ:(returning (id))
   let hideImagesOption self = msg_send ~self ~cmd:(selector "hideImagesOption") ~typ:(returning (id))
   let hideTextOption self = msg_send ~self ~cmd:(selector "hideTextOption") ~typ:(returning (id))

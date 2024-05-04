@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIFeedbackGenerator"
 
-module Class = struct
+module C = struct
   let behaviorWithConfiguration x ~coordinateSpace self = msg_send ~self ~cmd:(selector "behaviorWithConfiguration:coordinateSpace:") ~typ:(id @-> id @-> returning (id)) x coordinateSpace
   let behaviorWithCoordinateSpace x self = msg_send ~self ~cmd:(selector "behaviorWithCoordinateSpace:") ~typ:(id @-> returning (id)) x
 end
@@ -28,8 +28,8 @@ let initWithCoordinateSpace x self = msg_send ~self ~cmd:(selector "initWithCoor
 let isActive self = msg_send ~self ~cmd:(selector "isActive") ~typ:(returning (bool))
 let performFeedbackWithDelay x ~insideBlock self = msg_send ~self ~cmd:(selector "performFeedbackWithDelay:insideBlock:") ~typ:(double @-> ptr void @-> returning (void)) x insideBlock
 let prepare self = msg_send ~self ~cmd:(selector "prepare") ~typ:(returning (void))
-let setActivationCount x self = msg_send ~self ~cmd:(selector "setActivationCount:") ~typ:(llong @-> returning (void)) x
+let setActivationCount x self = msg_send ~self ~cmd:(selector "setActivationCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCoordinateSpace x self = msg_send ~self ~cmd:(selector "setCoordinateSpace:") ~typ:(id @-> returning (void)) x
-let setExternalActivationCount x self = msg_send ~self ~cmd:(selector "setExternalActivationCount:") ~typ:(llong @-> returning (void)) x
+let setExternalActivationCount x self = msg_send ~self ~cmd:(selector "setExternalActivationCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setUsesCustomActivation x self = msg_send ~self ~cmd:(selector "setUsesCustomActivation:") ~typ:(bool @-> returning (void)) x
 let usesCustomActivation self = msg_send ~self ~cmd:(selector "usesCustomActivation") ~typ:(returning (bool))

@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "UIActivityItemsConfiguration"
 
-module Class = struct
+module C = struct
   let activityItemsConfigurationWithItemProviders x self = msg_send ~self ~cmd:(selector "activityItemsConfigurationWithItemProviders:") ~typ:(id @-> returning (id)) x
   let activityItemsConfigurationWithObjects x self = msg_send ~self ~cmd:(selector "activityItemsConfigurationWithObjects:") ~typ:(id @-> returning (id)) x
 end
 
-let activityItemsConfigurationMetadataForItemAtIndex x ~key self = msg_send ~self ~cmd:(selector "activityItemsConfigurationMetadataForItemAtIndex:key:") ~typ:(llong @-> id @-> returning (id)) x key
+let activityItemsConfigurationMetadataForItemAtIndex x ~key self = msg_send ~self ~cmd:(selector "activityItemsConfigurationMetadataForItemAtIndex:key:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) key
 let activityItemsConfigurationMetadataForKey x self = msg_send ~self ~cmd:(selector "activityItemsConfigurationMetadataForKey:") ~typ:(id @-> returning (id)) x
-let activityItemsConfigurationPreviewForItemAtIndex x ~intent ~suggestedSize self = msg_send ~self ~cmd:(selector "activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:") ~typ:(llong @-> id @-> CGSize.t @-> returning (id)) x intent suggestedSize
+let activityItemsConfigurationPreviewForItemAtIndex x ~intent ~suggestedSize self = msg_send ~self ~cmd:(selector "activityItemsConfigurationPreviewForItemAtIndex:intent:suggestedSize:") ~typ:(llong @-> id @-> CGSize.t @-> returning (id)) (LLong.of_int x) intent suggestedSize
 let activityItemsConfigurationSupportsInteraction x self = msg_send ~self ~cmd:(selector "activityItemsConfigurationSupportsInteraction:") ~typ:(id @-> returning (bool)) x
 let activityItemsForSharing self = msg_send ~self ~cmd:(selector "activityItemsForSharing") ~typ:(returning (id))
 let applicationActivitiesForActivityItemsConfiguration self = msg_send ~self ~cmd:(selector "applicationActivitiesForActivityItemsConfiguration") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIBackgroundConfiguration"
 
-module Class = struct
+module C = struct
   let clearConfiguration self = msg_send ~self ~cmd:(selector "clearConfiguration") ~typ:(returning (id))
   let listAccompaniedSidebarCellConfiguration self = msg_send ~self ~cmd:(selector "listAccompaniedSidebarCellConfiguration") ~typ:(returning (id))
   let listGroupedCellConfiguration self = msg_send ~self ~cmd:(selector "listGroupedCellConfiguration") ~typ:(returning (id))
@@ -38,11 +38,12 @@ let resolvedBackgroundColorForTintColor x self = msg_send ~self ~cmd:(selector "
 let resolvedStrokeColorForTintColor x self = msg_send ~self ~cmd:(selector "resolvedStrokeColorForTintColor:") ~typ:(id @-> returning (id)) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBackgroundColorTransformer x self = msg_send ~self ~cmd:(selector "setBackgroundColorTransformer:") ~typ:(ptr void @-> returning (void)) x
+let setBackgroundInsets x self = msg_send ~self ~cmd:(selector "setBackgroundInsets:") ~typ:(ptr void @-> returning (void)) x
 let setCornerRadius x self = msg_send ~self ~cmd:(selector "setCornerRadius:") ~typ:(double @-> returning (void)) x
 let setCustomView x self = msg_send ~self ~cmd:(selector "setCustomView:") ~typ:(id @-> returning (void)) x
-let setEdgesAddingLayoutMarginsToBackgroundInsets x self = msg_send ~self ~cmd:(selector "setEdgesAddingLayoutMarginsToBackgroundInsets:") ~typ:(ullong @-> returning (void)) x
+let setEdgesAddingLayoutMarginsToBackgroundInsets x self = msg_send ~self ~cmd:(selector "setEdgesAddingLayoutMarginsToBackgroundInsets:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setImageContentMode x self = msg_send ~self ~cmd:(selector "setImageContentMode:") ~typ:(llong @-> returning (void)) x
+let setImageContentMode x self = msg_send ~self ~cmd:(selector "setImageContentMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setStrokeColor x self = msg_send ~self ~cmd:(selector "setStrokeColor:") ~typ:(id @-> returning (void)) x
 let setStrokeColorTransformer x self = msg_send ~self ~cmd:(selector "setStrokeColorTransformer:") ~typ:(ptr void @-> returning (void)) x
 let setStrokeOutset x self = msg_send ~self ~cmd:(selector "setStrokeOutset:") ~typ:(double @-> returning (void)) x

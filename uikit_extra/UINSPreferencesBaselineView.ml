@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSPreferencesBaselineView"
 
-module Class = struct
+module C = struct
   let decorateView x ~withText self = msg_send ~self ~cmd:(selector "decorateView:withText:") ~typ:(id @-> id @-> returning (id)) x withText
 end
 

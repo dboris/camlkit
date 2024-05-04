@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSTimer"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let scheduledTimerWithTimeInterval x ~invocation ~repeats self = msg_send ~self ~cmd:(selector "scheduledTimerWithTimeInterval:invocation:repeats:") ~typ:(double @-> id @-> bool @-> returning (id)) x invocation repeats
   let scheduledTimerWithTimeInterval1 x ~repeats ~block self = msg_send ~self ~cmd:(selector "scheduledTimerWithTimeInterval:repeats:block:") ~typ:(double @-> bool @-> ptr void @-> returning (id)) x repeats block

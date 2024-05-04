@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIColorPickerViewController"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfSelectedColor self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfSelectedColor") ~typ:(returning (bool))
 end
 

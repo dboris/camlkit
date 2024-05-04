@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSItemProvider"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -16,7 +16,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hasItemConformingToTypeIdentifier x self = msg_send ~self ~cmd:(selector "hasItemConformingToTypeIdentifier:") ~typ:(id @-> returning (bool)) x
-let hasRepresentationConformingToTypeIdentifier x ~fileOptions self = msg_send ~self ~cmd:(selector "hasRepresentationConformingToTypeIdentifier:fileOptions:") ~typ:(id @-> llong @-> returning (bool)) x fileOptions
+let hasRepresentationConformingToTypeIdentifier x ~fileOptions self = msg_send ~self ~cmd:(selector "hasRepresentationConformingToTypeIdentifier:fileOptions:") ~typ:(id @-> llong @-> returning (bool)) x (LLong.of_int fileOptions)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithContentsOfURL x self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:") ~typ:(id @-> returning (id)) x
@@ -29,13 +29,13 @@ let loadItemForTypeIdentifier x ~options ~completionHandler self = msg_send ~sel
 let loadObjectOfClass x ~completionHandler self = msg_send ~self ~cmd:(selector "loadObjectOfClass:completionHandler:") ~typ:(_Class @-> ptr void @-> returning (id)) x completionHandler
 let loadPreviewImageWithOptions x ~completionHandler self = msg_send ~self ~cmd:(selector "loadPreviewImageWithOptions:completionHandler:") ~typ:(id @-> ptr void @-> returning (void)) x completionHandler
 let previewImageHandler self = msg_send ~self ~cmd:(selector "previewImageHandler") ~typ:(returning (ptr void))
-let registerDataRepresentationForTypeIdentifier x ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerDataRepresentationForTypeIdentifier:visibility:loadHandler:") ~typ:(id @-> llong @-> ptr void @-> returning (void)) x visibility loadHandler
-let registerFileRepresentationForTypeIdentifier x ~fileOptions ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:") ~typ:(id @-> llong @-> llong @-> ptr void @-> returning (void)) x fileOptions visibility loadHandler
+let registerDataRepresentationForTypeIdentifier x ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerDataRepresentationForTypeIdentifier:visibility:loadHandler:") ~typ:(id @-> llong @-> ptr void @-> returning (void)) x (LLong.of_int visibility) loadHandler
+let registerFileRepresentationForTypeIdentifier x ~fileOptions ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:") ~typ:(id @-> llong @-> llong @-> ptr void @-> returning (void)) x (LLong.of_int fileOptions) (LLong.of_int visibility) loadHandler
 let registerItemForTypeIdentifier x ~loadHandler self = msg_send ~self ~cmd:(selector "registerItemForTypeIdentifier:loadHandler:") ~typ:(id @-> ptr void @-> returning (void)) x loadHandler
-let registerObject x ~visibility self = msg_send ~self ~cmd:(selector "registerObject:visibility:") ~typ:(id @-> llong @-> returning (void)) x visibility
-let registerObjectOfClass x ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerObjectOfClass:visibility:loadHandler:") ~typ:(_Class @-> llong @-> ptr void @-> returning (void)) x visibility loadHandler
+let registerObject x ~visibility self = msg_send ~self ~cmd:(selector "registerObject:visibility:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int visibility)
+let registerObjectOfClass x ~visibility ~loadHandler self = msg_send ~self ~cmd:(selector "registerObjectOfClass:visibility:loadHandler:") ~typ:(_Class @-> llong @-> ptr void @-> returning (void)) x (LLong.of_int visibility) loadHandler
 let registeredTypeIdentifiers self = msg_send ~self ~cmd:(selector "registeredTypeIdentifiers") ~typ:(returning (id))
-let registeredTypeIdentifiersWithFileOptions x self = msg_send ~self ~cmd:(selector "registeredTypeIdentifiersWithFileOptions:") ~typ:(llong @-> returning (id)) x
+let registeredTypeIdentifiersWithFileOptions x self = msg_send ~self ~cmd:(selector "registeredTypeIdentifiersWithFileOptions:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let representations self = msg_send ~self ~cmd:(selector "representations") ~typ:(returning (id))
 let setDataTransferDelegate x self = msg_send ~self ~cmd:(selector "setDataTransferDelegate:") ~typ:(id @-> returning (void)) x
 let setPreviewImageHandler x self = msg_send ~self ~cmd:(selector "setPreviewImageHandler:") ~typ:(ptr void @-> returning (void)) x

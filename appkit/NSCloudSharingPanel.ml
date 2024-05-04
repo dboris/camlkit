@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCloudSharingPanel"
 
-module Class = struct
+module C = struct
   let panel self = msg_send ~self ~cmd:(selector "panel") ~typ:(returning (id))
 end
 

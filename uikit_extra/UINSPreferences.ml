@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSPreferences"
 
-module Class = struct
+module C = struct
   let customButtonTarget self = msg_send ~self ~cmd:(selector "customButtonTarget") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let setCustomButtonTarget x self = msg_send ~self ~cmd:(selector "setCustomButtonTarget:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDisplayLinkFallback"
 
-module Class = struct
+module C = struct
   let displayLinkWithTarget x ~selector_ self = msg_send ~self ~cmd:(selector "displayLinkWithTarget:selector:") ~typ:(id @-> _SEL @-> returning (id)) x selector_
 end
 

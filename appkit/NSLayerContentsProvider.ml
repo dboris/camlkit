@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLayerContentsProvider"
 
-module Class = struct
+module C = struct
   let resetCache self = msg_send ~self ~cmd:(selector "resetCache") ~typ:(returning (void))
   let sharedContentsProvider self = msg_send ~self ~cmd:(selector "sharedContentsProvider") ~typ:(returning (id))
 end

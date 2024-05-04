@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLabelView"
 
-module Class = struct
+module C = struct
   let cellClass self = msg_send ~self ~cmd:(selector "cellClass") ~typ:(returning (_Class))
 end
 
@@ -25,6 +25,6 @@ let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> retu
 let resignFirstResponder self = msg_send ~self ~cmd:(selector "resignFirstResponder") ~typ:(returning (bool))
 let rightMouseUp x self = msg_send ~self ~cmd:(selector "rightMouseUp:") ~typ:(id @-> returning (void)) x
 let setAllowsMultipleSelection x self = msg_send ~self ~cmd:(selector "setAllowsMultipleSelection:") ~typ:(bool @-> returning (void)) x
-let setImagePosition x self = msg_send ~self ~cmd:(selector "setImagePosition:") ~typ:(ullong @-> returning (void)) x
+let setImagePosition x self = msg_send ~self ~cmd:(selector "setImagePosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let updateTrackingAreas self = msg_send ~self ~cmd:(selector "updateTrackingAreas") ~typ:(returning (void))
 let viewWillMoveToWindow x self = msg_send ~self ~cmd:(selector "viewWillMoveToWindow:") ~typ:(id @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrubberSelectionStyle"
 
-module Class = struct
+module C = struct
   let nonHighlightingOutlineOverlayStyle self = msg_send ~self ~cmd:(selector "nonHighlightingOutlineOverlayStyle") ~typ:(returning (id))
   let outlineOverlayStyle self = msg_send ~self ~cmd:(selector "outlineOverlayStyle") ~typ:(returning (id))
   let roundedBackgroundStyle self = msg_send ~self ~cmd:(selector "roundedBackgroundStyle") ~typ:(returning (id))

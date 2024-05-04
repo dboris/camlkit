@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDate"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let date self = msg_send ~self ~cmd:(selector "date") ~typ:(returning (id))
   let dateWithDate x self = msg_send ~self ~cmd:(selector "dateWithDate:") ~typ:(id @-> returning (id)) x
@@ -28,7 +28,7 @@ let addTimeInterval x self = msg_send ~self ~cmd:(selector "addTimeInterval:") ~
 let bucketToRoundingFactor x self = msg_send ~self ~cmd:(selector "bucketToRoundingFactor:") ~typ:(uint @-> returning (double)) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning (llong)) x
-let compare' x ~toUnitGranularity self = msg_send ~self ~cmd:(selector "compare:toUnitGranularity:") ~typ:(id @-> ullong @-> returning (llong)) x toUnitGranularity
+let compare' x ~toUnitGranularity self = msg_send ~self ~cmd:(selector "compare:toUnitGranularity:") ~typ:(id @-> ullong @-> returning (llong)) x (ULLong.of_int toUnitGranularity)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let dateByAddingTimeInterval x self = msg_send ~self ~cmd:(selector "dateByAddingTimeInterval:") ~typ:(double @-> returning (id)) x
 let dateWithCalendarFormat x ~timeZone self = msg_send ~self ~cmd:(selector "dateWithCalendarFormat:timeZone:") ~typ:(id @-> id @-> returning (id)) x timeZone
@@ -46,7 +46,7 @@ let initWithTimeIntervalSince1970 x self = msg_send ~self ~cmd:(selector "initWi
 let initWithTimeIntervalSinceNow x self = msg_send ~self ~cmd:(selector "initWithTimeIntervalSinceNow:") ~typ:(double @-> returning (id)) x
 let initWithTimeIntervalSinceReferenceDate x self = msg_send ~self ~cmd:(selector "initWithTimeIntervalSinceReferenceDate:") ~typ:(double @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let isEqual' x ~toUnitGranularity self = msg_send ~self ~cmd:(selector "isEqual:toUnitGranularity:") ~typ:(id @-> ullong @-> returning (bool)) x toUnitGranularity
+let isEqual' x ~toUnitGranularity self = msg_send ~self ~cmd:(selector "isEqual:toUnitGranularity:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int toUnitGranularity)
 let isEqualToDate x self = msg_send ~self ~cmd:(selector "isEqualToDate:") ~typ:(id @-> returning (bool)) x
 let isInSameDayAsDate x self = msg_send ~self ~cmd:(selector "isInSameDayAsDate:") ~typ:(id @-> returning (bool)) x
 let isInToday self = msg_send ~self ~cmd:(selector "isInToday") ~typ:(returning (bool))

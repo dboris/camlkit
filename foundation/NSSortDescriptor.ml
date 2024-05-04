@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSSortDescriptor"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let sortDescriptorWithKey x self = msg_send ~self ~cmd:(selector "sortDescriptorWithKey:") ~typ:(id @-> returning (id)) x
   let sortDescriptorWithKey1 x ~ascending self = msg_send ~self ~cmd:(selector "sortDescriptorWithKey:ascending:") ~typ:(id @-> bool @-> returning (id)) x ascending

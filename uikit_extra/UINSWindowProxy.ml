@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSWindowProxy"
 
-module Class = struct
+module C = struct
   let windowProxyWithSceneIdentifier x self = msg_send ~self ~cmd:(selector "windowProxyWithSceneIdentifier:") ~typ:(id @-> returning (id)) x
 end
 
@@ -44,7 +44,7 @@ let endHostModalSession self = msg_send ~self ~cmd:(selector "endHostModalSessio
 let forwardUINSEventToAppKit x self = msg_send ~self ~cmd:(selector "forwardUINSEventToAppKit:") ~typ:(id @-> returning (void)) x
 let forwardingTargetForSelector x self = msg_send ~self ~cmd:(selector "forwardingTargetForSelector:") ~typ:(_SEL @-> returning (id)) x
 let hasFullSizeContentView self = msg_send ~self ~cmd:(selector "hasFullSizeContentView") ~typ:(returning (bool))
-let hostEnterExitEventWithType x ~sceneLocation self = msg_send ~self ~cmd:(selector "hostEnterExitEventWithType:sceneLocation:") ~typ:(llong @-> CGPoint.t @-> returning (id)) x sceneLocation
+let hostEnterExitEventWithType x ~sceneLocation self = msg_send ~self ~cmd:(selector "hostEnterExitEventWithType:sceneLocation:") ~typ:(llong @-> CGPoint.t @-> returning (id)) (LLong.of_int x) sceneLocation
 let hostEventsFromHIDEvent x self = msg_send ~self ~cmd:(selector "hostEventsFromHIDEvent:") ~typ:(ptr void @-> returning (id)) x
 let hostWindowContentFrame self = msg_send_stret ~self ~cmd:(selector "hostWindowContentFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let hostWindowFrame self = msg_send_stret ~self ~cmd:(selector "hostWindowFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
@@ -98,19 +98,19 @@ let setPrimarySidebarAdapter x self = msg_send ~self ~cmd:(selector "setPrimaryS
 let setRepresentedURL x self = msg_send ~self ~cmd:(selector "setRepresentedURL:") ~typ:(id @-> returning (void)) x
 let setSplitViewItemSeparatorTrackingAdapter x self = msg_send ~self ~cmd:(selector "setSplitViewItemSeparatorTrackingAdapter:") ~typ:(id @-> returning (void)) x
 let setSupplementarySidebarAdapter x self = msg_send ~self ~cmd:(selector "setSupplementarySidebarAdapter:") ~typ:(id @-> returning (void)) x
-let setTabbingMode x self = msg_send ~self ~cmd:(selector "setTabbingMode:") ~typ:(llong @-> returning (void)) x
+let setTabbingMode x self = msg_send ~self ~cmd:(selector "setTabbingMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
 let setTitlebarAppearsTransparentWhenFullscreen x self = msg_send ~self ~cmd:(selector "setTitlebarAppearsTransparentWhenFullscreen:") ~typ:(bool @-> returning (void)) x
 let setTitlebarHidden x self = msg_send ~self ~cmd:(selector "setTitlebarHidden:") ~typ:(bool @-> returning (void)) x
-let setTitlebarSeparatorStyle x self = msg_send ~self ~cmd:(selector "setTitlebarSeparatorStyle:") ~typ:(llong @-> returning (void)) x
+let setTitlebarSeparatorStyle x self = msg_send ~self ~cmd:(selector "setTitlebarSeparatorStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTitlebarTransparent x self = msg_send ~self ~cmd:(selector "setTitlebarTransparent:") ~typ:(bool @-> returning (void)) x
 let setToggleFullScreenOverride x self = msg_send ~self ~cmd:(selector "setToggleFullScreenOverride:") ~typ:(ptr void @-> returning (void)) x
 let setToolbar x self = msg_send ~self ~cmd:(selector "setToolbar:") ~typ:(id @-> returning (void)) x
-let setToolbarStyle x self = msg_send ~self ~cmd:(selector "setToolbarStyle:") ~typ:(llong @-> returning (void)) x
+let setToolbarStyle x self = msg_send ~self ~cmd:(selector "setToolbarStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTouchBarCoordinator x self = msg_send ~self ~cmd:(selector "setTouchBarCoordinator:") ~typ:(id @-> returning (void)) x
 let setUiWindow x self = msg_send ~self ~cmd:(selector "setUiWindow:") ~typ:(id @-> returning (void)) x
 let setUiWindows x self = msg_send ~self ~cmd:(selector "setUiWindows:") ~typ:(id @-> returning (void)) x
-let setWindowAppearance x self = msg_send ~self ~cmd:(selector "setWindowAppearance:") ~typ:(llong @-> returning (void)) x
+let setWindowAppearance x self = msg_send ~self ~cmd:(selector "setWindowAppearance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let splitViewItemSeparatorTrackingAdapter self = msg_send ~self ~cmd:(selector "splitViewItemSeparatorTrackingAdapter") ~typ:(returning (id))
 let supplementarySidebarAdapter self = msg_send ~self ~cmd:(selector "supplementarySidebarAdapter") ~typ:(returning (id))
 let tabbingMode self = msg_send ~self ~cmd:(selector "tabbingMode") ~typ:(returning (llong))

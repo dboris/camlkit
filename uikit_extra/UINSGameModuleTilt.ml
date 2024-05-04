@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSGameModuleTilt"
 
-module Class = struct
+module C = struct
   let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 end
 
@@ -22,6 +22,7 @@ let pitchMax self = msg_send ~self ~cmd:(selector "pitchMax") ~typ:(returning (d
 let rate self = msg_send ~self ~cmd:(selector "rate") ~typ:(returning (double))
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning (void))
 let sensitivity self = msg_send ~self ~cmd:(selector "sensitivity") ~typ:(returning (double))
+let setNeutralQuaternion x self = msg_send ~self ~cmd:(selector "setNeutralQuaternion:") ~typ:(ptr void @-> returning (void)) x
 let setPitchMax x self = msg_send ~self ~cmd:(selector "setPitchMax:") ~typ:(double @-> returning (void)) x
 let setRate x self = msg_send ~self ~cmd:(selector "setRate:") ~typ:(double @-> returning (void)) x
 let setSensitivity x self = msg_send ~self ~cmd:(selector "setSensitivity:") ~typ:(double @-> returning (void)) x

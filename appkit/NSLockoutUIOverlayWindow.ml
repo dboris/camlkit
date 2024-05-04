@@ -19,5 +19,5 @@ let maxSize self = msg_send_stret ~self ~cmd:(selector "maxSize") ~typ:(returnin
 let minFullScreenContentSize self = msg_send_stret ~self ~cmd:(selector "minFullScreenContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let minSize self = msg_send_stret ~self ~cmd:(selector "minSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let original self = msg_send ~self ~cmd:(selector "original") ~typ:(returning (id))
-let originalDidOrder x self = msg_send ~self ~cmd:(selector "originalDidOrder:") ~typ:(llong @-> returning (void)) x
+let originalDidOrder x self = msg_send ~self ~cmd:(selector "originalDidOrder:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let transitioning self = msg_send ~self ~cmd:(selector "transitioning") ~typ:(returning (bool))

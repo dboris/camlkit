@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPrintInteractionController"
 
-module Class = struct
+module C = struct
   let canPrintData x self = msg_send ~self ~cmd:(selector "canPrintData:") ~typ:(id @-> returning (bool)) x
   let canPrintURL x self = msg_send ~self ~cmd:(selector "canPrintURL:") ~typ:(id @-> returning (bool)) x
   let isPrintingAvailable self = msg_send ~self ~cmd:(selector "isPrintingAvailable") ~typ:(returning (bool))
@@ -59,17 +59,17 @@ let savePDFToURL x ~completionHandler self = msg_send ~self ~cmd:(selector "save
 let savePDFToURL1 x ~showProgress ~completionHandler self = msg_send ~self ~cmd:(selector "savePDFToURL:showProgress:completionHandler:") ~typ:(id @-> bool @-> ptr void @-> returning (bool)) x showProgress completionHandler
 let savePDFToURL2 x ~showProgress ~hostingScene ~completionHandler self = msg_send ~self ~cmd:(selector "savePDFToURL:showProgress:hostingScene:completionHandler:") ~typ:(id @-> bool @-> id @-> ptr void @-> returning (bool)) x showProgress hostingScene completionHandler
 let setActivePrintInfo x self = msg_send ~self ~cmd:(selector "setActivePrintInfo:") ~typ:(id @-> returning (void)) x
-let setCurrentPage x self = msg_send ~self ~cmd:(selector "setCurrentPage:") ~typ:(llong @-> returning (void)) x
+let setCurrentPage x self = msg_send ~self ~cmd:(selector "setCurrentPage:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCurrentRange x self = msg_send ~self ~cmd:(selector "setCurrentRange:") ~typ:(NSRange.t @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setFormatterRenderer x self = msg_send ~self ~cmd:(selector "setFormatterRenderer:") ~typ:(id @-> returning (void)) x
 let setHostingWindowScene x self = msg_send ~self ~cmd:(selector "setHostingWindowScene:") ~typ:(id @-> returning (void)) x
 let setIsContentManaged x self = msg_send ~self ~cmd:(selector "setIsContentManaged:") ~typ:(bool @-> returning (void)) x
 let setManualPrintPageEnabled x self = msg_send ~self ~cmd:(selector "setManualPrintPageEnabled:") ~typ:(bool @-> returning (void)) x
-let setPageCount x self = msg_send ~self ~cmd:(selector "setPageCount:") ~typ:(llong @-> returning (void)) x
-let setPageCountWithRanges x self = msg_send ~self ~cmd:(selector "setPageCountWithRanges:") ~typ:(llong @-> returning (void)) x
+let setPageCount x self = msg_send ~self ~cmd:(selector "setPageCount:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPageCountWithRanges x self = msg_send ~self ~cmd:(selector "setPageCountWithRanges:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPageRanges x self = msg_send ~self ~cmd:(selector "setPageRanges:") ~typ:(id @-> returning (void)) x
-let setPagesDrawn x self = msg_send ~self ~cmd:(selector "setPagesDrawn:") ~typ:(llong @-> returning (void)) x
+let setPagesDrawn x self = msg_send ~self ~cmd:(selector "setPagesDrawn:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPaper x self = msg_send ~self ~cmd:(selector "setPaper:") ~typ:(id @-> returning (void)) x
 let setPdfPassword x self = msg_send ~self ~cmd:(selector "setPdfPassword:") ~typ:(id @-> returning (void)) x
 let setPreviewStates x self = msg_send ~self ~cmd:(selector "setPreviewStates:") ~typ:(id @-> returning (void)) x

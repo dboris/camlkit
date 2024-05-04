@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSServicesMonitor"
 
-module Class = struct
+module C = struct
   let monitorWithObserver x self = msg_send ~self ~cmd:(selector "monitorWithObserver:") ~typ:(id @-> returning (id)) x
   let monitorWithObserver1 x ~availablePresentationMode self = msg_send ~self ~cmd:(selector "monitorWithObserver:availablePresentationMode:") ~typ:(id @-> id @-> returning (id)) x availablePresentationMode
   let monitorWithObserver2 x ~bundleURL self = msg_send ~self ~cmd:(selector "monitorWithObserver:bundleURL:") ~typ:(id @-> id @-> returning (id)) x bundleURL

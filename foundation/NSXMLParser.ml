@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXMLParser"
 
-module Class = struct
+module C = struct
   let currentParser self = msg_send ~self ~cmd:(selector "currentParser") ~typ:(returning (id))
   let setCurrentParser x self = msg_send ~self ~cmd:(selector "setCurrentParser:") ~typ:(id @-> returning (void)) x
 end
@@ -29,7 +29,7 @@ let parserError self = msg_send ~self ~cmd:(selector "parserError") ~typ:(return
 let publicID self = msg_send ~self ~cmd:(selector "publicID") ~typ:(returning (id))
 let setAllowedExternalEntityURLs x self = msg_send ~self ~cmd:(selector "setAllowedExternalEntityURLs:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setExternalEntityResolvingPolicy x self = msg_send ~self ~cmd:(selector "setExternalEntityResolvingPolicy:") ~typ:(ullong @-> returning (void)) x
+let setExternalEntityResolvingPolicy x self = msg_send ~self ~cmd:(selector "setExternalEntityResolvingPolicy:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setShouldContinueAfterFatalError x self = msg_send ~self ~cmd:(selector "setShouldContinueAfterFatalError:") ~typ:(bool @-> returning (void)) x
 let setShouldProcessNamespaces x self = msg_send ~self ~cmd:(selector "setShouldProcessNamespaces:") ~typ:(bool @-> returning (void)) x
 let setShouldReportNamespacePrefixes x self = msg_send ~self ~cmd:(selector "setShouldReportNamespacePrefixes:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTextFinder"
 
-module Class = struct
+module C = struct
   let activeStyle self = msg_send ~self ~cmd:(selector "activeStyle") ~typ:(returning (llong))
   let drawIncrementalMatchHighlightInRect x self = msg_send ~self ~cmd:(selector "drawIncrementalMatchHighlightInRect:") ~typ:(CGRect.t @-> returning (void)) x
 end
@@ -25,7 +25,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isIncrementalSearchingEnabled self = msg_send ~self ~cmd:(selector "isIncrementalSearchingEnabled") ~typ:(returning (bool))
 let noteClientStringWillChange self = msg_send ~self ~cmd:(selector "noteClientStringWillChange") ~typ:(returning (void))
-let performAction x self = msg_send ~self ~cmd:(selector "performAction:") ~typ:(llong @-> returning (void)) x
+let performAction x self = msg_send ~self ~cmd:(selector "performAction:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let preferredTextFinderStyle self = msg_send ~self ~cmd:(selector "preferredTextFinderStyle") ~typ:(returning (llong))
 let setClient x self = msg_send ~self ~cmd:(selector "setClient:") ~typ:(id @-> returning (void)) x
 let setFindBarContainer x self = msg_send ~self ~cmd:(selector "setFindBarContainer:") ~typ:(id @-> returning (void)) x
@@ -33,5 +33,5 @@ let setFindIndicatorNeedsUpdate x self = msg_send ~self ~cmd:(selector "setFindI
 let setIncrementalSearchingEnabled x self = msg_send ~self ~cmd:(selector "setIncrementalSearchingEnabled:") ~typ:(bool @-> returning (void)) x
 let setIncrementalSearchingShouldDimContentView x self = msg_send ~self ~cmd:(selector "setIncrementalSearchingShouldDimContentView:") ~typ:(bool @-> returning (void)) x
 let setIsSearchingWebViews x self = msg_send ~self ~cmd:(selector "setIsSearchingWebViews:") ~typ:(bool @-> returning (void)) x
-let setPreferredTextFinderStyle x self = msg_send ~self ~cmd:(selector "setPreferredTextFinderStyle:") ~typ:(llong @-> returning (void)) x
-let validateAction x self = msg_send ~self ~cmd:(selector "validateAction:") ~typ:(llong @-> returning (bool)) x
+let setPreferredTextFinderStyle x self = msg_send ~self ~cmd:(selector "setPreferredTextFinderStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let validateAction x self = msg_send ~self ~cmd:(selector "validateAction:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCameraRemoteViewController"
 
-module Class = struct
+module C = struct
   let exportedInterface self = msg_send ~self ~cmd:(selector "exportedInterface") ~typ:(returning (id))
   let serviceViewControllerInterface self = msg_send ~self ~cmd:(selector "serviceViewControllerInterface") ~typ:(returning (id))
 end

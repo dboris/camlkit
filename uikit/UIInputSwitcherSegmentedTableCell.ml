@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "UIInputSwitcherSegmentedTableCell"
 
-module Class = struct
-  let preferredSizeWithSegmentCount x self = msg_send_stret ~self ~cmd:(selector "preferredSizeWithSegmentCount:") ~typ:(ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x
+module C = struct
+  let preferredSizeWithSegmentCount x self = msg_send_stret ~self ~cmd:(selector "preferredSizeWithSegmentCount:") ~typ:(ullong @-> returning (CGSize.t)) ~return_type:CGSize.t (ULLong.of_int x)
 end
 
-let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) x reuseIdentifier
+let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) reuseIdentifier
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
 let segmentControl self = msg_send ~self ~cmd:(selector "segmentControl") ~typ:(returning (id))
 let setSelected x ~animated self = msg_send ~self ~cmd:(selector "setSelected:animated:") ~typ:(bool @-> bool @-> returning (void)) x animated

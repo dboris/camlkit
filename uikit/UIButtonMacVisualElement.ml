@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIButtonMacVisualElement"
 
-module Class = struct
+module C = struct
   let nsControlForMenuAndNonConfigurationButtons x self = msg_send ~self ~cmd:(selector "nsControlForMenuAndNonConfigurationButtons:") ~typ:(id @-> returning (id)) x
   let visualElementForUIButton x self = msg_send ~self ~cmd:(selector "visualElementForUIButton:") ~typ:(id @-> returning (id)) x
 end
@@ -20,19 +20,19 @@ let contentTintColor self = msg_send ~self ~cmd:(selector "contentTintColor") ~t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let initWithUIButtonRepesentable x self = msg_send ~self ~cmd:(selector "initWithUIButtonRepesentable:") ~typ:(id @-> returning (id)) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBridge x self = msg_send ~self ~cmd:(selector "setBridge:") ~typ:(id @-> returning (void)) x
 let setButton x self = msg_send ~self ~cmd:(selector "setButton:") ~typ:(id @-> returning (void)) x
 let setButtonControl x self = msg_send ~self ~cmd:(selector "setButtonControl:") ~typ:(id @-> returning (void)) x
-let setButtonRole x self = msg_send ~self ~cmd:(selector "setButtonRole:") ~typ:(llong @-> returning (void)) x
+let setButtonRole x self = msg_send ~self ~cmd:(selector "setButtonRole:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setContentTintColor x self = msg_send ~self ~cmd:(selector "setContentTintColor:") ~typ:(id @-> returning (void)) x
 let setContextMenuIsPrimary x self = msg_send ~self ~cmd:(selector "setContextMenuIsPrimary:") ~typ:(bool @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
-let setImage x ~forState self = msg_send ~self ~cmd:(selector "setImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setImage x ~forState self = msg_send ~self ~cmd:(selector "setImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setSymbolConfiguration:") ~typ:(id @-> returning (void)) x
-let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
-let setTitle' x ~orAttributedTitle ~forState self = msg_send ~self ~cmd:(selector "setTitle:orAttributedTitle:forState:") ~typ:(id @-> id @-> ullong @-> returning (void)) x orAttributedTitle forState
+let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
+let setTitle' x ~orAttributedTitle ~forState self = msg_send ~self ~cmd:(selector "setTitle:orAttributedTitle:forState:") ~typ:(id @-> id @-> ullong @-> returning (void)) x orAttributedTitle (ULLong.of_int forState)
 let setUIImageSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setUIImageSymbolConfiguration:") ~typ:(id @-> returning (void)) x
 let setUIMenu x self = msg_send ~self ~cmd:(selector "setUIMenu:") ~typ:(id @-> returning (void)) x
 let trackingBeganAction x self = msg_send ~self ~cmd:(selector "trackingBeganAction:") ~typ:(id @-> returning (void)) x

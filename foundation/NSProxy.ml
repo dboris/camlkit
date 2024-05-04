@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSProxy"
 
-module Class = struct
+module C = struct
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let allowsWeakReference self = msg_send ~self ~cmd:(selector "allowsWeakReference") ~typ:(returning (bool))

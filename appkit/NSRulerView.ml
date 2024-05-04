@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRulerView"
 
-module Class = struct
+module C = struct
   let accessibilityIsSingleCelled self = msg_send ~self ~cmd:(selector "accessibilityIsSingleCelled") ~typ:(returning (bool))
   let hashMarkColor self = msg_send ~self ~cmd:(selector "hashMarkColor") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -56,7 +56,7 @@ let drawSeparatorInRect x self = msg_send ~self ~cmd:(selector "drawSeparatorInR
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let initWithScrollView x ~orientation self = msg_send ~self ~cmd:(selector "initWithScrollView:orientation:") ~typ:(id @-> ullong @-> returning (id)) x orientation
+let initWithScrollView x ~orientation self = msg_send ~self ~cmd:(selector "initWithScrollView:orientation:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int orientation)
 let invalidateHashMarks self = msg_send ~self ~cmd:(selector "invalidateHashMarks") ~typ:(returning (void))
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let labelStringForValue x self = msg_send ~self ~cmd:(selector "labelStringForValue:") ~typ:(id @-> returning (id)) x
@@ -83,13 +83,13 @@ let setLabelString x ~forValue self = msg_send ~self ~cmd:(selector "setLabelStr
 let setMarkers x self = msg_send ~self ~cmd:(selector "setMarkers:") ~typ:(id @-> returning (void)) x
 let setMeasurementUnits x self = msg_send ~self ~cmd:(selector "setMeasurementUnits:") ~typ:(id @-> returning (void)) x
 let setNeedsDisplayInRect x self = msg_send ~self ~cmd:(selector "setNeedsDisplayInRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(ullong @-> returning (void)) x
+let setOrientation x self = msg_send ~self ~cmd:(selector "setOrientation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setOriginOffset x self = msg_send ~self ~cmd:(selector "setOriginOffset:") ~typ:(double @-> returning (void)) x
 let setReservedThicknessForAccessoryView x self = msg_send ~self ~cmd:(selector "setReservedThicknessForAccessoryView:") ~typ:(double @-> returning (void)) x
 let setReservedThicknessForMarkers x self = msg_send ~self ~cmd:(selector "setReservedThicknessForMarkers:") ~typ:(double @-> returning (void)) x
 let setRuleThickness x self = msg_send ~self ~cmd:(selector "setRuleThickness:") ~typ:(double @-> returning (void)) x
 let setScrollView x self = msg_send ~self ~cmd:(selector "setScrollView:") ~typ:(id @-> returning (void)) x
-let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let testPart x self = msg_send ~self ~cmd:(selector "testPart:") ~typ:(CGPoint.t @-> returning (id)) x
 let trackMarker x ~withMouseEvent self = msg_send ~self ~cmd:(selector "trackMarker:withMouseEvent:") ~typ:(id @-> id @-> returning (bool)) x withMouseEvent
 let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning (llong))

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFilePresenterProxy"
 
-module Class = struct
+module C = struct
   let urlWithItemURL x ~subitemPath self = msg_send ~self ~cmd:(selector "urlWithItemURL:subitemPath:") ~typ:(id @-> id @-> returning (id)) x subitemPath
 end
 
@@ -15,7 +15,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let disconnect self = msg_send ~self ~cmd:(selector "disconnect") ~typ:(returning (void))
 let disconnected self = msg_send ~self ~cmd:(selector "disconnected") ~typ:(returning (bool))
 let filePresenterResponses self = msg_send ~self ~cmd:(selector "filePresenterResponses") ~typ:(returning (ullong))
-let forwardRelinquishmentForWritingClaim x ~withID ~purposeID ~subitemURL ~options ~completionHandler self = msg_send ~self ~cmd:(selector "forwardRelinquishmentForWritingClaim:withID:purposeID:subitemURL:options:completionHandler:") ~typ:(bool @-> id @-> id @-> id @-> ullong @-> ptr void @-> returning (void)) x withID purposeID subitemURL options completionHandler
+let forwardRelinquishmentForWritingClaim x ~withID ~purposeID ~subitemURL ~options ~completionHandler self = msg_send ~self ~cmd:(selector "forwardRelinquishmentForWritingClaim:withID:purposeID:subitemURL:options:completionHandler:") ~typ:(bool @-> id @-> id @-> id @-> ullong @-> ptr void @-> returning (void)) x withID purposeID subitemURL (ULLong.of_int options) completionHandler
 let forwardUsingProxy x self = msg_send ~self ~cmd:(selector "forwardUsingProxy:") ~typ:(id @-> returning (void)) x
 let inSubarbiter self = msg_send ~self ~cmd:(selector "inSubarbiter") ~typ:(returning (bool))
 let initWithClient x ~remotePresenter ~reactorID self = msg_send ~self ~cmd:(selector "initWithClient:remotePresenter:reactorID:") ~typ:(id @-> id @-> id @-> returning (id)) x remotePresenter reactorID
@@ -35,10 +35,10 @@ let observeUbiquityChangeAtSubitemPath x ~withPhysicalURL self = msg_send ~self 
 let observeVersionChangeOfKind x ~withClientID ~name ~subitemPath self = msg_send ~self ~cmd:(selector "observeVersionChangeOfKind:withClientID:name:subitemPath:") ~typ:(id @-> id @-> id @-> id @-> returning (void)) x withClientID name subitemPath
 let observedUbiquityAttributes self = msg_send ~self ~cmd:(selector "observedUbiquityAttributes") ~typ:(returning (id))
 let promisedFileWasFulfilled self = msg_send ~self ~cmd:(selector "promisedFileWasFulfilled") ~typ:(returning (void))
-let relinquishToReadingClaimWithID x ~options ~purposeID ~resultHandler self = msg_send ~self ~cmd:(selector "relinquishToReadingClaimWithID:options:purposeID:resultHandler:") ~typ:(id @-> ullong @-> id @-> ptr void @-> returning (void)) x options purposeID resultHandler
-let relinquishToWritingClaimWithID x ~options ~purposeID ~subitemPath ~resultHandler self = msg_send ~self ~cmd:(selector "relinquishToWritingClaimWithID:options:purposeID:subitemPath:resultHandler:") ~typ:(id @-> ullong @-> id @-> id @-> ptr void @-> returning (void)) x options purposeID subitemPath resultHandler
+let relinquishToReadingClaimWithID x ~options ~purposeID ~resultHandler self = msg_send ~self ~cmd:(selector "relinquishToReadingClaimWithID:options:purposeID:resultHandler:") ~typ:(id @-> ullong @-> id @-> ptr void @-> returning (void)) x (ULLong.of_int options) purposeID resultHandler
+let relinquishToWritingClaimWithID x ~options ~purposeID ~subitemPath ~resultHandler self = msg_send ~self ~cmd:(selector "relinquishToWritingClaimWithID:options:purposeID:subitemPath:resultHandler:") ~typ:(id @-> ullong @-> id @-> id @-> ptr void @-> returning (void)) x (ULLong.of_int options) purposeID subitemPath resultHandler
 let saveChangesWithCompletionHandler x self = msg_send ~self ~cmd:(selector "saveChangesWithCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
-let setFilePresenterResponses x self = msg_send ~self ~cmd:(selector "setFilePresenterResponses:") ~typ:(ullong @-> returning (void)) x
+let setFilePresenterResponses x self = msg_send ~self ~cmd:(selector "setFilePresenterResponses:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setInSubarbiter x self = msg_send ~self ~cmd:(selector "setInSubarbiter:") ~typ:(bool @-> returning (void)) x
 let setItemLocation x self = msg_send ~self ~cmd:(selector "setItemLocation:") ~typ:(id @-> returning (void)) x
 let setObservedUbiquityAttributes x self = msg_send ~self ~cmd:(selector "setObservedUbiquityAttributes:") ~typ:(id @-> returning (void)) x

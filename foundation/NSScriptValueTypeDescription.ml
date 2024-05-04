@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptValueTypeDescription"
 
-module Class = struct
+module C = struct
   let valueTypeDescriptionFromName x ~declaration self = msg_send ~self ~cmd:(selector "valueTypeDescriptionFromName:declaration:") ~typ:(id @-> id @-> returning (id)) x declaration
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSGameEventTranslator"
 
-module Class = struct
+module C = struct
   let onboardingModuleNames self = msg_send ~self ~cmd:(selector "onboardingModuleNames") ~typ:(returning (id))
   let setOnboardingModuleNames x self = msg_send ~self ~cmd:(selector "setOnboardingModuleNames:") ~typ:(id @-> returning (void)) x
 end

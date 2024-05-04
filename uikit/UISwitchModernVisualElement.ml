@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwitchModernVisualElement"
 
-module Class = struct
+module C = struct
   let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 end
 
@@ -42,7 +42,7 @@ let setOnTintColor x self = msg_send ~self ~cmd:(selector "setOnTintColor:") ~ty
 let setPan x self = msg_send ~self ~cmd:(selector "setPan:") ~typ:(id @-> returning (void)) x
 let setPressed x self = msg_send ~self ~cmd:(selector "setPressed:") ~typ:(bool @-> returning (void)) x
 let setSelectGestureRecognizer x self = msg_send ~self ~cmd:(selector "setSelectGestureRecognizer:") ~typ:(id @-> returning (void)) x
-let setSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "setSemanticContentAttribute:") ~typ:(llong @-> returning (void)) x
+let setSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "setSemanticContentAttribute:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setShowsOnOffLabel x self = msg_send ~self ~cmd:(selector "setShowsOnOffLabel:") ~typ:(bool @-> returning (void)) x
 let setSwitchControl x self = msg_send ~self ~cmd:(selector "setSwitchControl:") ~typ:(id @-> returning (void)) x
 let setThumbTintColor x self = msg_send ~self ~cmd:(selector "setThumbTintColor:") ~typ:(id @-> returning (void)) x

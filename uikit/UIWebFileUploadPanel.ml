@@ -31,6 +31,6 @@ let setAllowMultipleFiles x self = msg_send ~self ~cmd:(selector "setAllowMultip
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDocumentView x self = msg_send ~self ~cmd:(selector "setDocumentView:") ~typ:(id @-> returning (void)) x
 let setIsUsingCamera x self = msg_send ~self ~cmd:(selector "setIsUsingCamera:") ~typ:(bool @-> returning (void)) x
-let setMediaCaptureType x self = msg_send ~self ~cmd:(selector "setMediaCaptureType:") ~typ:(llong @-> returning (void)) x
+let setMediaCaptureType x self = msg_send ~self ~cmd:(selector "setMediaCaptureType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setMimeTypes x self = msg_send ~self ~cmd:(selector "setMimeTypes:") ~typ:(id @-> returning (void)) x
 let setResultListener x self = msg_send ~self ~cmd:(selector "setResultListener:") ~typ:(id @-> returning (void)) x

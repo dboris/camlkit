@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMovePanel"
 
-module Class = struct
+module C = struct
   let movePanel self = msg_send ~self ~cmd:(selector "movePanel") ~typ:(returning (id))
   let newDocument x self = msg_send ~self ~cmd:(selector "newDocument:") ~typ:(id @-> returning (void)) x
   let newRemoteMovePanel self = msg_send ~self ~cmd:(selector "newRemoteMovePanel") ~typ:(returning (id))
@@ -20,14 +20,14 @@ let beginWithCompletionHandler x self = msg_send ~self ~cmd:(selector "beginWith
 let cancel x self = msg_send ~self ~cmd:(selector "cancel:") ~typ:(id @-> returning (void)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let directoryURL self = msg_send ~self ~cmd:(selector "directoryURL") ~typ:(returning (id))
-let dismissWindow x self = msg_send ~self ~cmd:(selector "dismissWindow:") ~typ:(llong @-> returning (void)) x
+let dismissWindow x self = msg_send ~self ~cmd:(selector "dismissWindow:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let fileName self = msg_send ~self ~cmd:(selector "fileName") ~typ:(returning (id))
 let finalURL self = msg_send ~self ~cmd:(selector "finalURL") ~typ:(returning (id))
 let finderLocationPopUp x ~didChangeToDirectoryURL self = msg_send ~self ~cmd:(selector "finderLocationPopUp:didChangeToDirectoryURL:") ~typ:(id @-> id @-> returning (void)) x didChangeToDirectoryURL
 let finderLocationPopUpMenuOptions x self = msg_send ~self ~cmd:(selector "finderLocationPopUpMenuOptions:") ~typ:(id @-> returning (ullong)) x
 let finderLocationPopUpOtherLocation x self = msg_send ~self ~cmd:(selector "finderLocationPopUpOtherLocation:") ~typ:(id @-> returning (void)) x
 let finderLocationPopUpRequestRecentPlaces x self = msg_send ~self ~cmd:(selector "finderLocationPopUpRequestRecentPlaces:") ~typ:(id @-> returning (id)) x
-let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x styleMask backing defer
+let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning (id)) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer
 let initialURL self = msg_send ~self ~cmd:(selector "initialURL") ~typ:(returning (id))
 let movePopupFieldLabel self = msg_send ~self ~cmd:(selector "movePopupFieldLabel") ~typ:(returning (id))
 let newDocument x self = msg_send ~self ~cmd:(selector "newDocument:") ~typ:(id @-> returning (void)) x

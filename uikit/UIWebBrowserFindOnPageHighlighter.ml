@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebBrowserFindOnPageHighlighter"
 
-module Class = struct
+module C = struct
   let expandedRectsWouldIntersect x self = msg_send ~self ~cmd:(selector "expandedRectsWouldIntersect:") ~typ:(id @-> returning (bool)) x
 end
 
@@ -30,7 +30,7 @@ let searchLimitHit x self = msg_send ~self ~cmd:(selector "searchLimitHit:") ~ty
 let searchText self = msg_send ~self ~cmd:(selector "searchText") ~typ:(returning (id))
 let searchWasCancelled x self = msg_send ~self ~cmd:(selector "searchWasCancelled:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setSearchText x ~matchLimit self = msg_send ~self ~cmd:(selector "setSearchText:matchLimit:") ~typ:(id @-> ullong @-> returning (void)) x matchLimit
+let setSearchText x ~matchLimit self = msg_send ~self ~cmd:(selector "setSearchText:matchLimit:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int matchLimit)
 let setSelectionRect x ~textRects ~contentImage ~wobble self = msg_send ~self ~cmd:(selector "setSelectionRect:textRects:contentImage:wobble:") ~typ:(CGRect.t @-> id @-> id @-> bool @-> returning (void)) x textRects contentImage wobble
 let setSelectionRect' x ~textRects ~contentViews ~wobble self = msg_send ~self ~cmd:(selector "setSelectionRect:textRects:contentViews:wobble:") ~typ:(CGRect.t @-> id @-> id @-> bool @-> returning (void)) x textRects contentViews wobble
 let updateHighlightBubbleWobble x self = msg_send ~self ~cmd:(selector "updateHighlightBubbleWobble:") ~typ:(bool @-> returning (bool)) x

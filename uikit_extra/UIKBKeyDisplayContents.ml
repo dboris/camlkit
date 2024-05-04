@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBKeyDisplayContents"
 
-module Class = struct
+module C = struct
   let displayContents self = msg_send ~self ~cmd:(selector "displayContents") ~typ:(returning (id))
 end
 
@@ -27,7 +27,7 @@ let highlightedVariantsList self = msg_send ~self ~cmd:(selector "highlightedVar
 let secondaryDisplayStringImages self = msg_send ~self ~cmd:(selector "secondaryDisplayStringImages") ~typ:(returning (id))
 let secondaryDisplayStrings self = msg_send ~self ~cmd:(selector "secondaryDisplayStrings") ~typ:(returning (id))
 let setBundlePathOverride x self = msg_send ~self ~cmd:(selector "setBundlePathOverride:") ~typ:(id @-> returning (void)) x
-let setDisplayPathType x self = msg_send ~self ~cmd:(selector "setDisplayPathType:") ~typ:(llong @-> returning (void)) x
+let setDisplayPathType x self = msg_send ~self ~cmd:(selector "setDisplayPathType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setDisplayString x self = msg_send ~self ~cmd:(selector "setDisplayString:") ~typ:(id @-> returning (void)) x
 let setDisplayStringImage x self = msg_send ~self ~cmd:(selector "setDisplayStringImage:") ~typ:(id @-> returning (void)) x
 let setFallbackContents x self = msg_send ~self ~cmd:(selector "setFallbackContents:") ~typ:(id @-> returning (void)) x

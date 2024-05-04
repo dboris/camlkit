@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSSceneView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let requiresConstraintBasedLayout self = msg_send ~self ~cmd:(selector "requiresConstraintBasedLayout") ~typ:(returning (bool))
   let setNeedsUpdateDisplayTiming self = msg_send ~self ~cmd:(selector "setNeedsUpdateDisplayTiming") ~typ:(returning (void))

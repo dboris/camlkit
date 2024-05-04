@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDocumentControllerMainThreadUnblockerEntry"
 
-module Class = struct
+module C = struct
   let entryWithUnblocker x ~queue self = msg_send ~self ~cmd:(selector "entryWithUnblocker:queue:") ~typ:(ptr void @-> id @-> returning (id)) x queue
 end
 

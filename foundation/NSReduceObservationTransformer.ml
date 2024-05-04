@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSReduceObservationTransformer"
 
-module Class = struct
+module C = struct
   let reduceValue x ~withReducer self = msg_send ~self ~cmd:(selector "reduceValue:withReducer:") ~typ:(id @-> ptr void @-> returning (id)) x withReducer
 end
 

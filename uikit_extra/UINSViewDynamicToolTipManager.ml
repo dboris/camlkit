@@ -12,4 +12,4 @@ let dynamicToolTipRectAtPoint x self = msg_send_stret ~self ~cmd:(selector "dyna
 let dynamicToolTipRevealoverInfoAtPoint x ~trackingRect self = msg_send ~self ~cmd:(selector "dynamicToolTipRevealoverInfoAtPoint:trackingRect:") ~typ:(CGPoint.t @-> ptr (CGRect.t) @-> returning (id)) x trackingRect
 let dynamicToolTipStringAtPoint x ~trackingRect self = msg_send ~self ~cmd:(selector "dynamicToolTipStringAtPoint:trackingRect:") ~typ:(CGPoint.t @-> ptr (CGRect.t) @-> returning (id)) x trackingRect
 let sceneView self = msg_send ~self ~cmd:(selector "sceneView") ~typ:(returning (id))
-let view x ~customToolTip ~drawInView ~displayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:drawInView:displayInfo:") ~typ:(id @-> llong @-> id @-> id @-> returning (void)) x customToolTip drawInView displayInfo
+let view x ~customToolTip ~drawInView ~displayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:drawInView:displayInfo:") ~typ:(id @-> llong @-> id @-> id @-> returning (void)) x (LLong.of_int customToolTip) drawInView displayInfo

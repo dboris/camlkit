@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDeviceWhiteColor"
 
-module Class = struct
+module C = struct
   let newWithCoder x ~zone self = msg_send ~self ~cmd:(selector "newWithCoder:zone:") ~typ:(id @-> id @-> returning (id)) x zone
 end
 

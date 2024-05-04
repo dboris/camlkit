@@ -9,6 +9,6 @@ open Foundation
 let _class_ = get_class "UIStatusBarLockScreenStyleAttributes"
 
 let foregroundStyleClass self = msg_send ~self ~cmd:(selector "foregroundStyleClass") ~typ:(returning (_Class))
-let heightForMetrics x self = msg_send ~self ~cmd:(selector "heightForMetrics:") ~typ:(llong @-> returning (double)) x
+let heightForMetrics x self = msg_send ~self ~cmd:(selector "heightForMetrics:") ~typ:(llong @-> returning (double)) (LLong.of_int x)
 let isLockScreen self = msg_send ~self ~cmd:(selector "isLockScreen") ~typ:(returning (bool))
 let shouldShowInternalItemType x ~withScreenCapabilities self = msg_send ~self ~cmd:(selector "shouldShowInternalItemType:withScreenCapabilities:") ~typ:(int @-> id @-> returning (bool)) x withScreenCapabilities

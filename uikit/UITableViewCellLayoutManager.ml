@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UITableViewCellLayoutManager"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let layoutManagerForTableViewCellStyle x self = msg_send ~self ~cmd:(selector "layoutManagerForTableViewCellStyle:") ~typ:(llong @-> returning (id)) x
+  let layoutManagerForTableViewCellStyle x self = msg_send ~self ~cmd:(selector "layoutManagerForTableViewCellStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
   let requiresLegacyLayout self = msg_send ~self ~cmd:(selector "requiresLegacyLayout") ~typ:(returning (bool))
   let sharedLayoutManager self = msg_send ~self ~cmd:(selector "sharedLayoutManager") ~typ:(returning (id))
 end
@@ -22,13 +22,13 @@ let accessoryStartingRectForCell x ~forNewEditingState ~showingDeleteConfirmatio
 let backgroundEndingRectForCell x ~forNewEditingState self = msg_send_stret ~self ~cmd:(selector "backgroundEndingRectForCell:forNewEditingState:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forNewEditingState
 let backgroundStartingRectForCell x ~forNewEditingState self = msg_send_stret ~self ~cmd:(selector "backgroundStartingRectForCell:forNewEditingState:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forNewEditingState
 let badgeForCell x self = msg_send ~self ~cmd:(selector "badgeForCell:") ~typ:(id @-> returning (id)) x
-let cell x ~didTransitionToState self = msg_send ~self ~cmd:(selector "cell:didTransitionToState:") ~typ:(id @-> ullong @-> returning (void)) x didTransitionToState
-let cell' x ~willTransitionToState self = msg_send ~self ~cmd:(selector "cell:willTransitionToState:") ~typ:(id @-> ullong @-> returning (void)) x willTransitionToState
+let cell x ~didTransitionToState self = msg_send ~self ~cmd:(selector "cell:didTransitionToState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int didTransitionToState)
+let cell' x ~willTransitionToState self = msg_send ~self ~cmd:(selector "cell:willTransitionToState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int willTransitionToState)
 let contentEndingRectForCell x ~forDisplayOfDeleteConfirmation self = msg_send_stret ~self ~cmd:(selector "contentEndingRectForCell:forDisplayOfDeleteConfirmation:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forDisplayOfDeleteConfirmation
 let contentEndingRectForCell' x ~forNewEditingState self = msg_send_stret ~self ~cmd:(selector "contentEndingRectForCell:forNewEditingState:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forNewEditingState
 let contentIndentationForCell x self = msg_send ~self ~cmd:(selector "contentIndentationForCell:") ~typ:(id @-> returning (double)) x
-let contentRectForCell x ~forState self = msg_send_stret ~self ~cmd:(selector "contentRectForCell:forState:") ~typ:(id @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x forState
-let contentRectForCell' x ~forState ~rowWidth self = msg_send_stret ~self ~cmd:(selector "contentRectForCell:forState:rowWidth:") ~typ:(id @-> ullong @-> double @-> returning (CGRect.t)) ~return_type:CGRect.t x forState rowWidth
+let contentRectForCell x ~forState self = msg_send_stret ~self ~cmd:(selector "contentRectForCell:forState:") ~typ:(id @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int forState)
+let contentRectForCell' x ~forState ~rowWidth self = msg_send_stret ~self ~cmd:(selector "contentRectForCell:forState:rowWidth:") ~typ:(id @-> ullong @-> double @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int forState) rowWidth
 let contentStartingRectForCell x ~forDisplayOfDeleteConfirmation self = msg_send_stret ~self ~cmd:(selector "contentStartingRectForCell:forDisplayOfDeleteConfirmation:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forDisplayOfDeleteConfirmation
 let contentStartingRectForCell' x ~forNewEditingState self = msg_send_stret ~self ~cmd:(selector "contentStartingRectForCell:forNewEditingState:") ~typ:(id @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x forNewEditingState
 let customAccessoryViewForCell x ~editing self = msg_send ~self ~cmd:(selector "customAccessoryViewForCell:editing:") ~typ:(id @-> bool @-> returning (id)) x editing

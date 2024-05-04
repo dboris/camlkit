@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewPostPinningReloadState"
 
-module Class = struct
+module C = struct
   let stateWithResponder x self = msg_send ~self ~cmd:(selector "stateWithResponder:") ~typ:(id @-> returning (id)) x
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorWell"
 
-module Class = struct
+module C = struct
   let accessibilityIsSingleCelled self = msg_send ~self ~cmd:(selector "accessibilityIsSingleCelled") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfObjectValue self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfObjectValue") ~typ:(returning (bool))
   let colorPanelColorChanged x self = msg_send ~self ~cmd:(selector "colorPanelColorChanged:") ~typ:(id @-> returning (void)) x

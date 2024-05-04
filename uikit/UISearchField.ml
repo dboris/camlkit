@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISearchField"
 
-module Class = struct
+module C = struct
   let defaultHeight self = msg_send ~self ~cmd:(selector "defaultHeight") ~typ:(returning (double))
 end
 

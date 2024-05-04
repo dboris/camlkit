@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSBrowserCell"
 
-module Class = struct
+module C = struct
   let branchImage self = msg_send ~self ~cmd:(selector "branchImage") ~typ:(returning (id))
   let highlightedBranchImage self = msg_send ~self ~cmd:(selector "highlightedBranchImage") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

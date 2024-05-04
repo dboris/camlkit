@@ -9,7 +9,7 @@ open Foundation
 let _class_ = get_class "UITabBarButtonLabel"
 
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let initWithTabBarDisplayStyle x self = msg_send ~self ~cmd:(selector "initWithTabBarDisplayStyle:") ~typ:(llong @-> returning (id)) x
+let initWithTabBarDisplayStyle x self = msg_send ~self ~cmd:(selector "initWithTabBarDisplayStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let resizeToFitWidth x self = msg_send ~self ~cmd:(selector "resizeToFitWidth:") ~typ:(double @-> returning (void)) x
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setSelected x self = msg_send ~self ~cmd:(selector "setSelected:") ~typ:(bool @-> returning (void)) x

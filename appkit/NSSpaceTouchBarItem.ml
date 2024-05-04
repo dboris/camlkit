@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSpaceTouchBarItem"
 
-module Class = struct
+module C = struct
   let flexibleSpace self = msg_send ~self ~cmd:(selector "flexibleSpace") ~typ:(returning (id))
   let largeFixedSpace self = msg_send ~self ~cmd:(selector "largeFixedSpace") ~typ:(returning (id))
   let smallFixedSpace self = msg_send ~self ~cmd:(selector "smallFixedSpace") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPredicateEditorRowTemplate"
 
-module Class = struct
+module C = struct
   let templatesWithAttributeKeyPaths x ~inEntityDescription self = msg_send ~self ~cmd:(selector "templatesWithAttributeKeyPaths:inEntityDescription:") ~typ:(id @-> id @-> returning (id)) x inEntityDescription
 end
 
@@ -21,8 +21,8 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithCompoundTypes x self = msg_send ~self ~cmd:(selector "initWithCompoundTypes:") ~typ:(id @-> returning (id)) x
-let initWithLeftExpressions x ~rightExpressionAttributeType ~modifier ~operators ~options self = msg_send ~self ~cmd:(selector "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:") ~typ:(id @-> ullong @-> ullong @-> id @-> ullong @-> returning (id)) x rightExpressionAttributeType modifier operators options
-let initWithLeftExpressions' x ~rightExpressions ~modifier ~operators ~options self = msg_send ~self ~cmd:(selector "initWithLeftExpressions:rightExpressions:modifier:operators:options:") ~typ:(id @-> id @-> ullong @-> id @-> ullong @-> returning (id)) x rightExpressions modifier operators options
+let initWithLeftExpressions x ~rightExpressionAttributeType ~modifier ~operators ~options self = msg_send ~self ~cmd:(selector "initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:") ~typ:(id @-> ullong @-> ullong @-> id @-> ullong @-> returning (id)) x (ULLong.of_int rightExpressionAttributeType) (ULLong.of_int modifier) operators (ULLong.of_int options)
+let initWithLeftExpressions' x ~rightExpressions ~modifier ~operators ~options self = msg_send ~self ~cmd:(selector "initWithLeftExpressions:rightExpressions:modifier:operators:options:") ~typ:(id @-> id @-> ullong @-> id @-> ullong @-> returning (id)) x rightExpressions (ULLong.of_int modifier) operators (ULLong.of_int options)
 let leftExpressions self = msg_send ~self ~cmd:(selector "leftExpressions") ~typ:(returning (id))
 let matchForPredicate x self = msg_send ~self ~cmd:(selector "matchForPredicate:") ~typ:(id @-> returning (double)) x
 let modifier self = msg_send ~self ~cmd:(selector "modifier") ~typ:(returning (ullong))

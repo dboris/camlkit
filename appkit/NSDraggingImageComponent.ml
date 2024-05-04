@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDraggingImageComponent"
 
-module Class = struct
+module C = struct
   let draggingImageComponentWithKey x self = msg_send ~self ~cmd:(selector "draggingImageComponentWithKey:") ~typ:(id @-> returning (id)) x
 end
 

@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSTableViewCellMockElement"
 
-module Class = struct
-  let cellForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "cellForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-  let cellForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "cellForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+module C = struct
+  let cellForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "cellForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+  let cellForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "cellForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 end
 
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning (id)) x
@@ -61,8 +61,8 @@ let column self = msg_send ~self ~cmd:(selector "column") ~typ:(returning (llong
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let deepestAccessibilityDescendants self = msg_send ~self ~cmd:(selector "deepestAccessibilityDescendants") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isGroupRowCell self = msg_send ~self ~cmd:(selector "isGroupRowCell") ~typ:(returning (bool))
 let isOutline self = msg_send ~self ~cmd:(selector "isOutline") ~typ:(returning (bool))

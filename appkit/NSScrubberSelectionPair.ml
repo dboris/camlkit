@@ -27,6 +27,6 @@ let removeFromViewHierarchy self = msg_send ~self ~cmd:(selector "removeFromView
 let setBackgroundView x self = msg_send ~self ~cmd:(selector "setBackgroundView:") ~typ:(id @-> returning (void)) x
 let setContainerAlphaValue x self = msg_send ~self ~cmd:(selector "setContainerAlphaValue:") ~typ:(double @-> returning (void)) x
 let setContainsCustomViews x self = msg_send ~self ~cmd:(selector "setContainsCustomViews:") ~typ:(bool @-> returning (void)) x
-let setItemIndex x self = msg_send ~self ~cmd:(selector "setItemIndex:") ~typ:(llong @-> returning (void)) x
+let setItemIndex x self = msg_send ~self ~cmd:(selector "setItemIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setOverlayView x self = msg_send ~self ~cmd:(selector "setOverlayView:") ~typ:(id @-> returning (void)) x
 let setSelected x ~highlighted self = msg_send ~self ~cmd:(selector "setSelected:highlighted:") ~typ:(bool @-> bool @-> returning (void)) x highlighted

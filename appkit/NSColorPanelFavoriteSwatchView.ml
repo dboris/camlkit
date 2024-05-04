@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorPanelFavoriteSwatchView"
 
-module Class = struct
+module C = struct
   let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
 end

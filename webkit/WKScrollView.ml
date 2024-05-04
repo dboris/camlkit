@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKScrollView"
 
-module Class = struct
+module C = struct
   let isCompatibleWithResponsiveScrolling self = msg_send ~self ~cmd:(selector "isCompatibleWithResponsiveScrolling") ~typ:(returning (bool))
 end
 
@@ -17,4 +17,5 @@ let contentOffset self = msg_send_stret ~self ~cmd:(selector "contentOffset") ~t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
+let setContentInsets x self = msg_send ~self ~cmd:(selector "setContentInsets:") ~typ:(ptr void @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x

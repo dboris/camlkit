@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXPCListener"
 
-module Class = struct
+module C = struct
   let anonymousListener self = msg_send ~self ~cmd:(selector "anonymousListener") ~typ:(returning (id))
   let enableTransactions self = msg_send ~self ~cmd:(selector "enableTransactions") ~typ:(returning (void))
   let serviceListener self = msg_send ~self ~cmd:(selector "serviceListener") ~typ:(returning (id))
@@ -22,6 +22,6 @@ let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returnin
 let resume self = msg_send ~self ~cmd:(selector "resume") ~typ:(returning (void))
 let serviceName self = msg_send ~self ~cmd:(selector "serviceName") ~typ:(returning (id))
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) x
+let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let stop self = msg_send ~self ~cmd:(selector "stop") ~typ:(returning (void))
 let suspend self = msg_send ~self ~cmd:(selector "suspend") ~typ:(returning (void))

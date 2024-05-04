@@ -17,5 +17,5 @@ let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning 
 let pageRects self = msg_send ~self ~cmd:(selector "pageRects") ~typ:(returning (id))
 let scaleFactor self = msg_send ~self ~cmd:(selector "scaleFactor") ~typ:(returning (double))
 let setWebDocumentView x self = msg_send ~self ~cmd:(selector "setWebDocumentView:") ~typ:(id @-> returning (void)) x
-let sizeForPageAtIndex x self = msg_send_stret ~self ~cmd:(selector "sizeForPageAtIndex:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t x
+let sizeForPageAtIndex x self = msg_send_stret ~self ~cmd:(selector "sizeForPageAtIndex:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t (LLong.of_int x)
 let webDocumentView self = msg_send ~self ~cmd:(selector "webDocumentView") ~typ:(returning (id))

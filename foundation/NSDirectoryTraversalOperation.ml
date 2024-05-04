@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDirectoryTraversalOperation"
 
-module Class = struct
+module C = struct
   let directoryTraversalOperationAtPath x self = msg_send ~self ~cmd:(selector "directoryTraversalOperationAtPath:") ~typ:(id @-> returning (id)) x
 end
 

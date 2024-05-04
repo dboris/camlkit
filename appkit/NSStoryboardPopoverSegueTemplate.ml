@@ -16,5 +16,5 @@ let newDefaultPerformHandlerForSegue x self = msg_send ~self ~cmd:(selector "new
 let popoverBehavior self = msg_send ~self ~cmd:(selector "popoverBehavior") ~typ:(returning (llong))
 let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning (ullong))
 let setAnchorView x self = msg_send ~self ~cmd:(selector "setAnchorView:") ~typ:(id @-> returning (void)) x
-let setPopoverBehavior x self = msg_send ~self ~cmd:(selector "setPopoverBehavior:") ~typ:(llong @-> returning (void)) x
-let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) x
+let setPopoverBehavior x self = msg_send ~self ~cmd:(selector "setPopoverBehavior:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

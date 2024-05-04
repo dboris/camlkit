@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwipeActionsConfiguration"
 
-module Class = struct
+module C = struct
   let configurationWithActions x self = msg_send ~self ~cmd:(selector "configurationWithActions:") ~typ:(id @-> returning (id)) x
 end
 

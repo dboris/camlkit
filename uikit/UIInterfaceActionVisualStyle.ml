@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionVisualStyle"
 
-module Class = struct
-  let idiomSpecificStyleForTraitCollection x ~presentationStyle self = msg_send ~self ~cmd:(selector "idiomSpecificStyleForTraitCollection:presentationStyle:") ~typ:(id @-> llong @-> returning (id)) x presentationStyle
+module C = struct
+  let idiomSpecificStyleForTraitCollection x ~presentationStyle self = msg_send ~self ~cmd:(selector "idiomSpecificStyleForTraitCollection:presentationStyle:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int presentationStyle)
 end
 
 let actionClassificationLabelColorForViewState x self = msg_send ~self ~cmd:(selector "actionClassificationLabelColorForViewState:") ~typ:(id @-> returning (id)) x

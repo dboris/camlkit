@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "NSColorPickerMatrixView"
 
-module Class = struct
+module C = struct
   let defaultColorList self = msg_send ~self ~cmd:(selector "defaultColorList") ~typ:(returning (id))
   let hasEmptyColorForDefaultList self = msg_send ~self ~cmd:(selector "hasEmptyColorForDefaultList") ~typ:(returning (bool))
 end
 
 let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning (ullong)) x
-let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x index maxCount
+let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))
 let accessibilityAttributeValue x self = msg_send ~self ~cmd:(selector "accessibilityAttributeValue:") ~typ:(id @-> returning (id)) x
 let accessibilityHitTest x self = msg_send ~self ~cmd:(selector "accessibilityHitTest:") ~typ:(CGPoint.t @-> returning (id)) x
@@ -22,7 +22,7 @@ let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibil
 let accessibilityIsAttributeSettable x self = msg_send ~self ~cmd:(selector "accessibilityIsAttributeSettable:") ~typ:(id @-> returning (bool)) x
 let accessibilityIsIgnored self = msg_send ~self ~cmd:(selector "accessibilityIsIgnored") ~typ:(returning (bool))
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning (id))
-let colorAtIndex x self = msg_send ~self ~cmd:(selector "colorAtIndex:") ~typ:(ullong @-> returning (id)) x
+let colorAtIndex x self = msg_send ~self ~cmd:(selector "colorAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let colorIndexAtPoint x self = msg_send ~self ~cmd:(selector "colorIndexAtPoint:") ~typ:(CGPoint.t @-> returning (ullong)) x
 let colorList self = msg_send ~self ~cmd:(selector "colorList") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -40,12 +40,12 @@ let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id 
 let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning (void)) x
 let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning (ullong))
 let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning (ullong))
-let rectForColorAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectForColorAtIndex:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x
-let selectColorAtIndex x self = msg_send ~self ~cmd:(selector "selectColorAtIndex:") ~typ:(ullong @-> returning (void)) x
+let rectForColorAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectForColorAtIndex:") ~typ:(ullong @-> returning (CGRect.t)) ~return_type:CGRect.t (ULLong.of_int x)
+let selectColorAtIndex x self = msg_send ~self ~cmd:(selector "selectColorAtIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setColorList x self = msg_send ~self ~cmd:(selector "setColorList:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setEmptyColorEnabled x self = msg_send ~self ~cmd:(selector "setEmptyColorEnabled:") ~typ:(bool @-> returning (void)) x
-let setNumberOfColumns x self = msg_send ~self ~cmd:(selector "setNumberOfColumns:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfColumns x self = msg_send ~self ~cmd:(selector "setNumberOfColumns:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setSwatchSize x self = msg_send ~self ~cmd:(selector "setSwatchSize:") ~typ:(CGSize.t @-> returning (void)) x
 let swatchSize self = msg_send_stret ~self ~cmd:(selector "swatchSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let updateTrackingAreas self = msg_send ~self ~cmd:(selector "updateTrackingAreas") ~typ:(returning (void))

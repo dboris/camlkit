@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrubberTextItemView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingTitle self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingTitle") ~typ:(returning (id))
 end
 

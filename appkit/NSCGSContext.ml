@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSContext"
 
-module Class = struct
+module C = struct
   let graphicsContextWithAttributes x self = msg_send ~self ~cmd:(selector "graphicsContextWithAttributes:") ~typ:(id @-> returning (id)) x
 end
 
@@ -23,9 +23,9 @@ let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning 
 let patternPhase self = msg_send_stret ~self ~cmd:(selector "patternPhase") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let restoreGraphicsState self = msg_send ~self ~cmd:(selector "restoreGraphicsState") ~typ:(returning (void))
 let saveGraphicsState self = msg_send ~self ~cmd:(selector "saveGraphicsState") ~typ:(returning (void))
-let setColorRenderingIntent x self = msg_send ~self ~cmd:(selector "setColorRenderingIntent:") ~typ:(llong @-> returning (void)) x
-let setCompositingOperation x self = msg_send ~self ~cmd:(selector "setCompositingOperation:") ~typ:(ullong @-> returning (void)) x
-let setImageInterpolation x self = msg_send ~self ~cmd:(selector "setImageInterpolation:") ~typ:(ullong @-> returning (void)) x
+let setColorRenderingIntent x self = msg_send ~self ~cmd:(selector "setColorRenderingIntent:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setCompositingOperation x self = msg_send ~self ~cmd:(selector "setCompositingOperation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setImageInterpolation x self = msg_send ~self ~cmd:(selector "setImageInterpolation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setPatternPhase x self = msg_send ~self ~cmd:(selector "setPatternPhase:") ~typ:(CGPoint.t @-> returning (void)) x
 let setShouldAntialias x self = msg_send ~self ~cmd:(selector "setShouldAntialias:") ~typ:(bool @-> returning (void)) x
 let shouldAntialias self = msg_send ~self ~cmd:(selector "shouldAntialias") ~typ:(returning (bool))

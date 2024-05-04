@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSharingServicePicker"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let openAppExtensionsPrefPane self = msg_send ~self ~cmd:(selector "openAppExtensionsPrefPane") ~typ:(returning (void))
   let sharedMoreMenuImage self = msg_send ~self ~cmd:(selector "sharedMoreMenuImage") ~typ:(returning (id))
@@ -28,13 +28,13 @@ let initWithItems x self = msg_send ~self ~cmd:(selector "initWithItems:") ~typ:
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning (id))
 let menuItemFromService x self = msg_send ~self ~cmd:(selector "menuItemFromService:") ~typ:(id @-> returning (id)) x
 let moreMenuImage self = msg_send ~self ~cmd:(selector "moreMenuImage") ~typ:(returning (id))
-let rectForBounds x ~preferredEdge self = msg_send_stret ~self ~cmd:(selector "rectForBounds:preferredEdge:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x preferredEdge
+let rectForBounds x ~preferredEdge self = msg_send_stret ~self ~cmd:(selector "rectForBounds:preferredEdge:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int preferredEdge)
 let rolloverButtonCell self = msg_send ~self ~cmd:(selector "rolloverButtonCell") ~typ:(returning (id))
 let setApplicationServices x self = msg_send ~self ~cmd:(selector "setApplicationServices:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setExcludedSharingServiceNames x self = msg_send ~self ~cmd:(selector "setExcludedSharingServiceNames:") ~typ:(id @-> returning (void)) x
 let setShareKitInfo x self = msg_send ~self ~cmd:(selector "setShareKitInfo:") ~typ:(id @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let shareKitInfo self = msg_send ~self ~cmd:(selector "shareKitInfo") ~typ:(returning (id))
-let showRelativeToRect x ~ofView ~preferredEdge self = msg_send ~self ~cmd:(selector "showRelativeToRect:ofView:preferredEdge:") ~typ:(CGRect.t @-> id @-> ullong @-> returning (void)) x ofView preferredEdge
+let showRelativeToRect x ~ofView ~preferredEdge self = msg_send ~self ~cmd:(selector "showRelativeToRect:ofView:preferredEdge:") ~typ:(CGRect.t @-> id @-> ullong @-> returning (void)) x ofView (ULLong.of_int preferredEdge)
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning (llong))

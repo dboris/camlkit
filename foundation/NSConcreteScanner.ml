@@ -16,5 +16,5 @@ let scanLongLong x self = msg_send ~self ~cmd:(selector "scanLongLong:") ~typ:(p
 let setCaseSensitive x self = msg_send ~self ~cmd:(selector "setCaseSensitive:") ~typ:(bool @-> returning (void)) x
 let setCharactersToBeSkipped x self = msg_send ~self ~cmd:(selector "setCharactersToBeSkipped:") ~typ:(id @-> returning (void)) x
 let setLocale x self = msg_send ~self ~cmd:(selector "setLocale:") ~typ:(id @-> returning (void)) x
-let setScanLocation x self = msg_send ~self ~cmd:(selector "setScanLocation:") ~typ:(ullong @-> returning (void)) x
+let setScanLocation x self = msg_send ~self ~cmd:(selector "setScanLocation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let string_ self = msg_send ~self ~cmd:(selector "string") ~typ:(returning (id))

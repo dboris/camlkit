@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSTextFieldCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning (bool))
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning (id)) x
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning (id))
-let accessibilityAttachmentAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityAttachmentAtIndex:") ~typ:(ullong @-> returning (id)) x
+let accessibilityAttachmentAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityAttachmentAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning (id))
 let accessibilityAuditContrast self = msg_send ~self ~cmd:(selector "accessibilityAuditContrast") ~typ:(returning (id))
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning (id))
@@ -33,7 +33,7 @@ let accessibilityPlaceholderValueAttribute self = msg_send ~self ~cmd:(selector 
 let accessibilityPositionOfChild x self = msg_send ~self ~cmd:(selector "accessibilityPositionOfChild:") ~typ:(id @-> returning (id)) x
 let accessibilitySetFocus x ~forChild self = msg_send ~self ~cmd:(selector "accessibilitySetFocus:forChild:") ~typ:(id @-> id @-> returning (void)) x forChild
 let accessibilitySizeOfChild x self = msg_send ~self ~cmd:(selector "accessibilitySizeOfChild:") ~typ:(id @-> returning (id)) x
-let accessibilityTextLinkAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityTextLinkAtIndex:") ~typ:(ullong @-> returning (id)) x
+let accessibilityTextLinkAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityTextLinkAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let accessibilityTextLinks self = msg_send ~self ~cmd:(selector "accessibilityTextLinks") ~typ:(returning (id))
 let allowedInputSourceLocales self = msg_send ~self ~cmd:(selector "allowedInputSourceLocales") ~typ:(returning (id))
 let allowsCharacterPickerTouchBarItem self = msg_send ~self ~cmd:(selector "allowsCharacterPickerTouchBarItem") ~typ:(returning (bool))
@@ -68,8 +68,8 @@ let setAllowsCharacterPickerTouchBarItem x self = msg_send ~self ~cmd:(selector 
 let setAllowsDefaultTighteningForTruncation x self = msg_send ~self ~cmd:(selector "setAllowsDefaultTighteningForTruncation:") ~typ:(bool @-> returning (void)) x
 let setAutomaticTextCompletionEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticTextCompletionEnabled:") ~typ:(bool @-> returning (void)) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
-let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning (void)) x
-let setBezelStyle x self = msg_send ~self ~cmd:(selector "setBezelStyle:") ~typ:(ullong @-> returning (void)) x
+let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setBezelStyle x self = msg_send ~self ~cmd:(selector "setBezelStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setBezeled x self = msg_send ~self ~cmd:(selector "setBezeled:") ~typ:(bool @-> returning (void)) x
 let setDrawsBackground x self = msg_send ~self ~cmd:(selector "setDrawsBackground:") ~typ:(bool @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x

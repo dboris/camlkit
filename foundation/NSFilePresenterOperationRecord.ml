@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFilePresenterOperationRecord"
 
-module Class = struct
+module C = struct
   let operationRecordWithDescription x ~reactor self = msg_send ~self ~cmd:(selector "operationRecordWithDescription:reactor:") ~typ:(id @-> id @-> returning (id)) x reactor
 end
 

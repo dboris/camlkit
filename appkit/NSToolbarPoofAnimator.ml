@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarPoofAnimator"
 
-module Class = struct
+module C = struct
   let runPoofAtPoint x self = msg_send ~self ~cmd:(selector "runPoofAtPoint:") ~typ:(CGPoint.t @-> returning (void)) x
   let runPoofAtPoint' x ~withSize ~callbackInfo self = msg_send ~self ~cmd:(selector "runPoofAtPoint:withSize:callbackInfo:") ~typ:(CGPoint.t @-> CGSize.t @-> id @-> returning (void)) x withSize callbackInfo
 end

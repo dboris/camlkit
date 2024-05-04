@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPasteboard"
 
-module Class = struct
+module C = struct
   let generalPasteboard self = msg_send ~self ~cmd:(selector "generalPasteboard") ~typ:(returning (id))
   let pasteboardWithName x ~create self = msg_send ~self ~cmd:(selector "pasteboardWithName:create:") ~typ:(id @-> bool @-> returning (id)) x create
   let pasteboardWithUniqueName self = msg_send ~self ~cmd:(selector "pasteboardWithUniqueName") ~typ:(returning (id))

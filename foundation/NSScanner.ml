@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScanner"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let localizedScannerWithString x self = msg_send ~self ~cmd:(selector "localizedScannerWithString:") ~typ:(id @-> returning (id)) x
   let scannerWithString x self = msg_send ~self ~cmd:(selector "scannerWithString:") ~typ:(id @-> returning (id)) x
@@ -37,5 +37,5 @@ let scanUpToString x ~intoString self = msg_send ~self ~cmd:(selector "scanUpToS
 let setCaseSensitive x self = msg_send ~self ~cmd:(selector "setCaseSensitive:") ~typ:(bool @-> returning (void)) x
 let setCharactersToBeSkipped x self = msg_send ~self ~cmd:(selector "setCharactersToBeSkipped:") ~typ:(id @-> returning (void)) x
 let setLocale x self = msg_send ~self ~cmd:(selector "setLocale:") ~typ:(id @-> returning (void)) x
-let setScanLocation x self = msg_send ~self ~cmd:(selector "setScanLocation:") ~typ:(ullong @-> returning (void)) x
+let setScanLocation x self = msg_send ~self ~cmd:(selector "setScanLocation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let string_ self = msg_send ~self ~cmd:(selector "string") ~typ:(returning (id))

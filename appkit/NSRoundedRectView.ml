@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRoundedRectView"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesInvalidatingDisplay self = msg_send ~self ~cmd:(selector "keyPathsForValuesInvalidatingDisplay") ~typ:(returning (id))
   let viewWithFillColor x ~cornerRadius self = msg_send ~self ~cmd:(selector "viewWithFillColor:cornerRadius:") ~typ:(id @-> double @-> returning (id)) x cornerRadius
   let viewWithStrokeColor x ~strokeWidth ~cornerRadius self = msg_send ~self ~cmd:(selector "viewWithStrokeColor:strokeWidth:cornerRadius:") ~typ:(id @-> double @-> double @-> returning (id)) x strokeWidth cornerRadius

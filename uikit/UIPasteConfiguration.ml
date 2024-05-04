@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPasteConfiguration"
 
-module Class = struct
+module C = struct
   let pasteConfigurationForAcceptingClasses x self = msg_send ~self ~cmd:(selector "pasteConfigurationForAcceptingClasses:") ~typ:(id @-> returning (id)) x
   let pasteConfigurationWithAcceptableTypes x self = msg_send ~self ~cmd:(selector "pasteConfigurationWithAcceptableTypes:") ~typ:(id @-> returning (id)) x
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))

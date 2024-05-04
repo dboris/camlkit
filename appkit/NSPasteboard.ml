@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPasteboard"
 
-module Class = struct
+module C = struct
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let generalPasteboard self = msg_send ~self ~cmd:(selector "generalPasteboard") ~typ:(returning (id))
@@ -35,7 +35,7 @@ let declareTypes x ~owner self = msg_send ~self ~cmd:(selector "declareTypes:own
 let indexOfPasteboardItem x self = msg_send ~self ~cmd:(selector "indexOfPasteboardItem:") ~typ:(id @-> returning (ullong)) x
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let pasteboardItems self = msg_send ~self ~cmd:(selector "pasteboardItems") ~typ:(returning (id))
-let prepareForNewContentsWithOptions x self = msg_send ~self ~cmd:(selector "prepareForNewContentsWithOptions:") ~typ:(ullong @-> returning (llong)) x
+let prepareForNewContentsWithOptions x self = msg_send ~self ~cmd:(selector "prepareForNewContentsWithOptions:") ~typ:(ullong @-> returning (llong)) (ULLong.of_int x)
 let propertyListForType x self = msg_send ~self ~cmd:(selector "propertyListForType:") ~typ:(id @-> returning (id)) x
 let readFileContentsType x ~toFile self = msg_send ~self ~cmd:(selector "readFileContentsType:toFile:") ~typ:(id @-> id @-> returning (id)) x toFile
 let readFileWrapper self = msg_send ~self ~cmd:(selector "readFileWrapper") ~typ:(returning (id))

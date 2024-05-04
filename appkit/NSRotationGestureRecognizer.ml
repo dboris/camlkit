@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRotationGestureRecognizer"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingValueForKey x self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingValueForKey:") ~typ:(id @-> returning (id)) x
 end
 

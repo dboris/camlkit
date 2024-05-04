@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPageController"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
 end
 
@@ -41,11 +41,11 @@ let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~ty
 let setCurrentIdentifier x self = msg_send ~self ~cmd:(selector "setCurrentIdentifier:") ~typ:(id @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDontCacheViewControllers x self = msg_send ~self ~cmd:(selector "setDontCacheViewControllers:") ~typ:(bool @-> returning (void)) x
-let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(llong @-> returning (void)) x
+let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSelectedViewController x self = msg_send ~self ~cmd:(selector "setSelectedViewController:") ~typ:(id @-> returning (void)) x
-let setTransitionStyle x self = msg_send ~self ~cmd:(selector "setTransitionStyle:") ~typ:(llong @-> returning (void)) x
+let setTransitionStyle x self = msg_send ~self ~cmd:(selector "setTransitionStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let takeSelectedIndexFrom x self = msg_send ~self ~cmd:(selector "takeSelectedIndexFrom:") ~typ:(id @-> returning (void)) x
 let transitionStyle self = msg_send ~self ~cmd:(selector "transitionStyle") ~typ:(returning (llong))
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning (bool)) x
-let wantsScrollEventsForSwipeTrackingOnAxis x self = msg_send ~self ~cmd:(selector "wantsScrollEventsForSwipeTrackingOnAxis:") ~typ:(llong @-> returning (bool)) x
+let wantsScrollEventsForSwipeTrackingOnAxis x self = msg_send ~self ~cmd:(selector "wantsScrollEventsForSwipeTrackingOnAxis:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)

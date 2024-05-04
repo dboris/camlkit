@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISwipeActionDeleteScanlineView"
 
-module Class = struct
+module C = struct
   let lineHeight self = msg_send ~self ~cmd:(selector "lineHeight") ~typ:(returning (double))
 end
 

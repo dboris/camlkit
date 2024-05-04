@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSKeyValueDependencyContext"
 
-module Class = struct
+module C = struct
   let contextStack self = msg_send ~self ~cmd:(selector "contextStack") ~typ:(returning (id))
   let currentContext self = msg_send ~self ~cmd:(selector "currentContext") ~typ:(returning (id))
 end

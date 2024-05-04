@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebFormSelectPeripheral"
 
-module Class = struct
+module C = struct
   let createPeripheralWithDOMHTMLSelectElement x self = msg_send ~self ~cmd:(selector "createPeripheralWithDOMHTMLSelectElement:") ~typ:(id @-> returning (id)) x
 end
 

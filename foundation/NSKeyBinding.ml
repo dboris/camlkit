@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSKeyBinding"
 
-module Class = struct
+module C = struct
   let suppressCapitalizedKeyWarning self = msg_send ~self ~cmd:(selector "suppressCapitalizedKeyWarning") ~typ:(returning (void))
 end
 

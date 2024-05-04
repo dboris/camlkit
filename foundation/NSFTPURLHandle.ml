@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFTPURLHandle"
 
-module Class = struct
+module C = struct
   let cachedHandleForURL x self = msg_send ~self ~cmd:(selector "cachedHandleForURL:") ~typ:(id @-> returning (id)) x
   let canInitWithURL x self = msg_send ~self ~cmd:(selector "canInitWithURL:") ~typ:(id @-> returning (bool)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -15,7 +15,7 @@ let beginLoadInBackground self = msg_send ~self ~cmd:(selector "beginLoadInBackg
 let createFTPReadStream self = msg_send ~self ~cmd:(selector "createFTPReadStream") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let endLoadInBackground self = msg_send ~self ~cmd:(selector "endLoadInBackground") ~typ:(returning (void))
-let errorStringForFTPStatusCode x ~fromURL self = msg_send ~self ~cmd:(selector "errorStringForFTPStatusCode:fromURL:") ~typ:(llong @-> id @-> returning (id)) x fromURL
+let errorStringForFTPStatusCode x ~fromURL self = msg_send ~self ~cmd:(selector "errorStringForFTPStatusCode:fromURL:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) fromURL
 let expectedResourceDataSize self = msg_send ~self ~cmd:(selector "expectedResourceDataSize") ~typ:(returning (llong))
 let flushCachedData self = msg_send ~self ~cmd:(selector "flushCachedData") ~typ:(returning (void))
 let initWithURL x ~cached self = msg_send ~self ~cmd:(selector "initWithURL:cached:") ~typ:(id @-> bool @-> returning (id)) x cached

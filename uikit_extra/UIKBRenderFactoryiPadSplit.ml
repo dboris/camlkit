@@ -32,4 +32,4 @@ let supportsInputTraits x ~forKeyplane self = msg_send ~self ~cmd:(selector "sup
 let symbolFrameInset self = msg_send ~self ~cmd:(selector "symbolFrameInset") ~typ:(returning (double))
 let variantAnnotationTextFontSize self = msg_send ~self ~cmd:(selector "variantAnnotationTextFontSize") ~typ:(returning (double))
 let variantAnnotationTextOffset self = msg_send_stret ~self ~cmd:(selector "variantAnnotationTextOffset") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let variantGeometriesForGeometry x ~variantCount ~rowLimit ~annotationIndex self = msg_send ~self ~cmd:(selector "variantGeometriesForGeometry:variantCount:rowLimit:annotationIndex:") ~typ:(id @-> ullong @-> llong @-> ullong @-> returning (id)) x variantCount rowLimit annotationIndex
+let variantGeometriesForGeometry x ~variantCount ~rowLimit ~annotationIndex self = msg_send ~self ~cmd:(selector "variantGeometriesForGeometry:variantCount:rowLimit:annotationIndex:") ~typ:(id @-> ullong @-> llong @-> ullong @-> returning (id)) x (ULLong.of_int variantCount) (LLong.of_int rowLimit) (ULLong.of_int annotationIndex)

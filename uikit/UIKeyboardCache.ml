@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCache"
 
-module Class = struct
+module C = struct
   let enabled self = msg_send ~self ~cmd:(selector "enabled") ~typ:(returning (bool))
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end

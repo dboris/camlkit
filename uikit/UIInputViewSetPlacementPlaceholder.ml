@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacementPlaceholder"
 
-module Class = struct
+module C = struct
   let placementWithHeight x self = msg_send ~self ~cmd:(selector "placementWithHeight:") ~typ:(double @-> returning (id)) x
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSViewDynamicToolTipManager"
 
-module Class = struct
+module C = struct
   let abortAllToolTips self = msg_send ~self ~cmd:(selector "abortAllToolTips") ~typ:(returning (void))
 end
 
@@ -24,9 +24,9 @@ let mouseEntered x self = msg_send ~self ~cmd:(selector "mouseEntered:") ~typ:(i
 let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id @-> returning (void)) x
 let setWantsExpansionToolTips x self = msg_send ~self ~cmd:(selector "setWantsExpansionToolTips:") ~typ:(bool @-> returning (void)) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
-let view1 x ~customToolTip ~fadeOutAllowedForToolTipWithDisplayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:fadeOutAllowedForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (bool)) x customToolTip fadeOutAllowedForToolTipWithDisplayInfo
-let view2 x ~customToolTip ~frameForToolTipWithDisplayInfo self = msg_send_stret ~self ~cmd:(selector "view:customToolTip:frameForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (CGRect.t)) ~return_type:CGRect.t x customToolTip frameForToolTipWithDisplayInfo
-let view3 x ~customToolTip ~drawInView ~displayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:drawInView:displayInfo:") ~typ:(id @-> llong @-> id @-> id @-> returning (void)) x customToolTip drawInView displayInfo
+let view1 x ~customToolTip ~fadeOutAllowedForToolTipWithDisplayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:fadeOutAllowedForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (bool)) x (LLong.of_int customToolTip) fadeOutAllowedForToolTipWithDisplayInfo
+let view2 x ~customToolTip ~frameForToolTipWithDisplayInfo self = msg_send_stret ~self ~cmd:(selector "view:customToolTip:frameForToolTipWithDisplayInfo:") ~typ:(id @-> llong @-> id @-> returning (CGRect.t)) ~return_type:CGRect.t x (LLong.of_int customToolTip) frameForToolTipWithDisplayInfo
+let view3 x ~customToolTip ~drawInView ~displayInfo self = msg_send ~self ~cmd:(selector "view:customToolTip:drawInView:displayInfo:") ~typ:(id @-> llong @-> id @-> id @-> returning (void)) x (LLong.of_int customToolTip) drawInView displayInfo
 let viewDidEndLiveResize self = msg_send ~self ~cmd:(selector "viewDidEndLiveResize") ~typ:(returning (void))
 let viewDidMoveToWindow self = msg_send ~self ~cmd:(selector "viewDidMoveToWindow") ~typ:(returning (void))
 let viewWillMoveToWindow x self = msg_send ~self ~cmd:(selector "viewWillMoveToWindow:") ~typ:(id @-> returning (void)) x

@@ -8,12 +8,16 @@ open Foundation
 
 let _class_ = get_class "NSPopoverFrame"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversOfAnchorPoint self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfAnchorPoint") ~typ:(returning (bool))
-  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+  let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+  let contentRectForFrameRect1 x ~appearance ~anchorSize ~contentInset self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:appearance:anchorSize:contentInset:") ~typ:(CGRect.t @-> id @-> CGSize.t @-> ptr void @-> returning (CGRect.t)) ~return_type:CGRect.t x appearance anchorSize contentInset
+  let contentRectForFrameRect2 x ~appearance ~anchorSize ~contentInset ~hasTitlebar self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:appearance:anchorSize:contentInset:hasTitlebar:") ~typ:(CGRect.t @-> id @-> CGSize.t @-> ptr void @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x appearance anchorSize contentInset hasTitlebar
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
-  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
-  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x styleMask
+  let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
+  let frameRectForContentRect1 x ~appearance ~anchorSize ~contentInset self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:appearance:anchorSize:contentInset:") ~typ:(CGRect.t @-> id @-> CGSize.t @-> ptr void @-> returning (CGRect.t)) ~return_type:CGRect.t x appearance anchorSize contentInset
+  let frameRectForContentRect2 x ~appearance ~anchorSize ~contentInset ~hasTitlebar self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:appearance:anchorSize:contentInset:hasTitlebar:") ~typ:(CGRect.t @-> id @-> CGSize.t @-> ptr void @-> bool @-> returning (CGRect.t)) ~return_type:CGRect.t x appearance anchorSize contentInset hasTitlebar
+  let minFrameSizeForMinContentSize x ~styleMask self = msg_send_stret ~self ~cmd:(selector "minFrameSizeForMinContentSize:styleMask:") ~typ:(CGSize.t @-> ullong @-> returning (CGSize.t)) ~return_type:CGSize.t x (ULLong.of_int styleMask)
 end
 
 let anchorEdge self = msg_send ~self ~cmd:(selector "anchorEdge") ~typ:(returning (ullong))
@@ -21,7 +25,7 @@ let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(
 let anchorSize self = msg_send_stret ~self ~cmd:(selector "anchorSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let closeButton self = msg_send ~self ~cmd:(selector "closeButton") ~typ:(returning (id))
 let concludeDragOperation x self = msg_send ~self ~cmd:(selector "concludeDragOperation:") ~typ:(id @-> returning (void)) x
-let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+let contentRectForFrameRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "contentRectForFrameRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let dragRectForFrameRect x self = msg_send_stret ~self ~cmd:(selector "dragRectForFrameRect:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let draggingEnded x self = msg_send ~self ~cmd:(selector "draggingEnded:") ~typ:(id @-> returning (void)) x
@@ -30,10 +34,10 @@ let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~ty
 let drawBackgroundInRect x self = msg_send ~self ~cmd:(selector "drawBackgroundInRect:") ~typ:(CGRect.t @-> returning (void)) x
 let drawOverlayRect x self = msg_send ~self ~cmd:(selector "drawOverlayRect:") ~typ:(CGRect.t @-> returning (void)) x
 let effectiveAnchorEdge self = msg_send ~self ~cmd:(selector "effectiveAnchorEdge") ~typ:(returning (ullong))
-let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x styleMask
+let frameRectForContentRect x ~styleMask self = msg_send_stret ~self ~cmd:(selector "frameRectForContentRect:styleMask:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int styleMask)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let initWithFrame' x ~styleMask ~owner self = msg_send ~self ~cmd:(selector "initWithFrame:styleMask:owner:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x styleMask owner
+let initWithFrame' x ~styleMask ~owner self = msg_send ~self ~cmd:(selector "initWithFrame:styleMask:owner:") ~typ:(CGRect.t @-> ullong @-> id @-> returning (id)) x (ULLong.of_int styleMask) owner
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning (bool))
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void))
 let minimizeButton self = msg_send ~self ~cmd:(selector "minimizeButton") ~typ:(returning (id))
@@ -42,9 +46,10 @@ let overlayBounds self = msg_send_stret ~self ~cmd:(selector "overlayBounds") ~t
 let performDragOperation x self = msg_send ~self ~cmd:(selector "performDragOperation:") ~typ:(id @-> returning (bool)) x
 let rangeOfInterest1 self = msg_send ~self ~cmd:(selector "rangeOfInterest1") ~typ:(returning (id))
 let rangeOfInterest2 self = msg_send ~self ~cmd:(selector "rangeOfInterest2") ~typ:(returning (id))
-let setAnchorEdge x self = msg_send ~self ~cmd:(selector "setAnchorEdge:") ~typ:(ullong @-> returning (void)) x
+let setAnchorEdge x self = msg_send ~self ~cmd:(selector "setAnchorEdge:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setAnchorPoint x self = msg_send ~self ~cmd:(selector "setAnchorPoint:") ~typ:(CGPoint.t @-> returning (void)) x
 let setAnchorSize x self = msg_send ~self ~cmd:(selector "setAnchorSize:") ~typ:(CGSize.t @-> returning (void)) x
+let setContentInset x self = msg_send ~self ~cmd:(selector "setContentInset:") ~typ:(ptr void @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setRangeOfInterest1 x self = msg_send ~self ~cmd:(selector "setRangeOfInterest1:") ~typ:(id @-> returning (void)) x
 let setRangeOfInterest2 x self = msg_send ~self ~cmd:(selector "setRangeOfInterest2:") ~typ:(id @-> returning (void)) x

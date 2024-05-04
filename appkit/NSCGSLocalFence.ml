@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCGSLocalFence"
 
-module Class = struct
+module C = struct
   let fence self = msg_send ~self ~cmd:(selector "fence") ~typ:(returning (id))
 end
 

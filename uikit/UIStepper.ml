@@ -8,23 +8,23 @@ open Foundation
 
 let _class_ = get_class "UIStepper"
 
-module Class = struct
+module C = struct
   let visualElementClassForTraitCollection x self = msg_send ~self ~cmd:(selector "visualElementClassForTraitCollection:") ~typ:(id @-> returning (_Class)) x
   let visualElementForTraitCollection x self = msg_send ~self ~cmd:(selector "visualElementForTraitCollection:") ~typ:(id @-> returning (id)) x
 end
 
 let autorepeat self = msg_send ~self ~cmd:(selector "autorepeat") ~typ:(returning (bool))
-let backgroundImageForState x self = msg_send ~self ~cmd:(selector "backgroundImageForState:") ~typ:(ullong @-> returning (id)) x
+let backgroundImageForState x self = msg_send ~self ~cmd:(selector "backgroundImageForState:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let beginTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "beginTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning (bool)) x withEvent
 let cancelTrackingWithEvent x self = msg_send ~self ~cmd:(selector "cancelTrackingWithEvent:") ~typ:(id @-> returning (void)) x
 let continueTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "continueTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning (bool)) x withEvent
-let decrementImageForState x self = msg_send ~self ~cmd:(selector "decrementImageForState:") ~typ:(ullong @-> returning (id)) x
-let dividerImageForLeftSegmentState x ~rightSegmentState self = msg_send ~self ~cmd:(selector "dividerImageForLeftSegmentState:rightSegmentState:") ~typ:(ullong @-> ullong @-> returning (id)) x rightSegmentState
+let decrementImageForState x self = msg_send ~self ~cmd:(selector "decrementImageForState:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+let dividerImageForLeftSegmentState x ~rightSegmentState self = msg_send ~self ~cmd:(selector "dividerImageForLeftSegmentState:rightSegmentState:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int rightSegmentState)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let endTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "endTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let gestureRecognizerShouldBegin x self = msg_send ~self ~cmd:(selector "gestureRecognizerShouldBegin:") ~typ:(id @-> returning (bool)) x
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning (id)) x withEvent
-let incrementImageForState x self = msg_send ~self ~cmd:(selector "incrementImageForState:") ~typ:(ullong @-> returning (id)) x
+let incrementImageForState x self = msg_send ~self ~cmd:(selector "incrementImageForState:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning (bool))
@@ -35,13 +35,13 @@ let pointerInteraction1 x ~regionForRequest ~defaultRegion self = msg_send ~self
 let pointerInteraction2 x ~willEnterRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willEnterRegion:animator:") ~typ:(id @-> id @-> id @-> returning (void)) x willEnterRegion animator
 let pointerInteraction3 x ~willExitRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willExitRegion:animator:") ~typ:(id @-> id @-> id @-> returning (void)) x willExitRegion animator
 let setAutorepeat x self = msg_send ~self ~cmd:(selector "setAutorepeat:") ~typ:(bool @-> returning (void)) x
-let setBackgroundImage x ~forState self = msg_send ~self ~cmd:(selector "setBackgroundImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setBackgroundImage x ~forState self = msg_send ~self ~cmd:(selector "setBackgroundImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setContinuous x self = msg_send ~self ~cmd:(selector "setContinuous:") ~typ:(bool @-> returning (void)) x
-let setDecrementImage x ~forState self = msg_send ~self ~cmd:(selector "setDecrementImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
-let setDividerImage x ~forLeftSegmentState ~rightSegmentState self = msg_send ~self ~cmd:(selector "setDividerImage:forLeftSegmentState:rightSegmentState:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x forLeftSegmentState rightSegmentState
+let setDecrementImage x ~forState self = msg_send ~self ~cmd:(selector "setDecrementImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
+let setDividerImage x ~forLeftSegmentState ~rightSegmentState self = msg_send ~self ~cmd:(selector "setDividerImage:forLeftSegmentState:rightSegmentState:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x (ULLong.of_int forLeftSegmentState) (ULLong.of_int rightSegmentState)
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
-let setIncrementImage x ~forState self = msg_send ~self ~cmd:(selector "setIncrementImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setIncrementImage x ~forState self = msg_send ~self ~cmd:(selector "setIncrementImage:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setMaximumValue x self = msg_send ~self ~cmd:(selector "setMaximumValue:") ~typ:(double @-> returning (void)) x
 let setMinimumValue x self = msg_send ~self ~cmd:(selector "setMinimumValue:") ~typ:(double @-> returning (void)) x
 let setStepValue x self = msg_send ~self ~cmd:(selector "setStepValue:") ~typ:(double @-> returning (void)) x

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSCharacterSet"
 
-module Class = struct
+module C = struct
   let _URLFragmentAllowedCharacterSet self = msg_send ~self ~cmd:(selector "URLFragmentAllowedCharacterSet") ~typ:(returning (id))
   let _URLHostAllowedCharacterSet self = msg_send ~self ~cmd:(selector "URLHostAllowedCharacterSet") ~typ:(returning (id))
   let _URLPasswordAllowedCharacterSet self = msg_send ~self ~cmd:(selector "URLPasswordAllowedCharacterSet") ~typ:(returning (id))

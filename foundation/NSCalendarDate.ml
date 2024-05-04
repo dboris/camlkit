@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSCalendarDate"
 
-module Class = struct
+module C = struct
   let calendarDate self = msg_send ~self ~cmd:(selector "calendarDate") ~typ:(returning (id))
   let dateWithNaturalLanguageString x ~date ~locale self = msg_send ~self ~cmd:(selector "dateWithNaturalLanguageString:date:locale:") ~typ:(id @-> id @-> id @-> returning (id)) x date locale
   let dateWithString x ~calendarFormat self = msg_send ~self ~cmd:(selector "dateWithString:calendarFormat:") ~typ:(id @-> id @-> returning (id)) x calendarFormat
   let dateWithString' x ~calendarFormat ~locale self = msg_send ~self ~cmd:(selector "dateWithString:calendarFormat:locale:") ~typ:(id @-> id @-> id @-> returning (id)) x calendarFormat locale
-  let dateWithYear x ~month ~day ~hour ~minute ~second ~timeZone self = msg_send ~self ~cmd:(selector "dateWithYear:month:day:hour:minute:second:timeZone:") ~typ:(llong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> id @-> returning (id)) x month day hour minute second timeZone
+  let dateWithYear x ~month ~day ~hour ~minute ~second ~timeZone self = msg_send ~self ~cmd:(selector "dateWithYear:month:day:hour:minute:second:timeZone:") ~typ:(llong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> id @-> returning (id)) (LLong.of_int x) (ULLong.of_int month) (ULLong.of_int day) (ULLong.of_int hour) (ULLong.of_int minute) (ULLong.of_int second) timeZone
   let distantFuture self = msg_send ~self ~cmd:(selector "distantFuture") ~typ:(returning (id))
   let distantPast self = msg_send ~self ~cmd:(selector "distantPast") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -20,7 +20,7 @@ let addTimeInterval x self = msg_send ~self ~cmd:(selector "addTimeInterval:") ~
 let calendarFormat self = msg_send ~self ~cmd:(selector "calendarFormat") ~typ:(returning (id))
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning (_Class))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let dateByAddingYears x ~months ~days ~hours ~minutes ~seconds self = msg_send ~self ~cmd:(selector "dateByAddingYears:months:days:hours:minutes:seconds:") ~typ:(llong @-> llong @-> llong @-> llong @-> llong @-> llong @-> returning (id)) x months days hours minutes seconds
+let dateByAddingYears x ~months ~days ~hours ~minutes ~seconds self = msg_send ~self ~cmd:(selector "dateByAddingYears:months:days:hours:minutes:seconds:") ~typ:(llong @-> llong @-> llong @-> llong @-> llong @-> llong @-> returning (id)) (LLong.of_int x) (LLong.of_int months) (LLong.of_int days) (LLong.of_int hours) (LLong.of_int minutes) (LLong.of_int seconds)
 let dayOfCommonEra self = msg_send ~self ~cmd:(selector "dayOfCommonEra") ~typ:(returning (llong))
 let dayOfMonth self = msg_send ~self ~cmd:(selector "dayOfMonth") ~typ:(returning (llong))
 let dayOfWeek self = msg_send ~self ~cmd:(selector "dayOfWeek") ~typ:(returning (llong))
@@ -38,7 +38,7 @@ let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~ty
 let initWithString1 x ~calendarFormat self = msg_send ~self ~cmd:(selector "initWithString:calendarFormat:") ~typ:(id @-> id @-> returning (id)) x calendarFormat
 let initWithString2 x ~calendarFormat ~locale self = msg_send ~self ~cmd:(selector "initWithString:calendarFormat:locale:") ~typ:(id @-> id @-> id @-> returning (id)) x calendarFormat locale
 let initWithTimeIntervalSinceReferenceDate x self = msg_send ~self ~cmd:(selector "initWithTimeIntervalSinceReferenceDate:") ~typ:(double @-> returning (id)) x
-let initWithYear x ~month ~day ~hour ~minute ~second ~timeZone self = msg_send ~self ~cmd:(selector "initWithYear:month:day:hour:minute:second:timeZone:") ~typ:(llong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> id @-> returning (id)) x month day hour minute second timeZone
+let initWithYear x ~month ~day ~hour ~minute ~second ~timeZone self = msg_send ~self ~cmd:(selector "initWithYear:month:day:hour:minute:second:timeZone:") ~typ:(llong @-> ullong @-> ullong @-> ullong @-> ullong @-> ullong @-> id @-> returning (id)) (LLong.of_int x) (ULLong.of_int month) (ULLong.of_int day) (ULLong.of_int hour) (ULLong.of_int minute) (ULLong.of_int second) timeZone
 let microsecondOfSecond self = msg_send ~self ~cmd:(selector "microsecondOfSecond") ~typ:(returning (llong))
 let minuteOfHour self = msg_send ~self ~cmd:(selector "minuteOfHour") ~typ:(returning (llong))
 let monthOfYear self = msg_send ~self ~cmd:(selector "monthOfYear") ~typ:(returning (llong))

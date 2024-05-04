@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSAnimation"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -27,13 +27,13 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let frameRate self = msg_send ~self ~cmd:(selector "frameRate") ~typ:(returning (float))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithDuration x ~animationCurve self = msg_send ~self ~cmd:(selector "initWithDuration:animationCurve:") ~typ:(double @-> ullong @-> returning (id)) x animationCurve
+let initWithDuration x ~animationCurve self = msg_send ~self ~cmd:(selector "initWithDuration:animationCurve:") ~typ:(double @-> ullong @-> returning (id)) x (ULLong.of_int animationCurve)
 let isAnimating self = msg_send ~self ~cmd:(selector "isAnimating") ~typ:(returning (bool))
 let progressMarks self = msg_send ~self ~cmd:(selector "progressMarks") ~typ:(returning (id))
 let removeProgressMark x self = msg_send ~self ~cmd:(selector "removeProgressMark:") ~typ:(float @-> returning (void)) x
 let runLoopModesForAnimating self = msg_send ~self ~cmd:(selector "runLoopModesForAnimating") ~typ:(returning (id))
-let setAnimationBlockingMode x self = msg_send ~self ~cmd:(selector "setAnimationBlockingMode:") ~typ:(ullong @-> returning (void)) x
-let setAnimationCurve x self = msg_send ~self ~cmd:(selector "setAnimationCurve:") ~typ:(ullong @-> returning (void)) x
+let setAnimationBlockingMode x self = msg_send ~self ~cmd:(selector "setAnimationBlockingMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setAnimationCurve x self = msg_send ~self ~cmd:(selector "setAnimationCurve:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setCurrentProgress x self = msg_send ~self ~cmd:(selector "setCurrentProgress:") ~typ:(float @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(double @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFavoriteColorStoreEntry"
 
-module Class = struct
+module C = struct
   let customEntryWithColorClassName x ~data ~backstopColor self = msg_send ~self ~cmd:(selector "customEntryWithColorClassName:data:backstopColor:") ~typ:(id @-> id @-> id @-> returning (id)) x data backstopColor
   let entryWithColor x self = msg_send ~self ~cmd:(selector "entryWithColor:") ~typ:(id @-> returning (id)) x
 end

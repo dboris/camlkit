@@ -48,7 +48,11 @@
   (copy platform.macos platform.ml))))
 
 (rule
- (enabled_if (= %{context_name} default.ios))
+ (enabled_if (or
+  (= %{context_name} default.ios)
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} catalyst.ios)))
  (targets flags.txt platform.ml)
  (deps flags.ios platform.ios)
  (action (progn
@@ -57,7 +61,11 @@
 
 (rule
  (enabled_if (and
-  (= %{context_name} default.ios)
+  (or
+   (= %{context_name} default.ios)
+   (= %{context_name} device.ios)
+   (= %{context_name} simulator.ios)
+   (= %{context_name} catalyst.ios))
   %{lib-available:conf-maccatalyst}))
  (targets flags.txt platform.ml)
  (action (progn

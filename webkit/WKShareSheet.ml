@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKShareSheet"
 
-module Class = struct
+module C = struct
   let applyQuarantineSandboxAndDownloadFlagsToFileAtPath x self = msg_send ~self ~cmd:(selector "applyQuarantineSandboxAndDownloadFlagsToFileAtPath:") ~typ:(id @-> returning (bool)) x
   let createRandomSharingDirectoryForFile x self = msg_send ~self ~cmd:(selector "createRandomSharingDirectoryForFile:") ~typ:(id @-> returning (id)) x
   let createTemporarySharingDirectory self = msg_send ~self ~cmd:(selector "createTemporarySharingDirectory") ~typ:(returning (id))
@@ -19,6 +19,8 @@ end
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let dismiss self = msg_send ~self ~cmd:(selector "dismiss") ~typ:(returning (void))
 let initWithView x self = msg_send ~self ~cmd:(selector "initWithView:") ~typ:(id @-> returning (id)) x
+let presentWithParameters x ~inRect ~completionHandler self = msg_send ~self ~cmd:(selector "presentWithParameters:inRect:completionHandler:") ~typ:(ptr (void) @-> ptr void @-> ptr (void) @-> returning (void)) x inRect completionHandler
+let presentWithShareDataArray x ~inRect self = msg_send ~self ~cmd:(selector "presentWithShareDataArray:inRect:") ~typ:(id @-> ptr void @-> returning (void)) x inRect
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let sharingService x ~didShareItems self = msg_send ~self ~cmd:(selector "sharingService:didShareItems:") ~typ:(id @-> id @-> returning (void)) x didShareItems
 let sharingService1 x ~didFailToShareItems ~error self = msg_send ~self ~cmd:(selector "sharingService:didFailToShareItems:error:") ~typ:(id @-> id @-> id @-> returning (void)) x didFailToShareItems error

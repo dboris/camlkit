@@ -17,6 +17,7 @@ let indexBarExtentFromEdge self = msg_send ~self ~cmd:(selector "indexBarExtentF
 let insetsContentViewsToSafeArea self = msg_send ~self ~cmd:(selector "insetsContentViewsToSafeArea") ~typ:(returning (bool))
 let separatorEffect self = msg_send ~self ~cmd:(selector "separatorEffect") ~typ:(returning (id))
 let separatorInsetIsRelativeToCellEdges self = msg_send ~self ~cmd:(selector "separatorInsetIsRelativeToCellEdges") ~typ:(returning (bool))
+let setBackgroundInset x self = msg_send ~self ~cmd:(selector "setBackgroundInset:") ~typ:(ptr void @-> returning (void)) x
 let setDefaultLeadingCellMarginWidth x self = msg_send ~self ~cmd:(selector "setDefaultLeadingCellMarginWidth:") ~typ:(double @-> returning (void)) x
 let setDefaultTrailingCellMarginWidth x self = msg_send ~self ~cmd:(selector "setDefaultTrailingCellMarginWidth:") ~typ:(double @-> returning (void)) x
 let setDrawsSeparatorAtBottomOfSection x self = msg_send ~self ~cmd:(selector "setDrawsSeparatorAtBottomOfSection:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMorphingDragImageController"
 
-module Class = struct
+module C = struct
   let dragTabWithDraggingItem x ~tabButtonImage ~pinnedTabButtonImage ~windowImage ~fromView ~at ~source self = msg_send ~self ~cmd:(selector "dragTabWithDraggingItem:tabButtonImage:pinnedTabButtonImage:windowImage:fromView:at:source:") ~typ:(id @-> id @-> id @-> id @-> id @-> CGPoint.t @-> id @-> returning (void)) x tabButtonImage pinnedTabButtonImage windowImage fromView at source
 end
 

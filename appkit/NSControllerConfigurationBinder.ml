@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSControllerConfigurationBinder"
 
-module Class = struct
+module C = struct
   let bindingCategory self = msg_send ~self ~cmd:(selector "bindingCategory") ~typ:(returning (id))
   let bindingsForObject x self = msg_send ~self ~cmd:(selector "bindingsForObject:") ~typ:(id @-> returning (id)) x
   let isUsableWithObject x self = msg_send ~self ~cmd:(selector "isUsableWithObject:") ~typ:(id @-> returning (bool)) x

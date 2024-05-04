@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionGroupViewState"
 
-let copyWithResolvedPresentationStyle x self = msg_send ~self ~cmd:(selector "copyWithResolvedPresentationStyle:") ~typ:(llong @-> returning (id)) x
+let copyWithResolvedPresentationStyle x self = msg_send ~self ~cmd:(selector "copyWithResolvedPresentationStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let copyWithVerticalLayoutAxis x self = msg_send ~self ~cmd:(selector "copyWithVerticalLayoutAxis:") ~typ:(bool @-> returning (id)) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

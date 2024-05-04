@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCursor"
 
-module Class = struct
+module C = struct
   let _IBeamCursor self = msg_send ~self ~cmd:(selector "IBeamCursor") ~typ:(returning (id))
   let _IBeamCursorForVerticalLayout self = msg_send ~self ~cmd:(selector "IBeamCursorForVerticalLayout") ~typ:(returning (id))
   let arrowCursor self = msg_send ~self ~cmd:(selector "arrowCursor") ~typ:(returning (id))

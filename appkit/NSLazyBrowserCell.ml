@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLazyBrowserCell"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let lazyBrowserCell self = msg_send ~self ~cmd:(selector "lazyBrowserCell") ~typ:(returning (id))
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSText"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -16,17 +16,17 @@ end
 let _RTFDFromRange x self = msg_send ~self ~cmd:(selector "RTFDFromRange:") ~typ:(NSRange.t @-> returning (id)) x
 let _RTFFromRange x self = msg_send ~self ~cmd:(selector "RTFFromRange:") ~typ:(NSRange.t @-> returning (id)) x
 let accessibilityAXAttributedStringForCharacterRange x ~parent self = msg_send ~self ~cmd:(selector "accessibilityAXAttributedStringForCharacterRange:parent:") ~typ:(NSRange.t @-> id @-> returning (id)) x parent
-let accessibilityAttachmentAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityAttachmentAtIndex:") ~typ:(ullong @-> returning (id)) x
+let accessibilityAttachmentAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityAttachmentAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let accessibilityAttachments self = msg_send ~self ~cmd:(selector "accessibilityAttachments") ~typ:(returning (id))
 let accessibilityBoundsForCharacterRange x self = msg_send_stret ~self ~cmd:(selector "accessibilityBoundsForCharacterRange:") ~typ:(NSRange.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
-let accessibilityCharacterRangeForLineNumber x self = msg_send_stret ~self ~cmd:(selector "accessibilityCharacterRangeForLineNumber:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
+let accessibilityCharacterRangeForLineNumber x self = msg_send_stret ~self ~cmd:(selector "accessibilityCharacterRangeForLineNumber:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t (ULLong.of_int x)
 let accessibilityCharacterRangeForPosition x self = msg_send_stret ~self ~cmd:(selector "accessibilityCharacterRangeForPosition:") ~typ:(CGPoint.t @-> returning (NSRange.t)) ~return_type:NSRange.t x
 let accessibilityIndexForAttachment x self = msg_send ~self ~cmd:(selector "accessibilityIndexForAttachment:") ~typ:(id @-> returning (ullong)) x
 let accessibilityInsertionPointLineNumber self = msg_send ~self ~cmd:(selector "accessibilityInsertionPointLineNumber") ~typ:(returning (ullong))
 let accessibilityIsSelectedRangeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsSelectedRangeSettable") ~typ:(returning (bool))
 let accessibilityIsSelectedTextSettable self = msg_send ~self ~cmd:(selector "accessibilityIsSelectedTextSettable") ~typ:(returning (bool))
 let accessibilityIsVisibleCharacterRangeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsVisibleCharacterRangeSettable") ~typ:(returning (bool))
-let accessibilityLineNumberForCharacterIndex x self = msg_send ~self ~cmd:(selector "accessibilityLineNumberForCharacterIndex:") ~typ:(ullong @-> returning (ullong)) x
+let accessibilityLineNumberForCharacterIndex x self = msg_send ~self ~cmd:(selector "accessibilityLineNumberForCharacterIndex:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
 let accessibilityPostNotification x self = msg_send ~self ~cmd:(selector "accessibilityPostNotification:") ~typ:(id @-> returning (void)) x
 let accessibilityPostNotification' x ~withNotificationElement self = msg_send ~self ~cmd:(selector "accessibilityPostNotification:withNotificationElement:") ~typ:(id @-> id @-> returning (void)) x withNotificationElement
 let accessibilityRTFForCharacterRange x self = msg_send ~self ~cmd:(selector "accessibilityRTFForCharacterRange:") ~typ:(NSRange.t @-> returning (id)) x
@@ -37,9 +37,9 @@ let accessibilitySetSelectedText x self = msg_send ~self ~cmd:(selector "accessi
 let accessibilitySetVisibleCharacterRange x self = msg_send ~self ~cmd:(selector "accessibilitySetVisibleCharacterRange:") ~typ:(NSRange.t @-> returning (void)) x
 let accessibilitySharedCharacterRange self = msg_send_stret ~self ~cmd:(selector "accessibilitySharedCharacterRange") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
 let accessibilitySharedTextViews self = msg_send ~self ~cmd:(selector "accessibilitySharedTextViews") ~typ:(returning (id))
-let accessibilitySharedViewForIndex x self = msg_send ~self ~cmd:(selector "accessibilitySharedViewForIndex:") ~typ:(llong @-> returning (id)) x
-let accessibilityStyleRangeForCharacterIndex x self = msg_send_stret ~self ~cmd:(selector "accessibilityStyleRangeForCharacterIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t x
-let accessibilityTextLinkAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityTextLinkAtIndex:") ~typ:(ullong @-> returning (id)) x
+let accessibilitySharedViewForIndex x self = msg_send ~self ~cmd:(selector "accessibilitySharedViewForIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
+let accessibilityStyleRangeForCharacterIndex x self = msg_send_stret ~self ~cmd:(selector "accessibilityStyleRangeForCharacterIndex:") ~typ:(ullong @-> returning (NSRange.t)) ~return_type:NSRange.t (ULLong.of_int x)
+let accessibilityTextLinkAtIndex x self = msg_send ~self ~cmd:(selector "accessibilityTextLinkAtIndex:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let accessibilityTextLinks self = msg_send ~self ~cmd:(selector "accessibilityTextLinks") ~typ:(returning (id))
 let accessibilityTextView self = msg_send ~self ~cmd:(selector "accessibilityTextView") ~typ:(returning (id))
 let accessibilityValueAttribute self = msg_send ~self ~cmd:(selector "accessibilityValueAttribute") ~typ:(returning (id))
@@ -84,9 +84,9 @@ let replaceCharactersInRange2 x ~withString self = msg_send ~self ~cmd:(selector
 let scrollRangeToVisible x self = msg_send ~self ~cmd:(selector "scrollRangeToVisible:") ~typ:(NSRange.t @-> returning (void)) x
 let selectAll x self = msg_send ~self ~cmd:(selector "selectAll:") ~typ:(id @-> returning (void)) x
 let selectedRange self = msg_send_stret ~self ~cmd:(selector "selectedRange") ~typ:(returning (NSRange.t)) ~return_type:NSRange.t
-let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) x
+let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
-let setBaseWritingDirection x self = msg_send ~self ~cmd:(selector "setBaseWritingDirection:") ~typ:(llong @-> returning (void)) x
+let setBaseWritingDirection x self = msg_send ~self ~cmd:(selector "setBaseWritingDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDrawsBackground x self = msg_send ~self ~cmd:(selector "setDrawsBackground:") ~typ:(bool @-> returning (void)) x
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning (void)) x

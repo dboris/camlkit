@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStatusBarButtonCell"
 
-module Class = struct
+module C = struct
   let popupStatusBarMenu x ~ofBar ~inRect ~ofView ~withEvent self = msg_send ~self ~cmd:(selector "popupStatusBarMenu:ofBar:inRect:ofView:withEvent:") ~typ:(id @-> id @-> CGRect.t @-> id @-> id @-> returning (void)) x ofBar inRect ofView withEvent
 end
 
@@ -20,16 +20,17 @@ let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let looksDisabled self = msg_send ~self ~cmd:(selector "looksDisabled") ~typ:(returning (bool))
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning (void)) x
-let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning (llong)) x
+let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning (llong)) (ULLong.of_int x)
 let sendActionOnMask self = msg_send ~self ~cmd:(selector "sendActionOnMask") ~typ:(returning (ullong))
 let setAlternateImage x self = msg_send ~self ~cmd:(selector "setAlternateImage:") ~typ:(id @-> returning (void)) x
 let setAttributedTitle x self = msg_send ~self ~cmd:(selector "setAttributedTitle:") ~typ:(id @-> returning (void)) x
 let setDoubleAction x self = msg_send ~self ~cmd:(selector "setDoubleAction:") ~typ:(_SEL @-> returning (void)) x
 let setFont x self = msg_send ~self ~cmd:(selector "setFont:") ~typ:(id @-> returning (void)) x
-let setHighlightsBy x self = msg_send ~self ~cmd:(selector "setHighlightsBy:") ~typ:(ullong @-> returning (void)) x
+let setHighlightsBy x self = msg_send ~self ~cmd:(selector "setHighlightsBy:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setImagePosition x self = msg_send ~self ~cmd:(selector "setImagePosition:") ~typ:(ullong @-> returning (void)) x
+let setImagePosition x self = msg_send ~self ~cmd:(selector "setImagePosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setLooksDisabled x self = msg_send ~self ~cmd:(selector "setLooksDisabled:") ~typ:(bool @-> returning (void)) x
+let setSelectionInset x self = msg_send ~self ~cmd:(selector "setSelectionInset:") ~typ:(ptr void @-> returning (void)) x
 let setStatusBar x self = msg_send ~self ~cmd:(selector "setStatusBar:") ~typ:(id @-> returning (void)) x
 let setStatusMenu x self = msg_send ~self ~cmd:(selector "setStatusMenu:") ~typ:(id @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x

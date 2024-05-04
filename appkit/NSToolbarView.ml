@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSToolbarView"
 
-module Class = struct
+module C = struct
   let defaultMenu self = msg_send ~self ~cmd:(selector "defaultMenu") ~typ:(returning (id))
   let newViewForToolbar x ~inWindow self = msg_send ~self ~cmd:(selector "newViewForToolbar:inWindow:") ~typ:(id @-> id @-> returning (id)) x inWindow
 end
@@ -23,11 +23,11 @@ let accessibilityOverflowButtonAttribute self = msg_send ~self ~cmd:(selector "a
 let accessibilityRoleAttribute self = msg_send ~self ~cmd:(selector "accessibilityRoleAttribute") ~typ:(returning (id))
 let accessibilitySelectedChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilitySelectedChildrenAttribute") ~typ:(returning (id))
 let adjustToWindow x self = msg_send ~self ~cmd:(selector "adjustToWindow:") ~typ:(id @-> returning (void)) x
-let beginUpdateInsertionAnimationAtIndex x ~throwAwayCacheWhenDone self = msg_send ~self ~cmd:(selector "beginUpdateInsertionAnimationAtIndex:throwAwayCacheWhenDone:") ~typ:(llong @-> bool @-> returning (void)) x throwAwayCacheWhenDone
+let beginUpdateInsertionAnimationAtIndex x ~throwAwayCacheWhenDone self = msg_send ~self ~cmd:(selector "beginUpdateInsertionAnimationAtIndex:throwAwayCacheWhenDone:") ~typ:(llong @-> bool @-> returning (void)) (LLong.of_int x) throwAwayCacheWhenDone
 let clippedItems self = msg_send ~self ~cmd:(selector "clippedItems") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let draggedImage x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning (void)) x endedAt operation
+let draggedImage x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning (void)) x endedAt (ULLong.of_int operation)
 let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning (ullong)) x
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning (void)) x
 let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning (ullong)) x
@@ -41,7 +41,7 @@ let endTitleRename self = msg_send ~self ~cmd:(selector "endTitleRename") ~typ:(
 let fileButton self = msg_send ~self ~cmd:(selector "fileButton") ~typ:(returning (id))
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let insertItemViewer x ~atIndex self = msg_send ~self ~cmd:(selector "insertItemViewer:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex
+let insertItemViewer x ~atIndex self = msg_send ~self ~cmd:(selector "insertItemViewer:atIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int atIndex)
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void))
 let layoutHeight self = msg_send ~self ~cmd:(selector "layoutHeight") ~typ:(returning (double))
@@ -56,7 +56,7 @@ let performDragOperation x self = msg_send ~self ~cmd:(selector "performDragOper
 let prepareForWindowTitleRename self = msg_send ~self ~cmd:(selector "prepareForWindowTitleRename") ~typ:(returning (void))
 let preservesContentDuringLiveResize self = msg_send ~self ~cmd:(selector "preservesContentDuringLiveResize") ~typ:(returning (bool))
 let privateDragTypes self = msg_send ~self ~cmd:(selector "privateDragTypes") ~typ:(returning (id))
-let removeItemViewerAtIndex x self = msg_send ~self ~cmd:(selector "removeItemViewerAtIndex:") ~typ:(llong @-> returning (void)) x
+let removeItemViewerAtIndex x self = msg_send ~self ~cmd:(selector "removeItemViewerAtIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setMinimumInlineWindowTitleWidth x self = msg_send ~self ~cmd:(selector "setMinimumInlineWindowTitleWidth:") ~typ:(double @-> returning (void)) x
 let setShouldDrawWindowTitle x self = msg_send ~self ~cmd:(selector "setShouldDrawWindowTitle:") ~typ:(bool @-> returning (void)) x

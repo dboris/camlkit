@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSCustomResource"
 
-module Class = struct
+module C = struct
   let bundleForCurrentNib self = msg_send ~self ~cmd:(selector "bundleForCurrentNib") ~typ:(returning (id))
   let bundleForImageSearch self = msg_send ~self ~cmd:(selector "bundleForImageSearch") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

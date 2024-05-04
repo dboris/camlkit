@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderingContext"
 
-module Class = struct
+module C = struct
   let renderingContextForRenderConfig x self = msg_send ~self ~cmd:(selector "renderingContextForRenderConfig:") ~typ:(id @-> returning (id)) x
 end
 
@@ -20,9 +20,9 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let isFloating self = msg_send ~self ~cmd:(selector "isFloating") ~typ:(returning (bool))
 let keyboardType self = msg_send ~self ~cmd:(selector "keyboardType") ~typ:(returning (llong))
 let renderConfig self = msg_send ~self ~cmd:(selector "renderConfig") ~typ:(returning (id))
-let setHandBias x self = msg_send ~self ~cmd:(selector "setHandBias:") ~typ:(llong @-> returning (void)) x
+let setHandBias x self = msg_send ~self ~cmd:(selector "setHandBias:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setIsFloating x self = msg_send ~self ~cmd:(selector "setIsFloating:") ~typ:(bool @-> returning (void)) x
-let setKeyboardType x self = msg_send ~self ~cmd:(selector "setKeyboardType:") ~typ:(llong @-> returning (void)) x
+let setKeyboardType x self = msg_send ~self ~cmd:(selector "setKeyboardType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRenderConfig x self = msg_send ~self ~cmd:(selector "setRenderConfig:") ~typ:(id @-> returning (void)) x
-let setShiftState x self = msg_send ~self ~cmd:(selector "setShiftState:") ~typ:(ullong @-> returning (void)) x
+let setShiftState x self = msg_send ~self ~cmd:(selector "setShiftState:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let shiftState self = msg_send ~self ~cmd:(selector "shiftState") ~typ:(returning (ullong))

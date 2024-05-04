@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKBrowsingContextHandle"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 

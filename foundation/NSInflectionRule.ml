@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSInflectionRule"
 
-module Class = struct
+module C = struct
   let automaticRule self = msg_send ~self ~cmd:(selector "automaticRule") ~typ:(returning (id))
   let canInflectLanguage x self = msg_send ~self ~cmd:(selector "canInflectLanguage:") ~typ:(id @-> returning (bool)) x
   let canInflectPreferredLocalization self = msg_send ~self ~cmd:(selector "canInflectPreferredLocalization") ~typ:(returning (bool))

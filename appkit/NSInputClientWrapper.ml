@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInputClientWrapper"
 
-module Class = struct
+module C = struct
   let clientWrapperWithRealClient x self = msg_send ~self ~cmd:(selector "clientWrapperWithRealClient:") ~typ:(id @-> returning (id)) x
   let invalidateConnectionsAsNecessary x self = msg_send ~self ~cmd:(selector "invalidateConnectionsAsNecessary:") ~typ:(id @-> returning (void)) x
   let terminateForClient x self = msg_send ~self ~cmd:(selector "terminateForClient:") ~typ:(id @-> returning (void)) x

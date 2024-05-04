@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSOpenGLView"
 
-module Class = struct
+module C = struct
   let defaultPixelFormat self = msg_send ~self ~cmd:(selector "defaultPixelFormat") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end

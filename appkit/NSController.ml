@@ -8,12 +8,12 @@ open Foundation
 
 let _class_ = get_class "NSController"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
-let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath options context
+let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath (ULLong.of_int options) context
 let alwaysPresentsApplicationModalAlerts self = msg_send ~self ~cmd:(selector "alwaysPresentsApplicationModalAlerts") ~typ:(returning (bool))
 let commitEditing self = msg_send ~self ~cmd:(selector "commitEditing") ~typ:(returning (bool))
 let commitEditingAndReturnError x self = msg_send ~self ~cmd:(selector "commitEditingAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x

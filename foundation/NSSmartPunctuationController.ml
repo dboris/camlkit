@@ -6,7 +6,7 @@ open Objc
 let _class_ = get_class "NSSmartPunctuationController"
 
 let client self = msg_send ~self ~cmd:(selector "client") ~typ:(returning (id))
-let clientDidReplaceRange x ~changeInLength self = msg_send ~self ~cmd:(selector "clientDidReplaceRange:changeInLength:") ~typ:(NSRange.t @-> llong @-> returning (void)) x changeInLength
+let clientDidReplaceRange x ~changeInLength self = msg_send ~self ~cmd:(selector "clientDidReplaceRange:changeInLength:") ~typ:(NSRange.t @-> llong @-> returning (void)) x (LLong.of_int changeInLength)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let setClient x self = msg_send ~self ~cmd:(selector "setClient:") ~typ:(id @-> returning (void)) x

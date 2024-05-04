@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptClassDescription"
 
-module Class = struct
+module C = struct
   let classDescriptionForClass x self = msg_send ~self ~cmd:(selector "classDescriptionForClass:") ~typ:(_Class @-> returning (id)) x
 end
 

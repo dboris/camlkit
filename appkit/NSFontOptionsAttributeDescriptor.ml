@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFontOptionsAttributeDescriptor"
 
-module Class = struct
+module C = struct
   let attributeDescriptorWithName x ~allowedClass self = msg_send ~self ~cmd:(selector "attributeDescriptorWithName:allowedClass:") ~typ:(id @-> _Class @-> returning (id)) x allowedClass
 end
 

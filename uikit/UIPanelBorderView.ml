@@ -18,5 +18,5 @@ let setBackdropGroupName x self = msg_send ~self ~cmd:(selector "setBackdropGrou
 let setDraggable x self = msg_send ~self ~cmd:(selector "setDraggable:") ~typ:(bool @-> returning (void)) x
 let setObservesTime x self = msg_send ~self ~cmd:(selector "setObservesTime:") ~typ:(bool @-> returning (void)) x
 let setReplicatingView x self = msg_send ~self ~cmd:(selector "setReplicatingView:") ~typ:(id @-> returning (void)) x
-let setStatusBarAvoidance x self = msg_send ~self ~cmd:(selector "setStatusBarAvoidance:") ~typ:(llong @-> returning (void)) x
+let setStatusBarAvoidance x self = msg_send ~self ~cmd:(selector "setStatusBarAvoidance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let statusBarAvoidance self = msg_send ~self ~cmd:(selector "statusBarAvoidance") ~typ:(returning (llong))

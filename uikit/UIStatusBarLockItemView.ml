@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIStatusBarLockItemView"
 
-module Class = struct
+module C = struct
   let lockSlideAnimationDuration self = msg_send ~self ~cmd:(selector "lockSlideAnimationDuration") ~typ:(returning (double))
 end
 

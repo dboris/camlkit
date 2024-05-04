@@ -8,17 +8,18 @@ open Foundation
 
 let _class_ = get_class "NSRunningApplication"
 
-module Class = struct
+module C = struct
   let currentApplication self = msg_send ~self ~cmd:(selector "currentApplication") ~typ:(returning (id))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
+  let runningApplicationWithAuditToken x self = msg_send ~self ~cmd:(selector "runningApplicationWithAuditToken:") ~typ:(ptr void @-> returning (id)) x
   let runningApplicationWithProcessIdentifier x self = msg_send ~self ~cmd:(selector "runningApplicationWithProcessIdentifier:") ~typ:(int @-> returning (id)) x
   let runningApplicationsWithBundleIdentifier x self = msg_send ~self ~cmd:(selector "runningApplicationsWithBundleIdentifier:") ~typ:(id @-> returning (id)) x
   let terminateAutomaticallyTerminableApplications self = msg_send ~self ~cmd:(selector "terminateAutomaticallyTerminableApplications") ~typ:(returning (void))
 end
 
-let activateWithOptions x self = msg_send ~self ~cmd:(selector "activateWithOptions:") ~typ:(ullong @-> returning (bool)) x
+let activateWithOptions x self = msg_send ~self ~cmd:(selector "activateWithOptions:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
 let activationPolicy self = msg_send ~self ~cmd:(selector "activationPolicy") ~typ:(returning (llong))
-let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath options context
+let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath (ULLong.of_int options) context
 let applicationSerialNumber self = msg_send ~self ~cmd:(selector "applicationSerialNumber") ~typ:(returning (ptr void))
 let applyPendingPropertyChanges self = msg_send ~self ~cmd:(selector "applyPendingPropertyChanges") ~typ:(returning (bool))
 let bundleIdentifier self = msg_send ~self ~cmd:(selector "bundleIdentifier") ~typ:(returning (id))

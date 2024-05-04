@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSApplicationSettingsNode"
 
-module Class = struct
+module C = struct
   let nodeWithDictionary x ~parentRootNode ~parentNode ~stringsTableName self = msg_send ~self ~cmd:(selector "nodeWithDictionary:parentRootNode:parentNode:stringsTableName:") ~typ:(id @-> id @-> id @-> id @-> returning (id)) x parentRootNode parentNode stringsTableName
 end
 

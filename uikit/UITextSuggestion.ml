@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextSuggestion"
 
-module Class = struct
+module C = struct
   let textSuggestionWithInputText x self = msg_send ~self ~cmd:(selector "textSuggestionWithInputText:") ~typ:(id @-> returning (id)) x
   let textSuggestionWithInputText' x ~searchText self = msg_send ~self ~cmd:(selector "textSuggestionWithInputText:searchText:") ~typ:(id @-> id @-> returning (id)) x searchText
 end

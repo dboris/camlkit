@@ -8,6 +8,10 @@ open Foundation
 
 let _class_ = get_class "NSImageRepGeometryProxy"
 
+module C = struct
+  let proxyWithRep x ~alignmentRect ~capInsets ~resizingMode ~template self = msg_send ~self ~cmd:(selector "proxyWithRep:alignmentRect:capInsets:resizingMode:template:") ~typ:(id @-> CGRect.t @-> ptr void @-> llong @-> bool @-> returning (id)) x alignmentRect capInsets (LLong.of_int resizingMode) template
+end
+
 let alignmentRect self = msg_send_stret ~self ~cmd:(selector "alignmentRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))

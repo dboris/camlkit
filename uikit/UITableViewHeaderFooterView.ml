@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UITableViewHeaderFooterView"
 
-module Class = struct
-  let defaultFooterHeightForStyle x self = msg_send ~self ~cmd:(selector "defaultFooterHeightForStyle:") ~typ:(llong @-> returning (double)) x
-  let defaultHeaderHeightForStyle x self = msg_send ~self ~cmd:(selector "defaultHeaderHeightForStyle:") ~typ:(llong @-> returning (double)) x
+module C = struct
+  let defaultFooterHeightForStyle x self = msg_send ~self ~cmd:(selector "defaultFooterHeightForStyle:") ~typ:(llong @-> returning (double)) (LLong.of_int x)
+  let defaultHeaderHeightForStyle x self = msg_send ~self ~cmd:(selector "defaultHeaderHeightForStyle:") ~typ:(llong @-> returning (double)) (LLong.of_int x)
 end
 
 let automaticallyUpdatesBackgroundConfiguration self = msg_send ~self ~cmd:(selector "automaticallyUpdatesBackgroundConfiguration") ~typ:(returning (bool))
@@ -53,9 +53,9 @@ let setReuseIdentifier x self = msg_send ~self ~cmd:(selector "setReuseIdentifie
 let setSectionHeader x self = msg_send ~self ~cmd:(selector "setSectionHeader:") ~typ:(bool @-> returning (void)) x
 let setTable x self = msg_send ~self ~cmd:(selector "setTable:") ~typ:(id @-> returning (void)) x
 let setTableView x self = msg_send ~self ~cmd:(selector "setTableView:") ~typ:(id @-> returning (void)) x
-let setTableViewStyle x self = msg_send ~self ~cmd:(selector "setTableViewStyle:") ~typ:(llong @-> returning (void)) x
+let setTableViewStyle x self = msg_send ~self ~cmd:(selector "setTableViewStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setText x self = msg_send ~self ~cmd:(selector "setText:") ~typ:(id @-> returning (void)) x
-let setTextAlignment x self = msg_send ~self ~cmd:(selector "setTextAlignment:") ~typ:(llong @-> returning (void)) x
+let setTextAlignment x self = msg_send ~self ~cmd:(selector "setTextAlignment:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning (void)) x
 let setTranslatesAutoresizingMaskIntoConstraints x self = msg_send ~self ~cmd:(selector "setTranslatesAutoresizingMaskIntoConstraints:") ~typ:(bool @-> returning (void)) x
 let setUserInteractionEnabled x self = msg_send ~self ~cmd:(selector "setUserInteractionEnabled:") ~typ:(bool @-> returning (void)) x

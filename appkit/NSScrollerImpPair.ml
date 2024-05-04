@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScrollerImpPair"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let scrollerLayoutDirection self = msg_send ~self ~cmd:(selector "scrollerLayoutDirection") ~typ:(returning (llong))
   let setSuppressScrollerFlash x ~forDecendantsOfView self = msg_send ~self ~cmd:(selector "setSuppressScrollerFlash:forDecendantsOfView:") ~typ:(bool @-> id @-> returning (void)) x forDecendantsOfView
@@ -35,7 +35,7 @@ let inScrollGesture self = msg_send ~self ~cmd:(selector "inScrollGesture") ~typ
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let isInScrollGesture self = msg_send ~self ~cmd:(selector "isInScrollGesture") ~typ:(returning (bool))
-let lockOverlayScrollerState x self = msg_send ~self ~cmd:(selector "lockOverlayScrollerState:") ~typ:(ullong @-> returning (void)) x
+let lockOverlayScrollerState x self = msg_send ~self ~cmd:(selector "lockOverlayScrollerState:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let mouseEntered x self = msg_send ~self ~cmd:(selector "mouseEntered:") ~typ:(id @-> returning (void)) x
 let mouseEnteredContentArea self = msg_send ~self ~cmd:(selector "mouseEnteredContentArea") ~typ:(returning (void))
 let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id @-> returning (void)) x
@@ -53,8 +53,8 @@ let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id 
 let setFlipped x self = msg_send ~self ~cmd:(selector "setFlipped:") ~typ:(bool @-> returning (void)) x
 let setHorizontalScrollerImp x self = msg_send ~self ~cmd:(selector "setHorizontalScrollerImp:") ~typ:(id @-> returning (void)) x
 let setScrollView x self = msg_send ~self ~cmd:(selector "setScrollView:") ~typ:(id @-> returning (void)) x
-let setScrollerKnobStyle x self = msg_send ~self ~cmd:(selector "setScrollerKnobStyle:") ~typ:(llong @-> returning (void)) x
-let setScrollerStyle x self = msg_send ~self ~cmd:(selector "setScrollerStyle:") ~typ:(llong @-> returning (void)) x
+let setScrollerKnobStyle x self = msg_send ~self ~cmd:(selector "setScrollerKnobStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setScrollerStyle x self = msg_send ~self ~cmd:(selector "setScrollerStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setVerticalScrollerImp x self = msg_send ~self ~cmd:(selector "setVerticalScrollerImp:") ~typ:(id @-> returning (void)) x
 let startLiveResize self = msg_send ~self ~cmd:(selector "startLiveResize") ~typ:(returning (void))
 let unlockOverlayScrollerState self = msg_send ~self ~cmd:(selector "unlockOverlayScrollerState") ~typ:(returning (void))

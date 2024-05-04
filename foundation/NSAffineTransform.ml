@@ -5,13 +5,14 @@ open Objc
 
 let _class_ = get_class "NSAffineTransform"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning (id))
   let transformWithFlipUsingHeight x self = msg_send ~self ~cmd:(selector "transformWithFlipUsingHeight:") ~typ:(double @-> returning (id)) x
   let transformWithRotationInDegrees x self = msg_send ~self ~cmd:(selector "transformWithRotationInDegrees:") ~typ:(double @-> returning (id)) x
   let transformWithRotationInRadians x self = msg_send ~self ~cmd:(selector "transformWithRotationInRadians:") ~typ:(double @-> returning (id)) x
   let transformWithScale x self = msg_send ~self ~cmd:(selector "transformWithScale:") ~typ:(double @-> returning (id)) x
+  let transformWithTransformStruct x self = msg_send ~self ~cmd:(selector "transformWithTransformStruct:") ~typ:(ptr void @-> returning (id)) x
   let transformWithXScale x ~yScale self = msg_send ~self ~cmd:(selector "transformWithXScale:yScale:") ~typ:(double @-> double @-> returning (id)) x yScale
   let transformWithXTranslation x ~yTranslation self = msg_send ~self ~cmd:(selector "transformWithXTranslation:yTranslation:") ~typ:(double @-> double @-> returning (id)) x yTranslation
 end
@@ -31,6 +32,7 @@ let rotateByDegrees x self = msg_send ~self ~cmd:(selector "rotateByDegrees:") ~
 let rotateByRadians x self = msg_send ~self ~cmd:(selector "rotateByRadians:") ~typ:(double @-> returning (void)) x
 let scaleBy x self = msg_send ~self ~cmd:(selector "scaleBy:") ~typ:(double @-> returning (void)) x
 let scaleXBy x ~yBy self = msg_send ~self ~cmd:(selector "scaleXBy:yBy:") ~typ:(double @-> double @-> returning (void)) x yBy
+let setTransformStruct x self = msg_send ~self ~cmd:(selector "setTransformStruct:") ~typ:(ptr void @-> returning (void)) x
 let transformPoint x self = msg_send_stret ~self ~cmd:(selector "transformPoint:") ~typ:(CGPoint.t @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
 let transformSize x self = msg_send_stret ~self ~cmd:(selector "transformSize:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let translateXBy x ~yBy self = msg_send ~self ~cmd:(selector "translateXBy:yBy:") ~typ:(double @-> double @-> returning (void)) x yBy

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextMagnifierCaret"
 
-module Class = struct
+module C = struct
   let activeCaretMagnifier self = msg_send ~self ~cmd:(selector "activeCaretMagnifier") ~typ:(returning (id))
   let renderClass self = msg_send ~self ~cmd:(selector "renderClass") ~typ:(returning (_Class))
   let sharedCaretMagnifier self = msg_send ~self ~cmd:(selector "sharedCaretMagnifier") ~typ:(returning (id))

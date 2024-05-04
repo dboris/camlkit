@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDraggingSystemSessionInfo"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -21,6 +21,7 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let processIdentifier self = msg_send ~self ~cmd:(selector "processIdentifier") ~typ:(returning (int))
 let sceneIdentifier self = msg_send ~self ~cmd:(selector "sceneIdentifier") ~typ:(returning (id))
 let sessionIdentifier self = msg_send ~self ~cmd:(selector "sessionIdentifier") ~typ:(returning (uint))
+let setAuditToken x self = msg_send ~self ~cmd:(selector "setAuditToken:") ~typ:(ptr void @-> returning (void)) x
 let setProcessIdentifier x self = msg_send ~self ~cmd:(selector "setProcessIdentifier:") ~typ:(int @-> returning (void)) x
 let setSceneIdentifier x self = msg_send ~self ~cmd:(selector "setSceneIdentifier:") ~typ:(id @-> returning (void)) x
 let setSessionIdentifier x self = msg_send ~self ~cmd:(selector "setSessionIdentifier:") ~typ:(uint @-> returning (void)) x

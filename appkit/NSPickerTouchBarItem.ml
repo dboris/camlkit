@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSPickerTouchBarItem"
 
-module Class = struct
-  let pickerTouchBarItemWithIdentifier x ~images ~selectionMode ~target ~action self = msg_send ~self ~cmd:(selector "pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:") ~typ:(id @-> id @-> llong @-> id @-> _SEL @-> returning (id)) x images selectionMode target action
-  let pickerTouchBarItemWithIdentifier' x ~labels ~selectionMode ~target ~action self = msg_send ~self ~cmd:(selector "pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:") ~typ:(id @-> id @-> llong @-> id @-> _SEL @-> returning (id)) x labels selectionMode target action
+module C = struct
+  let pickerTouchBarItemWithIdentifier x ~images ~selectionMode ~target ~action self = msg_send ~self ~cmd:(selector "pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:") ~typ:(id @-> id @-> llong @-> id @-> _SEL @-> returning (id)) x images (LLong.of_int selectionMode) target action
+  let pickerTouchBarItemWithIdentifier' x ~labels ~selectionMode ~target ~action self = msg_send ~self ~cmd:(selector "pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:") ~typ:(id @-> id @-> llong @-> id @-> _SEL @-> returning (id)) x labels (LLong.of_int selectionMode) target action
 end
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
@@ -20,12 +20,12 @@ let controlRepresentation self = msg_send ~self ~cmd:(selector "controlRepresent
 let customizationLabel self = msg_send ~self ~cmd:(selector "customizationLabel") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
-let imageAtIndex x self = msg_send ~self ~cmd:(selector "imageAtIndex:") ~typ:(llong @-> returning (id)) x
+let imageAtIndex x self = msg_send ~self ~cmd:(selector "imageAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifier:") ~typ:(id @-> returning (id)) x
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
-let isEnabledAtIndex x self = msg_send ~self ~cmd:(selector "isEnabledAtIndex:") ~typ:(llong @-> returning (bool)) x
-let labelAtIndex x self = msg_send ~self ~cmd:(selector "labelAtIndex:") ~typ:(llong @-> returning (id)) x
+let isEnabledAtIndex x self = msg_send ~self ~cmd:(selector "isEnabledAtIndex:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
+let labelAtIndex x self = msg_send ~self ~cmd:(selector "labelAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let numberOfOptions self = msg_send ~self ~cmd:(selector "numberOfOptions") ~typ:(returning (llong))
 let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning (llong))
 let selectionColor self = msg_send ~self ~cmd:(selector "selectionColor") ~typ:(returning (id))
@@ -33,16 +33,16 @@ let selectionMode self = msg_send ~self ~cmd:(selector "selectionMode") ~typ:(re
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning (void)) x
 let setCollapsedRepresentationImage x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationImage:") ~typ:(id @-> returning (void)) x
 let setCollapsedRepresentationLabel x self = msg_send ~self ~cmd:(selector "setCollapsedRepresentationLabel:") ~typ:(id @-> returning (void)) x
-let setControlRepresentation x self = msg_send ~self ~cmd:(selector "setControlRepresentation:") ~typ:(llong @-> returning (void)) x
+let setControlRepresentation x self = msg_send ~self ~cmd:(selector "setControlRepresentation:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
-let setEnabled' x ~atIndex self = msg_send ~self ~cmd:(selector "setEnabled:atIndex:") ~typ:(bool @-> llong @-> returning (void)) x atIndex
-let setImage x ~atIndex self = msg_send ~self ~cmd:(selector "setImage:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex
-let setLabel x ~atIndex self = msg_send ~self ~cmd:(selector "setLabel:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex
-let setNumberOfOptions x self = msg_send ~self ~cmd:(selector "setNumberOfOptions:") ~typ:(llong @-> returning (void)) x
-let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(llong @-> returning (void)) x
+let setEnabled' x ~atIndex self = msg_send ~self ~cmd:(selector "setEnabled:atIndex:") ~typ:(bool @-> llong @-> returning (void)) x (LLong.of_int atIndex)
+let setImage x ~atIndex self = msg_send ~self ~cmd:(selector "setImage:atIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int atIndex)
+let setLabel x ~atIndex self = msg_send ~self ~cmd:(selector "setLabel:atIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int atIndex)
+let setNumberOfOptions x self = msg_send ~self ~cmd:(selector "setNumberOfOptions:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setSelectedIndex x self = msg_send ~self ~cmd:(selector "setSelectedIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSelectionColor x self = msg_send ~self ~cmd:(selector "setSelectionColor:") ~typ:(id @-> returning (void)) x
-let setSelectionMode x self = msg_send ~self ~cmd:(selector "setSelectionMode:") ~typ:(llong @-> returning (void)) x
+let setSelectionMode x self = msg_send ~self ~cmd:(selector "setSelectionMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))

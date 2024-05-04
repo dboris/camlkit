@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITargetedDragPreview"
 
-module Class = struct
+module C = struct
   let previewForURL x ~target self = msg_send ~self ~cmd:(selector "previewForURL:target:") ~typ:(id @-> id @-> returning (id)) x target
   let previewForURL' x ~title ~target self = msg_send ~self ~cmd:(selector "previewForURL:title:target:") ~typ:(id @-> id @-> id @-> returning (id)) x title target
 end

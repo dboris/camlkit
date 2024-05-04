@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "UIUserNotificationActionSettings"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
 let actions self = msg_send ~self ~cmd:(selector "actions") ~typ:(returning (id))
 let actionsByContext self = msg_send ~self ~cmd:(selector "actionsByContext") ~typ:(returning (id))
-let actionsForContext x self = msg_send ~self ~cmd:(selector "actionsForContext:") ~typ:(ullong @-> returning (id)) x
+let actionsForContext x self = msg_send ~self ~cmd:(selector "actionsForContext:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let category self = msg_send ~self ~cmd:(selector "category") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

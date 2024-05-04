@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSImageRep"
 
-module Class = struct
+module C = struct
   let canInitWithData x self = msg_send ~self ~cmd:(selector "canInitWithData:") ~typ:(id @-> returning (bool)) x
   let canInitWithPasteboard x self = msg_send ~self ~cmd:(selector "canInitWithPasteboard:") ~typ:(id @-> returning (bool)) x
   let imageFileTypes self = msg_send ~self ~cmd:(selector "imageFileTypes") ~typ:(returning (id))
@@ -46,7 +46,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let draw self = msg_send ~self ~cmd:(selector "draw") ~typ:(returning (bool))
 let drawAtPoint x self = msg_send ~self ~cmd:(selector "drawAtPoint:") ~typ:(CGPoint.t @-> returning (bool)) x
 let drawInRect x self = msg_send ~self ~cmd:(selector "drawInRect:") ~typ:(CGRect.t @-> returning (bool)) x
-let drawInRect' x ~fromRect ~operation ~fraction ~respectFlipped ~hints self = msg_send ~self ~cmd:(selector "drawInRect:fromRect:operation:fraction:respectFlipped:hints:") ~typ:(CGRect.t @-> CGRect.t @-> ullong @-> double @-> bool @-> id @-> returning (bool)) x fromRect operation fraction respectFlipped hints
+let drawInRect' x ~fromRect ~operation ~fraction ~respectFlipped ~hints self = msg_send ~self ~cmd:(selector "drawInRect:fromRect:operation:fraction:respectFlipped:hints:") ~typ:(CGRect.t @-> CGRect.t @-> ullong @-> double @-> bool @-> id @-> returning (bool)) x fromRect (ULLong.of_int operation) fraction respectFlipped hints
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hasAlpha self = msg_send ~self ~cmd:(selector "hasAlpha") ~typ:(returning (bool))
 let inheritsGeometryFromImage self = msg_send ~self ~cmd:(selector "inheritsGeometryFromImage") ~typ:(returning (bool))
@@ -61,12 +61,12 @@ let repWithGeometryInheritedFromImage x self = msg_send ~self ~cmd:(selector "re
 let replacementObjectForCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForCoder:") ~typ:(id @-> returning (id)) x
 let resizingMode self = msg_send ~self ~cmd:(selector "resizingMode") ~typ:(returning (llong))
 let setAlpha x self = msg_send ~self ~cmd:(selector "setAlpha:") ~typ:(bool @-> returning (void)) x
-let setBitsPerSample x self = msg_send ~self ~cmd:(selector "setBitsPerSample:") ~typ:(llong @-> returning (void)) x
+let setBitsPerSample x self = msg_send ~self ~cmd:(selector "setBitsPerSample:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setColorSpace x self = msg_send ~self ~cmd:(selector "setColorSpace:") ~typ:(id @-> returning (void)) x
 let setColorSpaceName x self = msg_send ~self ~cmd:(selector "setColorSpaceName:") ~typ:(id @-> returning (void)) x
-let setLayoutDirection x self = msg_send ~self ~cmd:(selector "setLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setLayoutDirection x self = msg_send ~self ~cmd:(selector "setLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning (void)) x
-let setPixelsHigh x self = msg_send ~self ~cmd:(selector "setPixelsHigh:") ~typ:(llong @-> returning (void)) x
-let setPixelsWide x self = msg_send ~self ~cmd:(selector "setPixelsWide:") ~typ:(llong @-> returning (void)) x
+let setPixelsHigh x self = msg_send ~self ~cmd:(selector "setPixelsHigh:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPixelsWide x self = msg_send ~self ~cmd:(selector "setPixelsWide:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning (void)) x
 let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

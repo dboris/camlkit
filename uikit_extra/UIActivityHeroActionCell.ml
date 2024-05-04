@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIActivityHeroActionCell"
 
-module Class = struct
+module C = struct
   let heightForNumberOfLines x self = msg_send ~self ~cmd:(selector "heightForNumberOfLines:") ~typ:(double @-> returning (double)) x
   let numberOfLinesForTitle x ~itemWidth self = msg_send ~self ~cmd:(selector "numberOfLinesForTitle:itemWidth:") ~typ:(id @-> double @-> returning (llong)) x itemWidth
 end

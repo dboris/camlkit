@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -67,7 +67,7 @@ let setAllowsLinkPreview x self = msg_send ~self ~cmd:(selector "setAllowsLinkPr
 let setAllowsPictureInPictureMediaPlayback x self = msg_send ~self ~cmd:(selector "setAllowsPictureInPictureMediaPlayback:") ~typ:(bool @-> returning (void)) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x
-let setDataDetectorTypes x self = msg_send ~self ~cmd:(selector "setDataDetectorTypes:") ~typ:(ullong @-> returning (void)) x
+let setDataDetectorTypes x self = msg_send ~self ~cmd:(selector "setDataDetectorTypes:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setDetectsPhoneNumbers x self = msg_send ~self ~cmd:(selector "setDetectsPhoneNumbers:") ~typ:(bool @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
@@ -77,8 +77,8 @@ let setMediaPlaybackAllowsAirPlay x self = msg_send ~self ~cmd:(selector "setMed
 let setMediaPlaybackRequiresUserAction x self = msg_send ~self ~cmd:(selector "setMediaPlaybackRequiresUserAction:") ~typ:(bool @-> returning (void)) x
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning (void)) x
 let setPageLength x self = msg_send ~self ~cmd:(selector "setPageLength:") ~typ:(double @-> returning (void)) x
-let setPaginationBreakingMode x self = msg_send ~self ~cmd:(selector "setPaginationBreakingMode:") ~typ:(llong @-> returning (void)) x
-let setPaginationMode x self = msg_send ~self ~cmd:(selector "setPaginationMode:") ~typ:(llong @-> returning (void)) x
+let setPaginationBreakingMode x self = msg_send ~self ~cmd:(selector "setPaginationBreakingMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPaginationMode x self = msg_send ~self ~cmd:(selector "setPaginationMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setScalesPageToFit x self = msg_send ~self ~cmd:(selector "setScalesPageToFit:") ~typ:(bool @-> returning (void)) x
 let setSuppressesIncrementalRendering x self = msg_send ~self ~cmd:(selector "setSuppressesIncrementalRendering:") ~typ:(bool @-> returning (void)) x
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
@@ -100,7 +100,7 @@ let webView8 x ~didClearWindowObject ~forFrame self = msg_send ~self ~cmd:(selec
 let webView9 x ~didFailLoadWithError ~forFrame self = msg_send ~self ~cmd:(selector "webView:didFailLoadWithError:forFrame:") ~typ:(id @-> id @-> id @-> returning (void)) x didFailLoadWithError forFrame
 let webView10 x ~didFailProvisionalLoadWithError ~forFrame self = msg_send ~self ~cmd:(selector "webView:didFailProvisionalLoadWithError:forFrame:") ~typ:(id @-> id @-> id @-> returning (void)) x didFailProvisionalLoadWithError forFrame
 let webView11 x ~didReceiveTitle ~forFrame self = msg_send ~self ~cmd:(selector "webView:didReceiveTitle:forFrame:") ~typ:(id @-> id @-> id @-> returning (void)) x didReceiveTitle forFrame
-let webView12 x ~exceededApplicationCacheOriginQuotaForSecurityOrigin ~totalSpaceNeeded self = msg_send ~self ~cmd:(selector "webView:exceededApplicationCacheOriginQuotaForSecurityOrigin:totalSpaceNeeded:") ~typ:(id @-> id @-> ullong @-> returning (void)) x exceededApplicationCacheOriginQuotaForSecurityOrigin totalSpaceNeeded
+let webView12 x ~exceededApplicationCacheOriginQuotaForSecurityOrigin ~totalSpaceNeeded self = msg_send ~self ~cmd:(selector "webView:exceededApplicationCacheOriginQuotaForSecurityOrigin:totalSpaceNeeded:") ~typ:(id @-> id @-> ullong @-> returning (void)) x exceededApplicationCacheOriginQuotaForSecurityOrigin (ULLong.of_int totalSpaceNeeded)
 let webView13 x ~identifierForInitialRequest ~fromDataSource self = msg_send ~self ~cmd:(selector "webView:identifierForInitialRequest:fromDataSource:") ~typ:(id @-> id @-> id @-> returning (id)) x identifierForInitialRequest fromDataSource
 let webView14 x ~resource ~didFinishLoadingFromDataSource self = msg_send ~self ~cmd:(selector "webView:resource:didFinishLoadingFromDataSource:") ~typ:(id @-> id @-> id @-> returning (void)) x resource didFinishLoadingFromDataSource
 let webView15 x ~runJavaScriptAlertPanelWithMessage ~initiatedByFrame self = msg_send ~self ~cmd:(selector "webView:runJavaScriptAlertPanelWithMessage:initiatedByFrame:") ~typ:(id @-> id @-> id @-> returning (void)) x runJavaScriptAlertPanelWithMessage initiatedByFrame

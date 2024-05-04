@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardFloatingTransitionController"
 
-module Class = struct
+module C = struct
   let dockingRegion self = msg_send_stret ~self ~cmd:(selector "dockingRegion") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
   let isPointWithinDockingRegion x self = msg_send ~self ~cmd:(selector "isPointWithinDockingRegion:") ~typ:(CGPoint.t @-> returning (bool)) x
   let magneticEdgeMargin self = msg_send ~self ~cmd:(selector "magneticEdgeMargin") ~typ:(returning (double))

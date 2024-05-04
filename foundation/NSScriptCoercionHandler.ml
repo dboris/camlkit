@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptCoercionHandler"
 
-module Class = struct
+module C = struct
   let sharedCoercionHandler self = msg_send ~self ~cmd:(selector "sharedCoercionHandler") ~typ:(returning (id))
 end
 

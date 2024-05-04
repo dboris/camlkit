@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINib"
 
-module Class = struct
+module C = struct
   let nibWithData x ~bundle self = msg_send ~self ~cmd:(selector "nibWithData:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
   let nibWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "nibWithNibName:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
 end

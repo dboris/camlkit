@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPDFAnnotationController"
 
-module Class = struct
+module C = struct
   let newAnnotation x ~type_ self = msg_send ~self ~cmd:(selector "newAnnotation:type:") ~typ:(ptr void @-> string @-> returning (id)) x type_
   let newMaskImage x ~size self = msg_send ~self ~cmd:(selector "newMaskImage:size:") ~typ:(ptr void @-> CGSize.t @-> returning (id)) x size
   let pageHasAnnotations x self = msg_send ~self ~cmd:(selector "pageHasAnnotations:") ~typ:(id @-> returning (bool)) x

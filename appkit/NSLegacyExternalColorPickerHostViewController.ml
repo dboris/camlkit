@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLegacyExternalColorPickerHostViewController"
 
-module Class = struct
+module C = struct
   let warmupForArchitecture x self = msg_send ~self ~cmd:(selector "warmupForArchitecture:") ~typ:(int @-> returning (void)) x
 end
 
@@ -20,8 +20,8 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let detachColorList x self = msg_send ~self ~cmd:(selector "detachColorList:") ~typ:(id @-> returning (void)) x
 let exportedInterface self = msg_send ~self ~cmd:(selector "exportedInterface") ~typ:(returning (id))
-let initWithPickerMask x ~colorPanel self = msg_send ~self ~cmd:(selector "initWithPickerMask:colorPanel:") ~typ:(ullong @-> id @-> returning (id)) x colorPanel
-let initWithPickerMask' x ~colorPanel ~bundleURL ~architecture self = msg_send ~self ~cmd:(selector "initWithPickerMask:colorPanel:bundleURL:architecture:") ~typ:(ullong @-> id @-> id @-> int @-> returning (id)) x colorPanel bundleURL architecture
+let initWithPickerMask x ~colorPanel self = msg_send ~self ~cmd:(selector "initWithPickerMask:colorPanel:") ~typ:(ullong @-> id @-> returning (id)) (ULLong.of_int x) colorPanel
+let initWithPickerMask' x ~colorPanel ~bundleURL ~architecture self = msg_send ~self ~cmd:(selector "initWithPickerMask:colorPanel:bundleURL:architecture:") ~typ:(ullong @-> id @-> id @-> int @-> returning (id)) (ULLong.of_int x) colorPanel bundleURL architecture
 let insertNewButtonImage x ~in_ self = msg_send ~self ~cmd:(selector "insertNewButtonImage:in:") ~typ:(id @-> id @-> returning (void)) x in_
 let isActivePicker self = msg_send ~self ~cmd:(selector "isActivePicker") ~typ:(returning (bool))
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning (void))
@@ -35,7 +35,7 @@ let remoteView self = msg_send ~self ~cmd:(selector "remoteView") ~typ:(returnin
 let serviceViewControllerInterface self = msg_send ~self ~cmd:(selector "serviceViewControllerInterface") ~typ:(returning (id))
 let setColor x self = msg_send ~self ~cmd:(selector "setColor:") ~typ:(id @-> returning (void)) x
 let setIsActivePicker x self = msg_send ~self ~cmd:(selector "setIsActivePicker:") ~typ:(bool @-> returning (void)) x
-let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(llong @-> returning (void)) x
-let supportsMode x self = msg_send ~self ~cmd:(selector "supportsMode:") ~typ:(llong @-> returning (bool)) x
+let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let supportsMode x self = msg_send ~self ~cmd:(selector "supportsMode:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let viewDidInvalidate x self = msg_send ~self ~cmd:(selector "viewDidInvalidate:") ~typ:(id @-> returning (void)) x
 let viewSizeChanged x self = msg_send ~self ~cmd:(selector "viewSizeChanged:") ~typ:(id @-> returning (void)) x

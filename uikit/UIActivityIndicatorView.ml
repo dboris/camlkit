@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIActivityIndicatorView"
 
-module Class = struct
-  let defaultSizeForStyle x self = msg_send_stret ~self ~cmd:(selector "defaultSizeForStyle:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t x
+module C = struct
+  let defaultSizeForStyle x self = msg_send_stret ~self ~cmd:(selector "defaultSizeForStyle:") ~typ:(llong @-> returning (CGSize.t)) ~return_type:CGSize.t (LLong.of_int x)
 end
 
 let activityIndicatorViewStyle self = msg_send ~self ~cmd:(selector "activityIndicatorViewStyle") ~typ:(returning (llong))
@@ -19,14 +19,14 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let hasShadow self = msg_send ~self ~cmd:(selector "hasShadow") ~typ:(returning (bool))
 let hidesWhenStopped self = msg_send ~self ~cmd:(selector "hidesWhenStopped") ~typ:(returning (bool))
-let initWithActivityIndicatorStyle x self = msg_send ~self ~cmd:(selector "initWithActivityIndicatorStyle:") ~typ:(llong @-> returning (id)) x
+let initWithActivityIndicatorStyle x self = msg_send ~self ~cmd:(selector "initWithActivityIndicatorStyle:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
 let isAnimating self = msg_send ~self ~cmd:(selector "isAnimating") ~typ:(returning (bool))
 let isElementAccessibilityExposedToInterfaceBuilder self = msg_send ~self ~cmd:(selector "isElementAccessibilityExposedToInterfaceBuilder") ~typ:(returning (bool))
 let isHighlighted self = msg_send ~self ~cmd:(selector "isHighlighted") ~typ:(returning (bool))
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
-let setActivityIndicatorViewStyle x self = msg_send ~self ~cmd:(selector "setActivityIndicatorViewStyle:") ~typ:(llong @-> returning (void)) x
+let setActivityIndicatorViewStyle x self = msg_send ~self ~cmd:(selector "setActivityIndicatorViewStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setAnimating x self = msg_send ~self ~cmd:(selector "setAnimating:") ~typ:(bool @-> returning (void)) x
 let setAnimationDuration x self = msg_send ~self ~cmd:(selector "setAnimationDuration:") ~typ:(double @-> returning (void)) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x
@@ -38,7 +38,7 @@ let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~ty
 let setShadowColor x self = msg_send ~self ~cmd:(selector "setShadowColor:") ~typ:(id @-> returning (void)) x
 let setShadowOffset x self = msg_send ~self ~cmd:(selector "setShadowOffset:") ~typ:(CGSize.t @-> returning (void)) x
 let setSpinning x self = msg_send ~self ~cmd:(selector "setSpinning:") ~typ:(bool @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setWidth x self = msg_send ~self ~cmd:(selector "setWidth:") ~typ:(double @-> returning (void)) x
 let shadowColor self = msg_send ~self ~cmd:(selector "shadowColor") ~typ:(returning (id))
 let shadowOffset self = msg_send_stret ~self ~cmd:(selector "shadowOffset") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t

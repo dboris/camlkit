@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSEncodingDetectionPlaceholder"
 
-module Class = struct
+module C = struct
   let placeholderForDetector x self = msg_send ~self ~cmd:(selector "placeholderForDetector:") ~typ:(id @-> returning (id)) x
 end
 

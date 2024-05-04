@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSThemeAutosaveButton"
 
-module Class = struct
+module C = struct
   let cellClass self = msg_send ~self ~cmd:(selector "cellClass") ~typ:(returning (_Class))
 end
 
@@ -23,7 +23,7 @@ let nonModalDocumentError self = msg_send ~self ~cmd:(selector "nonModalDocument
 let popoverDidClose x self = msg_send ~self ~cmd:(selector "popoverDidClose:") ~typ:(id @-> returning (void)) x
 let rightMouseDown x self = msg_send ~self ~cmd:(selector "rightMouseDown:") ~typ:(id @-> returning (void)) x
 let setDocumentAutosavingError x self = msg_send ~self ~cmd:(selector "setDocumentAutosavingError:") ~typ:(id @-> returning (void)) x
-let setDocumentEditingState x ~animate self = msg_send ~self ~cmd:(selector "setDocumentEditingState:animate:") ~typ:(llong @-> bool @-> returning (void)) x animate
+let setDocumentEditingState x ~animate self = msg_send ~self ~cmd:(selector "setDocumentEditingState:animate:") ~typ:(llong @-> bool @-> returning (void)) (LLong.of_int x) animate
 let setFrameOrigin x self = msg_send ~self ~cmd:(selector "setFrameOrigin:") ~typ:(CGPoint.t @-> returning (void)) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setNonModalDocumentError x self = msg_send ~self ~cmd:(selector "setNonModalDocumentError:") ~typ:(id @-> returning (void)) x

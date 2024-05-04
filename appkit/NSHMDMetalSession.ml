@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSHMDMetalSession"
 
-module Class = struct
+module C = struct
   let keyPathsForValuesAffectingValid self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingValid") ~typ:(returning (id))
 end
 
@@ -30,7 +30,7 @@ let nextDrawable self = msg_send ~self ~cmd:(selector "nextDrawable") ~typ:(retu
 let preferredDrawablePixelFormat self = msg_send ~self ~cmd:(selector "preferredDrawablePixelFormat") ~typ:(returning (ullong))
 let preferredDrawableSize self = msg_send_stret ~self ~cmd:(selector "preferredDrawableSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let setDrawableColorSpace x self = msg_send ~self ~cmd:(selector "setDrawableColorSpace:") ~typ:(id @-> returning (void)) x
-let setDrawablePixelFormat x self = msg_send ~self ~cmd:(selector "setDrawablePixelFormat:") ~typ:(ullong @-> returning (void)) x
+let setDrawablePixelFormat x self = msg_send ~self ~cmd:(selector "setDrawablePixelFormat:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDrawableSize x self = msg_send ~self ~cmd:(selector "setDrawableSize:") ~typ:(CGSize.t @-> returning (void)) x
-let setDrawableTextureUsage x self = msg_send ~self ~cmd:(selector "setDrawableTextureUsage:") ~typ:(ullong @-> returning (void)) x
+let setDrawableTextureUsage x self = msg_send ~self ~cmd:(selector "setDrawableTextureUsage:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let supportedDrawablePixelFormats self = msg_send ~self ~cmd:(selector "supportedDrawablePixelFormats") ~typ:(returning (id))

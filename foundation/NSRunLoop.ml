@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSRunLoop"
 
-module Class = struct
+module C = struct
   let currentRunLoop self = msg_send ~self ~cmd:(selector "currentRunLoop") ~typ:(returning (id))
   let mainRunLoop self = msg_send ~self ~cmd:(selector "mainRunLoop") ~typ:(returning (id))
 end
@@ -28,7 +28,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let limitDateForMode x self = msg_send ~self ~cmd:(selector "limitDateForMode:") ~typ:(id @-> returning (id)) x
 let performBlock x self = msg_send ~self ~cmd:(selector "performBlock:") ~typ:(ptr void @-> returning (void)) x
 let performInModes x ~block self = msg_send ~self ~cmd:(selector "performInModes:block:") ~typ:(id @-> ptr void @-> returning (void)) x block
-let performSelector x ~target ~argument ~order ~modes self = msg_send ~self ~cmd:(selector "performSelector:target:argument:order:modes:") ~typ:(_SEL @-> id @-> id @-> ullong @-> id @-> returning (void)) x target argument order modes
+let performSelector x ~target ~argument ~order ~modes self = msg_send ~self ~cmd:(selector "performSelector:target:argument:order:modes:") ~typ:(_SEL @-> id @-> id @-> ullong @-> id @-> returning (void)) x target argument (ULLong.of_int order) modes
 let portsForMode x self = msg_send ~self ~cmd:(selector "portsForMode:") ~typ:(id @-> returning (id)) x
 let removePort x ~forMode self = msg_send ~self ~cmd:(selector "removePort:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
 let removeTimer x ~forMode self = msg_send ~self ~cmd:(selector "removeTimer:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode

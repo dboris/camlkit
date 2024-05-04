@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSXPCConnection"
 
-module Class = struct
+module C = struct
   let beginTransaction self = msg_send ~self ~cmd:(selector "beginTransaction") ~typ:(returning (void))
   let currentConnection self = msg_send ~self ~cmd:(selector "currentConnection") ~typ:(returning (id))
   let endTransaction self = msg_send ~self ~cmd:(selector "endTransaction") ~typ:(returning (void))
@@ -27,9 +27,9 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithEndpoint x self = msg_send ~self ~cmd:(selector "initWithEndpoint:") ~typ:(id @-> returning (id)) x
 let initWithListenerEndpoint x self = msg_send ~self ~cmd:(selector "initWithListenerEndpoint:") ~typ:(id @-> returning (id)) x
 let initWithMachServiceName x self = msg_send ~self ~cmd:(selector "initWithMachServiceName:") ~typ:(id @-> returning (id)) x
-let initWithMachServiceName' x ~options self = msg_send ~self ~cmd:(selector "initWithMachServiceName:options:") ~typ:(id @-> ullong @-> returning (id)) x options
+let initWithMachServiceName' x ~options self = msg_send ~self ~cmd:(selector "initWithMachServiceName:options:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int options)
 let initWithServiceName x self = msg_send ~self ~cmd:(selector "initWithServiceName:") ~typ:(id @-> returning (id)) x
-let initWithServiceName' x ~options self = msg_send ~self ~cmd:(selector "initWithServiceName:options:") ~typ:(id @-> ullong @-> returning (id)) x options
+let initWithServiceName' x ~options self = msg_send ~self ~cmd:(selector "initWithServiceName:options:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int options)
 let interruptionHandler self = msg_send ~self ~cmd:(selector "interruptionHandler") ~typ:(returning (ptr void))
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning (void))
 let invalidationHandler self = msg_send ~self ~cmd:(selector "invalidationHandler") ~typ:(returning (ptr void))
@@ -48,7 +48,7 @@ let setExportedInterface x self = msg_send ~self ~cmd:(selector "setExportedInte
 let setExportedObject x self = msg_send ~self ~cmd:(selector "setExportedObject:") ~typ:(id @-> returning (void)) x
 let setInterruptionHandler x self = msg_send ~self ~cmd:(selector "setInterruptionHandler:") ~typ:(ptr void @-> returning (void)) x
 let setInvalidationHandler x self = msg_send ~self ~cmd:(selector "setInvalidationHandler:") ~typ:(ptr void @-> returning (void)) x
-let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) x
+let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setRemoteObjectInterface x self = msg_send ~self ~cmd:(selector "setRemoteObjectInterface:") ~typ:(id @-> returning (void)) x
 let setUserInfo x self = msg_send ~self ~cmd:(selector "setUserInfo:") ~typ:(id @-> returning (void)) x
 let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning (void))

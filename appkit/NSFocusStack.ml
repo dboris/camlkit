@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFocusStack"
 
-module Class = struct
+module C = struct
   let currentFocusStack self = msg_send ~self ~cmd:(selector "currentFocusStack") ~typ:(returning (id))
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSOpenGLPixelBuffer"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let openGLPixelBufferWithCGLPBufferObj x self = msg_send ~self ~cmd:(selector "openGLPixelBufferWithCGLPBufferObj:") ~typ:(ptr void @-> returning (id)) x
 end

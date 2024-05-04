@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSimplePreferences"
 
-module Class = struct
+module C = struct
   let customButtonTarget self = msg_send ~self ~cmd:(selector "customButtonTarget") ~typ:(returning (id))
   let setBundleToSearch x self = msg_send ~self ~cmd:(selector "setBundleToSearch:") ~typ:(id @-> returning (void)) x
   let setCustomButtonTarget x self = msg_send ~self ~cmd:(selector "setCustomButtonTarget:") ~typ:(id @-> returning (void)) x

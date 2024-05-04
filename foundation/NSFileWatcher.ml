@@ -6,8 +6,9 @@ open Objc
 let _class_ = get_class "NSFileWatcher"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let handleFSEventPath x ~flags ~id_ self = msg_send ~self ~cmd:(selector "handleFSEventPath:flags:id:") ~typ:(id @-> uint @-> ullong @-> returning (void)) x flags id_
-let setLastObservedEventID x self = msg_send ~self ~cmd:(selector "setLastObservedEventID:") ~typ:(ullong @-> returning (void)) x
+let handleFSEventPath x ~flags ~id_ self = msg_send ~self ~cmd:(selector "handleFSEventPath:flags:id:") ~typ:(id @-> uint @-> ullong @-> returning (void)) x flags (ULLong.of_int id_)
+let initWithQueue x ~auditToken self = msg_send ~self ~cmd:(selector "initWithQueue:auditToken:") ~typ:(id @-> ptr void @-> returning (id)) x auditToken
+let setLastObservedEventID x self = msg_send ~self ~cmd:(selector "setLastObservedEventID:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setObserver x self = msg_send ~self ~cmd:(selector "setObserver:") ~typ:(ptr void @-> returning (void)) x
 let setURL x self = msg_send ~self ~cmd:(selector "setURL:") ~typ:(id @-> returning (void)) x
 let settle self = msg_send ~self ~cmd:(selector "settle") ~typ:(returning (void))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDynamicAnimator"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
 
@@ -38,7 +38,7 @@ let removeAllBehaviors self = msg_send ~self ~cmd:(selector "removeAllBehaviors"
 let removeBehavior x self = msg_send ~self ~cmd:(selector "removeBehavior:") ~typ:(id @-> returning (void)) x
 let setDebugAnimationSpeed x self = msg_send ~self ~cmd:(selector "setDebugAnimationSpeed:") ~typ:(double @-> returning (void)) x
 let setDebugEnabled x self = msg_send ~self ~cmd:(selector "setDebugEnabled:") ~typ:(bool @-> returning (void)) x
-let setDebugFrameInterval x self = msg_send ~self ~cmd:(selector "setDebugFrameInterval:") ~typ:(ullong @-> returning (void)) x
+let setDebugFrameInterval x self = msg_send ~self ~cmd:(selector "setDebugFrameInterval:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setReferenceView x self = msg_send ~self ~cmd:(selector "setReferenceView:") ~typ:(id @-> returning (void)) x
 let setTicker x self = msg_send ~self ~cmd:(selector "setTicker:") ~typ:(id @-> returning (void)) x

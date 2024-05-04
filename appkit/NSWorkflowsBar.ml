@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWorkflowsBar"
 
-module Class = struct
+module C = struct
   let accessInstanceVariablesDirectly self = msg_send ~self ~cmd:(selector "accessInstanceVariablesDirectly") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfEnabled self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfEnabled") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfTouchBar self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfTouchBar") ~typ:(returning (bool))

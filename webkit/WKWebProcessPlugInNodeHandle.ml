@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebProcessPlugInNodeHandle"
 
-module Class = struct
+module C = struct
   let nodeHandleWithJSValue x ~inContext self = msg_send ~self ~cmd:(selector "nodeHandleWithJSValue:inContext:") ~typ:(id @-> id @-> returning (id)) x inContext
 end
 
@@ -30,7 +30,7 @@ let isSelectableTextNode self = msg_send ~self ~cmd:(selector "isSelectableTextN
 let isTextField self = msg_send ~self ~cmd:(selector "isTextField") ~typ:(returning (bool))
 let renderedImageWithOptions x self = msg_send ~self ~cmd:(selector "renderedImageWithOptions:") ~typ:(uint @-> returning (id)) x
 let renderedImageWithOptions' x ~width self = msg_send ~self ~cmd:(selector "renderedImageWithOptions:width:") ~typ:(uint @-> id @-> returning (id)) x width
-let setHTMLInputElementAutoFillButtonEnabledWithButtonType x self = msg_send ~self ~cmd:(selector "setHTMLInputElementAutoFillButtonEnabledWithButtonType:") ~typ:(llong @-> returning (void)) x
+let setHTMLInputElementAutoFillButtonEnabledWithButtonType x self = msg_send ~self ~cmd:(selector "setHTMLInputElementAutoFillButtonEnabledWithButtonType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setHTMLInputElementIsAutoFilled x self = msg_send ~self ~cmd:(selector "setHTMLInputElementIsAutoFilled:") ~typ:(bool @-> returning (void)) x
 let setHTMLInputElementIsAutoFilledAndObscured x self = msg_send ~self ~cmd:(selector "setHTMLInputElementIsAutoFilledAndObscured:") ~typ:(bool @-> returning (void)) x
 let setHTMLInputElementIsAutoFilledAndViewable x self = msg_send ~self ~cmd:(selector "setHTMLInputElementIsAutoFilledAndViewable:") ~typ:(bool @-> returning (void)) x

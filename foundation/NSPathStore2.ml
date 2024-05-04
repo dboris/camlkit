@@ -5,12 +5,12 @@ open Objc
 
 let _class_ = get_class "NSPathStore2"
 
-module Class = struct
-  let pathStoreWithCharacters x ~length self = msg_send ~self ~cmd:(selector "pathStoreWithCharacters:length:") ~typ:(ptr (ushort) @-> ullong @-> returning (id)) x length
+module C = struct
+  let pathStoreWithCharacters x ~length self = msg_send ~self ~cmd:(selector "pathStoreWithCharacters:length:") ~typ:(ptr (ushort) @-> ullong @-> returning (id)) x (ULLong.of_int length)
   let pathWithComponents x self = msg_send ~self ~cmd:(selector "pathWithComponents:") ~typ:(id @-> returning (id)) x
 end
 
-let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning (ushort)) x
+let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning (ushort)) (ULLong.of_int x)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let getCharacters x ~range self = msg_send ~self ~cmd:(selector "getCharacters:range:") ~typ:(ptr (ushort) @-> NSRange.t @-> returning (void)) x range

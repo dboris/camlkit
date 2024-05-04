@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSavePanelCustomAction"
 
-module Class = struct
+module C = struct
   let actionWithIdentifier x ~localizedTitle self = msg_send ~self ~cmd:(selector "actionWithIdentifier:localizedTitle:") ~typ:(id @-> id @-> returning (id)) x localizedTitle
 end
 

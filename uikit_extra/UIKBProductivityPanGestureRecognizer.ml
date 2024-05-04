@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBProductivityPanGestureRecognizer"
 
-module Class = struct
+module C = struct
   let productivityPanGestureRecognizerWithTarget x ~action ~delegate self = msg_send ~self ~cmd:(selector "productivityPanGestureRecognizerWithTarget:action:delegate:") ~typ:(id @-> _SEL @-> id @-> returning (id)) x action delegate
 end
 

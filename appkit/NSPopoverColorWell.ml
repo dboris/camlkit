@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPopoverColorWell"
 
-module Class = struct
+module C = struct
   let drawEmptyColorSwatchInRect x ~enabled self = msg_send ~self ~cmd:(selector "drawEmptyColorSwatchInRect:enabled:") ~typ:(CGRect.t @-> bool @-> returning (void)) x enabled
   let drawNoColorSwatchInRect x ~enabled ~active self = msg_send ~self ~cmd:(selector "drawNoColorSwatchInRect:enabled:active:") ~typ:(CGRect.t @-> bool @-> bool @-> returning (void)) x enabled active
   let emptyColor self = msg_send ~self ~cmd:(selector "emptyColor") ~typ:(returning (id))
@@ -31,7 +31,7 @@ let popoverWillClose x self = msg_send ~self ~cmd:(selector "popoverWillClose:")
 let setAfterRenderer x self = msg_send ~self ~cmd:(selector "setAfterRenderer:") ~typ:(ptr void @-> returning (void)) x
 let setColor x self = msg_send ~self ~cmd:(selector "setColor:") ~typ:(id @-> returning (void)) x
 let setColorMatrixColorList x self = msg_send ~self ~cmd:(selector "setColorMatrixColorList:") ~typ:(id @-> returning (void)) x
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setEmptyColorEnabled x self = msg_send ~self ~cmd:(selector "setEmptyColorEnabled:") ~typ:(bool @-> returning (void)) x
 let setHasNoSelection x self = msg_send ~self ~cmd:(selector "setHasNoSelection:") ~typ:(bool @-> returning (void)) x
 let setNeedsDisplay x self = msg_send ~self ~cmd:(selector "setNeedsDisplay:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSBox"
 
-module Class = struct
+module C = struct
   let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -48,9 +48,9 @@ let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void)
 let replaceSubview x ~with_ self = msg_send ~self ~cmd:(selector "replaceSubview:with:") ~typ:(id @-> id @-> returning (void)) x with_
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning (void)) x
 let setBorderColor x self = msg_send ~self ~cmd:(selector "setBorderColor:") ~typ:(id @-> returning (void)) x
-let setBorderType x self = msg_send ~self ~cmd:(selector "setBorderType:") ~typ:(ullong @-> returning (void)) x
+let setBorderType x self = msg_send ~self ~cmd:(selector "setBorderType:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setBorderWidth x self = msg_send ~self ~cmd:(selector "setBorderWidth:") ~typ:(double @-> returning (void)) x
-let setBoxType x self = msg_send ~self ~cmd:(selector "setBoxType:") ~typ:(ullong @-> returning (void)) x
+let setBoxType x self = msg_send ~self ~cmd:(selector "setBoxType:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~typ:(id @-> returning (void)) x
 let setContentViewMargins x self = msg_send ~self ~cmd:(selector "setContentViewMargins:") ~typ:(CGSize.t @-> returning (void)) x
 let setCornerRadius x self = msg_send ~self ~cmd:(selector "setCornerRadius:") ~typ:(double @-> returning (void)) x
@@ -59,10 +59,10 @@ let setFrameFromContentFrame x self = msg_send ~self ~cmd:(selector "setFrameFro
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
 let setTitleFont x self = msg_send ~self ~cmd:(selector "setTitleFont:") ~typ:(id @-> returning (void)) x
-let setTitlePosition x self = msg_send ~self ~cmd:(selector "setTitlePosition:") ~typ:(ullong @-> returning (void)) x
+let setTitlePosition x self = msg_send ~self ~cmd:(selector "setTitlePosition:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setTitleWithMnemonic x self = msg_send ~self ~cmd:(selector "setTitleWithMnemonic:") ~typ:(id @-> returning (void)) x
 let setTransparent x self = msg_send ~self ~cmd:(selector "setTransparent:") ~typ:(bool @-> returning (void)) x
-let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning (void))
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning (id))
 let titleCell self = msg_send ~self ~cmd:(selector "titleCell") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMenuKEUniquer"
 
-module Class = struct
+module C = struct
   let mainMenuUniquer self = msg_send ~self ~cmd:(selector "mainMenuUniquer") ~typ:(returning (id))
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSShadowRemoteViewController"
 
-module Class = struct
+module C = struct
   let maybeReestablishFirstResponderStateForUIWindow x ~uiFirstResponder self = msg_send ~self ~cmd:(selector "maybeReestablishFirstResponderStateForUIWindow:uiFirstResponder:") ~typ:(id @-> id @-> returning (void)) x uiFirstResponder
   let remoteViewShouldHaveAccessibilityChildren x self = msg_send ~self ~cmd:(selector "remoteViewShouldHaveAccessibilityChildren:") ~typ:(id @-> returning (bool)) x
 end

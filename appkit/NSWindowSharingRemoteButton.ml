@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWindowSharingRemoteButton"
 
-module Class = struct
+module C = struct
   let warmup self = msg_send ~self ~cmd:(selector "warmup") ~typ:(returning (void))
 end
 

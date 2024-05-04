@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSAppearance"
 
-module Class = struct
+module C = struct
   let appearanceNamed x self = msg_send ~self ~cmd:(selector "appearanceNamed:") ~typ:(id @-> returning (id)) x
   let colorByAdjustingLightnessOfColor x ~darker self = msg_send ~self ~cmd:(selector "colorByAdjustingLightnessOfColor:darker:") ~typ:(id @-> bool @-> returning (id)) x darker
   let currentAppearance self = msg_send ~self ~cmd:(selector "currentAppearance") ~typ:(returning (id))
@@ -42,7 +42,7 @@ let resolvedAppearanceForWidget1 x ~styleConfiguration self = msg_send ~self ~cm
 let resolvedAppearanceForWidget2 x ~variant self = msg_send ~self ~cmd:(selector "resolvedAppearanceForWidget:variant:") ~typ:(id @-> id @-> returning (id)) x variant
 let setShouldBeArchived x self = msg_send ~self ~cmd:(selector "setShouldBeArchived:") ~typ:(bool @-> returning (void)) x
 let shouldBeArchived self = msg_send ~self ~cmd:(selector "shouldBeArchived") ~typ:(returning (bool))
-let systemFontForControlSize x ~weight self = msg_send ~self ~cmd:(selector "systemFontForControlSize:weight:") ~typ:(ullong @-> double @-> returning (id)) x weight
-let systemFontSizeForControlSize x self = msg_send ~self ~cmd:(selector "systemFontSizeForControlSize:") ~typ:(ullong @-> returning (double)) x
+let systemFontForControlSize x ~weight self = msg_send ~self ~cmd:(selector "systemFontForControlSize:weight:") ~typ:(ullong @-> double @-> returning (id)) (ULLong.of_int x) weight
+let systemFontSizeForControlSize x self = msg_send ~self ~cmd:(selector "systemFontSizeForControlSize:") ~typ:(ullong @-> returning (double)) (ULLong.of_int x)
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning (id))
 let uniqueIdentifier self = msg_send ~self ~cmd:(selector "uniqueIdentifier") ~typ:(returning (id))

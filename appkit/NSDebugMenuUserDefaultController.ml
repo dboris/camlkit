@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSDebugMenuUserDefaultController"
 
-module Class = struct
+module C = struct
   let controllerForDefaultWithName x ~dynamicGetter ~dynamicSetter self = msg_send ~self ~cmd:(selector "controllerForDefaultWithName:dynamicGetter:dynamicSetter:") ~typ:(id @-> ptr void @-> ptr void @-> returning (id)) x dynamicGetter dynamicSetter
   let controllerForDefaultWithName' x ~defaultValue ~dynamicGetter ~dynamicSetter self = msg_send ~self ~cmd:(selector "controllerForDefaultWithName:defaultValue:dynamicGetter:dynamicSetter:") ~typ:(id @-> bool @-> ptr void @-> ptr void @-> returning (id)) x defaultValue dynamicGetter dynamicSetter
 end

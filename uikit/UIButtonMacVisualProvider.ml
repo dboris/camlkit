@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIButtonMacVisualProvider"
 
-module Class = struct
+module C = struct
   let visualProviderForButton x self = msg_send ~self ~cmd:(selector "visualProviderForButton:") ~typ:(id @-> returning (id)) x
 end
 
@@ -23,13 +23,13 @@ let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(
 let previousFirstBaselineOffsetForAttributeLowering self = msg_send ~self ~cmd:(selector "previousFirstBaselineOffsetForAttributeLowering") ~typ:(returning (double))
 let previousLastBaselineOffsetForAttributeLowering self = msg_send ~self ~cmd:(selector "previousLastBaselineOffsetForAttributeLowering") ~typ:(returning (double))
 let resetSavedCornerPadding self = msg_send ~self ~cmd:(selector "resetSavedCornerPadding") ~typ:(returning (void))
-let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setNeedsUpdateConfiguration self = msg_send ~self ~cmd:(selector "setNeedsUpdateConfiguration") ~typ:(returning (void))
 let setPreviousFirstBaselineOffsetForAttributeLowering x self = msg_send ~self ~cmd:(selector "setPreviousFirstBaselineOffsetForAttributeLowering:") ~typ:(double @-> returning (void)) x
 let setPreviousLastBaselineOffsetForAttributeLowering x self = msg_send ~self ~cmd:(selector "setPreviousLastBaselineOffsetForAttributeLowering:") ~typ:(double @-> returning (void)) x
 let setSelected x self = msg_send ~self ~cmd:(selector "setSelected:") ~typ:(bool @-> returning (void)) x
-let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setTitle x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let setVendsBaselineInformationToAutoLayout x self = msg_send ~self ~cmd:(selector "setVendsBaselineInformationToAutoLayout:") ~typ:(bool @-> returning (void)) x
 let setWidthForMultilineTextLayout x self = msg_send ~self ~cmd:(selector "setWidthForMultilineTextLayout:") ~typ:(double @-> returning (void)) x
 let subtitleViewCreateIfNeeded x self = msg_send ~self ~cmd:(selector "subtitleViewCreateIfNeeded:") ~typ:(bool @-> returning (id)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITapGestureRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -24,7 +24,7 @@ let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarge
 let isSingleKeyPressGesture self = msg_send ~self ~cmd:(selector "isSingleKeyPressGesture") ~typ:(returning (bool))
 let location self = msg_send_stret ~self ~cmd:(selector "location") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
-let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x inView
+let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t (ULLong.of_int x) inView
 let maximumIntervalBetweenSuccessiveTaps self = msg_send ~self ~cmd:(selector "maximumIntervalBetweenSuccessiveTaps") ~typ:(returning (double))
 let maximumSingleTapDuration self = msg_send ~self ~cmd:(selector "maximumSingleTapDuration") ~typ:(returning (double))
 let maximumTapDuration self = msg_send ~self ~cmd:(selector "maximumTapDuration") ~typ:(returning (double))
@@ -37,13 +37,13 @@ let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCha
 let pressesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "pressesEnded:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let setAllowableMovement x self = msg_send ~self ~cmd:(selector "setAllowableMovement:") ~typ:(double @-> returning (void)) x
 let setAllowedPressTypes x self = msg_send ~self ~cmd:(selector "setAllowedPressTypes:") ~typ:(id @-> returning (void)) x
-let setButtonMaskRequired x self = msg_send ~self ~cmd:(selector "setButtonMaskRequired:") ~typ:(llong @-> returning (void)) x
+let setButtonMaskRequired x self = msg_send ~self ~cmd:(selector "setButtonMaskRequired:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setIsSingleKeyPressGesture x self = msg_send ~self ~cmd:(selector "setIsSingleKeyPressGesture:") ~typ:(bool @-> returning (void)) x
 let setMaximumIntervalBetweenSuccessiveTaps x self = msg_send ~self ~cmd:(selector "setMaximumIntervalBetweenSuccessiveTaps:") ~typ:(double @-> returning (void)) x
 let setMaximumSingleTapDuration x self = msg_send ~self ~cmd:(selector "setMaximumSingleTapDuration:") ~typ:(double @-> returning (void)) x
 let setMaximumTapDuration x self = msg_send ~self ~cmd:(selector "setMaximumTapDuration:") ~typ:(double @-> returning (void)) x
-let setNumberOfTapsRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTapsRequired:") ~typ:(ullong @-> returning (void)) x
-let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) x
+let setNumberOfTapsRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTapsRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let shouldRequireFailureOfGestureRecognizer x self = msg_send ~self ~cmd:(selector "shouldRequireFailureOfGestureRecognizer:") ~typ:(id @-> returning (bool)) x
 let tapIsPossibleForTapRecognizer x self = msg_send ~self ~cmd:(selector "tapIsPossibleForTapRecognizer:") ~typ:(id @-> returning (bool)) x
 let tapRecognizerFailedToRecognizeTap x self = msg_send ~self ~cmd:(selector "tapRecognizerFailedToRecognizeTap:") ~typ:(id @-> returning (void)) x

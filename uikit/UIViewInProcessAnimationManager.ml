@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIViewInProcessAnimationManager"
 
-module Class = struct
+module C = struct
   let sharedManager self = msg_send ~self ~cmd:(selector "sharedManager") ~typ:(returning (id))
 end
 
@@ -31,7 +31,7 @@ let setAnimationThread x self = msg_send ~self ~cmd:(selector "setAnimationThrea
 let setAnimationThreadKeepAliveSemaphore x self = msg_send ~self ~cmd:(selector "setAnimationThreadKeepAliveSemaphore:") ~typ:(id @-> returning (void)) x
 let setAnimationThreadRunLoop x self = msg_send ~self ~cmd:(selector "setAnimationThreadRunLoop:") ~typ:(id @-> returning (void)) x
 let setCurrentTickThread x self = msg_send ~self ~cmd:(selector "setCurrentTickThread:") ~typ:(id @-> returning (void)) x
-let setExecutionMode x self = msg_send ~self ~cmd:(selector "setExecutionMode:") ~typ:(ullong @-> returning (void)) x
+let setExecutionMode x self = msg_send ~self ~cmd:(selector "setExecutionMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setUsesMainThreadExecution x self = msg_send ~self ~cmd:(selector "setUsesMainThreadExecution:") ~typ:(bool @-> returning (void)) x
 let startAdvancingAnimationManager x self = msg_send ~self ~cmd:(selector "startAdvancingAnimationManager:") ~typ:(id @-> returning (void)) x
 let startAnimationAdvancerIfNeeded self = msg_send ~self ~cmd:(selector "startAnimationAdvancerIfNeeded") ~typ:(returning (void))

@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSPredicate"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let newStringFrom x ~usingUnicodeTransforms self = msg_send ~self ~cmd:(selector "newStringFrom:usingUnicodeTransforms:") ~typ:(id @-> ullong @-> returning (id)) x usingUnicodeTransforms
+  let newStringFrom x ~usingUnicodeTransforms self = msg_send ~self ~cmd:(selector "newStringFrom:usingUnicodeTransforms:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int usingUnicodeTransforms)
   let predicateFromMetadataQueryString x self = msg_send ~self ~cmd:(selector "predicateFromMetadataQueryString:") ~typ:(id @-> returning (id)) x
   let predicateWithBlock x self = msg_send ~self ~cmd:(selector "predicateWithBlock:") ~typ:(ptr void @-> returning (id)) x
   let predicateWithFormat x self = msg_send ~self ~cmd:(selector "predicateWithFormat:") ~typ:(id @-> returning (id)) x
@@ -18,7 +18,7 @@ module Class = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x flags
+let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:flags:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int flags)
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning (void))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))

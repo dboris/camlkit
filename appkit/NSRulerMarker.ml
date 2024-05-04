@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRulerMarker"
 
-module Class = struct
+module C = struct
   let centerTabMarkerWithRulerView x ~location self = msg_send ~self ~cmd:(selector "centerTabMarkerWithRulerView:location:") ~typ:(id @-> double @-> returning (id)) x location
   let decimalTabMarkerWithRulerView x ~location self = msg_send ~self ~cmd:(selector "decimalTabMarkerWithRulerView:location:") ~typ:(id @-> double @-> returning (id)) x location
   let firstIndentMarkerWithRulerView x ~location self = msg_send ~self ~cmd:(selector "firstIndentMarkerWithRulerView:location:") ~typ:(id @-> double @-> returning (id)) x location

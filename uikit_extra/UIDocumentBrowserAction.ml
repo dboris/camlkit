@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDocumentBrowserAction"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -25,7 +25,7 @@ let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithIdentifier x ~localizedTitle ~resolvedHandler self = msg_send ~self ~cmd:(selector "initWithIdentifier:localizedTitle:resolvedHandler:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x localizedTitle resolvedHandler
 let initWithIdentifier1 x ~localizedTitle ~unresolvedHandler self = msg_send ~self ~cmd:(selector "initWithIdentifier:localizedTitle:unresolvedHandler:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x localizedTitle unresolvedHandler
-let initWithIdentifier2 x ~localizedTitle ~availability ~handler self = msg_send ~self ~cmd:(selector "initWithIdentifier:localizedTitle:availability:handler:") ~typ:(id @-> id @-> llong @-> ptr void @-> returning (id)) x localizedTitle availability handler
+let initWithIdentifier2 x ~localizedTitle ~availability ~handler self = msg_send ~self ~cmd:(selector "initWithIdentifier:localizedTitle:availability:handler:") ~typ:(id @-> id @-> llong @-> ptr void @-> returning (id)) x localizedTitle (LLong.of_int availability) handler
 let initWithUIActionDescriptor x self = msg_send ~self ~cmd:(selector "initWithUIActionDescriptor:") ~typ:(id @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let localizedTitle self = msg_send ~self ~cmd:(selector "localizedTitle") ~typ:(returning (id))
@@ -35,20 +35,20 @@ let performActionExitsEditMode self = msg_send ~self ~cmd:(selector "performActi
 let requiresResolvedItems self = msg_send ~self ~cmd:(selector "requiresResolvedItems") ~typ:(returning (bool))
 let requiresVersioning self = msg_send ~self ~cmd:(selector "requiresVersioning") ~typ:(returning (bool))
 let resolvedHandler self = msg_send ~self ~cmd:(selector "resolvedHandler") ~typ:(returning (ptr void))
-let setActionStyle x self = msg_send ~self ~cmd:(selector "setActionStyle:") ~typ:(llong @-> returning (void)) x
-let setAvailability x self = msg_send ~self ~cmd:(selector "setAvailability:") ~typ:(llong @-> returning (void)) x
+let setActionStyle x self = msg_send ~self ~cmd:(selector "setActionStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setAvailability x self = msg_send ~self ~cmd:(selector "setAvailability:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setFilteringPredicate x self = msg_send ~self ~cmd:(selector "setFilteringPredicate:") ~typ:(id @-> returning (void)) x
 let setHandler x self = msg_send ~self ~cmd:(selector "setHandler:") ~typ:(ptr void @-> returning (void)) x
 let setIdentifier x self = msg_send ~self ~cmd:(selector "setIdentifier:") ~typ:(id @-> returning (void)) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
 let setLocalizedTitle x self = msg_send ~self ~cmd:(selector "setLocalizedTitle:") ~typ:(id @-> returning (void)) x
-let setMenuSortOrder x self = msg_send ~self ~cmd:(selector "setMenuSortOrder:") ~typ:(ullong @-> returning (void)) x
-let setNavigationSide x self = msg_send ~self ~cmd:(selector "setNavigationSide:") ~typ:(llong @-> returning (void)) x
+let setMenuSortOrder x self = msg_send ~self ~cmd:(selector "setMenuSortOrder:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setNavigationSide x self = msg_send ~self ~cmd:(selector "setNavigationSide:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPerformActionExitsEditMode x self = msg_send ~self ~cmd:(selector "setPerformActionExitsEditMode:") ~typ:(bool @-> returning (void)) x
 let setRequiresResolvedItems x self = msg_send ~self ~cmd:(selector "setRequiresResolvedItems:") ~typ:(bool @-> returning (void)) x
 let setRequiresVersioning x self = msg_send ~self ~cmd:(selector "setRequiresVersioning:") ~typ:(bool @-> returning (void)) x
 let setResolvedHandler x self = msg_send ~self ~cmd:(selector "setResolvedHandler:") ~typ:(ptr void @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSupportedContentTypes x self = msg_send ~self ~cmd:(selector "setSupportedContentTypes:") ~typ:(id @-> returning (void)) x
 let setSupportsMultipleItems x self = msg_send ~self ~cmd:(selector "setSupportsMultipleItems:") ~typ:(bool @-> returning (void)) x
 let setUiActionDescriptor x self = msg_send ~self ~cmd:(selector "setUiActionDescriptor:") ~typ:(id @-> returning (void)) x

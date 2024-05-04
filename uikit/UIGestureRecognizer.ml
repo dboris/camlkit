@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIGestureRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -38,7 +38,7 @@ let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarge
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning (bool))
 let lastTouchTimestamp self = msg_send ~self ~cmd:(selector "lastTouchTimestamp") ~typ:(returning (double))
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x
-let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t x inView
+let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning (CGPoint.t)) ~return_type:CGPoint.t (ULLong.of_int x) inView
 let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning (llong))
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning (ullong))
@@ -61,12 +61,12 @@ let setDelaysTouchesEnded x self = msg_send ~self ~cmd:(selector "setDelaysTouch
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
 let setGestureEnvironment x self = msg_send ~self ~cmd:(selector "setGestureEnvironment:") ~typ:(id @-> returning (void)) x
-let setInputPrecision x self = msg_send ~self ~cmd:(selector "setInputPrecision:") ~typ:(ullong @-> returning (void)) x
+let setInputPrecision x self = msg_send ~self ~cmd:(selector "setInputPrecision:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setName x self = msg_send ~self ~cmd:(selector "setName:") ~typ:(id @-> returning (void)) x
 let setOwner x self = msg_send ~self ~cmd:(selector "setOwner:") ~typ:(id @-> returning (void)) x
-let setRequiredPreviewForceState x self = msg_send ~self ~cmd:(selector "setRequiredPreviewForceState:") ~typ:(llong @-> returning (void)) x
+let setRequiredPreviewForceState x self = msg_send ~self ~cmd:(selector "setRequiredPreviewForceState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setRequiresExclusiveTouchType x self = msg_send ~self ~cmd:(selector "setRequiresExclusiveTouchType:") ~typ:(bool @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let shouldBeRequiredToFailByGestureRecognizer x self = msg_send ~self ~cmd:(selector "shouldBeRequiredToFailByGestureRecognizer:") ~typ:(id @-> returning (bool)) x
 let shouldReceiveEvent x self = msg_send ~self ~cmd:(selector "shouldReceiveEvent:") ~typ:(id @-> returning (bool)) x

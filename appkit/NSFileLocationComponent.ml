@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFileLocationComponent"
 
-module Class = struct
+module C = struct
   let attributedStringForIcon x self = msg_send ~self ~cmd:(selector "attributedStringForIcon:") ~typ:(id @-> returning (id)) x
   let flushCaches self = msg_send ~self ~cmd:(selector "flushCaches") ~typ:(returning (void))
   let leafFileLocationComponentWithURL x self = msg_send ~self ~cmd:(selector "leafFileLocationComponentWithURL:") ~typ:(id @-> returning (id)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSSystemPreferencesRemoteViewController"
 
-module Class = struct
+module C = struct
   let remoteViewControllerWithCompletionHandler x self = msg_send ~self ~cmd:(selector "remoteViewControllerWithCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
 end
 

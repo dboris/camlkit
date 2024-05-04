@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebProcessPlugInFrame"
 
-module Class = struct
+module C = struct
   let lookUpFrameFromHandle x self = msg_send ~self ~cmd:(selector "lookUpFrameFromHandle:") ~typ:(id @-> returning (id)) x
   let lookUpFrameFromJSContext x self = msg_send ~self ~cmd:(selector "lookUpFrameFromJSContext:") ~typ:(id @-> returning (id)) x
 end
@@ -21,7 +21,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let faviconURLs self = msg_send ~self ~cmd:(selector "faviconURLs") ~typ:(returning (id))
 let handle self = msg_send ~self ~cmd:(selector "handle") ~typ:(returning (id))
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning (id)) x
-let hitTest' x ~options self = msg_send ~self ~cmd:(selector "hitTest:options:") ~typ:(CGPoint.t @-> ullong @-> returning (id)) x options
+let hitTest' x ~options self = msg_send ~self ~cmd:(selector "hitTest:options:") ~typ:(CGPoint.t @-> ullong @-> returning (id)) x (ULLong.of_int options)
 let isMainFrame self = msg_send ~self ~cmd:(selector "isMainFrame") ~typ:(returning (bool))
 let jsContextForServiceWorkerWorld x self = msg_send ~self ~cmd:(selector "jsContextForServiceWorkerWorld:") ~typ:(id @-> returning (id)) x
 let jsContextForWorld x self = msg_send ~self ~cmd:(selector "jsContextForWorld:") ~typ:(id @-> returning (id)) x

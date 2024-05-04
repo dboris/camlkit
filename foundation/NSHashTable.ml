@@ -5,10 +5,10 @@ open Objc
 
 let _class_ = get_class "NSHashTable"
 
-module Class = struct
+module C = struct
   let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning (id))
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
-  let hashTableWithOptions x self = msg_send ~self ~cmd:(selector "hashTableWithOptions:") ~typ:(ullong @-> returning (id)) x
+  let hashTableWithOptions x self = msg_send ~self ~cmd:(selector "hashTableWithOptions:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let hashTableWithWeakObjects self = msg_send ~self ~cmd:(selector "hashTableWithWeakObjects") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let weakObjectsHashTable self = msg_send ~self ~cmd:(selector "weakObjectsHashTable") ~typ:(returning (id))
@@ -22,15 +22,15 @@ let containsObject x self = msg_send ~self ~cmd:(selector "containsObject:") ~ty
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning (id))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects count
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:(ptr void @-> ptr (id) @-> ullong @-> returning (ullong)) x objects (ULLong.of_int count)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let getItem x self = msg_send ~self ~cmd:(selector "getItem:") ~typ:(ptr (void) @-> returning (ptr (void))) x
 let getKeys x ~count self = msg_send ~self ~cmd:(selector "getKeys:count:") ~typ:(ptr (ptr (void)) @-> ptr (ullong) @-> returning (void)) x count
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithOptions x ~capacity self = msg_send ~self ~cmd:(selector "initWithOptions:capacity:") ~typ:(ullong @-> ullong @-> returning (id)) x capacity
-let initWithPointerFunctions x ~capacity self = msg_send ~self ~cmd:(selector "initWithPointerFunctions:capacity:") ~typ:(id @-> ullong @-> returning (id)) x capacity
+let initWithOptions x ~capacity self = msg_send ~self ~cmd:(selector "initWithOptions:capacity:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int capacity)
+let initWithPointerFunctions x ~capacity self = msg_send ~self ~cmd:(selector "initWithPointerFunctions:capacity:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int capacity)
 let insertKnownAbsentItem x self = msg_send ~self ~cmd:(selector "insertKnownAbsentItem:") ~typ:(ptr (void) @-> returning (void)) x
 let intersectHashTable x self = msg_send ~self ~cmd:(selector "intersectHashTable:") ~typ:(id @-> returning (void)) x
 let intersectsHashTable x self = msg_send ~self ~cmd:(selector "intersectsHashTable:") ~typ:(id @-> returning (bool)) x

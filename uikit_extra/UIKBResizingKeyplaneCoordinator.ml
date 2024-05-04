@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBResizingKeyplaneCoordinator"
 
-module Class = struct
+module C = struct
   let savedResizingOffset self = msg_send ~self ~cmd:(selector "savedResizingOffset") ~typ:(returning (double))
 end
 
@@ -22,7 +22,7 @@ let isResizing self = msg_send ~self ~cmd:(selector "isResizing") ~typ:(returnin
 let reloadResizingOffset self = msg_send ~self ~cmd:(selector "reloadResizingOffset") ~typ:(returning (void))
 let resizeKeyplaneWithOffset x ~andRedraw self = msg_send ~self ~cmd:(selector "resizeKeyplaneWithOffset:andRedraw:") ~typ:(double @-> bool @-> returning (void)) x andRedraw
 let resizingOffset self = msg_send ~self ~cmd:(selector "resizingOffset") ~typ:(returning (double))
-let saveResizingStopIndex x self = msg_send ~self ~cmd:(selector "saveResizingStopIndex:") ~typ:(ullong @-> returning (void)) x
+let saveResizingStopIndex x self = msg_send ~self ~cmd:(selector "saveResizingStopIndex:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setRenderConfig x self = msg_send ~self ~cmd:(selector "setRenderConfig:") ~typ:(id @-> returning (void)) x
 let stopResizing self = msg_send ~self ~cmd:(selector "stopResizing") ~typ:(returning (void))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPrintPanel"
 
-module Class = struct
+module C = struct
   let printPanel self = msg_send ~self ~cmd:(selector "printPanel") ~typ:(returning (id))
 end
 
@@ -34,5 +34,5 @@ let setAccessoryView x self = msg_send ~self ~cmd:(selector "setAccessoryView:")
 let setDefaultButtonTitle x self = msg_send ~self ~cmd:(selector "setDefaultButtonTitle:") ~typ:(id @-> returning (void)) x
 let setHelpAnchor x self = msg_send ~self ~cmd:(selector "setHelpAnchor:") ~typ:(id @-> returning (void)) x
 let setJobStyleHint x self = msg_send ~self ~cmd:(selector "setJobStyleHint:") ~typ:(id @-> returning (void)) x
-let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) x
+let setOptions x self = msg_send ~self ~cmd:(selector "setOptions:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let updateFromPrintInfo self = msg_send ~self ~cmd:(selector "updateFromPrintInfo") ~typ:(returning (void))

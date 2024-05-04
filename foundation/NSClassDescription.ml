@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSClassDescription"
 
-module Class = struct
+module C = struct
   let classDelegate self = msg_send ~self ~cmd:(selector "classDelegate") ~typ:(returning (id))
   let classDescriptionForClass x self = msg_send ~self ~cmd:(selector "classDescriptionForClass:") ~typ:(_Class @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderConfig"
 
-module Class = struct
-  let backdropStyleForStyle x ~quality self = msg_send ~self ~cmd:(selector "backdropStyleForStyle:quality:") ~typ:(llong @-> llong @-> returning (llong)) x quality
-  let configForAppearance x ~inputMode ~traitEnvironment self = msg_send ~self ~cmd:(selector "configForAppearance:inputMode:traitEnvironment:") ~typ:(llong @-> id @-> id @-> returning (id)) x inputMode traitEnvironment
+module C = struct
+  let backdropStyleForStyle x ~quality self = msg_send ~self ~cmd:(selector "backdropStyleForStyle:quality:") ~typ:(llong @-> llong @-> returning (llong)) (LLong.of_int x) (LLong.of_int quality)
+  let configForAppearance x ~inputMode ~traitEnvironment self = msg_send ~self ~cmd:(selector "configForAppearance:inputMode:traitEnvironment:") ~typ:(llong @-> id @-> id @-> returning (id)) (LLong.of_int x) inputMode traitEnvironment
   let darkConfig self = msg_send ~self ~cmd:(selector "darkConfig") ~typ:(returning (id))
   let defaultConfig self = msg_send ~self ~cmd:(selector "defaultConfig") ~typ:(returning (id))
   let defaultEmojiConfig self = msg_send ~self ~cmd:(selector "defaultEmojiConfig") ~typ:(returning (id))
@@ -37,7 +37,7 @@ let setActivatedKeyplaneSwitchControlKeyBackgroundName x self = msg_send ~self ~
 let setBlurRadius x self = msg_send ~self ~cmd:(selector "setBlurRadius:") ~typ:(double @-> returning (void)) x
 let setBlurSaturation x self = msg_send ~self ~cmd:(selector "setBlurSaturation:") ~typ:(double @-> returning (void)) x
 let setControlKeyBackgroundName x self = msg_send ~self ~cmd:(selector "setControlKeyBackgroundName:") ~typ:(id @-> returning (void)) x
-let setForceQuality x self = msg_send ~self ~cmd:(selector "setForceQuality:") ~typ:(llong @-> returning (void)) x
+let setForceQuality x self = msg_send ~self ~cmd:(selector "setForceQuality:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setIsFloating x self = msg_send ~self ~cmd:(selector "setIsFloating:") ~typ:(bool @-> returning (void)) x
 let setKeycapOpacity x self = msg_send ~self ~cmd:(selector "setKeycapOpacity:") ~typ:(double @-> returning (void)) x
 let setLightKeyboard x self = msg_send ~self ~cmd:(selector "setLightKeyboard:") ~typ:(bool @-> returning (void)) x

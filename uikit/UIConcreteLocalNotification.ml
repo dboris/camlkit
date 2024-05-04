@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIConcreteLocalNotification"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -41,14 +41,14 @@ let setAlertAction x self = msg_send ~self ~cmd:(selector "setAlertAction:") ~ty
 let setAlertBody x self = msg_send ~self ~cmd:(selector "setAlertBody:") ~typ:(id @-> returning (void)) x
 let setAlertLaunchImage x self = msg_send ~self ~cmd:(selector "setAlertLaunchImage:") ~typ:(id @-> returning (void)) x
 let setAlertTitle x self = msg_send ~self ~cmd:(selector "setAlertTitle:") ~typ:(id @-> returning (void)) x
-let setApplicationIconBadgeNumber x self = msg_send ~self ~cmd:(selector "setApplicationIconBadgeNumber:") ~typ:(llong @-> returning (void)) x
+let setApplicationIconBadgeNumber x self = msg_send ~self ~cmd:(selector "setApplicationIconBadgeNumber:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setCategory x self = msg_send ~self ~cmd:(selector "setCategory:") ~typ:(id @-> returning (void)) x
 let setFireDate x self = msg_send ~self ~cmd:(selector "setFireDate:") ~typ:(id @-> returning (void)) x
 let setHasAction x self = msg_send ~self ~cmd:(selector "setHasAction:") ~typ:(bool @-> returning (void)) x
 let setRegion x self = msg_send ~self ~cmd:(selector "setRegion:") ~typ:(id @-> returning (void)) x
 let setRegionTriggersOnce x self = msg_send ~self ~cmd:(selector "setRegionTriggersOnce:") ~typ:(bool @-> returning (void)) x
 let setRepeatCalendar x self = msg_send ~self ~cmd:(selector "setRepeatCalendar:") ~typ:(id @-> returning (void)) x
-let setRepeatInterval x self = msg_send ~self ~cmd:(selector "setRepeatInterval:") ~typ:(ullong @-> returning (void)) x
+let setRepeatInterval x self = msg_send ~self ~cmd:(selector "setRepeatInterval:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setSoundName x self = msg_send ~self ~cmd:(selector "setSoundName:") ~typ:(id @-> returning (void)) x
 let setTimeZone x self = msg_send ~self ~cmd:(selector "setTimeZone:") ~typ:(id @-> returning (void)) x
 let setUserInfo x self = msg_send ~self ~cmd:(selector "setUserInfo:") ~typ:(id @-> returning (void)) x

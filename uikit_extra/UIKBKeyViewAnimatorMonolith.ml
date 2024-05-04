@@ -9,11 +9,11 @@ open Foundation
 let _class_ = get_class "UIKBKeyViewAnimatorMonolith"
 
 let addTransitionCompletion x ~forKeyName self = msg_send ~self ~cmd:(selector "addTransitionCompletion:forKeyName:") ~typ:(ptr void @-> id @-> returning (void)) x forKeyName
-let animateFloatingKeyView x ~toControlState self = msg_send ~self ~cmd:(selector "animateFloatingKeyView:toControlState:") ~typ:(id @-> ullong @-> returning (void)) x toControlState
+let animateFloatingKeyView x ~toControlState self = msg_send ~self ~cmd:(selector "animateFloatingKeyView:toControlState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int toControlState)
 let controlStateForKeyState x self = msg_send ~self ~cmd:(selector "controlStateForKeyState:") ~typ:(int @-> returning (ullong)) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let floatingContentView x ~didFinishTransitioningToState self = msg_send ~self ~cmd:(selector "floatingContentView:didFinishTransitioningToState:") ~typ:(id @-> ullong @-> returning (void)) x didFinishTransitioningToState
-let floatingContentView' x ~isTransitioningFromState ~toState self = msg_send ~self ~cmd:(selector "floatingContentView:isTransitioningFromState:toState:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x isTransitioningFromState toState
+let floatingContentView x ~didFinishTransitioningToState self = msg_send ~self ~cmd:(selector "floatingContentView:didFinishTransitioningToState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int didFinishTransitioningToState)
+let floatingContentView' x ~isTransitioningFromState ~toState self = msg_send ~self ~cmd:(selector "floatingContentView:isTransitioningFromState:toState:") ~typ:(id @-> ullong @-> ullong @-> returning (void)) x (ULLong.of_int isTransitioningFromState) (ULLong.of_int toState)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let keyViewClassForKey x ~renderTraits ~screenTraits self = msg_send ~self ~cmd:(selector "keyViewClassForKey:renderTraits:screenTraits:") ~typ:(id @-> id @-> id @-> returning (_Class)) x renderTraits screenTraits
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning (void))

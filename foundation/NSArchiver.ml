@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSArchiver"
 
-module Class = struct
+module C = struct
   let archiveRootObject x ~toFile self = msg_send ~self ~cmd:(selector "archiveRootObject:toFile:") ~typ:(id @-> id @-> returning (bool)) x toFile
   let archivedDataWithRootObject x self = msg_send ~self ~cmd:(selector "archivedDataWithRootObject:") ~typ:(id @-> returning (id)) x
   let classNameEncodedForTrueClassName x self = msg_send ~self ~cmd:(selector "classNameEncodedForTrueClassName:") ~typ:(id @-> returning (id)) x
@@ -17,8 +17,8 @@ let archiverData self = msg_send ~self ~cmd:(selector "archiverData") ~typ:(retu
 let classNameEncodedForTrueClassName x self = msg_send ~self ~cmd:(selector "classNameEncodedForTrueClassName:") ~typ:(id @-> returning (id)) x
 let data self = msg_send ~self ~cmd:(selector "data") ~typ:(returning (id))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let encodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "encodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x count at
-let encodeBytes x ~length self = msg_send ~self ~cmd:(selector "encodeBytes:length:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x length
+let encodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "encodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> ptr (void) @-> returning (void)) x (ULLong.of_int count) at
+let encodeBytes x ~length self = msg_send ~self ~cmd:(selector "encodeBytes:length:") ~typ:(ptr (void) @-> ullong @-> returning (void)) x (ULLong.of_int length)
 let encodeClassName x ~intoClassName self = msg_send ~self ~cmd:(selector "encodeClassName:intoClassName:") ~typ:(id @-> id @-> returning (void)) x intoClassName
 let encodeConditionalObject x self = msg_send ~self ~cmd:(selector "encodeConditionalObject:") ~typ:(id @-> returning (void)) x
 let encodeDataObject x self = msg_send ~self ~cmd:(selector "encodeDataObject:") ~typ:(id @-> returning (void)) x

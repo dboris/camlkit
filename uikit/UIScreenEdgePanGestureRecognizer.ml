@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIScreenEdgePanGestureRecognizer"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,10 +18,10 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let featureDidChangeState x self = msg_send ~self ~cmd:(selector "featureDidChangeState:") ~typ:(id @-> returning (void)) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
-let initWithTarget' x ~action ~type_ ~options self = msg_send ~self ~cmd:(selector "initWithTarget:action:type:options:") ~typ:(id @-> _SEL @-> llong @-> ullong @-> returning (id)) x action type_ options
+let initWithTarget' x ~action ~type_ ~options self = msg_send ~self ~cmd:(selector "initWithTarget:action:type:options:") ~typ:(id @-> _SEL @-> llong @-> ullong @-> returning (id)) x action (LLong.of_int type_) (ULLong.of_int options)
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning (void))
-let setEdges x self = msg_send ~self ~cmd:(selector "setEdges:") ~typ:(ullong @-> returning (void)) x
-let setMinimumNumberOfTouches x self = msg_send ~self ~cmd:(selector "setMinimumNumberOfTouches:") ~typ:(ullong @-> returning (void)) x
+let setEdges x self = msg_send ~self ~cmd:(selector "setEdges:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setMinimumNumberOfTouches x self = msg_send ~self ~cmd:(selector "setMinimumNumberOfTouches:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let touchedEdges self = msg_send ~self ~cmd:(selector "touchedEdges") ~typ:(returning (ullong))
 let touchesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "touchesBegan:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent
 let touchesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "touchesEnded:withEvent:") ~typ:(id @-> id @-> returning (void)) x withEvent

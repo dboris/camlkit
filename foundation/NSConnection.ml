@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSConnection"
 
-module Class = struct
+module C = struct
   let allConnections self = msg_send ~self ~cmd:(selector "allConnections") ~typ:(returning (id))
   let connectionWithPrivilegedName x self = msg_send ~self ~cmd:(selector "connectionWithPrivilegedName:") ~typ:(id @-> returning (id)) x
   let connectionWithReceivePort x ~sendPort self = msg_send ~self ~cmd:(selector "connectionWithReceivePort:sendPort:") ~typ:(id @-> id @-> returning (id)) x sendPort
@@ -23,7 +23,7 @@ module Class = struct
   let statistics self = msg_send ~self ~cmd:(selector "statistics") ~typ:(returning (id))
 end
 
-let addClassNamed x ~version self = msg_send ~self ~cmd:(selector "addClassNamed:version:") ~typ:(string @-> ullong @-> returning (void)) x version
+let addClassNamed x ~version self = msg_send ~self ~cmd:(selector "addClassNamed:version:") ~typ:(string @-> ullong @-> returning (void)) x (ULLong.of_int version)
 let addPortsToRunLoop x self = msg_send ~self ~cmd:(selector "addPortsToRunLoop:") ~typ:(id @-> returning (void)) x
 let addRequestMode x self = msg_send ~self ~cmd:(selector "addRequestMode:") ~typ:(id @-> returning (void)) x
 let addRunLoop x self = msg_send ~self ~cmd:(selector "addRunLoop:") ~typ:(id @-> returning (void)) x
@@ -39,7 +39,7 @@ let handleKeyedReleasedProxies x self = msg_send ~self ~cmd:(selector "handleKey
 let handlePortCoder x self = msg_send ~self ~cmd:(selector "handlePortCoder:") ~typ:(id @-> returning (void)) x
 let handlePortMessage x self = msg_send ~self ~cmd:(selector "handlePortMessage:") ~typ:(id @-> returning (void)) x
 let handleRequest x ~sequence self = msg_send ~self ~cmd:(selector "handleRequest:sequence:") ~typ:(id @-> uint @-> returning (void)) x sequence
-let handleUnkeyedReleasedProxies x ~length self = msg_send ~self ~cmd:(selector "handleUnkeyedReleasedProxies:length:") ~typ:(string @-> ullong @-> returning (void)) x length
+let handleUnkeyedReleasedProxies x ~length self = msg_send ~self ~cmd:(selector "handleUnkeyedReleasedProxies:length:") ~typ:(string @-> ullong @-> returning (void)) x (ULLong.of_int length)
 let hasRunLoop x self = msg_send ~self ~cmd:(selector "hasRunLoop:") ~typ:(id @-> returning (bool)) x
 let independentConversationQueueing self = msg_send ~self ~cmd:(selector "independentConversationQueueing") ~typ:(returning (bool))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -55,7 +55,7 @@ let receivePort self = msg_send ~self ~cmd:(selector "receivePort") ~typ:(return
 let registerName x self = msg_send ~self ~cmd:(selector "registerName:") ~typ:(id @-> returning (bool)) x
 let registerName' x ~withNameServer self = msg_send ~self ~cmd:(selector "registerName:withNameServer:") ~typ:(id @-> id @-> returning (bool)) x withNameServer
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (void))
-let releaseWireID x ~count self = msg_send ~self ~cmd:(selector "releaseWireID:count:") ~typ:(uint @-> ullong @-> returning (void)) x count
+let releaseWireID x ~count self = msg_send ~self ~cmd:(selector "releaseWireID:count:") ~typ:(uint @-> ullong @-> returning (void)) x (ULLong.of_int count)
 let remoteObjects self = msg_send ~self ~cmd:(selector "remoteObjects") ~typ:(returning (id))
 let removePortsFromRunLoop x self = msg_send ~self ~cmd:(selector "removePortsFromRunLoop:") ~typ:(id @-> returning (void)) x
 let removeRequestMode x self = msg_send ~self ~cmd:(selector "removeRequestMode:") ~typ:(id @-> returning (void)) x

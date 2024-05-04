@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPrintOperation"
 
-module Class = struct
+module C = struct
   let _EPSOperationWithView x ~insideRect ~toData self = msg_send ~self ~cmd:(selector "EPSOperationWithView:insideRect:toData:") ~typ:(id @-> CGRect.t @-> id @-> returning (id)) x insideRect toData
   let _EPSOperationWithView1 x ~insideRect ~toData ~printInfo self = msg_send ~self ~cmd:(selector "EPSOperationWithView:insideRect:toData:printInfo:") ~typ:(id @-> CGRect.t @-> id @-> id @-> returning (id)) x insideRect toData printInfo
   let _EPSOperationWithView2 x ~insideRect ~toPath ~printInfo self = msg_send ~self ~cmd:(selector "EPSOperationWithView:insideRect:toPath:printInfo:") ~typ:(id @-> CGRect.t @-> id @-> id @-> returning (id)) x insideRect toPath printInfo
@@ -48,7 +48,7 @@ let setCanSpawnSeparateThread x self = msg_send ~self ~cmd:(selector "setCanSpaw
 let setJobStyleHint x self = msg_send ~self ~cmd:(selector "setJobStyleHint:") ~typ:(id @-> returning (void)) x
 let setJobTitle x self = msg_send ~self ~cmd:(selector "setJobTitle:") ~typ:(id @-> returning (void)) x
 let setPDFPanel x self = msg_send ~self ~cmd:(selector "setPDFPanel:") ~typ:(id @-> returning (void)) x
-let setPageOrder x self = msg_send ~self ~cmd:(selector "setPageOrder:") ~typ:(llong @-> returning (void)) x
+let setPageOrder x self = msg_send ~self ~cmd:(selector "setPageOrder:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPrintInfo x self = msg_send ~self ~cmd:(selector "setPrintInfo:") ~typ:(id @-> returning (void)) x
 let setPrintPanel x self = msg_send ~self ~cmd:(selector "setPrintPanel:") ~typ:(id @-> returning (void)) x
 let setShowPanels x self = msg_send ~self ~cmd:(selector "setShowPanels:") ~typ:(bool @-> returning (void)) x

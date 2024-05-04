@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBNullEffect"
 
-module Class = struct
+module C = struct
   let nullEffect self = msg_send ~self ~cmd:(selector "nullEffect") ~typ:(returning (id))
 end
 

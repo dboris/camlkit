@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UISCompatibilityContext"
 
-module Class = struct
+module C = struct
   let supportsBSXPCSecureCoding self = msg_send ~self ~cmd:(selector "supportsBSXPCSecureCoding") ~typ:(returning (bool))
 end
 

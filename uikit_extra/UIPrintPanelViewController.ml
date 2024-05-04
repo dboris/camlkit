@@ -29,6 +29,6 @@ let setPrintOptionsNavController x self = msg_send ~self ~cmd:(selector "setPrin
 let setPrintOptionsTableView x self = msg_send ~self ~cmd:(selector "setPrintOptionsTableView:") ~typ:(id @-> returning (void)) x
 let setPrintPaper x self = msg_send ~self ~cmd:(selector "setPrintPaper:") ~typ:(id @-> returning (void)) x
 let setPrinter x self = msg_send ~self ~cmd:(selector "setPrinter:") ~typ:(id @-> returning (void)) x
-let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) x
+let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let startPrinting self = msg_send ~self ~cmd:(selector "startPrinting") ~typ:(returning (void))
 let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning (ullong))

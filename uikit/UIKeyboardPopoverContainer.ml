@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardPopoverContainer"
 
-module Class = struct
+module C = struct
   let arrowHeight self = msg_send ~self ~cmd:(selector "arrowHeight") ~typ:(returning (double))
   let borderColor self = msg_send ~self ~cmd:(selector "borderColor") ~typ:(returning (id))
   let borderWidth self = msg_send ~self ~cmd:(selector "borderWidth") ~typ:(returning (double))
@@ -32,6 +32,6 @@ end
 let affordance self = msg_send ~self ~cmd:(selector "affordance") ~typ:(returning (id))
 let applyProperties x self = msg_send ~self ~cmd:(selector "applyProperties:") ~typ:(id @-> returning (void)) x
 let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let initWithView x ~usingBackdropStyle self = msg_send ~self ~cmd:(selector "initWithView:usingBackdropStyle:") ~typ:(id @-> llong @-> returning (id)) x usingBackdropStyle
+let initWithView x ~usingBackdropStyle self = msg_send ~self ~cmd:(selector "initWithView:usingBackdropStyle:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int usingBackdropStyle)
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning (void))
-let updateBackdropStyle x self = msg_send ~self ~cmd:(selector "updateBackdropStyle:") ~typ:(llong @-> returning (void)) x
+let updateBackdropStyle x self = msg_send ~self ~cmd:(selector "updateBackdropStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

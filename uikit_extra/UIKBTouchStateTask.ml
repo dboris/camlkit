@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBTouchStateTask"
 
-module Class = struct
+module C = struct
   let touchStateTaskForTouchState x ~andTask self = msg_send ~self ~cmd:(selector "touchStateTaskForTouchState:andTask:") ~typ:(id @-> ptr void @-> returning (id)) x andTask
 end
 

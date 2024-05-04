@@ -19,6 +19,6 @@ let remoteViewController self = msg_send ~self ~cmd:(selector "remoteViewControl
 let selectedFont self = msg_send ~self ~cmd:(selector "selectedFont") ~typ:(returning (id))
 let selectedFontDescriptor self = msg_send ~self ~cmd:(selector "selectedFontDescriptor") ~typ:(returning (id))
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
-let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(ullong @-> returning (void)) x
+let setMode x self = msg_send ~self ~cmd:(selector "setMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setSelectedFont x self = msg_send ~self ~cmd:(selector "setSelectedFont:") ~typ:(id @-> returning (void)) x
 let setSelectedFontDescriptor x self = msg_send ~self ~cmd:(selector "setSelectedFontDescriptor:") ~typ:(id @-> returning (void)) x

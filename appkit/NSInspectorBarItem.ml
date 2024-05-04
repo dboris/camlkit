@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSInspectorBarItem"
 
-module Class = struct
+module C = struct
   let separatorItem self = msg_send ~self ~cmd:(selector "separatorItem") ~typ:(returning (id))
 end
 

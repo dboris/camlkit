@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebPDFView"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let setAsPDFDocRepAndView self = msg_send ~self ~cmd:(selector "setAsPDFDocRepAndView") ~typ:(returning (void))
 end
@@ -49,10 +49,11 @@ let readyForSnapshot self = msg_send ~self ~cmd:(selector "readyForSnapshot") ~t
 let resetZoom x self = msg_send ~self ~cmd:(selector "resetZoom:") ~typ:(id @-> returning (void)) x
 let setBackgroundColorForUnRenderedContent x self = msg_send ~self ~cmd:(selector "setBackgroundColorForUnRenderedContent:") ~typ:(id @-> returning (void)) x
 let setDocumentPassword x self = msg_send ~self ~cmd:(selector "setDocumentPassword:") ~typ:(id @-> returning (void)) x
+let setDocumentTransform x self = msg_send ~self ~cmd:(selector "setDocumentTransform:") ~typ:(ptr void @-> returning (void)) x
 let setDocumentURL x self = msg_send ~self ~cmd:(selector "setDocumentURL:") ~typ:(id @-> returning (void)) x
 let setHideActivityIndicatorForUnRenderedContent x self = msg_send ~self ~cmd:(selector "setHideActivityIndicatorForUnRenderedContent:") ~typ:(bool @-> returning (void)) x
 let setHidePageViewsUntilReadyToRender x self = msg_send ~self ~cmd:(selector "setHidePageViewsUntilReadyToRender:") ~typ:(bool @-> returning (void)) x
-let setIgnoreContentOffsetChanges x self = msg_send ~self ~cmd:(selector "setIgnoreContentOffsetChanges:") ~typ:(llong @-> returning (void)) x
+let setIgnoreContentOffsetChanges x self = msg_send ~self ~cmd:(selector "setIgnoreContentOffsetChanges:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setInitialZoomScale x self = msg_send ~self ~cmd:(selector "setInitialZoomScale:") ~typ:(double @-> returning (void)) x
 let setPageMinYs x self = msg_send ~self ~cmd:(selector "setPageMinYs:") ~typ:(id @-> returning (void)) x
 let setPageRects x self = msg_send ~self ~cmd:(selector "setPageRects:") ~typ:(id @-> returning (void)) x
@@ -62,7 +63,7 @@ let setReadyForSnapshot x self = msg_send ~self ~cmd:(selector "setReadyForSnaps
 let snapshotComplete self = msg_send ~self ~cmd:(selector "snapshotComplete") ~typ:(returning (void))
 let totalPages self = msg_send ~self ~cmd:(selector "totalPages") ~typ:(returning (ullong))
 let uiPDFDocument self = msg_send ~self ~cmd:(selector "uiPDFDocument") ~typ:(returning (id))
-let viewAtIndex x self = msg_send ~self ~cmd:(selector "viewAtIndex:") ~typ:(llong @-> returning (id)) x
+let viewAtIndex x self = msg_send ~self ~cmd:(selector "viewAtIndex:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let viewWillClose self = msg_send ~self ~cmd:(selector "viewWillClose") ~typ:(returning (void))
 let viewportView self = msg_send ~self ~cmd:(selector "viewportView") ~typ:(returning (id))
 let willRotate x self = msg_send ~self ~cmd:(selector "willRotate:") ~typ:(id @-> returning (void)) x

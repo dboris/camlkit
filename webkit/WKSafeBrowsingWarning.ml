@@ -17,4 +17,4 @@ let initWithFrame x ~safeBrowsingWarning ~completionHandler self = msg_send ~sel
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning (void))
 let layoutText self = msg_send ~self ~cmd:(selector "layoutText") ~typ:(returning (void))
 let showDetailsClicked self = msg_send ~self ~cmd:(selector "showDetailsClicked") ~typ:(returning (void))
-let textView x ~clickedOnLink ~atIndex self = msg_send ~self ~cmd:(selector "textView:clickedOnLink:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (bool)) x clickedOnLink atIndex
+let textView x ~clickedOnLink ~atIndex self = msg_send ~self ~cmd:(selector "textView:clickedOnLink:atIndex:") ~typ:(id @-> id @-> ullong @-> returning (bool)) x clickedOnLink (ULLong.of_int atIndex)

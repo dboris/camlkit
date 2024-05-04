@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSFindPatternFieldEditor"
 
-module Class = struct
+module C = struct
   let findPatternFieldEditorForWindow x self = msg_send ~self ~cmd:(selector "findPatternFieldEditorForWindow:") ~typ:(id @-> returning (id)) x
 end
 

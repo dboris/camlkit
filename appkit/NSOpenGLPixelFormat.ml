@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSOpenGLPixelFormat"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let openGLPixelFormatWithCGLPixelFormatObj x self = msg_send ~self ~cmd:(selector "openGLPixelFormatWithCGLPixelFormatObj:") ~typ:(ptr void @-> returning (id)) x
 end

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSStatusBar"
 
-module Class = struct
+module C = struct
   let systemStatusBar self = msg_send ~self ~cmd:(selector "systemStatusBar") ~typ:(returning (id))
 end
 

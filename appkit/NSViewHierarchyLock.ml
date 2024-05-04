@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSViewHierarchyLock"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
 end
 

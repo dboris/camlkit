@@ -13,6 +13,6 @@ let initWithInfo x ~timeout ~forResponseOnQueue ~withHandler self = msg_send ~se
 let initWithURL x self = msg_send ~self ~cmd:(selector "initWithURL:") ~typ:(id @-> returning (id)) x
 let initWithURL' x ~workspaceOriginatingProcess self = msg_send ~self ~cmd:(selector "initWithURL:workspaceOriginatingProcess:") ~typ:(id @-> id @-> returning (id)) x workspaceOriginatingProcess
 let isKindOfClass x self = msg_send ~self ~cmd:(selector "isKindOfClass:") ~typ:(_Class @-> returning (bool)) x
-let keyDescriptionForSetting x self = msg_send ~self ~cmd:(selector "keyDescriptionForSetting:") ~typ:(ullong @-> returning (id)) x
+let keyDescriptionForSetting x self = msg_send ~self ~cmd:(selector "keyDescriptionForSetting:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let url self = msg_send ~self ~cmd:(selector "url") ~typ:(returning (id))
 let workspaceOriginatingProcess self = msg_send ~self ~cmd:(selector "workspaceOriginatingProcess") ~typ:(returning (id))

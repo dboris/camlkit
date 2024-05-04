@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITransitionView"
 
-module Class = struct
+module C = struct
   let defaultDurationForTransition x self = msg_send ~self ~cmd:(selector "defaultDurationForTransition:") ~typ:(int @-> returning (double)) x
 end
 
@@ -27,7 +27,7 @@ let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(
 let notifyDidCompleteTransition x self = msg_send ~self ~cmd:(selector "notifyDidCompleteTransition:") ~typ:(id @-> returning (void)) x
 let rasterizesOnTransition self = msg_send ~self ~cmd:(selector "rasterizesOnTransition") ~typ:(returning (bool))
 let safeAreaInsetsDidChange self = msg_send ~self ~cmd:(selector "safeAreaInsetsDidChange") ~typ:(returning (void))
-let setAnimationTimingCurve x self = msg_send ~self ~cmd:(selector "setAnimationTimingCurve:") ~typ:(llong @-> returning (void)) x
+let setAnimationTimingCurve x self = msg_send ~self ~cmd:(selector "setAnimationTimingCurve:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning (void)) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x

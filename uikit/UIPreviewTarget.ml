@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIPreviewTarget"
 
-module Class = struct
+module C = struct
   let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning (id))
 end
 
@@ -19,4 +19,5 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithContainer x ~center self = msg_send ~self ~cmd:(selector "initWithContainer:center:") ~typ:(id @-> CGPoint.t @-> returning (id)) x center
+let initWithContainer' x ~center ~transform self = msg_send ~self ~cmd:(selector "initWithContainer:center:transform:") ~typ:(id @-> CGPoint.t @-> ptr void @-> returning (id)) x center transform
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

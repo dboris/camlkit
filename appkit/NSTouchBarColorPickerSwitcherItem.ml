@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorPickerSwitcherItem"
 
-module Class = struct
+module C = struct
   let itemWithLabel x ~image self = msg_send ~self ~cmd:(selector "itemWithLabel:image:") ~typ:(id @-> id @-> returning (id)) x image
 end
 

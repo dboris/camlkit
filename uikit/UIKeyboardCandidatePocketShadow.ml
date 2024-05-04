@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardCandidatePocketShadow"
 
-module Class = struct
+module C = struct
   let leftShadowImage self = msg_send ~self ~cmd:(selector "leftShadowImage") ~typ:(returning (id))
   let widthWithShadow x self = msg_send ~self ~cmd:(selector "widthWithShadow:") ~typ:(bool @-> returning (double)) x
 end

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptExecutionContext"
 
-module Class = struct
+module C = struct
   let sharedScriptExecutionContext self = msg_send ~self ~cmd:(selector "sharedScriptExecutionContext") ~typ:(returning (id))
 end
 

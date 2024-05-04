@@ -18,4 +18,4 @@ let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t 
 let setKeyRect x self = msg_send ~self ~cmd:(selector "setKeyRect:") ~typ:(CGRect.t @-> returning (void)) x
 let setMenu x self = msg_send ~self ~cmd:(selector "setMenu:") ~typ:(id @-> returning (void)) x
 let setPointerOffset x self = msg_send ~self ~cmd:(selector "setPointerOffset:") ~typ:(double @-> returning (void)) x
-let setRoundedCorners x self = msg_send ~self ~cmd:(selector "setRoundedCorners:") ~typ:(ullong @-> returning (void)) x
+let setRoundedCorners x self = msg_send ~self ~cmd:(selector "setRoundedCorners:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

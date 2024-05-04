@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDebuggingInformationOverlay"
 
-module Class = struct
+module C = struct
   let overlay self = msg_send ~self ~cmd:(selector "overlay") ~typ:(returning (id))
   let prepareDebuggingOverlay self = msg_send ~self ~cmd:(selector "prepareDebuggingOverlay") ~typ:(returning (void))
 end

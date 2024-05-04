@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardDictationMenu"
 
-module Class = struct
+module C = struct
   let activeInstance self = msg_send ~self ~cmd:(selector "activeInstance") ~typ:(returning (id))
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSOperation"
 
-module Class = struct
+module C = struct
   let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning (bool)) x
   let currentOperation self = msg_send ~self ~cmd:(selector "currentOperation") ~typ:(returning (id))
   let keyPathsForValuesAffectingCancelled self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingCancelled") ~typ:(returning (id))
@@ -19,7 +19,7 @@ module Class = struct
 end
 
 let addDependency x self = msg_send ~self ~cmd:(selector "addDependency:") ~typ:(id @-> returning (void)) x
-let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath options context
+let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> ptr (void) @-> returning (void)) x forKeyPath (ULLong.of_int options) context
 let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning (void))
 let completionBlock self = msg_send ~self ~cmd:(selector "completionBlock") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
@@ -44,8 +44,8 @@ let removeObserver x ~forKeyPath self = msg_send ~self ~cmd:(selector "removeObs
 let setCompletionBlock x self = msg_send ~self ~cmd:(selector "setCompletionBlock:") ~typ:(ptr void @-> returning (void)) x
 let setName x self = msg_send ~self ~cmd:(selector "setName:") ~typ:(id @-> returning (void)) x
 let setObservationInfo x self = msg_send ~self ~cmd:(selector "setObservationInfo:") ~typ:(ptr (void) @-> returning (void)) x
-let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) x
-let setQueuePriority x self = msg_send ~self ~cmd:(selector "setQueuePriority:") ~typ:(llong @-> returning (void)) x
+let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setQueuePriority x self = msg_send ~self ~cmd:(selector "setQueuePriority:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setThreadPriority x self = msg_send ~self ~cmd:(selector "setThreadPriority:") ~typ:(double @-> returning (void)) x
 let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning (void))
 let threadPriority self = msg_send ~self ~cmd:(selector "threadPriority") ~typ:(returning (double))

@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIContextualAction"
 
-module Class = struct
-  let contextualActionWithStyle x ~title ~handler self = msg_send ~self ~cmd:(selector "contextualActionWithStyle:title:handler:") ~typ:(llong @-> id @-> ptr void @-> returning (id)) x title handler
+module C = struct
+  let contextualActionWithStyle x ~title ~handler self = msg_send ~self ~cmd:(selector "contextualActionWithStyle:title:handler:") ~typ:(llong @-> id @-> ptr void @-> returning (id)) (LLong.of_int x) title handler
 end
 
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning (id))

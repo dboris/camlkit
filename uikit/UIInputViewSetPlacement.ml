@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputViewSetPlacement"
 
-module Class = struct
+module C = struct
   let deactivatedKeyboardPlacementWithCurrentPlacement x self = msg_send ~self ~cmd:(selector "deactivatedKeyboardPlacementWithCurrentPlacement:") ~typ:(ptr void @-> returning (id)) x
   let encodablePlacementsForXPC self = msg_send ~self ~cmd:(selector "encodablePlacementsForXPC") ~typ:(returning (id))
   let placement self = msg_send ~self ~cmd:(selector "placement") ~typ:(returning (id))
@@ -28,7 +28,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let expiringPlacement self = msg_send ~self ~cmd:(selector "expiringPlacement") ~typ:(returning (id))
 let extendedHeight self = msg_send ~self ~cmd:(selector "extendedHeight") ~typ:(returning (double))
 let horizontalConstraintForInputViewSet x ~hostView ~containerView self = msg_send ~self ~cmd:(selector "horizontalConstraintForInputViewSet:hostView:containerView:") ~typ:(id @-> id @-> id @-> returning (id)) x hostView containerView
-let indexForPurpose x self = msg_send ~self ~cmd:(selector "indexForPurpose:") ~typ:(ullong @-> returning (ullong)) x
+let indexForPurpose x self = msg_send ~self ~cmd:(selector "indexForPurpose:") ~typ:(ullong @-> returning (ullong)) (ULLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let inputAssistantViewHeightForInputViewSet x self = msg_send ~self ~cmd:(selector "inputAssistantViewHeightForInputViewSet:") ~typ:(id @-> returning (double)) x
 let inputViewWillAppear self = msg_send ~self ~cmd:(selector "inputViewWillAppear") ~typ:(returning (bool))

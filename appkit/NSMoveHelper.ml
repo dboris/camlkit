@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSMoveHelper"
 
-module Class = struct
+module C = struct
   let inhibitWindowAnimations self = msg_send ~self ~cmd:(selector "inhibitWindowAnimations") ~typ:(returning (bool))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let runLoopModeIsCommonMode self = msg_send ~self ~cmd:(selector "runLoopModeIsCommonMode") ~typ:(returning (bool))

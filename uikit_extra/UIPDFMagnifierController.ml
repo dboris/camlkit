@@ -33,6 +33,7 @@ let setPageView x self = msg_send ~self ~cmd:(selector "setPageView:") ~typ:(id 
 let setPosition x ~viewPoint self = msg_send ~self ~cmd:(selector "setPosition:viewPoint:") ~typ:(CGPoint.t @-> CGPoint.t @-> returning (void)) x viewPoint
 let setPower self = msg_send ~self ~cmd:(selector "setPower") ~typ:(returning (void))
 let setSelectionPath self = msg_send ~self ~cmd:(selector "setSelectionPath") ~typ:(returning (void))
+let setSelectionPath' x ~bounds ~transform self = msg_send ~self ~cmd:(selector "setSelectionPath:bounds:transform:") ~typ:(ptr void @-> CGRect.t @-> ptr void @-> returning (void)) x bounds transform
 let setTextRangeHandlePositions self = msg_send ~self ~cmd:(selector "setTextRangeHandlePositions") ~typ:(returning (void))
 let showLoupe self = msg_send ~self ~cmd:(selector "showLoupe") ~typ:(returning (void))
 let showMagnifier self = msg_send ~self ~cmd:(selector "showMagnifier") ~typ:(returning (void))

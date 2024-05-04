@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSViewController"
 
-module Class = struct
+module C = struct
   let requiresConstraintBasedLayout self = msg_send ~self ~cmd:(selector "requiresConstraintBasedLayout") ~typ:(returning (bool))
 end
 
@@ -37,12 +37,12 @@ let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returnin
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning (id)) x bundle
-let insertChildViewController x ~atIndex self = msg_send ~self ~cmd:(selector "insertChildViewController:atIndex:") ~typ:(id @-> llong @-> returning (void)) x atIndex
+let insertChildViewController x ~atIndex self = msg_send ~self ~cmd:(selector "insertChildViewController:atIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int atIndex)
 let isViewLoaded self = msg_send ~self ~cmd:(selector "isViewLoaded") ~typ:(returning (bool))
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning (void))
 let maximumSize self = msg_send_stret ~self ~cmd:(selector "maximumSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let minimumSize self = msg_send_stret ~self ~cmd:(selector "minimumSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let moveChildViewControllerAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveChildViewControllerAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning (void)) x toIndex
+let moveChildViewControllerAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveChildViewControllerAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning (void)) (LLong.of_int x) (LLong.of_int toIndex)
 let nibBundle self = msg_send ~self ~cmd:(selector "nibBundle") ~typ:(returning (id))
 let nibName self = msg_send ~self ~cmd:(selector "nibName") ~typ:(returning (id))
 let objectDidBeginEditing x self = msg_send ~self ~cmd:(selector "objectDidBeginEditing:") ~typ:(id @-> returning (void)) x
@@ -56,7 +56,7 @@ let preferredMinimumSize self = msg_send_stret ~self ~cmd:(selector "preferredMi
 let preferredScreenOrigin self = msg_send_stret ~self ~cmd:(selector "preferredScreenOrigin") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
 let prepareForSegue x ~sender self = msg_send ~self ~cmd:(selector "prepareForSegue:sender:") ~typ:(id @-> id @-> returning (void)) x sender
 let presentViewController x ~animator self = msg_send ~self ~cmd:(selector "presentViewController:animator:") ~typ:(id @-> id @-> returning (void)) x animator
-let presentViewController' x ~asPopoverRelativeToRect ~ofView ~preferredEdge ~behavior self = msg_send ~self ~cmd:(selector "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> llong @-> returning (void)) x asPopoverRelativeToRect ofView preferredEdge behavior
+let presentViewController' x ~asPopoverRelativeToRect ~ofView ~preferredEdge ~behavior self = msg_send ~self ~cmd:(selector "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> llong @-> returning (void)) x asPopoverRelativeToRect ofView (ULLong.of_int preferredEdge) (LLong.of_int behavior)
 let presentViewControllerAsModalWindow x self = msg_send ~self ~cmd:(selector "presentViewControllerAsModalWindow:") ~typ:(id @-> returning (void)) x
 let presentViewControllerAsSheet x self = msg_send ~self ~cmd:(selector "presentViewControllerAsSheet:") ~typ:(id @-> returning (void)) x
 let presentWindowControllerAsModalWindow x self = msg_send ~self ~cmd:(selector "presentWindowControllerAsModalWindow:") ~typ:(id @-> returning (void)) x
@@ -66,7 +66,7 @@ let presentedViewControllers self = msg_send ~self ~cmd:(selector "presentedView
 let presentedWindowControllers self = msg_send ~self ~cmd:(selector "presentedWindowControllers") ~typ:(returning (id))
 let presentingViewController self = msg_send ~self ~cmd:(selector "presentingViewController") ~typ:(returning (id))
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (void))
-let removeChildViewControllerAtIndex x self = msg_send ~self ~cmd:(selector "removeChildViewControllerAtIndex:") ~typ:(llong @-> returning (void)) x
+let removeChildViewControllerAtIndex x self = msg_send ~self ~cmd:(selector "removeChildViewControllerAtIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let removeFromParentViewController self = msg_send ~self ~cmd:(selector "removeFromParentViewController") ~typ:(returning (void))
 let representedObject self = msg_send ~self ~cmd:(selector "representedObject") ~typ:(returning (id))
 let segueForUnwindingToViewController x ~fromViewController ~identifier self = msg_send ~self ~cmd:(selector "segueForUnwindingToViewController:fromViewController:identifier:") ~typ:(id @-> id @-> id @-> returning (id)) x fromViewController identifier
@@ -87,7 +87,7 @@ let showInParentViewController self = msg_send ~self ~cmd:(selector "showInParen
 let sourceItemView self = msg_send ~self ~cmd:(selector "sourceItemView") ~typ:(returning (id))
 let storyboard self = msg_send ~self ~cmd:(selector "storyboard") ~typ:(returning (id))
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning (id))
-let transitionFromViewController x ~toViewController ~options ~completionHandler self = msg_send ~self ~cmd:(selector "transitionFromViewController:toViewController:options:completionHandler:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x toViewController options completionHandler
+let transitionFromViewController x ~toViewController ~options ~completionHandler self = msg_send ~self ~cmd:(selector "transitionFromViewController:toViewController:options:completionHandler:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (void)) x toViewController (ULLong.of_int options) completionHandler
 let updateViewConstraints self = msg_send ~self ~cmd:(selector "updateViewConstraints") ~typ:(returning (void))
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning (id))
 let viewControllerForUnwindSegueAction x ~fromViewController ~withSender self = msg_send ~self ~cmd:(selector "viewControllerForUnwindSegueAction:fromViewController:withSender:") ~typ:(_SEL @-> id @-> id @-> returning (id)) x fromViewController withSender

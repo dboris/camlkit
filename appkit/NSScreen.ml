@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSScreen"
 
-module Class = struct
+module C = struct
   let deepestScreen self = msg_send ~self ~cmd:(selector "deepestScreen") ~typ:(returning (id))
   let mainScreen self = msg_send ~self ~cmd:(selector "mainScreen") ~typ:(returning (id))
   let screens self = msg_send ~self ~cmd:(selector "screens") ~typ:(returning (id))
@@ -17,10 +17,10 @@ end
 
 let auxiliaryTopLeftArea self = msg_send_stret ~self ~cmd:(selector "auxiliaryTopLeftArea") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let auxiliaryTopRightArea self = msg_send_stret ~self ~cmd:(selector "auxiliaryTopRightArea") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let backingAlignedRect x ~options self = msg_send_stret ~self ~cmd:(selector "backingAlignedRect:options:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x options
+let backingAlignedRect x ~options self = msg_send_stret ~self ~cmd:(selector "backingAlignedRect:options:") ~typ:(CGRect.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x (ULLong.of_int options)
 let backingScaleFactor self = msg_send ~self ~cmd:(selector "backingScaleFactor") ~typ:(returning (double))
 let bezelPath self = msg_send ~self ~cmd:(selector "bezelPath") ~typ:(returning (id))
-let canRepresentDisplayGamut x self = msg_send ~self ~cmd:(selector "canRepresentDisplayGamut:") ~typ:(llong @-> returning (bool)) x
+let canRepresentDisplayGamut x self = msg_send ~self ~cmd:(selector "canRepresentDisplayGamut:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 let colorSpace self = msg_send ~self ~cmd:(selector "colorSpace") ~typ:(returning (id))
 let convertRectFromBacking x self = msg_send_stret ~self ~cmd:(selector "convertRectFromBacking:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let convertRectToBacking x self = msg_send_stret ~self ~cmd:(selector "convertRectToBacking:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x

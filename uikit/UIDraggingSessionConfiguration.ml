@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIDraggingSessionConfiguration"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -25,7 +25,7 @@ let routingPolicy self = msg_send ~self ~cmd:(selector "routingPolicy") ~typ:(re
 let sceneIdentifier self = msg_send ~self ~cmd:(selector "sceneIdentifier") ~typ:(returning (id))
 let setAxEndpoint x self = msg_send ~self ~cmd:(selector "setAxEndpoint:") ~typ:(id @-> returning (void)) x
 let setCoordinateSpaceSourceContextID x self = msg_send ~self ~cmd:(selector "setCoordinateSpaceSourceContextID:") ~typ:(uint @-> returning (void)) x
-let setCoordinateSpaceSourceLayerRenderID x self = msg_send ~self ~cmd:(selector "setCoordinateSpaceSourceLayerRenderID:") ~typ:(ullong @-> returning (void)) x
+let setCoordinateSpaceSourceLayerRenderID x self = msg_send ~self ~cmd:(selector "setCoordinateSpaceSourceLayerRenderID:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setDataProviderEndpoint x self = msg_send ~self ~cmd:(selector "setDataProviderEndpoint:") ~typ:(id @-> returning (void)) x
 let setInitialCentroid x self = msg_send ~self ~cmd:(selector "setInitialCentroid:") ~typ:(CGPoint.t @-> returning (void)) x
 let setInitiatedWithPointer x self = msg_send ~self ~cmd:(selector "setInitiatedWithPointer:") ~typ:(bool @-> returning (void)) x

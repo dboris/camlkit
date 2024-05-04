@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextModernLoupeSession"
 
-module Class = struct
+module C = struct
   let beginLoupeSessionAtPoint x ~withCaretRect ~fromView self = msg_send ~self ~cmd:(selector "beginLoupeSessionAtPoint:withCaretRect:fromView:") ~typ:(CGPoint.t @-> CGRect.t @-> id @-> returning (id)) x withCaretRect fromView
 end
 

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileCoordinatorReacquisitionBlockCompletion"
 
-module Class = struct
+module C = struct
   let completionWithBlock x ~queue self = msg_send ~self ~cmd:(selector "completionWithBlock:queue:") ~typ:(ptr void @-> id @-> returning (id)) x queue
 end
 

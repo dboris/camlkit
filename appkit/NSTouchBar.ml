@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBar"
 
-module Class = struct
+module C = struct
   let allowsTouchesDuringTrackingLoops self = msg_send ~self ~cmd:(selector "allowsTouchesDuringTrackingLoops") ~typ:(returning (bool))
   let automaticRTLMirroringSupported self = msg_send ~self ~cmd:(selector "automaticRTLMirroringSupported") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfSuppressedByLessFocusedTouchBars self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfSuppressedByLessFocusedTouchBars") ~typ:(returning (bool))
@@ -27,7 +27,7 @@ module Class = struct
   let minimizeSystemModalTouchBar x self = msg_send ~self ~cmd:(selector "minimizeSystemModalTouchBar:") ~typ:(id @-> returning (void)) x
   let pathToUserDefinedTouchBar self = msg_send ~self ~cmd:(selector "pathToUserDefinedTouchBar") ~typ:(returning (id))
   let presentSystemModalTouchBar x ~systemTrayItemIdentifier self = msg_send ~self ~cmd:(selector "presentSystemModalTouchBar:systemTrayItemIdentifier:") ~typ:(id @-> id @-> returning (void)) x systemTrayItemIdentifier
-  let presentSystemModalTouchBar' x ~placement ~systemTrayItemIdentifier self = msg_send ~self ~cmd:(selector "presentSystemModalTouchBar:placement:systemTrayItemIdentifier:") ~typ:(id @-> llong @-> id @-> returning (void)) x placement systemTrayItemIdentifier
+  let presentSystemModalTouchBar' x ~placement ~systemTrayItemIdentifier self = msg_send ~self ~cmd:(selector "presentSystemModalTouchBar:placement:systemTrayItemIdentifier:") ~typ:(id @-> llong @-> id @-> returning (void)) x (LLong.of_int placement) systemTrayItemIdentifier
   let resetUserDefinedTouchBar self = msg_send ~self ~cmd:(selector "resetUserDefinedTouchBar") ~typ:(returning (void))
   let setAllowsTouchesDuringTrackingLoops x self = msg_send ~self ~cmd:(selector "setAllowsTouchesDuringTrackingLoops:") ~typ:(bool @-> returning (void)) x
   let setAutomaticCustomizeTouchBarMenuItemEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticCustomizeTouchBarMenuItemEnabled:") ~typ:(bool @-> returning (void)) x
@@ -83,7 +83,7 @@ let setSuppressedByMoreFocusedTouchBars x self = msg_send ~self ~cmd:(selector "
 let setSuppressesLessFocusedBars x self = msg_send ~self ~cmd:(selector "setSuppressesLessFocusedBars:") ~typ:(bool @-> returning (void)) x
 let setSuppressesMoreFocusedBars x self = msg_send ~self ~cmd:(selector "setSuppressesMoreFocusedBars:") ~typ:(bool @-> returning (void)) x
 let setTemplateItems x self = msg_send ~self ~cmd:(selector "setTemplateItems:") ~typ:(id @-> returning (void)) x
-let setTouchBarLayoutDirection x self = msg_send ~self ~cmd:(selector "setTouchBarLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setTouchBarLayoutDirection x self = msg_send ~self ~cmd:(selector "setTouchBarLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let suppressesLessFocusedBars self = msg_send ~self ~cmd:(selector "suppressesLessFocusedBars") ~typ:(returning (bool))
 let suppressesMoreFocusedBars self = msg_send ~self ~cmd:(selector "suppressesMoreFocusedBars") ~typ:(returning (bool))
 let templateItems self = msg_send ~self ~cmd:(selector "templateItems") ~typ:(returning (id))

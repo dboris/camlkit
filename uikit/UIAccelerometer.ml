@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAccelerometer"
 
-module Class = struct
+module C = struct
   let sharedAccelerometer self = msg_send ~self ~cmd:(selector "sharedAccelerometer") ~typ:(returning (id))
 end
 

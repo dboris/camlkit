@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITextMagnifierRanged"
 
-module Class = struct
+module C = struct
   let activeRangedMagnifier self = msg_send ~self ~cmd:(selector "activeRangedMagnifier") ~typ:(returning (id))
   let renderClass self = msg_send ~self ~cmd:(selector "renderClass") ~typ:(returning (_Class))
   let sharedRangedMagnifier self = msg_send ~self ~cmd:(selector "sharedRangedMagnifier") ~typ:(returning (id))

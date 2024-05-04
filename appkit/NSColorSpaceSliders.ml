@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorSpaceSliders"
 
-module Class = struct
+module C = struct
   let genericColorSpace self = msg_send ~self ~cmd:(selector "genericColorSpace") ~typ:(returning (id))
 end
 

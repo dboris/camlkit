@@ -21,6 +21,7 @@ let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:(id @-
 let setAngle x self = msg_send ~self ~cmd:(selector "setAngle:") ~typ:(double @-> returning (void)) x
 let setAngle' x ~magnitude self = msg_send ~self ~cmd:(selector "setAngle:magnitude:") ~typ:(double @-> double @-> returning (void)) x magnitude
 let setGravity x self = msg_send ~self ~cmd:(selector "setGravity:") ~typ:(CGPoint.t @-> returning (void)) x
+let setGravityDirection x self = msg_send ~self ~cmd:(selector "setGravityDirection:") ~typ:(ptr void @-> returning (void)) x
 let setMagnitude x self = msg_send ~self ~cmd:(selector "setMagnitude:") ~typ:(double @-> returning (void)) x
 let setXComponent x self = msg_send ~self ~cmd:(selector "setXComponent:") ~typ:(double @-> returning (void)) x
 let setXComponent' x ~yComponent self = msg_send ~self ~cmd:(selector "setXComponent:yComponent:") ~typ:(double @-> double @-> returning (void)) x yComponent

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSearchFieldCell"
 
-module Class = struct
+module C = struct
   let automaticTextCompletionEnabled self = msg_send ~self ~cmd:(selector "automaticTextCompletionEnabled") ~typ:(returning (bool))
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
 end
@@ -65,10 +65,10 @@ let sendsSearchStringImmediately self = msg_send ~self ~cmd:(selector "sendsSear
 let sendsWholeSearchString self = msg_send ~self ~cmd:(selector "sendsWholeSearchString") ~typ:(returning (bool))
 let setCancelButtonCell x self = msg_send ~self ~cmd:(selector "setCancelButtonCell:") ~typ:(id @-> returning (void)) x
 let setCenteredLook x self = msg_send ~self ~cmd:(selector "setCenteredLook:") ~typ:(bool @-> returning (void)) x
-let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) x
+let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setControlView x self = msg_send ~self ~cmd:(selector "setControlView:") ~typ:(id @-> returning (void)) x
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning (void)) x
-let setMaximumRecents x self = msg_send ~self ~cmd:(selector "setMaximumRecents:") ~typ:(llong @-> returning (void)) x
+let setMaximumRecents x self = msg_send ~self ~cmd:(selector "setMaximumRecents:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setObjectValue x self = msg_send ~self ~cmd:(selector "setObjectValue:") ~typ:(id @-> returning (void)) x
 let setRecentSearches x self = msg_send ~self ~cmd:(selector "setRecentSearches:") ~typ:(id @-> returning (void)) x
 let setRecentsAutosaveName x self = msg_send ~self ~cmd:(selector "setRecentsAutosaveName:") ~typ:(id @-> returning (void)) x
@@ -78,7 +78,7 @@ let setSearchMenuTemplate x self = msg_send ~self ~cmd:(selector "setSearchMenuT
 let setSendsSearchStringImmediately x self = msg_send ~self ~cmd:(selector "setSendsSearchStringImmediately:") ~typ:(bool @-> returning (void)) x
 let setSendsWholeSearchString x self = msg_send ~self ~cmd:(selector "setSendsWholeSearchString:") ~typ:(bool @-> returning (void)) x
 let setTextColor x self = msg_send ~self ~cmd:(selector "setTextColor:") ~typ:(id @-> returning (void)) x
-let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let textDidChange x self = msg_send ~self ~cmd:(selector "textDidChange:") ~typ:(id @-> returning (void)) x
 let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let trackMouse x ~inRect ~ofView ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> bool @-> returning (bool)) x inRect ofView untilMouseUp

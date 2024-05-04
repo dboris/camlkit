@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTabSearchTabInfoForFiltering"
 
-module Class = struct
+module C = struct
   let infoWithTitle x self = msg_send ~self ~cmd:(selector "infoWithTitle:") ~typ:(id @-> returning (id)) x
 end
 

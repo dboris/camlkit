@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPreferences"
 
-module Class = struct
+module C = struct
   let defaultPreferencesClass self = msg_send ~self ~cmd:(selector "defaultPreferencesClass") ~typ:(returning (_Class))
   let restoreWindowWithIdentifier x ~state ~completionHandler self = msg_send ~self ~cmd:(selector "restoreWindowWithIdentifier:state:completionHandler:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x state completionHandler
   let setDefaultPreferencesClass x self = msg_send ~self ~cmd:(selector "setDefaultPreferencesClass:") ~typ:(_Class @-> returning (void)) x
@@ -19,7 +19,7 @@ let activateModuleHelp x self = msg_send ~self ~cmd:(selector "activateModuleHel
 let addPreferenceNamed x ~owner self = msg_send ~self ~cmd:(selector "addPreferenceNamed:owner:") ~typ:(id @-> id @-> returning (void)) x owner
 let apply x self = msg_send ~self ~cmd:(selector "apply:") ~typ:(id @-> returning (void)) x
 let cancel x self = msg_send ~self ~cmd:(selector "cancel:") ~typ:(id @-> returning (void)) x
-let confirmCloseSheetIsDone x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "confirmCloseSheetIsDone:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x returnCode contextInfo
+let confirmCloseSheetIsDone x ~returnCode ~contextInfo self = msg_send ~self ~cmd:(selector "confirmCloseSheetIsDone:returnCode:contextInfo:") ~typ:(id @-> llong @-> ptr (void) @-> returning (void)) x (LLong.of_int returnCode) contextInfo
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let ok x self = msg_send ~self ~cmd:(selector "ok:") ~typ:(id @-> returning (void)) x

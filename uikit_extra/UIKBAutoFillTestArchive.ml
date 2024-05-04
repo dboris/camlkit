@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKBAutoFillTestArchive"
 
-module Class = struct
+module C = struct
   let autoFillTestArchiveWithData x self = msg_send ~self ~cmd:(selector "autoFillTestArchiveWithData:") ~typ:(id @-> returning (id)) x
 end
 
@@ -26,12 +26,12 @@ let setNavigationControllerClassName x self = msg_send ~self ~cmd:(selector "set
 let setPresentingViewControllerClassName x self = msg_send ~self ~cmd:(selector "setPresentingViewControllerClassName:") ~typ:(id @-> returning (void)) x
 let setRequiresNavigationControllerNesting x self = msg_send ~self ~cmd:(selector "setRequiresNavigationControllerNesting:") ~typ:(bool @-> returning (void)) x
 let setSnapshotView x self = msg_send ~self ~cmd:(selector "setSnapshotView:") ~typ:(id @-> returning (void)) x
-let setTableViewDataSource x ~forTableViewWithTag self = msg_send ~self ~cmd:(selector "setTableViewDataSource:forTableViewWithTag:") ~typ:(id @-> llong @-> returning (void)) x forTableViewWithTag
+let setTableViewDataSource x ~forTableViewWithTag self = msg_send ~self ~cmd:(selector "setTableViewDataSource:forTableViewWithTag:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int forTableViewWithTag)
 let setViewControllerClassName x self = msg_send ~self ~cmd:(selector "setViewControllerClassName:") ~typ:(id @-> returning (void)) x
 let setViewControllerNavigationItem x self = msg_send ~self ~cmd:(selector "setViewControllerNavigationItem:") ~typ:(id @-> returning (void)) x
 let setViewControllerTitle x self = msg_send ~self ~cmd:(selector "setViewControllerTitle:") ~typ:(id @-> returning (void)) x
 let snapshotView self = msg_send ~self ~cmd:(selector "snapshotView") ~typ:(returning (id))
-let tableViewDataSourceWithTag x self = msg_send ~self ~cmd:(selector "tableViewDataSourceWithTag:") ~typ:(llong @-> returning (id)) x
+let tableViewDataSourceWithTag x self = msg_send ~self ~cmd:(selector "tableViewDataSourceWithTag:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
 let viewControllerClassName self = msg_send ~self ~cmd:(selector "viewControllerClassName") ~typ:(returning (id))
 let viewControllerNavigationItem self = msg_send ~self ~cmd:(selector "viewControllerNavigationItem") ~typ:(returning (id))
 let viewControllerTitle self = msg_send ~self ~cmd:(selector "viewControllerTitle") ~typ:(returning (id))

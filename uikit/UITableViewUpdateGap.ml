@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UITableViewUpdateGap"
 
-module Class = struct
+module C = struct
   let gapWithUpdateItem x self = msg_send ~self ~cmd:(selector "gapWithUpdateItem:") ~typ:(id @-> returning (id)) x
 end
 

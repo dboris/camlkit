@@ -8,12 +8,12 @@ open Foundation
 
 let _class_ = get_class "UIKBRenderFactoryLayoutSegment"
 
-module Class = struct
+module C = struct
   let segmentWithTraits x self = msg_send ~self ~cmd:(selector "segmentWithTraits:") ~typ:(id @-> returning (id)) x
 end
 
-let addLayoutRect x ~asTriangle self = msg_send ~self ~cmd:(selector "addLayoutRect:asTriangle:") ~typ:(CGRect.t @-> ullong @-> returning (void)) x asTriangle
-let addRelativeLayoutRectFromEdge x ~ofCachedKey self = msg_send ~self ~cmd:(selector "addRelativeLayoutRectFromEdge:ofCachedKey:") ~typ:(ullong @-> id @-> returning (void)) x ofCachedKey
+let addLayoutRect x ~asTriangle self = msg_send ~self ~cmd:(selector "addLayoutRect:asTriangle:") ~typ:(CGRect.t @-> ullong @-> returning (void)) x (ULLong.of_int asTriangle)
+let addRelativeLayoutRectFromEdge x ~ofCachedKey self = msg_send ~self ~cmd:(selector "addRelativeLayoutRectFromEdge:ofCachedKey:") ~typ:(ullong @-> id @-> returning (void)) (ULLong.of_int x) ofCachedKey
 let containsPoint x ~inRect ~withKeyplane self = msg_send ~self ~cmd:(selector "containsPoint:inRect:withKeyplane:") ~typ:(CGPoint.t @-> CGRect.t @-> id @-> returning (bool)) x inRect withKeyplane
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let initWithTraits x self = msg_send ~self ~cmd:(selector "initWithTraits:") ~typ:(id @-> returning (id)) x

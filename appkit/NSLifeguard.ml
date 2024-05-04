@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSLifeguard"
 
-module Class = struct
+module C = struct
   let beginWatch self = msg_send ~self ~cmd:(selector "beginWatch") ~typ:(returning (void))
   let currentLifeguard self = msg_send ~self ~cmd:(selector "currentLifeguard") ~typ:(returning (id))
   let isOnDuty self = msg_send ~self ~cmd:(selector "isOnDuty") ~typ:(returning (bool))

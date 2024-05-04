@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardSliceSet"
 
-module Class = struct
+module C = struct
   let sliceSetWithDictionaryRepresenation x self = msg_send ~self ~cmd:(selector "sliceSetWithDictionaryRepresenation:") ~typ:(id @-> returning (id)) x
 end
 

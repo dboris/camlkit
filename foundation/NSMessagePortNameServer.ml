@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMessagePortNameServer"
 
-module Class = struct
+module C = struct
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
 end
 

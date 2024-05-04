@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionGroup"
 
-module Class = struct
+module C = struct
   let actionGroupWithActions x self = msg_send ~self ~cmd:(selector "actionGroupWithActions:") ~typ:(id @-> returning (id)) x
   let actionGroupWithActionsBySection x self = msg_send ~self ~cmd:(selector "actionGroupWithActionsBySection:") ~typ:(id @-> returning (id)) x
   let changedProperties x ~containsAny self = msg_send ~self ~cmd:(selector "changedProperties:containsAny:") ~typ:(id @-> id @-> returning (bool)) x containsAny

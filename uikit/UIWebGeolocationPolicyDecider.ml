@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIWebGeolocationPolicyDecider"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let sharedPolicyDecider self = msg_send ~self ~cmd:(selector "sharedPolicyDecider") ~typ:(returning (id))
 end

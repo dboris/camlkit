@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSOrthography"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let defaultOrthographyForLanguage x self = msg_send ~self ~cmd:(selector "defaultOrthographyForLanguage:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))

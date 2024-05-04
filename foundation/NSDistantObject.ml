@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSDistantObject"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let newDistantObjectWithCoder x self = msg_send ~self ~cmd:(selector "newDistantObjectWithCoder:") ~typ:(id @-> returning (id)) x
   let proxyWithLocal x ~connection self = msg_send ~self ~cmd:(selector "proxyWithLocal:connection:") ~typ:(id @-> id @-> returning (id)) x connection

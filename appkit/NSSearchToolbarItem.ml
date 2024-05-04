@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSSearchToolbarItem"
 
-module Class = struct
+module C = struct
   let classFallbacksForKeyedArchiver self = msg_send ~self ~cmd:(selector "classFallbacksForKeyedArchiver") ~typ:(returning (id))
 end
 
@@ -21,7 +21,7 @@ let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning (void)
 let cancelButtonAction self = msg_send ~self ~cmd:(selector "cancelButtonAction") ~typ:(returning (_SEL))
 let cancelButtonTarget self = msg_send ~self ~cmd:(selector "cancelButtonTarget") ~typ:(returning (id))
 let compressedMinSize self = msg_send_stret ~self ~cmd:(selector "compressedMinSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) x andSizeMode
+let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning (void)) (ULLong.of_int x) (ULLong.of_int andSizeMode)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
@@ -50,7 +50,7 @@ let setPreferredWidthForSearchFieldRepresentation x self = msg_send ~self ~cmd:(
 let setResignsFirstResponderWithCancel x self = msg_send ~self ~cmd:(selector "setResignsFirstResponderWithCancel:") ~typ:(bool @-> returning (void)) x
 let setSearchField x self = msg_send ~self ~cmd:(selector "setSearchField:") ~typ:(id @-> returning (void)) x
 let setStringValue x self = msg_send ~self ~cmd:(selector "setStringValue:") ~typ:(id @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning (void)) x
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning (id))

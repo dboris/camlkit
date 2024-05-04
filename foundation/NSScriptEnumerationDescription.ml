@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSScriptEnumerationDescription"
 
-module Class = struct
+module C = struct
   let enumerationDescriptionFromName x ~implDeclaration ~presoDeclaration self = msg_send ~self ~cmd:(selector "enumerationDescriptionFromName:implDeclaration:presoDeclaration:") ~typ:(id @-> id @-> id @-> returning (id)) x implDeclaration presoDeclaration
 end
 

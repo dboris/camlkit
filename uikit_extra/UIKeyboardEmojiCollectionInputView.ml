@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardEmojiCollectionInputView"
 
-module Class = struct
+module C = struct
   let shouldHighlightEmoji x self = msg_send ~self ~cmd:(selector "shouldHighlightEmoji:") ~typ:(id @-> returning (bool)) x
   let wantsScreenTraits self = msg_send ~self ~cmd:(selector "wantsScreenTraits") ~typ:(returning (bool))
 end
@@ -17,9 +17,9 @@ let baseStringIsCoupleEmoji x self = msg_send ~self ~cmd:(selector "baseStringIs
 let category self = msg_send ~self ~cmd:(selector "category") ~typ:(returning (id))
 let cellShouldScrollWhenSelectedAtIndexPath x self = msg_send ~self ~cmd:(selector "cellShouldScrollWhenSelectedAtIndexPath:") ~typ:(id @-> returning (bool)) x
 let collectionView x ~cellForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:cellForItemAtIndexPath:") ~typ:(id @-> id @-> returning (id)) x cellForItemAtIndexPath
-let collectionView1 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x numberOfItemsInSection
-let collectionView2 x ~layout ~minimumInteritemSpacingForSectionAtIndex self = msg_send ~self ~cmd:(selector "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:") ~typ:(id @-> id @-> llong @-> returning (double)) x layout minimumInteritemSpacingForSectionAtIndex
-let collectionView3 x ~layout ~minimumLineSpacingForSectionAtIndex self = msg_send ~self ~cmd:(selector "collectionView:layout:minimumLineSpacingForSectionAtIndex:") ~typ:(id @-> id @-> llong @-> returning (double)) x layout minimumLineSpacingForSectionAtIndex
+let collectionView1 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning (llong)) x (LLong.of_int numberOfItemsInSection)
+let collectionView2 x ~layout ~minimumInteritemSpacingForSectionAtIndex self = msg_send ~self ~cmd:(selector "collectionView:layout:minimumInteritemSpacingForSectionAtIndex:") ~typ:(id @-> id @-> llong @-> returning (double)) x layout (LLong.of_int minimumInteritemSpacingForSectionAtIndex)
+let collectionView3 x ~layout ~minimumLineSpacingForSectionAtIndex self = msg_send ~self ~cmd:(selector "collectionView:layout:minimumLineSpacingForSectionAtIndex:") ~typ:(id @-> id @-> llong @-> returning (double)) x layout (LLong.of_int minimumLineSpacingForSectionAtIndex)
 let collectionView4 x ~layout ~sizeForItemAtIndexPath self = msg_send_stret ~self ~cmd:(selector "collectionView:layout:sizeForItemAtIndexPath:") ~typ:(id @-> id @-> id @-> returning (CGSize.t)) ~return_type:CGSize.t x layout sizeForItemAtIndexPath
 let collectionView5 x ~viewForSupplementaryElementOfKind ~atIndexPath self = msg_send ~self ~cmd:(selector "collectionView:viewForSupplementaryElementOfKind:atIndexPath:") ~typ:(id @-> id @-> id @-> returning (id)) x viewForSupplementaryElementOfKind atIndexPath
 let completionBlock self = msg_send ~self ~cmd:(selector "completionBlock") ~typ:(returning (ptr void))
@@ -30,7 +30,7 @@ let didMoveToWindow self = msg_send ~self ~cmd:(selector "didMoveToWindow") ~typ
 let dimKeys x self = msg_send ~self ~cmd:(selector "dimKeys:") ~typ:(id @-> returning (void)) x
 let emojiBaseFirstCharacterString x self = msg_send ~self ~cmd:(selector "emojiBaseFirstCharacterString:") ~typ:(id @-> returning (id)) x
 let emojiBaseString x self = msg_send ~self ~cmd:(selector "emojiBaseString:") ~typ:(id @-> returning (id)) x
-let emojiCategoryTypeForSection x self = msg_send ~self ~cmd:(selector "emojiCategoryTypeForSection:") ~typ:(llong @-> returning (llong)) x
+let emojiCategoryTypeForSection x self = msg_send ~self ~cmd:(selector "emojiCategoryTypeForSection:") ~typ:(llong @-> returning (llong)) (LLong.of_int x)
 let emojiSearchDidReceiveResults x ~forExactQuery ~autocorrectedQuery self = msg_send ~self ~cmd:(selector "emojiSearchDidReceiveResults:forExactQuery:autocorrectedQuery:") ~typ:(id @-> id @-> id @-> returning (void)) x forExactQuery autocorrectedQuery
 let emojiSearchField self = msg_send ~self ~cmd:(selector "emojiSearchField") ~typ:(returning (id))
 let emojiSearchInputViewController self = msg_send ~self ~cmd:(selector "emojiSearchInputViewController") ~typ:(returning (id))
@@ -56,7 +56,7 @@ let insertSelectedEmoji x ~shouldDismissPopover self = msg_send ~self ~cmd:(sele
 let isDraggingInputView self = msg_send ~self ~cmd:(selector "isDraggingInputView") ~typ:(returning (bool))
 let isSearching self = msg_send ~self ~cmd:(selector "isSearching") ~typ:(returning (bool))
 let itemInRect x self = msg_send ~self ~cmd:(selector "itemInRect:") ~typ:(CGRect.t @-> returning (id)) x
-let keyCodeForCurrentEnvironmentFromKeyCode x self = msg_send ~self ~cmd:(selector "keyCodeForCurrentEnvironmentFromKeyCode:") ~typ:(llong @-> returning (llong)) x
+let keyCodeForCurrentEnvironmentFromKeyCode x self = msg_send ~self ~cmd:(selector "keyCodeForCurrentEnvironmentFromKeyCode:") ~typ:(llong @-> returning (llong)) (LLong.of_int x)
 let keySupportsVariants x self = msg_send ~self ~cmd:(selector "keySupportsVariants:") ~typ:(id @-> returning (bool)) x
 let numberOfSectionsInCollectionView x self = msg_send ~self ~cmd:(selector "numberOfSectionsInCollectionView:") ~typ:(id @-> returning (llong)) x
 let preferencesControllerChanged x self = msg_send ~self ~cmd:(selector "preferencesControllerChanged:") ~typ:(id @-> returning (void)) x
@@ -94,6 +94,6 @@ let updateLastSeenItemForIndexPath x self = msg_send ~self ~cmd:(selector "updat
 let updateMemojiPreference self = msg_send ~self ~cmd:(selector "updateMemojiPreference") ~typ:(returning (void))
 let updateOffsetForSearchResults self = msg_send ~self ~cmd:(selector "updateOffsetForSearchResults") ~typ:(returning (void))
 let updatePreferencesForSelectedEmoji x self = msg_send ~self ~cmd:(selector "updatePreferencesForSelectedEmoji:") ~typ:(id @-> returning (void)) x
-let updateToCategory x self = msg_send ~self ~cmd:(selector "updateToCategory:") ~typ:(llong @-> returning (void)) x
+let updateToCategory x self = msg_send ~self ~cmd:(selector "updateToCategory:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let updateToCategoryWithOffsetPercentage x self = msg_send ~self ~cmd:(selector "updateToCategoryWithOffsetPercentage:") ~typ:(double @-> returning (llong)) x
 let willDisplayModalActionView x ~withSubTreeKeyView ~completion self = msg_send ~self ~cmd:(selector "willDisplayModalActionView:withSubTreeKeyView:completion:") ~typ:(id @-> id @-> ptr void @-> returning (void)) x withSubTreeKeyView completion

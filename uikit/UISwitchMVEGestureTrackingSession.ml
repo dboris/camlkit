@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UISwitchMVEGestureTrackingSession"
 
-module Class = struct
-  let gestureIsInEndState x self = msg_send ~self ~cmd:(selector "gestureIsInEndState:") ~typ:(llong @-> returning (bool)) x
+module C = struct
+  let gestureIsInEndState x self = msg_send ~self ~cmd:(selector "gestureIsInEndState:") ~typ:(llong @-> returning (bool)) (LLong.of_int x)
 end
 
 let applyPendingDisplayedOnValueAndSendActions self = msg_send ~self ~cmd:(selector "applyPendingDisplayedOnValueAndSendActions") ~typ:(returning (void))

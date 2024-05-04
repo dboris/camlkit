@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKBrowsingContextController"
 
-module Class = struct
+module C = struct
   let customSchemes self = msg_send ~self ~cmd:(selector "customSchemes") ~typ:(returning (id))
   let registerSchemeForCustomProtocol x self = msg_send ~self ~cmd:(selector "registerSchemeForCustomProtocol:") ~typ:(id @-> returning (void)) x
   let unregisterSchemeForCustomProtocol x self = msg_send ~self ~cmd:(selector "unregisterSchemeForCustomProtocol:") ~typ:(id @-> returning (void)) x
@@ -62,7 +62,7 @@ let setPageLength x self = msg_send ~self ~cmd:(selector "setPageLength:") ~typ:
 let setPageZoom x self = msg_send ~self ~cmd:(selector "setPageZoom:") ~typ:(double @-> returning (void)) x
 let setPaginationBehavesLikeColumns x self = msg_send ~self ~cmd:(selector "setPaginationBehavesLikeColumns:") ~typ:(bool @-> returning (void)) x
 let setPaginationLineGridEnabled x self = msg_send ~self ~cmd:(selector "setPaginationLineGridEnabled:") ~typ:(bool @-> returning (void)) x
-let setPaginationMode x self = msg_send ~self ~cmd:(selector "setPaginationMode:") ~typ:(ullong @-> returning (void)) x
+let setPaginationMode x self = msg_send ~self ~cmd:(selector "setPaginationMode:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setPolicyDelegate x self = msg_send ~self ~cmd:(selector "setPolicyDelegate:") ~typ:(id @-> returning (void)) x
 let setTextZoom x self = msg_send ~self ~cmd:(selector "setTextZoom:") ~typ:(double @-> returning (void)) x
 let stopLoading self = msg_send ~self ~cmd:(selector "stopLoading") ~typ:(returning (void))

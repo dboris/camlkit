@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyShortcutHUDService"
 
-module Class = struct
+module C = struct
   let sharedHUDService self = msg_send ~self ~cmd:(selector "sharedHUDService") ~typ:(returning (id))
 end
 
@@ -24,7 +24,7 @@ let isHUDVisible self = msg_send ~self ~cmd:(selector "isHUDVisible") ~typ:(retu
 let isModifierKeyDownForHUDDismissal self = msg_send ~self ~cmd:(selector "isModifierKeyDownForHUDDismissal") ~typ:(returning (bool))
 let lastKeyboardEvent self = msg_send ~self ~cmd:(selector "lastKeyboardEvent") ~typ:(returning (id))
 let modifierKeyListener self = msg_send ~self ~cmd:(selector "modifierKeyListener") ~typ:(returning (id))
-let modifierKeyListener' x ~didUpdateModifierFlag ~withEvent self = msg_send ~self ~cmd:(selector "modifierKeyListener:didUpdateModifierFlag:withEvent:") ~typ:(id @-> llong @-> id @-> returning (void)) x didUpdateModifierFlag withEvent
+let modifierKeyListener' x ~didUpdateModifierFlag ~withEvent self = msg_send ~self ~cmd:(selector "modifierKeyListener:didUpdateModifierFlag:withEvent:") ~typ:(id @-> llong @-> id @-> returning (void)) x (LLong.of_int didUpdateModifierFlag) withEvent
 let modifierKeyListenerDidPressNonModifierKey x self = msg_send ~self ~cmd:(selector "modifierKeyListenerDidPressNonModifierKey:") ~typ:(id @-> returning (void)) x
 let presentHUD self = msg_send ~self ~cmd:(selector "presentHUD") ~typ:(returning (void))
 let presentHUDIfAllowedWithConfiguration x self = msg_send ~self ~cmd:(selector "presentHUDIfAllowedWithConfiguration:") ~typ:(id @-> returning (void)) x

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileReadingClaim"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,10 +18,10 @@ let evaluateSelfWithRootNode x ~checkSubarbitrability self = msg_send ~self ~cmd
 let forwardUsingConnection x ~crashHandler self = msg_send ~self ~cmd:(selector "forwardUsingConnection:crashHandler:") ~typ:(id @-> ptr void @-> returning (void)) x crashHandler
 let granted self = msg_send ~self ~cmd:(selector "granted") ~typ:(returning (void))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithPurposeID x ~url ~options ~claimer self = msg_send ~self ~cmd:(selector "initWithPurposeID:url:options:claimer:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (id)) x url options claimer
+let initWithPurposeID x ~url ~options ~claimer self = msg_send ~self ~cmd:(selector "initWithPurposeID:url:options:claimer:") ~typ:(id @-> id @-> ullong @-> ptr void @-> returning (id)) x url (ULLong.of_int options) claimer
 let invokeClaimer self = msg_send ~self ~cmd:(selector "invokeClaimer") ~typ:(returning (void))
-let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
-let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
+let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
+let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
 let itemAtLocation x ~wasReplacedByItemAtLocation self = msg_send ~self ~cmd:(selector "itemAtLocation:wasReplacedByItemAtLocation:") ~typ:(id @-> id @-> returning (void)) x wasReplacedByItemAtLocation
 let protectFilesAgainstEviction self = msg_send ~self ~cmd:(selector "protectFilesAgainstEviction") ~typ:(returning (void))
 let resolveURLThenMaybeContinueInvokingClaimer x self = msg_send ~self ~cmd:(selector "resolveURLThenMaybeContinueInvokingClaimer:") ~typ:(ptr void @-> returning (void)) x

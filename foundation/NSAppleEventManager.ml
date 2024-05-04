@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSAppleEventManager"
 
-module Class = struct
+module C = struct
   let sharedAppleEventManager self = msg_send ~self ~cmd:(selector "sharedAppleEventManager") ~typ:(returning (id))
 end
 

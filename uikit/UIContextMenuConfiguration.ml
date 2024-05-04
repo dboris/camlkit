@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIContextMenuConfiguration"
 
-module Class = struct
+module C = struct
   let configurationWithIdentifier x ~previewProvider ~actionProvider self = msg_send ~self ~cmd:(selector "configurationWithIdentifier:previewProvider:actionProvider:") ~typ:(id @-> ptr void @-> ptr void @-> returning (id)) x previewProvider actionProvider
 end
 

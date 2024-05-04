@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSFileMultipleAccessClaim"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -20,8 +20,8 @@ let granted self = msg_send ~self ~cmd:(selector "granted") ~typ:(returning (voi
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithPurposeID x ~intents ~claimer self = msg_send ~self ~cmd:(selector "initWithPurposeID:intents:claimer:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x intents claimer
 let invokeClaimer self = msg_send ~self ~cmd:(selector "invokeClaimer") ~typ:(returning (void))
-let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
-let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x options
+let isBlockedByReadingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByReadingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
+let isBlockedByWritingItemAtLocation x ~options self = msg_send ~self ~cmd:(selector "isBlockedByWritingItemAtLocation:options:") ~typ:(id @-> ullong @-> returning (bool)) x (ULLong.of_int options)
 let itemAtLocation x ~wasReplacedByItemAtLocation self = msg_send ~self ~cmd:(selector "itemAtLocation:wasReplacedByItemAtLocation:") ~typ:(id @-> id @-> returning (void)) x wasReplacedByItemAtLocation
 let protectFilesAgainstEviction self = msg_send ~self ~cmd:(selector "protectFilesAgainstEviction") ~typ:(returning (void))
 let resolveURLsThenMaybeContinueInvokingClaimer x self = msg_send ~self ~cmd:(selector "resolveURLsThenMaybeContinueInvokingClaimer:") ~typ:(ptr void @-> returning (void)) x

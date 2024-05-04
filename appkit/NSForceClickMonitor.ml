@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSForceClickMonitor"
 
-module Class = struct
+module C = struct
   let forceClickUserPreferencesEnabled self = msg_send ~self ~cmd:(selector "forceClickUserPreferencesEnabled") ~typ:(returning (bool))
 end
 
@@ -28,7 +28,7 @@ let sendEvent x self = msg_send ~self ~cmd:(selector "sendEvent:") ~typ:(id @-> 
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning (void)) x
 let setAllowableMovement x self = msg_send ~self ~cmd:(selector "setAllowableMovement:") ~typ:(double @-> returning (void)) x
 let setProgress x self = msg_send ~self ~cmd:(selector "setProgress:") ~typ:(double @-> returning (void)) x
-let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) x
+let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning (void)) x
 let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning (llong))
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))

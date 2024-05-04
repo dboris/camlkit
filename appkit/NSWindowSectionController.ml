@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSWindowSectionController"
 
-module Class = struct
+module C = struct
   let leadingPartitionPositionForItem x ~inWindow self = msg_send ~self ~cmd:(selector "leadingPartitionPositionForItem:inWindow:") ~typ:(id @-> id @-> returning (double)) x inWindow
 end
 

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIKeyboardDockView"
 
-module Class = struct
+module C = struct
   let dockViewHomeGestureExclusionZones self = msg_send ~self ~cmd:(selector "dockViewHomeGestureExclusionZones") ~typ:(returning (id))
 end
 

@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSThread"
 
-module Class = struct
+module C = struct
   let callStackReturnAddresses self = msg_send ~self ~cmd:(selector "callStackReturnAddresses") ~typ:(returning (id))
   let callStackSymbols self = msg_send ~self ~cmd:(selector "callStackSymbols") ~typ:(returning (id))
   let currentThread self = msg_send ~self ~cmd:(selector "currentThread") ~typ:(returning (id))
@@ -38,8 +38,8 @@ let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning (llong))
 let runLoop self = msg_send ~self ~cmd:(selector "runLoop") ~typ:(returning (id))
 let setName x self = msg_send ~self ~cmd:(selector "setName:") ~typ:(id @-> returning (void)) x
-let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) x
-let setStackSize x self = msg_send ~self ~cmd:(selector "setStackSize:") ~typ:(ullong @-> returning (void)) x
+let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setStackSize x self = msg_send ~self ~cmd:(selector "setStackSize:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setThreadPriority x self = msg_send ~self ~cmd:(selector "setThreadPriority:") ~typ:(double @-> returning (void)) x
 let stackSize self = msg_send ~self ~cmd:(selector "stackSize") ~typ:(returning (ullong))
 let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning (void))

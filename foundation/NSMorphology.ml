@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSMorphology"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let userMorphology self = msg_send ~self ~cmd:(selector "userMorphology") ~typ:(returning (id))
 end
@@ -22,6 +22,6 @@ let isUnspecified self = msg_send ~self ~cmd:(selector "isUnspecified") ~typ:(re
 let number self = msg_send ~self ~cmd:(selector "number") ~typ:(returning (llong))
 let partOfSpeech self = msg_send ~self ~cmd:(selector "partOfSpeech") ~typ:(returning (llong))
 let setCustomPronoun x ~forLanguage ~error self = msg_send ~self ~cmd:(selector "setCustomPronoun:forLanguage:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (bool)) x forLanguage error
-let setGrammaticalGender x self = msg_send ~self ~cmd:(selector "setGrammaticalGender:") ~typ:(llong @-> returning (void)) x
-let setNumber x self = msg_send ~self ~cmd:(selector "setNumber:") ~typ:(llong @-> returning (void)) x
-let setPartOfSpeech x self = msg_send ~self ~cmd:(selector "setPartOfSpeech:") ~typ:(llong @-> returning (void)) x
+let setGrammaticalGender x self = msg_send ~self ~cmd:(selector "setGrammaticalGender:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setNumber x self = msg_send ~self ~cmd:(selector "setNumber:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPartOfSpeech x self = msg_send ~self ~cmd:(selector "setPartOfSpeech:") ~typ:(llong @-> returning (void)) (LLong.of_int x)

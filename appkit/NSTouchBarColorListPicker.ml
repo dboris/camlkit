@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarColorListPicker"
 
-module Class = struct
+module C = struct
   let accessibilityIsSingleCelled self = msg_send ~self ~cmd:(selector "accessibilityIsSingleCelled") ~typ:(returning (bool))
   let automaticallyNotifiesObserversOfCurrentColor self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfCurrentColor") ~typ:(returning (bool))
   let keyPathsForValuesAffectingCurrentColor self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingCurrentColor") ~typ:(returning (id))
@@ -31,13 +31,13 @@ let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicCo
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning (bool))
 let longPress x self = msg_send ~self ~cmd:(selector "longPress:") ~typ:(id @-> returning (void)) x
 let numberOfItemsForScrubber x self = msg_send ~self ~cmd:(selector "numberOfItemsForScrubber:") ~typ:(id @-> returning (llong)) x
-let popUp x ~didHighlightColor ~withKey ~atIndex self = msg_send ~self ~cmd:(selector "popUp:didHighlightColor:withKey:atIndex:") ~typ:(id @-> id @-> id @-> llong @-> returning (void)) x didHighlightColor withKey atIndex
+let popUp x ~didHighlightColor ~withKey ~atIndex self = msg_send ~self ~cmd:(selector "popUp:didHighlightColor:withKey:atIndex:") ~typ:(id @-> id @-> id @-> llong @-> returning (void)) x didHighlightColor withKey (LLong.of_int atIndex)
 let popUpDidDismiss x self = msg_send ~self ~cmd:(selector "popUpDidDismiss:") ~typ:(id @-> returning (void)) x
 let popUpDidEndColorSelection x ~cancelled self = msg_send ~self ~cmd:(selector "popUpDidEndColorSelection:cancelled:") ~typ:(id @-> bool @-> returning (void)) x cancelled
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning (void))
-let scrubber x ~didHighlightItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:didHighlightItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x didHighlightItemAtIndex
-let scrubber1 x ~didSelectItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:didSelectItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x didSelectItemAtIndex
-let scrubber2 x ~viewForItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:viewForItemAtIndex:") ~typ:(id @-> llong @-> returning (id)) x viewForItemAtIndex
+let scrubber x ~didHighlightItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:didHighlightItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int didHighlightItemAtIndex)
+let scrubber1 x ~didSelectItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:didSelectItemAtIndex:") ~typ:(id @-> llong @-> returning (void)) x (LLong.of_int didSelectItemAtIndex)
+let scrubber2 x ~viewForItemAtIndex self = msg_send ~self ~cmd:(selector "scrubber:viewForItemAtIndex:") ~typ:(id @-> llong @-> returning (id)) x (LLong.of_int viewForItemAtIndex)
 let selectedColorKey self = msg_send ~self ~cmd:(selector "selectedColorKey") ~typ:(returning (id))
 let setAllowedColorSpaces x self = msg_send ~self ~cmd:(selector "setAllowedColorSpaces:") ~typ:(id @-> returning (void)) x
 let setAllowsAlpha x self = msg_send ~self ~cmd:(selector "setAllowsAlpha:") ~typ:(bool @-> returning (void)) x

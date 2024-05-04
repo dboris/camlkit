@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "UIScrollToDismissSupport"
 
-let cancelNotificationsForMode x self = msg_send ~self ~cmd:(selector "cancelNotificationsForMode:") ~typ:(ullong @-> returning (id)) x
-let completeKeyboardDismiss x ~withDuration self = msg_send ~self ~cmd:(selector "completeKeyboardDismiss:withDuration:") ~typ:(ullong @-> double @-> returning (void)) x withDuration
+let cancelNotificationsForMode x self = msg_send ~self ~cmd:(selector "cancelNotificationsForMode:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+let completeKeyboardDismiss x ~withDuration self = msg_send ~self ~cmd:(selector "completeKeyboardDismiss:withDuration:") ~typ:(ullong @-> double @-> returning (void)) (ULLong.of_int x) withDuration
 let completedPlacementFrom x ~to_ ~forController self = msg_send ~self ~cmd:(selector "completedPlacementFrom:to:forController:") ~typ:(id @-> id @-> id @-> returning (void)) x to_ forController
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let finishScrollViewTransition self = msg_send ~self ~cmd:(selector "finishScrollViewTransition") ~typ:(returning (void))

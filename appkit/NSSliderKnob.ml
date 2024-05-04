@@ -14,4 +14,5 @@ let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t 
 let focusRingMaskBounds self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning (bool))
 let maskOnly self = msg_send ~self ~cmd:(selector "maskOnly") ~typ:(returning (bool))
+let setDrawingState x self = msg_send ~self ~cmd:(selector "setDrawingState:") ~typ:(ptr void @-> returning (void)) x
 let setMaskOnly x self = msg_send ~self ~cmd:(selector "setMaskOnly:") ~typ:(bool @-> returning (void)) x

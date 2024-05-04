@@ -5,9 +5,9 @@ open Objc
 
 let _class_ = get_class "NSSocketPort"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
-  let sendBeforeTime x ~streamData ~components ~to_ ~from ~msgid ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeTime:streamData:components:to:from:msgid:reserved:") ~typ:(double @-> id @-> id @-> id @-> id @-> uint @-> ullong @-> returning (bool)) x streamData components to_ from msgid reserved
+  let sendBeforeTime x ~streamData ~components ~to_ ~from ~msgid ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeTime:streamData:components:to:from:msgid:reserved:") ~typ:(double @-> id @-> id @-> id @-> id @-> uint @-> ullong @-> returning (bool)) x streamData components to_ from msgid (ULLong.of_int reserved)
 end
 
 let addConnection x ~toRunLoop ~forMode self = msg_send ~self ~cmd:(selector "addConnection:toRunLoop:forMode:") ~typ:(id @-> id @-> id @-> returning (void)) x toRunLoop forMode
@@ -32,8 +32,8 @@ let removeFromRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "removeFro
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning (id))
 let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning (ullong))
 let scheduleInRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "scheduleInRunLoop:forMode:") ~typ:(id @-> id @-> returning (void)) x forMode
-let sendBeforeDate x ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:components:from:reserved:") ~typ:(id @-> id @-> id @-> ullong @-> returning (bool)) x components from reserved
-let sendBeforeDate' x ~msgid ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:msgid:components:from:reserved:") ~typ:(id @-> ullong @-> id @-> id @-> ullong @-> returning (bool)) x msgid components from reserved
+let sendBeforeDate x ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:components:from:reserved:") ~typ:(id @-> id @-> id @-> ullong @-> returning (bool)) x components from (ULLong.of_int reserved)
+let sendBeforeDate' x ~msgid ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:msgid:components:from:reserved:") ~typ:(id @-> ullong @-> id @-> id @-> ullong @-> returning (bool)) x (ULLong.of_int msgid) components from (ULLong.of_int reserved)
 let sendBeforeTime x ~streamData ~components ~from ~msgid self = msg_send ~self ~cmd:(selector "sendBeforeTime:streamData:components:from:msgid:") ~typ:(double @-> ptr (void) @-> id @-> id @-> uint @-> returning (bool)) x streamData components from msgid
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning (void)) x
 let signature self = msg_send ~self ~cmd:(selector "signature") ~typ:(returning (id))

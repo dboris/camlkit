@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UINSGameModuleSwipe"
 
-module Class = struct
+module C = struct
   let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning (id))
 end
 

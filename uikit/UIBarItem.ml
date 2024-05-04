@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIBarItem"
 
-module Class = struct
+module C = struct
   let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning (id))
   let appearanceForTraitCollection x self = msg_send ~self ~cmd:(selector "appearanceForTraitCollection:") ~typ:(id @-> returning (id)) x
   let appearanceForTraitCollection1 x ~whenContainedIn self = msg_send ~self ~cmd:(selector "appearanceForTraitCollection:whenContainedIn:") ~typ:(id @-> _Class @-> returning (id)) x whenContainedIn
@@ -26,7 +26,8 @@ let largeContentSizeImage self = msg_send ~self ~cmd:(selector "largeContentSize
 let resolvedTitle self = msg_send ~self ~cmd:(selector "resolvedTitle") ~typ:(returning (id))
 let selected self = msg_send ~self ~cmd:(selector "selected") ~typ:(returning (bool))
 let setLargeContentSizeImage x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImage:") ~typ:(id @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) x
-let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:forState:") ~typ:(id @-> ullong @-> returning (void)) x forState
+let setLargeContentSizeImageInsets x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImageInsets:") ~typ:(ptr void @-> returning (void)) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
 let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning (llong))
-let titleTextAttributesForState x self = msg_send ~self ~cmd:(selector "titleTextAttributesForState:") ~typ:(ullong @-> returning (id)) x
+let titleTextAttributesForState x self = msg_send ~self ~cmd:(selector "titleTextAttributesForState:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)

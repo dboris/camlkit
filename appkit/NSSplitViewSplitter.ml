@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "NSSplitViewSplitter"
 
-module Class = struct
-  let splitterWithIndex x ~parent self = msg_send ~self ~cmd:(selector "splitterWithIndex:parent:") ~typ:(llong @-> id @-> returning (id)) x parent
+module C = struct
+  let splitterWithIndex x ~parent self = msg_send ~self ~cmd:(selector "splitterWithIndex:parent:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) parent
 end
 
 let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
@@ -23,6 +23,6 @@ let accessibilityShouldUseUniqueId self = msg_send ~self ~cmd:(selector "accessi
 let accessibilityValue self = msg_send ~self ~cmd:(selector "accessibilityValue") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let index self = msg_send ~self ~cmd:(selector "index") ~typ:(returning (llong))
-let initWithIndex x ~parent self = msg_send ~self ~cmd:(selector "initWithIndex:parent:") ~typ:(llong @-> id @-> returning (id)) x parent
+let initWithIndex x ~parent self = msg_send ~self ~cmd:(selector "initWithIndex:parent:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) parent
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let setAccessibilityValue x self = msg_send ~self ~cmd:(selector "setAccessibilityValue:") ~typ:(id @-> returning (void)) x

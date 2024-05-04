@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIAssistantBarSeparatorView"
 
-module Class = struct
+module C = struct
   let preferredWidth self = msg_send ~self ~cmd:(selector "preferredWidth") ~typ:(returning (double))
 end
 

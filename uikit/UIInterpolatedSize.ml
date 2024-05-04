@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterpolatedSize"
 
-module Class = struct
+module C = struct
   let epsilon self = msg_send ~self ~cmd:(selector "epsilon") ~typ:(returning (id))
   let valueWithCGSize x self = msg_send ~self ~cmd:(selector "valueWithCGSize:") ~typ:(CGSize.t @-> returning (id)) x
   let valueWithCGSize' x ~epsilon self = msg_send ~self ~cmd:(selector "valueWithCGSize:epsilon:") ~typ:(CGSize.t @-> double @-> returning (id)) x epsilon
@@ -20,6 +20,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(i
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning (id))
 let getNSValue self = msg_send ~self ~cmd:(selector "getNSValue") ~typ:(returning (id))
 let getValue self = msg_send ~self ~cmd:(selector "getValue") ~typ:(returning (id))
+let integrateWithVelocity x ~target ~intermediateTarget ~intermediateTargetVelocity ~parameters ~state ~delta self = msg_send ~self ~cmd:(selector "integrateWithVelocity:target:intermediateTarget:intermediateTargetVelocity:parameters:state:delta:") ~typ:(id @-> id @-> id @-> id @-> ptr void @-> ptr void @-> double @-> returning (void)) x target intermediateTarget intermediateTargetVelocity parameters state delta
 let interpolateTo x ~progress self = msg_send ~self ~cmd:(selector "interpolateTo:progress:") ~typ:(id @-> double @-> returning (id)) x progress
 let isApproximatelyEqualTo x self = msg_send ~self ~cmd:(selector "isApproximatelyEqualTo:") ~typ:(id @-> returning (bool)) x
 let isApproximatelyEqualTo' x ~withinEpsilon self = msg_send ~self ~cmd:(selector "isApproximatelyEqualTo:withinEpsilon:") ~typ:(id @-> id @-> returning (bool)) x withinEpsilon

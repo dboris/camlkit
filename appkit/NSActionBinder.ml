@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSActionBinder"
 
-module Class = struct
+module C = struct
   let bindingCategory self = msg_send ~self ~cmd:(selector "bindingCategory") ~typ:(returning (id))
   let bindingsForObject x self = msg_send ~self ~cmd:(selector "bindingsForObject:") ~typ:(id @-> returning (id)) x
 end
@@ -29,7 +29,7 @@ let setAllowsNullArgument x ~withBinding self = msg_send ~self ~cmd:(selector "s
 let setInvokesSeparatelyWithArrayObjects x ~withBinding self = msg_send ~self ~cmd:(selector "setInvokesSeparatelyWithArrayObjects:withBinding:") ~typ:(bool @-> id @-> returning (void)) x withBinding
 let setSelector x self = msg_send ~self ~cmd:(selector "setSelector:") ~typ:(_SEL @-> returning (void)) x
 let targetAndArgumentsAcceptable self = msg_send ~self ~cmd:(selector "targetAndArgumentsAcceptable") ~typ:(returning (bool))
-let targetAndArgumentsAcceptableAtIndex x self = msg_send ~self ~cmd:(selector "targetAndArgumentsAcceptableAtIndex:") ~typ:(ullong @-> returning (bool)) x
+let targetAndArgumentsAcceptableAtIndex x self = msg_send ~self ~cmd:(selector "targetAndArgumentsAcceptableAtIndex:") ~typ:(ullong @-> returning (bool)) (ULLong.of_int x)
 let targetAndArgumentsAcceptableAtIndexPath x self = msg_send ~self ~cmd:(selector "targetAndArgumentsAcceptableAtIndexPath:") ~typ:(id @-> returning (bool)) x
 let updateOutlineColumnDataCell x ~forDisplayAtIndexPath self = msg_send ~self ~cmd:(selector "updateOutlineColumnDataCell:forDisplayAtIndexPath:") ~typ:(id @-> id @-> returning (void)) x forDisplayAtIndexPath
-let updateTableColumnDataCell x ~forDisplayAtIndex self = msg_send ~self ~cmd:(selector "updateTableColumnDataCell:forDisplayAtIndex:") ~typ:(id @-> ullong @-> returning (void)) x forDisplayAtIndex
+let updateTableColumnDataCell x ~forDisplayAtIndex self = msg_send ~self ~cmd:(selector "updateTableColumnDataCell:forDisplayAtIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forDisplayAtIndex)

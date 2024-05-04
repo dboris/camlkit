@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSValueBinder"
 
-module Class = struct
+module C = struct
   let bindingCategory self = msg_send ~self ~cmd:(selector "bindingCategory") ~typ:(returning (id))
   let bindingsForObject x self = msg_send ~self ~cmd:(selector "bindingsForObject:") ~typ:(id @-> returning (id)) x
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
@@ -47,7 +47,7 @@ let supportsTableEditing self = msg_send ~self ~cmd:(selector "supportsTableEdit
 let updateInvalidatedObjectValue x ~forObject self = msg_send ~self ~cmd:(selector "updateInvalidatedObjectValue:forObject:") ~typ:(id @-> id @-> returning (id)) x forObject
 let updateOutlineColumnDataCell x ~forDisplayAtIndexPath self = msg_send ~self ~cmd:(selector "updateOutlineColumnDataCell:forDisplayAtIndexPath:") ~typ:(id @-> id @-> returning (void)) x forDisplayAtIndexPath
 let updateOutlineColumnOutlineCell x ~forDisplayAtIndexPath self = msg_send ~self ~cmd:(selector "updateOutlineColumnOutlineCell:forDisplayAtIndexPath:") ~typ:(id @-> id @-> returning (void)) x forDisplayAtIndexPath
-let updateTableColumnDataCell x ~forDisplayAtIndex self = msg_send ~self ~cmd:(selector "updateTableColumnDataCell:forDisplayAtIndex:") ~typ:(id @-> ullong @-> returning (void)) x forDisplayAtIndex
+let updateTableColumnDataCell x ~forDisplayAtIndex self = msg_send ~self ~cmd:(selector "updateTableColumnDataCell:forDisplayAtIndex:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forDisplayAtIndex)
 let validateAndCommitValueInEditor x ~editingIsEnding ~errorUserInterfaceHandled self = msg_send ~self ~cmd:(selector "validateAndCommitValueInEditor:editingIsEnding:errorUserInterfaceHandled:") ~typ:(id @-> bool @-> ptr (bool) @-> returning (bool)) x editingIsEnding errorUserInterfaceHandled
 let validateObjectValue x self = msg_send ~self ~cmd:(selector "validateObjectValue:") ~typ:(id @-> returning (id)) x
 let valueClassForBinding x self = msg_send ~self ~cmd:(selector "valueClassForBinding:") ~typ:(id @-> returning (_Class)) x

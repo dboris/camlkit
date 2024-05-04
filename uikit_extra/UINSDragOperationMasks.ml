@@ -8,6 +8,6 @@ open Foundation
 
 let _class_ = get_class "UINSDragOperationMasks"
 
-let initWithInsideAppMask x ~outsideAppMask self = msg_send ~self ~cmd:(selector "initWithInsideAppMask:outsideAppMask:") ~typ:(ullong @-> ullong @-> returning (id)) x outsideAppMask
+let initWithInsideAppMask x ~outsideAppMask self = msg_send ~self ~cmd:(selector "initWithInsideAppMask:outsideAppMask:") ~typ:(ullong @-> ullong @-> returning (id)) (ULLong.of_int x) (ULLong.of_int outsideAppMask)
 let insideAppMask self = msg_send ~self ~cmd:(selector "insideAppMask") ~typ:(returning (ullong))
 let outsideAppMask self = msg_send ~self ~cmd:(selector "outsideAppMask") ~typ:(returning (ullong))

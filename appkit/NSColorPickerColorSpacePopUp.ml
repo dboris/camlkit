@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSColorPickerColorSpacePopUp"
 
-module Class = struct
+module C = struct
   let preferredColorSpaces self = msg_send ~self ~cmd:(selector "preferredColorSpaces") ~typ:(returning (id))
 end
 
@@ -23,5 +23,5 @@ let selectedColorSpace self = msg_send ~self ~cmd:(selector "selectedColorSpace"
 let selectedEntryMode self = msg_send ~self ~cmd:(selector "selectedEntryMode") ~typ:(returning (llong))
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning (void)) x
 let setSelectedColorSpace x self = msg_send ~self ~cmd:(selector "setSelectedColorSpace:") ~typ:(id @-> returning (void)) x
-let setSelectedEntryMode x self = msg_send ~self ~cmd:(selector "setSelectedEntryMode:") ~typ:(llong @-> returning (void)) x
+let setSelectedEntryMode x self = msg_send ~self ~cmd:(selector "setSelectedEntryMode:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let willPopUpNotification x self = msg_send ~self ~cmd:(selector "willPopUpNotification:") ~typ:(id @-> returning (void)) x

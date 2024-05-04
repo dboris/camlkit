@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarLayout"
 
-module Class = struct
+module C = struct
   let toolbarLayoutWithVisualCenterX x self = msg_send ~self ~cmd:(selector "toolbarLayoutWithVisualCenterX:") ~typ:(double @-> returning (id)) x
   let touchBarLayoutWithVisualCenterX x self = msg_send ~self ~cmd:(selector "touchBarLayoutWithVisualCenterX:") ~typ:(double @-> returning (id)) x
 end
@@ -28,13 +28,13 @@ let leadingWidgetWidth self = msg_send ~self ~cmd:(selector "leadingWidgetWidth"
 let overflowPreventsReflow self = msg_send ~self ~cmd:(selector "overflowPreventsReflow") ~typ:(returning (bool))
 let overflowRequired self = msg_send ~self ~cmd:(selector "overflowRequired") ~typ:(returning (bool))
 let overlayRequiresTrueCenterLayout self = msg_send ~self ~cmd:(selector "overlayRequiresTrueCenterLayout") ~typ:(returning (bool))
-let setAccessoryUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setAccessoryUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setAccessoryUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setAccessoryUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setAllowsSingleItemClipping x self = msg_send ~self ~cmd:(selector "setAllowsSingleItemClipping:") ~typ:(bool @-> returning (void)) x
 let setCenterIsPrincipal x self = msg_send ~self ~cmd:(selector "setCenterIsPrincipal:") ~typ:(bool @-> returning (void)) x
 let setCenterRequiresTrueCenterLayout x self = msg_send ~self ~cmd:(selector "setCenterRequiresTrueCenterLayout:") ~typ:(bool @-> returning (void)) x
 let setDefaultItemPadding x self = msg_send ~self ~cmd:(selector "setDefaultItemPadding:") ~typ:(double @-> returning (void)) x
 let setEnforcesUniformHeight x self = msg_send ~self ~cmd:(selector "setEnforcesUniformHeight:") ~typ:(bool @-> returning (void)) x
-let setItemUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setItemUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) x
+let setItemUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setItemUserInterfaceLayoutDirection:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setLeadingWidgetWidth x self = msg_send ~self ~cmd:(selector "setLeadingWidgetWidth:") ~typ:(double @-> returning (void)) x
 let setOverflowPreventsReflow x self = msg_send ~self ~cmd:(selector "setOverflowPreventsReflow:") ~typ:(bool @-> returning (void)) x
 let setOverflowRequired x self = msg_send ~self ~cmd:(selector "setOverflowRequired:") ~typ:(bool @-> returning (void)) x

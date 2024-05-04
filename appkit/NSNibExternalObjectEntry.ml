@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSNibExternalObjectEntry"
 
-module Class = struct
+module C = struct
   let entryWithKey x ~forObject self = msg_send ~self ~cmd:(selector "entryWithKey:forObject:") ~typ:(id @-> id @-> returning (id)) x forObject
 end
 

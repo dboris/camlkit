@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSURLComponents"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let componentsWithString x self = msg_send ~self ~cmd:(selector "componentsWithString:") ~typ:(id @-> returning (id)) x
   let componentsWithURL x ~resolvingAgainstBaseURL self = msg_send ~self ~cmd:(selector "componentsWithURL:resolvingAgainstBaseURL:") ~typ:(id @-> bool @-> returning (id)) x resolvingAgainstBaseURL

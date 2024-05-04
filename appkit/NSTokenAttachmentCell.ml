@@ -8,14 +8,14 @@ open Foundation
 
 let _class_ = get_class "NSTokenAttachmentCell"
 
-module Class = struct
+module C = struct
   let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning (void))
   let usesTintColor self = msg_send ~self ~cmd:(selector "usesTintColor") ~typ:(returning (bool))
 end
 
 let alwaysShowBackground self = msg_send ~self ~cmd:(selector "alwaysShowBackground") ~typ:(returning (bool))
 let cellBaselineOffset self = msg_send_stret ~self ~cmd:(selector "cellBaselineOffset") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let cellFrameForTextContainer x ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send_stret ~self ~cmd:(selector "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x proposedLineFragment glyphPosition characterIndex
+let cellFrameForTextContainer x ~proposedLineFragment ~glyphPosition ~characterIndex self = msg_send_stret ~self ~cmd:(selector "cellFrameForTextContainer:proposedLineFragment:glyphPosition:characterIndex:") ~typ:(id @-> CGRect.t @-> CGPoint.t @-> ullong @-> returning (CGRect.t)) ~return_type:CGRect.t x proposedLineFragment glyphPosition (ULLong.of_int characterIndex)
 let cellSize self = msg_send_stret ~self ~cmd:(selector "cellSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning (CGSize.t)) ~return_type:CGSize.t x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
@@ -25,8 +25,8 @@ let drawPullDownImageWithFrame x ~inView self = msg_send ~self ~cmd:(selector "d
 let drawTokenInRect x ~withOptions self = msg_send ~self ~cmd:(selector "drawTokenInRect:withOptions:") ~typ:(CGRect.t @-> id @-> returning (void)) x withOptions
 let drawTokenWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawTokenWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning (void)) x inView
 let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning (void)) x inView
-let drawWithFrame1 x ~inView ~characterIndex self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:") ~typ:(CGRect.t @-> id @-> ullong @-> returning (void)) x inView characterIndex
-let drawWithFrame2 x ~inView ~characterIndex ~layoutManager self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:layoutManager:") ~typ:(CGRect.t @-> id @-> ullong @-> id @-> returning (void)) x inView characterIndex layoutManager
+let drawWithFrame1 x ~inView ~characterIndex self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:") ~typ:(CGRect.t @-> id @-> ullong @-> returning (void)) x inView (ULLong.of_int characterIndex)
+let drawWithFrame2 x ~inView ~characterIndex ~layoutManager self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:characterIndex:layoutManager:") ~typ:(CGRect.t @-> id @-> ullong @-> id @-> returning (void)) x inView (ULLong.of_int characterIndex) layoutManager
 let drawingRectForBounds x self = msg_send_stret ~self ~cmd:(selector "drawingRectForBounds:") ~typ:(CGRect.t @-> returning (CGRect.t)) ~return_type:CGRect.t x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
@@ -44,7 +44,7 @@ let representedObject self = msg_send ~self ~cmd:(selector "representedObject") 
 let setHighlighted x self = msg_send ~self ~cmd:(selector "setHighlighted:") ~typ:(bool @-> returning (void)) x
 let setRepresentedObject x self = msg_send ~self ~cmd:(selector "setRepresentedObject:") ~typ:(id @-> returning (void)) x
 let setTextColor x self = msg_send ~self ~cmd:(selector "setTextColor:") ~typ:(id @-> returning (void)) x
-let setTokenStyle x self = msg_send ~self ~cmd:(selector "setTokenStyle:") ~typ:(ullong @-> returning (void)) x
+let setTokenStyle x self = msg_send ~self ~cmd:(selector "setTokenStyle:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let shouldDrawSeparator self = msg_send ~self ~cmd:(selector "shouldDrawSeparator") ~typ:(returning (bool))
 let shouldDrawTokenBackground self = msg_send ~self ~cmd:(selector "shouldDrawTokenBackground") ~typ:(returning (bool))
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning (id))
@@ -53,5 +53,5 @@ let tokenBackgroundColor self = msg_send ~self ~cmd:(selector "tokenBackgroundCo
 let tokenForegroundColor self = msg_send ~self ~cmd:(selector "tokenForegroundColor") ~typ:(returning (id))
 let tokenStyle self = msg_send ~self ~cmd:(selector "tokenStyle") ~typ:(returning (ullong))
 let tokenTintColor self = msg_send ~self ~cmd:(selector "tokenTintColor") ~typ:(returning (id))
-let trackMouse x ~inRect ~ofView ~atCharacterIndex ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> bool @-> returning (bool)) x inRect ofView atCharacterIndex untilMouseUp
-let wantsToTrackMouseForEvent x ~inRect ~ofView ~atCharacterIndex self = msg_send ~self ~cmd:(selector "wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> returning (bool)) x inRect ofView atCharacterIndex
+let trackMouse x ~inRect ~ofView ~atCharacterIndex ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:atCharacterIndex:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> bool @-> returning (bool)) x inRect ofView (ULLong.of_int atCharacterIndex) untilMouseUp
+let wantsToTrackMouseForEvent x ~inRect ~ofView ~atCharacterIndex self = msg_send ~self ~cmd:(selector "wantsToTrackMouseForEvent:inRect:ofView:atCharacterIndex:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> returning (bool)) x inRect ofView (ULLong.of_int atCharacterIndex)

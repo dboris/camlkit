@@ -26,6 +26,7 @@ let exitFullScreenImmediately self = msg_send ~self ~cmd:(selector "exitFullScre
 let finalFrame self = msg_send_stret ~self ~cmd:(selector "finalFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let finishedEnterFullScreenAnimation x self = msg_send ~self ~cmd:(selector "finishedEnterFullScreenAnimation:") ~typ:(bool @-> returning (void)) x
 let finishedExitFullScreenAnimationAndExitImmediately x self = msg_send ~self ~cmd:(selector "finishedExitFullScreenAnimationAndExitImmediately:") ~typ:(bool @-> returning (void)) x
+let initWithWindow x ~webView ~page self = msg_send ~self ~cmd:(selector "initWithWindow:webView:page:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x webView page
 let initialFrame self = msg_send_stret ~self ~cmd:(selector "initialFrame") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
 let isFullScreen self = msg_send ~self ~cmd:(selector "isFullScreen") ~typ:(returning (bool))
 let noResponderFor x self = msg_send ~self ~cmd:(selector "noResponderFor:") ~typ:(_SEL @-> returning (void)) x

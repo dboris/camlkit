@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIProxyObject"
 
-module Class = struct
+module C = struct
   let addMappingFromIdentifier x ~toObject ~forCoder self = msg_send ~self ~cmd:(selector "addMappingFromIdentifier:toObject:forCoder:") ~typ:(id @-> id @-> id @-> returning (void)) x toObject forCoder
   let addMappings x ~forCoder self = msg_send ~self ~cmd:(selector "addMappings:forCoder:") ~typ:(id @-> id @-> returning (void)) x forCoder
   let mappedObjectForCoder x ~withIdentifier self = msg_send ~self ~cmd:(selector "mappedObjectForCoder:withIdentifier:") ~typ:(id @-> id @-> returning (id)) x withIdentifier

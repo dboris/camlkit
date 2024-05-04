@@ -21,4 +21,5 @@ let layoutAttributesForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "l
 let numberOfItemsFittingInBoundsWidth x self = msg_send ~self ~cmd:(selector "numberOfItemsFittingInBoundsWidth:") ~typ:(double @-> returning (llong)) x
 let setItemSize x self = msg_send ~self ~cmd:(selector "setItemSize:") ~typ:(CGSize.t @-> returning (void)) x
 let setItemSpacing x self = msg_send ~self ~cmd:(selector "setItemSpacing:") ~typ:(double @-> returning (void)) x
+let setSectionInset x self = msg_send ~self ~cmd:(selector "setSectionInset:") ~typ:(ptr void @-> returning (void)) x
 let shouldInvalidateLayoutForBoundsChange x self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForBoundsChange:") ~typ:(CGRect.t @-> returning (bool)) x

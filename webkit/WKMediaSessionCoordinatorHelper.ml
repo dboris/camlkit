@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKMediaSessionCoordinatorHelper"
 
-let coordinatorStateChanged x self = msg_send ~self ~cmd:(selector "coordinatorStateChanged:") ~typ:(llong @-> returning (void)) x
+let coordinatorStateChanged x self = msg_send ~self ~cmd:(selector "coordinatorStateChanged:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let initWithCoordinator x self = msg_send ~self ~cmd:(selector "initWithCoordinator:") ~typ:(ptr (void) @-> returning (id)) x
 let pauseSessionWithCompletion x self = msg_send ~self ~cmd:(selector "pauseSessionWithCompletion:") ~typ:(ptr void @-> returning (void)) x
 let playSessionWithCompletion x self = msg_send ~self ~cmd:(selector "playSessionWithCompletion:") ~typ:(ptr void @-> returning (void)) x

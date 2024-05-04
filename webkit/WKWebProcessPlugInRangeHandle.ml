@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "WKWebProcessPlugInRangeHandle"
 
-module Class = struct
+module C = struct
   let rangeHandleWithJSValue x ~inContext self = msg_send ~self ~cmd:(selector "rangeHandleWithJSValue:inContext:") ~typ:(id @-> id @-> returning (id)) x inContext
 end
 

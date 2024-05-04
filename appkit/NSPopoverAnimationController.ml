@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSPopoverAnimationController"
 
-module Class = struct
+module C = struct
   let popoverAnimationControllerWithPopover x self = msg_send ~self ~cmd:(selector "popoverAnimationControllerWithPopover:") ~typ:(id @-> returning (id)) x
 end
 
@@ -24,4 +24,4 @@ let recognizerDidUpdateAnimation x self = msg_send ~self ~cmd:(selector "recogni
 let recognizerWillBeginAnimation x self = msg_send ~self ~cmd:(selector "recognizerWillBeginAnimation:") ~typ:(id @-> returning (void)) x
 let setAnchorView x self = msg_send ~self ~cmd:(selector "setAnchorView:") ~typ:(id @-> returning (void)) x
 let setPositioningRect x self = msg_send ~self ~cmd:(selector "setPositioningRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) x
+let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

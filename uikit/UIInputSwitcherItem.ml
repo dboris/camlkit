@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInputSwitcherItem"
 
-module Class = struct
+module C = struct
   let switcherItemWithIdentifier x self = msg_send ~self ~cmd:(selector "switcherItemWithIdentifier:") ~typ:(id @-> returning (id)) x
 end
 
@@ -28,7 +28,7 @@ let setLocalizedTitle x self = msg_send ~self ~cmd:(selector "setLocalizedTitle:
 let setPersistentSelectedIndex x self = msg_send ~self ~cmd:(selector "setPersistentSelectedIndex:") ~typ:(ptr void @-> returning (void)) x
 let setSegmentImages x self = msg_send ~self ~cmd:(selector "setSegmentImages:") ~typ:(id @-> returning (void)) x
 let setSegmentTitles x self = msg_send ~self ~cmd:(selector "setSegmentTitles:") ~typ:(id @-> returning (void)) x
-let setSelectedSegmentIndex x self = msg_send ~self ~cmd:(selector "setSelectedSegmentIndex:") ~typ:(llong @-> returning (void)) x
+let setSelectedSegmentIndex x self = msg_send ~self ~cmd:(selector "setSelectedSegmentIndex:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setSubtitleFont x self = msg_send ~self ~cmd:(selector "setSubtitleFont:") ~typ:(id @-> returning (void)) x
 let setSwitchControl x self = msg_send ~self ~cmd:(selector "setSwitchControl:") ~typ:(id @-> returning (void)) x
 let setSwitchIsOnBlock x self = msg_send ~self ~cmd:(selector "setSwitchIsOnBlock:") ~typ:(ptr void @-> returning (void)) x

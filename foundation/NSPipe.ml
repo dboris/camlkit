@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSPipe"
 
-module Class = struct
+module C = struct
   let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:(id @-> returning (id)) x
   let pipe self = msg_send ~self ~cmd:(selector "pipe") ~typ:(returning (id))
 end

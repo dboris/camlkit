@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "NSOutlineColumnMockGroup"
 
-module Class = struct
-  let outlineColumnGroupForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "outlineColumnGroupForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-  let outlineColumnGroupForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "outlineColumnGroupForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+module C = struct
+  let outlineColumnGroupForRow x ~tableColumn self = msg_send ~self ~cmd:(selector "outlineColumnGroupForRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+  let outlineColumnGroupForRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "outlineColumnGroupForRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 end
 
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning (id)) x
@@ -43,6 +43,6 @@ let accessibilityTopLevelUIElementAttribute self = msg_send ~self ~cmd:(selector
 let accessibilityWindowAttribute self = msg_send ~self ~cmd:(selector "accessibilityWindowAttribute") ~typ:(returning (id))
 let column self = msg_send ~self ~cmd:(selector "column") ~typ:(returning (llong))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) x tableColumn
-let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) x column tableView
+let initWithRow x ~tableColumn self = msg_send ~self ~cmd:(selector "initWithRow:tableColumn:") ~typ:(llong @-> id @-> returning (id)) (LLong.of_int x) tableColumn
+let initWithRow' x ~column ~tableView self = msg_send ~self ~cmd:(selector "initWithRow:column:tableView:") ~typ:(llong @-> llong @-> id @-> returning (id)) (LLong.of_int x) (LLong.of_int column) tableView
 let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning (llong))

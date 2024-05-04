@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSRegularOverlayScrollerImp"
 
-module Class = struct
+module C = struct
   let scrollerWidth self = msg_send ~self ~cmd:(selector "scrollerWidth") ~typ:(returning (double))
 end
 

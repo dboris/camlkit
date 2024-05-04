@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIInterfaceActionOverrideVisualStyle"
 
-module Class = struct
+module C = struct
   let styleOverride self = msg_send ~self ~cmd:(selector "styleOverride") ~typ:(returning (id))
 end
 

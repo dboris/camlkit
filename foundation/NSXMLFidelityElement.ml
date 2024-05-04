@@ -10,5 +10,5 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (voi
 let fidelity self = msg_send ~self ~cmd:(selector "fidelity") ~typ:(returning (ullong))
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
 let setEndWhitespace x self = msg_send ~self ~cmd:(selector "setEndWhitespace:") ~typ:(id @-> returning (void)) x
-let setFidelity x self = msg_send ~self ~cmd:(selector "setFidelity:") ~typ:(ullong @-> returning (void)) x
+let setFidelity x self = msg_send ~self ~cmd:(selector "setFidelity:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setWhitespace x self = msg_send ~self ~cmd:(selector "setWhitespace:") ~typ:(id @-> returning (void)) x

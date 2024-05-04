@@ -5,7 +5,7 @@ open Objc
 
 let _class_ = get_class "NSUserActivity"
 
-module Class = struct
+module C = struct
   let deleteAllSavedUserActivitiesWithCompletionHandler x self = msg_send ~self ~cmd:(selector "deleteAllSavedUserActivitiesWithCompletionHandler:") ~typ:(ptr void @-> returning (void)) x
   let deleteSavedUserActivitiesWithPersistentIdentifiers x ~completionHandler self = msg_send ~self ~cmd:(selector "deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:") ~typ:(id @-> ptr void @-> returning (void)) x completionHandler
 end

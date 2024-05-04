@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "NSTouchBarItemTree"
 
-module Class = struct
+module C = struct
   let itemTreeWithDefaultPresetTouchBars x self = msg_send ~self ~cmd:(selector "itemTreeWithDefaultPresetTouchBars:") ~typ:(id @-> returning (id)) x
   let itemTreeWithTouchBars x self = msg_send ~self ~cmd:(selector "itemTreeWithTouchBars:") ~typ:(id @-> returning (id)) x
 end

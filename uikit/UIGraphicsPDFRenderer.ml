@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "UIGraphicsPDFRenderer"
 
-module Class = struct
+module C = struct
   let contextWithFormat x self = msg_send ~self ~cmd:(selector "contextWithFormat:") ~typ:(id @-> returning (id)) x
   let prepareCGContext x ~withRendererContext self = msg_send ~self ~cmd:(selector "prepareCGContext:withRendererContext:") ~typ:(id @-> id @-> returning (void)) x withRendererContext
   let rendererContextClass self = msg_send ~self ~cmd:(selector "rendererContextClass") ~typ:(returning (_Class))
