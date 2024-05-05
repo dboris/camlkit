@@ -1,4 +1,4 @@
-.PHONY: build test run-demo doc clean
+.PHONY: build test demo doc clean
 
 build:
 	@dune build @default
@@ -6,8 +6,8 @@ build:
 test:
 	@dune runtest --root .
 
-run-demo:
-	@dune exec ./bin/main.exe
+demo:
+	@dune build demo @default
 
 doc:
 	@dune build @doc
