@@ -53,7 +53,6 @@ module AppDelegate = struct
 
     label |> UILabel.setText (new_string "Hello from OCaml");
     label |> UILabel.setTextColor (UIColor._class_ |> UIColor.C.systemBlackColor);
-    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter; *)
     label |> UIView.setFrame screen_bounds;
     view |> UIView.addSubview label;
 
