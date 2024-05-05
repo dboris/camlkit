@@ -32,9 +32,9 @@ a taste of what a program in Camlkit looks like, here is a "Hello World" iOS
 application:
 
 ```ocaml
-open Runtime
 open Foundation
 open Uikit
+open Runtime
 
 module AppDelegate = struct
   let show_hello _self _cmd _app _opts =

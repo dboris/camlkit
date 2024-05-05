@@ -15,6 +15,7 @@ depends: [
   "ocaml-ios"
   "dune" {>= "3.13"}
   "ctypes-ios"
+  "ctypes-foreign-ios"
   "odoc" {with-doc}
 ]
 build: [
