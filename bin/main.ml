@@ -11,7 +11,11 @@ let app_window () =
     alloc NSWindow._class_
     |> NSWindow.initWithContentRect
       (CGRect.make ~x: 0. ~y: 0. ~width: win_width ~height: win_height)
-      ~styleMask: (Objc.ULLong.to_int @@ combine_options Appkit_global.StyleMask.[titled; closable; resizable])
+      ~styleMask: (combine_options Appkit_.[
+        _NSWindowStyleMaskTitled;
+        _NSWindowStyleMaskClosable;
+        _NSWindowStyleMaskResizable
+      ])
       ~backing: Appkit_._NSBackingStoreBuffered
       ~defer: false
   in
