@@ -19,63 +19,69 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (via the low-level Objective-C runtime API bindings) can be done from the
   comfort of OCaml. No need to write wrappers manually in C or Objective-C.
 * Cocoa object lifetimes can be managed by the OCaml GC.
-* The framework bindings follow the Cocoa method naming and the underlying
-  typing closely. More convenient and idiomatic OCaml wrappers are planned
-  and will be added to the Camlkit package for the most used classes and methods.
+* GUI object hierarchies can be created either programatically or visually
+  using Xcode's Interface Builder.
+* An Xcode project is not required. A complete macOS or iOS application can
+  be developed entirely in OCaml.
 
 ## Sample programs
 
 A few sample programs are provided in the
 [example](https://github.com/dboris/camlkit-examples/) repository. To give you
-a taste of what a program in Camlkit looks like, here is a "Hello World" app
-intended to be built as a library and linked with the main project in Xcode:
+a taste of what a program in Camlkit looks like, here is a "Hello World" iOS
+application:
 
 ```ocaml
-open Uikit
-open Foundation
 open Runtime
+open Foundation
+open Uikit
 
-module App_controller = struct
-  let _NSTextAlignmentCenter = Objc.LLong.of_int 1
-
-  let show_hello _self _cmd notif =
-    let win =
-      notif
-      |> NSNotification.object_
-      |> UIWindowScene.windows
-      |> NSArray.firstObject
-    and label = _new_ UILabel._class_
-    and main_screen_bounds =
-      UIScreen._class_
-      |> UIScreen.Class.mainScreen
-      |> UIScreen.bounds
+module AppDelegate = struct
+  let show_hello _self _cmd _app _opts =
+    let screen_bounds =
+      UIScreen._class_ |> UIScreen.C.mainScreen |> UIScreen.bounds
     in
+    let win =
+      UIWindow._class_ |> NSObject.C.alloc
+      |> UIWindow.initWithFrame screen_bounds
+    and vc = UIViewController._class_ |> NSObject.C.new_
+    and label = UILabel._class_ |> NSObject.C.new_
+    in
+    let view = vc |> UIViewController.view in
+    view |> UIView.setFrame screen_bounds;
+    view |> UIView.setBackgroundColor (UIColor._class_ |> UIColor.C.systemBackgroundColor);
+
     label |> UILabel.setText (new_string "Hello from OCaml");
-    label |> UILabel.setTextColor (UIColor.Class.blackColor UIColor._class_);
-    label |> UILabel.setTextAlignment _NSTextAlignmentCenter;
-    label |> UIView.setFrame main_screen_bounds;
-    win |> UIWindow.contentView |> UIView.addSubview label
+    label |> UILabel.setTextColor (UIColor._class_ |> UIColor.C.systemBlackColor);
+    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter; *)
+    label |> UIView.setFrame screen_bounds;
+    view |> UIView.addSubview label;
+
+    win |> UIWindow.setRootViewController vc;
+    win |> UIWindow.makeKeyAndVisible;
+    true
 
   let methods =
     [ Define._method_ show_hello
-      ~cmd: (selector "sceneActivated")
-      ~args: Objc_t.[id]
-      ~return: Objc_t.void
+      ~cmd: (selector "application:didFinishLaunchingWithOptions:")
+      ~args: Objc_t.[id; id]
+      ~return: Objc_t.bool
     ]
 
-  let _class_ = Define._class_ "AppController" ~methods
+  let _class_ = Define._class_ "AppDelegate" ~superclass: "UIResponder" ~methods
 end
 
 let main () =
-  Callback.register "camllib_applicationDidFinishLaunching" (fun () ->
-    let ctrl = _new_ App_controller._class_
-    and nc =
-      NSNotificationCenter._class_ |> NSNotificationCenter.Class.defaultCenter
-    in
-    nc |> NSNotificationCenter.addObserver ctrl
-      ~selector_: (selector "sceneActivated")
-      ~name: (new_string "UISceneDidActivateNotification")
-      ~object_: nil)
+  let _ = _new_ NSAutoreleasePool._class_
+  and argc = Array.length Sys.argv
+  and argv =
+    Sys.argv
+    |> Array.to_list
+    |> Objc.(CArray.of_list string)
+    |> Objc.CArray.start
+  in
+  Uikit_._UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
+;;
 
 let () = main ()
 ```

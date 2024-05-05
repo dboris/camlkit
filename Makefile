@@ -1,4 +1,4 @@
-.PHONY: build test demo doc clean
+.PHONY: build test demo sim doc clean
 
 build:
 	@dune build @default
@@ -8,6 +8,9 @@ test:
 
 demo:
 	@dune build demo @default
+
+sim:
+	xcrun simctl install booted _build/simulator.ios/demo/Demo.app
 
 doc:
 	@dune build @doc
