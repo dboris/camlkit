@@ -85,14 +85,69 @@ let main () =
 let () = main ()
 ```
 
+## Introduction
+
+If you are familiar with Cocoa development in Objective-C or Swift, transferring
+your knowledge to Camlkit should be straightforward. Let's introduce some
+constructs by comparing the equivalent Objective-C and OCaml code.
+
+* Creating basic objects
+
+Objective-C:
+```objective-c
+[NSObject new];
+[[NSString alloc] initWithUTF8String: "Hello"];
+[NSString stringWithUTF8String: "Hello"];
+```
+
+OCaml:
+```ocaml
+NSObject.C.new_ NSObject._class_
+NSString._class_ |> NSObject.C.alloc |> NSString.initWithUTF8String "Hello"
+NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
+new_string "Hello"
+```
+To print a NSString in utop: `myStr |> NSString._UTF8String |> print_string`
+
+* Define a new Cocoa class
+
+```objective-c
+@interface MyClass : NSObject {
+    id myVar;
+}
+- (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2;
+@end
+
+@implementation MyClass
+- (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2 {
+    // method implementation
+}
+@end
+```
+
+OCaml:
+```ocaml
+Define._class_ "MyClass"
+  ~ivars: [ Define.ivar "myVar" Objc_t.id ]
+  ~methods: [
+    Define._method_
+      ~cmd: (selector "myMethodWithArg1:arg2:")
+      ~args: Objc_t.[id; id]
+      ~return: Objc_t.void
+      (fun self cmd arg1 arg2 -> (* method implementation *))
+    ]
+```
+
+The best way to get started is to peruse the sample programs and use them
+as a starting template. Read the Apple documentation for the classes and methods
+of interest. All books on iOS and macOS development in Objective-C are directly
+applicable.
+
 ## Project status
 
 The project is in active development but is still experimental. It can be
-considered at the alpha stage. At the moment documentation is virtually
-non-existent. The best way to get started is to peruse the sample programs and
-use them as a starting template. Read the Apple documentation for the classes
-and methods of interest. All books on iOS and macOS development in Objective-C
-are directly applicable.
+considered at the alpha stage. If you are an early adopter, keep in mind
+that the API is likely to change.
 
 ## Related projects
 
