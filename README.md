@@ -11,6 +11,8 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (on iOS and macOS)
 * [Vision](https://developer.apple.com/documentation/vision?language=objc)
   (on iOS and macOS)
+* [CoreImage](https://developer.apple.com/documentation/coreimage?language=objc)
+  (on iOS and macOS)
 
 ## Features
 

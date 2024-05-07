@@ -1,0 +1,5 @@
+(library
+ (name coreimage)
+ (public_name camlkit-base.coreimage)
+ (flags :standard -ccopt "-framework CoreImage")
+ (libraries foundation))
