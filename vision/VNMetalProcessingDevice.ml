@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNMetalProcessingDevice"
 
-module Class = struct
+module C = struct
   let allDevices self = msg_send ~self ~cmd:(selector "allDevices") ~typ:(returning (id))
 end
 

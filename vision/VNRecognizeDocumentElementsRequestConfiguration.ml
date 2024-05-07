@@ -13,5 +13,5 @@ let documentElements self = msg_send ~self ~cmd:(selector "documentElements") ~t
 let imageCropAndScaleOption self = msg_send ~self ~cmd:(selector "imageCropAndScaleOption") ~typ:(returning (ullong))
 let initWithRequestClass x self = msg_send ~self ~cmd:(selector "initWithRequestClass:") ~typ:(_Class @-> returning (id)) x
 let machineReadableCodeElements self = msg_send ~self ~cmd:(selector "machineReadableCodeElements") ~typ:(returning (id))
-let setImageCropAndScaleOption x self = msg_send ~self ~cmd:(selector "setImageCropAndScaleOption:") ~typ:(ullong @-> returning (void)) x
+let setImageCropAndScaleOption x self = msg_send ~self ~cmd:(selector "setImageCropAndScaleOption:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let textElements self = msg_send ~self ~cmd:(selector "textElements") ~typ:(returning (id))

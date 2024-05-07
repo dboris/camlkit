@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNFaceAttributes"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -32,7 +32,7 @@ let glassesCategory self = msg_send ~self ~cmd:(selector "glassesCategory") ~typ
 let hairColorCategory self = msg_send ~self ~cmd:(selector "hairColorCategory") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithRequestRevision x self = msg_send ~self ~cmd:(selector "initWithRequestRevision:") ~typ:(ullong @-> returning (id)) x
+let initWithRequestRevision x self = msg_send ~self ~cmd:(selector "initWithRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let makeupCategory self = msg_send ~self ~cmd:(selector "makeupCategory") ~typ:(returning (id))
 let makeupEyesCategory self = msg_send ~self ~cmd:(selector "makeupEyesCategory") ~typ:(returning (id))

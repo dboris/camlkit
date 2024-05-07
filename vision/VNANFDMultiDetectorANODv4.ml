@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNANFDMultiDetectorANODv4"
 
-module Class = struct
+module C = struct
   let detectedObjectClassToRequestKey self = msg_send ~self ~cmd:(selector "detectedObjectClassToRequestKey") ~typ:(returning (id))
   let detectedObjectRequestKeyToRequestInfo self = msg_send ~self ~cmd:(selector "detectedObjectRequestKeyToRequestInfo") ~typ:(returning (id))
   let detectorClass self = msg_send ~self ~cmd:(selector "detectorClass") ~typ:(returning (_Class))

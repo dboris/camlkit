@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNSmartCamObservation"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let observationWithSmartCamprints x self = msg_send ~self ~cmd:(selector "observationWithSmartCamprints:") ~typ:(id @-> returning (id)) x
   let smartCamprintCurrentVersion self = msg_send ~self ~cmd:(selector "smartCamprintCurrentVersion") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -19,7 +19,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithOriginatingRequestSpecifier x ~smartCamprints self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:smartCamprints:") ~typ:(id @-> id @-> returning (id)) x smartCamprints
-let initWithRequestRevision x ~smartCamprints self = msg_send ~self ~cmd:(selector "initWithRequestRevision:smartCamprints:") ~typ:(ullong @-> id @-> returning (id)) x smartCamprints
+let initWithRequestRevision x ~smartCamprints self = msg_send ~self ~cmd:(selector "initWithRequestRevision:smartCamprints:") ~typ:(ullong @-> id @-> returning (id)) (ULLong.of_int x) smartCamprints
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let setSmartCamprints x self = msg_send ~self ~cmd:(selector "setSmartCamprints:") ~typ:(id @-> returning (void)) x
 let smartCamprintVersion self = msg_send ~self ~cmd:(selector "smartCamprintVersion") ~typ:(returning (id))

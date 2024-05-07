@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNPersonsModelWriteOptions"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -20,5 +20,5 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let readOnly self = msg_send ~self ~cmd:(selector "readOnly") ~typ:(returning (bool))
 let setReadOnly x self = msg_send ~self ~cmd:(selector "setReadOnly:") ~typ:(bool @-> returning (void)) x
-let setVersion x self = msg_send ~self ~cmd:(selector "setVersion:") ~typ:(ullong @-> returning (void)) x
+let setVersion x self = msg_send ~self ~cmd:(selector "setVersion:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let version self = msg_send ~self ~cmd:(selector "version") ~typ:(returning (ullong))

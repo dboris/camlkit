@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNANFDDetectorCompoundRequestConfigurationGroups"
 
-module Class = struct
-  let createCompoundConfigurationHashKeyForRequest x ~compoundRequestRevision self = msg_send ~self ~cmd:(selector "createCompoundConfigurationHashKeyForRequest:compoundRequestRevision:") ~typ:(id @-> ullong @-> returning (id)) x compoundRequestRevision
+module C = struct
+  let createCompoundConfigurationHashKeyForRequest x ~compoundRequestRevision self = msg_send ~self ~cmd:(selector "createCompoundConfigurationHashKeyForRequest:compoundRequestRevision:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int compoundRequestRevision)
 end
 
 let allConfigurations self = msg_send ~self ~cmd:(selector "allConfigurations") ~typ:(returning (id))

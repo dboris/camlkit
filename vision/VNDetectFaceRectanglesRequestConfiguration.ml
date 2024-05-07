@@ -24,5 +24,5 @@ let setFaceCoreExtractSmile x self = msg_send ~self ~cmd:(selector "setFaceCoreE
 let setFaceCoreInitialAngle x self = msg_send ~self ~cmd:(selector "setFaceCoreInitialAngle:") ~typ:(id @-> returning (void)) x
 let setFaceCoreMinFaceSize x self = msg_send ~self ~cmd:(selector "setFaceCoreMinFaceSize:") ~typ:(id @-> returning (void)) x
 let setFaceCoreNumberOfDetectionAngles x self = msg_send ~self ~cmd:(selector "setFaceCoreNumberOfDetectionAngles:") ~typ:(id @-> returning (void)) x
-let setFaceCoreType x self = msg_send ~self ~cmd:(selector "setFaceCoreType:") ~typ:(ullong @-> returning (void)) x
+let setFaceCoreType x self = msg_send ~self ~cmd:(selector "setFaceCoreType:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setPrecisionRecallThreshold x self = msg_send ~self ~cmd:(selector "setPrecisionRecallThreshold:") ~typ:(float @-> returning (void)) x

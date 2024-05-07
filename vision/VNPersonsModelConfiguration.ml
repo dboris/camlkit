@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNPersonsModelConfiguration"
 
-module Class = struct
+module C = struct
   let maximumAllowableFaceprintsPerIdentity self = msg_send ~self ~cmd:(selector "maximumAllowableFaceprintsPerIdentity") ~typ:(returning (ullong))
   let maximumAllowableIdentities self = msg_send ~self ~cmd:(selector "maximumAllowableIdentities") ~typ:(returning (ullong))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -32,6 +32,6 @@ let maximumIdentities self = msg_send ~self ~cmd:(selector "maximumIdentities") 
 let maximumTrainingFaceprintsPerIdentity self = msg_send ~self ~cmd:(selector "maximumTrainingFaceprintsPerIdentity") ~typ:(returning (ullong))
 let resolvedAlgorithmAndReturnError x self = msg_send ~self ~cmd:(selector "resolvedAlgorithmAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
 let setAlgorithm x self = msg_send ~self ~cmd:(selector "setAlgorithm:") ~typ:(id @-> returning (void)) x
-let setFaceprintRequestRevision x self = msg_send ~self ~cmd:(selector "setFaceprintRequestRevision:") ~typ:(ullong @-> returning (void)) x
-let setMaximumIdentities x self = msg_send ~self ~cmd:(selector "setMaximumIdentities:") ~typ:(ullong @-> returning (void)) x
-let setMaximumTrainingFaceprintsPerIdentity x self = msg_send ~self ~cmd:(selector "setMaximumTrainingFaceprintsPerIdentity:") ~typ:(ullong @-> returning (void)) x
+let setFaceprintRequestRevision x self = msg_send ~self ~cmd:(selector "setFaceprintRequestRevision:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setMaximumIdentities x self = msg_send ~self ~cmd:(selector "setMaximumIdentities:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setMaximumTrainingFaceprintsPerIdentity x self = msg_send ~self ~cmd:(selector "setMaximumTrainingFaceprintsPerIdentity:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

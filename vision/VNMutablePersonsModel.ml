@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNMutablePersonsModel"
 
-module Class = struct
-  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) x objects error
+module C = struct
+  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) objects error
   let supportedWriteVersions self = msg_send ~self ~cmd:(selector "supportedWriteVersions") ~typ:(returning (id))
 end
 
@@ -22,5 +22,7 @@ let removeAllFaceObservationsFromPersonWithUniqueIdentifier x ~error self = msg_
 let removeFaceObservations x ~fromPersonWithUniqueIdentifier ~error self = msg_send ~self ~cmd:(selector "removeFaceObservations:fromPersonWithUniqueIdentifier:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (bool)) x fromPersonWithUniqueIdentifier error
 let removePersonWithUniqueIdentifier x ~error self = msg_send ~self ~cmd:(selector "removePersonWithUniqueIdentifier:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
 let upToDateFaceModelWithCanceller x ~error self = msg_send ~self ~cmd:(selector "upToDateFaceModelWithCanceller:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
+let writeReadOnlyVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeReadOnlyVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> ptr void @-> ptr (id) @-> returning (bool)) x options md5Context error
 let writeToStream x ~options ~error self = msg_send ~self ~cmd:(selector "writeToStream:options:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (bool)) x options error
 let writeToURL x ~options ~error self = msg_send ~self ~cmd:(selector "writeToURL:options:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (bool)) x options error
+let writeVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> ptr void @-> ptr (id) @-> returning (bool)) x options md5Context error

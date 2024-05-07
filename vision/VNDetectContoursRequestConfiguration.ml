@@ -21,4 +21,4 @@ let setContrastPivot x self = msg_send ~self ~cmd:(selector "setContrastPivot:")
 let setDetectsDarkOnLight x self = msg_send ~self ~cmd:(selector "setDetectsDarkOnLight:") ~typ:(bool @-> returning (void)) x
 let setForceUseInputCVPixelBufferDirectly x self = msg_send ~self ~cmd:(selector "setForceUseInputCVPixelBufferDirectly:") ~typ:(bool @-> returning (void)) x
 let setInHierarchy x self = msg_send ~self ~cmd:(selector "setInHierarchy:") ~typ:(bool @-> returning (void)) x
-let setMaximumImageDimension x self = msg_send ~self ~cmd:(selector "setMaximumImageDimension:") ~typ:(ullong @-> returning (void)) x
+let setMaximumImageDimension x self = msg_send ~self ~cmd:(selector "setMaximumImageDimension:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

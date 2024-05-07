@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNSession"
 
-module Class = struct
+module C = struct
   let globalSession self = msg_send ~self ~cmd:(selector "globalSession") ~typ:(returning (id))
   let trackerClassForOptions x ~error self = msg_send ~self ~cmd:(selector "trackerClassForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (_Class)) x error
 end
@@ -20,7 +20,7 @@ let detectorCache' x ~didEvictDetector self = msg_send ~self ~cmd:(selector "det
 let detectorOfClass x ~configuredWithOptions ~error self = msg_send ~self ~cmd:(selector "detectorOfClass:configuredWithOptions:error:") ~typ:(_Class @-> id @-> ptr (id) @-> returning (id)) x configuredWithOptions error
 let detectorOfType x ~configuredWithOptions ~error self = msg_send ~self ~cmd:(selector "detectorOfType:configuredWithOptions:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x configuredWithOptions error
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithCachingBehavior x self = msg_send ~self ~cmd:(selector "initWithCachingBehavior:") ~typ:(ullong @-> returning (id)) x
+let initWithCachingBehavior x self = msg_send ~self ~cmd:(selector "initWithCachingBehavior:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 let legacyForcedCleanupOfFacePipelineWithLevel x self = msg_send ~self ~cmd:(selector "legacyForcedCleanupOfFacePipelineWithLevel:") ~typ:(id @-> returning (void)) x
 let legacyForcedCleanupOfJunkPipelineWithLevel x self = msg_send ~self ~cmd:(selector "legacyForcedCleanupOfJunkPipelineWithLevel:") ~typ:(id @-> returning (void)) x
 let legacyForcedCleanupOfScenePipelineWithLevel x self = msg_send ~self ~cmd:(selector "legacyForcedCleanupOfScenePipelineWithLevel:") ~typ:(id @-> returning (void)) x

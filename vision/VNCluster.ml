@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNCluster"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -21,12 +21,12 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let objects self = msg_send ~self ~cmd:(selector "objects") ~typ:(returning (id))
 let representativenessById self = msg_send ~self ~cmd:(selector "representativenessById") ~typ:(returning (id))
-let setClusterId x self = msg_send ~self ~cmd:(selector "setClusterId:") ~typ:(ullong @-> returning (void)) x
+let setClusterId x self = msg_send ~self ~cmd:(selector "setClusterId:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setObjects x self = msg_send ~self ~cmd:(selector "setObjects:") ~typ:(id @-> returning (void)) x
 let setRepresentativenessById x self = msg_send ~self ~cmd:(selector "setRepresentativenessById:") ~typ:(id @-> returning (void)) x
 let setShouldUpdateRepresentative x self = msg_send ~self ~cmd:(selector "setShouldUpdateRepresentative:") ~typ:(bool @-> returning (void)) x
 let setSuggestedIdsForRepresentative x self = msg_send ~self ~cmd:(selector "setSuggestedIdsForRepresentative:") ~typ:(id @-> returning (void)) x
-let setTotalObjectCount x self = msg_send ~self ~cmd:(selector "setTotalObjectCount:") ~typ:(ullong @-> returning (void)) x
+let setTotalObjectCount x self = msg_send ~self ~cmd:(selector "setTotalObjectCount:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let shouldUpdateRepresentative self = msg_send ~self ~cmd:(selector "shouldUpdateRepresentative") ~typ:(returning (bool))
 let suggestedIdsForRepresentative self = msg_send ~self ~cmd:(selector "suggestedIdsForRepresentative") ~typ:(returning (id))
 let totalObjectCount self = msg_send ~self ~cmd:(selector "totalObjectCount") ~typ:(returning (ullong))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNObjectTrackerLegacyFaceCore"
 
-module Class = struct
+module C = struct
   let supportedComputeDevicesForOptions x ~error self = msg_send ~self ~cmd:(selector "supportedComputeDevicesForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let trackerObservationClass self = msg_send ~self ~cmd:(selector "trackerObservationClass") ~typ:(returning (_Class))
 end

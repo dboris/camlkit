@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNNOPRequest"
 
-module Class = struct
+module C = struct
   let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
 end
 
@@ -16,7 +16,7 @@ let detectorExecutionTimeInterval self = msg_send ~self ~cmd:(selector "detector
 let detectorPreferredImageSize self = msg_send ~self ~cmd:(selector "detectorPreferredImageSize") ~typ:(returning (id))
 let detectorWantsAnisotropicScaling self = msg_send ~self ~cmd:(selector "detectorWantsAnisotropicScaling") ~typ:(returning (bool))
 let hasCancellationHook self = msg_send ~self ~cmd:(selector "hasCancellationHook") ~typ:(returning (bool))
-let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) x inContext error
+let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) inContext error
 let setDetectorExecutionTimeInterval x self = msg_send ~self ~cmd:(selector "setDetectorExecutionTimeInterval:") ~typ:(double @-> returning (void)) x
 let setDetectorPreferredImageSize x self = msg_send ~self ~cmd:(selector "setDetectorPreferredImageSize:") ~typ:(id @-> returning (void)) x
 let setDetectorWantsAnisotropicScaling x self = msg_send ~self ~cmd:(selector "setDetectorWantsAnisotropicScaling:") ~typ:(bool @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNRecognizedPoint3D"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -17,4 +17,5 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning (id))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
+let initWithPosition x ~identifier self = msg_send ~self ~cmd:(selector "initWithPosition:identifier:") ~typ:(ptr void @-> id @-> returning (id)) x identifier
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

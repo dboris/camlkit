@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNVector"
 
-module Class = struct
+module C = struct
   let dotProductOfVector x ~vector self = msg_send ~self ~cmd:(selector "dotProductOfVector:vector:") ~typ:(id @-> id @-> returning (double)) x vector
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let unitVectorForVector x self = msg_send ~self ~cmd:(selector "unitVectorForVector:") ~typ:(id @-> returning (id)) x

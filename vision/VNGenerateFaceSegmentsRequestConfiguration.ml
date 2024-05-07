@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNGenerateFaceSegmentsRequestConfiguration"
 
-module Class = struct
+module C = struct
   let beginRangeFaceBoundingBoxExpansionRatio self = msg_send ~self ~cmd:(selector "beginRangeFaceBoundingBoxExpansionRatio") ~typ:(returning (float))
   let defaultFaceBoundingBoxExpansionRatio self = msg_send ~self ~cmd:(selector "defaultFaceBoundingBoxExpansionRatio") ~typ:(returning (float))
   let endRangeFaceBoundingBoxExpansionRatio self = msg_send ~self ~cmd:(selector "endRangeFaceBoundingBoxExpansionRatio") ~typ:(returning (float))

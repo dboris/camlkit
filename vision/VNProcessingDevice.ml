@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNProcessingDevice"
 
-module Class = struct
+module C = struct
   let allDevices self = msg_send ~self ~cmd:(selector "allDevices") ~typ:(returning (id))
   let defaultANEDevice self = msg_send ~self ~cmd:(selector "defaultANEDevice") ~typ:(returning (id))
   let defaultCPUDevice self = msg_send ~self ~cmd:(selector "defaultCPUDevice") ~typ:(returning (id))

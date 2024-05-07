@@ -8,18 +8,19 @@ open Foundation
 
 let _class_ = get_class "VNDetectFaceGazeRequest"
 
-module Class = struct
+module C = struct
   let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
+  let dependentRequestMappingTable self = msg_send ~self ~cmd:(selector "dependentRequestMappingTable") ~typ:(returning (ptr void))
 end
 
-let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) x error
+let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) (ULLong.of_int x) error
 let applyConfigurationOfRequest x self = msg_send ~self ~cmd:(selector "applyConfigurationOfRequest:") ~typ:(id @-> returning (void)) x
 let commonGazeLocationRadius self = msg_send ~self ~cmd:(selector "commonGazeLocationRadius") ~typ:(returning (float))
 let dependencyProcessingOrdinality self = msg_send ~self ~cmd:(selector "dependencyProcessingOrdinality") ~typ:(returning (llong))
 let gazeHeatMapThreshold self = msg_send ~self ~cmd:(selector "gazeHeatMapThreshold") ~typ:(returning (float))
-let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) x inContext error
+let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) inContext error
 let minimumFaceDimension self = msg_send ~self ~cmd:(selector "minimumFaceDimension") ~typ:(returning (float))
-let newDefaultDetectorOptionsForRequestRevision x ~session self = msg_send ~self ~cmd:(selector "newDefaultDetectorOptionsForRequestRevision:session:") ~typ:(ullong @-> id @-> returning (id)) x session
+let newDefaultDetectorOptionsForRequestRevision x ~session self = msg_send ~self ~cmd:(selector "newDefaultDetectorOptionsForRequestRevision:session:") ~typ:(ullong @-> id @-> returning (id)) (ULLong.of_int x) session
 let resolveSomewhereElseDirection self = msg_send ~self ~cmd:(selector "resolveSomewhereElseDirection") ~typ:(returning (bool))
 let setCommonGazeLocationRadius x self = msg_send ~self ~cmd:(selector "setCommonGazeLocationRadius:") ~typ:(float @-> returning (void)) x
 let setGazeHeatMapThreshold x self = msg_send ~self ~cmd:(selector "setGazeHeatMapThreshold:") ~typ:(float @-> returning (void)) x

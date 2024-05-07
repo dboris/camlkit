@@ -10,4 +10,4 @@ let _class_ = get_class "VNRegionOfInterestTile"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let initWithTiling x ~pixelCropRect self = msg_send ~self ~cmd:(selector "initWithTiling:pixelCropRect:") ~typ:(id @-> CGRect.t @-> returning (id)) x pixelCropRect
-let pixelCropRect self = msg_send ~self ~cmd:(selector "pixelCropRect") ~typ:(returning (CGRect.t))
+let pixelCropRect self = msg_send_stret ~self ~cmd:(selector "pixelCropRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t

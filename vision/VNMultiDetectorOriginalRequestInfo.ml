@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "VNMultiDetectorOriginalRequestInfo"
 
-module Class = struct
+module C = struct
   let originatingRequestSpecifierToDetectorClassMap self = msg_send ~self ~cmd:(selector "originatingRequestSpecifierToDetectorClassMap") ~typ:(returning (id))
   let requestClassNameFromRequestKey x self = msg_send ~self ~cmd:(selector "requestClassNameFromRequestKey:") ~typ:(id @-> returning (id)) x
   let requestKeyFromRequest x self = msg_send ~self ~cmd:(selector "requestKeyFromRequest:") ~typ:(id @-> returning (id)) x
 end
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let initWithOriginatingRequestSpecifierProcessingOptionKey x ~originalRequestResultsIndex self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifierProcessingOptionKey:originalRequestResultsIndex:") ~typ:(id @-> ullong @-> returning (id)) x originalRequestResultsIndex
+let initWithOriginatingRequestSpecifierProcessingOptionKey x ~originalRequestResultsIndex self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifierProcessingOptionKey:originalRequestResultsIndex:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int originalRequestResultsIndex)
 let originalRequestResultsIndex self = msg_send ~self ~cmd:(selector "originalRequestResultsIndex") ~typ:(returning (ullong))
 let originatingRequestSpecifierKey self = msg_send ~self ~cmd:(selector "originatingRequestSpecifierKey") ~typ:(returning (id))

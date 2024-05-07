@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNDetectFaceLandmarksRequestConfiguration"
 
-module Class = struct
-  let revision x ~supportsConstellation self = msg_send ~self ~cmd:(selector "revision:supportsConstellation:") ~typ:(ullong @-> ullong @-> returning (bool)) x supportsConstellation
+module C = struct
+  let revision x ~supportsConstellation self = msg_send ~self ~cmd:(selector "revision:supportsConstellation:") ~typ:(ullong @-> ullong @-> returning (bool)) (ULLong.of_int x) (ULLong.of_int supportsConstellation)
 end
 
 let cascadeStepCount self = msg_send ~self ~cmd:(selector "cascadeStepCount") ~typ:(returning (id))
@@ -21,7 +21,7 @@ let refineLeftEyeRegion self = msg_send ~self ~cmd:(selector "refineLeftEyeRegio
 let refineMouthRegion self = msg_send ~self ~cmd:(selector "refineMouthRegion") ~typ:(returning (bool))
 let refineRightEyeRegion self = msg_send ~self ~cmd:(selector "refineRightEyeRegion") ~typ:(returning (bool))
 let setCascadeStepCount x self = msg_send ~self ~cmd:(selector "setCascadeStepCount:") ~typ:(id @-> returning (void)) x
-let setConstellation x self = msg_send ~self ~cmd:(selector "setConstellation:") ~typ:(ullong @-> returning (void)) x
+let setConstellation x self = msg_send ~self ~cmd:(selector "setConstellation:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setPerformBlinkDetection x self = msg_send ~self ~cmd:(selector "setPerformBlinkDetection:") ~typ:(bool @-> returning (void)) x
 let setRefineLeftEyeRegion x self = msg_send ~self ~cmd:(selector "setRefineLeftEyeRegion:") ~typ:(bool @-> returning (void)) x
 let setRefineMouthRegion x self = msg_send ~self ~cmd:(selector "setRefineMouthRegion:") ~typ:(bool @-> returning (void)) x

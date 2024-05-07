@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNGenerateSegmentationRequest"
 
-module Class = struct
+module C = struct
   let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
 end
 

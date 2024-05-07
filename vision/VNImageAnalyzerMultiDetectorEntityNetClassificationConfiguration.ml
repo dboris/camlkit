@@ -16,5 +16,5 @@ let labelsListType self = msg_send ~self ~cmd:(selector "labelsListType") ~typ:(
 let maximumLabels self = msg_send ~self ~cmd:(selector "maximumLabels") ~typ:(returning (ullong))
 let minimumConfidence self = msg_send ~self ~cmd:(selector "minimumConfidence") ~typ:(returning (float))
 let setDisallowedList x self = msg_send ~self ~cmd:(selector "setDisallowedList:") ~typ:(id @-> returning (void)) x
-let setMaximumLabels x self = msg_send ~self ~cmd:(selector "setMaximumLabels:") ~typ:(ullong @-> returning (void)) x
+let setMaximumLabels x self = msg_send ~self ~cmd:(selector "setMaximumLabels:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMinimumConfidence x self = msg_send ~self ~cmd:(selector "setMinimumConfidence:") ~typ:(float @-> returning (void)) x

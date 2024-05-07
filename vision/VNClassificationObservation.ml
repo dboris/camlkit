@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNClassificationObservation"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -23,6 +23,6 @@ let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returnin
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithOriginatingRequestSpecifier x ~identifier ~confidence self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:identifier:confidence:") ~typ:(id @-> id @-> float @-> returning (id)) x identifier confidence
 let initWithOriginatingRequestSpecifier' x ~identifier ~confidence ~classificationMetrics self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:identifier:confidence:classificationMetrics:") ~typ:(id @-> id @-> float @-> id @-> returning (id)) x identifier confidence classificationMetrics
-let initWithRequestRevision x ~identifier ~confidence self = msg_send ~self ~cmd:(selector "initWithRequestRevision:identifier:confidence:") ~typ:(ullong @-> id @-> float @-> returning (id)) x identifier confidence
-let initWithRequestRevision' x ~identifier ~confidence ~classificationMetrics self = msg_send ~self ~cmd:(selector "initWithRequestRevision:identifier:confidence:classificationMetrics:") ~typ:(ullong @-> id @-> float @-> id @-> returning (id)) x identifier confidence classificationMetrics
+let initWithRequestRevision x ~identifier ~confidence self = msg_send ~self ~cmd:(selector "initWithRequestRevision:identifier:confidence:") ~typ:(ullong @-> id @-> float @-> returning (id)) (ULLong.of_int x) identifier confidence
+let initWithRequestRevision' x ~identifier ~confidence ~classificationMetrics self = msg_send ~self ~cmd:(selector "initWithRequestRevision:identifier:confidence:classificationMetrics:") ~typ:(ullong @-> id @-> float @-> id @-> returning (id)) (ULLong.of_int x) identifier confidence classificationMetrics
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNEntityIdentificationModelAlgorithmVIPv3"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -17,5 +17,5 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let indexType self = msg_send ~self ~cmd:(selector "indexType") ~typ:(returning (llong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let setIndexType x self = msg_send ~self ~cmd:(selector "setIndexType:") ~typ:(llong @-> returning (void)) x
+let setIndexType x self = msg_send ~self ~cmd:(selector "setIndexType:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let trainedModelClass self = msg_send ~self ~cmd:(selector "trainedModelClass") ~typ:(returning (_Class))

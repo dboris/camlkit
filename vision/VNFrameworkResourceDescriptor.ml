@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNFrameworkResourceDescriptor"
 
-module Class = struct
+module C = struct
   let descriptorForFrameworkContainingClass x ~error self = msg_send ~self ~cmd:(selector "descriptorForFrameworkContainingClass:error:") ~typ:(_Class @-> ptr (id) @-> returning (id)) x error
   let descriptorForFrameworkContainingClassNamed x ~error self = msg_send ~self ~cmd:(selector "descriptorForFrameworkContainingClassNamed:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let descriptorForFrameworkIdentifier x ~error self = msg_send ~self ~cmd:(selector "descriptorForFrameworkIdentifier:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error

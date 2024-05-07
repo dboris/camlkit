@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNRecognizedPoint"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,3 +18,4 @@ let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returnin
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithLocation x ~confidence ~identifier self = msg_send ~self ~cmd:(selector "initWithLocation:confidence:identifier:") ~typ:(CGPoint.t @-> float @-> id @-> returning (id)) x confidence identifier
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
+let transformedWith x self = msg_send ~self ~cmd:(selector "transformedWith:") ~typ:(ptr void @-> returning (id)) x

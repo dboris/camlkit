@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNOperationPoints"
 
-module Class = struct
+module C = struct
   let errorForUnimplementedMethod x self = msg_send ~self ~cmd:(selector "errorForUnimplementedMethod:") ~typ:(_SEL @-> returning (id)) x
   let errorForUnknownClassificationIdentifier x self = msg_send ~self ~cmd:(selector "errorForUnknownClassificationIdentifier:") ~typ:(id @-> returning (id)) x
   let loadFromURL x ~error self = msg_send ~self ~cmd:(selector "loadFromURL:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error

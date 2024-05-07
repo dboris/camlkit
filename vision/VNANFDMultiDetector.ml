@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNANFDMultiDetector"
 
-module Class = struct
+module C = struct
   let anfdMultiDetectorClassToProcessRequest x self = msg_send ~self ~cmd:(selector "anfdMultiDetectorClassToProcessRequest:") ~typ:(id @-> returning (_Class)) x
   let configurationOptionKeysForDetectorKey self = msg_send ~self ~cmd:(selector "configurationOptionKeysForDetectorKey") ~typ:(returning (id))
   let detectedObjectClassToRequestKey self = msg_send ~self ~cmd:(selector "detectedObjectClassToRequestKey") ~typ:(returning (id))
@@ -26,10 +26,12 @@ module Class = struct
 end
 
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
+let createRegionOfInterestCrop x ~options ~qosClass ~warningRecorder ~pixelBuffer ~error ~progressHandler self = msg_send ~self ~cmd:(selector "createRegionOfInterestCrop:options:qosClass:warningRecorder:pixelBuffer:error:progressHandler:") ~typ:(CGRect.t @-> id @-> uint @-> id @-> ptr (ptr void) @-> ptr (id) @-> ptr void @-> returning (bool)) x options qosClass warningRecorder pixelBuffer error progressHandler
 let internalProcessUsingQualityOfServiceClass x ~options ~regionOfInterest ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "internalProcessUsingQualityOfServiceClass:options:regionOfInterest:warningRecorder:error:progressHandler:") ~typ:(uint @-> id @-> CGRect.t @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x options regionOfInterest warningRecorder error progressHandler
 let isDetectedObject x ~ofAGivenObjectSubClass self = msg_send ~self ~cmd:(selector "isDetectedObject:ofAGivenObjectSubClass:") ~typ:(id @-> id @-> returning (bool)) x ofAGivenObjectSubClass
 let processDetectedObject x ~originatingRequestSpecifier ~objectBoundingBox ~objectGroupId ~imageBuffer ~qosClass ~session ~warningRecorder ~detectedObjectResults ~error self = msg_send ~self ~cmd:(selector "processDetectedObject:originatingRequestSpecifier:objectBoundingBox:objectGroupId:imageBuffer:qosClass:session:warningRecorder:detectedObjectResults:error:") ~typ:(id @-> id @-> CGRect.t @-> id @-> id @-> uint @-> id @-> id @-> id @-> ptr (id) @-> returning (bool)) x originatingRequestSpecifier objectBoundingBox objectGroupId imageBuffer qosClass session warningRecorder detectedObjectResults error
 let processRecognizedObjectWithIdentifier x ~originatingRequestSpecifier ~objectBoundingBox ~objectGroupId ~objectConfidence ~detectedObjectResults self = msg_send ~self ~cmd:(selector "processRecognizedObjectWithIdentifier:originatingRequestSpecifier:objectBoundingBox:objectGroupId:objectConfidence:detectedObjectResults:") ~typ:(id @-> id @-> CGRect.t @-> id @-> float @-> id @-> returning (void)) x originatingRequestSpecifier objectBoundingBox objectGroupId objectConfidence detectedObjectResults
+let processRegionOfInterest x ~croppedPixelBuffer ~options ~qosClass ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processRegionOfInterest:croppedPixelBuffer:options:qosClass:warningRecorder:error:progressHandler:") ~typ:(CGRect.t @-> ptr void @-> id @-> uint @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x croppedPixelBuffer options qosClass warningRecorder error progressHandler
 let shotflowDetector self = msg_send ~self ~cmd:(selector "shotflowDetector") ~typ:(returning (id))
 let splitDetectedClassResultsIntoSubclasses x self = msg_send ~self ~cmd:(selector "splitDetectedClassResultsIntoSubclasses:") ~typ:(id @-> returning (id)) x
 let updateRuntimeParametersFromOptions x ~error self = msg_send ~self ~cmd:(selector "updateRuntimeParametersFromOptions:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error

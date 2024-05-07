@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNFrameworkManager"
 
-module Class = struct
+module C = struct
   let manager self = msg_send ~self ~cmd:(selector "manager") ~typ:(returning (id))
 end
 

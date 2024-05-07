@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNFaceLandmarks2D"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let landmarkPointSizeInBytes self = msg_send ~self ~cmd:(selector "landmarkPointSizeInBytes") ~typ:(returning (ullong))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
@@ -20,6 +20,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let faceContour self = msg_send ~self ~cmd:(selector "faceContour") ~typ:(returning (id))
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
+let initWithOriginatingRequestSpecifier x ~pointsData ~pointCount ~constellation ~precisionEstimatesPerPoint ~userFacingBBox ~alignedBBox ~landmarkScore self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:pointsData:pointCount:constellation:precisionEstimatesPerPoint:userFacingBBox:alignedBBox:landmarkScore:") ~typ:(id @-> id @-> ullong @-> ullong @-> id @-> CGRect.t @-> ptr void @-> float @-> returning (id)) x pointsData (ULLong.of_int pointCount) (ULLong.of_int constellation) precisionEstimatesPerPoint userFacingBBox alignedBBox landmarkScore
 let innerLips self = msg_send ~self ~cmd:(selector "innerLips") ~typ:(returning (id))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let leftEye self = msg_send ~self ~cmd:(selector "leftEye") ~typ:(returning (id))

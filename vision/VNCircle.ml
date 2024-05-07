@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNCircle"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
   let zeroCircle self = msg_send ~self ~cmd:(selector "zeroCircle") ~typ:(returning (id))
 end

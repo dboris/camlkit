@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNBarcodeObservation"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -27,10 +27,13 @@ let initWithOriginatingRequestSpecifier' x ~symbology ~descriptor ~topLeft ~topR
 let isColorInverted self = msg_send ~self ~cmd:(selector "isColorInverted") ~typ:(returning (bool))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let isGS1DataCarrier self = msg_send ~self ~cmd:(selector "isGS1DataCarrier") ~typ:(returning (bool))
+let mrcDescriptor self = msg_send ~self ~cmd:(selector "mrcDescriptor") ~typ:(returning (ptr void))
 let payloadData self = msg_send ~self ~cmd:(selector "payloadData") ~typ:(returning (id))
 let payloadDataValue self = msg_send ~self ~cmd:(selector "payloadDataValue") ~typ:(returning (id))
 let payloadStringValue self = msg_send ~self ~cmd:(selector "payloadStringValue") ~typ:(returning (id))
 let setACBSBarcodeInfo x self = msg_send ~self ~cmd:(selector "setACBSBarcodeInfo:") ~typ:(id @-> returning (void)) x
+let setMRCDescriptor x self = msg_send ~self ~cmd:(selector "setMRCDescriptor:") ~typ:(ptr void @-> returning (void)) x
+let setMrcDescriptor x self = msg_send ~self ~cmd:(selector "setMrcDescriptor:") ~typ:(ptr void @-> returning (void)) x
 let supplementalCompositeType self = msg_send ~self ~cmd:(selector "supplementalCompositeType") ~typ:(returning (llong))
 let supplementalPayloadData self = msg_send ~self ~cmd:(selector "supplementalPayloadData") ~typ:(returning (id))
 let supplementalPayloadString self = msg_send ~self ~cmd:(selector "supplementalPayloadString") ~typ:(returning (id))

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNImageRequestHandler"
 
-module Class = struct
+module C = struct
   let forcedCleanup self = msg_send ~self ~cmd:(selector "forcedCleanup") ~typ:(returning (void))
   let forcedCleanupWithOptions x self = msg_send ~self ~cmd:(selector "forcedCleanupWithOptions:") ~typ:(id @-> returning (void)) x
   let requestForcedCleanup self = msg_send ~self ~cmd:(selector "requestForcedCleanup") ~typ:(returning (void))
@@ -27,6 +27,18 @@ let initWithCIImage x ~options self = msg_send ~self ~cmd:(selector "initWithCII
 let initWithCIImage1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCIImage:options:session:") ~typ:(id @-> id @-> id @-> returning (id)) x options session
 let initWithCIImage2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCIImage:orientation:options:") ~typ:(id @-> uint @-> id @-> returning (id)) x orientation options
 let initWithCIImage3 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCIImage:orientation:options:session:") ~typ:(id @-> uint @-> id @-> id @-> returning (id)) x orientation options session
+let initWithCMSampleBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:options:") ~typ:(ptr void @-> id @-> returning (id)) x options
+let initWithCMSampleBuffer1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:options:session:") ~typ:(ptr void @-> id @-> id @-> returning (id)) x options session
+let initWithCMSampleBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:orientation:options:") ~typ:(ptr void @-> uint @-> id @-> returning (id)) x orientation options
+let initWithCMSampleBuffer3 x ~depthData ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:depthData:orientation:options:") ~typ:(ptr void @-> id @-> uint @-> id @-> returning (id)) x depthData orientation options
+let initWithCMSampleBuffer4 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:orientation:options:session:") ~typ:(ptr void @-> uint @-> id @-> id @-> returning (id)) x orientation options session
+let initWithCMSampleBuffer5 x ~depthData ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:depthData:orientation:options:session:") ~typ:(ptr void @-> id @-> uint @-> id @-> id @-> returning (id)) x depthData orientation options session
+let initWithCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:") ~typ:(ptr void @-> id @-> returning (id)) x options
+let initWithCVPixelBuffer1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:session:") ~typ:(ptr void @-> id @-> id @-> returning (id)) x options session
+let initWithCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:") ~typ:(ptr void @-> uint @-> id @-> returning (id)) x orientation options
+let initWithCVPixelBuffer3 x ~depthData ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:depthData:orientation:options:") ~typ:(ptr void @-> id @-> uint @-> id @-> returning (id)) x depthData orientation options
+let initWithCVPixelBuffer4 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:session:") ~typ:(ptr void @-> uint @-> id @-> id @-> returning (id)) x orientation options session
+let initWithCVPixelBuffer5 x ~depthData ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:depthData:orientation:options:session:") ~typ:(ptr void @-> id @-> uint @-> id @-> id @-> returning (id)) x depthData orientation options session
 let initWithData x ~options self = msg_send ~self ~cmd:(selector "initWithData:options:") ~typ:(id @-> id @-> returning (id)) x options
 let initWithData1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithData:options:session:") ~typ:(id @-> id @-> id @-> returning (id)) x options session
 let initWithData2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithData:orientation:options:") ~typ:(id @-> uint @-> id @-> returning (id)) x orientation options

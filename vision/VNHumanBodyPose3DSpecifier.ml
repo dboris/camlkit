@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNHumanBodyPose3DSpecifier"
 
-module Class = struct
+module C = struct
   let supportedHumanBodyPose3DKeypointsRev1 self = msg_send ~self ~cmd:(selector "supportedHumanBodyPose3DKeypointsRev1") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
@@ -19,5 +19,5 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let heightEstimatedScale self = msg_send ~self ~cmd:(selector "heightEstimatedScale") ~typ:(returning (float))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithHumanBody3DOutput x ~originatingRequestSpecifier self = msg_send ~self ~cmd:(selector "initWithHumanBody3DOutput:originatingRequestSpecifier:") ~typ:(id @-> id @-> returning (id)) x originatingRequestSpecifier
-let inputSize self = msg_send ~self ~cmd:(selector "inputSize") ~typ:(returning (CGSize.t))
+let inputSize self = msg_send_stret ~self ~cmd:(selector "inputSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
 let pointKeyGroupLabelsMapping self = msg_send ~self ~cmd:(selector "pointKeyGroupLabelsMapping") ~typ:(returning (id))

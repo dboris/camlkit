@@ -16,4 +16,4 @@ let originalRequests self = msg_send ~self ~cmd:(selector "originalRequests") ~t
 let setDetectorConfigurationOption x ~value self = msg_send ~self ~cmd:(selector "setDetectorConfigurationOption:value:") ~typ:(id @-> id @-> returning (void)) x value
 let setDetectorConfigurationOptions x self = msg_send ~self ~cmd:(selector "setDetectorConfigurationOptions:") ~typ:(id @-> returning (void)) x
 let setDetectorType x self = msg_send ~self ~cmd:(selector "setDetectorType:") ~typ:(id @-> returning (void)) x
-let setResolvedRevision x self = msg_send ~self ~cmd:(selector "setResolvedRevision:") ~typ:(ullong @-> returning (void)) x
+let setResolvedRevision x self = msg_send ~self ~cmd:(selector "setResolvedRevision:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

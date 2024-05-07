@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNRecognizedAnimalBodyPointsSpecifier"
 
-module Class = struct
+module C = struct
   let supportedAnimalPoseKeypointsRev1 self = msg_send ~self ~cmd:(selector "supportedAnimalPoseKeypointsRev1") ~typ:(returning (id))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end

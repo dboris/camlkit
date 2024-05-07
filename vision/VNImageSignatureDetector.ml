@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNImageSignatureDetector"
 
-module Class = struct
+module C = struct
   let configurationOptionKeysForDetectorKey self = msg_send ~self ~cmd:(selector "configurationOptionKeysForDetectorKey") ~typ:(returning (id))
   let supportedComputeStageDevicesForOptions x ~error self = msg_send ~self ~cmd:(selector "supportedComputeStageDevicesForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 end

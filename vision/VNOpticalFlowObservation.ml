@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNOpticalFlowObservation"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
 end
 
 let opticalFlow self = msg_send ~self ~cmd:(selector "opticalFlow") ~typ:(returning (id))

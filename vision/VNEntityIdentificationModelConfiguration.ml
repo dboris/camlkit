@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNEntityIdentificationModelConfiguration"
 
-module Class = struct
+module C = struct
   let maximumAllowableEntities self = msg_send ~self ~cmd:(selector "maximumAllowableEntities") ~typ:(returning (ullong))
   let maximumAllowableFaceprintsPerIdentity self = msg_send ~self ~cmd:(selector "maximumAllowableFaceprintsPerIdentity") ~typ:(returning (ullong))
   let newConfigurationForEntityPrintsGeneratedByRequest x ~error self = msg_send ~self ~cmd:(selector "newConfigurationForEntityPrintsGeneratedByRequest:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
@@ -35,5 +35,5 @@ let maximumEntities self = msg_send ~self ~cmd:(selector "maximumEntities") ~typ
 let maximumTrainingPrintsPerEntity self = msg_send ~self ~cmd:(selector "maximumTrainingPrintsPerEntity") ~typ:(returning (ullong))
 let resolvedAlgorithmAndReturnError x self = msg_send ~self ~cmd:(selector "resolvedAlgorithmAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
 let setAlgorithm x self = msg_send ~self ~cmd:(selector "setAlgorithm:") ~typ:(id @-> returning (void)) x
-let setMaximumEntities x self = msg_send ~self ~cmd:(selector "setMaximumEntities:") ~typ:(ullong @-> returning (void)) x
-let setMaximumTrainingPrintsPerEntity x self = msg_send ~self ~cmd:(selector "setMaximumTrainingPrintsPerEntity:") ~typ:(ullong @-> returning (void)) x
+let setMaximumEntities x self = msg_send ~self ~cmd:(selector "setMaximumEntities:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
+let setMaximumTrainingPrintsPerEntity x self = msg_send ~self ~cmd:(selector "setMaximumTrainingPrintsPerEntity:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)

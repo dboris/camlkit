@@ -8,8 +8,8 @@ open Foundation
 
 let _class_ = get_class "VNRecognizedTextObservation"
 
-module Class = struct
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+module C = struct
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -23,4 +23,4 @@ let setText x self = msg_send ~self ~cmd:(selector "setText:") ~typ:(id @-> retu
 let setTextObjects x self = msg_send ~self ~cmd:(selector "setTextObjects:") ~typ:(id @-> returning (void)) x
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning (id))
 let textObjects self = msg_send ~self ~cmd:(selector "textObjects") ~typ:(returning (id))
-let topCandidates x self = msg_send ~self ~cmd:(selector "topCandidates:") ~typ:(ullong @-> returning (id)) x
+let topCandidates x self = msg_send ~self ~cmd:(selector "topCandidates:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)

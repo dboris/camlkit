@@ -8,9 +8,9 @@ open Foundation
 
 let _class_ = get_class "VNReadOnlyPersonsModel"
 
-module Class = struct
+module C = struct
   let isReadOnly self = msg_send ~self ~cmd:(selector "isReadOnly") ~typ:(returning (bool))
-  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) x objects error
+  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) objects error
 end
 
 let dropCurrentFaceModelAndReturnError x self = msg_send ~self ~cmd:(selector "dropCurrentFaceModelAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
@@ -23,7 +23,7 @@ let numberOfPersonsInPersonsModel x self = msg_send ~self ~cmd:(selector "number
 let personCount self = msg_send ~self ~cmd:(selector "personCount") ~typ:(returning (ullong))
 let personUniqueIdentifiers self = msg_send ~self ~cmd:(selector "personUniqueIdentifiers") ~typ:(returning (id))
 let personsModel x ~indexOfPersonWithUniqueIdentifier self = msg_send ~self ~cmd:(selector "personsModel:indexOfPersonWithUniqueIdentifier:") ~typ:(id @-> id @-> returning (ullong)) x indexOfPersonWithUniqueIdentifier
-let personsModel1 x ~numberOfFaceObservationsForPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:numberOfFaceObservationsForPersonAtIndex:") ~typ:(id @-> ullong @-> returning (ullong)) x numberOfFaceObservationsForPersonAtIndex
-let personsModel2 x ~uniqueIdentifierOfPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:uniqueIdentifierOfPersonAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x uniqueIdentifierOfPersonAtIndex
-let personsModel3 x ~faceObservationAtIndex ~forPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:faceObservationAtIndex:forPersonAtIndex:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x faceObservationAtIndex forPersonAtIndex
+let personsModel1 x ~numberOfFaceObservationsForPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:numberOfFaceObservationsForPersonAtIndex:") ~typ:(id @-> ullong @-> returning (ullong)) x (ULLong.of_int numberOfFaceObservationsForPersonAtIndex)
+let personsModel2 x ~uniqueIdentifierOfPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:uniqueIdentifierOfPersonAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int uniqueIdentifierOfPersonAtIndex)
+let personsModel3 x ~faceObservationAtIndex ~forPersonAtIndex self = msg_send ~self ~cmd:(selector "personsModel:faceObservationAtIndex:forPersonAtIndex:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int faceObservationAtIndex) (ULLong.of_int forPersonAtIndex)
 let upToDateFaceModelWithCanceller x ~error self = msg_send ~self ~cmd:(selector "upToDateFaceModelWithCanceller:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error

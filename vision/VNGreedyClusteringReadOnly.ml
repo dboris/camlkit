@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNGreedyClusteringReadOnly"
 
-module Class = struct
+module C = struct
   let addFaceObservations x ~toFaceDescriptorBuffer self = msg_send ~self ~cmd:(selector "addFaceObservations:toFaceDescriptorBuffer:") ~typ:(id @-> ptr (void) @-> returning (void)) x toFaceDescriptorBuffer
   let addFaceObservations' x ~withGroupingIdentifiers ~toFaceDescriptorBuffer self = msg_send ~self ~cmd:(selector "addFaceObservations:withGroupingIdentifiers:toFaceDescriptorBuffer:") ~typ:(id @-> id @-> ptr (void) @-> returning (void)) x withGroupingIdentifiers toFaceDescriptorBuffer
   let addPersonData x ~withGroupingIdentifiers ~toFaceDescriptorBuffer self = msg_send ~self ~cmd:(selector "addPersonData:withGroupingIdentifiers:toFaceDescriptorBuffer:") ~typ:(id @-> id @-> ptr (void) @-> returning (void)) x withGroupingIdentifiers toFaceDescriptorBuffer

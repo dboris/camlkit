@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNRPNTrackerEspressoResourcesCache"
 
-module Class = struct
+module C = struct
   let cacheKeyFromOptions x ~error self = msg_send ~self ~cmd:(selector "cacheKeyFromOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let cacheOptionsKeys self = msg_send ~self ~cmd:(selector "cacheOptionsKeys") ~typ:(returning (id))
 end

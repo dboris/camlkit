@@ -8,11 +8,11 @@ open Foundation
 
 let _class_ = get_class "VNDetectContoursRequest"
 
-module Class = struct
+module C = struct
   let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
 end
 
-let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) x error
+let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) (ULLong.of_int x) error
 let applyConfigurationOfRequest x self = msg_send ~self ~cmd:(selector "applyConfigurationOfRequest:") ~typ:(id @-> returning (void)) x
 let contrastAdjustment self = msg_send ~self ~cmd:(selector "contrastAdjustment") ~typ:(returning (float))
 let contrastPivot self = msg_send ~self ~cmd:(selector "contrastPivot") ~typ:(returning (id))
@@ -20,7 +20,7 @@ let detectDarkOnLight self = msg_send ~self ~cmd:(selector "detectDarkOnLight") 
 let detectsDarkOnLight self = msg_send ~self ~cmd:(selector "detectsDarkOnLight") ~typ:(returning (bool))
 let forceUseInputCVPixelBufferDirectly self = msg_send ~self ~cmd:(selector "forceUseInputCVPixelBufferDirectly") ~typ:(returning (bool))
 let inHierarchy self = msg_send ~self ~cmd:(selector "inHierarchy") ~typ:(returning (bool))
-let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) x inContext error
+let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) inContext error
 let maximumImageDimension self = msg_send ~self ~cmd:(selector "maximumImageDimension") ~typ:(returning (ullong))
 let setContrastAdjustment x self = msg_send ~self ~cmd:(selector "setContrastAdjustment:") ~typ:(float @-> returning (void)) x
 let setContrastPivot x self = msg_send ~self ~cmd:(selector "setContrastPivot:") ~typ:(id @-> returning (void)) x
@@ -28,5 +28,5 @@ let setDetectDarkOnLight x self = msg_send ~self ~cmd:(selector "setDetectDarkOn
 let setDetectsDarkOnLight x self = msg_send ~self ~cmd:(selector "setDetectsDarkOnLight:") ~typ:(bool @-> returning (void)) x
 let setForceUseInputCVPixelBufferDirectly x self = msg_send ~self ~cmd:(selector "setForceUseInputCVPixelBufferDirectly:") ~typ:(bool @-> returning (void)) x
 let setInHierarchy x self = msg_send ~self ~cmd:(selector "setInHierarchy:") ~typ:(bool @-> returning (void)) x
-let setMaximumImageDimension x self = msg_send ~self ~cmd:(selector "setMaximumImageDimension:") ~typ:(ullong @-> returning (void)) x
+let setMaximumImageDimension x self = msg_send ~self ~cmd:(selector "setMaximumImageDimension:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let willAcceptCachedResultsFromRequestWithConfiguration x self = msg_send ~self ~cmd:(selector "willAcceptCachedResultsFromRequestWithConfiguration:") ~typ:(id @-> returning (bool)) x

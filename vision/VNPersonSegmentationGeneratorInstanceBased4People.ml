@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNPersonSegmentationGeneratorInstanceBased4People"
 
-module Class = struct
+module C = struct
   let espressoModelFileNameForConfigurationOptions x self = msg_send ~self ~cmd:(selector "espressoModelFileNameForConfigurationOptions:") ~typ:(id @-> returning (id)) x
   let espressoModelInputImageDimensionsBlobNameForConfigurationOptions x self = msg_send ~self ~cmd:(selector "espressoModelInputImageDimensionsBlobNameForConfigurationOptions:") ~typ:(id @-> returning (id)) x
   let inputImageBlobName self = msg_send ~self ~cmd:(selector "inputImageBlobName") ~typ:(returning (id))

@@ -8,16 +8,16 @@ open Foundation
 
 let _class_ = get_class "VNReadOnlyEntityIdentificationModel"
 
-module Class = struct
+module C = struct
   let isReadOnly self = msg_send ~self ~cmd:(selector "isReadOnly") ~typ:(returning (bool))
-  let newModelForVersion x ~modelObjects ~error self = msg_send ~self ~cmd:(selector "newModelForVersion:modelObjects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) x modelObjects error
+  let newModelForVersion x ~modelObjects ~error self = msg_send ~self ~cmd:(selector "newModelForVersion:modelObjects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) modelObjects error
 end
 
 let dropTrainedModelAndReturnError x self = msg_send ~self ~cmd:(selector "dropTrainedModelAndReturnError:") ~typ:(ptr (id) @-> returning (bool)) x
 let entityIdentificationModel x ~indexOfEntityWithUniqueIdentifier self = msg_send ~self ~cmd:(selector "entityIdentificationModel:indexOfEntityWithUniqueIdentifier:") ~typ:(id @-> id @-> returning (ullong)) x indexOfEntityWithUniqueIdentifier
-let entityIdentificationModel1 x ~numberOfObservationsForEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:numberOfObservationsForEntityAtIndex:") ~typ:(id @-> ullong @-> returning (ullong)) x numberOfObservationsForEntityAtIndex
-let entityIdentificationModel2 x ~uniqueIdentifierOfEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:uniqueIdentifierOfEntityAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x uniqueIdentifierOfEntityAtIndex
-let entityIdentificationModel3 x ~observationAtIndex ~forEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:observationAtIndex:forEntityAtIndex:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x observationAtIndex forEntityAtIndex
+let entityIdentificationModel1 x ~numberOfObservationsForEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:numberOfObservationsForEntityAtIndex:") ~typ:(id @-> ullong @-> returning (ullong)) x (ULLong.of_int numberOfObservationsForEntityAtIndex)
+let entityIdentificationModel2 x ~uniqueIdentifierOfEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:uniqueIdentifierOfEntityAtIndex:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int uniqueIdentifierOfEntityAtIndex)
+let entityIdentificationModel3 x ~observationAtIndex ~forEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:observationAtIndex:forEntityAtIndex:") ~typ:(id @-> ullong @-> ullong @-> returning (id)) x (ULLong.of_int observationAtIndex) (ULLong.of_int forEntityAtIndex)
 let initWithConfiguration x ~trainedModel self = msg_send ~self ~cmd:(selector "initWithConfiguration:trainedModel:") ~typ:(id @-> id @-> returning (id)) x trainedModel
 let numberOfEntitiesInEntityIdentificationModel x self = msg_send ~self ~cmd:(selector "numberOfEntitiesInEntityIdentificationModel:") ~typ:(id @-> returning (ullong)) x
 let observationCountForEntityWithUniqueIdentifier x self = msg_send ~self ~cmd:(selector "observationCountForEntityWithUniqueIdentifier:") ~typ:(id @-> returning (ullong)) x

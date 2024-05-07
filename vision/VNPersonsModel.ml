@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNPersonsModel"
 
-module Class = struct
+module C = struct
   let configurationFromLoadedObjects x ~error self = msg_send ~self ~cmd:(selector "configurationFromLoadedObjects:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let informationForModelWithData x ~error self = msg_send ~self ~cmd:(selector "informationForModelWithData:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let informationForModelWithURL x ~error self = msg_send ~self ~cmd:(selector "informationForModelWithURL:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
@@ -16,7 +16,8 @@ module Class = struct
   let modelFromData x ~options ~error self = msg_send ~self ~cmd:(selector "modelFromData:options:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x options error
   let modelFromStream x ~options ~error self = msg_send ~self ~cmd:(selector "modelFromStream:options:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x options error
   let modelFromURL x ~options ~error self = msg_send ~self ~cmd:(selector "modelFromURL:options:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x options error
-  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) x objects error
+  let newModelFromVersion x ~objects ~error self = msg_send ~self ~cmd:(selector "newModelFromVersion:objects:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) objects error
+  let readObjectForModelVersion x ~tag ~fromInputStream ~intoObjectDictionary ~md5Context ~error self = msg_send ~self ~cmd:(selector "readObjectForModelVersion:tag:fromInputStream:intoObjectDictionary:md5Context:error:") ~typ:(ullong @-> uint @-> id @-> id @-> ptr void @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) tag fromInputStream intoObjectDictionary md5Context error
   let supportedReadVersions self = msg_send ~self ~cmd:(selector "supportedReadVersions") ~typ:(returning (id))
   let versionNumbersEncodedInClass x ~withMethodNamePrefix ~suffix self = msg_send ~self ~cmd:(selector "versionNumbersEncodedInClass:withMethodNamePrefix:suffix:") ~typ:(_Class @-> id @-> id @-> returning (id)) x withMethodNamePrefix suffix
 end
@@ -33,8 +34,8 @@ let faceObservationsForPersonWithUniqueIdentifier x ~error self = msg_send ~self
 let initWithConfiguration x ~dataSource self = msg_send ~self ~cmd:(selector "initWithConfiguration:dataSource:") ~typ:(id @-> id @-> returning (id)) x dataSource
 let personCount self = msg_send ~self ~cmd:(selector "personCount") ~typ:(returning (ullong))
 let personUniqueIdentifiers self = msg_send ~self ~cmd:(selector "personUniqueIdentifiers") ~typ:(returning (id))
-let predictPersonFromFaceObservation x ~limit ~canceller ~error self = msg_send ~self ~cmd:(selector "predictPersonFromFaceObservation:limit:canceller:error:") ~typ:(id @-> ullong @-> id @-> ptr (id) @-> returning (id)) x limit canceller error
+let predictPersonFromFaceObservation x ~limit ~canceller ~error self = msg_send ~self ~cmd:(selector "predictPersonFromFaceObservation:limit:canceller:error:") ~typ:(id @-> ullong @-> id @-> ptr (id) @-> returning (id)) x (ULLong.of_int limit) canceller error
 let trainingFaceObservationsForPersonWithUniqueIdentifier x ~canceller ~error self = msg_send ~self ~cmd:(selector "trainingFaceObservationsForPersonWithUniqueIdentifier:canceller:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x canceller error
 let trainingFaceprintsForPersonWithUniqueIdentifier x ~canceller ~error self = msg_send ~self ~cmd:(selector "trainingFaceprintsForPersonWithUniqueIdentifier:canceller:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x canceller error
 let upToDateFaceModelWithCanceller x ~error self = msg_send ~self ~cmd:(selector "upToDateFaceModelWithCanceller:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
-let updateInternalConfigurationWithModelFaceprintRequestRevision x ~error self = msg_send ~self ~cmd:(selector "updateInternalConfigurationWithModelFaceprintRequestRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (bool)) x error
+let updateInternalConfigurationWithModelFaceprintRequestRevision x ~error self = msg_send ~self ~cmd:(selector "updateInternalConfigurationWithModelFaceprintRequestRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) error

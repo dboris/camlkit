@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNSceneTaxonomyOperationPoints"
 
-module Class = struct
+module C = struct
   let _URLForIdentifier x ~error self = msg_send ~self ~cmd:(selector "URLForIdentifier:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let loadFromIdentifier x ~error self = msg_send ~self ~cmd:(selector "loadFromIdentifier:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let loadFromPropertyList x ~error self = msg_send ~self ~cmd:(selector "loadFromPropertyList:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
@@ -26,4 +26,5 @@ let getPrecision x ~forClassificationIdentifier ~confidence ~error self = msg_se
 let getRecall x ~forClassificationIdentifier ~confidence ~error self = msg_send ~self ~cmd:(selector "getRecall:forClassificationIdentifier:confidence:error:") ~typ:(ptr (float) @-> id @-> float @-> ptr (id) @-> returning (bool)) x forClassificationIdentifier confidence error
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
+let initWithLabelToOperationPointsDataIndexMap x ~operationPointsDataArray self = msg_send ~self ~cmd:(selector "initWithLabelToOperationPointsDataIndexMap:operationPointsDataArray:") ~typ:(id @-> ptr void @-> returning (id)) x operationPointsDataArray
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x

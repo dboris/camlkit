@@ -17,6 +17,6 @@ let qualityLevel self = msg_send ~self ~cmd:(selector "qualityLevel") ~typ:(retu
 let setKeepRawOutputMask x self = msg_send ~self ~cmd:(selector "setKeepRawOutputMask:") ~typ:(bool @-> returning (void)) x
 let setMinimumConfidence x self = msg_send ~self ~cmd:(selector "setMinimumConfidence:") ~typ:(float @-> returning (void)) x
 let setOutputPixelFormat x self = msg_send ~self ~cmd:(selector "setOutputPixelFormat:") ~typ:(uint @-> returning (void)) x
-let setQualityLevel x self = msg_send ~self ~cmd:(selector "setQualityLevel:") ~typ:(ullong @-> returning (void)) x
+let setQualityLevel x self = msg_send ~self ~cmd:(selector "setQualityLevel:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setUseTiling x self = msg_send ~self ~cmd:(selector "setUseTiling:") ~typ:(bool @-> returning (void)) x
 let useTiling self = msg_send ~self ~cmd:(selector "useTiling") ~typ:(returning (bool))

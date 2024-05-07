@@ -8,13 +8,13 @@ open Foundation
 
 let _class_ = get_class "VNImageAnalyzerMultiDetector"
 
-module Class = struct
+module C = struct
   let allPhotosAdjustmentKeys self = msg_send ~self ~cmd:(selector "allPhotosAdjustmentKeys") ~typ:(returning (id))
   let computeStagesToBindForConfigurationOptions x self = msg_send ~self ~cmd:(selector "computeStagesToBindForConfigurationOptions:") ~typ:(id @-> returning (id)) x
   let configurationOptionKeysForDetectorKey self = msg_send ~self ~cmd:(selector "configurationOptionKeysForDetectorKey") ~typ:(returning (id))
   let detectorClassForConfigurationOptions x ~error self = msg_send ~self ~cmd:(selector "detectorClassForConfigurationOptions:error:") ~typ:(id @-> ptr (id) @-> returning (_Class)) x error
-  let disallowedListForModel x self = msg_send ~self ~cmd:(selector "disallowedListForModel:") ~typ:(ullong @-> returning (id)) x
-  let modelForRequestClass x ~revision self = msg_send ~self ~cmd:(selector "modelForRequestClass:revision:") ~typ:(_Class @-> ullong @-> returning (ullong)) x revision
+  let disallowedListForModel x self = msg_send ~self ~cmd:(selector "disallowedListForModel:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+  let modelForRequestClass x ~revision self = msg_send ~self ~cmd:(selector "modelForRequestClass:revision:") ~typ:(_Class @-> ullong @-> returning (ullong)) x (ULLong.of_int revision)
   let recordDefaultConfigurationOptionsInDictionary x self = msg_send ~self ~cmd:(selector "recordDefaultConfigurationOptionsInDictionary:") ~typ:(id @-> returning (void)) x
   let supportedComputeStageDevicesForOptions x ~error self = msg_send ~self ~cmd:(selector "supportedComputeStageDevicesForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let supportedImageSizeSetForOptions x ~error self = msg_send ~self ~cmd:(selector "supportedImageSizeSetForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
@@ -28,11 +28,13 @@ let allSignificantEventIdentifiersWithOptions x ~error self = msg_send ~self ~cm
 let allVN5kJNH3eYuyaLxNpZr5Z7ziIdentifiersWithOptions x ~error self = msg_send ~self ~cmd:(selector "allVN5kJNH3eYuyaLxNpZr5Z7ziIdentifiersWithOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let canBehaveAsDetectorOfClass x ~withConfiguration self = msg_send ~self ~cmd:(selector "canBehaveAsDetectorOfClass:withConfiguration:") ~typ:(_Class @-> id @-> returning (bool)) x withConfiguration
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
+let createRegionOfInterestCrop x ~options ~qosClass ~warningRecorder ~pixelBuffer ~error ~progressHandler self = msg_send ~self ~cmd:(selector "createRegionOfInterestCrop:options:qosClass:warningRecorder:pixelBuffer:error:progressHandler:") ~typ:(CGRect.t @-> id @-> uint @-> id @-> ptr (ptr void) @-> ptr (id) @-> ptr void @-> returning (bool)) x options qosClass warningRecorder pixelBuffer error progressHandler
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let hasObjDetNet self = msg_send ~self ~cmd:(selector "hasObjDetNet") ~typ:(returning (bool))
 let hasSliderNet self = msg_send ~self ~cmd:(selector "hasSliderNet") ~typ:(returning (bool))
 let initWithConfigurationOptions x self = msg_send ~self ~cmd:(selector "initWithConfigurationOptions:") ~typ:(id @-> returning (id)) x
 let internalProcessUsingQualityOfServiceClass x ~options ~regionOfInterest ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "internalProcessUsingQualityOfServiceClass:options:regionOfInterest:warningRecorder:error:progressHandler:") ~typ:(uint @-> id @-> CGRect.t @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x options regionOfInterest warningRecorder error progressHandler
+let processRegionOfInterest x ~croppedPixelBuffer ~options ~qosClass ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processRegionOfInterest:croppedPixelBuffer:options:qosClass:warningRecorder:error:progressHandler:") ~typ:(CGRect.t @-> ptr void @-> id @-> uint @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x croppedPixelBuffer options qosClass warningRecorder error progressHandler
 let sceneLabelOperationPointsForOriginatingRequestSpecifier x ~error self = msg_send ~self ~cmd:(selector "sceneLabelOperationPointsForOriginatingRequestSpecifier:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let shouldBeReplacedByDetectorOfClass x ~withConfiguration self = msg_send ~self ~cmd:(selector "shouldBeReplacedByDetectorOfClass:withConfiguration:") ~typ:(_Class @-> id @-> returning (bool)) x withConfiguration
 let signPostAdditionalParameter self = msg_send ~self ~cmd:(selector "signPostAdditionalParameter") ~typ:(returning (ullong))

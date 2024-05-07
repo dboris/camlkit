@@ -15,5 +15,5 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let maximumClassifications self = msg_send ~self ~cmd:(selector "maximumClassifications") ~typ:(returning (ullong))
 let minimumConfidence self = msg_send ~self ~cmd:(selector "minimumConfidence") ~typ:(returning (float))
 let setDisallowedList x self = msg_send ~self ~cmd:(selector "setDisallowedList:") ~typ:(id @-> returning (void)) x
-let setMaximumClassifications x self = msg_send ~self ~cmd:(selector "setMaximumClassifications:") ~typ:(ullong @-> returning (void)) x
+let setMaximumClassifications x self = msg_send ~self ~cmd:(selector "setMaximumClassifications:") ~typ:(ullong @-> returning (void)) (ULLong.of_int x)
 let setMinimumConfidence x self = msg_send ~self ~cmd:(selector "setMinimumConfidence:") ~typ:(float @-> returning (void)) x

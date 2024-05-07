@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNImageAlignmentObservation"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -18,5 +18,6 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let referenceImageSignature self = msg_send ~self ~cmd:(selector "referenceImageSignature") ~typ:(returning (id))
+let setAlignmentTransform x self = msg_send ~self ~cmd:(selector "setAlignmentTransform:") ~typ:(ptr void @-> returning (void)) x
 let setFloatingImageSignature x self = msg_send ~self ~cmd:(selector "setFloatingImageSignature:") ~typ:(id @-> returning (void)) x
 let setReferenceImageSignature x self = msg_send ~self ~cmd:(selector "setReferenceImageSignature:") ~typ:(id @-> returning (void)) x

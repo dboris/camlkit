@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNClustererBuilder"
 
-module Class = struct
+module C = struct
   let clustererBuilderWithOptions x ~error self = msg_send ~self ~cmd:(selector "clustererBuilderWithOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
   let clustererModelFileNamesFromState x ~storedInPath ~error self = msg_send ~self ~cmd:(selector "clustererModelFileNamesFromState:storedInPath:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x storedInPath error
   let distanceBetweenFacesWithFaceObservation x ~andFaceObservation ~error self = msg_send ~self ~cmd:(selector "distanceBetweenFacesWithFaceObservation:andFaceObservation:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x andFaceObservation error
@@ -23,8 +23,8 @@ let distanceBetweenClustersWithFaceId x ~andFaceId ~error self = msg_send ~self 
 let distanceBetweenLevel1Clusters x ~error self = msg_send ~self ~cmd:(selector "distanceBetweenLevel1Clusters:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let getAllClustersAndReturnError x self = msg_send ~self ~cmd:(selector "getAllClustersAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
 let getDistances x ~to_ ~error self = msg_send ~self ~cmd:(selector "getDistances:to:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x to_ error
-let initWithType x ~cachePath ~state ~threshold ~requestRevision ~torsoprintRequestRevision ~error self = msg_send ~self ~cmd:(selector "initWithType:cachePath:state:threshold:requestRevision:torsoprintRequestRevision:error:") ~typ:(id @-> id @-> id @-> float @-> ullong @-> ullong @-> ptr (id) @-> returning (id)) x cachePath state threshold requestRevision torsoprintRequestRevision error
-let initWithType' x ~cachePath ~state ~threshold ~torsoThreshold ~requestRevision ~torsoprintRequestRevision ~error self = msg_send ~self ~cmd:(selector "initWithType:cachePath:state:threshold:torsoThreshold:requestRevision:torsoprintRequestRevision:error:") ~typ:(id @-> id @-> id @-> float @-> float @-> ullong @-> ullong @-> ptr (id) @-> returning (id)) x cachePath state threshold torsoThreshold requestRevision torsoprintRequestRevision error
+let initWithType x ~cachePath ~state ~threshold ~requestRevision ~torsoprintRequestRevision ~error self = msg_send ~self ~cmd:(selector "initWithType:cachePath:state:threshold:requestRevision:torsoprintRequestRevision:error:") ~typ:(id @-> id @-> id @-> float @-> ullong @-> ullong @-> ptr (id) @-> returning (id)) x cachePath state threshold (ULLong.of_int requestRevision) (ULLong.of_int torsoprintRequestRevision) error
+let initWithType' x ~cachePath ~state ~threshold ~torsoThreshold ~requestRevision ~torsoprintRequestRevision ~error self = msg_send ~self ~cmd:(selector "initWithType:cachePath:state:threshold:torsoThreshold:requestRevision:torsoprintRequestRevision:error:") ~typ:(id @-> id @-> id @-> float @-> float @-> ullong @-> ullong @-> ptr (id) @-> returning (id)) x cachePath state threshold torsoThreshold (ULLong.of_int requestRevision) (ULLong.of_int torsoprintRequestRevision) error
 let l1ClusteredFaceIdsGroupedByL0ClustersForClustersContainingFaceIds x ~error self = msg_send ~self ~cmd:(selector "l1ClusteredFaceIdsGroupedByL0ClustersForClustersContainingFaceIds:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let maximumFaceIdInModelAndReturnError x self = msg_send ~self ~cmd:(selector "maximumFaceIdInModelAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
 let resetModelState x ~error self = msg_send ~self ~cmd:(selector "resetModelState:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error

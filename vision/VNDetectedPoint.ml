@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNDetectedPoint"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
@@ -19,3 +19,4 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithLocation x ~confidence self = msg_send ~self ~cmd:(selector "initWithLocation:confidence:") ~typ:(CGPoint.t @-> float @-> returning (id)) x confidence
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
+let transformedWith x self = msg_send ~self ~cmd:(selector "transformedWith:") ~typ:(ptr void @-> returning (id)) x

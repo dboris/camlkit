@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNTargetedImageRequest"
 
-module Class = struct
+module C = struct
   let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
 end
 
@@ -23,6 +23,17 @@ let initWithTargetedCIImage1 x ~options ~completionHandler self = msg_send ~self
 let initWithTargetedCIImage2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCIImage:orientation:options:") ~typ:(id @-> uint @-> id @-> returning (id)) x orientation options
 let initWithTargetedCIImage3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCIImage:orientation:options:completionHandler:") ~typ:(id @-> uint @-> id @-> ptr void @-> returning (id)) x orientation options completionHandler
 let initWithTargetedCIImage4 x ~orientation ~options ~session ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCIImage:orientation:options:session:completionHandler:") ~typ:(id @-> uint @-> id @-> id @-> ptr void @-> returning (id)) x orientation options session completionHandler
+let initWithTargetedCMSampleBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:options:") ~typ:(ptr void @-> id @-> returning (id)) x options
+let initWithTargetedCMSampleBuffer1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:options:completionHandler:") ~typ:(ptr void @-> id @-> ptr void @-> returning (id)) x options completionHandler
+let initWithTargetedCMSampleBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:orientation:options:") ~typ:(ptr void @-> uint @-> id @-> returning (id)) x orientation options
+let initWithTargetedCMSampleBuffer3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:orientation:options:completionHandler:") ~typ:(ptr void @-> uint @-> id @-> ptr void @-> returning (id)) x orientation options completionHandler
+let initWithTargetedCMSampleBuffer4 x ~orientation ~options ~session ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:orientation:options:session:completionHandler:") ~typ:(ptr void @-> uint @-> id @-> id @-> ptr void @-> returning (id)) x orientation options session completionHandler
+let initWithTargetedCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:") ~typ:(ptr void @-> id @-> returning (id)) x options
+let initWithTargetedCVPixelBuffer1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:completionHandler:") ~typ:(ptr void @-> id @-> ptr void @-> returning (id)) x options completionHandler
+let initWithTargetedCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:") ~typ:(ptr void @-> uint @-> id @-> returning (id)) x orientation options
+let initWithTargetedCVPixelBuffer3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:completionHandler:") ~typ:(ptr void @-> uint @-> id @-> ptr void @-> returning (id)) x orientation options completionHandler
+let initWithTargetedCVPixelBuffer4 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:session:") ~typ:(ptr void @-> uint @-> id @-> id @-> returning (id)) x orientation options session
+let initWithTargetedCVPixelBuffer5 x ~orientation ~options ~session ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:session:completionHandler:") ~typ:(ptr void @-> uint @-> id @-> id @-> ptr void @-> returning (id)) x orientation options session completionHandler
 let initWithTargetedImageBuffer x ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedImageBuffer:completionHandler:") ~typ:(id @-> ptr void @-> returning (id)) x completionHandler
 let initWithTargetedImageData x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedImageData:options:") ~typ:(id @-> id @-> returning (id)) x options
 let initWithTargetedImageData1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedImageData:options:completionHandler:") ~typ:(id @-> id @-> ptr void @-> returning (id)) x options completionHandler

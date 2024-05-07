@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNCoreMLModel"
 
-module Class = struct
+module C = struct
   let modelForMLModel x ~error self = msg_send ~self ~cmd:(selector "modelForMLModel:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 end
 
@@ -27,6 +27,7 @@ let inputScenePrintMLMultiArrayDataType self = msg_send ~self ~cmd:(selector "in
 let model self = msg_send ~self ~cmd:(selector "model") ~typ:(returning (id))
 let modelType self = msg_send ~self ~cmd:(selector "modelType") ~typ:(returning (int))
 let operationPoints self = msg_send ~self ~cmd:(selector "operationPoints") ~typ:(returning (id))
+let predictWithCVPixelBuffer x ~options ~error self = msg_send ~self ~cmd:(selector "predictWithCVPixelBuffer:options:error:") ~typ:(ptr void @-> id @-> ptr (id) @-> returning (id)) x options error
 let predictedFeatureKey self = msg_send ~self ~cmd:(selector "predictedFeatureKey") ~typ:(returning (id))
 let predictedProbabilitiesKey self = msg_send ~self ~cmd:(selector "predictedProbabilitiesKey") ~typ:(returning (id))
 let scenePrintRequestSpecifier self = msg_send ~self ~cmd:(selector "scenePrintRequestSpecifier") ~typ:(returning (id))

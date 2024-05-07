@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNMPImageDescriptor"
 
-module Class = struct
+module C = struct
   let currentVersion self = msg_send ~self ~cmd:(selector "currentVersion") ~typ:(returning (ullong))
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
@@ -44,13 +44,13 @@ let previousLeafTotalDistance self = msg_send ~self ~cmd:(selector "previousLeaf
 let quality self = msg_send ~self ~cmd:(selector "quality") ~typ:(returning (float))
 let rawColorGaborDescriptor self = msg_send ~self ~cmd:(selector "rawColorGaborDescriptor") ~typ:(returning (id))
 let sceneClassifierDescriptor self = msg_send ~self ~cmd:(selector "sceneClassifierDescriptor") ~typ:(returning (ptr (void)))
-let serializeStateIntoData x ~startingAtByteOffset ~error self = msg_send ~self ~cmd:(selector "serializeStateIntoData:startingAtByteOffset:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (ullong)) x startingAtByteOffset error
+let serializeStateIntoData x ~startingAtByteOffset ~error self = msg_send ~self ~cmd:(selector "serializeStateIntoData:startingAtByteOffset:error:") ~typ:(id @-> ullong @-> ptr (id) @-> returning (ullong)) x (ULLong.of_int startingAtByteOffset) error
 let serializedLength self = msg_send ~self ~cmd:(selector "serializedLength") ~typ:(returning (ullong))
 let setNextLeafDescriptorDistance x self = msg_send ~self ~cmd:(selector "setNextLeafDescriptorDistance:") ~typ:(float @-> returning (void)) x
-let setNextLeafId x self = msg_send ~self ~cmd:(selector "setNextLeafId:") ~typ:(llong @-> returning (void)) x
-let setNextLeafTimestampDistance x self = msg_send ~self ~cmd:(selector "setNextLeafTimestampDistance:") ~typ:(llong @-> returning (void)) x
+let setNextLeafId x self = msg_send ~self ~cmd:(selector "setNextLeafId:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setNextLeafTimestampDistance x self = msg_send ~self ~cmd:(selector "setNextLeafTimestampDistance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setNextLeafTotalDistance x self = msg_send ~self ~cmd:(selector "setNextLeafTotalDistance:") ~typ:(float @-> returning (void)) x
 let setPreviousLeafDescriptorDistance x self = msg_send ~self ~cmd:(selector "setPreviousLeafDescriptorDistance:") ~typ:(float @-> returning (void)) x
-let setPreviousLeafId x self = msg_send ~self ~cmd:(selector "setPreviousLeafId:") ~typ:(llong @-> returning (void)) x
-let setPreviousLeafTimestampDistance x self = msg_send ~self ~cmd:(selector "setPreviousLeafTimestampDistance:") ~typ:(llong @-> returning (void)) x
+let setPreviousLeafId x self = msg_send ~self ~cmd:(selector "setPreviousLeafId:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
+let setPreviousLeafTimestampDistance x self = msg_send ~self ~cmd:(selector "setPreviousLeafTimestampDistance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let setPreviousLeafTotalDistance x self = msg_send ~self ~cmd:(selector "setPreviousLeafTotalDistance:") ~typ:(float @-> returning (void)) x

@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNDetector"
 
-module Class = struct
+module C = struct
   let _VNClassCode self = msg_send ~self ~cmd:(selector "VNClassCode") ~typ:(returning (uint))
   let computeDeviceForComputeStage x ~configurationOptions ~error self = msg_send ~self ~cmd:(selector "computeDeviceForComputeStage:configurationOptions:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x configurationOptions error
   let computeDeviceForConfiguredProcessingDeviceBridge x ~computeStage ~supportedComputeDevices ~error self = msg_send ~self ~cmd:(selector "computeDeviceForConfiguredProcessingDeviceBridge:computeStage:supportedComputeDevices:error:") ~typ:(id @-> id @-> id @-> ptr (id) @-> returning (id)) x computeStage supportedComputeDevices error
@@ -43,8 +43,9 @@ let boundComputeStageDevices self = msg_send ~self ~cmd:(selector "boundComputeS
 let canBehaveAsDetectorOfClass x ~withConfiguration self = msg_send ~self ~cmd:(selector "canBehaveAsDetectorOfClass:withConfiguration:") ~typ:(_Class @-> id @-> returning (bool)) x withConfiguration
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
 let computeDeviceForComputeStage x ~processingOptions ~error self = msg_send ~self ~cmd:(selector "computeDeviceForComputeStage:processingOptions:error:") ~typ:(id @-> id @-> ptr (id) @-> returning (id)) x processingOptions error
-let computeDeviceOfTypes x ~forComputeStage ~processingOptions ~error self = msg_send ~self ~cmd:(selector "computeDeviceOfTypes:forComputeStage:processingOptions:error:") ~typ:(ullong @-> id @-> id @-> ptr (id) @-> returning (id)) x forComputeStage processingOptions error
+let computeDeviceOfTypes x ~forComputeStage ~processingOptions ~error self = msg_send ~self ~cmd:(selector "computeDeviceOfTypes:forComputeStage:processingOptions:error:") ~typ:(ullong @-> id @-> id @-> ptr (id) @-> returning (id)) (ULLong.of_int x) forComputeStage processingOptions error
 let configurationOptions self = msg_send ~self ~cmd:(selector "configurationOptions") ~typ:(returning (id))
+let createRegionOfInterestCrop x ~options ~qosClass ~warningRecorder ~pixelBuffer ~error ~progressHandler self = msg_send ~self ~cmd:(selector "createRegionOfInterestCrop:options:qosClass:warningRecorder:pixelBuffer:error:progressHandler:") ~typ:(CGRect.t @-> id @-> uint @-> id @-> ptr (ptr void) @-> ptr (id) @-> ptr void @-> returning (bool)) x options qosClass warningRecorder pixelBuffer error progressHandler
 let currentQueueIsSynchronizationQueue self = msg_send ~self ~cmd:(selector "currentQueueIsSynchronizationQueue") ~typ:(returning (bool))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
@@ -54,6 +55,7 @@ let internalProcessUsingQualityOfServiceClass x ~options ~regionOfInterest ~warn
 let metalContext self = msg_send ~self ~cmd:(selector "metalContext") ~typ:(returning (id))
 let needsMetalContext self = msg_send ~self ~cmd:(selector "needsMetalContext") ~typ:(returning (bool))
 let newMetalContextForConfigurationOptions x ~error self = msg_send ~self ~cmd:(selector "newMetalContextForConfigurationOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
+let processRegionOfInterest x ~croppedPixelBuffer ~options ~qosClass ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processRegionOfInterest:croppedPixelBuffer:options:qosClass:warningRecorder:error:progressHandler:") ~typ:(CGRect.t @-> ptr void @-> id @-> uint @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x croppedPixelBuffer options qosClass warningRecorder error progressHandler
 let processUsingQualityOfServiceClass x ~options ~regionOfInterest ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processUsingQualityOfServiceClass:options:regionOfInterest:warningRecorder:error:progressHandler:") ~typ:(uint @-> id @-> CGRect.t @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x options regionOfInterest warningRecorder error progressHandler
 let recordImageCropQuickLookInfoFromOptions x ~toObservation self = msg_send ~self ~cmd:(selector "recordImageCropQuickLookInfoFromOptions:toObservation:") ~typ:(id @-> id @-> returning (void)) x toObservation
 let recordImageCropQuickLookInfoFromOptionsSafe x ~toObservation self = msg_send ~self ~cmd:(selector "recordImageCropQuickLookInfoFromOptionsSafe:toObservation:") ~typ:(id @-> id @-> returning (void)) x toObservation

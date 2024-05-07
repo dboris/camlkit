@@ -8,10 +8,11 @@ open Foundation
 
 let _class_ = get_class "VNRecognizedPointsObservation"
 
-module Class = struct
+module C = struct
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
+let addAllJointsToPath x ~imageSize self = msg_send ~self ~cmd:(selector "addAllJointsToPath:imageSize:") ~typ:(ptr void @-> CGSize.t @-> returning (void)) x imageSize
 let availableGroupKeys self = msg_send ~self ~cmd:(selector "availableGroupKeys") ~typ:(returning (id))
 let availableKeys self = msg_send ~self ~cmd:(selector "availableKeys") ~typ:(returning (id))
 let debugQuickLookObject self = msg_send ~self ~cmd:(selector "debugQuickLookObject") ~typ:(returning (id))

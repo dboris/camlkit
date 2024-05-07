@@ -14,5 +14,6 @@ let objectMaximumNormalizedRadius self = msg_send ~self ~cmd:(selector "objectMa
 let objectMinimumNormalizedRadius self = msg_send ~self ~cmd:(selector "objectMinimumNormalizedRadius") ~typ:(returning (float))
 let setObjectMaximumNormalizedRadius x self = msg_send ~self ~cmd:(selector "setObjectMaximumNormalizedRadius:") ~typ:(float @-> returning (void)) x
 let setObjectMinimumNormalizedRadius x self = msg_send ~self ~cmd:(selector "setObjectMinimumNormalizedRadius:") ~typ:(float @-> returning (void)) x
-let setTrajectoryLength x self = msg_send ~self ~cmd:(selector "setTrajectoryLength:") ~typ:(llong @-> returning (void)) x
+let setTargetFrameTime x self = msg_send ~self ~cmd:(selector "setTargetFrameTime:") ~typ:(ptr void @-> returning (void)) x
+let setTrajectoryLength x self = msg_send ~self ~cmd:(selector "setTrajectoryLength:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
 let trajectoryLength self = msg_send ~self ~cmd:(selector "trajectoryLength") ~typ:(returning (llong))

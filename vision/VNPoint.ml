@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNPoint"
 
-module Class = struct
+module C = struct
   let distanceBetweenPoint x ~point self = msg_send ~self ~cmd:(selector "distanceBetweenPoint:point:") ~typ:(id @-> id @-> returning (double)) x point
   let pointByApplyingVector x ~toPoint self = msg_send ~self ~cmd:(selector "pointByApplyingVector:toPoint:") ~typ:(id @-> id @-> returning (id)) x toPoint
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
@@ -25,6 +25,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithLocation x self = msg_send ~self ~cmd:(selector "initWithLocation:") ~typ:(CGPoint.t @-> returning (id)) x
 let initWithX x ~y self = msg_send ~self ~cmd:(selector "initWithX:y:") ~typ:(double @-> double @-> returning (id)) x y
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let location self = msg_send ~self ~cmd:(selector "location") ~typ:(returning (CGPoint.t))
+let location self = msg_send_stret ~self ~cmd:(selector "location") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
+let transformedWith x self = msg_send ~self ~cmd:(selector "transformedWith:") ~typ:(ptr void @-> returning (id)) x
 let x self = msg_send ~self ~cmd:(selector "x") ~typ:(returning (double))
 let y self = msg_send ~self ~cmd:(selector "y") ~typ:(returning (double))

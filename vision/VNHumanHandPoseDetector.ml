@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNHumanHandPoseDetector"
 
-module Class = struct
+module C = struct
   let recognizedPointsObservationClass self = msg_send ~self ~cmd:(selector "recognizedPointsObservationClass") ~typ:(returning (_Class))
 end
 

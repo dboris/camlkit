@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNMomentProcessor"
 
-module Class = struct
+module C = struct
   let sortImageDescriptorsChronologically x self = msg_send ~self ~cmd:(selector "sortImageDescriptorsChronologically:") ~typ:(id @-> returning (id)) x
 end
 
@@ -20,6 +20,7 @@ let computeClusteringTreeForImageDescriptors' x ~assumeDescriptorsAreSorted ~err
 let computeNaturalClusteringForClusteringTree x ~error self = msg_send ~self ~cmd:(selector "computeNaturalClusteringForClusteringTree:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let computeNaturalClusteringOfImageDescriptors x ~error self = msg_send ~self ~cmd:(selector "computeNaturalClusteringOfImageDescriptors:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning (id))
+let convertClusterNodesListToDescriptorsList x self = msg_send ~self ~cmd:(selector "convertClusterNodesListToDescriptorsList:") ~typ:(ptr void @-> returning (id)) x
 let getKey x ~fromDictionary ~withDefault self = msg_send ~self ~cmd:(selector "getKey:fromDictionary:withDefault:") ~typ:(id @-> id @-> id @-> returning (id)) x fromDictionary withDefault
 let initWithOptions x ~error self = msg_send ~self ~cmd:(selector "initWithOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
 let performClustersPostprocessing x ~error self = msg_send ~self ~cmd:(selector "performClustersPostprocessing:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error

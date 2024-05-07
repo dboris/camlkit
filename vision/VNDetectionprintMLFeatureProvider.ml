@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNDetectionprintMLFeatureProvider"
 
-module Class = struct
+module C = struct
   let _VNDetectionprintTensorKeyForFeatureName x self = msg_send ~self ~cmd:(selector "VNDetectionprintTensorKeyForFeatureName:") ~typ:(id @-> returning (id)) x
 end
 

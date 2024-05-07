@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNRecognizeDocumentElementsRequestElementConfiguration"
 
-module Class = struct
+module C = struct
   let newConfiguration self = msg_send ~self ~cmd:(selector "newConfiguration") ~typ:(returning (id))
 end
 

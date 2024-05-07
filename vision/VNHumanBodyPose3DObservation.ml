@@ -12,6 +12,7 @@ let availableJointNames self = msg_send ~self ~cmd:(selector "availableJointName
 let availableJointsGroupNames self = msg_send ~self ~cmd:(selector "availableJointsGroupNames") ~typ:(returning (id))
 let bodyHeight self = msg_send ~self ~cmd:(selector "bodyHeight") ~typ:(returning (float))
 let debugQuickLookObject self = msg_send ~self ~cmd:(selector "debugQuickLookObject") ~typ:(returning (id))
+let getCameraRelativePosition x ~forJointName ~error self = msg_send ~self ~cmd:(selector "getCameraRelativePosition:forJointName:error:") ~typ:(ptr void @-> id @-> ptr (id) @-> returning (bool)) x forJointName error
 let heightEstimation self = msg_send ~self ~cmd:(selector "heightEstimation") ~typ:(returning (llong))
 let parentJointNameForJointName x self = msg_send ~self ~cmd:(selector "parentJointNameForJointName:") ~typ:(id @-> returning (id)) x
 let pointInImageForJointName x ~error self = msg_send ~self ~cmd:(selector "pointInImageForJointName:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error

@@ -10,4 +10,4 @@ let _class_ = get_class "VNSceneprintMLFeatureProvider"
 
 let featureNames self = msg_send ~self ~cmd:(selector "featureNames") ~typ:(returning (id))
 let featureValueForName x self = msg_send ~self ~cmd:(selector "featureValueForName:") ~typ:(id @-> returning (id)) x
-let initWithSceneprint x ~dataType ~forKey ~originalFeatureProvider self = msg_send ~self ~cmd:(selector "initWithSceneprint:dataType:forKey:originalFeatureProvider:") ~typ:(id @-> llong @-> id @-> id @-> returning (id)) x dataType forKey originalFeatureProvider
+let initWithSceneprint x ~dataType ~forKey ~originalFeatureProvider self = msg_send ~self ~cmd:(selector "initWithSceneprint:dataType:forKey:originalFeatureProvider:") ~typ:(id @-> llong @-> id @-> id @-> returning (id)) x (LLong.of_int dataType) forKey originalFeatureProvider

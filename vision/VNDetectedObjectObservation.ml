@@ -8,16 +8,16 @@ open Foundation
 
 let _class_ = get_class "VNDetectedObjectObservation"
 
-module Class = struct
+module C = struct
   let boundingBoxIsCalculatedProperty self = msg_send ~self ~cmd:(selector "boundingBoxIsCalculatedProperty") ~typ:(returning (bool))
-  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) x
+  let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
   let observationWithBoundingBox x self = msg_send ~self ~cmd:(selector "observationWithBoundingBox:") ~typ:(CGRect.t @-> returning (id)) x
-  let observationWithRequestRevision x ~boundingBox self = msg_send ~self ~cmd:(selector "observationWithRequestRevision:boundingBox:") ~typ:(ullong @-> CGRect.t @-> returning (id)) x boundingBox
+  let observationWithRequestRevision x ~boundingBox self = msg_send ~self ~cmd:(selector "observationWithRequestRevision:boundingBox:") ~typ:(ullong @-> CGRect.t @-> returning (id)) (ULLong.of_int x) boundingBox
   let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
 end
 
-let boundingBox self = msg_send ~self ~cmd:(selector "boundingBox") ~typ:(returning (CGRect.t))
-let boundingBoxInTopLeftOrigin x ~orientation self = msg_send ~self ~cmd:(selector "boundingBoxInTopLeftOrigin:orientation:") ~typ:(bool @-> uint @-> returning (CGRect.t)) x orientation
+let boundingBox self = msg_send_stret ~self ~cmd:(selector "boundingBox") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
+let boundingBoxInTopLeftOrigin x ~orientation self = msg_send_stret ~self ~cmd:(selector "boundingBoxInTopLeftOrigin:orientation:") ~typ:(bool @-> uint @-> returning (CGRect.t)) ~return_type:CGRect.t x orientation
 let debugQuickLookObject self = msg_send ~self ~cmd:(selector "debugQuickLookObject") ~typ:(returning (id))
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
@@ -28,7 +28,7 @@ let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returnin
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
 let initWithOriginatingRequestSpecifier x ~boundingBox self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:boundingBox:") ~typ:(id @-> CGRect.t @-> returning (id)) x boundingBox
 let initWithOriginatingRequestSpecifier' x ~boundingBox ~groupId self = msg_send ~self ~cmd:(selector "initWithOriginatingRequestSpecifier:boundingBox:groupId:") ~typ:(id @-> CGRect.t @-> id @-> returning (id)) x boundingBox groupId
-let initWithRequestRevision x ~boundingBox self = msg_send ~self ~cmd:(selector "initWithRequestRevision:boundingBox:") ~typ:(ullong @-> CGRect.t @-> returning (id)) x boundingBox
+let initWithRequestRevision x ~boundingBox self = msg_send ~self ~cmd:(selector "initWithRequestRevision:boundingBox:") ~typ:(ullong @-> CGRect.t @-> returning (id)) (ULLong.of_int x) boundingBox
 let instanceSegmentationMask self = msg_send ~self ~cmd:(selector "instanceSegmentationMask") ~typ:(returning (id))
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
 let providesBoundsNormalizedToROI self = msg_send ~self ~cmd:(selector "providesBoundsNormalizedToROI") ~typ:(returning (bool))

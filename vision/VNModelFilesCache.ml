@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNModelFilesCache"
 
-module Class = struct
+module C = struct
   let sharedInstance self = msg_send ~self ~cmd:(selector "sharedInstance") ~typ:(returning (id))
   let useFOpenForModelWithPath x self = msg_send ~self ~cmd:(selector "useFOpenForModelWithPath:") ~typ:(id @-> returning (bool)) x
 end

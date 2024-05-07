@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNDisallowedList"
 
-module Class = struct
+module C = struct
   let disallowedListFromUTF8StringArray x self = msg_send ~self ~cmd:(selector "disallowedListFromUTF8StringArray:") ~typ:(ptr (string) @-> returning (id)) x
   let sceneNetV3 self = msg_send ~self ~cmd:(selector "sceneNetV3") ~typ:(returning (id))
   let sceneNetV5 self = msg_send ~self ~cmd:(selector "sceneNetV5") ~typ:(returning (id))

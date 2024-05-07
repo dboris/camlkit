@@ -8,7 +8,7 @@ open Foundation
 
 let _class_ = get_class "VNModelResourceDescriptor"
 
-module Class = struct
+module C = struct
   let descriptorForModelURL x self = msg_send ~self ~cmd:(selector "descriptorForModelURL:") ~typ:(id @-> returning (id)) x
   let descriptorForVisionCoreInferenceNetworkDescriptor x self = msg_send ~self ~cmd:(selector "descriptorForVisionCoreInferenceNetworkDescriptor:") ~typ:(id @-> returning (id)) x
 end
