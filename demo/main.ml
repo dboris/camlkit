@@ -18,11 +18,10 @@ module AppDelegate = struct
     view |> UIView.setBackgroundColor
       (UIColor._class_ |> UIColor.C.systemBackgroundColor);
 
-    label |> UILabel.setText (new_string "Hello from OCaml");
+    label |> UILabel.setText (new_string "Hello from OCaml!");
     label |> UILabel.setTextColor
       (UIColor._class_ |> UIColor.C.systemBlackColor);
-    (* label |> UILabel.setBackgroundColor (UIColor.C.lightGrayColor UIColor._class_);
-    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter; *)
+    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter;
     label |> UIView.setFrame screen_bounds;
     view |> UIView.addSubview label;
 
@@ -41,7 +40,7 @@ module AppDelegate = struct
 end
 
 let main () =
-  let _ = _new_ NSAutoreleasePool._class_
+  let _ = NSObject.C.new_ NSAutoreleasePool._class_
   and argc = Array.length Sys.argv
   and argv =
     Sys.argv

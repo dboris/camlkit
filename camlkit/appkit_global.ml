@@ -28,45 +28,6 @@ module BackingStoreType = struct
   let buffered = ULLong.of_int 2
 end
 
-(* let init_with_content_rect rect ~style_mask ~backing ?(defer = false) self =
-  msg_send ~self
-    ~cmd: (selector "initWithContentRect:styleMask:backing:defer:")
-    ~typ: (CGRect.t @-> StyleMask.t @-> BackingStoreType.t @-> bool @-> returning id)
-    rect (combine_options style_mask) backing defer
-;;
-
-let create ~content_rect ~style_mask ~backing ?(defer = false) () =
-  alloc (get_class "NSWindow")
-  |> init_with_content_rect content_rect ~style_mask ~backing ~defer
-;;
-
-(** Positions the window’s top-left to a given point.
-    Return value: The point shifted from top left of the window
-    in screen coordinates. *)
-let cascade_top_left_from_point pt self =
-  msg_send_stret ~self
-    ~cmd: (selector "cascadeTopLeftFromPoint:")
-    ~typ: (CGPoint.t @-> returning CGPoint.t)
-    ~return_type: CGPoint.t
-    pt
-;;
-
-(** Attempts to make a given responder the first responder for the window. *)
-let make_first_responder responder self =
-  msg_send ~self
-    ~cmd: (selector "makeFirstResponder:")
-    ~typ: (id @-> returning bool)
-    responder
-;;
-
-(** Moves the window to the front of the screen list, within its level,
-    and makes it the key window; that is, it shows the window. *)
-let make_key_and_order_front ~sender self =
-  msg_send_ov ~self
-    ~cmd: (selector "makeKeyAndOrderFront:")
-    sender
-;; *)
-
 (* NSApplication *)
 
 module ActivationPolicy = struct

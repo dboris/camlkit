@@ -21,7 +21,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (via the low-level Objective-C runtime API bindings) can be done from the
   comfort of OCaml. No need to write wrappers manually in C or Objective-C.
 * Cocoa object lifetimes can be managed by the OCaml GC.
-* GUI object hierarchies can be created either programatically or visually
+* GUI object hierarchies can be created either programmatically or visually
   using Xcode's Interface Builder.
 * An Xcode project is not required. A complete macOS or iOS application can
   be developed entirely in OCaml.
@@ -73,7 +73,7 @@ module AppDelegate = struct
 end
 
 let main () =
-  let _ = _new_ NSAutoreleasePool._class_
+  let _ = NSObject.C.new_ NSAutoreleasePool._class_
   and argc = Array.length Sys.argv
   and argv =
     Sys.argv
@@ -87,6 +87,11 @@ let main () =
 let () = main ()
 ```
 
+The best way to get started is to peruse the sample programs and use them
+as a starting template. Read the Apple documentation for the classes and methods
+of interest. All books on iOS and macOS development in Objective-C are directly
+applicable. Below is a short introduction to Camlkit.
+
 ## Introduction
 
 If you are familiar with Cocoa development in Objective-C or Swift, transferring
@@ -95,61 +100,75 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
 * Creating basic objects
 
-Objective-C:
-```objective-c
-[NSObject new];
-[[NSString alloc] initWithUTF8String: "Hello"];
-[NSString stringWithUTF8String: "Hello"];
-```
+  Objective-C:
+  ```objective-c
+  [NSObject new];
+  [[NSString alloc] initWithUTF8String: "Hello"];
+  [NSString stringWithUTF8String: "Hello"];
+  ```
 
-OCaml:
-```ocaml
-NSObject.C.new_ NSObject._class_
-NSString._class_ |> NSObject.C.alloc |> NSString.initWithUTF8String "Hello"
-NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
-new_string "Hello"
-```
-To print a NSString in utop: `myStr |> NSString._UTF8String |> print_string`
+  OCaml:
+  ```ocaml
+  NSObject.C.new_ NSObject._class_
+  NSString._class_ |> NSObject.C.alloc |> NSString.initWithUTF8String "Hello"
+  NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
+  new_string "Hello"
+  ```
+  To print a NSString in utop: `myStr |> NSString._UTF8String |> print_string`
 
-* Define a new Cocoa class
+* Defining a new Cocoa class
 
-```objective-c
-@interface MyClass : NSObject {
-    id myVar;
-}
-- (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2;
-@end
+  ```objective-c
+  @interface MyClass : NSObject {
+      id myVar;
+  }
+  - (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2;
+  @end
 
-@implementation MyClass
-- (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2 {
-    // method implementation
-}
-@end
-```
+  @implementation MyClass
+  - (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2 {
+      // method implementation
+  }
+  @end
+  ```
 
-OCaml:
-```ocaml
-Define._class_ "MyClass"
-  ~ivars: [ Define.ivar "myVar" Objc_t.id ]
-  ~methods: [
-    Define._method_
-      ~cmd: (selector "myMethodWithArg1:arg2:")
-      ~args: Objc_t.[id; id]
-      ~return: Objc_t.void
-      (fun self cmd arg1 arg2 -> (* method implementation *))
-    ]
-```
+  OCaml:
+  ```ocaml
+  Define._class_ "MyClass"
+    ~ivars: [ Define.ivar "myVar" Objc_t.id ]
+    ~methods: [
+      Define._method_
+        ~cmd: (selector "myMethodWithArg1:arg2:")
+        ~args: Objc_t.[id; id]
+        ~return: Objc_t.void
+        (fun self cmd arg1 arg2 -> (* method implementation *))
+      ]
+  ```
 
-The best way to get started is to peruse the sample programs and use them
-as a starting template. Read the Apple documentation for the classes and methods
-of interest. All books on iOS and macOS development in Objective-C are directly
-applicable.
+  **_NOTE:_** If your method does not accept arguments, the `args` parameter
+  looks like this: `Define._method_ ~args: Objc_t.[] ...`
+
+* Memory management
+
+  A newly allocated object has a reference count of 1. When you want to keep
+  an object around, you send it the `retain` message. This increments the
+  reference count. When you no longer need an object, you send it the `release`
+  message. This decrements the reference count. When the reference count reaches
+  0, the object is sent the `dealloc` message and its memory is reclaimed.
+  See also `autorelease` and the
+  [`NSAutoreleasePool`](https://developer.apple.com/documentation/foundation/nsautoreleasepool/)
+  class.
+
+  Since OCaml has a garbage collector, we can leverage it to help manage the
+  lifetimes of Cocoa objects. To this effect, we provide the `gc_autorelease`
+  function, which makes sure the object will be sent the `release` message when
+  the OCaml reference to it is garbage collected.
 
 ## Project status
 
 The project is in active development but is still experimental. It can be
 considered at the alpha stage. If you are an early adopter, keep in mind
-that the API is likely to change.
+that the API is subject to change.
 
 ## Related projects
 
