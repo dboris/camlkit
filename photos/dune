@@ -1,0 +1,5 @@
+(library
+ (name photos)
+ (public_name camlkit-base.photos)
+ (flags :standard -ccopt "-framework Photos")
+ (libraries foundation))
