@@ -270,7 +270,7 @@ struct
   let ivar_spec ~name ~typ ~enc = IvarSpec {name; typ; enc}
 
   let _class_
-  ?(superclass = "NSObject")
+  ?(superclass = Objc.get_class "NSObject")
   ?(protocols = [])
   ?(ivars = [])
   ?(methods = [])
@@ -278,7 +278,7 @@ struct
   name
   =
     let self =
-      Objc.allocate_class ~superclass: (Objc.get_class superclass) name in
+      Objc.allocate_class ~superclass name in
     assert (not (is_null self));
 
     methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->

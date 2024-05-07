@@ -1,9 +1,9 @@
 (executable
  (name main)
-;  (enabled_if (or
-;   (= %{context_name} device.ios)
-;   (= %{context_name} simulator.ios)
-;   (= %{context_name} catalyst.ios)))
+ (enabled_if (or
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} catalyst.ios)))
  (flags :standard -ccopt "-framework UIKit")
  (libraries camlkit-base.foundation camlkit-gui.uikit))
 

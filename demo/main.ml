@@ -29,14 +29,14 @@ module AppDelegate = struct
     win |> UIWindow.makeKeyAndVisible;
     true
 
-  let methods =
-    [ Define._method_ show_hello
-      ~cmd: (selector "application:didFinishLaunchingWithOptions:")
-      ~args: Objc_t.[id; id]
-      ~return: Objc_t.bool
-    ]
-
-  let _class_ = Define._class_ "AppDelegate" ~superclass: "UIResponder" ~methods
+  let _class_ = Define._class_ "AppDelegate"
+    ~superclass: UIResponder._class_
+    ~methods:
+      [ Define._method_ show_hello
+        ~cmd: (selector "application:didFinishLaunchingWithOptions:")
+        ~args: Objc_t.[id; id]
+        ~return: Objc_t.bool
+      ]
 end
 
 let main () =

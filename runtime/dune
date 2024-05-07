@@ -40,7 +40,10 @@
 (rule
  (enabled_if (and
   (= %{system} macosx)
-  (= %{context_name} default)))
+  (or
+   (= %{context_name} default)
+   (= %{context_name} device)
+   (= %{context_name} simulator))))
  (targets flags.txt platform.ml)
  (deps flags.macos platform.macos)
  (action (progn

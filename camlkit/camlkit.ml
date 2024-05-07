@@ -106,7 +106,7 @@ module CamlProxy = struct
       ]
 
     let _class_ =
-      Def._class_ D.class_name ~superclass: "NSProxy"
+      Def._class_ D.class_name ~superclass: NSProxy._class_
         ~methods ~class_methods ~ivars: D.ivars
   end
 end
@@ -200,6 +200,6 @@ module CamlObjectProxy = struct
         [ ivar_spec ~name: ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ]
       in
         _class_ D.class_name
-          ~superclass: "NSProxy" ~ivars ~methods ~class_methods
+          ~superclass: NSProxy._class_ ~ivars ~methods ~class_methods
   end
 end
