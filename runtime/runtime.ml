@@ -130,12 +130,14 @@ struct
   (** Sends a message with a simple return value to the superclass
       of an instance of a class. *)
   let msg_send_super ~self ~cmd ~typ =
-    match Platform.current with
+    let self = Class.get_superclass self in
+    msg_send ~self ~cmd ~typ
+    (* match Platform.current with
     | GNUStep ->
       let self = Class.get_superclass self in
       msg_send ~self ~cmd ~typ
     | _ ->
-      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd
+      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd *)
   ;;
 
   (** Shortcut for type [void @-> id] *)
