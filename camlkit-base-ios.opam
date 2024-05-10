@@ -16,7 +16,6 @@ depends: [
   "dune" {>= "3.13"}
   "ctypes-ios"
   "ctypes-foreign-ios"
-  "odoc" {with-doc}
 ]
 build: [
   [
@@ -25,7 +24,6 @@ build: [
     "-j" jobs
     "-x" "ios"
     "@install"
-    "@doc" {with-doc}
   ]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"

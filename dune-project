@@ -26,14 +26,14 @@
 
 (package
  (name camlkit-gui)
- (synopsis "OCaml bindings to the AppKit and UIKit frameworks")
- (description "OCaml bindings to the AppKit and UIKit frameworks")
+ (synopsis "OCaml bindings to the AppKit framework")
+ (description "OCaml bindings to the AppKit framework")
  (depends
   ocaml
   dune
   (camlkit-base (= :version))
   (alcotest :with-test))
- (tags (objc bindings cocoa ios gnustep)))
+ (tags (objc bindings cocoa macos gnustep)))
 
 (package
  (name camlkit)
@@ -58,19 +58,19 @@
   ctypes
   ctypes-foreign
   (alcotest :with-test))
- (tags (objc bindings cocoa ios gnustep)))
+ (tags (objc bindings cocoa ios)))
 
 (package
  (name camlkit-gui-ios)
- (synopsis "OCaml bindings to the AppKit and UIKit frameworks")
- (description "OCaml bindings to the AppKit and UIKit frameworks")
+ (synopsis "OCaml bindings to the UIKit framework")
+ (description "OCaml bindings to the UIKit framework")
  (allow_empty)
  (depends
   ocaml
   dune
   (camlkit-base (= :version))
   (alcotest :with-test))
- (tags (objc bindings cocoa ios gnustep)))
+ (tags (objc bindings cocoa ios)))
 
 (package
  (name camlkit-ios)
@@ -83,4 +83,4 @@
   (camlkit-base-ios (= :version))
   (camlkit-gui-ios (= :version))
   (alcotest :with-test))
- (tags (objc cocoa ios gnustep)))
+ (tags (objc cocoa ios)))
