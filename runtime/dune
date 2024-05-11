@@ -40,10 +40,10 @@
 (rule
  (enabled_if (and
   (= %{system} macosx)
-  (or
-   (= %{context_name} default)
-   (= %{context_name} device)
-   (= %{context_name} simulator))))
+  (<> %{context_name} default.ios)
+  (<> %{context_name} device.ios)
+  (<> %{context_name} simulator.ios)
+  (<> %{context_name} simulator-arm.ios)))
  (targets flags.txt platform.ml)
  (deps flags.macos platform.macos)
  (action (progn
@@ -54,7 +54,8 @@
  (enabled_if (or
   (= %{context_name} default.ios)
   (= %{context_name} device.ios)
-  (= %{context_name} simulator.ios)))
+  (= %{context_name} simulator.ios)
+  (= %{context_name} simulator-arm.ios)))
  (targets flags.txt platform.ml)
  (deps flags.ios platform.ios)
  (action (progn
@@ -62,10 +63,11 @@
   (copy platform.ios platform.ml))))
 
 (rule
- (enabled_if (or
+ (enabled_if (and
   %{lib-available:conf-maccatalyst}
-  (= %{context_name} catalyst)
-  (= %{context_name} catalyst.ios)))
+  (or
+   (= %{context_name} default.ios)
+   (= %{context_name} catalyst.ios))))
  (targets flags.txt platform.ml)
  (action (progn
   (copy flags.catalyst flags.txt)
@@ -79,6 +81,30 @@
   (copy flags.gnustep flags.txt)
   (copy platform.gnustep platform.ml))))
 
+(rule (with-stdout-to arch.txt (run opam var conf-ios:arch)))
+
 (rule
- (with-stdout-to arch.ml
-  (bash "arch=%{architecture}; echo \"type t = Amd64 | Arm64 \nlet current = $(echo $arch | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\"")))
+ (enabled_if (or
+  (= %{context_name} default.ios)
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} simulator-arm.ios)))
+ (action
+  (with-stdout-to arch.ml
+   (bash "arch=%{read:arch.txt}
+    echo \"type t = Amd64 | Arm64
+    let current = $(echo $arch | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\""))))
+
+(rule
+ (enabled_if (and
+  (<> %{context_name} default.ios)
+  (<> %{context_name} device.ios)
+  (<> %{context_name} simulator.ios)
+  (<> %{context_name} simulator-arm.ios)))
+ (action
+  (with-stdout-to arch.ml
+   (bash
+   "cat <<END
+    type t = Amd64 | Arm64
+    let current = $(echo %{architecture} | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\n\
+    END"))))
