@@ -54,6 +54,10 @@ struct
     foreign "class_getInstanceVariable"
       (_Class @-> string @-> returning _Ivar)
       self name
+
+  (** Returns a Boolean value that indicates whether a class object is a metaclass. *)
+  let is_meta_class =
+    foreign "class_isMetaClass" (_Class @-> returning bool)
 end
 
 module Object =
@@ -120,6 +124,26 @@ struct
   include Signed
   include C.Functions.Objc
 
+  module Objc_super = struct
+    type t
+    let t : t structure typ = structure "objc_super"
+    let receiver = field t "receiver" id
+    let super_class = field t "super_class" _Class
+    let () = seal t
+    let make self =
+      let self_class = Object.get_class self in
+      let sup_cls = Class.get_superclass self_class
+      and d = make t
+      in
+      setf d receiver self;
+      (if Class.is_meta_class self_class then
+        Object.get_class sup_cls
+      else
+        sup_cls)
+      |> setf d super_class;
+      allocate t d
+  end
+
   (** Sends a message with a simple return value to an instance of a class. *)
   let msg_send ~self ~cmd ~typ =
     foreign "objc_msgSend"
@@ -130,14 +154,14 @@ struct
   (** Sends a message with a simple return value to the superclass
       of an instance of a class. *)
   let msg_send_super ~self ~cmd ~typ =
-    let self = Class.get_superclass self in
-    msg_send ~self ~cmd ~typ
-    (* match Platform.current with
+    match Platform.current with
     | GNUStep ->
       let self = Class.get_superclass self in
       msg_send ~self ~cmd ~typ
     | _ ->
-      foreign "objc_msgSendSuper" (id @-> _SEL @-> typ) self cmd *)
+      let objc_super = Objc_super.make self in
+      foreign "objc_msgSendSuper"
+        (ptr Objc_super.t @-> _SEL @-> typ) objc_super cmd
   ;;
 
   (** Shortcut for type [void @-> id] *)

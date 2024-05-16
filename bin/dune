@@ -4,5 +4,6 @@
   (<> %{context_name} default.ios)
   (<> %{context_name} device.ios)
   (<> %{context_name} simulator.ios)
+  (<> %{context_name} simulator-arm.ios)
   (<> %{context_name} catalyst.ios)))
  (libraries foundation appkit webkit))

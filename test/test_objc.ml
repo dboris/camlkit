@@ -207,6 +207,36 @@ let test_block () =
   A.check A.(list string) "same list" expected (List.rev !actual)
 ;;
 
+let test_msg_send_super () =
+  let actual = ref false in
+  let class_a =
+    Define._class_ "ClassA"
+      ~methods:
+        [ Define._method_
+          ~cmd: (selector "someMethod")
+          ~args: Objc_t.[]
+          ~return: Objc_t.void
+          (fun _self _cmd -> actual := true)
+        ]
+  in
+  let class_b =
+    Define._class_ "ClassB"
+      ~superclass: class_a
+      ~methods:
+        [ Define._method_
+          ~cmd: (selector "someMethod")
+          ~args: Objc_t.[]
+          ~return: Objc_t.void
+          (fun self cmd ->
+            msg_send_super' cmd ~self ~args: Objc_t.[] ~return: Objc_t.void)
+        ]
+  and expected = true
+  in
+  let self = alloc class_b |> NSObject.C.init in
+  msg_send' (selector "someMethod") ~self ~args: Objc_t.[] ~return: Objc_t.void;
+  A.check A.bool "same bool" expected !actual
+;;
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -224,6 +254,7 @@ let suite =
   ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass8" "Test"
   ; "get selector name as string", `Quick, test_string_of_selector
   ; "test block", `Quick, test_block
+  ; "test msg_send_super", `Quick, test_msg_send_super
   ]
 
 let () = A.run "objc" [ "Objc", suite ]
