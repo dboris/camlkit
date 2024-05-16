@@ -184,6 +184,27 @@ let test_string_of_selector () =
   A.check A.string "same string" expected actual
 ;;
 
+let test_block () =
+  let ar = alloc NSMutableArray._class_ |> NSObject.init
+  and expected = ["0: Hello"; "1: World"]
+  and actual = ref []
+  in
+  ar |> NSMutableArray.addObject (new_string "Hello");
+  ar |> NSMutableArray.addObject (new_string "World");
+  let block =
+    Block.make
+      ~typ: (id @-> id @-> ullong @-> bool @-> returning void)
+      (fun _blk obj idx _stop ->
+        actual :=
+          Printf.sprintf "%d: %s"
+            (ULLong.to_int idx)
+            (obj |> NSString._UTF8String)
+          :: !actual)
+  in
+  ar |> NSArray.enumerateObjectsUsingBlock block;
+  A.check A.(list string) "same list" expected (List.rev !actual)
+;;
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -200,6 +221,7 @@ let suite =
     test_add_obj_ivar ~name:"MyClass7" (new_string "Hello")
   ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass8" "Test"
   ; "get selector name as string", `Quick, test_string_of_selector
+  ; "test block", `Quick, test_block
   ]
 
 let () = A.run "objc" [ "Objc", suite ]

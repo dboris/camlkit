@@ -246,6 +246,44 @@ let nil = null
 let combine_options = List.fold_left Int.logor Int.zero
 let combine_options' = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
 
+module Block_descriptor = struct
+  type t
+  let t : t structure typ = structure "Block_descriptor"
+  let reserved = field t "reserved" ullong
+  let size = field t "size" ullong
+  let () = seal t
+  let make sz =
+    let d = make t in
+    setf d reserved (Unsigned.ULLong.of_int 0);
+    setf d size (Unsigned.ULLong.of_int sz);
+    d
+end
+
+module Block = struct
+  type t
+  let t : t structure typ = structure "Block_literal_1"
+  let isa = field t "isa" (ptr void)
+  let flags = field t "flags" int
+  let reserved = field t "reserved" int
+  let invoke = field t "invoke" (ptr void)
+  let descriptor = field t "descriptor" (ptr Block_descriptor.t)
+
+  let () = seal t
+
+  let size = sizeof t
+  let desc_ptr = allocate Block_descriptor.t (Block_descriptor.make size)
+  let block_is_global = Int.(shift_left one 28)
+  let _class_ = Objc.get_class "__NSGlobalBlock"
+
+  let make f ~typ =
+    let b = make t in
+    setf b isa _class_;
+    setf b descriptor desc_ptr;
+    setf b invoke (coerce (Foreign.funptr typ) (ptr void) f);
+    setf b flags block_is_global;
+    allocate t b |> coerce (ptr t) (ptr void)
+end
+
 module Def =
 struct
   type 'a method_spec =
