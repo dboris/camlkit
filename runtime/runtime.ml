@@ -275,13 +275,17 @@ module Block = struct
   let block_is_global = Int.(shift_left one 28)
   let _class_ = Objc.get_class "__NSGlobalBlock"
 
-  let make f ~typ =
+  let make' f ~typ =
     let b = make t in
     setf b isa _class_;
     setf b descriptor desc_ptr;
     setf b invoke (coerce (Foreign.funptr typ) (ptr void) f);
     setf b flags block_is_global;
     allocate t b |> coerce (ptr t) (ptr void)
+
+  let make f ~args ~return =
+    let typ = Objc_t.method_typ ~args: (Objc_t.id :: args) return in
+    make' f ~typ
 end
 
 module Def =

@@ -13,6 +13,7 @@ type _ t =
 | Short : int t
 | Long : Signed.long t
 | LLong : Signed.llong t
+| ULLong : Unsigned.ullong t
 | Float : float t
 | Double : float t
 | Unknown : unit ptr t
@@ -44,6 +45,7 @@ let int = Int
 let short = Short
 let long = Long
 let llong = LLong
+let ullong = ULLong
 let float = Float
 let double = Double
 let unknown = Unknown
@@ -69,6 +71,7 @@ let rec ctype_of_t
   | Short -> short
   | Long -> long
   | LLong -> llong
+  | ULLong -> ullong
   | Float -> float
   | Double -> double
   | Unknown -> ptr void
@@ -98,6 +101,7 @@ module Encode = struct
   | Short -> sizeof (ctype_of_t Short)
   | Long -> sizeof (ctype_of_t Long)
   | LLong -> sizeof (ctype_of_t LLong)
+  | ULLong -> sizeof (ctype_of_t ULLong)
   | Float -> sizeof (ctype_of_t Float)
   | Double -> sizeof (ctype_of_t Double)
   | Unknown -> sizeof (ctype_of_t Unknown)
@@ -124,6 +128,7 @@ module Encode = struct
   | Short -> "s"
   | Long -> "l"
   | LLong -> "q"
+  | ULLong -> "Q"
   | Float -> "f"
   | Double -> "d"
   | Unknown -> "?"

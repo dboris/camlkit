@@ -193,8 +193,10 @@ let test_block () =
   ar |> NSMutableArray.addObject (new_string "World");
   let block =
     Block.make
-      ~typ: (id @-> id @-> ullong @-> bool @-> returning void)
-      (fun _blk obj idx _stop ->
+      (* ~typ: (id @-> id @-> ullong @-> bool @-> returning void) *)
+      ~args: Objc_t.[id; ullong; bool]
+      ~return: Objc_t.void
+      (fun _self obj idx _stop ->
         actual :=
           Printf.sprintf "%d: %s"
             (ULLong.to_int idx)
