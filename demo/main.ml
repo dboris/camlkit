@@ -1,6 +1,7 @@
-open Runtime
 open Foundation
 open Uikit
+open Uikit_
+open Runtime
 
 module AppDelegate = struct
   let show_hello _self _cmd _app _opts =
@@ -21,7 +22,7 @@ module AppDelegate = struct
     label |> UILabel.setText (new_string "Hello from OCaml!");
     label |> UILabel.setTextColor
       (UIColor._class_ |> UIColor.C.systemBlackColor);
-    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter;
+    label |> UILabel.setTextAlignment _UITextAlignmentCenter;
     label |> UIView.setFrame screen_bounds;
     view |> UIView.addSubview label;
 
@@ -48,7 +49,7 @@ let main () =
     |> Objc.(CArray.of_list string)
     |> Objc.CArray.start
   in
-  Uikit_._UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
+  _UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
 ;;
 
 let () = main ()

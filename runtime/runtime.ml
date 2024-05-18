@@ -10,18 +10,17 @@ module Protocol = C.Functions.Protocol
 module Inspect = Inspect
 module Objc_t = Objc_t
 
-module Sel =
-struct
+module Sel = struct
   include C.Functions.Sel
+
   let register_typed_name =
     match Platform.current with
     | GNUStep ->
       foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
     | _ -> (fun _ _ -> assert false)
-  end
+end
 
-module Class =
-struct
+module Class = struct
   include C.Functions.Class
 
   let alignment_of_size size =
@@ -60,8 +59,7 @@ struct
     foreign "class_isMetaClass" (_Class @-> returning bool)
 end
 
-module Object =
-struct
+module Object = struct
   include C.Functions.Object
 
   (** Reads the value of an Id instance variable in an object. *)
@@ -111,18 +109,13 @@ let selector = Sel.register_name
 (** Returns the selector name as string. *)
 let string_of_selector = Sel.get_name
 
-let nsstring_of_selector =
-  foreign "NSStringFromSelector" (_SEL @-> returning id)
-;;
-
 let to_selector = coerce (ptr void) _SEL
 
-module Objc =
-struct
+module Objc = struct
+  include C.Functions.Objc
   include Ctypes
   include Unsigned
   include Signed
-  include C.Functions.Objc
 
   module Objc_super = struct
     type t
@@ -186,17 +179,13 @@ struct
     | Arm64 -> msg_send ~self ~cmd ~typ
   ;;
 
-  let _to_string self =
-    msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
-  ;;
-
   (** Creates a new class and metaclass.
       extra_bytes: the number of bytes to allocate for indexed ivars at the end
       of the class and metaclass objects. *)
   let allocate_class
-  ?(extra_bytes = Unsigned.Size_t.of_int 0)
-  ~superclass
-  name
+    ?(extra_bytes = Unsigned.Size_t.of_int 0)
+    ~superclass
+    name
   =
     foreign "objc_allocateClassPair"
       (_Class @-> string @-> size_t @-> returning _Class)
@@ -241,12 +230,12 @@ let new_string str =
   |> gc_autorelease
 ;;
 
-let msg_send' cmd ~self ~args ~return =
+let msg_send cmd self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send ~self ~cmd ~typ
 ;;
 
-let msg_send_super' cmd ~self ~args ~return =
+let msg_super cmd self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send_super ~self ~cmd ~typ
 ;;
@@ -266,6 +255,7 @@ let set_value v ~for_key self =
 ;;
 
 let nil = null
+let is_nil = is_null
 
 let combine_options = List.fold_left Int.logor Int.zero
 let combine_options' = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
@@ -312,8 +302,7 @@ module Block = struct
     make' f ~typ
 end
 
-module Def =
-struct
+module Def = struct
   type 'a method_spec =
     { cmd : selector_t
     ; typ : 'a fn
@@ -338,12 +327,12 @@ struct
   let ivar_spec ~name ~typ ~enc = IvarSpec {name; typ; enc}
 
   let _class_
-  ?(superclass = Objc.get_class "NSObject")
-  ?(protocols = [])
-  ?(ivars = [])
-  ?(methods = [])
-  ?(class_methods = [])
-  name
+    ?(superclass = Objc.get_class "NSObject")
+    ?(protocols = [])
+    ?(ivars = [])
+    ?(methods = [])
+    ?(class_methods = [])
+    name
   =
     let self =
       Objc.allocate_class ~superclass name in
@@ -431,12 +420,12 @@ module Property = struct
 
   (** Setter for object values. *)
   let obj_setter
-  ?(assign = false)
-  ?(copy = false)
-  ~ivar_name
-  ~typ
-  ~enc
-  ()
+    ?(assign = false)
+    ?(copy = false)
+    ~ivar_name
+    ~typ
+    ~enc
+    ()
   =
     let cmd =
       selector (setter_name_of_ivar ivar_name)
@@ -470,11 +459,11 @@ module Property = struct
   ;;
 
   let _object_
-  ?(assign = false)
-  ?(copy = false)
-  ivar_name
-  typ
-  ()
+    ?(assign = false)
+    ?(copy = false)
+    ivar_name
+    typ
+    ()
   =
     let typ = Objc_t.(value_typ typ)
     and enc = Objc_t.(Encode.value typ)
@@ -485,8 +474,7 @@ module Property = struct
   ;;
 end
 
-module Define =
-struct
+module Define = struct
   include Def
 
   let _method_ imp ~cmd ~args ~return =
@@ -501,7 +489,6 @@ struct
     and enc = Objc_t.(Encode.value typ)
     in ivar_spec ~name ~typ ~enc
   ;;
-
 end
 
 (* Exception handling *)
@@ -519,10 +506,12 @@ let default_uncaught_exception_handler ex =
     msg_send ~self: ex ~cmd: (selector "name") ~typ: (returning id)
   and reason =
     msg_send ~self: ex ~cmd: (selector "reason") ~typ: (returning id)
+  and to_string self =
+    msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
   in
   Printf.eprintf "NSException: %s -- %s\n%!"
-    (_to_string name) (_to_string reason);
-  raise @@ NSException (_to_string name, _to_string reason)
+    (to_string name) (to_string reason);
+  raise @@ NSException (to_string name, to_string reason)
 
 let () =
   set_uncaught_exception_handler default_uncaught_exception_handler

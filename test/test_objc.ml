@@ -3,6 +3,7 @@ open Runtime
 open Objc
 open Define
 
+module R = Runtime
 module A = Alcotest
 
 let test_object_description () =
@@ -228,12 +229,12 @@ let test_msg_send_super () =
           ~args: Objc_t.[]
           ~return: Objc_t.void
           (fun self cmd ->
-            msg_send_super' cmd ~self ~args: Objc_t.[] ~return: Objc_t.void)
+            self |> msg_super cmd ~args: Objc_t.[] ~return: Objc_t.void)
         ]
   and expected = true
   in
   let self = alloc class_b |> NSObject.C.init in
-  msg_send' (selector "someMethod") ~self ~args: Objc_t.[] ~return: Objc_t.void;
+  self |> R.msg_send (selector "someMethod") ~args: Objc_t.[] ~return: Objc_t.void;
   A.check A.bool "same bool" expected !actual
 ;;
 

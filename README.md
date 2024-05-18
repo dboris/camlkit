@@ -2,17 +2,19 @@
 
 Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
-  (on all platforms)
+  (all platforms)
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
-  (on macOS and [GNUStep](https://gnustep.github.io/))
+  (macOS and [GNUStep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
-  (on iOS, macOS on Arm, and [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
+  (iOS, macOS on Arm, and [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
-  (on iOS and macOS)
+  (iOS and macOS)
 * [Vision](https://developer.apple.com/documentation/vision?language=objc)
-  (on iOS and macOS)
+  (iOS and macOS)
 * [CoreImage](https://developer.apple.com/documentation/coreimage?language=objc)
-  (on iOS and macOS)
+  (iOS and macOS)
+* [Photos](https://developer.apple.com/documentation/photos?language=objc)
+  (iOS and macOS)
 
 ## Features
 
@@ -29,13 +31,14 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 ## Sample programs
 
 A few sample programs are provided in the
-[example](https://github.com/dboris/camlkit-examples/) repository. To give you
+[examples](https://github.com/dboris/camlkit-examples/) repository. To give you
 a taste of what a program in Camlkit looks like, here is a "Hello World" iOS
 application:
 
 ```ocaml
 open Foundation
 open Uikit
+open Uikit_
 open Runtime
 
 module AppDelegate = struct
@@ -55,7 +58,7 @@ module AppDelegate = struct
 
     label |> UILabel.setText (new_string "Hello from OCaml!");
     label |> UILabel.setTextColor (UIColor._class_ |> UIColor.C.systemBlackColor);
-    label |> UILabel.setTextAlignment Uikit_._UITextAlignmentCenter;
+    label |> UILabel.setTextAlignment _UITextAlignmentCenter;
     label |> UIView.setFrame screen_bounds;
     view |> UIView.addSubview label;
 
@@ -82,7 +85,7 @@ let main () =
     |> Objc.(CArray.of_list string)
     |> Objc.CArray.start
   in
-  Uikit_._UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
+  _UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
 ;;
 
 let () = main ()
@@ -108,10 +111,12 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   [NSString stringWithUTF8String: "Hello"];
   ```
 
-  OCaml:
+  OCaml (showing multiple equivalent constructs):
   ```ocaml
   NSObject.C.new_ NSObject._class_
+  _new_ NSObject._class_
   NSString._class_ |> NSObject.C.alloc |> NSString.initWithUTF8String "Hello"
+  alloc NSString._class_ |> NSString.initWithUTF8String "Hello"
   NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
   new_string "Hello"
   ```
@@ -165,6 +170,29 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   function, which makes sure the object will be sent the `release` message when
   the OCaml reference to it is garbage collected.
 
+* Using objects from frameworks when bindings are not available
+
+  The Objective-C runtime provides functions which enable you to get a hold
+  of an arbitrary class by name and send it an arbitrary message, eg:
+
+  ```OCaml
+  let a_class = Objc.get_class "AClassThatINeed" in
+  let an_instance = alloc a_class |> init in
+  an_instance |> msg_send (selector "anArbitrarySelector") ~args: Objc_t.[] ~return: Objc_t.void
+  ```
+
+## Documentation
+
+At this time, the documentation of the project is lacking. The framework
+bindings follow a regular naming pattern, so if you know the Objective-C method
+you want to call, figuring the name of the OCaml function should be easy.
+
+Some usefull sources you may wish to examine include:
+* [Objective-C runtime bindings and basic functionality](https://github.com/dboris/camlkit/blob/main/runtime/runtime.ml)
+* [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/objc_t.ml)
+* [Usage examples](https://github.com/dboris/camlkit-examples/)
+* [The Ctypes documentation](https://ocaml.org/p/ctypes/latest/doc/Ctypes/index.html)
+
 ## Project status
 
 The project is in active development but is still experimental. It can be
@@ -174,6 +202,4 @@ that the API is subject to change.
 ## Related projects
 
 For iOS and Mac Catalyst development you will need to set up a cross-toolchain
-from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios). A [macOS
-cross-toolchain for Linux](https://github.com/dboris/opam-cross-macos) is also
-available.
+from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).

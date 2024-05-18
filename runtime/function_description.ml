@@ -9,9 +9,7 @@ module Functions (F : Ctypes.FOREIGN) = struct
   open F *)
 
 module Functions = struct
-  module Objc =
-  struct
-
+  module Objc = struct
     (** Returns the class definition of a specified class. *)
     let get_class =
       foreign "objc_getClass" (string @-> returning _Class)
@@ -51,9 +49,7 @@ module Functions = struct
 
   end
 
-  module Class =
-  struct
-
+  module Class = struct
     (** Returns the name of a class. *)
     let get_name =
       foreign "class_getName" (_Class @-> returning string)
@@ -88,17 +84,13 @@ module Functions = struct
 
   end
 
-  module Object =
-  struct
-
+  module Object = struct
     (** Returns the class of an object. *)
     let get_class =
       foreign "object_getClass" (id @-> returning _Class)
   end
 
-  module Sel =
-  struct
-
+  module Sel = struct
     let register_name =
       foreign "sel_registerName" (string @-> returning _SEL)
 
@@ -111,9 +103,7 @@ module Functions = struct
       foreign "sel_isEqual" (_SEL @-> _SEL @-> returning bool)
   end
 
-  module Ivar =
-  struct
-
+  module Ivar = struct
     (** Returns the offset of an instance variable. *)
     let get_offset =
       foreign "ivar_getOffset" (_Ivar @-> returning ptrdiff_t)
@@ -121,10 +111,13 @@ module Functions = struct
     (** Returns the name of an instance variable. *)
     let get_name =
       foreign "ivar_getName" (_Ivar @-> returning string)
+
+    (** Returns the type string of an instance variable. *)
+    let get_type_encoding =
+      foreign "ivar_getTypeEncoding" (_Ivar @-> returning _Enc)
   end
 
-  module Method =
-  struct
+  module Method = struct
     (** Returns the name of a method. *)
     let get_name =
       foreign "method_getName" (_Method @-> returning _SEL)
@@ -144,14 +137,11 @@ module Functions = struct
     (** Returns a string describing a method's parameter and return types. *)
     let get_type_encoding =
       foreign "method_getTypeEncoding" (_Method @-> returning string)
-
   end
 
-  module Protocol =
-  struct
+  module Protocol = struct
     (** Returns the name of a protocol. *)
     let get_name =
       foreign "protocol_getName" (_Protocol @-> returning string)
-
   end
 end
