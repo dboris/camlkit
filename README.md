@@ -181,6 +181,26 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   an_instance |> msg_send (selector "anArbitrarySelector") ~args: Objc_t.[] ~return: Objc_t.void
   ```
 
+## Setup
+
+For macOS development, pin and install the following packages:
+
+```sh
+opam pin add -y camlkit-base https://github.com/dboris/camlkit.git
+opam pin add -y camlkit-gui https://github.com/dboris/camlkit.git
+opam pin add -y camlkit https://github.com/dboris/camlkit.git
+```
+
+For iOS and Mac Catalyst development you will need to set up a cross-toolchain
+from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).
+Then install the following packages:
+
+```sh
+opam pin add -y camlkit-base-ios https://github.com/dboris/camlkit.git
+opam pin add -y camlkit-gui-ios https://github.com/dboris/camlkit.git
+opam pin add -y camlkit-ios https://github.com/dboris/camlkit.git
+```
+
 ## Documentation
 
 At this time, the documentation of the project is lacking. The framework
@@ -198,8 +218,3 @@ Some usefull sources you may wish to examine include:
 The project is in active development but is still experimental. It can be
 considered at the alpha stage. If you are an early adopter, keep in mind
 that the API is subject to change.
-
-## Related projects
-
-For iOS and Mac Catalyst development you will need to set up a cross-toolchain
-from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).

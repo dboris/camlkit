@@ -8,4 +8,5 @@
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
  (flags :standard -ccopt "-framework UIKit")
+ (library_flags :standard -linkall)
  (libraries foundation))
