@@ -14,8 +14,8 @@
 
 (package
  (name camlkit-base)
- (synopsis "OCaml bindings to the Objective-C runtime and Foundation framework")
- (description "OCaml bindings to the Objective-C runtime and Foundation framework")
+ (synopsis "OCaml bindings to the Objective-C runtime and some base frameworks")
+ (description "OCaml bindings to the Objective-C runtime and some base frameworks")
  (depends
   ocaml
   dune
@@ -49,8 +49,8 @@
 
 (package
  (name camlkit-base-ios)
- (synopsis "OCaml bindings to the Objective-C runtime and Foundation framework")
- (description "OCaml bindings to the Objective-C runtime and Foundation framework")
+ (synopsis "OCaml bindings to the Objective-C runtime and some base frameworks")
+ (description "OCaml bindings to the Objective-C runtime and some base frameworks")
  (allow_empty)
  (depends
   ocaml

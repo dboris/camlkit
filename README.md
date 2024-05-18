@@ -165,9 +165,9 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   [`NSAutoreleasePool`](https://developer.apple.com/documentation/foundation/nsautoreleasepool/)
   class.
 
-  Since OCaml has a garbage collector, we can leverage it to help manage the
+  Since OCaml has a garbage collector, you can leverage it to help manage the
   lifetimes of Cocoa objects. To this effect, we provide the `gc_autorelease`
-  function, which makes sure the object will be sent the `release` message when
+  function, which ensures the object will be sent the `release` message when
   the OCaml reference to it is garbage collected.
 
 * Using objects from frameworks when bindings are not available
