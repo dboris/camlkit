@@ -1,6 +1,6 @@
 open Foundation
 open Uikit
-open Uikit_
+open Uikit_globals
 open Runtime
 
 module AppDelegate = struct

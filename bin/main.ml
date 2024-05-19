@@ -1,6 +1,7 @@
 open Foundation
 open Runtime
 open Appkit
+open Appkit_globals
 (* open Webkit *)
 
 let win_width = 400.
@@ -11,12 +12,12 @@ let app_window () =
     alloc NSWindow._class_
     |> NSWindow.initWithContentRect
       (CGRect.make ~x: 0. ~y: 0. ~width: win_width ~height: win_height)
-      ~styleMask: (combine_options Appkit_.[
+      ~styleMask: (combine_options [
         _NSWindowStyleMaskTitled;
         _NSWindowStyleMaskClosable;
         _NSWindowStyleMaskResizable
       ])
-      ~backing: Appkit_._NSBackingStoreBuffered
+      ~backing: _NSBackingStoreBuffered
       ~defer: false
   in
   win
@@ -70,7 +71,7 @@ let main () =
   win |> NSWindow.contentView |> NSView.addSubview btn;
   (* win |> content_view |> add_subview wv; *)
   assert (app |> NSApplication.setActivationPolicy
-    Appkit_._NSApplicationActivationPolicyRegular);
+    _NSApplicationActivationPolicyRegular);
   app |> NSApplication.activateIgnoringOtherApps true;
   NSApplication.run app
 

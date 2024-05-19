@@ -2,7 +2,6 @@
  (name foundation)
  (public_name camlkit-base.foundation)
  (flags :standard -ccopt "-framework Foundation")
- (library_flags :standard -linkall)
- (libraries runtime ctypes))
+ (libraries camlkit-base.runtime))
 
 (documentation (package camlkit-base))

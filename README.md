@@ -16,6 +16,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Photos](https://developer.apple.com/documentation/photos?language=objc)
   (iOS and macOS)
 
+
 ## Features
 
 * Using the classes and objects from these Cocoa frameworks, defining new
@@ -28,6 +29,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * An Xcode project is not required. A complete macOS or iOS application can
   be developed entirely in OCaml.
 
+
 ## Sample programs
 
 A few sample programs are provided in the
@@ -38,7 +40,7 @@ application:
 ```ocaml
 open Foundation
 open Uikit
-open Uikit_
+open Uikit_globals
 open Runtime
 
 module AppDelegate = struct
@@ -95,6 +97,7 @@ The best way to get started is to peruse the sample programs and use them
 as a starting template. Read the Apple documentation for the classes and methods
 of interest. All books on iOS and macOS development in Objective-C are directly
 applicable. Below is a short introduction to Camlkit.
+
 
 ## Introduction
 
@@ -181,26 +184,6 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   an_instance |> msg_send (selector "anArbitrarySelector") ~args: Objc_t.[] ~return: Objc_t.void
   ```
 
-## Setup
-
-For macOS development, pin and install the following packages:
-
-```sh
-opam pin add -y camlkit-base https://github.com/dboris/camlkit.git
-opam pin add -y camlkit-gui https://github.com/dboris/camlkit.git
-opam pin add -y camlkit https://github.com/dboris/camlkit.git
-```
-
-For iOS and Mac Catalyst development you will need to set up a cross-toolchain
-from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).
-Then install the following packages:
-
-```sh
-opam pin add -y camlkit-base-ios https://github.com/dboris/camlkit.git
-opam pin add -y camlkit-gui-ios https://github.com/dboris/camlkit.git
-opam pin add -y camlkit-ios https://github.com/dboris/camlkit.git
-```
-
 ## Documentation
 
 At this time, the documentation of the project is lacking. The framework
@@ -213,8 +196,15 @@ Some usefull sources you may wish to examine include:
 * [Usage examples](https://github.com/dboris/camlkit-examples/)
 * [The Ctypes documentation](https://ocaml.org/p/ctypes/latest/doc/Ctypes/index.html)
 
+
 ## Project status
 
 The project is in active development but is still experimental. It can be
 considered at the alpha stage. If you are an early adopter, keep in mind
 that the API is subject to change.
+
+
+## Related projects
+
+For iOS and Mac Catalyst development you will need to set up a cross-toolchain
+from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).

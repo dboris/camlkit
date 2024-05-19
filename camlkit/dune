@@ -1,4 +1,4 @@
 (library
  (name camlkit)
- (public_name camlkit)
+ (public_name camlkit.camlkit)
  (libraries foundation))

@@ -1,10 +1,10 @@
 (lang dune 3.13)
-(using ctypes 0.3)
+; (using ctypes 0.3)
 
 (name camlkit)
 (version 0.1.1)
 
-(generate_opam_files false)
+(generate_opam_files true)
 
 (source (github dboris/camlkit))
 
@@ -15,24 +15,20 @@
 (package
  (name camlkit-base)
  (synopsis "OCaml bindings to the Objective-C runtime and some base frameworks")
- (description "OCaml bindings to the Objective-C runtime and some base frameworks")
+ (description "
+This package provides OCaml bindings to the Objective-C runtime and
+the following Cocoa frameworks: Foundation, WebKit, Vision, CoreImage, and Photos.")
  (depends
-  ocaml
-  dune
   ctypes
   ctypes-foreign
   (alcotest :with-test))
- (tags (objc bindings cocoa gnustep)))
+ (tags (objc bindings cocoa macos gnustep)))
 
 (package
  (name camlkit-gui)
  (synopsis "OCaml bindings to the AppKit framework")
  (description "OCaml bindings to the AppKit framework")
- (depends
-  ocaml
-  dune
-  (camlkit-base (= :version))
-  (alcotest :with-test))
+ (depends (camlkit-base (= :version)))
  (tags (objc bindings cocoa macos gnustep)))
 
 (package
@@ -40,47 +36,6 @@
  (synopsis "Higher-level wrappers for Cocoa APIs")
  (description "Higher-level wrappers for Cocoa APIs")
  (depends
-  ocaml
-  dune
   (camlkit-base (= :version))
-  (camlkit-gui (= :version))
-  (alcotest :with-test))
- (tags (objc cocoa ios gnustep)))
-
-(package
- (name camlkit-base-ios)
- (synopsis "OCaml bindings to the Objective-C runtime and some base frameworks")
- (description "OCaml bindings to the Objective-C runtime and some base frameworks")
- (allow_empty)
- (depends
-  ocaml
-  dune
-  ctypes
-  ctypes-foreign
-  (alcotest :with-test))
- (tags (objc bindings cocoa ios)))
-
-(package
- (name camlkit-gui-ios)
- (synopsis "OCaml bindings to the UIKit framework")
- (description "OCaml bindings to the UIKit framework")
- (allow_empty)
- (depends
-  ocaml
-  dune
-  (camlkit-base (= :version))
-  (alcotest :with-test))
- (tags (objc bindings cocoa ios)))
-
-(package
- (name camlkit-ios)
- (synopsis "Higher-level wrappers for Cocoa APIs")
- (description "Higher-level wrappers for Cocoa APIs")
- (allow_empty)
- (depends
-  ocaml
-  dune
-  (camlkit-base-ios (= :version))
-  (camlkit-gui-ios (= :version))
-  (alcotest :with-test))
- (tags (objc cocoa ios)))
+  (camlkit-gui (= :version)))
+ (tags (objc cocoa macos gnustep)))
