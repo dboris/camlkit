@@ -74,7 +74,7 @@
   (copy platform.catalyst platform.ml))))
 
 (rule
- (enabled_if (= %{system} linux))
+ (enabled_if (<> %{system} macosx))
  (targets flags.txt platform.ml)
  (deps flags.gnustep platform.gnustep)
  (action (progn

@@ -28,7 +28,9 @@ the following Cocoa frameworks: Foundation, WebKit, Vision, CoreImage, and Photo
  (name camlkit-gui)
  (synopsis "OCaml bindings to the AppKit framework")
  (description "OCaml bindings to the AppKit framework")
- (depends (camlkit-base (= :version)))
+ (depends
+  (camlkit-base (= :version))
+  (alcotest :with-test))
  (tags (objc bindings cocoa macos gnustep)))
 
 (package
@@ -37,5 +39,6 @@ the following Cocoa frameworks: Foundation, WebKit, Vision, CoreImage, and Photo
  (description "Higher-level wrappers for Cocoa APIs")
  (depends
   (camlkit-base (= :version))
-  (camlkit-gui (= :version)))
+  (camlkit-gui (= :version))
+  (alcotest :with-test))
  (tags (objc cocoa macos gnustep)))
