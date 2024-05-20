@@ -1,14 +1,4 @@
 (library
  (name appkit_extra)
  (public_name camlkit-gui.appkit-extra)
- (flags :standard %{read:flags.txt})
  (libraries foundation))
-
-(rule (enabled_if (= %{system} macosx))
- (target "flags.txt")
- (action
-  (with-stdout-to %{target} (run echo "-ccopt \"-framework AppKit\""))))
-
-(rule (enabled_if (<> %{system} macosx))
- (target "flags.txt")
- (action (with-stdout-to %{target} (run echo ""))))
