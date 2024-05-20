@@ -5,7 +5,10 @@
  (libraries foundation))
 
 (rule (enabled_if (= %{system} macosx))
- (with-stdout-to flags.txt (run echo "-ccopt \"-framework AppKit\"")))
+ (target "flags.txt")
+ (action
+  (with-stdout-to %{target} (run echo "-ccopt \"-framework AppKit\""))))
 
 (rule (enabled_if (<> %{system} macosx))
- (with-stdout-to flags.txt (run echo "")))
+ (target "flags.txt")
+ (action (with-stdout-to %{target} (run echo ""))))

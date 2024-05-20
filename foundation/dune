@@ -7,7 +7,10 @@
 (documentation (package camlkit-base))
 
 (rule (enabled_if (= %{system} macosx))
- (with-stdout-to flags.txt (run echo "-ccopt \"-framework Foundation\"")))
+ (target "flags.txt")
+ (action
+  (with-stdout-to %{target} (run echo "-ccopt \"-framework Foundation\""))))
 
 (rule (enabled_if (<> %{system} macosx))
- (with-stdout-to flags.txt (run echo "")))
+ (target "flags.txt")
+ (action (with-stdout-to %{target} (run echo ""))))
