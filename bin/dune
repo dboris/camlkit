@@ -1,9 +1,4 @@
 (executable
  (name main)
- (enabled_if (and
-  (<> %{context_name} default.ios)
-  (<> %{context_name} device.ios)
-  (<> %{context_name} simulator.ios)
-  (<> %{context_name} simulator-arm.ios)
-  (<> %{context_name} catalyst.ios)))
+ (enabled_if (= %{system} macosx))
  (libraries foundation appkit webkit))
