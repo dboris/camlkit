@@ -1,5 +1,11 @@
 (library
  (name vision)
  (public_name camlkit-base.vision)
+ (enabled_if (or
+  (= %{context_name} default.ios)
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} simulator-arm.ios)
+  (= %{context_name} catalyst.ios)))
  (flags :standard -ccopt "-framework Vision")
- (libraries foundation))
+ (libraries camlkit-base.foundation))

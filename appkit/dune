@@ -1,5 +1,11 @@
 (library
  (name appkit)
  (public_name camlkit-gui.appkit)
- (flags :standard -ccopt "-framework AppKit")
+ (flags :standard %{read:flags.txt})
  (libraries camlkit-base.foundation))
+
+(rule (enabled_if (= %{system} macosx))
+ (with-stdout-to flags.txt (run echo "-ccopt \"-framework AppKit\"")))
+
+(rule (enabled_if (<> %{system} macosx))
+ (with-stdout-to flags.txt (run echo "")))

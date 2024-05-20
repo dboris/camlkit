@@ -1,5 +1,11 @@
 (library
  (name coreimage)
  (public_name camlkit-base.coreimage)
+ (enabled_if (or
+  (= %{context_name} default.ios)
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} simulator-arm.ios)
+  (= %{context_name} catalyst.ios)))
  (flags :standard -ccopt "-framework CoreImage")
- (libraries foundation))
+ (libraries camlkit-base.foundation))
