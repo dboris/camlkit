@@ -81,7 +81,14 @@
   (copy flags.gnustep flags.txt)
   (copy platform.gnustep platform.ml))))
 
-(rule (with-stdout-to arch.txt (run opam var conf-ios:arch)))
+(rule
+ (enabled_if (or
+  (= %{context_name} default.ios)
+  (= %{context_name} device.ios)
+  (= %{context_name} simulator.ios)
+  (= %{context_name} simulator-arm.ios)))
+ (action
+  (with-stdout-to arch.txt (run opam var conf-ios:arch))))
 
 (rule
  (enabled_if (or
