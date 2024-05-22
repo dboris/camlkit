@@ -5,7 +5,6 @@ open Foreign
 
 module Platform = Platform
 module Ivar = C.Functions.Ivar
-module Method = C.Functions.Method
 module Protocol = C.Functions.Protocol
 module Inspect = Inspect
 module Objc_t = Objc_t
@@ -18,6 +17,13 @@ module Sel = struct
     | GNUStep ->
       foreign "sel_registerTypedName_np" (string @-> _Enc @-> returning _SEL)
     | _ -> (fun _ _ -> assert false)
+end
+
+module Method = struct
+  include C.Functions.Method
+
+  let invoke ~typ ~self m =
+    foreign "method_invoke" (id @-> _Method @-> typ) self m
 end
 
 module Class = struct
@@ -149,8 +155,12 @@ module Objc = struct
   let msg_send_super ~self ~cmd ~typ =
     match Platform.current with
     | GNUStep ->
-      let self = Class.get_superclass self in
-      msg_send ~self ~cmd ~typ
+      let self_class = Object.get_class self in
+      let imp =
+        Class.get_method_implementation (Class.get_superclass self_class) cmd
+      in
+      let imp_fun = coerce _IMP (funptr (id @-> _SEL @-> typ)) imp in
+      imp_fun self cmd
     | _ ->
       let objc_super = Objc_super.make self in
       foreign "objc_msgSendSuper"

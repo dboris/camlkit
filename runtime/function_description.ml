@@ -82,6 +82,13 @@ module Functions = struct
     let copy_method_list =
       foreign "class_copyMethodList" (_Class @-> ptr uint @-> returning (ptr _Method))
 
+    (** Returns a specified instance method for a given class. *)
+    let get_instance_method =
+      foreign "class_getInstanceMethod" (_Class @-> _SEL @-> returning _Method)
+
+    (** Returns the function pointer that would be called if a particular message were sent to an instance of a class. *)
+    let get_method_implementation =
+      foreign "class_getMethodImplementation" (_Class @-> _SEL @-> returning _IMP)
   end
 
   module Object = struct
