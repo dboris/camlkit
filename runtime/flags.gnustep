@@ -4,7 +4,8 @@
 -L/usr/local/GNUstep/Local/Library/Libraries
 -L/usr/local/lib
 -L/usr/lib
--L/usr/lib/x86_64-linux-gnu/
+-L/usr/lib/x86_64-linux-gnu
+-L/usr/lib/aarch64-linux-gnu
 -lgnustep-gui
 -lgnustep-base
 -lobjc
