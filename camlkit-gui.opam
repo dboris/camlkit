@@ -29,4 +29,7 @@ build: [
     "@doc" {with-doc}
   ]
 ]
+build-env: [
+  [CC = "clang"] {os != "macos"}
+]
 dev-repo: "git+https://github.com/dboris/camlkit.git"
