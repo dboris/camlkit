@@ -1,19 +1,13 @@
 (test
  (name test_objc)
  (modules test_objc)
+ (package camlkit-base)
  (build_if (= %{context_name} "default"))
  (libraries camlkit-base.foundation camlkit-base.runtime alcotest))
 
 (test
- (name test_camlkit)
- (modules test_camlkit)
- (build_if (and
-  %{lib-available:camlkit}
-  (= %{context_name} "default")))
- (libraries camlkit-base.foundation camlkit-base.runtime camlkit alcotest))
-
-(test
  (name test_stret)
  (modules test_stret)
+ (package camlkit-base)
  (build_if (= %{context_name} "default"))
  (libraries camlkit-base.foundation camlkit-base.runtime alcotest))

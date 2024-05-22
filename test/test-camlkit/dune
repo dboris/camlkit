@@ -1,0 +1,6 @@
+(test
+ (name test_camlkit)
+ (modules test_camlkit)
+ (package camlkit)
+ (build_if (= %{context_name} "default"))
+ (libraries camlkit-base.foundation camlkit-base.runtime camlkit alcotest))
