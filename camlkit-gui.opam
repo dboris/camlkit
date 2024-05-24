@@ -12,8 +12,8 @@ bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
   "dune" {>= "3.13"}
   "camlkit-base" {= version}
-  "alcotest" {with-test}
   "odoc" {with-doc}
+  "conf-gnustep-gui" {os != "macos"}
 ]
 build: [
   ["dune" "subst"] {dev}
@@ -30,6 +30,6 @@ build: [
   ]
 ]
 build-env: [
-  [CC = "clang"] {os != "macos"}
+  [CC = "clang"]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"

@@ -96,7 +96,7 @@ let () = main ()
 The best way to get started is to peruse the sample programs and use them
 as a starting template. Read the Apple documentation for the classes and methods
 of interest. All books on iOS and macOS development in Objective-C are directly
-applicable. Below is a short introduction to Camlkit.
+applicable.
 
 
 ## Introduction
@@ -123,7 +123,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
   new_string "Hello"
   ```
-  To print a NSString in utop: `myStr |> NSString._UTF8String |> print_string`
+  To print a NSString in utop: `myNSStr |> NSString._UTF8String |> print_string`
 
 * Defining a new Cocoa class
 
@@ -154,8 +154,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
       ]
   ```
 
-  **_NOTE:_** If your method does not accept arguments, the `args` parameter
-  looks like this: `Define._method_ ~args: Objc_t.[] ...`
+  **_NOTE:_** If your method does not accept arguments, the `~args` parameter
+  looks like this: `Objc_t.[]`
 
 * Memory management
 
@@ -199,7 +199,7 @@ Some usefull sources you may wish to examine include:
 
 ## Project status
 
-The project is in active development but is still experimental. It can be
+The project is in active development and is still experimental. It can be
 considered at the alpha stage. If you are an early adopter, keep in mind
 that the API is subject to change.
 

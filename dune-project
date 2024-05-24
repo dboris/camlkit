@@ -29,8 +29,7 @@ the following Cocoa frameworks: Foundation, WebKit, Vision, CoreImage, and Photo
  (synopsis "OCaml bindings to the AppKit framework")
  (description "OCaml bindings to the AppKit framework")
  (depends
-  (camlkit-base (= :version))
-  (alcotest :with-test))
+  (camlkit-base (= :version)))
  (tags (objc bindings cocoa macos gnustep)))
 
 (package
