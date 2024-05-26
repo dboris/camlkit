@@ -30,6 +30,14 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   be developed entirely in OCaml.
 
 
+## Getting started
+
+The fastest way to get started developing an iOS app is to use the
+[starter-template](https://github.com/dboris/camlkit-starter-nostoryboard).
+Follow the instructions there to set up your environment. Build the
+library with `make` and open the Xcode project with `make open`.
+
+
 ## Sample programs
 
 A few sample programs are provided in the
@@ -92,11 +100,6 @@ let main () =
 
 let () = main ()
 ```
-
-The best way to get started is to peruse the sample programs and use them
-as a starting template. Read the Apple documentation for the classes and methods
-of interest. All books on iOS and macOS development in Objective-C are directly
-applicable.
 
 
 ## Introduction
@@ -217,6 +220,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 At this time, the documentation of the project is lacking. The framework
 bindings follow a regular naming pattern, so if you know the Objective-C method
 you want to call, figuring the name of the OCaml function should be easy.
+Read the Apple documentation for the classes and methods of interest.
+All books on iOS and macOS development in Objective-C are directly applicable.
 
 Some usefull sources you may wish to examine include:
 * [Objective-C runtime bindings and basic functionality](https://github.com/dboris/camlkit/blob/main/runtime/runtime.ml)
