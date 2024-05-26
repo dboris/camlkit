@@ -127,6 +127,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
 * Defining a new Cocoa class
 
+  Objective-C:
   ```objective-c
   @interface MyClass : NSObject {
       id myVar;
@@ -154,7 +155,10 @@ constructs by comparing the equivalent Objective-C and OCaml code.
       ]
   ```
 
-  **_NOTE:_** If your method does not accept arguments, the `~args` parameter
+  **_NOTE:_**
+  The `~args` parameter includes only the explicit argument types.
+  The number of arguments is the same as the number of `:` in the selector.
+  If your method does not accept arguments, the `~args` parameter
   looks like this: `Objc_t.[]`
 
 * Memory management
@@ -183,6 +187,30 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   let an_instance = alloc a_class |> init in
   an_instance |> msg_send (selector "anArbitrarySelector") ~args: Objc_t.[] ~return: Objc_t.void
   ```
+
+* Sending a message to the superclass
+
+  Eg, `viewDidLoad`:
+
+  Objective-C:
+  ```objective-c
+  - (void)viewDidLoad {
+    [super viewDidLoad]
+    ...
+  }
+  ```
+
+  OCaml:
+  ```OCaml
+  let viewDidLoad self cmd =
+    self |> msg_super cmd ~args: Objc_t.[] ~return: Objc_t.void;
+    ...
+  ```
+
+  **_NOTE:_**
+  Method implementations in OCaml always include two implicit parameters:
+  self - a pointer to the object;
+  cmd - the current selector
 
 ## Documentation
 
