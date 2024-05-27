@@ -33,7 +33,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 ## Getting started
 
 The fastest way to get started developing an iOS app is to use the
-[starter-template](https://github.com/dboris/camlkit-starter-nostoryboard).
+[starter project template](https://github.com/dboris/camlkit-starter-nostoryboard).
 Follow the instructions there to set up your environment. Build the
 library with `make` and open the Xcode project with `make open`.
 
@@ -100,6 +100,9 @@ let main () =
 
 let () = main ()
 ```
+
+A [more substantial example](https://github.com/dboris/camlkit-starter-nostoryboard/blob/master/CamlLib/CamlLib.ml)
+is available in the [starter project template](https://github.com/dboris/camlkit-starter-nostoryboard).
 
 
 ## Introduction
