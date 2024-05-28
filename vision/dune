@@ -2,5 +2,5 @@
  (name vision)
  (public_name camlkit-base.vision)
  (enabled_if (= %{system} macosx))
- (flags :standard -ccopt "-framework Vision")
+;  (flags :standard -ccopt "-framework Vision")
  (libraries camlkit-base.foundation))

@@ -7,5 +7,5 @@
   (= %{context_name} simulator.ios)
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
- (flags :standard -ccopt "-framework UIKit")
+;  (flags :standard -ccopt "-framework UIKit")
  (libraries camlkit-base.foundation))

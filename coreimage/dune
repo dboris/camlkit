@@ -2,5 +2,5 @@
  (name coreimage)
  (public_name camlkit-base.coreimage)
  (enabled_if (= %{system} macosx))
- (flags :standard -ccopt "-framework CoreImage")
+;  (flags :standard -ccopt "-framework CoreImage")
  (libraries camlkit-base.foundation))
