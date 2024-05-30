@@ -6,7 +6,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
   (macOS and [GNUStep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
-  (iOS, macOS on Arm, and [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
+  (iOS, macOS on Arm, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
   (iOS and macOS)
 * [Vision](https://developer.apple.com/documentation/vision?language=objc)
@@ -87,8 +87,7 @@ module AppDelegate = struct
 end
 
 let main () =
-  let _ = NSObject.C.new_ NSAutoreleasePool._class_
-  and argc = Array.length Sys.argv
+  let argc = Array.length Sys.argv
   and argv =
     Sys.argv
     |> Array.to_list
@@ -164,8 +163,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   **_NOTE:_**
   The `~args` parameter includes only the explicit argument types.
   The number of arguments is the same as the number of `:` in the selector.
-  If your method does not accept arguments, the `~args` parameter
-  looks like this: `Objc_t.[]`
+  If your method does not accept arguments, the `~args` parameter still
+  has to be provided: `Objc_t.[]`
 
 * Memory management
 
@@ -214,7 +213,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   ```
 
   **_NOTE:_**
-  Method implementations in OCaml always include two implicit parameters:
+  Method implementations in OCaml always start with two parameters which are
+  implicit in Objective-C:
   self - a pointer to the object;
   cmd - the current selector
 
