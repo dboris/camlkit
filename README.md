@@ -218,6 +218,23 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   self - a pointer to the object;
   cmd - the current selector
 
+* Using blocks
+
+  Global blocks are supported. Here is an example of creating a `UIButton` using
+  a `UIAction` with a block handler:
+
+  ```OCaml
+  Block.make ~args: Objc_t.[id] ~return: Objc_t.void
+    (fun block action -> (* block implementation *))
+  |> (UIAction._class_ |> UIAction.C.actionWithHandler)
+  |> (UIButton._class_ |> UIButton.C.systemButtonWithPrimaryAction)
+  ```
+
+  **_NOTE:_**
+  The OCaml block handler function receives the block as the first parameter, which
+  in Objective-C is an implicit parameter.
+
+
 ## Documentation
 
 At this time, the documentation of the project is lacking. The framework
