@@ -507,8 +507,10 @@ exception NSException of string * string
 
 (** Changes the top-level error handler. *)
 let set_uncaught_exception_handler =
-  foreign "NSSetUncaughtExceptionHandler"
-    (funptr (id @-> returning void) @-> returning void)
+  try
+    foreign "NSSetUncaughtExceptionHandler"
+      (funptr (id @-> returning void) @-> returning void)
+  with _ -> fun _ -> ()
 
 let default_uncaught_exception_handler ex =
   let open Objc in

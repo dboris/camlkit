@@ -25,9 +25,8 @@ module Functions = struct
     let register_class =
       foreign "objc_registerClassPair" (_Class @-> returning void)
 
-    (** Obtains the list of registered class definitions. *)
-    let get_class_list =
-      (** [get_class_list buffer buffer_count]
+    (** Obtains the list of registered class definitions.
+        [get_class_list buffer buffer_count]
         {e buffer}
           An array of Class values. On output, each Class value points to one class
           definition, up to either bufferCount or the total number of registered
@@ -39,7 +38,8 @@ module Functions = struct
           space in buffer. On return, this function fills in only this number of
           elements. If this number is less than the number of registered classes,
           this function returns an arbitrary subset of the registered classes.
-      *)
+    *)
+    let get_class_list =
       foreign "objc_getClassList" (ptr (ptr objc_class)
         @-> int @-> returning int)
 

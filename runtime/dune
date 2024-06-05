@@ -19,7 +19,7 @@
 ;    (functor Function_description))
 ;   (generated_types Types_generated)
 ;   (generated_entry_point C))
-  (flags -linkall))
+  (flags :standard -linkall))
 
 (documentation (package camlkit-base))
 
