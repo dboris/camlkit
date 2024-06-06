@@ -504,13 +504,16 @@ end
 (* Exception handling *)
 
 exception NSException of string * string
+exception SymbolNotFound of string
+
+let foreign_fun name ty =
+  try foreign name ty
+  with _ -> fun _ -> raise (SymbolNotFound name)
 
 (** Changes the top-level error handler. *)
 let set_uncaught_exception_handler =
-  try
-    foreign "NSSetUncaughtExceptionHandler"
-      (funptr (id @-> returning void) @-> returning void)
-  with _ -> fun _ -> ()
+  foreign_fun "NSSetUncaughtExceptionHandler"
+    (funptr (id @-> returning void) @-> returning void)
 
 let default_uncaught_exception_handler ex =
   let open Objc in
