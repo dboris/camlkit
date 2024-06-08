@@ -1,0 +1,36 @@
+#include <CoreFoundation/CoreFoundation.h>
+
+void * Camlkit_CFUserNotificationSecureTextField = &CFUserNotificationSecureTextField;
+void * Camlkit_CFUserNotificationPopUpSelection = &CFUserNotificationPopUpSelection;
+void * Camlkit_CFUserNotificationCheckBoxChecked = &CFUserNotificationCheckBoxChecked;
+void * Camlkit_CFSwapInt64LittleToHost = &CFSwapInt64LittleToHost;
+void * Camlkit_CFSwapInt64HostToLittle = &CFSwapInt64HostToLittle;
+void * Camlkit_CFSwapInt64HostToBig = &CFSwapInt64HostToBig;
+void * Camlkit_CFSwapInt64BigToHost = &CFSwapInt64BigToHost;
+void * Camlkit_CFSwapInt64 = &CFSwapInt64;
+void * Camlkit_CFSwapInt32LittleToHost = &CFSwapInt32LittleToHost;
+void * Camlkit_CFSwapInt32HostToLittle = &CFSwapInt32HostToLittle;
+void * Camlkit_CFSwapInt32HostToBig = &CFSwapInt32HostToBig;
+void * Camlkit_CFSwapInt32BigToHost = &CFSwapInt32BigToHost;
+void * Camlkit_CFSwapInt32 = &CFSwapInt32;
+void * Camlkit_CFSwapInt16LittleToHost = &CFSwapInt16LittleToHost;
+void * Camlkit_CFSwapInt16HostToLittle = &CFSwapInt16HostToLittle;
+void * Camlkit_CFSwapInt16HostToBig = &CFSwapInt16HostToBig;
+void * Camlkit_CFSwapInt16BigToHost = &CFSwapInt16BigToHost;
+void * Camlkit_CFSwapInt16 = &CFSwapInt16;
+void * Camlkit_CFStringIsSurrogateLowCharacter = &CFStringIsSurrogateLowCharacter;
+void * Camlkit_CFStringIsSurrogateHighCharacter = &CFStringIsSurrogateHighCharacter;
+void * Camlkit_CFStringInitInlineBuffer = &CFStringInitInlineBuffer;
+void * Camlkit_CFStringGetSurrogatePairForLongCharacter = &CFStringGetSurrogatePairForLongCharacter;
+void * Camlkit_CFStringGetLongCharacterForSurrogatePair = &CFStringGetLongCharacterForSurrogatePair;
+void * Camlkit_CFStringGetCharacterFromInlineBuffer = &CFStringGetCharacterFromInlineBuffer;
+void * Camlkit_CFRangeMake = &CFRangeMake;
+void * Camlkit_CFConvertFloatSwappedToHost = &CFConvertFloatSwappedToHost;
+void * Camlkit_CFConvertFloatHostToSwapped = &CFConvertFloatHostToSwapped;
+void * Camlkit_CFConvertFloat64SwappedToHost = &CFConvertFloat64SwappedToHost;
+void * Camlkit_CFConvertFloat64HostToSwapped = &CFConvertFloat64HostToSwapped;
+void * Camlkit_CFConvertFloat32SwappedToHost = &CFConvertFloat32SwappedToHost;
+void * Camlkit_CFConvertFloat32HostToSwapped = &CFConvertFloat32HostToSwapped;
+void * Camlkit_CFConvertDoubleSwappedToHost = &CFConvertDoubleSwappedToHost;
+void * Camlkit_CFConvertDoubleHostToSwapped = &CFConvertDoubleHostToSwapped;
+void * Camlkit_CFByteOrderGetCurrent = &CFByteOrderGetCurrent;

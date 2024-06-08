@@ -1,0 +1,26 @@
+(library
+ (name CoreFoundation)
+ (public_name camlkit-base.CoreFoundation)
+ (flags :standard -ccopt "-framework CoreFoundation")
+;  (foreign_stubs (language c) (names CoreFoundation_inlines))
+ (libraries camlkit-base.runtime))
+
+; (rule
+;  (enabled_if (and
+;   (<> %{context_name} default.ios)
+;   (<> %{context_name} device.ios)
+;   (<> %{context_name} simulator.ios)
+;   (<> %{context_name} simulator-arm.ios)))
+;  (targets CoreFoundation_inlines.c)
+;  (deps CoreFoundation_inlines.macOS)
+;  (action (copy %{deps} %{targets})))
+
+; (rule
+;  (enabled_if (or
+;   (= %{context_name} default.ios)
+;   (= %{context_name} device.ios)
+;   (= %{context_name} simulator.ios)
+;   (= %{context_name} simulator-arm.ios)))
+;  (targets CoreFoundation_inlines.c)
+;  (deps CoreFoundation_inlines.iOS)
+;  (action (copy %{deps} %{targets})))
