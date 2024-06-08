@@ -1,8 +1,9 @@
-(* open Runtime
-open Lib *)
 open CoreFoundation
 open CoreFoundation_globals
 open CoreFoundation_fn
+
+open Runtime
+open Objc
 
 module A = Alcotest
 
@@ -11,19 +12,17 @@ let test_CFString () =
     _CFStringCreateWithCString
       kCFAllocatorDefault
       "Hello"
-      (Unsigned.UInt.of_int kCFStringEncodingUTF8)
+      (UInt.of_int kCFStringEncodingUTF8)
   in
   let expected = 'e'
   and actual =
-    _CFStringGetCharacterAtIndex str (Signed.LLong.of_int 1)
-    |> Unsigned.UShort.to_int
+    _CFStringGetCharacterAtIndex str (LLong.of_int 1)
+    |> UShort.to_int
     |> Char.chr
   in
   A.check A.char "same char" expected actual
 
 
-let suite =
-  [ "test_CFString", `Quick, test_CFString
-  ]
+let suite = [ "test_CFString", `Quick, test_CFString ]
 
 let () = A.run "CoreFoundation" [ "CoreFoundation", suite ]
