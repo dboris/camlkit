@@ -1,0 +1,26 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-32-33"]
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreAnimation_globals
+
+(** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caspringanimation?language=objc}CASpringAnimation} *)
+
+let damping self = msg_send ~self ~cmd:(selector "damping") ~typ:(returning double)
+let durationForEpsilon x self = msg_send ~self ~cmd:(selector "durationForEpsilon:") ~typ:(double @-> returning double) x
+let initialVelocity self = msg_send ~self ~cmd:(selector "initialVelocity") ~typ:(returning double)
+let mass self = msg_send ~self ~cmd:(selector "mass") ~typ:(returning double)
+let setDamping x self = msg_send ~self ~cmd:(selector "setDamping:") ~typ:(double @-> returning void) x
+let setInitialVelocity x self = msg_send ~self ~cmd:(selector "setInitialVelocity:") ~typ:(double @-> returning void) x
+let setMass x self = msg_send ~self ~cmd:(selector "setMass:") ~typ:(double @-> returning void) x
+let setStiffness x self = msg_send ~self ~cmd:(selector "setStiffness:") ~typ:(double @-> returning void) x
+let setVelocity x self = msg_send ~self ~cmd:(selector "setVelocity:") ~typ:(double @-> returning void) x
+let settlingDuration self = msg_send ~self ~cmd:(selector "settlingDuration") ~typ:(returning double)
+let stiffness self = msg_send ~self ~cmd:(selector "stiffness") ~typ:(returning double)
+let velocity self = msg_send ~self ~cmd:(selector "velocity") ~typ:(returning double)
