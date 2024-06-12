@@ -267,8 +267,11 @@ let set_value v ~for_key self =
 let nil = null
 let is_nil = is_null
 
-let combine_options = List.fold_left Int.logor Int.zero
-let combine_options' = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
+module Bitmask = struct
+  let of_list = List.fold_left Int.logor Int.zero
+  let of_list' = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
+  let (+) = Int.logor
+end
 
 module Block_descriptor = struct
   type t
