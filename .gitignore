@@ -1,4 +1,5 @@
 /_build
 local/
+vendor/
 .DS_Store
 *.mobileprovision

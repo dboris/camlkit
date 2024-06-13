@@ -1,1 +1,1 @@
-(data_only_dirs local template)
+(data_only_dirs local template vendor)
