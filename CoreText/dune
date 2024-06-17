@@ -1,4 +1,4 @@
 (library
- (name CoreText)
+ (name camlkit-base.CoreText)
  (flags :standard -ccopt "-framework CoreText")
  (libraries camlkit-base.runtime CoreGraphics CoreFoundation))
