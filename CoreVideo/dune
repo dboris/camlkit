@@ -1,0 +1,9 @@
+(library
+ (name CoreVideo)
+ (public_name camlkit-base.CoreVideo)
+ (flags :standard -ccopt "-framework CoreVideo")
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.CoreGraphics
+  camlkit-base.CoreFoundation
+  camlkit-base.CoreAnimation))
