@@ -9,11 +9,13 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (iOS, macOS on Arm, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
   (iOS and macOS)
+* [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc)
+  (iOS and macOS)
 * [Vision](https://developer.apple.com/documentation/vision?language=objc)
   (iOS and macOS)
-* [CoreImage](https://developer.apple.com/documentation/coreimage?language=objc)
-  (iOS and macOS)
 * [Photos](https://developer.apple.com/documentation/photos?language=objc)
+  (iOS and macOS)
+* Core{Animation | AutoLayout | Foundation | Graphics | Text | Video}
   (iOS and macOS)
 
 
