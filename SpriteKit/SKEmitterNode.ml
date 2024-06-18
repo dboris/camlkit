@@ -1,0 +1,149 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreText
+open CoreText_globals
+
+(** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skemitternode?language=objc}SKEmitterNode} *)
+
+let activeParticleCount self = msg_send ~self ~cmd:(selector "activeParticleCount") ~typ:(returning uint)
+let advanceSimulationTime x self = msg_send ~self ~cmd:(selector "advanceSimulationTime:") ~typ:(double @-> returning void) x
+let commonInit self = msg_send ~self ~cmd:(selector "commonInit") ~typ:(returning void)
+let copyParticlePropertiesToNode x self = msg_send ~self ~cmd:(selector "copyParticlePropertiesToNode:") ~typ:(id @-> returning void) x
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let densityBased self = msg_send ~self ~cmd:(selector "densityBased") ~typ:(returning bool)
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
+let emissionAngle self = msg_send ~self ~cmd:(selector "emissionAngle") ~typ:(returning double)
+let emissionAngleRange self = msg_send ~self ~cmd:(selector "emissionAngleRange") ~typ:(returning double)
+let emissionDistance self = msg_send ~self ~cmd:(selector "emissionDistance") ~typ:(returning double)
+let emissionDistanceRange self = msg_send ~self ~cmd:(selector "emissionDistanceRange") ~typ:(returning double)
+let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let fieldBitMask self = msg_send ~self ~cmd:(selector "fieldBitMask") ~typ:(returning uint)
+let fieldInfluenceSequence self = msg_send ~self ~cmd:(selector "fieldInfluenceSequence") ~typ:(returning id)
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
+let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let initWithMinimumParticleCapacity x self = msg_send ~self ~cmd:(selector "initWithMinimumParticleCapacity:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let initWithMinimumParticleCapacity' x ~minimumPositionBufferCapacity self = msg_send ~self ~cmd:(selector "initWithMinimumParticleCapacity:minimumPositionBufferCapacity:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int minimumPositionBufferCapacity)
+let isEqualToNode x self = msg_send ~self ~cmd:(selector "isEqualToNode:") ~typ:(id @-> returning bool) x
+let numParticlesToEmit self = msg_send ~self ~cmd:(selector "numParticlesToEmit") ~typ:(returning ullong)
+let particleAction self = msg_send ~self ~cmd:(selector "particleAction") ~typ:(returning id)
+let particleAlpha self = msg_send ~self ~cmd:(selector "particleAlpha") ~typ:(returning double)
+let particleAlphaRange self = msg_send ~self ~cmd:(selector "particleAlphaRange") ~typ:(returning double)
+let particleAlphaSequence self = msg_send ~self ~cmd:(selector "particleAlphaSequence") ~typ:(returning id)
+let particleAlphaSpeed self = msg_send ~self ~cmd:(selector "particleAlphaSpeed") ~typ:(returning double)
+let particleBirthRate self = msg_send ~self ~cmd:(selector "particleBirthRate") ~typ:(returning double)
+let particleBlendMode self = msg_send ~self ~cmd:(selector "particleBlendMode") ~typ:(returning llong)
+let particleColor self = msg_send ~self ~cmd:(selector "particleColor") ~typ:(returning id)
+let particleColorAlphaRange self = msg_send ~self ~cmd:(selector "particleColorAlphaRange") ~typ:(returning double)
+let particleColorAlphaSpeed self = msg_send ~self ~cmd:(selector "particleColorAlphaSpeed") ~typ:(returning double)
+let particleColorBlendFactor self = msg_send ~self ~cmd:(selector "particleColorBlendFactor") ~typ:(returning double)
+let particleColorBlendFactorRange self = msg_send ~self ~cmd:(selector "particleColorBlendFactorRange") ~typ:(returning double)
+let particleColorBlendFactorSequence self = msg_send ~self ~cmd:(selector "particleColorBlendFactorSequence") ~typ:(returning id)
+let particleColorBlendFactorSpeed self = msg_send ~self ~cmd:(selector "particleColorBlendFactorSpeed") ~typ:(returning double)
+let particleColorBlueRange self = msg_send ~self ~cmd:(selector "particleColorBlueRange") ~typ:(returning double)
+let particleColorBlueSpeed self = msg_send ~self ~cmd:(selector "particleColorBlueSpeed") ~typ:(returning double)
+let particleColorGreenRange self = msg_send ~self ~cmd:(selector "particleColorGreenRange") ~typ:(returning double)
+let particleColorGreenSpeed self = msg_send ~self ~cmd:(selector "particleColorGreenSpeed") ~typ:(returning double)
+let particleColorRedRange self = msg_send ~self ~cmd:(selector "particleColorRedRange") ~typ:(returning double)
+let particleColorRedSpeed self = msg_send ~self ~cmd:(selector "particleColorRedSpeed") ~typ:(returning double)
+let particleColorSequence self = msg_send ~self ~cmd:(selector "particleColorSequence") ~typ:(returning id)
+let particleDensity self = msg_send ~self ~cmd:(selector "particleDensity") ~typ:(returning double)
+let particleLifetime self = msg_send ~self ~cmd:(selector "particleLifetime") ~typ:(returning double)
+let particleLifetimeRange self = msg_send ~self ~cmd:(selector "particleLifetimeRange") ~typ:(returning double)
+let particlePosition self = msg_send ~self ~cmd:(selector "particlePosition") ~typ:(returning CGPoint.t)
+let particlePositionRange self = msg_send ~self ~cmd:(selector "particlePositionRange") ~typ:(returning CGVector.t)
+let particleRenderOrder self = msg_send ~self ~cmd:(selector "particleRenderOrder") ~typ:(returning ullong)
+let particleRotation self = msg_send ~self ~cmd:(selector "particleRotation") ~typ:(returning double)
+let particleRotationRange self = msg_send ~self ~cmd:(selector "particleRotationRange") ~typ:(returning double)
+let particleRotationSequence self = msg_send ~self ~cmd:(selector "particleRotationSequence") ~typ:(returning id)
+let particleRotationSpeed self = msg_send ~self ~cmd:(selector "particleRotationSpeed") ~typ:(returning double)
+let particleScale self = msg_send ~self ~cmd:(selector "particleScale") ~typ:(returning double)
+let particleScaleRange self = msg_send ~self ~cmd:(selector "particleScaleRange") ~typ:(returning double)
+let particleScaleSequence self = msg_send ~self ~cmd:(selector "particleScaleSequence") ~typ:(returning id)
+let particleScaleSpeed self = msg_send ~self ~cmd:(selector "particleScaleSpeed") ~typ:(returning double)
+let particleSize self = msg_send ~self ~cmd:(selector "particleSize") ~typ:(returning CGSize.t)
+let particleSpeed self = msg_send ~self ~cmd:(selector "particleSpeed") ~typ:(returning double)
+let particleSpeedRange self = msg_send ~self ~cmd:(selector "particleSpeedRange") ~typ:(returning double)
+let particleSpeedSequence self = msg_send ~self ~cmd:(selector "particleSpeedSequence") ~typ:(returning id)
+let particleTexture self = msg_send ~self ~cmd:(selector "particleTexture") ~typ:(returning id)
+let particleZPosition self = msg_send ~self ~cmd:(selector "particleZPosition") ~typ:(returning double)
+let particleZPositionRange self = msg_send ~self ~cmd:(selector "particleZPositionRange") ~typ:(returning double)
+let particleZPositionSpeed self = msg_send ~self ~cmd:(selector "particleZPositionSpeed") ~typ:(returning double)
+let physicsWorld self = msg_send ~self ~cmd:(selector "physicsWorld") ~typ:(returning id)
+let resetSimulation self = msg_send ~self ~cmd:(selector "resetSimulation") ~typ:(returning void)
+let setDensityBased x self = msg_send ~self ~cmd:(selector "setDensityBased:") ~typ:(bool @-> returning void) x
+let setEmissionAngle x self = msg_send ~self ~cmd:(selector "setEmissionAngle:") ~typ:(double @-> returning void) x
+let setEmissionAngleRange x self = msg_send ~self ~cmd:(selector "setEmissionAngleRange:") ~typ:(double @-> returning void) x
+let setEmissionDistance x self = msg_send ~self ~cmd:(selector "setEmissionDistance:") ~typ:(double @-> returning void) x
+let setEmissionDistanceRange x self = msg_send ~self ~cmd:(selector "setEmissionDistanceRange:") ~typ:(double @-> returning void) x
+let setFieldBitMask x self = msg_send ~self ~cmd:(selector "setFieldBitMask:") ~typ:(uint @-> returning void) x
+let setFieldInfluenceSequence x self = msg_send ~self ~cmd:(selector "setFieldInfluenceSequence:") ~typ:(id @-> returning void) x
+let setNumParticlesToEmit x self = msg_send ~self ~cmd:(selector "setNumParticlesToEmit:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
+let setParticleAction x self = msg_send ~self ~cmd:(selector "setParticleAction:") ~typ:(id @-> returning void) x
+let setParticleAlpha x self = msg_send ~self ~cmd:(selector "setParticleAlpha:") ~typ:(double @-> returning void) x
+let setParticleAlphaRange x self = msg_send ~self ~cmd:(selector "setParticleAlphaRange:") ~typ:(double @-> returning void) x
+let setParticleAlphaSequence x self = msg_send ~self ~cmd:(selector "setParticleAlphaSequence:") ~typ:(id @-> returning void) x
+let setParticleAlphaSpeed x self = msg_send ~self ~cmd:(selector "setParticleAlphaSpeed:") ~typ:(double @-> returning void) x
+let setParticleBirthRate x self = msg_send ~self ~cmd:(selector "setParticleBirthRate:") ~typ:(double @-> returning void) x
+let setParticleBlendMode x self = msg_send ~self ~cmd:(selector "setParticleBlendMode:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setParticleColor x self = msg_send ~self ~cmd:(selector "setParticleColor:") ~typ:(id @-> returning void) x
+let setParticleColorAlphaRange x self = msg_send ~self ~cmd:(selector "setParticleColorAlphaRange:") ~typ:(double @-> returning void) x
+let setParticleColorAlphaSpeed x self = msg_send ~self ~cmd:(selector "setParticleColorAlphaSpeed:") ~typ:(double @-> returning void) x
+let setParticleColorBlendFactor x self = msg_send ~self ~cmd:(selector "setParticleColorBlendFactor:") ~typ:(double @-> returning void) x
+let setParticleColorBlendFactorRange x self = msg_send ~self ~cmd:(selector "setParticleColorBlendFactorRange:") ~typ:(double @-> returning void) x
+let setParticleColorBlendFactorSequence x self = msg_send ~self ~cmd:(selector "setParticleColorBlendFactorSequence:") ~typ:(id @-> returning void) x
+let setParticleColorBlendFactorSpeed x self = msg_send ~self ~cmd:(selector "setParticleColorBlendFactorSpeed:") ~typ:(double @-> returning void) x
+let setParticleColorBlueRange x self = msg_send ~self ~cmd:(selector "setParticleColorBlueRange:") ~typ:(double @-> returning void) x
+let setParticleColorBlueSpeed x self = msg_send ~self ~cmd:(selector "setParticleColorBlueSpeed:") ~typ:(double @-> returning void) x
+let setParticleColorGreenRange x self = msg_send ~self ~cmd:(selector "setParticleColorGreenRange:") ~typ:(double @-> returning void) x
+let setParticleColorGreenSpeed x self = msg_send ~self ~cmd:(selector "setParticleColorGreenSpeed:") ~typ:(double @-> returning void) x
+let setParticleColorRedRange x self = msg_send ~self ~cmd:(selector "setParticleColorRedRange:") ~typ:(double @-> returning void) x
+let setParticleColorRedSpeed x self = msg_send ~self ~cmd:(selector "setParticleColorRedSpeed:") ~typ:(double @-> returning void) x
+let setParticleColorSequence x self = msg_send ~self ~cmd:(selector "setParticleColorSequence:") ~typ:(id @-> returning void) x
+let setParticleDensity x self = msg_send ~self ~cmd:(selector "setParticleDensity:") ~typ:(double @-> returning void) x
+let setParticleLifetime x self = msg_send ~self ~cmd:(selector "setParticleLifetime:") ~typ:(double @-> returning void) x
+let setParticleLifetimeRange x self = msg_send ~self ~cmd:(selector "setParticleLifetimeRange:") ~typ:(double @-> returning void) x
+let setParticlePosition x self = msg_send ~self ~cmd:(selector "setParticlePosition:") ~typ:(CGPoint.t @-> returning void) x
+let setParticlePositionRange x self = msg_send ~self ~cmd:(selector "setParticlePositionRange:") ~typ:(CGVector.t @-> returning void) x
+let setParticleRenderOrder x self = msg_send ~self ~cmd:(selector "setParticleRenderOrder:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
+let setParticleRotation x self = msg_send ~self ~cmd:(selector "setParticleRotation:") ~typ:(double @-> returning void) x
+let setParticleRotationRange x self = msg_send ~self ~cmd:(selector "setParticleRotationRange:") ~typ:(double @-> returning void) x
+let setParticleRotationSequence x self = msg_send ~self ~cmd:(selector "setParticleRotationSequence:") ~typ:(id @-> returning void) x
+let setParticleRotationSpeed x self = msg_send ~self ~cmd:(selector "setParticleRotationSpeed:") ~typ:(double @-> returning void) x
+let setParticleScale x self = msg_send ~self ~cmd:(selector "setParticleScale:") ~typ:(double @-> returning void) x
+let setParticleScaleRange x self = msg_send ~self ~cmd:(selector "setParticleScaleRange:") ~typ:(double @-> returning void) x
+let setParticleScaleSequence x self = msg_send ~self ~cmd:(selector "setParticleScaleSequence:") ~typ:(id @-> returning void) x
+let setParticleScaleSpeed x self = msg_send ~self ~cmd:(selector "setParticleScaleSpeed:") ~typ:(double @-> returning void) x
+let setParticleSize x self = msg_send ~self ~cmd:(selector "setParticleSize:") ~typ:(CGSize.t @-> returning void) x
+let setParticleSpeed x self = msg_send ~self ~cmd:(selector "setParticleSpeed:") ~typ:(double @-> returning void) x
+let setParticleSpeedRange x self = msg_send ~self ~cmd:(selector "setParticleSpeedRange:") ~typ:(double @-> returning void) x
+let setParticleSpeedSequence x self = msg_send ~self ~cmd:(selector "setParticleSpeedSequence:") ~typ:(id @-> returning void) x
+let setParticleTexture x self = msg_send ~self ~cmd:(selector "setParticleTexture:") ~typ:(id @-> returning void) x
+let setParticleZPosition x self = msg_send ~self ~cmd:(selector "setParticleZPosition:") ~typ:(double @-> returning void) x
+let setParticleZPositionRange x self = msg_send ~self ~cmd:(selector "setParticleZPositionRange:") ~typ:(double @-> returning void) x
+let setParticleZPositionSpeed x self = msg_send ~self ~cmd:(selector "setParticleZPositionSpeed:") ~typ:(double @-> returning void) x
+let setPhysicsWorld x self = msg_send ~self ~cmd:(selector "setPhysicsWorld:") ~typ:(id @-> returning void) x
+let setShader x self = msg_send ~self ~cmd:(selector "setShader:") ~typ:(id @-> returning void) x
+let setTargetNode x self = msg_send ~self ~cmd:(selector "setTargetNode:") ~typ:(id @-> returning void) x
+let setUsesPointSprites x self = msg_send ~self ~cmd:(selector "setUsesPointSprites:") ~typ:(bool @-> returning void) x
+let setValue x ~forAttributeNamed self = msg_send ~self ~cmd:(selector "setValue:forAttributeNamed:") ~typ:(id @-> id @-> returning void) x forAttributeNamed
+let setWantsNewParticles x self = msg_send ~self ~cmd:(selector "setWantsNewParticles:") ~typ:(bool @-> returning void) x
+let setXAcceleration x self = msg_send ~self ~cmd:(selector "setXAcceleration:") ~typ:(double @-> returning void) x
+let setYAcceleration x self = msg_send ~self ~cmd:(selector "setYAcceleration:") ~typ:(double @-> returning void) x
+let setZPosition x self = msg_send ~self ~cmd:(selector "setZPosition:") ~typ:(double @-> returning void) x
+let shader self = msg_send ~self ~cmd:(selector "shader") ~typ:(returning id)
+let subEmitterNode self = msg_send ~self ~cmd:(selector "subEmitterNode") ~typ:(returning id)
+let targetNode self = msg_send ~self ~cmd:(selector "targetNode") ~typ:(returning id)
+let usesPointSprites self = msg_send ~self ~cmd:(selector "usesPointSprites") ~typ:(returning bool)
+let valueForAttributeNamed x self = msg_send ~self ~cmd:(selector "valueForAttributeNamed:") ~typ:(id @-> returning id) x
+let wantsNewParticles self = msg_send ~self ~cmd:(selector "wantsNewParticles") ~typ:(returning bool)
+let xAcceleration self = msg_send ~self ~cmd:(selector "xAcceleration") ~typ:(returning double)
+let yAcceleration self = msg_send ~self ~cmd:(selector "yAcceleration") ~typ:(returning double)
