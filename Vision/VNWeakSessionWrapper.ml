@@ -4,10 +4,15 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreVideo
+open CoreVideo_globals
 
-let _class_ = get_class "VNWeakSessionWrapper"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnweaksessionwrapper?language=objc}VNWeakSessionWrapper} *)
 
-let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let initWithSession x self = msg_send ~self ~cmd:(selector "initWithSession:") ~typ:(id @-> returning (id)) x
-let sessionAndReturnError x self = msg_send ~self ~cmd:(selector "sessionAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
+let initWithSession x self = msg_send ~self ~cmd:(selector "initWithSession:") ~typ:(id @-> returning id) x
+let sessionAndReturnError x self = msg_send ~self ~cmd:(selector "sessionAndReturnError:") ~typ:((ptr id) @-> returning id) x

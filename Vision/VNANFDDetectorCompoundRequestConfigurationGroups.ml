@@ -4,15 +4,16 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreVideo
+open CoreVideo_globals
 
-let _class_ = get_class "VNANFDDetectorCompoundRequestConfigurationGroups"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnanfddetectorcompoundrequestconfigurationgroups?language=objc}VNANFDDetectorCompoundRequestConfigurationGroups} *)
 
-module C = struct
-  let createCompoundConfigurationHashKeyForRequest x ~compoundRequestRevision self = msg_send ~self ~cmd:(selector "createCompoundConfigurationHashKeyForRequest:compoundRequestRevision:") ~typ:(id @-> ullong @-> returning (id)) x (ULLong.of_int compoundRequestRevision)
-end
-
-let allConfigurations self = msg_send ~self ~cmd:(selector "allConfigurations") ~typ:(returning (id))
-let configurationForRequest x self = msg_send ~self ~cmd:(selector "configurationForRequest:") ~typ:(id @-> returning (id)) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning (ullong))
-let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
+let allConfigurations self = msg_send ~self ~cmd:(selector "allConfigurations") ~typ:(returning id)
+let configurationForRequest x self = msg_send ~self ~cmd:(selector "configurationForRequest:") ~typ:(id @-> returning id) x
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

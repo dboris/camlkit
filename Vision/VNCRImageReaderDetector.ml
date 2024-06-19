@@ -4,22 +4,18 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreVideo
+open CoreVideo_globals
 
-let _class_ = get_class "VNCRImageReaderDetector"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vncrimagereaderdetector?language=objc}VNCRImageReaderDetector} *)
 
-module C = struct
-  let computeStagesToBindForConfigurationOptions x self = msg_send ~self ~cmd:(selector "computeStagesToBindForConfigurationOptions:") ~typ:(id @-> returning (id)) x
-  let configurationOptionKeysForDetectorKey self = msg_send ~self ~cmd:(selector "configurationOptionKeysForDetectorKey") ~typ:(returning (id))
-  let imageReaderRecognitionOptionsForProcessOptions x self = msg_send ~self ~cmd:(selector "imageReaderRecognitionOptionsForProcessOptions:") ~typ:(id @-> returning (id)) x
-  let supportedComputeStageDevicesForOptions x ~error self = msg_send ~self ~cmd:(selector "supportedComputeStageDevicesForOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
-  let supportedLanguagesForProcessOptions x ~error self = msg_send ~self ~cmd:(selector "supportedLanguagesForProcessOptions:error:") ~typ:(id @-> ptr (id) @-> returning (id)) x error
-end
-
-let cachedImageReader self = msg_send ~self ~cmd:(selector "cachedImageReader") ~typ:(returning (id))
-let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
-let createRegionOfInterestCrop x ~options ~qosClass ~warningRecorder ~pixelBuffer ~error ~progressHandler self = msg_send ~self ~cmd:(selector "createRegionOfInterestCrop:options:qosClass:warningRecorder:pixelBuffer:error:progressHandler:") ~typ:(CGRect.t @-> id @-> uint @-> id @-> ptr (ptr void) @-> ptr (id) @-> ptr void @-> returning (bool)) x options qosClass warningRecorder pixelBuffer error progressHandler
-let isCRImageReaderViableAfterError x self = msg_send ~self ~cmd:(selector "isCRImageReaderViableAfterError:") ~typ:(id @-> returning (bool)) x
-let newImageReaderAndReturnError x self = msg_send ~self ~cmd:(selector "newImageReaderAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
-let processRegionOfInterest x ~croppedPixelBuffer ~options ~qosClass ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processRegionOfInterest:croppedPixelBuffer:options:qosClass:warningRecorder:error:progressHandler:") ~typ:(CGRect.t @-> ptr void @-> id @-> uint @-> id @-> ptr (id) @-> ptr void @-> returning (id)) x croppedPixelBuffer options qosClass warningRecorder error progressHandler
-let setCachedImageReader x self = msg_send ~self ~cmd:(selector "setCachedImageReader:") ~typ:(id @-> returning (void)) x
+let cachedImageReader self = msg_send ~self ~cmd:(selector "cachedImageReader") ~typ:(returning id)
+let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
+let isCRImageReaderViableAfterError x self = msg_send ~self ~cmd:(selector "isCRImageReaderViableAfterError:") ~typ:(id @-> returning bool) x
+let newImageReaderAndReturnError x self = msg_send ~self ~cmd:(selector "newImageReaderAndReturnError:") ~typ:((ptr id) @-> returning id) x
+let processWithOptions x ~regionOfInterest ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processWithOptions:regionOfInterest:warningRecorder:error:progressHandler:") ~typ:(id @-> CGRect.t @-> id @-> (ptr id) @-> (ptr void) @-> returning id) x regionOfInterest warningRecorder error progressHandler
+let setCachedImageReader x self = msg_send ~self ~cmd:(selector "setCachedImageReader:") ~typ:(id @-> returning void) x

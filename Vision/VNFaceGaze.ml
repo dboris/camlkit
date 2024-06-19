@@ -4,28 +4,25 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreVideo
+open CoreVideo_globals
 
-let _class_ = get_class "VNFaceGaze"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfacegaze?language=objc}VNFaceGaze} *)
 
-module C = struct
-  let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
-end
-
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning (llong))
-let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
-let faceObservationUUID self = msg_send ~self ~cmd:(selector "faceObservationUUID") ~typ:(returning (id))
-let gazeMask self = msg_send ~self ~cmd:(selector "gazeMask") ~typ:(returning (id))
-let hasLocation self = msg_send ~self ~cmd:(selector "hasLocation") ~typ:(returning (bool))
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let horizontalAngle self = msg_send ~self ~cmd:(selector "horizontalAngle") ~typ:(returning (float))
-let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let initWithFaceObservationUUID x ~direction ~location ~bounds ~horizontalAngle ~lookedAtFaceObservationUUID ~gazeMask ~originatingRequestSpecifier self = msg_send ~self ~cmd:(selector "initWithFaceObservationUUID:direction:location:bounds:horizontalAngle:lookedAtFaceObservationUUID:gazeMask:originatingRequestSpecifier:") ~typ:(id @-> llong @-> CGPoint.t @-> CGRect.t @-> float @-> id @-> id @-> id @-> returning (id)) x (LLong.of_int direction) location bounds horizontalAngle lookedAtFaceObservationUUID gazeMask originatingRequestSpecifier
-let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let location self = msg_send_stret ~self ~cmd:(selector "location") ~typ:(returning (CGPoint.t)) ~return_type:CGPoint.t
-let locationBounds self = msg_send_stret ~self ~cmd:(selector "locationBounds") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let locationInTopLeftOrigin x ~orientation self = msg_send_stret ~self ~cmd:(selector "locationInTopLeftOrigin:orientation:") ~typ:(bool @-> uint @-> returning (CGPoint.t)) ~return_type:CGPoint.t x orientation
-let lookedAtFaceObservationUUID self = msg_send ~self ~cmd:(selector "lookedAtFaceObservationUUID") ~typ:(returning (id))
-let originatingRequestSpecifier self = msg_send ~self ~cmd:(selector "originatingRequestSpecifier") ~typ:(returning (id))
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
+let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning llong)
+let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let faceObservationUUID self = msg_send ~self ~cmd:(selector "faceObservationUUID") ~typ:(returning id)
+let gazeMask self = msg_send ~self ~cmd:(selector "gazeMask") ~typ:(returning id)
+let hasLocation self = msg_send ~self ~cmd:(selector "hasLocation") ~typ:(returning bool)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
+let location self = msg_send ~self ~cmd:(selector "location") ~typ:(returning CGPoint.t)
+let lookedAtFaceObservationUUID self = msg_send ~self ~cmd:(selector "lookedAtFaceObservationUUID") ~typ:(returning id)
+let originatingRequestSpecifier self = msg_send ~self ~cmd:(selector "originatingRequestSpecifier") ~typ:(returning id)

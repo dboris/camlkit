@@ -4,11 +4,17 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
+open CoreVideo
+open CoreVideo_globals
 
-let _class_ = get_class "VNStatefulRequestConfiguration"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnstatefulrequestconfiguration?language=objc}VNStatefulRequestConfiguration} *)
 
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let initWithRequestClass x self = msg_send ~self ~cmd:(selector "initWithRequestClass:") ~typ:(_Class @-> returning (id)) x
-let requestUUID self = msg_send ~self ~cmd:(selector "requestUUID") ~typ:(returning (id))
-let setFrameAnalysisSpacing x self = msg_send ~self ~cmd:(selector "setFrameAnalysisSpacing:") ~typ:(ptr void @-> returning (void)) x
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let frameAnalysisSpacing self = msg_send ~self ~cmd:(selector "frameAnalysisSpacing") ~typ:(returning void)
+let initWithRequestClass x self = msg_send ~self ~cmd:(selector "initWithRequestClass:") ~typ:(_Class @-> returning id) x
+let requestUUID self = msg_send ~self ~cmd:(selector "requestUUID") ~typ:(returning id)
+let setFrameAnalysisSpacing x self = msg_send ~self ~cmd:(selector "setFrameAnalysisSpacing:") ~typ:(void @-> returning void) x
