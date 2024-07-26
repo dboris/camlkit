@@ -1,0 +1,6 @@
+(library
+ (name dispatch)
+ (public_name camlkit-base.dispatch)
+ (libraries camlkit-base.runtime))
+
+(documentation (package camlkit-base))
