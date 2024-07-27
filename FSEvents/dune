@@ -1,0 +1,6 @@
+(library
+ (name fsevents)
+ (public_name camlkit-base.FSEvents)
+ (libraries camlkit-base.runtime camlkit-base.CoreFoundation))
+
+(documentation (package camlkit-base))
