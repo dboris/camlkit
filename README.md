@@ -263,3 +263,5 @@ that the API is subject to change.
 
 For iOS and Mac Catalyst development you will need to set up a cross-toolchain
 from [opam-cross-ios](https://github.com/ocaml-cross/opam-cross-ios).
+
+Framework bindings can be generated using tools from [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
