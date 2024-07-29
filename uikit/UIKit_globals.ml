@@ -1,9 +1,13 @@
 (* auto-generated, do not modify *)
 
-open CoreGraphics
-open Foundation
 open Runtime
 open Objc
+
+[@@@ocaml.warning "-33"]
+open CoreFoundation
+open CoreFoundation_globals
+open CoreGraphics
+open CoreGraphics_globals
 
 let _NSAttachmentAttributeName = new_string "NSAttachmentAttributeName"
 let _NSBackgroundColorAttributeName = new_string "NSBackgroundColorAttributeName"
@@ -2141,7 +2145,7 @@ let _UIAccessibilityIsVoiceOverRunning = Foreign.foreign "UIAccessibilityIsVoice
 let _UIAccessibilityPostNotification = Foreign.foreign "UIAccessibilityPostNotification" (uint @-> id @-> returning void)
 let _UIAccessibilityPrefersCrossFadeTransitions = Foreign.foreign "UIAccessibilityPrefersCrossFadeTransitions" (void @-> returning bool)
 let _UIAccessibilityRegisterGestureConflictWithZoom = Foreign.foreign "UIAccessibilityRegisterGestureConflictWithZoom" (void @-> returning void)
-let _UIAccessibilityRequestGuidedAccessSession = Foreign.foreign "UIAccessibilityRequestGuidedAccessSession" (bool @-> (ptr void) @-> bool @-> returning void)
+let _UIAccessibilityRequestGuidedAccessSession = Foreign.foreign "UIAccessibilityRequestGuidedAccessSession" (bool @-> Foreign.funptr (bool @-> returning void) @-> returning void)
 let _UIAccessibilityShouldDifferentiateWithoutColor = Foreign.foreign "UIAccessibilityShouldDifferentiateWithoutColor" (void @-> returning bool)
 let _UIAccessibilityZoomFocusChanged = Foreign.foreign "UIAccessibilityZoomFocusChanged" (int @-> CGRect.t @-> id @-> returning void)
 let _UIApplicationMain = Foreign.foreign "UIApplicationMain" (int @-> (ptr string) @-> id @-> id @-> returning int)
@@ -2178,7 +2182,7 @@ let _UIGraphicsPopContext = Foreign.foreign "UIGraphicsPopContext" (void @-> ret
 let _UIGraphicsPushContext = Foreign.foreign "UIGraphicsPushContext" ((ptr CGContext.t) @-> returning void)
 let _UIGraphicsSetPDFContextDestinationForRect = Foreign.foreign "UIGraphicsSetPDFContextDestinationForRect" (id @-> CGRect.t @-> returning void)
 let _UIGraphicsSetPDFContextURLForRect = Foreign.foreign "UIGraphicsSetPDFContextURLForRect" (id @-> CGRect.t @-> returning void)
-let _UIGuidedAccessConfigureAccessibilityFeatures = Foreign.foreign "UIGuidedAccessConfigureAccessibilityFeatures" (int @-> bool @-> (ptr void) @-> bool @-> id @-> returning void)
+let _UIGuidedAccessConfigureAccessibilityFeatures = Foreign.foreign "UIGuidedAccessConfigureAccessibilityFeatures" (int @-> bool @-> Foreign.funptr (bool @-> id @-> returning void) @-> returning void)
 let _UIGuidedAccessRestrictionStateForIdentifier = Foreign.foreign "UIGuidedAccessRestrictionStateForIdentifier" (id @-> returning int)
 let _UIImageJPEGRepresentation = Foreign.foreign "UIImageJPEGRepresentation" (id @-> double @-> returning id)
 let _UIImagePNGRepresentation = Foreign.foreign "UIImagePNGRepresentation" (id @-> returning id)
