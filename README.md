@@ -17,7 +17,10 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (iOS and macOS)
 * Core{Animation | AutoLayout | Foundation | Graphics | Image | Text | Video}
   (iOS and macOS)
-
+* [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc)
+  (macOS and Mac Catalyst)
+* [Dispatch (aka Grand Central Dispatch)](https://developer.apple.com/documentation/dispatch?language=objc)
+  (iOS and macOS)
 
 ## Features
 
@@ -184,10 +187,15 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   function, which ensures the object will be sent the `release` message when
   the OCaml reference to it is garbage collected.
 
-* Using objects from frameworks when bindings are not available
+* Using frameworks when bindings are not available
 
-  The Objective-C runtime provides functions which enable you to get a hold
-  of an arbitrary class by name and send it an arbitrary message, eg:
+  When bindings for the framework you need are not available, you have the
+  option to [generate the bindings yourself](https://discuss.ocaml.org/t/ann-camlkit-macos-ios-gnustep-toolkit-for-ocaml/14722/10), using the tools from [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
+  Consider submitting those bindings to this project by opening a pull request.
+
+  Another option is to use the lower-level functionality of the Objective-C
+  runtime. The runtime functions enable you to get a hold of an arbitrary class
+  by name and send it an arbitrary message, eg:
 
   ```OCaml
   let a_class = Objc.get_class "AClassThatINeed" in
