@@ -1,18 +1,17 @@
 (* auto-generated, do not modify *)
 
-open CoreFoundation
 open Runtime
 open Objc
+
+open CoreFoundation
 
 module FSEventStream = struct
   let t : [`FSEventStream] structure typ = structure "FSEventStream"
 end
-module ConstFSEventStream = struct
-  let t : [`ConstFSEventStream] structure typ = structure "ConstFSEventStream"
-end
 module ConstFSEventStreamRef = struct
   let t = (ptr FSEventStream.t)
 end
+
 module FSEventStreamRef = struct
   let t = (ptr FSEventStream.t)
 end
