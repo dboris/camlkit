@@ -1,5 +1,3 @@
-(* auto-generated, do not modify *)
-
 open Runtime
 open Objc
 
@@ -17,9 +15,15 @@ module Timespec = struct
 end
 
 let dispatch_queue_attr_s = void
-let dispatch_data_t = !@ (Foreign.foreign_value "dispatch_data_t" int)
+let dispatch_queue_attr_t = ptr dispatch_queue_attr_s
+
+let _DISPATCH_QUEUE_SERIAL = null
+(* let _DISPATCH_QUEUE_CONCURRENT = !@ (Foreign.foreign_value "Camlkit_DISPATCH_QUEUE_CONCURRENT" dispatch_queue_attr_t) *)
+
+(* let dispatch_data_t = !@ (Foreign.foreign_value "dispatch_data_t" int)
 let dispatch_group_t = !@ (Foreign.foreign_value "dispatch_group_t" int)
-let dispatch_io_t = !@ (Foreign.foreign_value "dispatch_io_t" int)
+let dispatch_io_t = !@ (Foreign.foreign_value "dispatch_io_t" int) *)
+
 let _DISPATCH_API_VERSION = 20181008
 let _DISPATCH_APPLY_AUTO_AVAILABLE = 1
 let _DISPATCH_AUTORELEASE_FREQUENCY_INHERIT = 0
@@ -59,9 +63,9 @@ let _NSEC_PER_MSEC = 1000000
 let _NSEC_PER_SEC = 1000000000
 let _NSEC_PER_USEC = 1000
 let _USEC_PER_SEC = 1000000
-let _API_AVAILABLE = Foreign.foreign "API_AVAILABLE" ((ptr (ptr void)) @-> (ptr (ptr void)) @-> (ptr (ptr void)) @-> (ptr (ptr void)) @-> returning int)
+(* let _API_AVAILABLE = Foreign.foreign "API_AVAILABLE" ((ptr (ptr void)) @-> (ptr (ptr void)) @-> (ptr (ptr void)) @-> (ptr (ptr void)) @-> returning int)
 let _API_DEPRECATED = Foreign.foreign "API_DEPRECATED" (void @-> returning int)
-let _DISPATCH_DECL = Foreign.foreign "DISPATCH_DECL" (void @-> returning int)
+let _DISPATCH_DECL = Foreign.foreign "DISPATCH_DECL" (void @-> returning int) *)
 let dispatch_activate = Foreign.foreign "dispatch_activate" (int @-> returning void)
 let dispatch_after = Foreign.foreign "dispatch_after" (int @-> (ptr int) @-> Foreign.funptr (void @-> returning void) @-> returning void)
 let dispatch_after_f = Foreign.foreign "dispatch_after_f" (int @-> (ptr int) @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
@@ -87,7 +91,7 @@ let dispatch_block_notify = Foreign.foreign "dispatch_block_notify" (int @-> int
 let dispatch_block_perform = Foreign.foreign "dispatch_block_perform" (int @-> int @-> returning void)
 let dispatch_block_testcancel = Foreign.foreign "dispatch_block_testcancel" (int @-> returning int)
 let dispatch_block_wait = Foreign.foreign "dispatch_block_wait" (int @-> int @-> returning int)
-let dispatch_cancel = Foreign.foreign "dispatch_cancel" ((ptr void) @-> returning void)
+(* let dispatch_cancel = Foreign.foreign "dispatch_cancel" ((ptr void) @-> returning void) *)
 let dispatch_data_apply = Foreign.foreign "dispatch_data_apply" (int @-> int @-> returning int)
 let dispatch_data_get_size = Foreign.foreign "dispatch_data_get_size" (int @-> returning int)
 let dispatch_debug = Foreign.foreign "dispatch_debug" (int @-> string @-> returning void)
@@ -104,12 +108,12 @@ let dispatch_group_leave = Foreign.foreign "dispatch_group_leave" (int @-> retur
 let dispatch_group_notify = Foreign.foreign "dispatch_group_notify" (int @-> int @-> int @-> returning void)
 let dispatch_group_notify_f = Foreign.foreign "dispatch_group_notify_f" (int @-> int @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
 let dispatch_group_wait = Foreign.foreign "dispatch_group_wait" (int @-> int @-> returning llong)
-let dispatch_introspection_hook_queue_callout_begin = Foreign.foreign "dispatch_introspection_hook_queue_callout_begin" (int @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
+(* let dispatch_introspection_hook_queue_callout_begin = Foreign.foreign "dispatch_introspection_hook_queue_callout_begin" (int @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
 let dispatch_introspection_hook_queue_callout_end = Foreign.foreign "dispatch_introspection_hook_queue_callout_end" (int @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
 let dispatch_introspection_hook_queue_destroy = Foreign.foreign "dispatch_introspection_hook_queue_destroy" (int @-> returning void)
 let dispatch_introspection_hook_queue_item_complete = Foreign.foreign "dispatch_introspection_hook_queue_item_complete" (int @-> returning void)
 let dispatch_introspection_hook_queue_item_dequeue = Foreign.foreign "dispatch_introspection_hook_queue_item_dequeue" (int @-> int @-> returning void)
-let dispatch_introspection_hook_queue_item_enqueue = Foreign.foreign "dispatch_introspection_hook_queue_item_enqueue" (int @-> int @-> returning void)
+let dispatch_introspection_hook_queue_item_enqueue = Foreign.foreign "dispatch_introspection_hook_queue_item_enqueue" (int @-> int @-> returning void) *)
 let dispatch_io_barrier = Foreign.foreign "dispatch_io_barrier" (int @-> int @-> returning void)
 let dispatch_io_close = Foreign.foreign "dispatch_io_close" (int @-> ullong @-> returning void)
 let dispatch_io_get_descriptor = Foreign.foreign "dispatch_io_get_descriptor" (int @-> returning int)
@@ -119,14 +123,14 @@ let dispatch_io_set_interval = Foreign.foreign "dispatch_io_set_interval" (int @
 let dispatch_io_set_low_water = Foreign.foreign "dispatch_io_set_low_water" (int @-> ullong @-> returning void)
 let dispatch_io_write = Foreign.foreign "dispatch_io_write" (int @-> int @-> int @-> int @-> Foreign.funptr (bool @-> int @-> int @-> returning void) @-> returning void)
 let dispatch_main = Foreign.foreign "dispatch_main" (void @-> returning void)
-let dispatch_notify = Foreign.foreign "dispatch_notify" ((ptr void) @-> int @-> Foreign.funptr (void @-> returning void) @-> returning void)
+(* let dispatch_notify = Foreign.foreign "dispatch_notify" ((ptr void) @-> int @-> Foreign.funptr (void @-> returning void) @-> returning void) *)
 let dispatch_once = Foreign.foreign "dispatch_once" ((ptr llong) @-> Foreign.funptr (void @-> returning void) @-> returning void)
 let dispatch_once_f = Foreign.foreign "dispatch_once_f" ((ptr llong) @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
-let dispatch_queue_attr_make_initially_inactive = Foreign.foreign "dispatch_queue_attr_make_initially_inactive" ((ptr dispatch_queue_attr_s) @-> returning (ptr dispatch_queue_attr_s))
-let dispatch_queue_attr_make_with_autorelease_frequency = Foreign.foreign "dispatch_queue_attr_make_with_autorelease_frequency" ((ptr dispatch_queue_attr_s) @-> ullong @-> returning (ptr dispatch_queue_attr_s))
-let dispatch_queue_attr_make_with_qos_class = Foreign.foreign "dispatch_queue_attr_make_with_qos_class" ((ptr dispatch_queue_attr_s) @-> int @-> int @-> returning (ptr dispatch_queue_attr_s))
-let dispatch_queue_create = Foreign.foreign "dispatch_queue_create" (string @-> (ptr dispatch_queue_attr_s) @-> returning (ptr int))
-let dispatch_queue_create_with_target = Foreign.foreign "dispatch_queue_create_with_target" (string @-> (ptr dispatch_queue_attr_s) @-> (ptr int) @-> returning (ptr int))
+let dispatch_queue_attr_make_initially_inactive = Foreign.foreign "dispatch_queue_attr_make_initially_inactive" (dispatch_queue_attr_t @-> returning dispatch_queue_attr_t)
+let dispatch_queue_attr_make_with_autorelease_frequency = Foreign.foreign "dispatch_queue_attr_make_with_autorelease_frequency" (dispatch_queue_attr_t @-> ullong @-> returning dispatch_queue_attr_t)
+let dispatch_queue_attr_make_with_qos_class = Foreign.foreign "dispatch_queue_attr_make_with_qos_class" (dispatch_queue_attr_t @-> int @-> int @-> returning dispatch_queue_attr_t)
+let dispatch_queue_create = Foreign.foreign "dispatch_queue_create" (string @-> dispatch_queue_attr_t @-> returning (ptr int))
+let dispatch_queue_create_with_target = Foreign.foreign "dispatch_queue_create_with_target" (string @-> dispatch_queue_attr_t @-> (ptr int) @-> returning (ptr int))
 let dispatch_queue_get_label = Foreign.foreign "dispatch_queue_get_label" ((ptr int) @-> returning string)
 let dispatch_queue_get_qos_class = Foreign.foreign "dispatch_queue_get_qos_class" ((ptr int) @-> (ptr int) @-> returning int)
 let dispatch_queue_get_specific = Foreign.foreign "dispatch_queue_get_specific" ((ptr int) @-> (ptr void) @-> returning (ptr void))
@@ -157,11 +161,11 @@ let dispatch_source_set_registration_handler_f = Foreign.foreign "dispatch_sourc
 let dispatch_source_set_timer = Foreign.foreign "dispatch_source_set_timer" ((ptr int) @-> int @-> ullong @-> ullong @-> returning void)
 let dispatch_source_testcancel = Foreign.foreign "dispatch_source_testcancel" ((ptr int) @-> returning llong)
 let dispatch_suspend = Foreign.foreign "dispatch_suspend" (int @-> returning void)
-let dispatch_sync = Foreign.foreign "dispatch_sync" ((ptr int) @-> Foreign.funptr (void @-> returning void) @-> returning void)
+let dispatch_sync = Foreign.foreign "dispatch_sync" ((ptr int) @-> (ptr void) @-> returning void)
 let dispatch_sync_f = Foreign.foreign "dispatch_sync_f" ((ptr int) @-> (ptr void) @-> Foreign.funptr ((ptr void) @-> returning void) @-> returning void)
-let dispatch_testcancel = Foreign.foreign "dispatch_testcancel" ((ptr void) @-> returning llong)
+(* let dispatch_testcancel = Foreign.foreign "dispatch_testcancel" ((ptr void) @-> returning llong) *)
 let dispatch_time = Foreign.foreign "dispatch_time" (ullong @-> llong @-> returning ullong)
-let dispatch_wait = Foreign.foreign "dispatch_wait" ((ptr void) @-> int @-> returning llong)
+(* let dispatch_wait = Foreign.foreign "dispatch_wait" ((ptr void) @-> int @-> returning llong) *)
 let dispatch_walltime = Foreign.foreign "dispatch_walltime" ((ptr Timespec.t) @-> llong @-> returning ullong)
 let dispatch_workloop_create = Foreign.foreign "dispatch_workloop_create" (string @-> returning (ptr int))
 let dispatch_workloop_create_inactive = Foreign.foreign "dispatch_workloop_create_inactive" (string @-> returning (ptr int))
