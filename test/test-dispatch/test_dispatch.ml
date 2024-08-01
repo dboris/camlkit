@@ -3,31 +3,28 @@ open Dispatch.Dispatch_globals
 
 module A = Alcotest
 
+let concur_queue = dispatch_queue_create "TestQueue1" _DISPATCH_QUEUE_CONCURRENT
+let serial_queue = dispatch_queue_create "TestQueue2" _DISPATCH_QUEUE_SERIAL
+
 let dispatch_queue_concurrent () =
-  let queue = dispatch_queue_create "TestQueue" _DISPATCH_QUEUE_CONCURRENT
-  and handler_called = ref false
-  in
-  dispatch_sync_f queue null (fun _ctx -> handler_called := true);
+  let handler_called = ref false in
+  dispatch_sync_f concur_queue null (fun _ctx -> handler_called := true);
   A.check A.bool "dispatched function was called" true !handler_called
 ;;
 
 let dispatch_queue_concurrent_with_block () =
-  let queue = dispatch_queue_create "TestQueue" _DISPATCH_QUEUE_CONCURRENT
-  and handler_called = ref false
-  in
+  let handler_called = ref false in
   let handler_block =
     Block.make ~args: Objc_t.[] ~return: Objc_t.void
       (fun _self -> handler_called := true)
   in
-  dispatch_sync queue handler_block;
+  dispatch_sync concur_queue handler_block;
   A.check A.bool "dispatched block was called" true !handler_called
 ;;
 
 let dispatch_queue_serial () =
-  let queue = dispatch_queue_create "TestQueue" _DISPATCH_QUEUE_SERIAL
-  and handler_called = ref false
-  in
-  dispatch_sync_f queue null (fun _ctx -> handler_called := true);
+  let handler_called = ref false in
+  dispatch_sync_f serial_queue null (fun _ctx -> handler_called := true);
   A.check A.bool "dispatched function was called" true !handler_called
 ;;
 
