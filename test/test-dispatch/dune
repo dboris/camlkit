@@ -1,0 +1,8 @@
+(test
+ (name test_dispatch)
+ (package camlkit-base)
+ (build_if (= %{context_name} "default"))
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.dispatch
+  alcotest))
