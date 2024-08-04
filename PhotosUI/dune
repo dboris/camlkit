@@ -13,3 +13,5 @@
   camlkit-base.CoreFoundation
   camlkit-base.CoreGraphics
   camlkit-gui.uikit))
+
+(documentation (package camlkit-gui))

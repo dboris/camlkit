@@ -4,3 +4,5 @@
  (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework CoreImage")
  (libraries camlkit-base.foundation))
+
+(documentation (package camlkit-base))

@@ -5,6 +5,8 @@
 ;  (foreign_stubs (language c) (names CoreFoundation_inlines))
  (libraries camlkit-base.runtime))
 
+(documentation (package camlkit-base))
+
 ; (rule
 ;  (enabled_if (and
 ;   (<> %{context_name} default.ios)

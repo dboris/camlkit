@@ -1,9 +1,11 @@
 (library
  (name CoreVideo)
- (public_name camlkit-base.CoreVideo)
+ (public_name camlkit-gui.CoreVideo)
  (flags :standard -ccopt "-framework CoreVideo")
  (libraries
   camlkit-base.runtime
-  camlkit-base.CoreGraphics
   camlkit-base.CoreFoundation
-  camlkit-base.CoreAnimation))
+  camlkit-gui.CoreGraphics
+  camlkit-gui.CoreAnimation))
+
+(documentation (package camlkit-gui))

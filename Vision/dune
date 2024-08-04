@@ -6,5 +6,7 @@
  (libraries
   camlkit-base.foundation
   camlkit-base.CoreFoundation
-  camlkit-base.CoreGraphics
-  camlkit-base.CoreVideo))
+  camlkit-gui.CoreGraphics
+  camlkit-gui.CoreVideo))
+
+(documentation (package camlkit-gui))

@@ -1,5 +1,7 @@
 (library
  (name CoreText)
- (public_name camlkit-base.CoreText)
+ (public_name camlkit-gui.CoreText)
  (flags :standard -ccopt "-framework CoreText")
  (libraries camlkit-base.runtime CoreGraphics CoreFoundation))
+
+(documentation (package camlkit-gui))

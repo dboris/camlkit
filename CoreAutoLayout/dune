@@ -1,7 +1,9 @@
 (library
  (name CoreAutoLayout)
- (public_name camlkit-base.CoreAutoLayout)
+ (public_name camlkit-gui.CoreAutoLayout)
  (libraries
   camlkit-base.runtime
   camlkit-base.foundation
-  camlkit-base.CoreGraphics))
+  camlkit-gui.CoreGraphics))
+
+(documentation (package camlkit-gui))

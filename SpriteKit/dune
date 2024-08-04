@@ -1,9 +1,11 @@
 (library
  (name SpriteKit)
- (public_name camlkit-base.SpriteKit)
+ (public_name camlkit-gui.SpriteKit)
  (flags :standard -ccopt "-framework SpriteKit")
  (libraries
   camlkit-base.runtime
-  camlkit-base.CoreGraphics
   camlkit-base.CoreFoundation
-  camlkit-base.CoreText))
+  camlkit-gui.CoreGraphics
+  camlkit-gui.CoreText))
+
+(documentation (package camlkit-gui))
