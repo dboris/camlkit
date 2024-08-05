@@ -489,4 +489,7 @@ let default_uncaught_exception_handler ex =
   raise @@ NSException (to_string name, to_string reason)
 
 let () =
-  set_uncaught_exception_handler default_uncaught_exception_handler
+  match Sys.backend_type with
+  | Native ->
+    set_uncaught_exception_handler default_uncaught_exception_handler
+  | _ -> ()
