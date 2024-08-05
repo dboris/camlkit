@@ -43,7 +43,7 @@ module LargeStruct = struct
     p
 end
 
-let test_class = _class_ "TestClass" ~methods:
+let test_class = Class.define "TestClass" ~methods:
   [ method_spec
     ~cmd: (selector "getSmallStruct")
     ~imp: (fun _ _ -> SmallStruct.make ~x: 5. ~y: 22.)

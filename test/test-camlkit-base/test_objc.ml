@@ -36,7 +36,7 @@ let test_added_method x () =
   A.check A.int "x was incremented" y (x + 1)
 
 let test_define_class () =
-  let c = Def._class_ "MyClass1" in
+  let c = Class.define "MyClass1" in
   let defined = not (is_null c) in
   A.check A.bool "class ptr not null" defined true
 
@@ -56,7 +56,7 @@ let test_define_class_with_methods () =
   let methods = [method_spec ~cmd ~typ ~imp ~enc]
   and x = 5
   in
-  let c = _class_ name ~methods in
+  let c = Class.define name ~methods in
   let defined = not (is_null c)
   and y = Objc.msg_send ~self: (_new_ c) ~cmd ~typ x
   in
@@ -81,7 +81,7 @@ let test_gc_autorelease () =
   let name = "MyClass3"
   and methods = [dealloc_spec dealloc_called]
   in
-  let c = _class_ name ~methods in
+  let c = Class.define name ~methods in
   _new_ c |> gc_autorelease |> ignore;
   match Platform.current with
   | GNUStep ->
@@ -107,7 +107,7 @@ let test_add_protocol () =
       ~enc: Objc_t.(Encode._method_ ~args: [id] id)
   ]
   in
-  let c = _class_ ~protocols ~methods name
+  let c = Class.define ~protocols ~methods name
   and proto = List.hd protocols
   in
   A.check A.bool "class ptr not null" (is_null c) false;
@@ -127,7 +127,7 @@ let test_add_ivar ~name x () =
         ~enc: Objc_t.(Encode._method_ ~args: [int] void)
     ]
   in
-  let o = _new_ (_class_ name ~ivars ~methods) in
+  let o = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self:o
     ~cmd: (selector "setMyVar:")
     ~typ: (int @-> returning void)
@@ -153,7 +153,7 @@ let test_add_obj_ivar ~name x () =
         ~enc: Objc_t.(Encode._method_ ~args: [id] void)
     ]
   in
-  let o = _new_ (_class_ name ~ivars ~methods) in
+  let o = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self:o
     ~cmd: (selector "setMyVar:")
     ~typ: (id @-> returning void)
@@ -172,7 +172,7 @@ let test_kvc ~class_name x () =
   let ivars =
     [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_t.(Encode.value id)]
   in
-  let obj = _new_ (_class_ class_name ~ivars) in
+  let obj = _new_ (Class.define class_name ~ivars) in
   obj |> set_value (new_string x) ~for_key: "myVar";
   let v = obj |> value_for_key "myVar" in
   A.check A.string "set value and get same value" x (NSString._UTF8String v)
@@ -211,7 +211,7 @@ let test_block () =
 let test_msg_send_super () =
   let actual = ref false in
   let class_a =
-    Define._class_ "ClassA"
+    Class.define "ClassA"
       ~methods:
         [ Define._method_
           ~cmd: (selector "someMethod")
@@ -221,7 +221,7 @@ let test_msg_send_super () =
         ]
   in
   let class_b =
-    Define._class_ "ClassB"
+    Class.define "ClassB"
       ~superclass: class_a
       ~methods:
         [ Define._method_

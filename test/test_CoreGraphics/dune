@@ -1,9 +1,9 @@
 (test
  (name test_CoreGraphics)
- (package camlkit-base)
+ (package camlkit-gui)
  (build_if (= %{context_name} "default"))
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation
-  camlkit-base.CoreGraphics
+  camlkit-gui.CoreGraphics
   alcotest))

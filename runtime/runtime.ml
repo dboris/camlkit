@@ -4,10 +4,10 @@ include Ctypes
 open Foreign
 
 module Platform = Platform
-module Ivar = C.Functions.Ivar
 module Protocol = C.Functions.Protocol
 module Inspect = Inspect
 module Objc_t = Objc_t
+module Define = Define
 
 module Sel = struct
   include C.Functions.Sel
@@ -19,15 +19,10 @@ module Sel = struct
     | _ -> (fun _ _ -> assert false)
 end
 
-module Method = struct
-  include C.Functions.Method
-
-  let invoke ~typ ~self m =
-    foreign "method_invoke" (id @-> _Method @-> typ) self m
-end
-
 module Class = struct
   include C.Functions.Class
+  open Define
+  module Objc = C.Functions.Objc
 
   let alignment_of_size size =
     let open Float in
@@ -63,6 +58,48 @@ module Class = struct
   (** Returns a Boolean value that indicates whether a class object is a metaclass. *)
   let is_meta_class =
     foreign "class_isMetaClass" (_Class @-> returning bool)
+  ;;
+
+  let define
+    ?(superclass = Objc.get_class "NSObject")
+    ?(protocols = [])
+    ?(ivars = [])
+    ?(methods = [])
+    ?(class_methods = [])
+    name
+  =
+    let self =
+      Objc.allocate_class ~superclass name in
+    assert (not (is_null self));
+
+    methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
+      match Platform.current with
+      | GNUStep ->
+        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+      | _ ->
+        assert (add_method ~self ~cmd ~typ ~imp ~enc));
+
+    protocols |> List.iter (fun proto ->
+      assert (not (is_null proto));
+      assert (add_protocol self proto));
+
+    ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
+      let size = Unsigned.Size_t.of_int (sizeof typ) in
+      assert (add_ivar ~self ~name ~size ~enc));
+
+      Objc.register_class self;
+
+    if (List.length class_methods > 0) then
+      begin
+        let metaclass = Objc.get_meta_class name in
+        assert (not (is_null metaclass));
+        class_methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
+          assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
+      end;
+
+    self
+  ;;
 end
 
 module Object = struct
@@ -98,7 +135,7 @@ module Object = struct
     Class.get_instance_variable
       ~self: (get_class self)
       ~name: ivar_name
-    |> Ivar.get_offset
+    |> C.Functions.Ivar.get_offset
     |> Ptrdiff.to_nativeint
     |> Nativeint.add (raw_address_of_ptr self)
     |> ptr_of_raw_address
@@ -187,19 +224,6 @@ module Objc = struct
           self cmd
       end
     | Arm64 -> msg_send ~self ~cmd ~typ
-  ;;
-
-  (** Creates a new class and metaclass.
-      extra_bytes: the number of bytes to allocate for indexed ivars at the end
-      of the class and metaclass objects. *)
-  let allocate_class
-    ?(extra_bytes = Unsigned.Size_t.of_int 0)
-    ~superclass
-    name
-  =
-    foreign "objc_allocateClassPair"
-      (_Class @-> string @-> size_t @-> returning _Class)
-      superclass name extra_bytes
   ;;
 end
 
@@ -315,70 +339,19 @@ module Block = struct
     make' f ~typ
 end
 
-module Def = struct
-  type 'a method_spec =
-    { cmd : selector_t
-    ; typ : 'a fn
-    ; imp : object_t -> selector_t -> 'a
-    ; enc : string
-    }
+module Method = struct
+  include C.Functions.Method
 
-  type method_spec' = MethodSpec : 'a method_spec -> method_spec'
+  let invoke ~typ ~self m =
+    foreign "method_invoke" (id @-> _Method @-> typ) self m
 
-  let method_spec ~cmd ~typ ~imp ~enc =
-    MethodSpec {cmd; typ; imp; enc}
-  ;;
+  let define = Define._method_
+end
 
-  type 'a ivar_spec =
-    { name : string
-    ; typ : 'a typ
-    ; enc : string
-    }
+module Ivar = struct
+  include C.Functions.Ivar
 
-  type ivar_spec' = IvarSpec : 'a ivar_spec -> ivar_spec'
-
-  let ivar_spec ~name ~typ ~enc = IvarSpec {name; typ; enc}
-
-  let _class_
-    ?(superclass = Objc.get_class "NSObject")
-    ?(protocols = [])
-    ?(ivars = [])
-    ?(methods = [])
-    ?(class_methods = [])
-    name
-  =
-    let self =
-      Objc.allocate_class ~superclass name in
-    assert (not (is_null self));
-
-    methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-      match Platform.current with
-      | GNUStep ->
-        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc)
-      | _ ->
-        assert (Class.add_method ~self ~cmd ~typ ~imp ~enc));
-
-    protocols |> List.iter (fun proto ->
-      assert (not (is_null proto));
-      assert (Class.add_protocol self proto));
-
-    ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
-      let size = Unsigned.Size_t.of_int (sizeof typ) in
-      assert (Class.add_ivar ~self ~name ~size ~enc));
-
-      Objc.register_class self;
-
-    if (List.length class_methods > 0) then
-      begin
-        let metaclass = Objc.get_meta_class name in
-        assert (not (is_null metaclass));
-        class_methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-          assert (Class.add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
-      end;
-
-    self
-  ;;
+  let define = Define.ivar
 end
 
 let get_property ~typ prop_name self =
@@ -393,6 +366,7 @@ let set_property ~typ prop_name value self =
 module Property = struct
   open Objc
   open Object
+  open Define
 
   let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
 
@@ -404,7 +378,7 @@ module Property = struct
     and imp self _cmd =
       !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
     in
-      Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+      method_spec ~cmd ~typ: (returning typ) ~imp ~enc
   ;;
 
   (** Setter for non-object values. *)
@@ -414,7 +388,7 @@ module Property = struct
     and imp self _cmd value =
       (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
     in
-    Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
   ;;
 
   (** Getter for object values. *)
@@ -428,7 +402,7 @@ module Property = struct
       in
         Object.get_ivar ~self ~ivar
     in
-    Def.method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
   ;;
 
   (** Setter for object values. *)
@@ -457,7 +431,7 @@ module Property = struct
       assert (not (is_null ivar));
       Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
     in
-    Def.method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
   ;;
 
   (* Accessors *)
@@ -484,23 +458,6 @@ module Property = struct
     [ obj_getter ~ivar_name ~typ ~enc
     ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
     ]
-  ;;
-end
-
-module Define = struct
-  include Def
-
-  let _method_ imp ~cmd ~args ~return =
-    let typ = Objc_t.method_typ ~args return
-    and enc = Objc_t.Encode._method_ ~args return
-    in
-    method_spec ~cmd ~typ ~imp ~enc
-  ;;
-
-  let ivar name typ =
-    let typ = Objc_t.(value_typ typ)
-    and enc = Objc_t.(Encode.value typ)
-    in ivar_spec ~name ~typ ~enc
   ;;
 end
 

@@ -32,7 +32,7 @@ module Appkit_AppDelegate = struct
       But it's an informal protocol, not required for the code to function.
     *)
 
-    let _class_ = _class_ D.class_name
+    let _class_ = Class.define D.class_name
       ~methods:
         [ _method_
           ~cmd: (selector "applicationWillFinishLaunching:")
@@ -106,7 +106,7 @@ module CamlProxy = struct
       ]
 
     let _class_ =
-      Def._class_ D.class_name ~superclass: NSProxy._class_
+      Class.define D.class_name ~superclass: NSProxy._class_
         ~methods ~class_methods ~ivars: D.ivars
   end
 end
@@ -199,7 +199,7 @@ module CamlObjectProxy = struct
       and ivars =
         [ ivar_spec ~name: ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ]
       in
-        _class_ D.class_name
+        Class.define D.class_name
           ~superclass: NSProxy._class_ ~ivars ~methods ~class_methods
   end
 end

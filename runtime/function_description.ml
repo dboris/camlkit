@@ -47,6 +47,17 @@ module Functions = struct
     let get_protocol_list =
       foreign "objc_copyProtocolList" (ptr uint @-> returning (ptr _Protocol))
 
+    (** Creates a new class and metaclass.
+        extra_bytes: the number of bytes to allocate for indexed ivars at the end
+        of the class and metaclass objects. *)
+    let allocate_class
+      ?(extra_bytes = Unsigned.Size_t.of_int 0)
+      ~superclass
+      name
+    =
+      foreign "objc_allocateClassPair"
+        (_Class @-> string @-> size_t @-> returning _Class)
+        superclass name extra_bytes
   end
 
   module Class = struct
