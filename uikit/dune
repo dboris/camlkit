@@ -11,3 +11,5 @@
  (libraries
   camlkit-base.foundation
   camlkit-base.CoreGraphics))
+
+(documentation (package camlkit-gui))

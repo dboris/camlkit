@@ -2,3 +2,5 @@
  (name appkit)
  (public_name camlkit-gui.appkit)
  (libraries camlkit-base.foundation))
+
+(documentation (package camlkit-gui))
