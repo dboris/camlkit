@@ -1,6 +1,0 @@
-(library
- (name foundation)
- (public_name camlkit-base.foundation)
- (libraries camlkit-base.runtime))
-
-(documentation (package camlkit-base))

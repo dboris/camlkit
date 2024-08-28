@@ -3,6 +3,6 @@
  (public_name camlkit-base.coreimage)
  (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework CoreImage")
- (libraries camlkit-base.foundation))
+ (libraries camlkit-base.Foundation))
 
 (documentation (package camlkit-base))

@@ -5,7 +5,7 @@
   (= %{context_name} simulator.ios)
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
- (libraries camlkit-base.foundation camlkit-gui.uikit))
+ (libraries camlkit-base.Foundation camlkit-gui.uikit))
 
 (subdir Demo.app
  (rule

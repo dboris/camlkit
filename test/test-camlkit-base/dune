@@ -2,4 +2,4 @@
  (names test_objc test_stret)
  (package camlkit-base)
  (build_if (= %{context_name} "default"))
- (libraries camlkit-base.foundation camlkit-base.runtime alcotest))
+ (libraries camlkit-base.Foundation camlkit-base.runtime alcotest))

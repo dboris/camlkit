@@ -3,7 +3,7 @@
  (public_name camlkit-gui.CoreAutoLayout)
  (libraries
   camlkit-base.runtime
-  camlkit-base.foundation
+  camlkit-base.Foundation
   camlkit-gui.CoreGraphics))
 
 (documentation (package camlkit-gui))

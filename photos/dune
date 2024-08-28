@@ -3,4 +3,4 @@
  (public_name camlkit-base.photos)
  (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework Photos")
- (libraries camlkit-base.foundation))
+ (libraries camlkit-base.Foundation))

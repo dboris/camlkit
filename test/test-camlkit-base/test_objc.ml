@@ -1,3 +1,4 @@
+open CoreFoundation
 open Foundation
 open Runtime
 open Objc
@@ -186,7 +187,7 @@ let test_string_of_selector () =
 ;;
 
 let test_block () =
-  let ar = alloc NSMutableArray._class_ |> NSObject.init
+  let ar = alloc NSMutableArrayClass.self |> NSObject.init
   and expected = ["0: Hello"; "1: World"]
   and actual = ref []
   in
@@ -233,7 +234,7 @@ let test_msg_send_super () =
         ]
   and expected = true
   in
-  let self = alloc class_b |> NSObject.C.init in
+  let self = alloc class_b |> NSObject.init in
   self |> R.msg_send (selector "someMethod") ~args: Objc_t.[] ~return: Objc_t.void;
   A.check A.bool "same bool" expected !actual
 ;;

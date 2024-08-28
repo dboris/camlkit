@@ -1,0 +1,9 @@
+(library
+ (name foundation)
+ (public_name camlkit-base.Foundation)
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.CoreFoundation
+  camlkit-gui.CoreGraphics))
+
+(documentation (package camlkit-base))

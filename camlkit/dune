@@ -1,6 +1,7 @@
 (library
  (name camlkit)
  (public_name camlkit.camlkit)
- (libraries foundation))
-
+ (libraries
+  camlkit-base.Foundation
+  camlkit-base.CoreFoundation))
 (documentation (package camlkit))

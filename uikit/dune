@@ -9,7 +9,7 @@
   (= %{context_name} catalyst.ios)))
 ;  (flags :standard -ccopt "-framework UIKit")
  (libraries
-  camlkit-base.foundation
+  camlkit-base.Foundation
   camlkit-base.CoreGraphics))
 
 (documentation (package camlkit-gui))

@@ -2,4 +2,4 @@
  (name test_camlkit)
  (package camlkit)
  (build_if (= %{context_name} "default"))
- (libraries camlkit-base.foundation camlkit-base.runtime camlkit alcotest))
+ (libraries camlkit-base.Foundation camlkit-base.runtime camlkit alcotest))
