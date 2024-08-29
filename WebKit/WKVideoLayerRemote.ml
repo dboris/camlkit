@@ -1,0 +1,21 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open CoreFoundation
+open CoreGraphics
+
+(** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkvideolayerremote?language=objc}WKVideoLayerRemote} *)
+
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
+let layoutSublayers self = msg_send ~self ~cmd:(selector "layoutSublayers") ~typ:(returning void)
+let mediaPlayerPrivateRemote self = msg_send ~self ~cmd:(selector "mediaPlayerPrivateRemote") ~typ:(returning (ptr void))
+let resizePreservingGravity self = msg_send ~self ~cmd:(selector "resizePreservingGravity") ~typ:(returning bool)
+let resolveBounds self = msg_send ~self ~cmd:(selector "resolveBounds") ~typ:(returning void)
+let setMediaPlayerPrivateRemote x self = msg_send ~self ~cmd:(selector "setMediaPlayerPrivateRemote:") ~typ:((ptr void) @-> returning void) x
+let setVideoGravity x self = msg_send ~self ~cmd:(selector "setVideoGravity:") ~typ:(uchar @-> returning void) x
+let setVideoLayerFrame x self = msg_send ~self ~cmd:(selector "setVideoLayerFrame:") ~typ:(CGRect.t @-> returning void) x
+let videoGravity self = msg_send ~self ~cmd:(selector "videoGravity") ~typ:(returning uchar)
+let videoLayerFrame self = msg_send ~self ~cmd:(selector "videoLayerFrame") ~typ:(returning CGRect.t)
