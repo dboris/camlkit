@@ -17,7 +17,7 @@ let () = seal t
 let init
     ~dx:dx_v
     ~dy:dy_v
-    () =
+    =
   let t = make t in
   setf t dx dx_v;
   setf t dy dy_v;

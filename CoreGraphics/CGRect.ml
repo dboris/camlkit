@@ -17,7 +17,7 @@ let () = seal t
 let init
     ~origin:origin_v
     ~size:size_v
-    () =
+    =
   let t = make t in
   setf t origin origin_v;
   setf t size size_v;

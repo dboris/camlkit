@@ -17,7 +17,7 @@ let () = seal t
 let init
     ~width:width_v
     ~height:height_v
-    () =
+    =
   let t = make t in
   setf t width width_v;
   setf t height height_v;

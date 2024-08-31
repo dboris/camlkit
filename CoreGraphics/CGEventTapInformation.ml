@@ -33,7 +33,7 @@ let init
     ~minUsecLatency:minUsecLatency_v
     ~avgUsecLatency:avgUsecLatency_v
     ~maxUsecLatency:maxUsecLatency_v
-    () =
+    =
   let t = make t in
   setf t eventTapID eventTapID_v;
   setf t tapPoint tapPoint_v;

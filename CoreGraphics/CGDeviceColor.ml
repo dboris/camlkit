@@ -19,7 +19,7 @@ let init
     ~red:red_v
     ~green:green_v
     ~blue:blue_v
-    () =
+    =
   let t = make t in
   setf t red red_v;
   setf t green green_v;

@@ -25,7 +25,7 @@ let init
     ~d:d_v
     ~tx:tx_v
     ~ty:ty_v
-    () =
+    =
   let t = make t in
   setf t a a_v;
   setf t b b_v;
