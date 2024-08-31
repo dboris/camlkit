@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nscalendar?language=objc}NSCalendar} *)
 
+let self = get_class "NSCalendar"
+
 let _AMSymbol self = msg_send ~self ~cmd:(selector "AMSymbol") ~typ:(returning id)
 let _PMSymbol self = msg_send ~self ~cmd:(selector "PMSymbol") ~typ:(returning id)
 let calendarIdentifier self = msg_send ~self ~cmd:(selector "calendarIdentifier") ~typ:(returning id)
@@ -16,9 +18,7 @@ let components1 x ~fromDate ~toDate ~options self = msg_send ~self ~cmd:(selecto
 let components2 x ~fromDateComponents ~toDateComponents ~options self = msg_send ~self ~cmd:(selector "components:fromDateComponents:toDateComponents:options:") ~typ:(ullong @-> id @-> id @-> ullong @-> returning id) (ULLong.of_int x) fromDateComponents toDateComponents (ULLong.of_int options)
 let componentsInTimeZone x ~fromDate self = msg_send ~self ~cmd:(selector "componentsInTimeZone:fromDate:") ~typ:(id @-> id @-> returning id) x fromDate
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let date x ~isSameDayAsDate self = msg_send ~self ~cmd:(selector "date:isSameDayAsDate:") ~typ:(id @-> id @-> returning bool) x isSameDayAsDate
-let date1 x ~isSameYearAsDate self = msg_send ~self ~cmd:(selector "date:isSameYearAsDate:") ~typ:(id @-> id @-> returning bool) x isSameYearAsDate
-let date2 x ~matchesComponents self = msg_send ~self ~cmd:(selector "date:matchesComponents:") ~typ:(id @-> id @-> returning bool) x matchesComponents
+let date x ~matchesComponents self = msg_send ~self ~cmd:(selector "date:matchesComponents:") ~typ:(id @-> id @-> returning bool) x matchesComponents
 let dateByAddingComponents x ~toDate ~options self = msg_send ~self ~cmd:(selector "dateByAddingComponents:toDate:options:") ~typ:(id @-> id @-> ullong @-> returning id) x toDate (ULLong.of_int options)
 let dateByAddingUnit x ~value ~toDate ~options self = msg_send ~self ~cmd:(selector "dateByAddingUnit:value:toDate:options:") ~typ:(ullong @-> llong @-> id @-> ullong @-> returning id) (ULLong.of_int x) (LLong.of_int value) toDate (ULLong.of_int options)
 let dateBySettingHour x ~minute ~second ~ofDate ~options self = msg_send ~self ~cmd:(selector "dateBySettingHour:minute:second:ofDate:options:") ~typ:(llong @-> llong @-> llong @-> id @-> ullong @-> returning id) (LLong.of_int x) (LLong.of_int minute) (LLong.of_int second) ofDate (ULLong.of_int options)

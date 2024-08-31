@@ -3,18 +3,6 @@
 open Runtime
 open Objc
 
-module FSRef = struct
-  let t = (ptr void)
-end
-
-module CFStringRef = struct
-  let t = (ptr CFString.t)
-end
-
-module CFSetRef = struct
-  let t = (ptr CFSet.t)
-end
-
 module CFAllocatorRef = struct
   let t = (ptr CFAllocator.t)
 end
@@ -175,8 +163,16 @@ module CFRunLoopTimerRef = struct
   let t = (ptr CFRunLoopTimer.t)
 end
 
+module CFSetRef = struct
+  let t = (ptr CFSet.t)
+end
+
 module CFSocketRef = struct
   let t = (ptr CFSocket.t)
+end
+
+module CFStringRef = struct
+  let t = (ptr CFString.t)
 end
 
 module CFStringTokenizerRef = struct
@@ -219,9 +215,6 @@ module CFXMLParserRef = struct
   let t = (ptr CFXMLParser.t)
 end
 
-module CFType = struct
-  let t : [`CFType] structure typ = structure "CFType"
-end
 module CFTypeRef = struct
   let t = (ptr void)
 end

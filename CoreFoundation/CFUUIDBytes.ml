@@ -25,6 +25,42 @@ let byte15 = field t "byte15" uchar
 
 let () = seal t
 
+let init
+    ~byte0:byte0_v
+    ~byte1:byte1_v
+    ~byte2:byte2_v
+    ~byte3:byte3_v
+    ~byte4:byte4_v
+    ~byte5:byte5_v
+    ~byte6:byte6_v
+    ~byte7:byte7_v
+    ~byte8:byte8_v
+    ~byte9:byte9_v
+    ~byte10:byte10_v
+    ~byte11:byte11_v
+    ~byte12:byte12_v
+    ~byte13:byte13_v
+    ~byte14:byte14_v
+    ~byte15:byte15_v
+    () =
+  let t = make t in
+  setf t byte0 byte0_v;
+  setf t byte1 byte1_v;
+  setf t byte2 byte2_v;
+  setf t byte3 byte3_v;
+  setf t byte4 byte4_v;
+  setf t byte5 byte5_v;
+  setf t byte6 byte6_v;
+  setf t byte7 byte7_v;
+  setf t byte8 byte8_v;
+  setf t byte9 byte9_v;
+  setf t byte10 byte10_v;
+  setf t byte11 byte11_v;
+  setf t byte12 byte12_v;
+  setf t byte13 byte13_v;
+  setf t byte14 byte14_v;
+  setf t byte15 byte15_v;
+  t
 let byte0 t = getf t byte0
 let byte1 t = getf t byte1
 let byte2 t = getf t byte2

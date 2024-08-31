@@ -5,7 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsdictionary?language=objc}NSDictionary} *)
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let self = get_class "NSDictionary"
+
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)
 let allKeysForObject x self = msg_send ~self ~cmd:(selector "allKeysForObject:") ~typ:(id @-> returning id) x
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
@@ -22,9 +23,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let descriptionInStringsFileFormat self = msg_send ~self ~cmd:(selector "descriptionInStringsFileFormat") ~typ:(returning id)
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning id) x
 let descriptionWithLocale' x ~indent self = msg_send ~self ~cmd:(selector "descriptionWithLocale:indent:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int indent)
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let entriesToStringWithIndent x ~debug self = msg_send ~self ~cmd:(selector "entriesToStringWithIndent:debug:") ~typ:(int @-> bool @-> returning id) x debug
 let enumerateKeysAndObjectsUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateKeysAndObjectsUsingBlock:") ~typ:((ptr void) @-> returning void) x
 let enumerateKeysAndObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateKeysAndObjectsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let fileCreationDate self = msg_send ~self ~cmd:(selector "fileCreationDate") ~typ:(returning id)
@@ -63,7 +62,6 @@ let initWithObjectsAndKeys x self = msg_send ~self ~cmd:(selector "initWithObjec
 let invertedDictionary self = msg_send ~self ~cmd:(selector "invertedDictionary") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isEqualToDictionary x self = msg_send ~self ~cmd:(selector "isEqualToDictionary:") ~typ:(id @-> returning bool) x
-let isEqualToDictionary' x ~forKeys self = msg_send ~self ~cmd:(selector "isEqualToDictionary:forKeys:") ~typ:(id @-> id @-> returning bool) x forKeys
 let keyEnumerator self = msg_send ~self ~cmd:(selector "keyEnumerator") ~typ:(returning id)
 let keyOfEntryPassingTest x self = msg_send ~self ~cmd:(selector "keyOfEntryPassingTest:") ~typ:((ptr void) @-> returning id) x
 let keyOfEntryWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "keyOfEntryWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning id) (ULLong.of_int x) passingTest

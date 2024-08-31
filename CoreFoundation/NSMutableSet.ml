@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsmutableset?language=objc}NSMutableSet} *)
 
+let self = get_class "NSMutableSet"
+
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let addObjects x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:((ptr id) @-> ullong @-> returning void) x (ULLong.of_int count)
 let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning void) x

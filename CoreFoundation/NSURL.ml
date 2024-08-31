@@ -5,12 +5,11 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsurl?language=objc}NSURL} *)
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let self = get_class "NSURL"
+
 let _URLByAppendingPathComponent x self = msg_send ~self ~cmd:(selector "URLByAppendingPathComponent:") ~typ:(id @-> returning id) x
-let _URLByAppendingPathComponent1 x ~conformingToType self = msg_send ~self ~cmd:(selector "URLByAppendingPathComponent:conformingToType:") ~typ:(id @-> id @-> returning id) x conformingToType
-let _URLByAppendingPathComponent2 x ~isDirectory self = msg_send ~self ~cmd:(selector "URLByAppendingPathComponent:isDirectory:") ~typ:(id @-> bool @-> returning id) x isDirectory
+let _URLByAppendingPathComponent' x ~isDirectory self = msg_send ~self ~cmd:(selector "URLByAppendingPathComponent:isDirectory:") ~typ:(id @-> bool @-> returning id) x isDirectory
 let _URLByAppendingPathExtension x self = msg_send ~self ~cmd:(selector "URLByAppendingPathExtension:") ~typ:(id @-> returning id) x
-let _URLByAppendingPathExtensionForType x self = msg_send ~self ~cmd:(selector "URLByAppendingPathExtensionForType:") ~typ:(id @-> returning id) x
 let _URLByDeletingLastPathComponent self = msg_send ~self ~cmd:(selector "URLByDeletingLastPathComponent") ~typ:(returning id)
 let _URLByDeletingPathExtension self = msg_send ~self ~cmd:(selector "URLByDeletingPathExtension") ~typ:(returning id)
 let _URLByResolvingSymlinksInPath self = msg_send ~self ~cmd:(selector "URLByResolvingSymlinksInPath") ~typ:(returning id)
@@ -35,7 +34,6 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let dataRepresentation self = msg_send ~self ~cmd:(selector "dataRepresentation") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let filePathURL self = msg_send ~self ~cmd:(selector "filePathURL") ~typ:(returning id)
 let fileReferenceURL self = msg_send ~self ~cmd:(selector "fileReferenceURL") ~typ:(returning id)
@@ -65,7 +63,6 @@ let initFileURLWithPath2 x ~relativeToURL self = msg_send ~self ~cmd:(selector "
 let initFileURLWithPath3 x ~isDirectory ~relativeToURL self = msg_send ~self ~cmd:(selector "initFileURLWithPath:isDirectory:relativeToURL:") ~typ:(id @-> bool @-> id @-> returning id) x isDirectory relativeToURL
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithDataRepresentation x ~relativeToURL self = msg_send ~self ~cmd:(selector "initWithDataRepresentation:relativeToURL:") ~typ:(id @-> id @-> returning id) x relativeToURL
-let initWithPasteboardPropertyList x ~ofType self = msg_send ~self ~cmd:(selector "initWithPasteboardPropertyList:ofType:") ~typ:(id @-> id @-> returning id) x ofType
 let initWithScheme x ~host ~path self = msg_send ~self ~cmd:(selector "initWithScheme:host:path:") ~typ:(id @-> id @-> id @-> returning id) x host path
 let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~typ:(id @-> returning id) x
 let initWithString' x ~relativeToURL self = msg_send ~self ~cmd:(selector "initWithString:relativeToURL:") ~typ:(id @-> id @-> returning id) x relativeToURL
@@ -82,7 +79,6 @@ let loadResourceDataNotifyingClient x ~usingCache self = msg_send ~self ~cmd:(se
 let mapsURL self = msg_send ~self ~cmd:(selector "mapsURL") ~typ:(returning id)
 let parameterString self = msg_send ~self ~cmd:(selector "parameterString") ~typ:(returning id)
 let password self = msg_send ~self ~cmd:(selector "password") ~typ:(returning id)
-let pasteboardPropertyListForType x self = msg_send ~self ~cmd:(selector "pasteboardPropertyListForType:") ~typ:(id @-> returning id) x
 let path self = msg_send ~self ~cmd:(selector "path") ~typ:(returning id)
 let pathComponents self = msg_send ~self ~cmd:(selector "pathComponents") ~typ:(returning id)
 let pathExtension self = msg_send ~self ~cmd:(selector "pathExtension") ~typ:(returning id)
@@ -112,6 +108,3 @@ let startAccessingSecurityScopedResource self = msg_send ~self ~cmd:(selector "s
 let stopAccessingSecurityScopedResource self = msg_send ~self ~cmd:(selector "stopAccessingSecurityScopedResource") ~typ:(returning void)
 let user self = msg_send ~self ~cmd:(selector "user") ~typ:(returning id)
 let writableTypeIdentifiersForItemProvider self = msg_send ~self ~cmd:(selector "writableTypeIdentifiersForItemProvider") ~typ:(returning id)
-let writableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "writableTypesForPasteboard:") ~typ:(id @-> returning id) x
-let writeToPasteboard x self = msg_send ~self ~cmd:(selector "writeToPasteboard:") ~typ:(id @-> returning void) x
-let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard

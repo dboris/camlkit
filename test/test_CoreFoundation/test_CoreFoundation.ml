@@ -1,6 +1,4 @@
 open CoreFoundation
-open CoreFoundation_globals
-open CoreFoundation_fn
 
 open Runtime
 open Objc

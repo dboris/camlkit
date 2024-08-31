@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsinvocation?language=objc}NSInvocation} *)
 
+let self = get_class "NSInvocation"
+
 let argumentsRetained self = msg_send ~self ~cmd:(selector "argumentsRetained") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

@@ -5,8 +5,9 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsrunloop?language=objc}NSRunLoop} *)
 
+let self = get_class "NSRunLoop"
+
 let acceptInputForMode x ~beforeDate self = msg_send ~self ~cmd:(selector "acceptInputForMode:beforeDate:") ~typ:(id @-> id @-> returning void) x beforeDate
-let addDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "addDisplayLink:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let addPort x ~forMode self = msg_send ~self ~cmd:(selector "addPort:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let addTimer x ~forMode self = msg_send ~self ~cmd:(selector "addTimer:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let allModes self = msg_send ~self ~cmd:(selector "allModes") ~typ:(returning id)
@@ -26,7 +27,6 @@ let performBlock x self = msg_send ~self ~cmd:(selector "performBlock:") ~typ:((
 let performInModes x ~block self = msg_send ~self ~cmd:(selector "performInModes:block:") ~typ:(id @-> (ptr void) @-> returning void) x block
 let performSelector x ~target ~argument ~order ~modes self = msg_send ~self ~cmd:(selector "performSelector:target:argument:order:modes:") ~typ:(_SEL @-> id @-> id @-> ullong @-> id @-> returning void) x target argument (ULLong.of_int order) modes
 let portsForMode x self = msg_send ~self ~cmd:(selector "portsForMode:") ~typ:(id @-> returning id) x
-let removeDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "removeDisplayLink:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let removePort x ~forMode self = msg_send ~self ~cmd:(selector "removePort:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let removeTimer x ~forMode self = msg_send ~self ~cmd:(selector "removeTimer:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let run self = msg_send ~self ~cmd:(selector "run") ~typ:(returning void)

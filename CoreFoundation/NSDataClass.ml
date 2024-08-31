@@ -5,13 +5,9 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsdata?language=objc}NSData} *)
 
-let self = get_class "NSData"
-
 let _CKDataWithHexString x self = msg_send ~self ~cmd:(selector "CKDataWithHexString:") ~typ:(id @-> returning id) x
 let _CKDataWithHexString' x ~stringIsUppercase self = msg_send ~self ~cmd:(selector "CKDataWithHexString:stringIsUppercase:") ~typ:(id @-> bool @-> returning id) x stringIsUppercase
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let data self = msg_send ~self ~cmd:(selector "data") ~typ:(returning id)
-let dataFromHexString x self = msg_send ~self ~cmd:(selector "dataFromHexString:") ~typ:(id @-> returning id) x
 let dataWithBytes x ~length self = msg_send ~self ~cmd:(selector "dataWithBytes:length:") ~typ:((ptr void) @-> ullong @-> returning id) x (ULLong.of_int length)
 let dataWithBytesNoCopy x ~length self = msg_send ~self ~cmd:(selector "dataWithBytesNoCopy:length:") ~typ:((ptr void) @-> ullong @-> returning id) x (ULLong.of_int length)
 let dataWithBytesNoCopy' x ~length ~freeWhenDone self = msg_send ~self ~cmd:(selector "dataWithBytesNoCopy:length:freeWhenDone:") ~typ:((ptr void) @-> ullong @-> bool @-> returning id) x (ULLong.of_int length) freeWhenDone

@@ -15,6 +15,22 @@ let hash = field t "hash" (ptr (ptr void))
 
 let () = seal t
 
+let init
+    ~version:version_v
+    ?retain:(retain_v = from_voidp (ptr void) null)
+    ?release:(release_v = from_voidp (ptr void) null)
+    ?copyDescription:(copyDescription_v = from_voidp (ptr void) null)
+    ?equal:(equal_v = from_voidp (ptr void) null)
+    ?hash:(hash_v = from_voidp (ptr void) null)
+    () =
+  let t = make t in
+  setf t version version_v;
+  setf t retain retain_v;
+  setf t release release_v;
+  setf t copyDescription copyDescription_v;
+  setf t equal equal_v;
+  setf t hash hash_v;
+  t
 let version t = getf t version
 let retain t = getf t retain
 let release t = getf t release

@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsorderedset?language=objc}NSOrderedSet} *)
 
+let self = get_class "NSOrderedSet"
+
 let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x forKeyPath (ULLong.of_int options) context
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let array self = msg_send ~self ~cmd:(selector "array") ~typ:(returning id)

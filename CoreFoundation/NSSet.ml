@@ -5,7 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsset?language=objc}NSSet} *)
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let self = get_class "NSSet"
+
 let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x forKeyPath (ULLong.of_int options) context
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let anyObject self = msg_send ~self ~cmd:(selector "anyObject") ~typ:(returning id)
@@ -18,9 +19,7 @@ let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~ty
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning id) x
 let descriptionWithLocale' x ~indent self = msg_send ~self ~cmd:(selector "descriptionWithLocale:indent:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int indent)
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let enumerateIndexPathsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateIndexPathsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let enumerateObjectsUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateObjectsUsingBlock:") ~typ:((ptr void) @-> returning void) x
 let enumerateObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateObjectsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let filteredSetUsingPredicate x self = msg_send ~self ~cmd:(selector "filteredSetUsingPredicate:") ~typ:(id @-> returning id) x

@@ -12,6 +12,16 @@ let defaultString = field t "defaultString" (ptr CFString.t)
 
 let () = seal t
 
+let init
+    ?attributeName:(attributeName_v = from_voidp CFString.t null)
+    ?typeString:(typeString_v = from_voidp CFString.t null)
+    ?defaultString:(defaultString_v = from_voidp CFString.t null)
+    () =
+  let t = make t in
+  setf t attributeName attributeName_v;
+  setf t typeString typeString_v;
+  setf t defaultString defaultString_v;
+  t
 let attributeName t = getf t attributeName
 let typeString t = getf t typeString
 let defaultString t = getf t defaultString

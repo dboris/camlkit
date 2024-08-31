@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfpdmirroredsource?language=objc}CFPDMirroredSource} *)
 
+let self = get_class "CFPDMirroredSource"
+
 let acceptMessage x self = msg_send ~self ~cmd:(selector "acceptMessage:") ~typ:(id @-> returning id) x
 let cacheFileInfoForWriting x ~euid ~egid ~didCreate self = msg_send ~self ~cmd:(selector "cacheFileInfoForWriting:euid:egid:didCreate:") ~typ:(bool @-> uint @-> uint @-> (ptr bool) @-> returning int) x euid egid didCreate
 let clearCacheForReason x self = msg_send ~self ~cmd:(selector "clearCacheForReason:") ~typ:((ptr CFString.t) @-> returning void) x

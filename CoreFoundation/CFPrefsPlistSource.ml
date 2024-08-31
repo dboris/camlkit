@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfprefsplistsource?language=objc}CFPrefsPlistSource} *)
 
+let self = get_class "CFPrefsPlistSource"
+
 let container self = msg_send ~self ~cmd:(selector "container") ~typ:(returning (ptr CFString.t))
 let copyValueForKey x self = msg_send ~self ~cmd:(selector "copyValueForKey:") ~typ:((ptr CFString.t) @-> returning (ptr void)) x
 let createRequestNewContentMessageForDaemon x self = msg_send ~self ~cmd:(selector "createRequestNewContentMessageForDaemon:") ~typ:(int @-> returning id) x

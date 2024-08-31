@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsmutabledictionary?language=objc}NSMutableDictionary} *)
 
+let self = get_class "NSMutableDictionary"
+
 let addEntriesFromDictionary x self = msg_send ~self ~cmd:(selector "addEntriesFromDictionary:") ~typ:(id @-> returning void) x
 let addObject x ~forKey self = msg_send ~self ~cmd:(selector "addObject:forKey:") ~typ:(id @-> id @-> returning void) x forKey
 let addObjects x ~forKeys self = msg_send ~self ~cmd:(selector "addObjects:forKeys:") ~typ:(id @-> id @-> returning void) x forKeys

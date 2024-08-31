@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsdatecomponents?language=objc}NSDateComponents} *)
 
+let self = get_class "NSDateComponents"
+
 let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let date self = msg_send ~self ~cmd:(selector "date") ~typ:(returning id)
@@ -20,9 +22,6 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isLeapMonth self = msg_send ~self ~cmd:(selector "isLeapMonth") ~typ:(returning bool)
 let isLeapMonthSet self = msg_send ~self ~cmd:(selector "isLeapMonthSet") ~typ:(returning bool)
-let isSameDayAsComponents x self = msg_send ~self ~cmd:(selector "isSameDayAsComponents:") ~typ:(id @-> returning bool) x
-let isSameMonthAsComponents x self = msg_send ~self ~cmd:(selector "isSameMonthAsComponents:") ~typ:(id @-> returning bool) x
-let isSameYearAsComponents x self = msg_send ~self ~cmd:(selector "isSameYearAsComponents:") ~typ:(id @-> returning bool) x
 let isValidDate self = msg_send ~self ~cmd:(selector "isValidDate") ~typ:(returning bool)
 let isValidDateInCalendar x self = msg_send ~self ~cmd:(selector "isValidDateInCalendar:") ~typ:(id @-> returning bool) x
 let minute self = msg_send ~self ~cmd:(selector "minute") ~typ:(returning llong)

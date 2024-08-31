@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nstimer?language=objc}NSTimer} *)
 
+let self = get_class "NSTimer"
+
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning void)
 let copyDebugDescription self = msg_send ~self ~cmd:(selector "copyDebugDescription") ~typ:(returning (ptr CFString.t))
 let fire self = msg_send ~self ~cmd:(selector "fire") ~typ:(returning void)

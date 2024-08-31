@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsuserdefaults?language=objc}NSUserDefaults} *)
 
+let self = get_class "NSUserDefaults"
+
 let _URLForKey x self = msg_send ~self ~cmd:(selector "URLForKey:") ~typ:(id @-> returning id) x
 let addSuiteNamed x self = msg_send ~self ~cmd:(selector "addSuiteNamed:") ~typ:(id @-> returning void) x
 let arrayForKey x self = msg_send ~self ~cmd:(selector "arrayForKey:") ~typ:(id @-> returning id) x

@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsmutabledata?language=objc}NSMutableData} *)
 
+let self = get_class "NSMutableData"
+
 let appendBytes x ~length self = msg_send ~self ~cmd:(selector "appendBytes:length:") ~typ:((ptr void) @-> ullong @-> returning void) x (ULLong.of_int length)
 let appendData x self = msg_send ~self ~cmd:(selector "appendData:") ~typ:(id @-> returning void) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)

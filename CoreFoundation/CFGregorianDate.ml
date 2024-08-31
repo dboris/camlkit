@@ -15,6 +15,22 @@ let second = field t "second" double
 
 let () = seal t
 
+let init
+    ~year:year_v
+    ~month:month_v
+    ~day:day_v
+    ~hour:hour_v
+    ~minute:minute_v
+    ~second:second_v
+    () =
+  let t = make t in
+  setf t year year_v;
+  setf t month month_v;
+  setf t day day_v;
+  setf t hour hour_v;
+  setf t minute minute_v;
+  setf t second second_v;
+  t
 let year t = getf t year
 let month t = getf t month
 let day t = getf t day

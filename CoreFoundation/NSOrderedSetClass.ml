@@ -5,9 +5,6 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsorderedset?language=objc}NSOrderedSet} *)
 
-let self = get_class "NSOrderedSet"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let newOrderedSetWithObjects x ~count self = msg_send ~self ~cmd:(selector "newOrderedSetWithObjects:count:") ~typ:((ptr id) @-> ullong @-> returning id) x (ULLong.of_int count)
 let orderedSet self = msg_send ~self ~cmd:(selector "orderedSet") ~typ:(returning id)
 let orderedSetWithArray x self = msg_send ~self ~cmd:(selector "orderedSetWithArray:") ~typ:(id @-> returning id) x

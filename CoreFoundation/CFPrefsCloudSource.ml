@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfprefscloudsource?language=objc}CFPrefsCloudSource} *)
 
+let self = get_class "CFPrefsCloudSource"
+
 let createSynchronizeMessage self = msg_send ~self ~cmd:(selector "createSynchronizeMessage") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let enabled self = msg_send ~self ~cmd:(selector "enabled") ~typ:(returning bool)

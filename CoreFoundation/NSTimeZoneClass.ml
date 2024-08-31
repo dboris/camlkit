@@ -5,10 +5,7 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nstimezone?language=objc}NSTimeZone} *)
 
-let self = get_class "NSTimeZone"
-
 let abbreviationDictionary self = msg_send ~self ~cmd:(selector "abbreviationDictionary") ~typ:(returning id)
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let defaultTimeZone self = msg_send ~self ~cmd:(selector "defaultTimeZone") ~typ:(returning id)
 let knownTimeZoneNames self = msg_send ~self ~cmd:(selector "knownTimeZoneNames") ~typ:(returning id)
 let localTimeZone self = msg_send ~self ~cmd:(selector "localTimeZone") ~typ:(returning id)

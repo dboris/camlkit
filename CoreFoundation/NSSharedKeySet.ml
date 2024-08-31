@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nssharedkeyset?language=objc}NSSharedKeySet} *)
 
+let self = get_class "NSSharedKeySet"
+
 let _M self = msg_send ~self ~cmd:(selector "M") ~typ:(returning uint)
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

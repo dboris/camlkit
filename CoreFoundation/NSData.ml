@@ -5,7 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsdata?language=objc}NSData} *)
 
-let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let self = get_class "NSData"
+
 let _CKHexString self = msg_send ~self ~cmd:(selector "CKHexString") ~typ:(returning id)
 let _CKLowercaseHexStringWithoutSpaces self = msg_send ~self ~cmd:(selector "CKLowercaseHexStringWithoutSpaces") ~typ:(returning id)
 let _CKUppercaseHexStringWithoutSpaces self = msg_send ~self ~cmd:(selector "CKUppercaseHexStringWithoutSpaces") ~typ:(returning id)
@@ -26,14 +27,12 @@ let deserializeIntAtCursor x self = msg_send ~self ~cmd:(selector "deserializeIn
 let deserializeIntAtIndex x self = msg_send ~self ~cmd:(selector "deserializeIntAtIndex:") ~typ:(uint @-> returning int) x
 let deserializeInts x ~count ~atCursor self = msg_send ~self ~cmd:(selector "deserializeInts:count:atCursor:") ~typ:((ptr int) @-> uint @-> (ptr uint) @-> returning void) x count atCursor
 let deserializeInts' x ~count ~atIndex self = msg_send ~self ~cmd:(selector "deserializeInts:count:atIndex:") ~typ:((ptr int) @-> uint @-> uint @-> returning void) x count atIndex
-let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let enumerateByteRangesUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateByteRangesUsingBlock:") ~typ:((ptr void) @-> returning void) x
 let getBytes x self = msg_send ~self ~cmd:(selector "getBytes:") ~typ:((ptr void) @-> returning void) x
 let getBytes1 x ~length self = msg_send ~self ~cmd:(selector "getBytes:length:") ~typ:((ptr void) @-> ullong @-> returning void) x (ULLong.of_int length)
 let getBytes2 x ~range self = msg_send ~self ~cmd:(selector "getBytes:range:") ~typ:((ptr void) @-> NSRange.t @-> returning void) x range
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
-let hexString self = msg_send ~self ~cmd:(selector "hexString") ~typ:(returning id)
 let initWithBase64EncodedData x ~options self = msg_send ~self ~cmd:(selector "initWithBase64EncodedData:options:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int options)
 let initWithBase64EncodedString x ~options self = msg_send ~self ~cmd:(selector "initWithBase64EncodedString:options:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int options)
 let initWithBase64Encoding x self = msg_send ~self ~cmd:(selector "initWithBase64Encoding:") ~typ:(id @-> returning id) x

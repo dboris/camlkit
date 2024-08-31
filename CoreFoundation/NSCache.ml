@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nscache?language=objc}NSCache} *)
 
+let self = get_class "NSCache"
+
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let countLimit self = msg_send ~self ~cmd:(selector "countLimit") ~typ:(returning ullong)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

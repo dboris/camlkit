@@ -10,4 +10,10 @@ let contentDescription = field t "contentDescription" (ptr CFString.t)
 
 let () = seal t
 
+let init
+    ?contentDescription:(contentDescription_v = from_voidp CFString.t null)
+    () =
+  let t = make t in
+  setf t contentDescription contentDescription_v;
+  t
 let contentDescription t = getf t contentDescription

@@ -5,9 +5,6 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsarray?language=objc}NSArray} *)
 
-let self = get_class "NSArray"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let array self = msg_send ~self ~cmd:(selector "array") ~typ:(returning id)
 let arrayByFilteringLaunchProhibitedAppsFrom x self = msg_send ~self ~cmd:(selector "arrayByFilteringLaunchProhibitedAppsFrom:") ~typ:(id @-> returning id) x
 let arrayWithArray x self = msg_send ~self ~cmd:(selector "arrayWithArray:") ~typ:(id @-> returning id) x

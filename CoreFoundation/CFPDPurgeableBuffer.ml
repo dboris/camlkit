@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfpdpurgeablebuffer?language=objc}CFPDPurgeableBuffer} *)
 
+let self = get_class "CFPDPurgeableBuffer"
+
 let beginAccessing self = msg_send ~self ~cmd:(selector "beginAccessing") ~typ:(returning bool)
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

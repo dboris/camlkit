@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfpdcloudsource?language=objc}CFPDCloudSource} *)
 
+let self = get_class "CFPDCloudSource"
+
 let cloudConfigurationPath self = msg_send ~self ~cmd:(selector "cloudConfigurationPath") ~typ:(returning (ptr CFString.t))
 let copyPropertyListValidatingPlist x self = msg_send ~self ~cmd:(selector "copyPropertyListValidatingPlist:") ~typ:(bool @-> returning id) x
 let debugDump self = msg_send ~self ~cmd:(selector "debugDump") ~typ:(returning (ptr CFString.t))

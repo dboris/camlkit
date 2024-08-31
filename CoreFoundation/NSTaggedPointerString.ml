@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nstaggedpointerstring?language=objc}NSTaggedPointerString} *)
 
+let self = get_class "NSTaggedPointerString"
+
 let _UTF8String self = msg_send ~self ~cmd:(selector "UTF8String") ~typ:(returning string)
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let cStringUsingEncoding x self = msg_send ~self ~cmd:(selector "cStringUsingEncoding:") ~typ:(ullong @-> returning string) (ULLong.of_int x)

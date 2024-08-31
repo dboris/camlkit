@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfprefssource?language=objc}CFPrefsSource} *)
 
+let self = get_class "CFPrefsSource"
+
 let container self = msg_send ~self ~cmd:(selector "container") ~typ:(returning (ptr CFString.t))
 let copyOSLogDescription self = msg_send ~self ~cmd:(selector "copyOSLogDescription") ~typ:(returning (ptr CFString.t))
 let copyValueForKey x self = msg_send ~self ~cmd:(selector "copyValueForKey:") ~typ:((ptr CFString.t) @-> returning (ptr void)) x

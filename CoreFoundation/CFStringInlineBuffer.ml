@@ -16,6 +16,24 @@ let bufferedRangeEnd = field t "bufferedRangeEnd" llong
 
 let () = seal t
 
+let init
+    ~buffer:buffer_v
+    ?theString:(theString_v = from_voidp CFString.t null)
+    ?directUniCharBuffer:(directUniCharBuffer_v = from_voidp ushort null)
+    ~directCStringBuffer:directCStringBuffer_v
+    ~rangeToBuffer:rangeToBuffer_v
+    ~bufferedRangeStart:bufferedRangeStart_v
+    ~bufferedRangeEnd:bufferedRangeEnd_v
+    () =
+  let t = make t in
+  setf t buffer buffer_v;
+  setf t theString theString_v;
+  setf t directUniCharBuffer directUniCharBuffer_v;
+  setf t directCStringBuffer directCStringBuffer_v;
+  setf t rangeToBuffer rangeToBuffer_v;
+  setf t bufferedRangeStart bufferedRangeStart_v;
+  setf t bufferedRangeEnd bufferedRangeEnd_v;
+  t
 let buffer t = getf t buffer
 let theString t = getf t theString
 let directUniCharBuffer t = getf t directUniCharBuffer

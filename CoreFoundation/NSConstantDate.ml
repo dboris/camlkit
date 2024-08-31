@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsconstantdate?language=objc}NSConstantDate} *)
 
+let self = get_class "NSConstantDate"
+
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

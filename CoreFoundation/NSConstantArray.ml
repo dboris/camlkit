@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsconstantarray?language=objc}NSConstantArray} *)
 
+let self = get_class "NSConstantArray"
+
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nssharedkeydictionary?language=objc}NSSharedKeyDictionary} *)
 
+let self = get_class "NSSharedKeyDictionary"
+
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)

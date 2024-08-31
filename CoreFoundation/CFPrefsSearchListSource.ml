@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfprefssearchlistsource?language=objc}CFPrefsSearchListSource} *)
 
+let self = get_class "CFPrefsSearchListSource"
+
 let copyOSLogDescription self = msg_send ~self ~cmd:(selector "copyOSLogDescription") ~typ:(returning (ptr CFString.t))
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let createRequestNewContentMessageForDaemon x self = msg_send ~self ~cmd:(selector "createRequestNewContentMessageForDaemon:") ~typ:(int @-> returning id) x

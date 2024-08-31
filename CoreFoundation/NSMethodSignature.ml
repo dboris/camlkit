@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsmethodsignature?language=objc}NSMethodSignature} *)
 
+let self = get_class "NSMethodSignature"
+
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
 let frameLength self = msg_send ~self ~cmd:(selector "frameLength") ~typ:(returning ullong)

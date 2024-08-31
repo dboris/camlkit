@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfpdsource?language=objc}CFPDSource} *)
 
+let self = get_class "CFPDSource"
+
 let acceptMessage x self = msg_send ~self ~cmd:(selector "acceptMessage:") ~typ:(id @-> returning id) x
 let asyncNotifyObserversOfWriteFromConnection x ~message self = msg_send ~self ~cmd:(selector "asyncNotifyObserversOfWriteFromConnection:message:") ~typ:(id @-> id @-> returning void) x message
 let byHost self = msg_send ~self ~cmd:(selector "byHost") ~typ:(returning bool)

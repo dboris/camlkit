@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsblock?language=objc}NSBlock} *)
 
+let self = get_class "NSBlock"
+
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)

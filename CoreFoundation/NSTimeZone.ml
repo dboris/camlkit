@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nstimezone?language=objc}NSTimeZone} *)
 
+let self = get_class "NSTimeZone"
+
 let abbreviation self = msg_send ~self ~cmd:(selector "abbreviation") ~typ:(returning id)
 let abbreviationForDate x self = msg_send ~self ~cmd:(selector "abbreviationForDate:") ~typ:(id @-> returning id) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)

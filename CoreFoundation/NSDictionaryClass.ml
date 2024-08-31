@@ -5,9 +5,6 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsdictionary?language=objc}NSDictionary} *)
 
-let self = get_class "NSDictionary"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let dictionary self = msg_send ~self ~cmd:(selector "dictionary") ~typ:(returning id)
 let dictionaryWithContentsOfFile x self = msg_send ~self ~cmd:(selector "dictionaryWithContentsOfFile:") ~typ:(id @-> returning id) x
 let dictionaryWithContentsOfURL x self = msg_send ~self ~cmd:(selector "dictionaryWithContentsOfURL:") ~typ:(id @-> returning id) x

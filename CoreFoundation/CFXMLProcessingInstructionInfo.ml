@@ -10,4 +10,10 @@ let dataString = field t "dataString" (ptr CFString.t)
 
 let () = seal t
 
+let init
+    ?dataString:(dataString_v = from_voidp CFString.t null)
+    () =
+  let t = make t in
+  setf t dataString dataString_v;
+  t
 let dataString t = getf t dataString

@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsconstantdictionary?language=objc}NSConstantDictionary} *)
 
+let self = get_class "NSConstantDictionary"
+
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)
 let allValues self = msg_send ~self ~cmd:(selector "allValues") ~typ:(returning id)
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)

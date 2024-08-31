@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsconstantdata?language=objc}NSConstantData} *)
 
+let self = get_class "NSConstantData"
+
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr void))
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)

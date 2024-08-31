@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/nsstream?language=objc}NSStream} *)
 
+let self = get_class "NSStream"
+
 let close self = msg_send ~self ~cmd:(selector "close") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

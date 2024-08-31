@@ -187,7 +187,7 @@ let test_string_of_selector () =
 ;;
 
 let test_block () =
-  let ar = alloc NSMutableArrayClass.self |> NSObject.init
+  let ar = alloc NSMutableArray.self |> NSObject.init
   and expected = ["0: Hello"; "1: World"]
   and actual = ref []
   in

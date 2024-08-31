@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cfpdcfdatabuffer?language=objc}CFPDCFDataBuffer} *)
 
+let self = get_class "CFPDCFDataBuffer"
+
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr void))
 let copyCFData self = msg_send ~self ~cmd:(selector "copyCFData") ~typ:(returning (ptr CFData.t))
 let copyXPCData self = msg_send ~self ~cmd:(selector "copyXPCData") ~typ:(returning id)
