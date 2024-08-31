@@ -14,7 +14,7 @@ let () = seal t
 let init
     ~location:location_v
     ~length:length_v
-    () =
+    =
   let t = make t in
   setf t location location_v;
   setf t length length_v;

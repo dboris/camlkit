@@ -42,7 +42,7 @@ let init
     ~byte13:byte13_v
     ~byte14:byte14_v
     ~byte15:byte15_v
-    () =
+    =
   let t = make t in
   setf t byte0 byte0_v;
   setf t byte1 byte1_v;

@@ -12,7 +12,7 @@ let () = seal t
 
 let init
     ~externalID:externalID_v
-    () =
+    =
   let t = make t in
   setf t externalID externalID_v;
   t

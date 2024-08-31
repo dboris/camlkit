@@ -22,7 +22,7 @@ let init
     ~hour:hour_v
     ~minute:minute_v
     ~second:second_v
-    () =
+    =
   let t = make t in
   setf t year year_v;
   setf t month month_v;
