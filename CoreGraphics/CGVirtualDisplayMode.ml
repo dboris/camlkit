@@ -5,9 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coregraphics/cgvirtualdisplaymode?language=objc}CGVirtualDisplayMode} *)
+
+let self = get_class "CGVirtualDisplayMode"
 
 let height self = msg_send ~self ~cmd:(selector "height") ~typ:(returning uint)
 let initWithWidth x ~height ~refreshRate self = msg_send ~self ~cmd:(selector "initWithWidth:height:refreshRate:") ~typ:(uint @-> uint @-> double @-> returning id) x height refreshRate

@@ -5,7 +5,6 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 
 let t : [`CGSize] structure typ = structure "CGSize"
 (** Apple docs: {{:https://developer.apple.com/documentation/coregraphics/cgsize?language=objc}CGSize} *)
@@ -15,5 +14,13 @@ let height = field t "height" double
 
 let () = seal t
 
+let init
+    ~width:width_v
+    ~height:height_v
+    () =
+  let t = make t in
+  setf t width width_v;
+  setf t height height_v;
+  t
 let width t = getf t width
 let height t = getf t height

@@ -5,9 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coregraphics/cgvirtualdisplaydescriptor?language=objc}CGVirtualDisplayDescriptor} *)
+
+let self = get_class "CGVirtualDisplayDescriptor"
 
 let bluePrimary self = msg_send ~self ~cmd:(selector "bluePrimary") ~typ:(returning CGPoint.t)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

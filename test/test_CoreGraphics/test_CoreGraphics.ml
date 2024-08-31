@@ -1,5 +1,4 @@
 open CoreGraphics
-open CoreGraphics_fn
 
 module A = Alcotest
 

@@ -5,7 +5,6 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 
 let t : [`CGEventTapInformation] structure typ = structure "__CGEventTapInformation"
 (** Apple docs: {{:https://developer.apple.com/documentation/coregraphics/__cgeventtapinformation?language=objc}__CGEventTapInformation} *)
@@ -23,6 +22,30 @@ let maxUsecLatency = field t "maxUsecLatency" float
 
 let () = seal t
 
+let init
+    ~eventTapID:eventTapID_v
+    ~tapPoint:tapPoint_v
+    ~options:options_v
+    ~eventsOfInterest:eventsOfInterest_v
+    ~tappingProcess:tappingProcess_v
+    ~processBeingTapped:processBeingTapped_v
+    ~enabled:enabled_v
+    ~minUsecLatency:minUsecLatency_v
+    ~avgUsecLatency:avgUsecLatency_v
+    ~maxUsecLatency:maxUsecLatency_v
+    () =
+  let t = make t in
+  setf t eventTapID eventTapID_v;
+  setf t tapPoint tapPoint_v;
+  setf t options options_v;
+  setf t eventsOfInterest eventsOfInterest_v;
+  setf t tappingProcess tappingProcess_v;
+  setf t processBeingTapped processBeingTapped_v;
+  setf t enabled enabled_v;
+  setf t minUsecLatency minUsecLatency_v;
+  setf t avgUsecLatency avgUsecLatency_v;
+  setf t maxUsecLatency maxUsecLatency_v;
+  t
 let eventTapID t = getf t eventTapID
 let tapPoint t = getf t tapPoint
 let options t = getf t options

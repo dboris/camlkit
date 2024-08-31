@@ -5,7 +5,6 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 
 open CoreGraphics_globals
 
@@ -345,7 +344,7 @@ let _CGEventGetUnflippedLocation = Foreign.foreign "CGEventGetUnflippedLocation"
 let _CGEventKeyboardGetUnicodeString = Foreign.foreign "CGEventKeyboardGetUnicodeString" ((ptr CGEvent.t) @-> ullong @-> (ptr ullong) @-> (ptr ushort) @-> returning void)
 let _CGEventKeyboardSetUnicodeString = Foreign.foreign "CGEventKeyboardSetUnicodeString" ((ptr CGEvent.t) @-> ullong @-> (ptr ushort) @-> returning void)
 let _CGEventPost = Foreign.foreign "CGEventPost" (uint @-> (ptr CGEvent.t) @-> returning void)
-let _CGEventPostToPSN = Foreign.foreign "CGEventPostToPSN" ((ptr ProcessSerialNumber.t) @-> (ptr CGEvent.t) @-> returning void)
+let _CGEventPostToPSN = Foreign.foreign "CGEventPostToPSN" ((ptr void) @-> (ptr CGEvent.t) @-> returning void)
 let _CGEventPostToPid = Foreign.foreign "CGEventPostToPid" (int @-> (ptr CGEvent.t) @-> returning void)
 let _CGEventSetDoubleValueField = Foreign.foreign "CGEventSetDoubleValueField" ((ptr CGEvent.t) @-> uint @-> double @-> returning void)
 let _CGEventSetFlags = Foreign.foreign "CGEventSetFlags" ((ptr CGEvent.t) @-> ullong @-> returning void)
@@ -373,7 +372,7 @@ let _CGEventSourceSetLocalEventsSuppressionInterval = Foreign.foreign "CGEventSo
 let _CGEventSourceSetPixelsPerLine = Foreign.foreign "CGEventSourceSetPixelsPerLine" ((ptr CGEventSource.t) @-> double @-> returning void)
 let _CGEventSourceSetUserData = Foreign.foreign "CGEventSourceSetUserData" ((ptr CGEventSource.t) @-> llong @-> returning void)
 let _CGEventTapCreate = Foreign.foreign "CGEventTapCreate" (uint @-> uint @-> uint @-> ullong @-> Foreign.funptr ((ptr CGEventTapProxy.t) @-> uint @-> (ptr CGEvent.t) @-> (ptr void) @-> returning (ptr CGEvent.t)) @-> (ptr void) @-> returning (ptr CFMachPort.t))
-let _CGEventTapCreateForPSN = Foreign.foreign "CGEventTapCreateForPSN" ((ptr ProcessSerialNumber.t) @-> uint @-> uint @-> ullong @-> Foreign.funptr ((ptr CGEventTapProxy.t) @-> uint @-> (ptr CGEvent.t) @-> (ptr void) @-> returning (ptr CGEvent.t)) @-> (ptr void) @-> returning (ptr CFMachPort.t))
+let _CGEventTapCreateForPSN = Foreign.foreign "CGEventTapCreateForPSN" ((ptr void) @-> uint @-> uint @-> ullong @-> Foreign.funptr ((ptr CGEventTapProxy.t) @-> uint @-> (ptr CGEvent.t) @-> (ptr void) @-> returning (ptr CGEvent.t)) @-> (ptr void) @-> returning (ptr CFMachPort.t))
 let _CGEventTapCreateForPid = Foreign.foreign "CGEventTapCreateForPid" (int @-> uint @-> uint @-> ullong @-> Foreign.funptr ((ptr CGEventTapProxy.t) @-> uint @-> (ptr CGEvent.t) @-> (ptr void) @-> returning (ptr CGEvent.t)) @-> (ptr void) @-> returning (ptr CFMachPort.t))
 let _CGEventTapEnable = Foreign.foreign "CGEventTapEnable" ((ptr CFMachPort.t) @-> bool @-> returning void)
 let _CGEventTapIsEnabled = Foreign.foreign "CGEventTapIsEnabled" ((ptr CFMachPort.t) @-> returning bool)

@@ -3,12 +3,8 @@
 open Runtime
 open Objc
 
-
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
-
-module ProcessSerialNumber = struct let t = void end
 
 module CGPathRef = struct
   let t = (ptr CGPath.t)
@@ -106,9 +102,6 @@ module CGAffineTransformRef = struct
   let t = (ptr CGAffineTransform.t)
 end
 
-module CGDisplayConfig = struct
-  let t : [`CGDisplayConfig] structure typ = structure "CGDisplayConfig"
-end
 module CGDisplayConfigRef = struct
   let s : [`CGDisplayConfigRef] structure typ = structure "CGDisplayConfigRef"
   let t = ptr s
