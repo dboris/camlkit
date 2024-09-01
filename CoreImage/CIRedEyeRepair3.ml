@@ -1,0 +1,124 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open CoreFoundation
+open CoreGraphics
+
+(** Apple docs: {{:https://developer.apple.com/documentation/coreimage/ciredeyerepair3?language=objc}CIRedEyeRepair3} *)
+
+let self = get_class "CIRedEyeRepair3"
+
+let _RGBtoHSV x self = msg_send ~self ~cmd:(selector "RGBtoHSV:") ~typ:(void @-> returning void) x
+let analyzeMask x ~usingConvexHull ~producingOptimizedMask self = msg_send ~self ~cmd:(selector "analyzeMask:usingConvexHull:producingOptimizedMask:") ~typ:((ptr void) @-> (ptr void) @-> (ptr void) @-> returning int) x usingConvexHull producingOptimizedMask
+let attemptClosureOfThreadIndex x self = msg_send ~self ~cmd:(selector "attemptClosureOfThreadIndex:") ~typ:(int @-> returning int) x
+let autoRepairWithFaceArray x self = msg_send ~self ~cmd:(selector "autoRepairWithFaceArray:") ~typ:(id @-> returning void) x
+let bitmapPointWithDictionaryPoint x self = msg_send ~self ~cmd:(selector "bitmapPointWithDictionaryPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let bitmapPointWithDictionaryPointArray x self = msg_send ~self ~cmd:(selector "bitmapPointWithDictionaryPointArray:") ~typ:(id @-> returning CGPoint.t) x
+let bitmapRectWithDictionaryRectArray x self = msg_send ~self ~cmd:(selector "bitmapRectWithDictionaryRectArray:") ~typ:(id @-> returning void) x
+let centroidWithConvexHull x self = msg_send ~self ~cmd:(selector "centroidWithConvexHull:") ~typ:((ptr void) @-> returning CGPoint.t) x
+let closeThreadIndex x ~usingVectorField self = msg_send ~self ~cmd:(selector "closeThreadIndex:usingVectorField:") ~typ:(int @-> (ptr void) @-> returning int) x usingVectorField
+let color x ~underConvexHull ~saturated self = msg_send ~self ~cmd:(selector "color:underConvexHull:saturated:") ~typ:((ptr void) @-> (ptr void) @-> (ptr void) @-> returning int) x underConvexHull saturated
+let computeLengthsAnglesAndDeltaAnglesForShape x self = msg_send ~self ~cmd:(selector "computeLengthsAnglesAndDeltaAnglesForShape:") ~typ:((ptr void) @-> returning void) x
+let condenseFourChannelRecognitionMap x ~intoOneChanneMap self = msg_send ~self ~cmd:(selector "condenseFourChannelRecognitionMap:intoOneChanneMap:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x intoOneChanneMap
+let connectThreads x ~drop1 ~and_ ~drop2 self = msg_send ~self ~cmd:(selector "connectThreads:drop1:and:drop2:") ~typ:(int @-> int @-> int @-> int @-> returning int) x drop1 and_ drop2
+let connectThreadsInGrid self = msg_send ~self ~cmd:(selector "connectThreadsInGrid") ~typ:(returning int)
+let convexHull x ~ofOriented ~shape self = msg_send ~self ~cmd:(selector "convexHull:ofOriented:shape:") ~typ:((ptr (ptr void)) @-> bool @-> (ptr void) @-> returning int) x ofOriented shape
+let convexHull' x ~ofOriented ~threadIndex self = msg_send ~self ~cmd:(selector "convexHull:ofOriented:threadIndex:") ~typ:((ptr (ptr void)) @-> bool @-> int @-> returning int) x ofOriented threadIndex
+let copyGridInto x ~transform ~height self = msg_send ~self ~cmd:(selector "copyGridInto:transform:height:") ~typ:((ptr void) @-> CGAffineTransform.t @-> int @-> returning int) x transform height
+let copyShape x ~into ~transform ~height self = msg_send ~self ~cmd:(selector "copyShape:into:transform:height:") ~typ:((ptr void) @-> (ptr void) @-> CGAffineTransform.t @-> int @-> returning int) x into transform height
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let dictionaryPointArrayWithBitmapPoint x self = msg_send ~self ~cmd:(selector "dictionaryPointArrayWithBitmapPoint:") ~typ:(CGPoint.t @-> returning id) x
+let dictionaryPointArrayWithEyeBitmapPoint x self = msg_send ~self ~cmd:(selector "dictionaryPointArrayWithEyeBitmapPoint:") ~typ:(CGPoint.t @-> returning id) x
+let dictionaryPointArrayWithGlobalBitmapPoint x self = msg_send ~self ~cmd:(selector "dictionaryPointArrayWithGlobalBitmapPoint:") ~typ:(CGPoint.t @-> returning id) x
+let dictionaryPointWithBitmapPoint x self = msg_send ~self ~cmd:(selector "dictionaryPointWithBitmapPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let dictionaryPointWithGlobalBitmapPoint x self = msg_send ~self ~cmd:(selector "dictionaryPointWithGlobalBitmapPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let dictionaryRectArrayWithBitmapRect x self = msg_send ~self ~cmd:(selector "dictionaryRectArrayWithBitmapRect:") ~typ:(void @-> returning id) x
+let dictionaryRectArrayWithGlobalBitmapRect x self = msg_send ~self ~cmd:(selector "dictionaryRectArrayWithGlobalBitmapRect:") ~typ:(void @-> returning id) x
+let edgePoint x ~withBitmap ~center ~perp self = msg_send ~self ~cmd:(selector "edgePoint:withBitmap:center:perp:") ~typ:((ptr CGPoint.t) @-> (ptr void) @-> CGPoint.t @-> CGPoint.t @-> returning bool) x withBitmap center perp
+let executeRepair x self = msg_send ~self ~cmd:(selector "executeRepair:") ~typ:(id @-> returning void) x
+let executeRepairWithRepairDictionary x self = msg_send ~self ~cmd:(selector "executeRepairWithRepairDictionary:") ~typ:(id @-> returning int) x
+let findThreadsInGrid self = msg_send ~self ~cmd:(selector "findThreadsInGrid") ~typ:(returning int)
+let focusStatsWithBitmap x ~_IOD self = msg_send ~self ~cmd:(selector "focusStatsWithBitmap:IOD:") ~typ:((ptr void) @-> float @-> returning void) x _IOD
+let forAllGridPointsNear x ~withinRadius ~do_ ~context self = msg_send ~self ~cmd:(selector "forAllGridPointsNear:withinRadius:do:context:") ~typ:(int @-> float @-> (ptr (ptr void)) @-> (ptr void) @-> returning void) x withinRadius do_ context
+let forAllGridThreadsNear x ~withinRadius ~do_ ~context self = msg_send ~self ~cmd:(selector "forAllGridThreadsNear:withinRadius:do:context:") ~typ:(CGPoint.t @-> float @-> (ptr (ptr void)) @-> (ptr void) @-> returning void) x withinRadius do_ context
+let gatherFaceStatistics x self = msg_send ~self ~cmd:(selector "gatherFaceStatistics:") ~typ:((ptr void) @-> returning bool) x
+let gatherThreadInfo x self = msg_send ~self ~cmd:(selector "gatherThreadInfo:") ~typ:((ptr void) @-> returning int) x
+let globalBitmapPointWithDictionaryPoint x self = msg_send ~self ~cmd:(selector "globalBitmapPointWithDictionaryPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let globalBitmapPointWithDictionaryPointArray x self = msg_send ~self ~cmd:(selector "globalBitmapPointWithDictionaryPointArray:") ~typ:(id @-> returning CGPoint.t) x
+let globalBitmapRectWithDictionaryRectArray x self = msg_send ~self ~cmd:(selector "globalBitmapRectWithDictionaryRectArray:") ~typ:(id @-> returning void) x
+let hopperElement x ~isMoreScleraThanElement self = msg_send ~self ~cmd:(selector "hopperElement:isMoreScleraThanElement:") ~typ:((ptr void) @-> (ptr void) @-> returning bool) x isMoreScleraThanElement
+let improvedShape x ~withShape self = msg_send ~self ~cmd:(selector "improvedShape:withShape:") ~typ:((ptr (ptr void)) @-> (ptr void) @-> returning int) x withShape
+let initBitmaps self = msg_send ~self ~cmd:(selector "initBitmaps") ~typ:(returning void)
+let initGridWithBitmap x ~scale self = msg_send ~self ~cmd:(selector "initGridWithBitmap:scale:") ~typ:((ptr void) @-> int @-> returning bool) x scale
+let initHull x ~withOrientation self = msg_send ~self ~cmd:(selector "initHull:withOrientation:") ~typ:((ptr (ptr void)) @-> bool @-> returning int) x withOrientation
+let initShapePoints x ~withMaxPoints self = msg_send ~self ~cmd:(selector "initShapePoints:withMaxPoints:") ~typ:((ptr void) @-> int @-> returning int) x withMaxPoints
+let initWithExternalBuffer x ~subRectangle ~rowBytes ~options self = msg_send ~self ~cmd:(selector "initWithExternalBuffer:subRectangle:rowBytes:options:") ~typ:(string @-> CGRect.t @-> ullong @-> id @-> returning id) x subRectangle (ULLong.of_int rowBytes) options
+let insertPoint x ~andDirection ~intoGrid self = msg_send ~self ~cmd:(selector "insertPoint:andDirection:intoGrid:") ~typ:(CGPoint.t @-> CGPoint.t @-> bool @-> returning int) x andDirection intoGrid
+let inverseImageTransformForOrientation x self = msg_send ~self ~cmd:(selector "inverseImageTransformForOrientation:") ~typ:(int @-> returning CGAffineTransform.t) x
+let isBlurryWithFocusStats x self = msg_send ~self ~cmd:(selector "isBlurryWithFocusStats:") ~typ:(void @-> returning bool) x
+let isConvex x self = msg_send ~self ~cmd:(selector "isConvex:") ~typ:((ptr void) @-> returning bool) x
+let leftHandedTransform x ~ofPoint self = msg_send ~self ~cmd:(selector "leftHandedTransform:ofPoint:") ~typ:(CGAffineTransform.t @-> CGPoint.t @-> returning CGPoint.t) x ofPoint
+let linkUpPointIndex x ~toPointIndex self = msg_send ~self ~cmd:(selector "linkUpPointIndex:toPointIndex:") ~typ:(int @-> int @-> returning int) x toPointIndex
+let lookForPoint x ~onLine ~nearestPoint self = msg_send ~self ~cmd:(selector "lookForPoint:onLine:nearestPoint:") ~typ:((ptr CGPoint.t) @-> void @-> CGPoint.t @-> returning int) x onLine nearestPoint
+let magnitudeMap x ~fromGabor self = msg_send ~self ~cmd:(selector "magnitudeMap:fromGabor:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x fromGabor
+let measureHull x ~majorAxis ~majorTo ~majorDiameter ~minorAxis ~minorTo ~minorDiameter self = msg_send ~self ~cmd:(selector "measureHull:majorAxis:majorTo:majorDiameter:minorAxis:minorTo:minorDiameter:") ~typ:((ptr void) @-> (ptr CGPoint.t) @-> (ptr CGPoint.t) @-> (ptr float) @-> (ptr CGPoint.t) @-> (ptr CGPoint.t) @-> (ptr float) @-> returning void) x majorAxis majorTo majorDiameter minorAxis minorTo minorDiameter
+let mutableCopyOfArray x self = msg_send ~self ~cmd:(selector "mutableCopyOfArray:") ~typ:(id @-> returning id) x
+let newShape x self = msg_send ~self ~cmd:(selector "newShape:") ~typ:((ptr (ptr void)) @-> returning int) x
+let newShape' x ~byInterpolatingBetweenCheckpoints ~nc ~usingVectorField self = msg_send ~self ~cmd:(selector "newShape:byInterpolatingBetweenCheckpoints:nc:usingVectorField:") ~typ:((ptr (ptr void)) @-> (ptr void) @-> int @-> (ptr void) @-> returning int) x byInterpolatingBetweenCheckpoints nc usingVectorField
+let newThread x self = msg_send ~self ~cmd:(selector "newThread:") ~typ:((ptr (ptr void)) @-> returning int) x
+let next12BitRandom self = msg_send ~self ~cmd:(selector "next12BitRandom") ~typ:(returning double)
+let nextPointIndexWithPointIndex x self = msg_send ~self ~cmd:(selector "nextPointIndexWithPointIndex:") ~typ:(int @-> returning int) x
+let openRepairDictionary x ~convexHull ~facts self = msg_send ~self ~cmd:(selector "openRepairDictionary:convexHull:facts:") ~typ:(id @-> (ptr (ptr void)) @-> (ptr void) @-> returning bool) x convexHull facts
+let packGlobalRepairDictionary x ~withConvexHull ~facts self = msg_send ~self ~cmd:(selector "packGlobalRepairDictionary:withConvexHull:facts:") ~typ:((ptr id) @-> (ptr void) @-> (ptr void) @-> returning int) x withConvexHull facts
+let point x ~toGridRow ~column self = msg_send ~self ~cmd:(selector "point:toGridRow:column:") ~typ:(CGPoint.t @-> (ptr int) @-> (ptr int) @-> returning void) x toGridRow column
+let prepareBitmapsWithString x self = msg_send ~self ~cmd:(selector "prepareBitmapsWithString:") ~typ:(string @-> returning int) x
+let prepareMasksWithConvexHull x self = msg_send ~self ~cmd:(selector "prepareMasksWithConvexHull:") ~typ:((ptr void) @-> returning int) x
+let prepareTransformWithEyeIndex x self = msg_send ~self ~cmd:(selector "prepareTransformWithEyeIndex:") ~typ:(int @-> returning int) x
+let printConnectionHopper x ~message self = msg_send ~self ~cmd:(selector "printConnectionHopper:message:") ~typ:((ptr void) @-> string @-> returning void) x message
+let printFaceArray self = msg_send ~self ~cmd:(selector "printFaceArray") ~typ:(returning void)
+let printThreadWithIndex x self = msg_send ~self ~cmd:(selector "printThreadWithIndex:") ~typ:(int @-> returning void) x
+let printThreadsOnlyClosed x ~message self = msg_send ~self ~cmd:(selector "printThreadsOnlyClosed:message:") ~typ:(bool @-> string @-> returning void) x message
+let prominenceConvexHull x ~facts self = msg_send ~self ~cmd:(selector "prominenceConvexHull:facts:") ~typ:((ptr (ptr void)) @-> (ptr void) @-> returning int) x facts
+let putThreadAtIndex x self = msg_send ~self ~cmd:(selector "putThreadAtIndex:") ~typ:(int @-> returning void) x
+let recognizeThreadsWinningThreadIndex x ~info self = msg_send ~self ~cmd:(selector "recognizeThreadsWinningThreadIndex:info:") ~typ:((ptr int) @-> (ptr void) @-> returning int) x info
+let regressionWithPointIndex x self = msg_send ~self ~cmd:(selector "regressionWithPointIndex:") ~typ:(int @-> returning void) x
+let removeRedundantPointsFromShape x ~closerThan self = msg_send ~self ~cmd:(selector "removeRedundantPointsFromShape:closerThan:") ~typ:((ptr void) @-> float @-> returning void) x closerThan
+let removeSmallBumpsFromShape x ~center ~threshold self = msg_send ~self ~cmd:(selector "removeSmallBumpsFromShape:center:threshold:") ~typ:((ptr void) @-> CGPoint.t @-> float @-> returning void) x center threshold
+let removeSpikesFromShape x self = msg_send ~self ~cmd:(selector "removeSpikesFromShape:") ~typ:((ptr void) @-> returning void) x
+let removeThreadAtIndex x self = msg_send ~self ~cmd:(selector "removeThreadAtIndex:") ~typ:(int @-> returning void) x
+let renderConvexHull x ~distance ~fieldToBitmap self = msg_send ~self ~cmd:(selector "renderConvexHull:distance:fieldToBitmap:") ~typ:((ptr void) @-> float @-> (ptr void) @-> returning int) x distance fieldToBitmap
+let renderEyePolygonToBitmap x self = msg_send ~self ~cmd:(selector "renderEyePolygonToBitmap:") ~typ:((ptr void) @-> returning int) x
+let renderHull x ~toBitmap self = msg_send ~self ~cmd:(selector "renderHull:toBitmap:") ~typ:((ptr void) @-> (ptr void) @-> returning int) x toBitmap
+let repairArray self = msg_send ~self ~cmd:(selector "repairArray") ~typ:(returning id)
+let repairDictionary x ~withEyeIndex self = msg_send ~self ~cmd:(selector "repairDictionary:withEyeIndex:") ~typ:((ptr id) @-> int @-> returning int) x withEyeIndex
+let repairExternalBuffer self = msg_send ~self ~cmd:(selector "repairExternalBuffer") ~typ:(returning void)
+let repairMap self = msg_send ~self ~cmd:(selector "repairMap") ~typ:(returning (ptr void))
+let repairRect self = msg_send ~self ~cmd:(selector "repairRect") ~typ:(returning void)
+let repairWithSide x self = msg_send ~self ~cmd:(selector "repairWithSide:") ~typ:(int @-> returning id) x
+let replacePointAndDirection x self = msg_send ~self ~cmd:(selector "replacePointAndDirection:") ~typ:(int @-> returning int) x
+let saveRepairDictionary x ~withConvexHull ~facts self = msg_send ~self ~cmd:(selector "saveRepairDictionary:withConvexHull:facts:") ~typ:((ptr id) @-> (ptr void) @-> (ptr void) @-> returning int) x withConvexHull facts
+let setInspector x self = msg_send ~self ~cmd:(selector "setInspector:") ~typ:(id @-> returning void) x
+let shape x ~withThreadAtIndex ~centroid self = msg_send ~self ~cmd:(selector "shape:withThreadAtIndex:centroid:") ~typ:((ptr (ptr void)) @-> int @-> CGPoint.t @-> returning int) x withThreadAtIndex centroid
+let slidingWindowAnalysisOfShape x ~into self = msg_send ~self ~cmd:(selector "slidingWindowAnalysisOfShape:into:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x into
+let start12BitRandom x self = msg_send ~self ~cmd:(selector "start12BitRandom:") ~typ:(int @-> returning void) x
+let stringWithRER3Error x self = msg_send ~self ~cmd:(selector "stringWithRER3Error:") ~typ:(int @-> returning id) x
+let swapHopperElement x ~withElement self = msg_send ~self ~cmd:(selector "swapHopperElement:withElement:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x withElement
+let termBitmaps self = msg_send ~self ~cmd:(selector "termBitmaps") ~typ:(returning void)
+let termGrid self = msg_send ~self ~cmd:(selector "termGrid") ~typ:(returning void)
+let termHull x self = msg_send ~self ~cmd:(selector "termHull:") ~typ:((ptr void) @-> returning void) x
+let termShapePoints x self = msg_send ~self ~cmd:(selector "termShapePoints:") ~typ:((ptr void) @-> returning void) x
+let threadCentroid x self = msg_send ~self ~cmd:(selector "threadCentroid:") ~typ:((ptr void) @-> returning CGPoint.t) x
+let threadSignedArea x ~centroid self = msg_send ~self ~cmd:(selector "threadSignedArea:centroid:") ~typ:((ptr void) @-> CGPoint.t @-> returning float) x centroid
+let transformConvexHull x ~withTransform self = msg_send ~self ~cmd:(selector "transformConvexHull:withTransform:") ~typ:((ptr void) @-> CGAffineTransform.t @-> returning void) x withTransform
+let transformGlobalsWithTransform x self = msg_send ~self ~cmd:(selector "transformGlobalsWithTransform:") ~typ:(CGAffineTransform.t @-> returning void) x
+let transformRepairArray x self = msg_send ~self ~cmd:(selector "transformRepairArray:") ~typ:(CGAffineTransform.t @-> returning int) x
+let trimConcaveFromHull x self = msg_send ~self ~cmd:(selector "trimConcaveFromHull:") ~typ:((ptr void) @-> returning bool) x
+let trimEndPointFromHull x self = msg_send ~self ~cmd:(selector "trimEndPointFromHull:") ~typ:((ptr void) @-> returning bool) x
+let trimStartPointFromHull x self = msg_send ~self ~cmd:(selector "trimStartPointFromHull:") ~typ:((ptr void) @-> returning bool) x
+let unpackToGlobalRepairDictionary x ~convexHull ~facts self = msg_send ~self ~cmd:(selector "unpackToGlobalRepairDictionary:convexHull:facts:") ~typ:(id @-> (ptr (ptr void)) @-> (ptr void) @-> returning bool) x convexHull facts
+let updateWithFaceIndex x self = msg_send ~self ~cmd:(selector "updateWithFaceIndex:") ~typ:(int @-> returning int) x
+let updatedCheckpoint x ~withCheckpoint ~checkpointIndex ~angle ~width ~height ~inChannel ~threadIndex ~returningEdgeWidth self = msg_send ~self ~cmd:(selector "updatedCheckpoint:withCheckpoint:checkpointIndex:angle:width:height:inChannel:threadIndex:returningEdgeWidth:") ~typ:((ptr CGPoint.t) @-> CGPoint.t @-> int @-> float @-> int @-> int @-> (ptr void) @-> int @-> (ptr float) @-> returning int) x withCheckpoint checkpointIndex angle width height inChannel threadIndex returningEdgeWidth
+let widenedHull x ~withHull ~by self = msg_send ~self ~cmd:(selector "widenedHull:withHull:by:") ~typ:((ptr (ptr void)) @-> (ptr void) @-> float @-> returning int) x withHull by
