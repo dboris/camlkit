@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cadisplayattributes?language=objc}CADisplayAttributes} *)
+
+let self = get_class "CADisplayAttributes"
 
 let bt2020YCC self = msg_send ~self ~cmd:(selector "bt2020YCC") ~typ:(returning llong)
 let dolbyVision self = msg_send ~self ~cmd:(selector "dolbyVision") ~typ:(returning llong)

@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/carenderer?language=objc}CARenderer} *)
+
+let self = get_class "CARenderer"
 
 let addUpdateRect x self = msg_send ~self ~cmd:(selector "addUpdateRect:") ~typ:(CGRect.t @-> returning void) x
 let beginFrameAtTime x ~timeStamp self = msg_send ~self ~cmd:(selector "beginFrameAtTime:timeStamp:") ~typ:(double @-> (ptr void) @-> returning void) x timeStamp

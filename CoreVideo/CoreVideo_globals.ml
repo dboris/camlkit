@@ -9,7 +9,6 @@ open CoreFoundation_globals
 open CoreGraphics
 open CoreGraphics_globals
 open CoreAnimation
-open CoreAnimation_globals
 
 module CVDisplayLinkRef = struct
   let t = (ptr CVDisplayLink.t)

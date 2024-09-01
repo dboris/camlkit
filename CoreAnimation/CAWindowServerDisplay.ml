@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cawindowserverdisplay?language=objc}CAWindowServerDisplay} *)
+
+let self = get_class "CAWindowServerDisplay"
 
 let _TVMode self = msg_send ~self ~cmd:(selector "TVMode") ~typ:(returning id)
 let _TVSignalType self = msg_send ~self ~cmd:(selector "TVSignalType") ~typ:(returning id)

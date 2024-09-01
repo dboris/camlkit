@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cacodingcamlwriterdelegate?language=objc}CACodingCAMLWriterDelegate} *)
+
+let self = get_class "CACodingCAMLWriterDelegate"
 
 let _CAMLWriter x ~_URLForResource self = msg_send ~self ~cmd:(selector "CAMLWriter:URLForResource:") ~typ:(id @-> id @-> returning id) x _URLForResource
 let _CAMLWriter1 x ~shouldEncodeObject self = msg_send ~self ~cmd:(selector "CAMLWriter:shouldEncodeObject:") ~typ:(id @-> id @-> returning bool) x shouldEncodeObject

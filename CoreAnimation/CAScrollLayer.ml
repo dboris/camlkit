@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cascrolllayer?language=objc}CAScrollLayer} *)
+
+let self = get_class "CAScrollLayer"
 
 let scrollMode self = msg_send ~self ~cmd:(selector "scrollMode") ~typ:(returning id)
 let scrollToPoint x self = msg_send ~self ~cmd:(selector "scrollToPoint:") ~typ:(CGPoint.t @-> returning void) x

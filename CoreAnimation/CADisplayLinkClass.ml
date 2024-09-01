@@ -3,16 +3,11 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cadisplaylink?language=objc}CADisplayLink} *)
-
-let self = get_class "CADisplayLink"
 
 let dispatchDeferredDisplayLinks self = msg_send ~self ~cmd:(selector "dispatchDeferredDisplayLinks") ~typ:(returning void)
 let displayLinkWithDisplay x ~target ~selector_ self = msg_send ~self ~cmd:(selector "displayLinkWithDisplay:target:selector:") ~typ:(id @-> id @-> _SEL @-> returning id) x target selector_

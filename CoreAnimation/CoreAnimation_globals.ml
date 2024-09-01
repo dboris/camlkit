@@ -3,12 +3,14 @@
 open Runtime
 open Objc
 
-
-[@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
+
+module CAPoint3D = struct
+  let t : [`CAPoint3D] structure typ = structure "CAPoint3D"
+end
+module CAPoint3DRef = struct
+  let t = (ptr CAPoint3D.t)
+end
 
 let _CAFrameRateRangeDefault = !@ (Foreign.foreign_value "CAFrameRateRangeDefault" CAFrameRateRange.t)
 let _CATransform3DIdentity = !@ (Foreign.foreign_value "CATransform3DIdentity" CATransform3D.t)
@@ -139,19 +141,19 @@ let kCALayerNotSizable = 0
 let kCALayerRightEdge = 2
 let kCALayerTopEdge = 8
 let kCALayerWidthSizable = 2
-let _CATransform3DTranslate = Foreign.foreign "CATransform3DTranslate" (CATransform3D.t @-> double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DScale = Foreign.foreign "CATransform3DScale" (CATransform3D.t @-> double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DRotate = Foreign.foreign "CATransform3DRotate" (CATransform3D.t @-> double @-> double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DMakeTranslation = Foreign.foreign "CATransform3DMakeTranslation" (double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DMakeScale = Foreign.foreign "CATransform3DMakeScale" (double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DMakeRotation = Foreign.foreign "CATransform3DMakeRotation" (double @-> double @-> double @-> double @-> returning CATransform3D.t)
-let _CATransform3DMakeAffineTransform = Foreign.foreign "CATransform3DMakeAffineTransform" (CGAffineTransform.t @-> returning CATransform3D.t)
-let _CATransform3DIsIdentity = Foreign.foreign "CATransform3DIsIdentity" (CATransform3D.t @-> returning bool)
-let _CATransform3DIsAffine = Foreign.foreign "CATransform3DIsAffine" (CATransform3D.t @-> returning bool)
-let _CATransform3DInvert = Foreign.foreign "CATransform3DInvert" (CATransform3D.t @-> returning CATransform3D.t)
-let _CATransform3DGetAffineTransform = Foreign.foreign "CATransform3DGetAffineTransform" (CATransform3D.t @-> returning CGAffineTransform.t)
-let _CATransform3DEqualToTransform = Foreign.foreign "CATransform3DEqualToTransform" (CATransform3D.t @-> CATransform3D.t @-> returning bool)
-let _CATransform3DConcat = Foreign.foreign "CATransform3DConcat" (CATransform3D.t @-> CATransform3D.t @-> returning CATransform3D.t)
-let _CAFrameRateRangeMake = Foreign.foreign "CAFrameRateRangeMake" (float @-> float @-> float @-> returning CAFrameRateRange.t)
-let _CAFrameRateRangeIsEqualToRange = Foreign.foreign "CAFrameRateRangeIsEqualToRange" (CAFrameRateRange.t @-> CAFrameRateRange.t @-> returning bool)
 let _CACurrentMediaTime = Foreign.foreign "CACurrentMediaTime" (void @-> returning double)
+let _CAFrameRateRangeIsEqualToRange = Foreign.foreign "CAFrameRateRangeIsEqualToRange" (CAFrameRateRange.t @-> CAFrameRateRange.t @-> returning bool)
+let _CAFrameRateRangeMake = Foreign.foreign "CAFrameRateRangeMake" (float @-> float @-> float @-> returning CAFrameRateRange.t)
+let _CATransform3DConcat = Foreign.foreign "CATransform3DConcat" (CATransform3D.t @-> CATransform3D.t @-> returning CATransform3D.t)
+let _CATransform3DEqualToTransform = Foreign.foreign "CATransform3DEqualToTransform" (CATransform3D.t @-> CATransform3D.t @-> returning bool)
+let _CATransform3DGetAffineTransform = Foreign.foreign "CATransform3DGetAffineTransform" (CATransform3D.t @-> returning CGAffineTransform.t)
+let _CATransform3DInvert = Foreign.foreign "CATransform3DInvert" (CATransform3D.t @-> returning CATransform3D.t)
+let _CATransform3DIsAffine = Foreign.foreign "CATransform3DIsAffine" (CATransform3D.t @-> returning bool)
+let _CATransform3DIsIdentity = Foreign.foreign "CATransform3DIsIdentity" (CATransform3D.t @-> returning bool)
+let _CATransform3DMakeAffineTransform = Foreign.foreign "CATransform3DMakeAffineTransform" (CGAffineTransform.t @-> returning CATransform3D.t)
+let _CATransform3DMakeRotation = Foreign.foreign "CATransform3DMakeRotation" (double @-> double @-> double @-> double @-> returning CATransform3D.t)
+let _CATransform3DMakeScale = Foreign.foreign "CATransform3DMakeScale" (double @-> double @-> double @-> returning CATransform3D.t)
+let _CATransform3DMakeTranslation = Foreign.foreign "CATransform3DMakeTranslation" (double @-> double @-> double @-> returning CATransform3D.t)
+let _CATransform3DRotate = Foreign.foreign "CATransform3DRotate" (CATransform3D.t @-> double @-> double @-> double @-> double @-> returning CATransform3D.t)
+let _CATransform3DScale = Foreign.foreign "CATransform3DScale" (CATransform3D.t @-> double @-> double @-> double @-> returning CATransform3D.t)
+let _CATransform3DTranslate = Foreign.foreign "CATransform3DTranslate" (CATransform3D.t @-> double @-> double @-> double @-> returning CATransform3D.t)

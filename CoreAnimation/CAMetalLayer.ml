@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cametallayer?language=objc}CAMetalLayer} *)
+
+let self = get_class "CAMetalLayer"
 
 let _EDRMetadata self = msg_send ~self ~cmd:(selector "EDRMetadata") ~typ:(returning id)
 let allowsNextDrawableTimeout self = msg_send ~self ~cmd:(selector "allowsNextDrawableTimeout") ~typ:(returning bool)

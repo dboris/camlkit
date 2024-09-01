@@ -3,16 +3,11 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caconstraint?language=objc}CAConstraint} *)
-
-let self = get_class "CAConstraint"
 
 let _CAMLParserEndElement x ~content self = msg_send ~self ~cmd:(selector "CAMLParserEndElement:content:") ~typ:(id @-> id @-> returning void) x content
 let constraintWithAttribute x ~relativeTo ~attribute self = msg_send ~self ~cmd:(selector "constraintWithAttribute:relativeTo:attribute:") ~typ:(int @-> id @-> int @-> returning id) x relativeTo attribute

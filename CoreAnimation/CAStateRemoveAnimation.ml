@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/castateremoveanimation?language=objc}CAStateRemoveAnimation} *)
+
+let self = get_class "CAStateRemoveAnimation"
 
 let _CAMLTypeForKey x self = msg_send ~self ~cmd:(selector "CAMLTypeForKey:") ~typ:(id @-> returning id) x
 let apply x self = msg_send ~self ~cmd:(selector "apply:") ~typ:(id @-> returning void) x

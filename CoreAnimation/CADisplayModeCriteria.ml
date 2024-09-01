@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cadisplaymodecriteria?language=objc}CADisplayModeCriteria} *)
+
+let self = get_class "CADisplayModeCriteria"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let hdrMode self = msg_send ~self ~cmd:(selector "hdrMode") ~typ:(returning id)

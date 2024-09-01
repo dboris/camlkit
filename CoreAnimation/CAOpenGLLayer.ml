@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caopengllayer?language=objc}CAOpenGLLayer} *)
+
+let self = get_class "CAOpenGLLayer"
 
 let asynchronous self = msg_send ~self ~cmd:(selector "asynchronous") ~typ:(returning bool)
 let canDrawInCGLContext x ~pixelFormat ~forLayerTime ~displayTime self = msg_send ~self ~cmd:(selector "canDrawInCGLContext:pixelFormat:forLayerTime:displayTime:") ~typ:((ptr CGLContextObject.t) @-> (ptr CGLPixelFormatObject.t) @-> double @-> (ptr void) @-> returning bool) x pixelFormat forLayerTime displayTime

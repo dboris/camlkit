@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/lknsarraycodingproxy?language=objc}LKNSArrayCodingProxy} *)
+
+let self = get_class "LKNSArrayCodingProxy"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodedObject self = msg_send ~self ~cmd:(selector "decodedObject") ~typ:(returning id)

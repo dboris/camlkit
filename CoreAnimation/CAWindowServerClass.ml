@@ -3,16 +3,11 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cawindowserver?language=objc}CAWindowServer} *)
-
-let self = get_class "CAWindowServer"
 
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let contextWithOptions x self = msg_send ~self ~cmd:(selector "contextWithOptions:") ~typ:(id @-> returning id) x

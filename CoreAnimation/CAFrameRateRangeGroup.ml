@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caframeraterangegroup?language=objc}CAFrameRateRangeGroup} *)
+
+let self = get_class "CAFrameRateRangeGroup"
 
 let addCompatQuantaIntent self = msg_send ~self ~cmd:(selector "addCompatQuantaIntent") ~typ:(returning void)
 let addFrameRateRange x self = msg_send ~self ~cmd:(selector "addFrameRateRange:") ~typ:(CAFrameRateRange.t @-> returning void) x

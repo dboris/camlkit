@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cafencehandle?language=objc}CAFenceHandle} *)
+
+let self = get_class "CAFenceHandle"
 
 let accessMachPort x self = msg_send ~self ~cmd:(selector "accessMachPort:") ~typ:((ptr void) @-> returning void) x
 let copyPort self = msg_send ~self ~cmd:(selector "copyPort") ~typ:(returning uint)

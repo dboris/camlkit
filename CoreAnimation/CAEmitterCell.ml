@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caemittercell?language=objc}CAEmitterCell} *)
+
+let self = get_class "CAEmitterCell"
 
 let _CAMLParser x ~setValue ~forKey self = msg_send ~self ~cmd:(selector "CAMLParser:setValue:forKey:") ~typ:(id @-> id @-> id @-> returning void) x setValue forKey
 let _CAMLTypeForKey x self = msg_send ~self ~cmd:(selector "CAMLTypeForKey:") ~typ:(id @-> returning id) x
@@ -123,7 +122,6 @@ let setTimeOffset x self = msg_send ~self ~cmd:(selector "setTimeOffset:") ~typ:
 let setValue x ~forKey self = msg_send ~self ~cmd:(selector "setValue:forKey:") ~typ:(id @-> id @-> returning void) x forKey
 let setValue1 x ~forKeyPath self = msg_send ~self ~cmd:(selector "setValue:forKeyPath:") ~typ:(id @-> id @-> returning void) x forKeyPath
 let setValue2 x ~forUndefinedKey self = msg_send ~self ~cmd:(selector "setValue:forUndefinedKey:") ~typ:(id @-> id @-> returning void) x forUndefinedKey
-let setVelocity x self = msg_send ~self ~cmd:(selector "setVelocity:") ~typ:(double @-> returning void) x
 let setVelocityRange x self = msg_send ~self ~cmd:(selector "setVelocityRange:") ~typ:(double @-> returning void) x
 let setXAcceleration x self = msg_send ~self ~cmd:(selector "setXAcceleration:") ~typ:(double @-> returning void) x
 let setYAcceleration x self = msg_send ~self ~cmd:(selector "setYAcceleration:") ~typ:(double @-> returning void) x

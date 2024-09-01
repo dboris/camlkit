@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cavaluefunction?language=objc}CAValueFunction} *)
+
+let self = get_class "CAValueFunction"
 
 let apply x ~result self = msg_send ~self ~cmd:(selector "apply:result:") ~typ:((ptr double) @-> (ptr double) @-> returning bool) x result
 let apply' x ~result ~parameterFunction ~context self = msg_send ~self ~cmd:(selector "apply:result:parameterFunction:context:") ~typ:((ptr double) @-> (ptr double) @-> (ptr (ptr void)) @-> (ptr void) @-> returning bool) x result parameterFunction context

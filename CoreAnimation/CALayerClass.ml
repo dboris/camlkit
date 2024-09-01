@@ -3,20 +3,14 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/calayer?language=objc}CALayer} *)
 
-let self = get_class "CALayer"
-
 let _CAMLParserEndElement x self = msg_send ~self ~cmd:(selector "CAMLParserEndElement:") ~typ:(id @-> returning void) x
 let _CAMLParserStartElement x self = msg_send ~self ~cmd:(selector "CAMLParserStartElement:") ~typ:(id @-> returning void) x
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let attributesForKey x self = msg_send ~self ~cmd:(selector "attributesForKey:") ~typ:(id @-> returning id) x
 let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning bool) x
 let cornerCurveExpansionFactor x self = msg_send ~self ~cmd:(selector "cornerCurveExpansionFactor:") ~typ:(id @-> returning double) x

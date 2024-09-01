@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cadisplay?language=objc}CADisplay} *)
+
+let self = get_class "CADisplay"
 
 let allowedHDRModes self = msg_send ~self ~cmd:(selector "allowedHDRModes") ~typ:(returning id)
 let allowsVirtualModes self = msg_send ~self ~cmd:(selector "allowsVirtualModes") ~typ:(returning bool)

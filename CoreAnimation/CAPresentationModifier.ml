@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/capresentationmodifier?language=objc}CAPresentationModifier} *)
+
+let self = get_class "CAPresentationModifier"
 
 let additive self = msg_send ~self ~cmd:(selector "additive") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

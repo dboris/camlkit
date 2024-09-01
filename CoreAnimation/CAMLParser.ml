@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/camlparser?language=objc}CAMLParser} *)
+
+let self = get_class "CAMLParser"
 
 let attributeForKey x ~remove self = msg_send ~self ~cmd:(selector "attributeForKey:remove:") ~typ:(id @-> bool @-> returning id) x remove
 let baseURL self = msg_send ~self ~cmd:(selector "baseURL") ~typ:(returning id)

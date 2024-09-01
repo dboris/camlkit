@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/camatchmoveanimation?language=objc}CAMatchMoveAnimation} *)
+
+let self = get_class "CAMatchMoveAnimation"
 
 let appliesRotation self = msg_send ~self ~cmd:(selector "appliesRotation") ~typ:(returning bool)
 let appliesScale self = msg_send ~self ~cmd:(selector "appliesScale") ~typ:(returning bool)

@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caemitterlayer?language=objc}CAEmitterLayer} *)
+
+let self = get_class "CAEmitterLayer"
 
 let birthRate self = msg_send ~self ~cmd:(selector "birthRate") ~typ:(returning float)
 let cullMaxZ self = msg_send ~self ~cmd:(selector "cullMaxZ") ~typ:(returning double)
@@ -58,7 +57,6 @@ let setSeed x self = msg_send ~self ~cmd:(selector "setSeed:") ~typ:(uint @-> re
 let setSpin x self = msg_send ~self ~cmd:(selector "setSpin:") ~typ:(float @-> returning void) x
 let setSpinBias x self = msg_send ~self ~cmd:(selector "setSpinBias:") ~typ:(float @-> returning void) x
 let setUpdateInterval x self = msg_send ~self ~cmd:(selector "setUpdateInterval:") ~typ:(double @-> returning void) x
-let setVelocity x self = msg_send ~self ~cmd:(selector "setVelocity:") ~typ:(float @-> returning void) x
 let spin self = msg_send ~self ~cmd:(selector "spin") ~typ:(returning float)
 let spinBias self = msg_send ~self ~cmd:(selector "spinBias") ~typ:(returning float)
 let updateInterval self = msg_send ~self ~cmd:(selector "updateInterval") ~typ:(returning double)

@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cadisplaymode?language=objc}CADisplayMode} *)
+
+let self = get_class "CADisplayMode"
 
 let bitDepth self = msg_send ~self ~cmd:(selector "bitDepth") ~typ:(returning ullong)
 let colorGamut self = msg_send ~self ~cmd:(selector "colorGamut") ~typ:(returning id)

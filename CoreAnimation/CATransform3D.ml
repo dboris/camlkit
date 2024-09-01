@@ -3,12 +3,6 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-
 let t : [`CATransform3D] structure typ = structure "CATransform3D"
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/catransform3d?language=objc}CATransform3D} *)
 
@@ -31,6 +25,42 @@ let m44 = field t "m44" double
 
 let () = seal t
 
+let init
+    ~m11:m11_v
+    ~m12:m12_v
+    ~m13:m13_v
+    ~m14:m14_v
+    ~m21:m21_v
+    ~m22:m22_v
+    ~m23:m23_v
+    ~m24:m24_v
+    ~m31:m31_v
+    ~m32:m32_v
+    ~m33:m33_v
+    ~m34:m34_v
+    ~m41:m41_v
+    ~m42:m42_v
+    ~m43:m43_v
+    ~m44:m44_v
+    =
+  let t = make t in
+  setf t m11 m11_v;
+  setf t m12 m12_v;
+  setf t m13 m13_v;
+  setf t m14 m14_v;
+  setf t m21 m21_v;
+  setf t m22 m22_v;
+  setf t m23 m23_v;
+  setf t m24 m24_v;
+  setf t m31 m31_v;
+  setf t m32 m32_v;
+  setf t m33 m33_v;
+  setf t m34 m34_v;
+  setf t m41 m41_v;
+  setf t m42 m42_v;
+  setf t m43 m43_v;
+  setf t m44 m44_v;
+  t
 let m11 t = getf t m11
 let m12 t = getf t m12
 let m13 t = getf t m13

@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/capackage?language=objc}CAPackage} *)
+
+let self = get_class "CAPackage"
 
 let _CAMLParser x ~didFailToFindClassWithName self = msg_send ~self ~cmd:(selector "CAMLParser:didFailToFindClassWithName:") ~typ:(id @-> id @-> returning _Class) x didFailToFindClassWithName
 let _CAMLParser1 x ~resourceForURL self = msg_send ~self ~cmd:(selector "CAMLParser:resourceForURL:") ~typ:(id @-> id @-> returning id) x resourceForURL

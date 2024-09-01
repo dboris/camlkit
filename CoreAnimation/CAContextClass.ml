@@ -3,16 +3,11 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/cacontext?language=objc}CAContext} *)
-
-let self = get_class "CAContext"
 
 let allContexts self = msg_send ~self ~cmd:(selector "allContexts") ~typ:(returning id)
 let allowsCGSConnections self = msg_send ~self ~cmd:(selector "allowsCGSConnections") ~typ:(returning bool)

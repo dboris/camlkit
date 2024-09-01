@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/castatecontrollertransition?language=objc}CAStateControllerTransition} *)
+
+let self = get_class "CAStateControllerTransition"
 
 let addAnimation x self = msg_send ~self ~cmd:(selector "addAnimation:") ~typ:(id @-> returning void) x
 let animationDidStop x ~finished self = msg_send ~self ~cmd:(selector "animationDidStop:finished:") ~typ:(id @-> bool @-> returning void) x finished

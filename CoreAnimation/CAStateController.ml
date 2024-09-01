@@ -3,14 +3,13 @@
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-32-33"]
+[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreAnimation_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/castatecontroller?language=objc}CAStateController} *)
+
+let self = get_class "CAStateController"
 
 let cancelTimers self = msg_send ~self ~cmd:(selector "cancelTimers") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
