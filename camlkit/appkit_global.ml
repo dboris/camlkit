@@ -97,7 +97,7 @@ let set_title title self =
     title
 ;;
 
-let init_with_frame (frame : CGRect.t structure) self =
+let init_with_frame frame self =
   msg_send ~self
     ~cmd: (selector "initWithFrame:")
     ~typ: (CGRect.t @-> returning id)
@@ -121,7 +121,7 @@ let add_subview view self =
     ~cmd: (selector "addSubview:")
     view
 
-let set_frame (frame : CGRect.t structure) self =
+let set_frame frame self =
   msg_send ~self
     ~cmd: (selector "setFrame:")
     ~typ: (CGRect.t @-> returning void)

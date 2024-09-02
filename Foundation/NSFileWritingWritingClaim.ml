@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilewritingwritingclaim?language=objc}NSFileWritingWritingClaim} *)
+
+let self = get_class "NSFileWritingWritingClaim"
 
 let allURLs self = msg_send ~self ~cmd:(selector "allURLs") ~typ:(returning id)
 let blocksClaim x self = msg_send ~self ~cmd:(selector "blocksClaim:") ~typ:(id @-> returning bool) x

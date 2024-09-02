@@ -5,6 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation//nsobject?language=objc}NSObject} *)
 
+let self = get_class "NSObject"
+
 let addChainedObservers x self = msg_send ~self ~cmd:(selector "addChainedObservers:") ~typ:(id @-> returning id) x
 let addObject x ~toBothSidesOfRelationshipWithKey self = msg_send ~self ~cmd:(selector "addObject:toBothSidesOfRelationshipWithKey:") ~typ:(id @-> id @-> returning void) x toBothSidesOfRelationshipWithKey
 let addObject' x ~toPropertyWithKey self = msg_send ~self ~cmd:(selector "addObject:toPropertyWithKey:") ~typ:(id @-> id @-> returning void) x toPropertyWithKey

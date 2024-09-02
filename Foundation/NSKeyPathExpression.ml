@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeypathexpression?language=objc}NSKeyPathExpression} *)
+
+let self = get_class "NSKeyPathExpression"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithKeyPath x self = msg_send ~self ~cmd:(selector "initWithKeyPath:") ~typ:(id @-> returning id) x

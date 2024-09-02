@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilemanager?language=objc}NSFileManager} *)
+
+let self = get_class "NSFileManager"
 
 let _URLForDirectory x ~inDomain ~appropriateForURL ~create ~error self = msg_send ~self ~cmd:(selector "URLForDirectory:inDomain:appropriateForURL:create:error:") ~typ:(ullong @-> ullong @-> id @-> bool @-> (ptr id) @-> returning id) (ULLong.of_int x) (ULLong.of_int inDomain) appropriateForURL create error
 let _URLForPublishingUbiquitousItemAtURL x ~expirationDate ~error self = msg_send ~self ~cmd:(selector "URLForPublishingUbiquitousItemAtURL:expirationDate:error:") ~typ:(id @-> (ptr id) @-> (ptr id) @-> returning id) x expirationDate error

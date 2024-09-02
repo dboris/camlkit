@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmessageport?language=objc}NSMessagePort} *)
+
+let self = get_class "NSMessagePort"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)

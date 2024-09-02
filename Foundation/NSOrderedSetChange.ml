@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsorderedsetchange?language=objc}NSOrderedSetChange} *)
+
+let self = get_class "NSOrderedSetChange"
 
 let changeType self = msg_send ~self ~cmd:(selector "changeType") ~typ:(returning ullong)
 let destinationIndex self = msg_send ~self ~cmd:(selector "destinationIndex") ~typ:(returning ullong)

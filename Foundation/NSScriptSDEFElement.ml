@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptsdefelement?language=objc}NSScriptSDEFElement} *)
+
+let self = get_class "NSScriptSDEFElement"
 
 let addDescription x ~forSubelementName self = msg_send ~self ~cmd:(selector "addDescription:forSubelementName:") ~typ:(id @-> id @-> returning void) x forSubelementName
 let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning id)

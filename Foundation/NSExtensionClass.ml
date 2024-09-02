@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsextension?language=objc}NSExtension} *)
 
-let self = get_class "NSExtension"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let beginMatchingExtensionsWithAttributes x ~completion self = msg_send ~self ~cmd:(selector "beginMatchingExtensionsWithAttributes:completion:") ~typ:(id @-> (ptr void) @-> returning id) x completion
 let endMatchingExtensions x self = msg_send ~self ~cmd:(selector "endMatchingExtensions:") ~typ:(id @-> returning void) x
 let evaluateActivationRule x ~withExtensionItemsRepresentation self = msg_send ~self ~cmd:(selector "evaluateActivationRule:withExtensionItemsRepresentation:") ~typ:(id @-> id @-> returning bool) x withExtensionItemsRepresentation

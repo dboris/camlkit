@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsexpression?language=objc}NSExpression} *)
-
-let self = get_class "NSExpression"
 
 let expressionForAggregate x self = msg_send ~self ~cmd:(selector "expressionForAggregate:") ~typ:(id @-> returning id) x
 let expressionForAnyKey self = msg_send ~self ~cmd:(selector "expressionForAnyKey") ~typ:(returning id)

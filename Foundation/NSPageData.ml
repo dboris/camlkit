@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspagedata?language=objc}NSPageData} *)
+
+let self = get_class "NSPageData"
 
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr void))
 let data self = msg_send ~self ~cmd:(selector "data") ~typ:(returning id)

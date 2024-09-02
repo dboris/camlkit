@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsblockoperation?language=objc}NSBlockOperation} *)
+
+let self = get_class "NSBlockOperation"
 
 let addExecutionBlock x self = msg_send ~self ~cmd:(selector "addExecutionBlock:") ~typ:((ptr void) @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

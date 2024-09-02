@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssimplecstring?language=objc}NSSimpleCString} *)
+
+let self = get_class "NSSimpleCString"
 
 let cStringLength self = msg_send ~self ~cmd:(selector "cStringLength") ~typ:(returning ullong)
 let canBeConvertedToEncoding x self = msg_send ~self ~cmd:(selector "canBeConvertedToEncoding:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)

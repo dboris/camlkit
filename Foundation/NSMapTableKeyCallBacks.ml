@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSMapTableKeyCallBacks] structure typ = structure "_NSMapTableKeyCallBacks"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsmaptablekeycallbacks?language=objc}_NSMapTableKeyCallBacks} *)

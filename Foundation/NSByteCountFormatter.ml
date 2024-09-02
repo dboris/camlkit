@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbytecountformatter?language=objc}NSByteCountFormatter} *)
+
+let self = get_class "NSByteCountFormatter"
 
 let allowedUnits self = msg_send ~self ~cmd:(selector "allowedUnits") ~typ:(returning ullong)
 let allowsNonnumericFormatting self = msg_send ~self ~cmd:(selector "allowsNonnumericFormatting") ~typ:(returning bool)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsorderedcollectionchange?language=objc}NSOrderedCollectionChange} *)
+
+let self = get_class "NSOrderedCollectionChange"
 
 let associatedIndex self = msg_send ~self ~cmd:(selector "associatedIndex") ~typ:(returning ullong)
 let changeType self = msg_send ~self ~cmd:(selector "changeType") ~typ:(returning llong)

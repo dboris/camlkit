@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc}NSDistantObject} *)
+
+let self = get_class "NSDistantObject"
 
 let appendFormat x self = msg_send ~self ~cmd:(selector "appendFormat:") ~typ:(id @-> returning void) x
 let class_ self = msg_send ~self ~cmd:(selector "class") ~typ:(returning _Class)

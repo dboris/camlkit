@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc}NSMetadataQuery} *)
-
-let self = get_class "NSMetadataQuery"
 
 let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning bool) x
 let didEndPossibleFileOperation x self = msg_send ~self ~cmd:(selector "didEndPossibleFileOperation:") ~typ:(id @-> returning void) x

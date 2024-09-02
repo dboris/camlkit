@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssmartpunctuationcontroller?language=objc}NSSmartPunctuationController} *)
+
+let self = get_class "NSSmartPunctuationController"
 
 let client self = msg_send ~self ~cmd:(selector "client") ~typ:(returning id)
 let clientDidReplaceRange x ~changeInLength self = msg_send ~self ~cmd:(selector "clientDidReplaceRange:changeInLength:") ~typ:(NSRange.t @-> llong @-> returning void) x (LLong.of_int changeInLength)

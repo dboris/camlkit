@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsappleeventdescriptor?language=objc}NSAppleEventDescriptor} *)
-
-let self = get_class "NSAppleEventDescriptor"
 
 let appleEventWithEventClass x ~eventID ~targetDescriptor ~returnID ~transactionID self = msg_send ~self ~cmd:(selector "appleEventWithEventClass:eventID:targetDescriptor:returnID:transactionID:") ~typ:(uint @-> uint @-> id @-> short @-> int @-> returning id) x eventID targetDescriptor returnID transactionID
 let currentProcessDescriptor self = msg_send ~self ~cmd:(selector "currentProcessDescriptor") ~typ:(returning id)

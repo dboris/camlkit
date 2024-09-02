@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptingappleeventhandler?language=objc}NSScriptingAppleEventHandler} *)
+
+let self = get_class "NSScriptingAppleEventHandler"
 
 let handleCommandEvent x ~withReplyEvent self = msg_send ~self ~cmd:(selector "handleCommandEvent:withReplyEvent:") ~typ:(id @-> id @-> returning void) x withReplyEvent
 let handleGetAETEEvent x ~withReplyEvent self = msg_send ~self ~cmd:(selector "handleGetAETEEvent:withReplyEvent:") ~typ:(id @-> id @-> returning void) x withReplyEvent

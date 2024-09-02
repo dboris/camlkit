@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptpropertydescription?language=objc}NSScriptPropertyDescription} *)
+
+let self = get_class "NSScriptPropertyDescription"
 
 let access self = msg_send ~self ~cmd:(selector "access") ~typ:(returning ullong)
 let addAccessGroups x self = msg_send ~self ~cmd:(selector "addAccessGroups:") ~typ:(id @-> returning void) x

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc}NSItemProvider} *)
+
+let self = get_class "NSItemProvider"
 
 let canLoadObjectOfClass x self = msg_send ~self ~cmd:(selector "canLoadObjectOfClass:") ~typ:(_Class @-> returning bool) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

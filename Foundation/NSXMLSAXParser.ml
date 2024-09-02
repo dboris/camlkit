@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlsaxparser?language=objc}NSXMLSAXParser} *)
+
+let self = get_class "NSXMLSAXParser"
 
 let afterEntityLookup self = msg_send ~self ~cmd:(selector "afterEntityLookup") ~typ:(returning bool)
 let content self = msg_send ~self ~cmd:(selector "content") ~typ:(returning id)

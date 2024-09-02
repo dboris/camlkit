@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstextcheckingkeyevent?language=objc}NSTextCheckingKeyEvent} *)
+
+let self = get_class "NSTextCheckingKeyEvent"
 
 let characters self = msg_send ~self ~cmd:(selector "characters") ~typ:(returning id)
 let charactersIgnoringModifiers self = msg_send ~self ~cmd:(selector "charactersIgnoringModifiers") ~typ:(returning id)

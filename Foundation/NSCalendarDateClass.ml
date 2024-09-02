@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscalendardate?language=objc}NSCalendarDate} *)
-
-let self = get_class "NSCalendarDate"
 
 let calendarDate self = msg_send ~self ~cmd:(selector "calendarDate") ~typ:(returning id)
 let dateWithNaturalLanguageString x ~date ~locale self = msg_send ~self ~cmd:(selector "dateWithNaturalLanguageString:date:locale:") ~typ:(id @-> id @-> id @-> returning id) x date locale

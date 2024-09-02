@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsrtfd?language=objc}NSRTFD} *)
+
+let self = get_class "NSRTFD"
 
 let addCommon x ~docInfo ~value ~zone self = msg_send ~self ~cmd:(selector "addCommon:docInfo:value:zone:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning id) x docInfo value zone
 let addData x ~name self = msg_send ~self ~cmd:(selector "addData:name:") ~typ:(id @-> id @-> returning id) x name

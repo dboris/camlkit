@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsvalue?language=objc}NSValue} *)
 
-let self = get_class "NSValue"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)
 let value x ~withObjCType self = msg_send ~self ~cmd:(selector "value:withObjCType:") ~typ:((ptr void) @-> string @-> returning id) x withObjCType
 let valueWithBytes x ~objCType self = msg_send ~self ~cmd:(selector "valueWithBytes:objCType:") ~typ:((ptr void) @-> string @-> returning id) x objCType

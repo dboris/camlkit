@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssocketport?language=objc}NSSocketPort} *)
+
+let self = get_class "NSSocketPort"
 
 let addConnection x ~toRunLoop ~forMode self = msg_send ~self ~cmd:(selector "addConnection:toRunLoop:forMode:") ~typ:(id @-> id @-> id @-> returning void) x toRunLoop forMode
 let address self = msg_send ~self ~cmd:(selector "address") ~typ:(returning id)

@@ -1,4 +1,3 @@
-open CoreFoundation
 open Foundation
 open Runtime
 open Objc

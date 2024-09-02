@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsplaceholderstring?language=objc}NSPlaceholderString} *)
+
+let self = get_class "NSPlaceholderString"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let characterAtIndex x self = msg_send ~self ~cmd:(selector "characterAtIndex:") ~typ:(ullong @-> returning ushort) (ULLong.of_int x)

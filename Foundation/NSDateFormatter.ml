@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdateformatter?language=objc}NSDateFormatter} *)
+
+let self = get_class "NSDateFormatter"
 
 let _AMSymbol self = msg_send ~self ~cmd:(selector "AMSymbol") ~typ:(returning id)
 let _PMSymbol self = msg_send ~self ~cmd:(selector "PMSymbol") ~typ:(returning id)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmutablestringproxy?language=objc}NSMutableStringProxy} *)
+
+let self = get_class "NSMutableStringProxy"
 
 let getBytes x ~maxLength ~usedLength ~encoding ~options ~range ~remainingRange self = msg_send ~self ~cmd:(selector "getBytes:maxLength:usedLength:encoding:options:range:remainingRange:") ~typ:((ptr void) @-> ullong @-> (ptr ullong) @-> ullong @-> ullong @-> NSRange.t @-> (ptr NSRange.t) @-> returning bool) x (ULLong.of_int maxLength) usedLength (ULLong.of_int encoding) (ULLong.of_int options) range remainingRange
 let getCString x self = msg_send ~self ~cmd:(selector "getCString:") ~typ:(string @-> returning void) x

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptenumeratordescription?language=objc}NSScriptEnumeratorDescription} *)
+
+let self = get_class "NSScriptEnumeratorDescription"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithAppleEventCode x ~presentableDescription ~name self = msg_send ~self ~cmd:(selector "initWithAppleEventCode:presentableDescription:name:") ~typ:(uint @-> id @-> id @-> returning id) x presentableDescription name

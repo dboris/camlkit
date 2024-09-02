@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscripttomanyrelationshipdescription?language=objc}NSScriptToManyRelationshipDescription} *)
+
+let self = get_class "NSScriptToManyRelationshipDescription"
 
 let appleEventCode self = msg_send ~self ~cmd:(selector "appleEventCode") ~typ:(returning uint)
 let initWithKey x ~type_ ~isReadOnly ~appleEventCode ~isLocationRequiredToCreate self = msg_send ~self ~cmd:(selector "initWithKey:type:isReadOnly:appleEventCode:isLocationRequiredToCreate:") ~typ:(id @-> id @-> bool @-> uint @-> bool @-> returning id) x type_ isReadOnly appleEventCode isLocationRequiredToCreate

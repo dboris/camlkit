@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscoder?language=objc}NSCoder} *)
+
+let self = get_class "NSCoder"
 
 let allowedClasses self = msg_send ~self ~cmd:(selector "allowedClasses") ~typ:(returning id)
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning bool)

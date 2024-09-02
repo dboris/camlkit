@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsproxy?language=objc}NSProxy} *)
+
+let self = get_class "NSProxy"
 
 let allowsWeakReference self = msg_send ~self ~cmd:(selector "allowsWeakReference") ~typ:(returning bool)
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)

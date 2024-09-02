@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSHashEnumerator] structure typ = structure "_NSHashEnumerator"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nshashenumerator?language=objc}_NSHashEnumerator} *)

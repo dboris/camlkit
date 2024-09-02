@@ -5,16 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsautoreleasepool?language=objc}NSAutoreleasePool} *)
 
-let self = get_class "NSAutoreleasePool"
-
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let autoreleasePoolExists self = msg_send ~self ~cmd:(selector "autoreleasePoolExists") ~typ:(returning bool)
 let autoreleasedObjectCount self = msg_send ~self ~cmd:(selector "autoreleasedObjectCount") ~typ:(returning ullong)
 let enableFreedObjectCheck x self = msg_send ~self ~cmd:(selector "enableFreedObjectCheck:") ~typ:(bool @-> returning void) x

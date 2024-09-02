@@ -5,12 +5,8 @@ open Objc
 
 (** Apple docs: {{:https://developer.apple.com/documentation//nsobject?language=objc}NSObject} *)
 
-let self = get_class "NSObject"
-
 let _SFSQLiteClassName self = msg_send ~self ~cmd:(selector "SFSQLiteClassName") ~typ:(returning id)
 let accessInstanceVariablesDirectly self = msg_send ~self ~cmd:(selector "accessInstanceVariablesDirectly") ~typ:(returning bool)
-let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning id)
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let allowsWeakReference self = msg_send ~self ~cmd:(selector "allowsWeakReference") ~typ:(returning bool)
 let automaticallyNotifiesObserversForKey x self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversForKey:") ~typ:(id @-> returning bool) x
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
@@ -53,7 +49,6 @@ let methodForSelector x self = msg_send ~self ~cmd:(selector "methodForSelector:
 let methodSignatureForSelector x self = msg_send ~self ~cmd:(selector "methodSignatureForSelector:") ~typ:(_SEL @-> returning id) x
 let mutableCopy self = msg_send ~self ~cmd:(selector "mutableCopy") ~typ:(returning id)
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
-let new_ self = msg_send ~self ~cmd:(selector "new") ~typ:(returning id)
 let performSelector x self = msg_send ~self ~cmd:(selector "performSelector:") ~typ:(_SEL @-> returning id) x
 let performSelector1 x ~withObject self = msg_send ~self ~cmd:(selector "performSelector:withObject:") ~typ:(_SEL @-> id @-> returning id) x withObject
 let performSelector2 x ~withObject ~withObject_ self = msg_send ~self ~cmd:(selector "performSelector:withObject:withObject:") ~typ:(_SEL @-> id @-> id @-> returning id) x withObject withObject_

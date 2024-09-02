@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSOperatingSystemVersion] structure typ = structure "_NSOperatingSystemVersion"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsoperatingsystemversion?language=objc}_NSOperatingSystemVersion} *)
@@ -22,7 +20,7 @@ let init
     ~majorVersion:majorVersion_v
     ~minorVersion:minorVersion_v
     ~patchVersion:patchVersion_v
-    () =
+    =
   let t = make t in
   setf t majorVersion majorVersion_v;
   setf t minorVersion minorVersion_v;

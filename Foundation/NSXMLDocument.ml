@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc}NSXMLDocument} *)
+
+let self = get_class "NSXMLDocument"
 
 let _DTD self = msg_send ~self ~cmd:(selector "DTD") ~typ:(returning id)
 let _MIMEType self = msg_send ~self ~cmd:(selector "MIMEType") ~typ:(returning id)

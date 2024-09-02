@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nszipfilearchive?language=objc}NSZipFileArchive} *)
+
+let self = get_class "NSZipFileArchive"
 
 let archiveData self = msg_send ~self ~cmd:(selector "archiveData") ~typ:(returning id)
 let archiveStream self = msg_send ~self ~cmd:(selector "archiveStream") ~typ:(returning id)

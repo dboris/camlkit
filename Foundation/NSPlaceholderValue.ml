@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsplaceholdervalue?language=objc}NSPlaceholderValue} *)
+
+let self = get_class "NSPlaceholderValue"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconnection?language=objc}NSConnection} *)
-
-let self = get_class "NSConnection"
 
 let allConnections self = msg_send ~self ~cmd:(selector "allConnections") ~typ:(returning id)
 let connectionWithPrivilegedName x self = msg_send ~self ~cmd:(selector "connectionWithPrivilegedName:") ~typ:(id @-> returning id) x

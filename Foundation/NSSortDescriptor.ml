@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssortdescriptor?language=objc}NSSortDescriptor} *)
+
+let self = get_class "NSSortDescriptor"
 
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning void)
 let ascending self = msg_send ~self ~cmd:(selector "ascending") ~typ:(returning bool)

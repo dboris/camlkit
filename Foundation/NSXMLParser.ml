@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlparser?language=objc}NSXMLParser} *)
+
+let self = get_class "NSXMLParser"
 
 let abortParsing self = msg_send ~self ~cmd:(selector "abortParsing") ~typ:(returning void)
 let allowedExternalEntityURLs self = msg_send ~self ~cmd:(selector "allowedExternalEntityURLs") ~typ:(returning id)

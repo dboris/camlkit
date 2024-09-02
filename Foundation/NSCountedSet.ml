@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscountedset?language=objc}NSCountedSet} *)
+
+let self = get_class "NSCountedSet"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)

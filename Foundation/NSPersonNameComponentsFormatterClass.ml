@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatter?language=objc}NSPersonNameComponentsFormatter} *)
-
-let self = get_class "NSPersonNameComponentsFormatter"
 
 let arabicInitialsCreator self = msg_send ~self ~cmd:(selector "arabicInitialsCreator") ~typ:(returning (ptr void))
 let forEachExistingComponentWithComponents x ~performBlock self = msg_send ~self ~cmd:(selector "forEachExistingComponentWithComponents:performBlock:") ~typ:(id @-> (ptr void) @-> returning void) x performBlock

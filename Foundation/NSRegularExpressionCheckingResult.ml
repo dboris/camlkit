@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsregularexpressioncheckingresult?language=objc}NSRegularExpressionCheckingResult} *)
+
+let self = get_class "NSRegularExpressionCheckingResult"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilecoordinator?language=objc}NSFileCoordinator} *)
+
+let self = get_class "NSFileCoordinator"
 
 let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning void)
 let coordinateAccessWithIntents x ~queue ~byAccessor self = msg_send ~self ~cmd:(selector "coordinateAccessWithIntents:queue:byAccessor:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x queue byAccessor

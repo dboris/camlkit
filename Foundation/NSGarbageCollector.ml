@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsgarbagecollector?language=objc}NSGarbageCollector} *)
+
+let self = get_class "NSGarbageCollector"
 
 let collectExhaustively self = msg_send ~self ~cmd:(selector "collectExhaustively") ~typ:(returning void)
 let collectIfNeeded self = msg_send ~self ~cmd:(selector "collectIfNeeded") ~typ:(returning void)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc}NSScriptObjectSpecifier} *)
+
+let self = get_class "NSScriptObjectSpecifier"
 
 let childSpecifier self = msg_send ~self ~cmd:(selector "childSpecifier") ~typ:(returning id)
 let containerClassDescription self = msg_send ~self ~cmd:(selector "containerClassDescription") ~typ:(returning id)

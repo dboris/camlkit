@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsencodingdetectionbuffer?language=objc}NSEncodingDetectionBuffer} *)
+
+let self = get_class "NSEncodingDetectionBuffer"
 
 let appendByte1 x ~byte2 self = msg_send ~self ~cmd:(selector "appendByte1:byte2:") ~typ:(uchar @-> uchar @-> returning void) x byte2
 let appendByte11 x ~byte2 ~byte3 self = msg_send ~self ~cmd:(selector "appendByte1:byte2:byte3:") ~typ:(uchar @-> uchar @-> uchar @-> returning void) x byte2 byte3

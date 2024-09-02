@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileaccessarbiter?language=objc}NSFileAccessArbiter} *)
+
+let self = get_class "NSFileAccessArbiter"
 
 let addPresenter x ~withID ~fileURL ~lastPresentedItemEventIdentifier ~ubiquityAttributes ~options ~responses self = msg_send ~self ~cmd:(selector "addPresenter:withID:fileURL:lastPresentedItemEventIdentifier:ubiquityAttributes:options:responses:") ~typ:(id @-> id @-> id @-> id @-> id @-> ullong @-> ullong @-> returning void) x withID fileURL lastPresentedItemEventIdentifier ubiquityAttributes (ULLong.of_int options) (ULLong.of_int responses)
 let addProvider x ~withID ~uniqueID ~forProvidedItemsURL ~options ~withServer ~reply self = msg_send ~self ~cmd:(selector "addProvider:withID:uniqueID:forProvidedItemsURL:options:withServer:reply:") ~typ:(id @-> id @-> id @-> id @-> ullong @-> id @-> (ptr void) @-> returning void) x withID uniqueID forProvidedItemsURL (ULLong.of_int options) withServer reply

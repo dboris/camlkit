@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsclassdescription?language=objc}NSClassDescription} *)
+
+let self = get_class "NSClassDescription"
 
 let allAttributeKeys self = msg_send ~self ~cmd:(selector "allAttributeKeys") ~typ:(returning id)
 let allToManyRelationshipKeys self = msg_send ~self ~cmd:(selector "allToManyRelationshipKeys") ~typ:(returning id)

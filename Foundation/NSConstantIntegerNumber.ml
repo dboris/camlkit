@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconstantintegernumber?language=objc}NSConstantIntegerNumber} *)
+
+let self = get_class "NSConstantIntegerNumber"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let boolValue self = msg_send ~self ~cmd:(selector "boolValue") ~typ:(returning bool)

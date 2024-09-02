@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscalendardate?language=objc}NSCalendarDate} *)
+
+let self = get_class "NSCalendarDate"
 
 let addTimeInterval x self = msg_send ~self ~cmd:(selector "addTimeInterval:") ~typ:(double @-> returning id) x
 let calendarFormat self = msg_send ~self ~cmd:(selector "calendarFormat") ~typ:(returning id)

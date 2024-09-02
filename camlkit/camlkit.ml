@@ -1,4 +1,3 @@
-open CoreFoundation
 open Foundation
 open Runtime
 open Define
@@ -107,7 +106,7 @@ module CamlProxy = struct
       ]
 
     let _class_ =
-      Class.define D.class_name ~superclass: NSProxyClass.self
+      Class.define D.class_name ~superclass: NSProxy.self
         ~methods ~class_methods ~ivars: D.ivars
   end
 end
@@ -201,6 +200,6 @@ module CamlObjectProxy = struct
         [ ivar_spec ~name: ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ]
       in
         Class.define D.class_name
-          ~superclass: NSProxyClass.self ~ivars ~methods ~class_methods
+          ~superclass: NSProxy.self ~ivars ~methods ~class_methods
   end
 end

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsorderedcollectiondifference?language=objc}NSOrderedCollectionDifference} *)
+
+let self = get_class "NSOrderedCollectionDifference"
 
 let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

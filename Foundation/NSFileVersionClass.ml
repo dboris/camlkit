@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileversion?language=objc}NSFileVersion} *)
-
-let self = get_class "NSFileVersion"
 
 let addVersionOfItemAtURL x ~withContentsOfURL ~options ~error self = msg_send ~self ~cmd:(selector "addVersionOfItemAtURL:withContentsOfURL:options:error:") ~typ:(id @-> id @-> ullong @-> (ptr id) @-> returning id) x withContentsOfURL (ULLong.of_int options) error
 let currentVersionOfItemAtURL x self = msg_send ~self ~cmd:(selector "currentVersionOfItemAtURL:") ~typ:(id @-> returning id) x

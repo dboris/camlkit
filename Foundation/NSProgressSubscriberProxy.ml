@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogresssubscriberproxy?language=objc}NSProgressSubscriberProxy} *)
+
+let self = get_class "NSProgressSubscriberProxy"
 
 let addPublisher x ~forID ~withValues ~isOld self = msg_send ~self ~cmd:(selector "addPublisher:forID:withValues:isOld:") ~typ:(id @-> id @-> id @-> bool @-> returning void) x forID withValues isOld
 let appBundleID self = msg_send ~self ~cmd:(selector "appBundleID") ~typ:(returning id)

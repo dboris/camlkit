@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyvaluenotifyingmutableorderedset?language=objc}NSKeyValueNotifyingMutableOrderedSet} *)
+
+let self = get_class "NSKeyValueNotifyingMutableOrderedSet"
 
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
 let getObjects x ~range self = msg_send ~self ~cmd:(selector "getObjects:range:") ~typ:((ptr id) @-> NSRange.t @-> returning void) x range

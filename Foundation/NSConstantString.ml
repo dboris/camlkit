@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconstantstring?language=objc}NSConstantString} *)
+
+let self = get_class "NSConstantString"
 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let cString self = msg_send ~self ~cmd:(selector "cString") ~typ:(returning string)

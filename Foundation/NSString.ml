@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsstring?language=objc}NSString} *)
+
+let self = get_class "NSString"
 
 let _UTF8String self = msg_send ~self ~cmd:(selector "UTF8String") ~typ:(returning string)
 let boolValue self = msg_send ~self ~cmd:(selector "boolValue") ~typ:(returning bool)

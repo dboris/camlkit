@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSMapEnumerator] structure typ = structure "_NSMapEnumerator"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsmapenumerator?language=objc}_NSMapEnumerator} *)

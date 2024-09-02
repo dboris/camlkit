@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssimpleattributedictionary?language=objc}NSSimpleAttributeDictionary} *)
+
+let self = get_class "NSSimpleAttributeDictionary"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)

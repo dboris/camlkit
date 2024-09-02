@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptargumentdescription?language=objc}NSScriptArgumentDescription} *)
+
+let self = get_class "NSScriptArgumentDescription"
 
 let actualValueIsWritable self = msg_send ~self ~cmd:(selector "actualValueIsWritable") ~typ:(returning bool)
 let appendParameterDeclarationsToAETEData x self = msg_send ~self ~cmd:(selector "appendParameterDeclarationsToAETEData:") ~typ:(id @-> returning ushort) x

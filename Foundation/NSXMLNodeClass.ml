@@ -5,16 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlnode?language=objc}NSXMLNode} *)
 
-let self = get_class "NSXMLNode"
-
 let _DTDNodeWithXMLString x self = msg_send ~self ~cmd:(selector "DTDNodeWithXMLString:") ~typ:(id @-> returning id) x
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let attributeWithLocalName x ~_URI ~stringValue self = msg_send ~self ~cmd:(selector "attributeWithLocalName:URI:stringValue:") ~typ:(id @-> id @-> id @-> returning id) x _URI stringValue
 let attributeWithName x ~stringValue self = msg_send ~self ~cmd:(selector "attributeWithName:stringValue:") ~typ:(id @-> id @-> returning id) x stringValue
 let attributeWithName' x ~_URI ~stringValue self = msg_send ~self ~cmd:(selector "attributeWithName:URI:stringValue:") ~typ:(id @-> id @-> id @-> returning id) x _URI stringValue

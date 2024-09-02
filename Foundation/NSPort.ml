@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsport?language=objc}NSPort} *)
+
+let self = get_class "NSPort"
 
 let addConnection x ~toRunLoop ~forMode self = msg_send ~self ~cmd:(selector "addConnection:toRunLoop:forMode:") ~typ:(id @-> id @-> id @-> returning void) x toRunLoop forMode
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)

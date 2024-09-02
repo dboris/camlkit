@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdistributedobjectsstatistics?language=objc}NSDistributedObjectsStatistics} *)
+
+let self = get_class "NSDistributedObjectsStatistics"
 
 let addStatistics x self = msg_send ~self ~cmd:(selector "addStatistics:") ~typ:(id @-> returning void) x
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)

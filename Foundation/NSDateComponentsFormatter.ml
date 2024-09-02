@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdatecomponentsformatter?language=objc}NSDateComponentsFormatter} *)
+
+let self = get_class "NSDateComponentsFormatter"
 
 let allowedUnits self = msg_send ~self ~cmd:(selector "allowedUnits") ~typ:(returning ullong)
 let allowsFractionalUnits self = msg_send ~self ~cmd:(selector "allowsFractionalUnits") ~typ:(returning bool)

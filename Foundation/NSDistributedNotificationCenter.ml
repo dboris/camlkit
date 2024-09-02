@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdistributednotificationcenter?language=objc}NSDistributedNotificationCenter} *)
+
+let self = get_class "NSDistributedNotificationCenter"
 
 let addObserver x ~selector_ ~name ~object_ self = msg_send ~self ~cmd:(selector "addObserver:selector:name:object:") ~typ:(id @-> _SEL @-> id @-> id @-> returning void) x selector_ name object_
 let addObserver' x ~selector_ ~name ~object_ ~suspensionBehavior self = msg_send ~self ~cmd:(selector "addObserver:selector:name:object:suspensionBehavior:") ~typ:(id @-> _SEL @-> id @-> id @-> ullong @-> returning void) x selector_ name object_ (ULLong.of_int suspensionBehavior)

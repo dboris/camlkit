@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc}NSDecimalNumber} *)
 
-let self = get_class "NSDecimalNumber"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let decimalNumberWithDecimal x self = msg_send ~self ~cmd:(selector "decimalNumberWithDecimal:") ~typ:(void @-> returning id) x
 let decimalNumberWithMantissa x ~exponent ~isNegative self = msg_send ~self ~cmd:(selector "decimalNumberWithMantissa:exponent:isNegative:") ~typ:(ullong @-> short @-> bool @-> returning id) (ULLong.of_int x) exponent isNegative
 let decimalNumberWithString x self = msg_send ~self ~cmd:(selector "decimalNumberWithString:") ~typ:(id @-> returning id) x

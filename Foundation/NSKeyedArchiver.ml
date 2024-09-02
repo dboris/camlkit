@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedarchiver?language=objc}NSKeyedArchiver} *)
+
+let self = get_class "NSKeyedArchiver"
 
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning bool)
 let classNameForClass x self = msg_send ~self ~cmd:(selector "classNameForClass:") ~typ:(_Class @-> returning id) x

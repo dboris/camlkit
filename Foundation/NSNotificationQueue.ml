@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsnotificationqueue?language=objc}NSNotificationQueue} *)
+
+let self = get_class "NSNotificationQueue"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let dequeueNotificationsMatching x ~coalesceMask self = msg_send ~self ~cmd:(selector "dequeueNotificationsMatching:coalesceMask:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int coalesceMask)

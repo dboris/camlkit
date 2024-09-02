@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsitemrepresentationloadresult?language=objc}NSItemRepresentationLoadResult} *)
+
+let self = get_class "NSItemRepresentationLoadResult"
 
 let archivedObjectClass self = msg_send ~self ~cmd:(selector "archivedObjectClass") ~typ:(returning _Class)
 let archivedObjectClassName self = msg_send ~self ~cmd:(selector "archivedObjectClassName") ~typ:(returning id)

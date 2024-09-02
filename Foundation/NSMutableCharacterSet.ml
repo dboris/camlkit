@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmutablecharacterset?language=objc}NSMutableCharacterSet} *)
+
+let self = get_class "NSMutableCharacterSet"
 
 let addCharactersInRange x self = msg_send ~self ~cmd:(selector "addCharactersInRange:") ~typ:(NSRange.t @-> returning void) x
 let addCharactersInString x self = msg_send ~self ~cmd:(selector "addCharactersInString:") ~typ:(id @-> returning void) x

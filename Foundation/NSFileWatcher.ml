@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilewatcher?language=objc}NSFileWatcher} *)
+
+let self = get_class "NSFileWatcher"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let handleFSEventPath x ~flags ~id_ self = msg_send ~self ~cmd:(selector "handleFSEventPath:flags:id:") ~typ:(id @-> uint @-> ullong @-> returning void) x flags (ULLong.of_int id_)

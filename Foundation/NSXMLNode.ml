@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlnode?language=objc}NSXMLNode} *)
+
+let self = get_class "NSXMLNode"
 
 let _URI self = msg_send ~self ~cmd:(selector "URI") ~typ:(returning id)
 let _XMLData self = msg_send ~self ~cmd:(selector "XMLData") ~typ:(returning id)

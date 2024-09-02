@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmaptable?language=objc}NSMapTable} *)
+
+let self = get_class "NSMapTable"
 
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)
 let allValues self = msg_send ~self ~cmd:(selector "allValues") ~typ:(returning id)

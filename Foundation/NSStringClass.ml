@@ -5,18 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsstring?language=objc}NSString} *)
-
-let self = get_class "NSString"
 
 let _NSStringFromLSInstallPhase x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallPhase:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let _NSStringFromLSInstallState x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let _NSStringFromLSInstallType x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallType:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let availableStringEncodings self = msg_send ~self ~cmd:(selector "availableStringEncodings") ~typ:(returning (ptr ullong))
 let defaultCStringEncoding self = msg_send ~self ~cmd:(selector "defaultCStringEncoding") ~typ:(returning ullong)
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)

@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbundle?language=objc}NSBundle} *)
-
-let self = get_class "NSBundle"
 
 let _URLForResource x ~withExtension ~subdirectory ~inBundleWithURL self = msg_send ~self ~cmd:(selector "URLForResource:withExtension:subdirectory:inBundleWithURL:") ~typ:(id @-> id @-> id @-> id @-> returning id) x withExtension subdirectory inBundleWithURL
 let _URLsForResourcesWithExtension x ~subdirectory ~inBundleWithURL self = msg_send ~self ~cmd:(selector "URLsForResourcesWithExtension:subdirectory:inBundleWithURL:") ~typ:(id @-> id @-> id @-> returning id) x subdirectory inBundleWithURL

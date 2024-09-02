@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsftpurlhandle?language=objc}NSFTPURLHandle} *)
+
+let self = get_class "NSFTPURLHandle"
 
 let beginLoadInBackground self = msg_send ~self ~cmd:(selector "beginLoadInBackground") ~typ:(returning void)
 let createFTPReadStream self = msg_send ~self ~cmd:(selector "createFTPReadStream") ~typ:(returning (ptr CFReadStream.t))

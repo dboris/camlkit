@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscanner?language=objc}NSScanner} *)
+
+let self = get_class "NSScanner"
 
 let caseSensitive self = msg_send ~self ~cmd:(selector "caseSensitive") ~typ:(returning bool)
 let charactersToBeSkipped self = msg_send ~self ~cmd:(selector "charactersToBeSkipped") ~typ:(returning id)

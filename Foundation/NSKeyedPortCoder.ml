@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedportcoder?language=objc}NSKeyedPortCoder} *)
+
+let self = get_class "NSKeyedPortCoder"
 
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning bool)
 let connection self = msg_send ~self ~cmd:(selector "connection") ~typ:(returning id)

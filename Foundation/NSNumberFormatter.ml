@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc}NSNumberFormatter} *)
+
+let self = get_class "NSNumberFormatter"
 
 let allowsFloats self = msg_send ~self ~cmd:(selector "allowsFloats") ~typ:(returning bool)
 let alwaysShowsDecimalSeparator self = msg_send ~self ~cmd:(selector "alwaysShowsDecimalSeparator") ~typ:(returning bool)

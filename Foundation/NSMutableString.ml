@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc}NSMutableString} *)
+
+let self = get_class "NSMutableString"
 
 let appendCharacters x ~length self = msg_send ~self ~cmd:(selector "appendCharacters:length:") ~typ:((ptr ushort) @-> ullong @-> returning void) x (ULLong.of_int length)
 let appendFormat x self = msg_send ~self ~cmd:(selector "appendFormat:") ~typ:(id @-> returning void) x

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogress?language=objc}NSProgress} *)
+
+let self = get_class "NSProgress"
 
 let acknowledge self = msg_send ~self ~cmd:(selector "acknowledge") ~typ:(returning void)
 let acknowledgeWithSuccess x self = msg_send ~self ~cmd:(selector "acknowledgeWithSuccess:") ~typ:(bool @-> returning void) x

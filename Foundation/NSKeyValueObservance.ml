@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyvalueobservance?language=objc}NSKeyValueObservance} *)
+
+let self = get_class "NSKeyValueObservance"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)

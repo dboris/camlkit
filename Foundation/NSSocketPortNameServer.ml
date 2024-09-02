@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssocketportnameserver?language=objc}NSSocketPortNameServer} *)
+
+let self = get_class "NSSocketPortNameServer"
 
 let defaultNameServerPortNumber self = msg_send ~self ~cmd:(selector "defaultNameServerPortNumber") ~typ:(returning ushort)
 let netService x ~didNotPublish self = msg_send ~self ~cmd:(selector "netService:didNotPublish:") ~typ:(id @-> id @-> returning void) x didNotPublish

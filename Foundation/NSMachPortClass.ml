@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmachport?language=objc}NSMachPort} *)
-
-let self = get_class "NSMachPort"
 
 let parseMachMessage x ~localPort ~remotePort ~msgid ~components self = msg_send ~self ~cmd:(selector "parseMachMessage:localPort:remotePort:msgid:components:") ~typ:((ptr void) @-> (ptr id) @-> (ptr id) @-> (ptr uint) @-> (ptr id) @-> returning void) x localPort remotePort msgid components
 let port self = msg_send ~self ~cmd:(selector "port") ~typ:(returning id)

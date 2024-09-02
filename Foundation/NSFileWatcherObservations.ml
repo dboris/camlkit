@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilewatcherobservations?language=objc}NSFileWatcherObservations} *)
+
+let self = get_class "NSFileWatcherObservations"
 
 let addAnnouncedMoveToPath x self = msg_send ~self ~cmd:(selector "addAnnouncedMoveToPath:") ~typ:(id @-> returning void) x
 let addAttributeChange self = msg_send ~self ~cmd:(selector "addAttributeChange") ~typ:(returning void)

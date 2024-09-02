@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogressregistrar?language=objc}NSProgressRegistrar} *)
+
+let self = get_class "NSProgressRegistrar"
 
 let addPublisher x ~forID ~acknowledgementAppBundleIDs ~category ~fileURL ~initialValues ~completionHandler self = msg_send ~self ~cmd:(selector "addPublisher:forID:acknowledgementAppBundleIDs:category:fileURL:initialValues:completionHandler:") ~typ:(id @-> id @-> id @-> id @-> id @-> id @-> (ptr void) @-> returning void) x forID acknowledgementAppBundleIDs category fileURL initialValues completionHandler
 let addSubscriber x ~forID ~appBundleID ~category ~completionHandler self = msg_send ~self ~cmd:(selector "addSubscriber:forID:appBundleID:category:completionHandler:") ~typ:(id @-> id @-> id @-> id @-> (ptr void) @-> returning void) x forID appBundleID category completionHandler

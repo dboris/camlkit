@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdatadetector?language=objc}NSDataDetector} *)
+
+let self = get_class "NSDataDetector"
 
 let checkingTypes self = msg_send ~self ~cmd:(selector "checkingTypes") ~typ:(returning ullong)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

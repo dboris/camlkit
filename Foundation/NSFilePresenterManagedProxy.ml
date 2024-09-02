@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilepresentermanagedproxy?language=objc}NSFilePresenterManagedProxy} *)
+
+let self = get_class "NSFilePresenterManagedProxy"
 
 let accommodateDeletionOfSubitemAtURL x ~completionHandler self = msg_send ~self ~cmd:(selector "accommodateDeletionOfSubitemAtURL:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler
 let collectDebuggingInformationWithCompletionHandler x self = msg_send ~self ~cmd:(selector "collectDebuggingInformationWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x

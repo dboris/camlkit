@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspredicate?language=objc}NSPredicate} *)
-
-let self = get_class "NSPredicate"
 
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let newStringFrom x ~usingUnicodeTransforms self = msg_send ~self ~cmd:(selector "newStringFrom:usingUnicodeTransforms:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int usingUnicodeTransforms)

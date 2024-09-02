@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc}NSProcessInfo} *)
+
+let self = get_class "NSProcessInfo"
 
 let activeProcessorCount self = msg_send ~self ~cmd:(selector "activeProcessorCount") ~typ:(returning ullong)
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning id)

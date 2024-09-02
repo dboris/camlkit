@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptenumerationdescription?language=objc}NSScriptEnumerationDescription} *)
+
+let self = get_class "NSScriptEnumerationDescription"
 
 let appendEnumerationDeclarationToAETEData x ~includingParts self = msg_send ~self ~cmd:(selector "appendEnumerationDeclarationToAETEData:includingParts:") ~typ:(id @-> int @-> returning void) x includingParts
 let coercedValue x self = msg_send ~self ~cmd:(selector "coercedValue:") ~typ:(id @-> returning id) x

@@ -5,16 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsproxy?language=objc}NSProxy} *)
 
-let self = get_class "NSProxy"
-
-let alloc self = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning id)
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let allowsWeakReference self = msg_send ~self ~cmd:(selector "allowsWeakReference") ~typ:(returning bool)
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let class_ self = msg_send ~self ~cmd:(selector "class") ~typ:(returning _Class)

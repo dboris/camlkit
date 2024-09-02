@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileproviderproxy?language=objc}NSFileProviderProxy} *)
+
+let self = get_class "NSFileProviderProxy"
 
 let allowedForURL x self = msg_send ~self ~cmd:(selector "allowedForURL:") ~typ:(id @-> returning bool) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

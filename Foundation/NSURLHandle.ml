@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc}NSURLHandle} *)
+
+let self = get_class "NSURLHandle"
 
 let addClient x self = msg_send ~self ~cmd:(selector "addClient:") ~typ:(id @-> returning void) x
 let availableResourceData self = msg_send ~self ~cmd:(selector "availableResourceData") ~typ:(returning id)

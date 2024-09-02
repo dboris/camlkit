@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbundle?language=objc}NSBundle} *)
+
+let self = get_class "NSBundle"
 
 let _URLForAuxiliaryExecutable x self = msg_send ~self ~cmd:(selector "URLForAuxiliaryExecutable:") ~typ:(id @-> returning id) x
 let _URLForResource x ~withExtension self = msg_send ~self ~cmd:(selector "URLForResource:withExtension:") ~typ:(id @-> id @-> returning id) x withExtension

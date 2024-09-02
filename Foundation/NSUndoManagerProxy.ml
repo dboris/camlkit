@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsundomanagerproxy?language=objc}NSUndoManagerProxy} *)
+
+let self = get_class "NSUndoManagerProxy"
 
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning void) x
 let initWithManager x self = msg_send ~self ~cmd:(selector "initWithManager:") ~typ:(id @-> returning id) x

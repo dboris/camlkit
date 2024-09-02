@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsappleeventdescriptor?language=objc}NSAppleEventDescriptor} *)
+
+let self = get_class "NSAppleEventDescriptor"
 
 let aeDesc self = msg_send ~self ~cmd:(selector "aeDesc") ~typ:(returning (ptr void))
 let attributeDescriptorForKeyword x self = msg_send ~self ~cmd:(selector "attributeDescriptorForKeyword:") ~typ:(uint @-> returning id) x

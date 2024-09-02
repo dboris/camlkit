@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsregularexpression?language=objc}NSRegularExpression} *)
-
-let self = get_class "NSRegularExpression"
 
 let escapedPatternForString x self = msg_send ~self ~cmd:(selector "escapedPatternForString:") ~typ:(id @-> returning id) x
 let escapedTemplateForString x self = msg_send ~self ~cmd:(selector "escapedTemplateForString:") ~typ:(id @-> returning id) x

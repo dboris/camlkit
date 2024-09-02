@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspointerarray?language=objc}NSPointerArray} *)
+
+let self = get_class "NSPointerArray"
 
 let addPointer x self = msg_send ~self ~cmd:(selector "addPointer:") ~typ:((ptr void) @-> returning void) x
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)

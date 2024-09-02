@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxpcconnection?language=objc}NSXPCConnection} *)
+
+let self = get_class "NSXPCConnection"
 
 let activate self = msg_send ~self ~cmd:(selector "activate") ~typ:(returning void)
 let addBarrierBlock x self = msg_send ~self ~cmd:(selector "addBarrierBlock:") ~typ:((ptr void) @-> returning void) x

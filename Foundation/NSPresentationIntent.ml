@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspresentationintent?language=objc}NSPresentationIntent} *)
+
+let self = get_class "NSPresentationIntent"
 
 let column self = msg_send ~self ~cmd:(selector "column") ~typ:(returning llong)
 let columnAlignments self = msg_send ~self ~cmd:(selector "columnAlignments") ~typ:(returning id)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmorphology?language=objc}NSMorphology} *)
+
+let self = get_class "NSMorphology"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let customPronounForLanguage x self = msg_send ~self ~cmd:(selector "customPronounForLanguage:") ~typ:(id @-> returning id) x

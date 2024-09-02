@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSDecimal] structure typ = structure "_NSDecimal"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsdecimal?language=objc}_NSDecimal} *)
@@ -28,7 +26,7 @@ let init
     ~_isCompact:_isCompact_v
     ~_reserved:_reserved_v
     ~_mantissa:_mantissa_v
-    () =
+    =
   let t = make t in
   setf t _exponent _exponent_v;
   setf t _length _length_v;

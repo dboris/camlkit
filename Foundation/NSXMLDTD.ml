@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmldtd?language=objc}NSXMLDTD} *)
+
+let self = get_class "NSXMLDTD"
 
 let addChild x self = msg_send ~self ~cmd:(selector "addChild:") ~typ:(id @-> returning void) x
 let attributeDeclarationForName x ~elementName self = msg_send ~self ~cmd:(selector "attributeDeclarationForName:elementName:") ~typ:(id @-> id @-> returning id) x elementName

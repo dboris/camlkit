@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileaccessnode?language=objc}NSFileAccessNode} *)
+
+let self = get_class "NSFileAccessNode"
 
 let addAccessClaim x self = msg_send ~self ~cmd:(selector "addAccessClaim:") ~typ:(id @-> returning void) x
 let addPresenter x self = msg_send ~self ~cmd:(selector "addPresenter:") ~typ:(id @-> returning void) x

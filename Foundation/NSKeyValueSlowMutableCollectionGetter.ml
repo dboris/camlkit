@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyvalueslowmutablecollectiongetter?language=objc}NSKeyValueSlowMutableCollectionGetter} *)
+
+let self = get_class "NSKeyValueSlowMutableCollectionGetter"
 
 let baseGetter self = msg_send ~self ~cmd:(selector "baseGetter") ~typ:(returning id)
 let baseSetter self = msg_send ~self ~cmd:(selector "baseSetter") ~typ:(returning id)

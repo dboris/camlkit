@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogresspublisherproxy?language=objc}NSProgressPublisherProxy} *)
+
+let self = get_class "NSProgressPublisherProxy"
 
 let appWithBundleID x ~didAcknowledgeWithSuccess self = msg_send ~self ~cmd:(selector "appWithBundleID:didAcknowledgeWithSuccess:") ~typ:(id @-> bool @-> returning void) x didAcknowledgeWithSuccess
 let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning void)

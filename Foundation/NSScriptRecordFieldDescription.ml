@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptrecordfielddescription?language=objc}NSScriptRecordFieldDescription} *)
+
+let self = get_class "NSScriptRecordFieldDescription"
 
 let appendPropertyDeclarationToAETEData x self = msg_send ~self ~cmd:(selector "appendPropertyDeclarationToAETEData:") ~typ:(id @-> returning void) x
 let appleEventCode self = msg_send ~self ~cmd:(selector "appleEventCode") ~typ:(returning uint)

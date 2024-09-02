@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsunitconverterlinear?language=objc}NSUnitConverterLinear} *)
+
+let self = get_class "NSUnitConverterLinear"
 
 let baseUnitValueFromValue x self = msg_send ~self ~cmd:(selector "baseUnitValueFromValue:") ~typ:(double @-> returning double) x
 let coefficient self = msg_send ~self ~cmd:(selector "coefficient") ~typ:(returning double)

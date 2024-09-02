@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlelementdeclarationcontent?language=objc}NSXMLElementDeclarationContent} *)
+
+let self = get_class "NSXMLElementDeclarationContent"
 
 let _XMLStringSequenceStarted x ~choiceStarted ~appendingToString self = msg_send ~self ~cmd:(selector "XMLStringSequenceStarted:choiceStarted:appendingToString:") ~typ:(bool @-> bool @-> id @-> returning void) x choiceStarted appendingToString
 let contentKind self = msg_send ~self ~cmd:(selector "contentKind") ~typ:(returning ullong)

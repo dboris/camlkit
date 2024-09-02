@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsportcoder?language=objc}NSPortCoder} *)
+
+let self = get_class "NSPortCoder"
 
 let connection self = msg_send ~self ~cmd:(selector "connection") ~typ:(returning id)
 let decodePortObject self = msg_send ~self ~cmd:(selector "decodePortObject") ~typ:(returning id)

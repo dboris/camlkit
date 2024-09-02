@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsorthography?language=objc}NSOrthography} *)
+
+let self = get_class "NSOrthography"
 
 let allLanguages self = msg_send ~self ~cmd:(selector "allLanguages") ~typ:(returning id)
 let allScripts self = msg_send ~self ~cmd:(selector "allScripts") ~typ:(returning id)

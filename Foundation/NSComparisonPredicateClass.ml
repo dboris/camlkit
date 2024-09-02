@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscomparisonpredicate?language=objc}NSComparisonPredicate} *)
-
-let self = get_class "NSComparisonPredicate"
 
 let predicateWithLeftExpression x ~rightExpression ~customSelector self = msg_send ~self ~cmd:(selector "predicateWithLeftExpression:rightExpression:customSelector:") ~typ:(id @-> id @-> _SEL @-> returning id) x rightExpression customSelector
 let predicateWithLeftExpression' x ~rightExpression ~modifier ~type_ ~options self = msg_send ~self ~cmd:(selector "predicateWithLeftExpression:rightExpression:modifier:type:options:") ~typ:(id @-> id @-> ullong @-> ullong @-> ullong @-> returning id) x rightExpression (ULLong.of_int modifier) (ULLong.of_int type_) (ULLong.of_int options)

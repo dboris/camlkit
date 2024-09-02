@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsrelativedatetimeformatter?language=objc}NSRelativeDateTimeFormatter} *)
+
+let self = get_class "NSRelativeDateTimeFormatter"
 
 let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id)
 let dateTimeStyle self = msg_send ~self ~cmd:(selector "dateTimeStyle") ~typ:(returning llong)

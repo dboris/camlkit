@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptsuiteregistry?language=objc}NSScriptSuiteRegistry} *)
+
+let self = get_class "NSScriptSuiteRegistry"
 
 let aeteResource x self = msg_send ~self ~cmd:(selector "aeteResource:") ~typ:(id @-> returning id) x
 let appleEventCodeForSuite x self = msg_send ~self ~cmd:(selector "appleEventCodeForSuite:") ~typ:(id @-> returning uint) x

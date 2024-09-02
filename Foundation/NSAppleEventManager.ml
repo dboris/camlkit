@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsappleeventmanager?language=objc}NSAppleEventManager} *)
+
+let self = get_class "NSAppleEventManager"
 
 let appleEventForSuspensionID x self = msg_send ~self ~cmd:(selector "appleEventForSuspensionID:") ~typ:((ptr void) @-> returning id) x
 let currentAppleEvent self = msg_send ~self ~cmd:(selector "currentAppleEvent") ~typ:(returning id)

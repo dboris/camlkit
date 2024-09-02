@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconnection?language=objc}NSConnection} *)
+
+let self = get_class "NSConnection"
 
 let addClassNamed x ~version self = msg_send ~self ~cmd:(selector "addClassNamed:version:") ~typ:(string @-> ullong @-> returning void) x (ULLong.of_int version)
 let addPortsToRunLoop x self = msg_send ~self ~cmd:(selector "addPortsToRunLoop:") ~typ:(id @-> returning void) x

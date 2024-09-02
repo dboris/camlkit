@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSRectPointer] structure typ = structure "CGRect"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/cgrect?language=objc}CGRect} *)
@@ -20,7 +18,7 @@ let () = seal t
 let init
     ~origin:origin_v
     ~size:size_v
-    () =
+    =
   let t = make t in
   setf t origin origin_v;
   setf t size size_v;

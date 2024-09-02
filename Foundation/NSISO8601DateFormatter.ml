@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsiso8601dateformatter?language=objc}NSISO8601DateFormatter} *)
+
+let self = get_class "NSISO8601DateFormatter"
 
 let dateFromString x self = msg_send ~self ~cmd:(selector "dateFromString:") ~typ:(id @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

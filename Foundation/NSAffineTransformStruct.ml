@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSAffineTransformStruct] structure typ = structure "_NSAffineTransformStruct"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsaffinetransformstruct?language=objc}_NSAffineTransformStruct} *)
@@ -28,7 +26,7 @@ let init
     ~m22:m22_v
     ~tX:tX_v
     ~tY:tY_v
-    () =
+    =
   let t = make t in
   setf t m11 m11_v;
   setf t m12 m12_v;

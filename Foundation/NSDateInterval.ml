@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdateinterval?language=objc}NSDateInterval} *)
+
+let self = get_class "NSDateInterval"
 
 let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning llong) x
 let containsDate x self = msg_send ~self ~cmd:(selector "containsDate:") ~typ:(id @-> returning bool) x

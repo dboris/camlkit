@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nslinguistictagger?language=objc}NSLinguisticTagger} *)
-
-let self = get_class "NSLinguisticTagger"
 
 let availableTagSchemesForLanguage x self = msg_send ~self ~cmd:(selector "availableTagSchemesForLanguage:") ~typ:(id @-> returning id) x
 let availableTagSchemesForUnit x ~language self = msg_send ~self ~cmd:(selector "availableTagSchemesForUnit:language:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) language

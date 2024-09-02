@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsthread?language=objc}NSThread} *)
-
-let self = get_class "NSThread"
 
 let callStackReturnAddresses self = msg_send ~self ~cmd:(selector "callStackReturnAddresses") ~typ:(returning id)
 let callStackSymbols self = msg_send ~self ~cmd:(selector "callStackSymbols") ~typ:(returning id)

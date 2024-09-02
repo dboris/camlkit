@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilehandle?language=objc}NSFileHandle} *)
 
-let self = get_class "NSFileHandle"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let fileHandleForReadingAtPath x self = msg_send ~self ~cmd:(selector "fileHandleForReadingAtPath:") ~typ:(id @-> returning id) x
 let fileHandleForReadingFromURL x ~error self = msg_send ~self ~cmd:(selector "fileHandleForReadingFromURL:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
 let fileHandleForReadingFromURL' x ~mode ~error self = msg_send ~self ~cmd:(selector "fileHandleForReadingFromURL:mode:error:") ~typ:(id @-> ushort @-> (ptr id) @-> returning id) x mode error

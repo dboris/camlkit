@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc}NSTextCheckingResult} *)
-
-let self = get_class "NSTextCheckingResult"
 
 let addressCheckingResultWithRange x ~components self = msg_send ~self ~cmd:(selector "addressCheckingResultWithRange:components:") ~typ:(NSRange.t @-> id @-> returning id) x components
 let correctionCheckingResultWithRange x ~replacementString self = msg_send ~self ~cmd:(selector "correctionCheckingResultWithRange:replacementString:") ~typ:(NSRange.t @-> id @-> returning id) x replacementString

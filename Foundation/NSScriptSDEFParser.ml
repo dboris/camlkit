@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptsdefparser?language=objc}NSScriptSDEFParser} *)
+
+let self = get_class "NSScriptSDEFParser"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithDataNoCopy x self = msg_send ~self ~cmd:(selector "initWithDataNoCopy:") ~typ:(id @-> returning id) x

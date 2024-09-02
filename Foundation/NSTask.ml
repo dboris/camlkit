@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstask?language=objc}NSTask} *)
+
+let self = get_class "NSTask"
 
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning id)
 let currentDirectoryPath self = msg_send ~self ~cmd:(selector "currentDirectoryPath") ~typ:(returning id)

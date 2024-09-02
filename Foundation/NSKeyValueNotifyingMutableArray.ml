@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyvaluenotifyingmutablearray?language=objc}NSKeyValueNotifyingMutableArray} *)
+
+let self = get_class "NSKeyValueNotifyingMutableArray"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)

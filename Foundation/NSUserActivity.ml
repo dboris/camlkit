@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc}NSUserActivity} *)
+
+let self = get_class "NSUserActivity"
 
 let activityType self = msg_send ~self ~cmd:(selector "activityType") ~typ:(returning id)
 let addUserInfoEntriesFromDictionary x self = msg_send ~self ~cmd:(selector "addUserInfoEntriesFromDictionary:") ~typ:(id @-> returning void) x

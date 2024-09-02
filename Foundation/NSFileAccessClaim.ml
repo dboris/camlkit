@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileaccessclaim?language=objc}NSFileAccessClaim} *)
+
+let self = get_class "NSFileAccessClaim"
 
 let acceptClaimFromClient x ~arbiterQueue ~grantHandler self = msg_send ~self ~cmd:(selector "acceptClaimFromClient:arbiterQueue:grantHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x arbiterQueue grantHandler
 let addBlockingReactorID x self = msg_send ~self ~cmd:(selector "addBlockingReactorID:") ~typ:(id @-> returning void) x

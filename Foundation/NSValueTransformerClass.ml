@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsvaluetransformer?language=objc}NSValueTransformer} *)
-
-let self = get_class "NSValueTransformer"
 
 let allowsReverseTransformation self = msg_send ~self ~cmd:(selector "allowsReverseTransformation") ~typ:(returning bool)
 let setValueTransformer x ~forName self = msg_send ~self ~cmd:(selector "setValueTransformer:forName:") ~typ:(id @-> id @-> returning void) x forName

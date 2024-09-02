@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileproviderxpcmessenger?language=objc}NSFileProviderXPCMessenger} *)
+
+let self = get_class "NSFileProviderXPCMessenger"
 
 let cancelProvidingItemAtURL x ~forClaimWithID self = msg_send ~self ~cmd:(selector "cancelProvidingItemAtURL:forClaimWithID:") ~typ:(id @-> id @-> returning void) x forClaimWithID
 let checkInProviderWithReply x self = msg_send ~self ~cmd:(selector "checkInProviderWithReply:") ~typ:((ptr void) @-> returning void) x

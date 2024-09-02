@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogress?language=objc}NSProgress} *)
-
-let self = get_class "NSProgress"
 
 let addSubscriberForFileURL x ~usingBlock self = msg_send ~self ~cmd:(selector "addSubscriberForFileURL:usingBlock:") ~typ:(id @-> (ptr void) @-> returning id) x usingBlock
 let addSubscriberForFileURL' x ~withPublishingHandler self = msg_send ~self ~cmd:(selector "addSubscriberForFileURL:withPublishingHandler:") ~typ:(id @-> (ptr void) @-> returning id) x withPublishingHandler

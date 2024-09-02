@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSPoint] structure typ = structure "CGPoint"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/cgpoint?language=objc}CGPoint} *)
@@ -20,7 +18,7 @@ let () = seal t
 let init
     ~x:x_v
     ~y:y_v
-    () =
+    =
   let t = make t in
   setf t x x_v;
   setf t y y_v;

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsapplescript?language=objc}NSAppleScript} *)
+
+let self = get_class "NSAppleScript"
 
 let compileAndReturnError x self = msg_send ~self ~cmd:(selector "compileAndReturnError:") ~typ:((ptr id) @-> returning bool) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

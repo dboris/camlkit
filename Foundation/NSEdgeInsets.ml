@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSEdgeInsets] structure typ = structure "NSEdgeInsets"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsedgeinsets?language=objc}NSEdgeInsets} *)
@@ -24,7 +22,7 @@ let init
     ~left:left_v
     ~bottom:bottom_v
     ~right:right_v
-    () =
+    =
   let t = make t in
   setf t top top_v;
   setf t left left_v;

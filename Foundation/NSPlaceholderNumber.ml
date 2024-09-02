@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsplaceholdernumber?language=objc}NSPlaceholderNumber} *)
+
+let self = get_class "NSPlaceholderNumber"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithBool x self = msg_send ~self ~cmd:(selector "initWithBool:") ~typ:(bool @-> returning id) x

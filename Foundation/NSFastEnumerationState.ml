@@ -5,9 +5,7 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 let t : [`NSFastEnumerationState] structure typ = structure "_NSFastEnumerationState"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsfastenumerationstate?language=objc}_NSFastEnumerationState} *)

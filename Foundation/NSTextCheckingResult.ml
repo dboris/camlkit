@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc}NSTextCheckingResult} *)
+
+let self = get_class "NSTextCheckingResult"
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning id)
 let addressComponents self = msg_send ~self ~cmd:(selector "addressComponents") ~typ:(returning id)

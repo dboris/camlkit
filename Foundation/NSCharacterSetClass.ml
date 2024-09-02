@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscharacterset?language=objc}NSCharacterSet} *)
-
-let self = get_class "NSCharacterSet"
 
 let _URLFragmentAllowedCharacterSet self = msg_send ~self ~cmd:(selector "URLFragmentAllowedCharacterSet") ~typ:(returning id)
 let _URLHostAllowedCharacterSet self = msg_send ~self ~cmd:(selector "URLHostAllowedCharacterSet") ~typ:(returning id)

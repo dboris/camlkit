@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxpcinterface?language=objc}NSXPCInterface} *)
+
+let self = get_class "NSXPCInterface"
 
 let _XPCTypeForSelector x ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "XPCTypeForSelector:argumentIndex:ofReply:") ~typ:(_SEL @-> ullong @-> bool @-> returning (ptr void)) x (ULLong.of_int argumentIndex) ofReply
 let classForSelector x ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "classForSelector:argumentIndex:ofReply:") ~typ:(_SEL @-> ullong @-> bool @-> returning _Class) x (ULLong.of_int argumentIndex) ofReply

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptvaluetypedescription?language=objc}NSScriptValueTypeDescription} *)
+
+let self = get_class "NSScriptValueTypeDescription"
 
 let appendObjectClassDeclarationToAETEData x self = msg_send ~self ~cmd:(selector "appendObjectClassDeclarationToAETEData:") ~typ:(id @-> returning void) x
 let appleEventCode self = msg_send ~self ~cmd:(selector "appleEventCode") ~typ:(returning uint)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc}NSDecimalNumber} *)
+
+let self = get_class "NSDecimalNumber"
 
 let boolValue self = msg_send ~self ~cmd:(selector "boolValue") ~typ:(returning bool)
 let charValue self = msg_send ~self ~cmd:(selector "charValue") ~typ:(returning bool)

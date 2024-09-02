@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsspellserver?language=objc}NSSpellServer} *)
+
+let self = get_class "NSSpellServer"
 
 let autocorrectionDictionaryForLanguage x ~isGerman self = msg_send ~self ~cmd:(selector "autocorrectionDictionaryForLanguage:isGerman:") ~typ:(id @-> (ptr bool) @-> returning id) x isGerman
 let checkString x ~offset ~types ~options ~orthography ~wordCount self = msg_send ~self ~cmd:(selector "checkString:offset:types:options:orthography:wordCount:") ~typ:(id @-> ullong @-> ullong @-> id @-> id @-> (ptr llong) @-> returning id) x (ULLong.of_int offset) (ULLong.of_int types) options orthography wordCount

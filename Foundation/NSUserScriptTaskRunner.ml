@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsuserscripttaskrunner?language=objc}NSUserScriptTaskRunner} *)
+
+let self = get_class "NSUserScriptTaskRunner"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 (* let executeScript x ~interpreter ~arguments ~standardInput ~standardOutput ~standardError ~showingProgress self = msg_send ~self ~cmd:(selector "executeScript:interpreter:arguments:standardInput:standardOutput:standardError:showingProgress::") ~typ:(id @-> id @-> id @-> id @-> id @-> id @-> bool @-> (ptr void) @-> returning void) ? ? ? ? ? ? ? *)

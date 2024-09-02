@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsindexset?language=objc}NSIndexSet} *)
+
+let self = get_class "NSIndexSet"
 
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let containsIndex x self = msg_send ~self ~cmd:(selector "containsIndex:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)

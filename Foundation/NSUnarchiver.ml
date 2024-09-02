@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc}NSUnarchiver} *)
+
+let self = get_class "NSUnarchiver"
 
 let classNameDecodedForArchiveClassName x self = msg_send ~self ~cmd:(selector "classNameDecodedForArchiveClassName:") ~typ:(id @-> returning id) x
 let data self = msg_send ~self ~cmd:(selector "data") ~typ:(returning id)

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsurlconnectiondelegateproxy?language=objc}NSURLConnectionDelegateProxy} *)
+
+let self = get_class "NSURLConnectionDelegateProxy"
 
 let connection x ~canAuthenticateAgainstProtectionSpace self = msg_send ~self ~cmd:(selector "connection:canAuthenticateAgainstProtectionSpace:") ~typ:(id @-> id @-> returning bool) x canAuthenticateAgainstProtectionSpace
 let connection1 x ~didCancelAuthenticationChallenge self = msg_send ~self ~cmd:(selector "connection:didCancelAuthenticationChallenge:") ~typ:(id @-> id @-> returning void) x didCancelAuthenticationChallenge

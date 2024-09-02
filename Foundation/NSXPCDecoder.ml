@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxpcdecoder?language=objc}NSXPCDecoder} *)
+
+let self = get_class "NSXPCDecoder"
 
 let allowedClasses self = msg_send ~self ~cmd:(selector "allowedClasses") ~typ:(returning id)
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning bool)

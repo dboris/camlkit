@@ -5,13 +5,9 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspresentationintent?language=objc}NSPresentationIntent} *)
-
-let self = get_class "NSPresentationIntent"
 
 let blockQuoteIntentWithIdentity x ~nestedInsideIntent self = msg_send ~self ~cmd:(selector "blockQuoteIntentWithIdentity:nestedInsideIntent:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) nestedInsideIntent
 let codeBlockIntentWithIdentity x ~languageHint ~nestedInsideIntent self = msg_send ~self ~cmd:(selector "codeBlockIntentWithIdentity:languageHint:nestedInsideIntent:") ~typ:(llong @-> id @-> id @-> returning id) (LLong.of_int x) languageHint nestedInsideIntent

@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmutableindexset?language=objc}NSMutableIndexSet} *)
+
+let self = get_class "NSMutableIndexSet"
 
 let addIndex x self = msg_send ~self ~cmd:(selector "addIndex:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let addIndexes x self = msg_send ~self ~cmd:(selector "addIndexes:") ~typ:(id @-> returning void) x

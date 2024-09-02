@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscharacterset?language=objc}NSCharacterSet} *)
+
+let self = get_class "NSCharacterSet"
 
 let bitmapRepresentation self = msg_send ~self ~cmd:(selector "bitmapRepresentation") ~typ:(returning id)
 let characterIsMember x self = msg_send ~self ~cmd:(selector "characterIsMember:") ~typ:(ushort @-> returning bool) x
