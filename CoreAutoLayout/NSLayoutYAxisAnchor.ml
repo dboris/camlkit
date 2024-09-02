@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutyaxisanchor?language=objc}NSLayoutYAxisAnchor} *)
+
+let self = get_class "NSLayoutYAxisAnchor"
 
 let anchorByOffsettingWithConstant x self = msg_send ~self ~cmd:(selector "anchorByOffsettingWithConstant:") ~typ:(double @-> returning id) x
 let anchorByOffsettingWithDimension x self = msg_send ~self ~cmd:(selector "anchorByOffsettingWithDimension:") ~typ:(id @-> returning id) x

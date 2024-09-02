@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsalignmentlayoutrule?language=objc}NSAlignmentLayoutRule} *)
+
+let self = get_class "NSAlignmentLayoutRule"
 
 let alignedAnchors self = msg_send ~self ~cmd:(selector "alignedAnchors") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

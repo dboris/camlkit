@@ -4,12 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutanchor?language=objc}NSLayoutAnchor} *)
-
-let self = get_class "NSLayoutAnchor"
 
 let anchorNamed x ~inItem self = msg_send ~self ~cmd:(selector "anchorNamed:inItem:") ~typ:(id @-> id @-> returning id) x inItem
 let anchorNamed' x ~inItem ~symbolicAttribute self = msg_send ~self ~cmd:(selector "anchorNamed:inItem:symbolicAttribute:") ~typ:(id @-> id @-> llong @-> returning id) x inItem (LLong.of_int symbolicAttribute)

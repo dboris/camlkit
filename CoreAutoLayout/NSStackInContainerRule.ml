@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsstackincontainerrule?language=objc}NSStackInContainerRule} *)
+
+let self = get_class "NSStackInContainerRule"
 
 let containingRect self = msg_send ~self ~cmd:(selector "containingRect") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

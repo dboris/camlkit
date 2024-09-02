@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisinlinestoragevariable?language=objc}NSISInlineStorageVariable} *)
+
+let self = get_class "NSISInlineStorageVariable"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

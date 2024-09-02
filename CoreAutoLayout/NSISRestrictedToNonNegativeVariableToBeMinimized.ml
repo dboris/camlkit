@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisrestrictedtononnegativevariabletobeminimized?language=objc}NSISRestrictedToNonNegativeVariableToBeMinimized} *)
+
+let self = get_class "NSISRestrictedToNonNegativeVariableToBeMinimized"
 
 let markedConstraint self = msg_send ~self ~cmd:(selector "markedConstraint") ~typ:(returning id)
 let shouldBeMinimized self = msg_send ~self ~cmd:(selector "shouldBeMinimized") ~typ:(returning bool)

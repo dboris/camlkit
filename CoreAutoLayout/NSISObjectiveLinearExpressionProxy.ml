@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisobjectivelinearexpressionproxy?language=objc}NSISObjectiveLinearExpressionProxy} *)
+
+let self = get_class "NSISObjectiveLinearExpressionProxy"
 
 let addVar x ~priority ~times self = msg_send ~self ~cmd:(selector "addVar:priority:times:") ~typ:(void @-> double @-> double @-> returning void) x priority times
 let initWithEngine x self = msg_send ~self ~cmd:(selector "initWithEngine:") ~typ:(id @-> returning id) x

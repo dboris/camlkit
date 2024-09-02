@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutdimension?language=objc}NSLayoutDimension} *)
+
+let self = get_class "NSLayoutDimension"
 
 let anchorByAddingConstant x self = msg_send ~self ~cmd:(selector "anchorByAddingConstant:") ~typ:(double @-> returning id) x
 let anchorByAddingDimension x self = msg_send ~self ~cmd:(selector "anchorByAddingDimension:") ~typ:(id @-> returning id) x

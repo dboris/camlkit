@@ -4,12 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisengine?language=objc}NSISEngine} *)
-
-let self = get_class "NSISEngine"
 
 let enableEngineTrace self = msg_send ~self ~cmd:(selector "enableEngineTrace") ~typ:(returning bool)
 let setEnableEngineTrace x self = msg_send ~self ~cmd:(selector "setEnableEngineTrace:") ~typ:(bool @-> returning void) x

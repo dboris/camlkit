@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutanchorrule?language=objc}NSLayoutAnchorRule} *)
+
+let self = get_class "NSLayoutAnchorRule"
 
 let constant self = msg_send ~self ~cmd:(selector "constant") ~typ:(returning double)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

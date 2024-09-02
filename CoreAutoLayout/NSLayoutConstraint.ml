@@ -4,14 +4,14 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutconstraint?language=objc}NSLayoutConstraint} *)
 
-let animationForKey x self = msg_send ~self ~cmd:(selector "animationForKey:") ~typ:(id @-> returning id) x
+let self = get_class "NSLayoutConstraint"
+
 let animations self = msg_send ~self ~cmd:(selector "animations") ~typ:(returning id)
-let animator self = msg_send ~self ~cmd:(selector "animator") ~typ:(returning id)
 let constant self = msg_send ~self ~cmd:(selector "constant") ~typ:(returning double)
 let container self = msg_send ~self ~cmd:(selector "container") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

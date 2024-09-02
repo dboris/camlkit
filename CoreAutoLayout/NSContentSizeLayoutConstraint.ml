@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nscontentsizelayoutconstraint?language=objc}NSContentSizeLayoutConstraint} *)
+
+let self = get_class "NSContentSizeLayoutConstraint"
 
 let compressionResistancePriority self = msg_send ~self ~cmd:(selector "compressionResistancePriority") ~typ:(returning double)
 let huggingPriority self = msg_send ~self ~cmd:(selector "huggingPriority") ~typ:(returning double)

@@ -4,12 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisvariable?language=objc}NSISVariable} *)
-
-let self = get_class "NSISVariable"
 
 let variableMarkingConstraint x ~valueRestriction ~shouldBeMinimized self = msg_send ~self ~cmd:(selector "variableMarkingConstraint:valueRestriction:shouldBeMinimized:") ~typ:(id @-> int @-> bool @-> returning id) x valueRestriction shouldBeMinimized
 let variableWithDelegate x ~valueRestriction ~shouldBeMinimized self = msg_send ~self ~cmd:(selector "variableWithDelegate:valueRestriction:shouldBeMinimized:") ~typ:(id @-> int @-> bool @-> returning id) x valueRestriction shouldBeMinimized

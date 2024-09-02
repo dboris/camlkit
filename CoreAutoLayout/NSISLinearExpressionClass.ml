@@ -4,12 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsislinearexpression?language=objc}NSISLinearExpression} *)
-
-let self = get_class "NSISLinearExpression"
 
 let acquireFromPoolForUseCase x self = msg_send ~self ~cmd:(selector "acquireFromPoolForUseCase:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let acquireFromPoolForUseCase' x ~engine self = msg_send ~self ~cmd:(selector "acquireFromPoolForUseCase:engine:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) engine

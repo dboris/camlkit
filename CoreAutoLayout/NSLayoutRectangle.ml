@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutrectangle?language=objc}NSLayoutRectangle} *)
+
+let self = get_class "NSLayoutRectangle"
 
 let centerPoint self = msg_send ~self ~cmd:(selector "centerPoint") ~typ:(returning id)
 let constraintsContainingWithinRectangle x self = msg_send ~self ~cmd:(selector "constraintsContainingWithinRectangle:") ~typ:(id @-> returning id) x

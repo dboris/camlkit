@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisvariable?language=objc}NSISVariable} *)
+
+let self = get_class "NSISVariable"
 
 let allowedMagnitudeForIntegralizationAdjustmentOfMarkedConstraint self = msg_send ~self ~cmd:(selector "allowedMagnitudeForIntegralizationAdjustmentOfMarkedConstraint") ~typ:(returning double)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

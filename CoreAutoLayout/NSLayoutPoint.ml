@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutpoint?language=objc}NSLayoutPoint} *)
+
+let self = get_class "NSLayoutPoint"
 
 let constraintsEqualToLayoutPoint x self = msg_send ~self ~cmd:(selector "constraintsEqualToLayoutPoint:") ~typ:(id @-> returning id) x
 let constraintsEqualToPoint x self = msg_send ~self ~cmd:(selector "constraintsEqualToPoint:") ~typ:(id @-> returning id) x

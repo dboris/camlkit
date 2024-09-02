@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsisengine?language=objc}NSISEngine} *)
+
+let self = get_class "NSISEngine"
 
 let addVariableToBeOptimized x ~priority self = msg_send ~self ~cmd:(selector "addVariableToBeOptimized:priority:") ~typ:(id @-> double @-> returning void) x priority
 let allVariableValues self = msg_send ~self ~cmd:(selector "allVariableValues") ~typ:(returning id)

@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nsislinearexpression?language=objc}NSISLinearExpression} *)
+
+let self = get_class "NSISLinearExpression"
 
 let addExpression x ~times self = msg_send ~self ~cmd:(selector "addExpression:times:") ~typ:(id @-> double @-> returning void) x times
 let addExpression' x ~times ~processVariableNewToReceiver ~processVariableDroppedFromReceiver self = msg_send ~self ~cmd:(selector "addExpression:times:processVariableNewToReceiver:processVariableDroppedFromReceiver:") ~typ:(id @-> double @-> (ptr void) @-> (ptr void) @-> returning void) x times processVariableNewToReceiver processVariableDroppedFromReceiver

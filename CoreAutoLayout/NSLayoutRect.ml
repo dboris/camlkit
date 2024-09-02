@@ -4,10 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open Foundation
+open CoreFoundation
 open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coreautolayout/nslayoutrect?language=objc}NSLayoutRect} *)
+
+let self = get_class "NSLayoutRect"
 
 let bottomAnchor self = msg_send ~self ~cmd:(selector "bottomAnchor") ~typ:(returning id)
 let centerLayoutPoint self = msg_send ~self ~cmd:(selector "centerLayoutPoint") ~typ:(returning id)
