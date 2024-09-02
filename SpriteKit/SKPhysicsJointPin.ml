@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skphysicsjointpin?language=objc}SKPhysicsJointPin} *)
+
+let self = get_class "SKPhysicsJointPin"
 
 let anchor self = msg_send ~self ~cmd:(selector "anchor") ~typ:(returning CGPoint.t)
 let frictionTorque self = msg_send ~self ~cmd:(selector "frictionTorque") ~typ:(returning double)

@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skshapenode?language=objc}SKShapeNode} *)
-
-let self = get_class "SKShapeNode"
 
 let debugHierarchyPropertyDescriptions self = msg_send ~self ~cmd:(selector "debugHierarchyPropertyDescriptions") ~typ:(returning id)
 let debugHierarchyValueForPropertyWithName x ~onObject ~outOptions ~outError self = msg_send ~self ~cmd:(selector "debugHierarchyValueForPropertyWithName:onObject:outOptions:outError:") ~typ:(id @-> id @-> (ptr id) @-> (ptr id) @-> returning id) x onObject outOptions outError

@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skrenderer?language=objc}SKRenderer} *)
+
+let self = get_class "SKRenderer"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let ignoresSiblingOrder self = msg_send ~self ~cmd:(selector "ignoresSiblingOrder") ~typ:(returning bool)

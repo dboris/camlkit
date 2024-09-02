@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skconstraint?language=objc}SKConstraint} *)
-
-let self = get_class "SKConstraint"
 
 let distance x ~toNode self = msg_send ~self ~cmd:(selector "distance:toNode:") ~typ:(id @-> id @-> returning id) x toNode
 let distance1 x ~toPoint self = msg_send ~self ~cmd:(selector "distance:toPoint:") ~typ:(id @-> CGPoint.t @-> returning id) x toPoint

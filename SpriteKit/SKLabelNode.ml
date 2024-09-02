@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sklabelnode?language=objc}SKLabelNode} *)
+
+let self = get_class "SKLabelNode"
 
 let accessibilityLabel self = msg_send ~self ~cmd:(selector "accessibilityLabel") ~typ:(returning id)
 let attributedString self = msg_send ~self ~cmd:(selector "attributedString") ~typ:(returning id)

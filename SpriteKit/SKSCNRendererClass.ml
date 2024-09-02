@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skscnrenderer?language=objc}SKSCNRenderer} *)
-
-let self = get_class "SKSCNRenderer"
 
 let getOpenGLFramebuffer x self = msg_send ~self ~cmd:(selector "getOpenGLFramebuffer:") ~typ:(id @-> returning int) x
 let rendererWithContext x ~options self = msg_send ~self ~cmd:(selector "rendererWithContext:options:") ~typ:(id @-> id @-> returning id) x options

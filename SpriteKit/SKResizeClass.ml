@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skresize?language=objc}SKResize} *)
-
-let self = get_class "SKResize"
 
 let resizeByWidth x ~height ~duration self = msg_send ~self ~cmd:(selector "resizeByWidth:height:duration:") ~typ:(double @-> double @-> double @-> returning id) x height duration
 let resizeToHeight x ~duration self = msg_send ~self ~cmd:(selector "resizeToHeight:duration:") ~typ:(double @-> double @-> returning id) x duration

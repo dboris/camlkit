@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skorientationconstraint?language=objc}SKOrientationConstraint} *)
-
-let self = get_class "SKOrientationConstraint"
 
 let constraintOrientingToNode x ~offset self = msg_send ~self ~cmd:(selector "constraintOrientingToNode:offset:") ~typ:(id @-> id @-> returning id) x offset
 let constraintOrientingToPoint x ~offset self = msg_send ~self ~cmd:(selector "constraintOrientingToPoint:offset:") ~typ:(CGPoint.t @-> id @-> returning id) x offset

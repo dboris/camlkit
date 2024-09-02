@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skeffectnode?language=objc}SKEffectNode} *)
+
+let self = get_class "SKEffectNode"
 
 let blendMode self = msg_send ~self ~cmd:(selector "blendMode") ~typ:(returning llong)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

@@ -5,14 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktexturecache?language=objc}SKTextureCache} *)
 
+let self = get_class "SKTextureCache"
+
+let backingTexture self = msg_send ~self ~cmd:(selector "backingTexture") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let filteringMode self = msg_send ~self ~cmd:(selector "filteringMode") ~typ:(returning llong)
 let getLock self = msg_send ~self ~cmd:(selector "getLock") ~typ:(returning (ptr void))
@@ -21,7 +21,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isPOT self = msg_send ~self ~cmd:(selector "isPOT") ~typ:(returning bool)
 let pixelData self = msg_send ~self ~cmd:(selector "pixelData") ~typ:(returning string)
 let pixelSize self = msg_send ~self ~cmd:(selector "pixelSize") ~typ:(returning CGSize.t)
-let setBackingTexture x self = msg_send ~self ~cmd:(selector "setBackingTexture:") ~typ:(ptr void @-> returning void) x
+let setBackingTexture x self = msg_send ~self ~cmd:(selector "setBackingTexture:") ~typ:(id @-> returning void) x
 let setFilteringMode x self = msg_send ~self ~cmd:(selector "setFilteringMode:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setHasAlpha x self = msg_send ~self ~cmd:(selector "setHasAlpha:") ~typ:(bool @-> returning void) x
 let setIsPOT x self = msg_send ~self ~cmd:(selector "setIsPOT:") ~typ:(bool @-> returning void) x

@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skscale?language=objc}SKScale} *)
-
-let self = get_class "SKScale"
 
 let scaleBy x ~duration self = msg_send ~self ~cmd:(selector "scaleBy:duration:") ~typ:(double @-> double @-> returning id) x duration
 let scaleTo x ~duration self = msg_send ~self ~cmd:(selector "scaleTo:duration:") ~typ:(double @-> double @-> returning id) x duration

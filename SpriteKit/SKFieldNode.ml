@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skfieldnode?language=objc}SKFieldNode} *)
+
+let self = get_class "SKFieldNode"
 
 let animationSpeed self = msg_send ~self ~cmd:(selector "animationSpeed") ~typ:(returning float)
 let categoryBitMask self = msg_send ~self ~cmd:(selector "categoryBitMask") ~typ:(returning uint)

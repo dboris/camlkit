@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skshapenode?language=objc}SKShapeNode} *)
+
+let self = get_class "SKShapeNode"
 
 let blendMode self = msg_send ~self ~cmd:(selector "blendMode") ~typ:(returning llong)
 let containsPoint x self = msg_send ~self ~cmd:(selector "containsPoint:") ~typ:(CGPoint.t @-> returning bool) x

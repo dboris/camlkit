@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sknode?language=objc}SKNode} *)
-
-let self = get_class "SKNode"
 
 let debugHierarchyChildGroupingID self = msg_send ~self ~cmd:(selector "debugHierarchyChildGroupingID") ~typ:(returning id)
 let debugHierarchyObjectsInGroupWithID x ~onObject ~outOptions self = msg_send ~self ~cmd:(selector "debugHierarchyObjectsInGroupWithID:onObject:outOptions:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x onObject outOptions

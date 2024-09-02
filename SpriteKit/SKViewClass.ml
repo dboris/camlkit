@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skview?language=objc}SKView} *)
-
-let self = get_class "SKView"
 
 let debugHierarchyAdditionalGroupingIDs self = msg_send ~self ~cmd:(selector "debugHierarchyAdditionalGroupingIDs") ~typ:(returning id)
 let debugHierarchyObjectsInGroupWithID x ~onObject ~outOptions self = msg_send ~self ~cmd:(selector "debugHierarchyObjectsInGroupWithID:onObject:outOptions:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x onObject outOptions

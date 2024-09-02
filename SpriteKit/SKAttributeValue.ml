@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skattributevalue?language=objc}SKAttributeValue} *)
+
+let self = get_class "SKAttributeValue"
 
 let copyValueTo x ~type_ ~count self = msg_send ~self ~cmd:(selector "copyValueTo:type:count:") ~typ:((ptr void) @-> llong @-> uint @-> returning bool) x (LLong.of_int type_) count
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

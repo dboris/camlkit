@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skemitternode?language=objc}SKEmitterNode} *)
+
+let self = get_class "SKEmitterNode"
 
 let activeParticleCount self = msg_send ~self ~cmd:(selector "activeParticleCount") ~typ:(returning uint)
 let advanceSimulationTime x self = msg_send ~self ~cmd:(selector "advanceSimulationTime:") ~typ:(double @-> returning void) x

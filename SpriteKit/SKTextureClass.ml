@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktexture?language=objc}SKTexture} *)
-
-let self = get_class "SKTexture"
 
 let lookupTextureCacheForName x self = msg_send ~self ~cmd:(selector "lookupTextureCacheForName:") ~typ:(id @-> returning id) x
 let preloadQueue self = msg_send ~self ~cmd:(selector "preloadQueue") ~typ:(returning id)

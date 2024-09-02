@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktilemapnode?language=objc}SKTileMapNode} *)
+
+let self = get_class "SKTileMapNode"
 
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning double)
 let anchorPoint self = msg_send ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t)

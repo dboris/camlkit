@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skscnrenderer?language=objc}SKSCNRenderer} *)
+
+let self = get_class "SKSCNRenderer"
 
 let backingScaleFactor self = msg_send ~self ~cmd:(selector "backingScaleFactor") ~typ:(returning double)
 let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)

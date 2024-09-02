@@ -5,17 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skphysicsbody?language=objc}SKPhysicsBody} *)
 
-let self = get_class "SKPhysicsBody"
-
-let allocWithZone x self = msg_send ~self ~cmd:(selector "allocWithZone:") ~typ:((ptr void) @-> returning id) x
 let bodyWithBodies x self = msg_send ~self ~cmd:(selector "bodyWithBodies:") ~typ:(id @-> returning id) x
 let bodyWithCircleOfRadius x self = msg_send ~self ~cmd:(selector "bodyWithCircleOfRadius:") ~typ:(double @-> returning id) x
 let bodyWithCircleOfRadius' x ~center self = msg_send ~self ~cmd:(selector "bodyWithCircleOfRadius:center:") ~typ:(double @-> CGPoint.t @-> returning id) x center

@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktransformnode?language=objc}SKTransformNode} *)
+
+let self = get_class "SKTransformNode"
 
 let quaternion self = msg_send ~self ~cmd:(selector "quaternion") ~typ:(returning void)
 let rotationMatrix self = msg_send ~self ~cmd:(selector "rotationMatrix") ~typ:(returning void)

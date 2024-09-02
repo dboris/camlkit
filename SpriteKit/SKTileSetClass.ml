@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktileset?language=objc}SKTileSet} *)
-
-let self = get_class "SKTileSet"
 
 let clearTileSetTableCache self = msg_send ~self ~cmd:(selector "clearTileSetTableCache") ~typ:(returning void)
 let findTileSetInBundleNamed x self = msg_send ~self ~cmd:(selector "findTileSetInBundleNamed:") ~typ:(id @-> returning id) x

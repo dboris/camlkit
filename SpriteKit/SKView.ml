@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skview?language=objc}SKView} *)
+
+let self = get_class "SKView"
 
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning bool)
 let accessibilityChildren self = msg_send ~self ~cmd:(selector "accessibilityChildren") ~typ:(returning id)
@@ -54,6 +53,7 @@ let mouseEntered x self = msg_send ~self ~cmd:(selector "mouseEntered:") ~typ:(i
 let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id @-> returning void) x
 let mouseMoved x self = msg_send ~self ~cmd:(selector "mouseMoved:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
+let nextFramebuffer self = msg_send ~self ~cmd:(selector "nextFramebuffer") ~typ:(returning id)
 let notifyWillRenderContent self = msg_send ~self ~cmd:(selector "notifyWillRenderContent") ~typ:(returning void)
 let onInit self = msg_send ~self ~cmd:(selector "onInit") ~typ:(returning void)
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning id)

@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktilegrouprule?language=objc}SKTileGroupRule} *)
+
+let self = get_class "SKTileGroupRule"
 
 let adjacency self = msg_send ~self ~cmd:(selector "adjacency") ~typ:(returning ullong)
 let calcTileDefinitionIDsWithTileSet x self = msg_send ~self ~cmd:(selector "calcTileDefinitionIDsWithTileSet:") ~typ:(id @-> returning void) x

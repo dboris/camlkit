@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skfade?language=objc}SKFade} *)
-
-let self = get_class "SKFade"
 
 let fadeAlphaBy x ~duration self = msg_send ~self ~cmd:(selector "fadeAlphaBy:duration:") ~typ:(double @-> double @-> returning id) x duration
 let fadeAlphaTo x ~duration self = msg_send ~self ~cmd:(selector "fadeAlphaTo:duration:") ~typ:(double @-> double @-> returning id) x duration

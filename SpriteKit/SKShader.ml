@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skshader?language=objc}SKShader} *)
+
+let self = get_class "SKShader"
 
 let addUniform x self = msg_send ~self ~cmd:(selector "addUniform:") ~typ:(id @-> returning void) x
 let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning id)

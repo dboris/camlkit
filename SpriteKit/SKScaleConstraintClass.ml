@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skscaleconstraint?language=objc}SKScaleConstraint} *)
-
-let self = get_class "SKScaleConstraint"
 
 let constraintWithScaleRange x self = msg_send ~self ~cmd:(selector "constraintWithScaleRange:") ~typ:(id @-> returning id) x
 let constraintWithXRange x self = msg_send ~self ~cmd:(selector "constraintWithXRange:") ~typ:(id @-> returning id) x

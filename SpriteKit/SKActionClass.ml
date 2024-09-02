@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skaction?language=objc}SKAction} *)
-
-let self = get_class "SKAction"
 
 let actionNamed x self = msg_send ~self ~cmd:(selector "actionNamed:") ~typ:(id @-> returning id) x
 let actionNamed1 x ~duration self = msg_send ~self ~cmd:(selector "actionNamed:duration:") ~typ:(id @-> double @-> returning id) x duration

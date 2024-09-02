@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skphysicsgrid?language=objc}SKPhysicsGrid} *)
+
+let self = get_class "SKPhysicsGrid"
 
 let height self = msg_send ~self ~cmd:(selector "height") ~typ:(returning float)
 let spritesFromGrid x ~xDivisions ~zPosition ~spriteSize ~texture ~physicsBody self = msg_send ~self ~cmd:(selector "spritesFromGrid:xDivisions:zPosition:spriteSize:texture:physicsBody:") ~typ:(id @-> int @-> double @-> CGSize.t @-> id @-> id @-> returning void) x xDivisions zPosition spriteSize texture physicsBody

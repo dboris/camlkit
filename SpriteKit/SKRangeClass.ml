@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skrange?language=objc}SKRange} *)
-
-let self = get_class "SKRange"
 
 let rangeWithConstantValue x self = msg_send ~self ~cmd:(selector "rangeWithConstantValue:") ~typ:(double @-> returning id) x
 let rangeWithLowerLimit x self = msg_send ~self ~cmd:(selector "rangeWithLowerLimit:") ~typ:(double @-> returning id) x

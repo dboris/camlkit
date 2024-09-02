@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skactiontable?language=objc}SKActionTable} *)
+
+let self = get_class "SKActionTable"
 
 let actionForName x self = msg_send ~self ~cmd:(selector "actionForName:") ~typ:(id @-> returning id) x
 let actionTableDictionary self = msg_send ~self ~cmd:(selector "actionTableDictionary") ~typ:(returning id)

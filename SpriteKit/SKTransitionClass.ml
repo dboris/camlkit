@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktransition?language=objc}SKTransition} *)
-
-let self = get_class "SKTransition"
 
 let crossFadeWithDuration x self = msg_send ~self ~cmd:(selector "crossFadeWithDuration:") ~typ:(double @-> returning id) x
 let doorsCloseHorizontalWithDuration x self = msg_send ~self ~cmd:(selector "doorsCloseHorizontalWithDuration:") ~typ:(double @-> returning id) x

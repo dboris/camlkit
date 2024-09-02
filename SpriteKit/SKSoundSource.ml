@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sksoundsource?language=objc}SKSoundSource} *)
+
+let self = get_class "SKSoundSource"
 
 let completedBufferCount self = msg_send ~self ~cmd:(selector "completedBufferCount") ~typ:(returning int)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

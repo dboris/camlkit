@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skrotate?language=objc}SKRotate} *)
-
-let self = get_class "SKRotate"
 
 let rotateByAngle x ~duration self = msg_send ~self ~cmd:(selector "rotateByAngle:duration:") ~typ:(double @-> double @-> returning id) x duration
 let rotateByX x ~duration self = msg_send ~self ~cmd:(selector "rotateByX:duration:") ~typ:(double @-> double @-> returning id) x duration

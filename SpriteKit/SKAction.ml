@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skaction?language=objc}SKAction} *)
+
+let self = get_class "SKAction"
 
 let caction self = msg_send ~self ~cmd:(selector "caction") ~typ:(returning (ptr void))
 let commonInit self = msg_send ~self ~cmd:(selector "commonInit") ~typ:(returning void)

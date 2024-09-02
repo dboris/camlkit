@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktextureatlaspacker?language=objc}SKTextureAtlasPacker} *)
+
+let self = get_class "SKTextureAtlasPacker"
 
 let calcNonAlphaArea x self = msg_send ~self ~cmd:(selector "calcNonAlphaArea:") ~typ:((ptr CGImage.t) @-> returning CGRect.t) x
 let copyRotateCGImage x ~direction self = msg_send ~self ~cmd:(selector "copyRotateCGImage:direction:") ~typ:((ptr CGImage.t) @-> bool @-> returning (ptr CGImage.t)) x direction
@@ -20,4 +19,4 @@ let generateTextureAtlasImages x ~outputDictionary ~forcePOT self = msg_send ~se
 let getTextureFileList x ~modDate self = msg_send ~self ~cmd:(selector "getTextureFileList:modDate:") ~typ:(id @-> (ptr id) @-> returning id) x modDate
 let isFullyOpaque x self = msg_send ~self ~cmd:(selector "isFullyOpaque:") ~typ:((ptr CGImage.t) @-> returning bool) x
 let partitionTextureFilesByResolution x self = msg_send ~self ~cmd:(selector "partitionTextureFilesByResolution:") ~typ:(id @-> returning id) x
-let processPackedTextureAtlas x ~suffix ~packer ~sortedTrimArray ~sortedTextureArray self = msg_send ~self ~cmd:(selector "processPackedTextureAtlas:suffix:packer:sortedTrimArray:sortedTextureArray:") ~typ:((ptr void) @-> id @-> ptr void @-> (ptr void) @-> (ptr void) @-> returning id) x suffix packer sortedTrimArray sortedTextureArray
+let processPackedTextureAtlas x ~suffix ~packer ~sortedTrimArray ~sortedTextureArray self = msg_send ~self ~cmd:(selector "processPackedTextureAtlas:suffix:packer:sortedTrimArray:sortedTextureArray:") ~typ:((ptr void) @-> id @-> id @-> (ptr void) @-> (ptr void) @-> returning id) x suffix packer sortedTrimArray sortedTextureArray

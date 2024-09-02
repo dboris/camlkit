@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skreach?language=objc}SKReach} *)
-
-let self = get_class "SKReach"
 
 let reachTo x ~rootNode ~duration self = msg_send ~self ~cmd:(selector "reachTo:rootNode:duration:") ~typ:(CGPoint.t @-> id @-> double @-> returning id) x rootNode duration
 let reachTo1 x ~rootNode ~velocity self = msg_send ~self ~cmd:(selector "reachTo:rootNode:velocity:") ~typ:(CGPoint.t @-> id @-> double @-> returning id) x rootNode velocity

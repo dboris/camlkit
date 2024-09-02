@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skshader?language=objc}SKShader} *)
-
-let self = get_class "SKShader"
 
 let precompiledMetalShaderWithFile x ~uniforms self = msg_send ~self ~cmd:(selector "precompiledMetalShaderWithFile:uniforms:") ~typ:(id @-> id @-> returning id) x uniforms
 let shader self = msg_send ~self ~cmd:(selector "shader") ~typ:(returning id)

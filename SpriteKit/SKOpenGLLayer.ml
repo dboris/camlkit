@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skopengllayer?language=objc}SKOpenGLLayer} *)
+
+let self = get_class "SKOpenGLLayer"
 
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let drawInOpenGLContext x ~pixelFormat ~forLayerTime ~displayTime self = msg_send ~self ~cmd:(selector "drawInOpenGLContext:pixelFormat:forLayerTime:displayTime:") ~typ:(id @-> id @-> double @-> (ptr void) @-> returning void) x pixelFormat forLayerTime displayTime

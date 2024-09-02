@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skregion?language=objc}SKRegion} *)
+
+let self = get_class "SKRegion"
 
 let containsPoint x self = msg_send ~self ~cmd:(selector "containsPoint:") ~typ:(CGPoint.t @-> returning bool) x
 let containsPoints x ~locationStride ~results ~resultsStride ~count self = msg_send ~self ~cmd:(selector "containsPoints:locationStride:results:resultsStride:count:") ~typ:((ptr float) @-> llong @-> string @-> llong @-> int @-> returning void) x (LLong.of_int locationStride) results (LLong.of_int resultsStride) count

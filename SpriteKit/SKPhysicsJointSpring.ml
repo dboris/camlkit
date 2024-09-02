@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skphysicsjointspring?language=objc}SKPhysicsJointSpring} *)
+
+let self = get_class "SKPhysicsJointSpring"
 
 let damping self = msg_send ~self ~cmd:(selector "damping") ~typ:(returning double)
 let frequency self = msg_send ~self ~cmd:(selector "frequency") ~typ:(returning double)

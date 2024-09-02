@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sklightnode?language=objc}SKLightNode} *)
+
+let self = get_class "SKLightNode"
 
 let ambientColor self = msg_send ~self ~cmd:(selector "ambientColor") ~typ:(returning id)
 let categoryBitMask self = msg_send ~self ~cmd:(selector "categoryBitMask") ~typ:(returning uint)

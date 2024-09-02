@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skphysicsbody?language=objc}SKPhysicsBody} *)
+
+let self = get_class "SKPhysicsBody"
 
 let affectedByGravity self = msg_send ~self ~cmd:(selector "affectedByGravity") ~typ:(returning bool)
 let allContactedBodies self = msg_send ~self ~cmd:(selector "allContactedBodies") ~typ:(returning id)

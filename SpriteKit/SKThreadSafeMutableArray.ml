@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skthreadsafemutablearray?language=objc}SKThreadSafeMutableArray} *)
+
+let self = get_class "SKThreadSafeMutableArray"
 
 let arrayRepresentation self = msg_send ~self ~cmd:(selector "arrayRepresentation") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

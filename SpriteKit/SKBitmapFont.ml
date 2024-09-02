@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skbitmapfont?language=objc}SKBitmapFont} *)
+
+let self = get_class "SKBitmapFont"
 
 let advanceForCharacterNamed x self = msg_send ~self ~cmd:(selector "advanceForCharacterNamed:") ~typ:(ushort @-> returning double) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

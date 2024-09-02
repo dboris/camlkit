@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktextureatlas?language=objc}SKTextureAtlas} *)
+
+let self = get_class "SKTextureAtlas"
 
 let commonInit self = msg_send ~self ~cmd:(selector "commonInit") ~typ:(returning void)
 let createSubTextureFromTexture x ~andCUINamedImage ~andOrigin self = msg_send ~self ~cmd:(selector "createSubTextureFromTexture:andCUINamedImage:andOrigin:") ~typ:(id @-> id @-> CGPoint.t @-> returning id) x andCUINamedImage andOrigin

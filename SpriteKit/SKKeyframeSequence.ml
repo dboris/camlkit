@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skkeyframesequence?language=objc}SKKeyframeSequence} *)
+
+let self = get_class "SKKeyframeSequence"
 
 let addKeyframeValue x ~time self = msg_send ~self ~cmd:(selector "addKeyframeValue:time:") ~typ:(id @-> double @-> returning void) x time
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)

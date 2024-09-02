@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/skdistanceconstraint?language=objc}SKDistanceConstraint} *)
+
+let self = get_class "SKDistanceConstraint"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let distanceRange self = msg_send ~self ~cmd:(selector "distanceRange") ~typ:(returning id)

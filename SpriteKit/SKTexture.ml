@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktexture?language=objc}SKTexture} *)
+
+let self = get_class "SKTexture"
 
 let _CGImage self = msg_send ~self ~cmd:(selector "CGImage") ~typ:(returning (ptr CGImage.t))
 let accessibilityLabel self = msg_send ~self ~cmd:(selector "accessibilityLabel") ~typ:(returning id)
@@ -31,8 +30,8 @@ let imageNameOrPath self = msg_send ~self ~cmd:(selector "imageNameOrPath") ~typ
 let imgName self = msg_send ~self ~cmd:(selector "imgName") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initTextureCacheWithImageData self = msg_send ~self ~cmd:(selector "initTextureCacheWithImageData") ~typ:(returning void)
-let initWithBackingTetxure x self = msg_send ~self ~cmd:(selector "initWithBackingTetxure:") ~typ:(ptr void @-> returning id) x
-let initWithBackingTetxure' x ~logicalWidth ~height self = msg_send ~self ~cmd:(selector "initWithBackingTetxure:logicalWidth:height:") ~typ:(ptr void @-> float @-> float @-> returning id) x logicalWidth height
+let initWithBackingTetxure x self = msg_send ~self ~cmd:(selector "initWithBackingTetxure:") ~typ:(id @-> returning id) x
+let initWithBackingTetxure' x ~logicalWidth ~height self = msg_send ~self ~cmd:(selector "initWithBackingTetxure:logicalWidth:height:") ~typ:(id @-> float @-> float @-> returning id) x logicalWidth height
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithImageNamed x self = msg_send ~self ~cmd:(selector "initWithImageNamed:") ~typ:(id @-> returning id) x
 let initWithImagePath x self = msg_send ~self ~cmd:(selector "initWithImagePath:") ~typ:(id @-> returning id) x

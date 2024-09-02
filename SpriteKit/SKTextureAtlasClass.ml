@@ -5,15 +5,10 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sktextureatlas?language=objc}SKTextureAtlas} *)
-
-let self = get_class "SKTextureAtlas"
 
 let atlasFromCUIImageAtlas x ~withName self = msg_send ~self ~cmd:(selector "atlasFromCUIImageAtlas:withName:") ~typ:(id @-> id @-> returning id) x withName
 let atlasNamed x self = msg_send ~self ~cmd:(selector "atlasNamed:") ~typ:(id @-> returning id) x

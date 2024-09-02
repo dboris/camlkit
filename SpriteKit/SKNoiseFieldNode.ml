@@ -5,13 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 open CoreText
-open CoreText_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/spritekit/sknoisefieldnode?language=objc}SKNoiseFieldNode} *)
+
+let self = get_class "SKNoiseFieldNode"
 
 let animationSpeed self = msg_send ~self ~cmd:(selector "animationSpeed") ~typ:(returning float)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
