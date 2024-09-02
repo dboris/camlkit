@@ -5,11 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/coretext/ctglyphstorageinterface?language=objc}CTGlyphStorageInterface} *)
+
+let self = get_class "CTGlyphStorageInterface"
 
 let createCopy x self = msg_send ~self ~cmd:(selector "createCopy:") ~typ:(void @-> returning (ptr void)) x
 let disposeGlyphStack self = msg_send ~self ~cmd:(selector "disposeGlyphStack") ~typ:(returning void)
