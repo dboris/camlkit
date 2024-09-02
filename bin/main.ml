@@ -20,7 +20,7 @@ let app_window () =
       ~defer: false
   in
   win
-  |> NSWindow.cascadeTopLeftFromPoint (CGPoint.make ~x:20. ~y:20.)
+  |> NSWindow.cascadeTopLeftFromPoint (CGPoint.init ~x:20. ~y:20.)
   |> ignore;
   win |> NSWindow.setTitle (new_string "Hello Caml");
   win |> NSWindow.makeKeyAndOrderFront nil;

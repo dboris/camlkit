@@ -22,5 +22,12 @@ let init
   setf t origin origin_v;
   setf t size size_v;
   t
+
+let make ~x ~y ~width ~height =
+  let r = make t in
+  setf r origin (CGPoint.init ~x ~y);
+  setf r size (CGSize.init ~width ~height);
+  r
+
 let origin t = getf t origin
 let size t = getf t size
