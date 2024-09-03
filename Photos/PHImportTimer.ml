@@ -1,0 +1,29 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open Foundation
+
+(** Apple docs: {{:https://developer.apple.com/documentation/photos/phimporttimer?language=objc}PHImportTimer} *)
+
+let self = get_class "PHImportTimer"
+
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
+let duration self = msg_send ~self ~cmd:(selector "duration") ~typ:(returning double)
+let endTime self = msg_send ~self ~cmd:(selector "endTime") ~typ:(returning id)
+let initWithType x ~subtype self = msg_send ~self ~cmd:(selector "initWithType:subtype:") ~typ:(uchar @-> uchar @-> returning id) x subtype
+let setEndTime x self = msg_send ~self ~cmd:(selector "setEndTime:") ~typ:(id @-> returning void) x
+let setSignpostId x self = msg_send ~self ~cmd:(selector "setSignpostId:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
+let setStartTime x self = msg_send ~self ~cmd:(selector "setStartTime:") ~typ:(id @-> returning void) x
+let setSubtype x self = msg_send ~self ~cmd:(selector "setSubtype:") ~typ:(uchar @-> returning void) x
+let setType x self = msg_send ~self ~cmd:(selector "setType:") ~typ:(uchar @-> returning void) x
+let setUuid x self = msg_send ~self ~cmd:(selector "setUuid:") ~typ:(id @-> returning void) x
+let signpostId self = msg_send ~self ~cmd:(selector "signpostId") ~typ:(returning ullong)
+let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning void)
+let startTime self = msg_send ~self ~cmd:(selector "startTime") ~typ:(returning id)
+let stop self = msg_send ~self ~cmd:(selector "stop") ~typ:(returning void)
+let subtype self = msg_send ~self ~cmd:(selector "subtype") ~typ:(returning uchar)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning uchar)
+let uuid self = msg_send ~self ~cmd:(selector "uuid") ~typ:(returning id)

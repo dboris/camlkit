@@ -1,0 +1,105 @@
+(* auto-generated, do not modify *)
+
+open Runtime
+open Objc
+
+[@@@ocaml.warning "-33"]
+open Foundation
+
+(** Apple docs: {{:https://developer.apple.com/documentation/photos/phasset?language=objc}PHAsset} *)
+
+let composabilityScoresOfAssets x ~options ~error self = msg_send ~self ~cmd:(selector "composabilityScoresOfAssets:options:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x options error
+let corePropertiesToFetch self = msg_send ~self ~cmd:(selector "corePropertiesToFetch") ~typ:(returning id)
+let countOfAssetsWithLocationFromUUIDs x ~photoLibrary self = msg_send ~self ~cmd:(selector "countOfAssetsWithLocationFromUUIDs:photoLibrary:") ~typ:(id @-> id @-> returning llong) x photoLibrary
+let descriptionForMediaSubtypes x self = msg_send ~self ~cmd:(selector "descriptionForMediaSubtypes:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let descriptionForMediaType x self = msg_send ~self ~cmd:(selector "descriptionForMediaType:") ~typ:(llong @-> returning id) (LLong.of_int x)
+let descriptionForPlaybackStyle x self = msg_send ~self ~cmd:(selector "descriptionForPlaybackStyle:") ~typ:(llong @-> returning id) (LLong.of_int x)
+let entityKeyMap self = msg_send ~self ~cmd:(selector "entityKeyMap") ~typ:(returning id)
+let faceWorkerPropertiesToFetch self = msg_send ~self ~cmd:(selector "faceWorkerPropertiesToFetch") ~typ:(returning id)
+let fetchAllAssetsInYearRepresentedByYearHighlight x ~options self = msg_send ~self ~cmd:(selector "fetchAllAssetsInYearRepresentedByYearHighlight:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsAllowedForSceneProcessingWithOptions x self = msg_send ~self ~cmd:(selector "fetchAssetsAllowedForSceneProcessingWithOptions:") ~typ:(id @-> returning id) x
+let fetchAssetsForBehavioralCurationWithOptions x self = msg_send ~self ~cmd:(selector "fetchAssetsForBehavioralCurationWithOptions:") ~typ:(id @-> returning id) x
+let fetchAssetsForFaceGroups x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsForFaceGroups:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsForFaces x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsForFaces:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsForKeywords x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsForKeywords:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsForPerson x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsForPerson:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsForPersons x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsForPersons:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsForReferences x ~photoLibrary self = msg_send ~self ~cmd:(selector "fetchAssetsForReferences:photoLibrary:") ~typ:(id @-> id @-> returning id) x photoLibrary
+let fetchAssetsFromCameraSinceDate x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsFromCameraSinceDate:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsGroupedByFaceUUIDForFaces x self = msg_send ~self ~cmd:(selector "fetchAssetsGroupedByFaceUUIDForFaces:") ~typ:(id @-> returning id) x
+let fetchAssetsGroupedByFaceUUIDForFaces' x ~fetchPropertySets self = msg_send ~self ~cmd:(selector "fetchAssetsGroupedByFaceUUIDForFaces:fetchPropertySets:") ~typ:(id @-> id @-> returning id) x fetchPropertySets
+let fetchAssetsInAssetCollection x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsInAssetCollections x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsInAssetCollections:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsInBoundingBoxWithTopLeftLocation x ~bottomRightLocation ~options self = msg_send ~self ~cmd:(selector "fetchAssetsInBoundingBoxWithTopLeftLocation:bottomRightLocation:options:") ~typ:(id @-> id @-> id @-> returning id) x bottomRightLocation options
+let fetchAssetsInImportSessions x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsInImportSessions:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsMatchingAdjustedFingerPrint x ~photoLibrary self = msg_send ~self ~cmd:(selector "fetchAssetsMatchingAdjustedFingerPrint:photoLibrary:") ~typ:(id @-> id @-> returning id) x photoLibrary
+let fetchAssetsMatchingMasterFingerPrint x ~photoLibrary self = msg_send ~self ~cmd:(selector "fetchAssetsMatchingMasterFingerPrint:photoLibrary:") ~typ:(id @-> id @-> returning id) x photoLibrary
+let fetchAssetsNeedingSceneProcessingWithOptions x self = msg_send ~self ~cmd:(selector "fetchAssetsNeedingSceneProcessingWithOptions:") ~typ:(id @-> returning id) x
+let fetchAssetsWithALAssetURLs x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithALAssetURLs:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithBurstIdentifier x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithBurstIdentifier:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithCloudIdentifiers x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithCloudIdentifiers:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithLocalIdentifiers x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithLocalIdentifiers:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithMediaType x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithMediaType:options:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) options
+let fetchAssetsWithObjectIDs x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithObjectIDs:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithOptions x self = msg_send ~self ~cmd:(selector "fetchAssetsWithOptions:") ~typ:(id @-> returning id) x
+let fetchAssetsWithSyndicationIdentifiers x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithSyndicationIdentifiers:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithSyndicationIdentifiers' x ~options ~includeRejected self = msg_send ~self ~cmd:(selector "fetchAssetsWithSyndicationIdentifiers:options:includeRejected:") ~typ:(id @-> id @-> bool @-> returning id) x options includeRejected
+let fetchAssetsWithUUIDs x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithUUIDs:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchAssetsWithoutOriginalsInAssetCollection x ~options self = msg_send ~self ~cmd:(selector "fetchAssetsWithoutOriginalsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchCuratedAssetsForMomentShareCreationWithAssets x ~options self = msg_send ~self ~cmd:(selector "fetchCuratedAssetsForMomentShareCreationWithAssets:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchCuratedAssetsInAssetCollection x self = msg_send ~self ~cmd:(selector "fetchCuratedAssetsInAssetCollection:") ~typ:(id @-> returning id) x
+let fetchCuratedAssetsInAssetCollection' x ~options self = msg_send ~self ~cmd:(selector "fetchCuratedAssetsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchExtendedCuratedAndRepresentativeAssetsAssociatedWithMemory x ~options self = msg_send ~self ~cmd:(selector "fetchExtendedCuratedAndRepresentativeAssetsAssociatedWithMemory:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchExtendedCuratedAssetsInAssetCollection x ~options self = msg_send ~self ~cmd:(selector "fetchExtendedCuratedAssetsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchGuestAssetsInCollectionContainingAsset x ~options self = msg_send ~self ~cmd:(selector "fetchGuestAssetsInCollectionContainingAsset:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchGuestAssetsWithOptions x self = msg_send ~self ~cmd:(selector "fetchGuestAssetsWithOptions:") ~typ:(id @-> returning id) x
+let fetchKeyAssetByHighlightUUIDForHighlights x ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetByHighlightUUIDForHighlights:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchKeyAssetByMemoryUUIDForMemories x ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetByMemoryUUIDForMemories:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchKeyAssetBySuggestionUUIDForSuggestions x ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetBySuggestionUUIDForSuggestions:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchKeyAssetForEachSuggestion x ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetForEachSuggestion:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchKeyAssetForSceneIdentifier x ~aboveConfidenceThreshold ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetForSceneIdentifier:aboveConfidenceThreshold:options:") ~typ:(uint @-> double @-> id @-> returning id) x aboveConfidenceThreshold options
+let fetchKeyAssetsInAssetCollection x ~options self = msg_send ~self ~cmd:(selector "fetchKeyAssetsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchKeyCuratedAssetInAssetCollection x ~referenceAsset self = msg_send ~self ~cmd:(selector "fetchKeyCuratedAssetInAssetCollection:referenceAsset:") ~typ:(id @-> id @-> returning id) x referenceAsset
+let fetchKeyCuratedAssetInAssetCollection1 x ~referencePersons self = msg_send ~self ~cmd:(selector "fetchKeyCuratedAssetInAssetCollection:referencePersons:") ~typ:(id @-> id @-> returning id) x referencePersons
+let fetchKeyCuratedAssetInAssetCollection2 x ~referenceAsset ~options self = msg_send ~self ~cmd:(selector "fetchKeyCuratedAssetInAssetCollection:referenceAsset:options:") ~typ:(id @-> id @-> id @-> returning id) x referenceAsset options
+let fetchMovieCuratedAssetsInMemory x self = msg_send ~self ~cmd:(selector "fetchMovieCuratedAssetsInMemory:") ~typ:(id @-> returning id) x
+let fetchPredicateFromComparisonPredicate x ~options self = msg_send ~self ~cmd:(selector "fetchPredicateFromComparisonPredicate:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchReducedCuratedAssetsInMemory x ~options self = msg_send ~self ~cmd:(selector "fetchReducedCuratedAssetsInMemory:options:") ~typ:(id @-> id @-> returning id) x options
+let fetchReferencedAssetsWithOptions x self = msg_send ~self ~cmd:(selector "fetchReferencedAssetsWithOptions:") ~typ:(id @-> returning id) x
+let fetchRepresentativeAssetsInAssetCollection x self = msg_send ~self ~cmd:(selector "fetchRepresentativeAssetsInAssetCollection:") ~typ:(id @-> returning id) x
+let fetchSyndicatedAssetsWithOptions x self = msg_send ~self ~cmd:(selector "fetchSyndicatedAssetsWithOptions:") ~typ:(id @-> returning id) x
+let fetchSyndicatedAssetsWithOptions' x ~includeRejected self = msg_send ~self ~cmd:(selector "fetchSyndicatedAssetsWithOptions:includeRejected:") ~typ:(id @-> bool @-> returning id) x includeRejected
+let fetchType self = msg_send ~self ~cmd:(selector "fetchType") ~typ:(returning id)
+let fetchUserCuratedAssetsInMemory x self = msg_send ~self ~cmd:(selector "fetchUserCuratedAssetsInMemory:") ~typ:(id @-> returning id) x
+let fetchUserCuratedAssetsInMemory' x ~options self = msg_send ~self ~cmd:(selector "fetchUserCuratedAssetsInMemory:options:") ~typ:(id @-> id @-> returning id) x options
+let filterPredicateForSavedSyndicationAssetsOnly self = msg_send ~self ~cmd:(selector "filterPredicateForSavedSyndicationAssetsOnly") ~typ:(returning id)
+let filterPredicateForUnsavedSyndicationAssets self = msg_send ~self ~cmd:(selector "filterPredicateForUnsavedSyndicationAssets") ~typ:(returning id)
+let filterPredicateToExcludeNoSyndicationAssets self = msg_send ~self ~cmd:(selector "filterPredicateToExcludeNoSyndicationAssets") ~typ:(returning id)
+let filterPredicateToIncludeOnlyReceivedSyndicatedAssets self = msg_send ~self ~cmd:(selector "filterPredicateToIncludeOnlyReceivedSyndicatedAssets") ~typ:(returning id)
+let identifierCode self = msg_send ~self ~cmd:(selector "identifierCode") ~typ:(returning id)
+let imageManagerPropertiesToFetch self = msg_send ~self ~cmd:(selector "imageManagerPropertiesToFetch") ~typ:(returning id)
+let isOriginalKnownUnsupportedFormatForAsset x ~failureInfo self = msg_send ~self ~cmd:(selector "isOriginalKnownUnsupportedFormatForAsset:failureInfo:") ~typ:(id @-> (ptr id) @-> returning bool) x failureInfo
+let isOriginalVideoComplementKnownUnsupportedFormatForAsset x ~failureInfo self = msg_send ~self ~cmd:(selector "isOriginalVideoComplementKnownUnsupportedFormatForAsset:failureInfo:") ~typ:(id @-> (ptr id) @-> returning bool) x failureInfo
+let locationPropertiesToFetch self = msg_send ~self ~cmd:(selector "locationPropertiesToFetch") ~typ:(returning id)
+let managedEntityName self = msg_send ~self ~cmd:(selector "managedEntityName") ~typ:(returning id)
+let managedObjectSupportsAllowedForAnalysis self = msg_send ~self ~cmd:(selector "managedObjectSupportsAllowedForAnalysis") ~typ:(returning bool)
+let managedObjectSupportsBursts self = msg_send ~self ~cmd:(selector "managedObjectSupportsBursts") ~typ:(returning bool)
+let managedObjectSupportsContributor self = msg_send ~self ~cmd:(selector "managedObjectSupportsContributor") ~typ:(returning bool)
+let managedObjectSupportsHiddenState self = msg_send ~self ~cmd:(selector "managedObjectSupportsHiddenState") ~typ:(returning bool)
+let managedObjectSupportsMontage self = msg_send ~self ~cmd:(selector "managedObjectSupportsMontage") ~typ:(returning bool)
+let managedObjectSupportsSavedAssetType self = msg_send ~self ~cmd:(selector "managedObjectSupportsSavedAssetType") ~typ:(returning bool)
+let managedObjectSupportsTrashedState self = msg_send ~self ~cmd:(selector "managedObjectSupportsTrashedState") ~typ:(returning bool)
+let managedObjectSupportsVisibilityState self = msg_send ~self ~cmd:(selector "managedObjectSupportsVisibilityState") ~typ:(returning bool)
+let originalUniformTypeIdentifierForAsset x self = msg_send ~self ~cmd:(selector "originalUniformTypeIdentifierForAsset:") ~typ:(id @-> returning id) x
+let predicateForSyndicatedAssetIdentifiers x self = msg_send ~self ~cmd:(selector "predicateForSyndicatedAssetIdentifiers:") ~typ:(id @-> returning id) x
+let predicateForSyndicatedAssetIdentifiers' x ~includeRejected self = msg_send ~self ~cmd:(selector "predicateForSyndicatedAssetIdentifiers:includeRejected:") ~typ:(id @-> bool @-> returning id) x includeRejected
+let propertiesToFetchWithHint x self = msg_send ~self ~cmd:(selector "propertiesToFetchWithHint:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let propertyFetchHintsForPropertySets x self = msg_send ~self ~cmd:(selector "propertyFetchHintsForPropertySets:") ~typ:(id @-> returning ullong) x
+let propertySetAccessorsByPropertySet self = msg_send ~self ~cmd:(selector "propertySetAccessorsByPropertySet") ~typ:(returning id)
+let propertySetClassForPropertySet x self = msg_send ~self ~cmd:(selector "propertySetClassForPropertySet:") ~typ:(id @-> returning _Class) x
+let propertySetsForPropertyFetchHints x self = msg_send ~self ~cmd:(selector "propertySetsForPropertyFetchHints:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let quickClassificationFaceAdjustmentVersion self = msg_send ~self ~cmd:(selector "quickClassificationFaceAdjustmentVersion") ~typ:(returning id)
+let requestCuratedAssetsInAssetCollection x ~options self = msg_send ~self ~cmd:(selector "requestCuratedAssetsInAssetCollection:options:") ~typ:(id @-> id @-> returning id) x options
+let requestCuratedAssetsInAssetCollection' x ~referencePersons ~options self = msg_send ~self ~cmd:(selector "requestCuratedAssetsInAssetCollection:referencePersons:options:") ~typ:(id @-> id @-> id @-> returning id) x referencePersons options
+let senderIdentifierByAssetUUIDForAssets x self = msg_send ~self ~cmd:(selector "senderIdentifierByAssetUUIDForAssets:") ~typ:(id @-> returning id) x
+let transformValueExpression x ~forKeyPath self = msg_send ~self ~cmd:(selector "transformValueExpression:forKeyPath:") ~typ:(id @-> id @-> returning id) x forKeyPath
