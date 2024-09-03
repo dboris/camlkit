@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vngeneratefacesegmentsrequest?language=objc}VNGenerateFaceSegmentsRequest} *)
+
+let self = get_class "VNGenerateFaceSegmentsRequest"
 
 let dependencyProcessingOrdinality self = msg_send ~self ~cmd:(selector "dependencyProcessingOrdinality") ~typ:(returning llong)
 let faceBoundingBoxExpansionRatio self = msg_send ~self ~cmd:(selector "faceBoundingBoxExpansionRatio") ~typ:(returning float)

@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnclustereroptions?language=objc}VNClustererOptions} *)
+
+let self = get_class "VNClustererOptions"
 
 let cachePath self = msg_send ~self ~cmd:(selector "cachePath") ~typ:(returning id)
 let initWithType x ~cachePath ~state ~threshold self = msg_send ~self ~cmd:(selector "initWithType:cachePath:state:threshold:") ~typ:(id @-> id @-> id @-> float @-> returning id) x cachePath state threshold

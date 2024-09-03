@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vndetecttrajectoriesrequest?language=objc}VNDetectTrajectoriesRequest} *)
+
+let self = get_class "VNDetectTrajectoriesRequest"
 
 let applyConfigurationOfRequest x self = msg_send ~self ~cmd:(selector "applyConfigurationOfRequest:") ~typ:(id @-> returning void) x
 let initWithFrameAnalysisSpacing x ~trajectoryLength ~completionHandler self = msg_send ~self ~cmd:(selector "initWithFrameAnalysisSpacing:trajectoryLength:completionHandler:") ~typ:(void @-> llong @-> (ptr void) @-> returning id) x (LLong.of_int trajectoryLength) completionHandler

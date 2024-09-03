@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vngreedyclusteringreadonly?language=objc}VNGreedyClusteringReadOnly} *)
+
+let self = get_class "VNGreedyClusteringReadOnly"
 
 let cancelClustering x self = msg_send ~self ~cmd:(selector "cancelClustering:") ~typ:((ptr id) @-> returning bool) x
 let convertUpdatePairsToClusters x self = msg_send ~self ~cmd:(selector "convertUpdatePairsToClusters:") ~typ:((ptr void) @-> returning id) x

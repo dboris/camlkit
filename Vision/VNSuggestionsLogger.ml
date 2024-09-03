@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnsuggestionslogger?language=objc}VNSuggestionsLogger} *)
+
+let self = get_class "VNSuggestionsLogger"
 
 let initWithOptions x ~logEnabled self = msg_send ~self ~cmd:(selector "initWithOptions:logEnabled:") ~typ:(id @-> bool @-> returning id) x logEnabled
 let logAllSuggestons x self = msg_send ~self ~cmd:(selector "logAllSuggestons:") ~typ:(id @-> returning void) x

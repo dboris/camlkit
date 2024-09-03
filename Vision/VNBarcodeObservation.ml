@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnbarcodeobservation?language=objc}VNBarcodeObservation} *)
+
+let self = get_class "VNBarcodeObservation"
 
 let acbsBarcodeInfo self = msg_send ~self ~cmd:(selector "acbsBarcodeInfo") ~typ:(returning id)
 let appClipCodeMetadataValue self = msg_send ~self ~cmd:(selector "appClipCodeMetadataValue") ~typ:(returning id)

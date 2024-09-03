@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfacelandmarkdetectordnn?language=objc}VNFaceLandmarkDetectorDNN} *)
+
+let self = get_class "VNFaceLandmarkDetectorDNN"
 
 let getConstellation x ~cvmlConstellation ~fromOptions ~error self = msg_send ~self ~cmd:(selector "getConstellation:cvmlConstellation:fromOptions:error:") ~typ:((ptr ullong) @-> (ptr int) @-> id @-> (ptr id) @-> returning bool) x cvmlConstellation fromOptions error
 let getLandmarkErrorEstimates x ~forConstellation ~error self = msg_send ~self ~cmd:(selector "getLandmarkErrorEstimates:forConstellation:error:") ~typ:((ptr void) @-> int @-> (ptr id) @-> returning bool) x forConstellation error

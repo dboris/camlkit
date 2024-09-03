@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnnoprequestconfiguration?language=objc}VNNOPRequestConfiguration} *)
+
+let self = get_class "VNNOPRequestConfiguration"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let detectorExecutionTimeInterval self = msg_send ~self ~cmd:(selector "detectorExecutionTimeInterval") ~typ:(returning double)

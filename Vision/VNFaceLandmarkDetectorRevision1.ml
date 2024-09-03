@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfacelandmarkdetectorrevision1?language=objc}VNFaceLandmarkDetectorRevision1} *)
+
+let self = get_class "VNFaceLandmarkDetectorRevision1"
 
 let cascadeStepCountInOriginalModel self = msg_send ~self ~cmd:(selector "cascadeStepCountInOriginalModel") ~typ:(returning ullong)
 let cascadeStepCountLoaded self = msg_send ~self ~cmd:(selector "cascadeStepCountLoaded") ~typ:(returning ullong)

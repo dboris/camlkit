@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnvideoprocessor?language=objc}VNVideoProcessor} *)
+
+let self = get_class "VNVideoProcessor"
 
 let addRequest x ~processingOptions ~error self = msg_send ~self ~cmd:(selector "addRequest:processingOptions:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x processingOptions error
 let addRequest' x ~withProcessingOptions ~error self = msg_send ~self ~cmd:(selector "addRequest:withProcessingOptions:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x withProcessingOptions error

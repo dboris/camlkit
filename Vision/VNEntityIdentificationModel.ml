@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnentityidentificationmodel?language=objc}VNEntityIdentificationModel} *)
+
+let self = get_class "VNEntityIdentificationModel"
 
 let configuration self = msg_send ~self ~cmd:(selector "configuration") ~typ:(returning id)
 let dataWithOptions x ~error self = msg_send ~self ~cmd:(selector "dataWithOptions:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
@@ -31,7 +29,7 @@ let trainedModelWithCanceller x ~error self = msg_send ~self ~cmd:(selector "tra
 let trainingObservationsForEntityWithUniqueIdentifier x ~canceller ~error self = msg_send ~self ~cmd:(selector "trainingObservationsForEntityWithUniqueIdentifier:canceller:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x canceller error
 let uniqueIdentifierForEntityAtIndex x self = msg_send ~self ~cmd:(selector "uniqueIdentifierForEntityAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let validateWithCanceller x ~error self = msg_send ~self ~cmd:(selector "validateWithCanceller:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
-let writeReadOnlyVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeReadOnlyVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> ptr void @-> (ptr id) @-> returning bool) x options md5Context error
+let writeReadOnlyVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeReadOnlyVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> (ptr void) @-> (ptr id) @-> returning bool) x options md5Context error
 let writeToStream x ~options ~error self = msg_send ~self ~cmd:(selector "writeToStream:options:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x options error
 let writeToURL x ~options ~error self = msg_send ~self ~cmd:(selector "writeToURL:options:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x options error
-let writeVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> ptr void @-> (ptr id) @-> returning bool) x options md5Context error
+let writeVersion1ToOutputStream x ~options ~md5Context ~error self = msg_send ~self ~cmd:(selector "writeVersion1ToOutputStream:options:md5Context:error:") ~typ:(id @-> id @-> (ptr void) @-> (ptr id) @-> returning bool) x options md5Context error

@@ -5,13 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreVideo
 
-let _class_ = get_class "VNCreateDetectionprintRequest"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vncreatedetectionprintrequest?language=objc}VNCreateDetectionprintRequest} *)
 
-module C = struct
-  let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning (_Class))
-end
+let self = get_class "VNCreateDetectionprintRequest"
 
-let _VNImageProcessingSessionPrintKeyPath self = msg_send ~self ~cmd:(selector "VNImageProcessingSessionPrintKeyPath") ~typ:(returning (id))
-let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) (ULLong.of_int x) error
-let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) (ULLong.of_int x) inContext error
+let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> (ptr id) @-> returning bool) (ULLong.of_int x) inContext error
+let supportedImageSizeSet self = msg_send ~self ~cmd:(selector "supportedImageSizeSet") ~typ:(returning id)

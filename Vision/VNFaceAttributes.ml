@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfaceattributes?language=objc}VNFaceAttributes} *)
+
+let self = get_class "VNFaceAttributes"
 
 let _VN1uMyFtnYEWjbrdx3yAuDndKkPeyzNJhB self = msg_send ~self ~cmd:(selector "VN1uMyFtnYEWjbrdx3yAuDndKkPeyzNJhB") ~typ:(returning id)
 let _VN2riiZbQrloRhCzYW56f0rk4N3ROe151S self = msg_send ~self ~cmd:(selector "VN2riiZbQrloRhCzYW56f0rk4N3ROe151S") ~typ:(returning id)

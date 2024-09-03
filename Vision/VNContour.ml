@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vncontour?language=objc}VNContour} *)
+
+let self = get_class "VNContour"
 
 let aspectRatio self = msg_send ~self ~cmd:(selector "aspectRatio") ~typ:(returning float)
 let childContourAtIndex x ~error self = msg_send ~self ~cmd:(selector "childContourAtIndex:error:") ~typ:(ullong @-> (ptr id) @-> returning id) (ULLong.of_int x) error

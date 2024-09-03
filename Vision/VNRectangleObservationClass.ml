@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnrectangleobservation?language=objc}VNRectangleObservation} *)
-
-let self = get_class "VNRectangleObservation"
 
 let boundingBoxIsCalculatedProperty self = msg_send ~self ~cmd:(selector "boundingBoxIsCalculatedProperty") ~typ:(returning bool)
 let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning id) (ULLong.of_int x)

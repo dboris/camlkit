@@ -4,18 +4,16 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnespressomodelfilebaseddetector?language=objc}VNEspressoModelFileBasedDetector} *)
 
+let self = get_class "VNEspressoModelFileBasedDetector"
+
 let bindBuffer x ~toNetworkInputBlobName ~error self = msg_send ~self ~cmd:(selector "bindBuffer:toNetworkInputBlobName:error:") ~typ:((ptr void) @-> id @-> (ptr id) @-> returning bool) x toNetworkInputBlobName error
 let bindBuffer' x ~toNetworkOutputBlobName ~error self = msg_send ~self ~cmd:(selector "bindBuffer:toNetworkOutputBlobName:error:") ~typ:((ptr void) @-> id @-> (ptr id) @-> returning bool) x toNetworkOutputBlobName error
-let bindLockedPixelBuffer x ~toNetworkInputBlobName ~error self = msg_send ~self ~cmd:(selector "bindLockedPixelBuffer:toNetworkInputBlobName:error:") ~typ:((ptr CVBuffer.t) @-> id @-> (ptr id) @-> returning bool) x toNetworkInputBlobName error
+let bindLockedPixelBuffer x ~toNetworkInputBlobName ~error self = msg_send ~self ~cmd:(selector "bindLockedPixelBuffer:toNetworkInputBlobName:error:") ~typ:((ptr void) @-> id @-> (ptr id) @-> returning bool) x toNetworkInputBlobName error
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
 let espressoModelNetworkLayersStorageTypeForConfigurationOptions x self = msg_send ~self ~cmd:(selector "espressoModelNetworkLayersStorageTypeForConfigurationOptions:") ~typ:(id @-> returning int) x
 let espressoResources self = msg_send ~self ~cmd:(selector "espressoResources") ~typ:(returning id)

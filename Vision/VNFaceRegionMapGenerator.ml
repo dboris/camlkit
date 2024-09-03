@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfaceregionmapgenerator?language=objc}VNFaceRegionMapGenerator} *)
+
+let self = get_class "VNFaceRegionMapGenerator"
 
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

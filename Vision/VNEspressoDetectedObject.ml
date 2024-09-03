@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnespressodetectedobject?language=objc}VNEspressoDetectedObject} *)
+
+let self = get_class "VNEspressoDetectedObject"
 
 let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
 let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning CGPoint.t)

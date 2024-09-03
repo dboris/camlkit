@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnentityidentificationmodelconfiguration?language=objc}VNEntityIdentificationModelConfiguration} *)
-
-let self = get_class "VNEntityIdentificationModelConfiguration"
 
 let maximumAllowableEntities self = msg_send ~self ~cmd:(selector "maximumAllowableEntities") ~typ:(returning ullong)
 let maximumAllowableFaceprintsPerIdentity self = msg_send ~self ~cmd:(selector "maximumAllowableFaceprintsPerIdentity") ~typ:(returning ullong)

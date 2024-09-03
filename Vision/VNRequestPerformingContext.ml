@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnrequestperformingcontext?language=objc}VNRequestPerformingContext} *)
+
+let self = get_class "VNRequestPerformingContext"
 
 let cacheObservationsOfRequest x self = msg_send ~self ~cmd:(selector "cacheObservationsOfRequest:") ~typ:(id @-> returning bool) x
 let cachedObservationsAcceptedByRequest x self = msg_send ~self ~cmd:(selector "cachedObservationsAcceptedByRequest:") ~typ:(id @-> returning id) x

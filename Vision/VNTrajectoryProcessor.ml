@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vntrajectoryprocessor?language=objc}VNTrajectoryProcessor} *)
+
+let self = get_class "VNTrajectoryProcessor"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithFrameAnalysisSpacing x ~trajectoryLength self = msg_send ~self ~cmd:(selector "initWithFrameAnalysisSpacing:trajectoryLength:") ~typ:(void @-> llong @-> returning id) x (LLong.of_int trajectoryLength)

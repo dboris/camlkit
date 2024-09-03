@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnalignfacerectanglerequest?language=objc}VNAlignFaceRectangleRequest} *)
+
+let self = get_class "VNAlignFaceRectangleRequest"
 
 let dependencyProcessingOrdinality self = msg_send ~self ~cmd:(selector "dependencyProcessingOrdinality") ~typ:(returning llong)
 let initWithFaceObservations x self = msg_send ~self ~cmd:(selector "initWithFaceObservations:") ~typ:(id @-> returning id) x

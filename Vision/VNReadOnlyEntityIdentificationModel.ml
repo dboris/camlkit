@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnreadonlyentityidentificationmodel?language=objc}VNReadOnlyEntityIdentificationModel} *)
+
+let self = get_class "VNReadOnlyEntityIdentificationModel"
 
 let entityIdentificationModel x ~indexOfEntityWithUniqueIdentifier self = msg_send ~self ~cmd:(selector "entityIdentificationModel:indexOfEntityWithUniqueIdentifier:") ~typ:(id @-> id @-> returning ullong) x indexOfEntityWithUniqueIdentifier
 let entityIdentificationModel1 x ~numberOfObservationsForEntityAtIndex self = msg_send ~self ~cmd:(selector "entityIdentificationModel:numberOfObservationsForEntityAtIndex:") ~typ:(id @-> ullong @-> returning ullong) x (ULLong.of_int numberOfObservationsForEntityAtIndex)

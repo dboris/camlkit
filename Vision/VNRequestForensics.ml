@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnrequestforensics?language=objc}VNRequestForensics} *)
+
+let self = get_class "VNRequestForensics"
 
 let cachedObservationsWithKey x ~wereCheckedOnBehalfOfRequest self = msg_send ~self ~cmd:(selector "cachedObservationsWithKey:wereCheckedOnBehalfOfRequest:") ~typ:(id @-> id @-> returning void) x wereCheckedOnBehalfOfRequest
 let cachedObservationsWithKey' x ~wereLocatedOnBehalfOfRequest self = msg_send ~self ~cmd:(selector "cachedObservationsWithKey:wereLocatedOnBehalfOfRequest:") ~typ:(id @-> id @-> returning void) x wereLocatedOnBehalfOfRequest

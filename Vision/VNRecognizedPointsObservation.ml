@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnrecognizedpointsobservation?language=objc}VNRecognizedPointsObservation} *)
+
+let self = get_class "VNRecognizedPointsObservation"
 
 let availableGroupKeys self = msg_send ~self ~cmd:(selector "availableGroupKeys") ~typ:(returning id)
 let availableKeys self = msg_send ~self ~cmd:(selector "availableKeys") ~typ:(returning id)

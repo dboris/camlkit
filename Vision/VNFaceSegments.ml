@@ -4,20 +4,18 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfacesegments?language=objc}VNFaceSegments} *)
 
+let self = get_class "VNFaceSegments"
+
 let boundingBox self = msg_send ~self ~cmd:(selector "boundingBox") ~typ:(returning CGRect.t)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let createMaskImageOfFaceSegments x ~error self = msg_send ~self ~cmd:(selector "createMaskImageOfFaceSegments:error:") ~typ:(ullong @-> (ptr id) @-> returning (ptr CVBuffer.t)) (ULLong.of_int x) error
-let createProbabilityImageOfFaceSegment x ~error self = msg_send ~self ~cmd:(selector "createProbabilityImageOfFaceSegment:error:") ~typ:(ullong @-> (ptr id) @-> returning (ptr CVBuffer.t)) (ULLong.of_int x) error
-let createProbabilityImageOfFaceSegment' x ~region ~normalize ~error self = msg_send ~self ~cmd:(selector "createProbabilityImageOfFaceSegment:region:normalize:error:") ~typ:(ullong @-> CGRect.t @-> bool @-> (ptr id) @-> returning (ptr CVBuffer.t)) (ULLong.of_int x) region normalize error
+let createMaskImageOfFaceSegments x ~error self = msg_send ~self ~cmd:(selector "createMaskImageOfFaceSegments:error:") ~typ:(ullong @-> (ptr id) @-> returning (ptr void)) (ULLong.of_int x) error
+let createProbabilityImageOfFaceSegment x ~error self = msg_send ~self ~cmd:(selector "createProbabilityImageOfFaceSegment:error:") ~typ:(ullong @-> (ptr id) @-> returning (ptr void)) (ULLong.of_int x) error
+let createProbabilityImageOfFaceSegment' x ~region ~normalize ~error self = msg_send ~self ~cmd:(selector "createProbabilityImageOfFaceSegment:region:normalize:error:") ~typ:(ullong @-> CGRect.t @-> bool @-> (ptr id) @-> returning (ptr void)) (ULLong.of_int x) region normalize error
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let faceSegmentLabelToProbabilityMap self = msg_send ~self ~cmd:(selector "faceSegmentLabelToProbabilityMap") ~typ:(returning id)
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)

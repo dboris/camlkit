@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vncoremltransformer?language=objc}VNCoreMLTransformer} *)
+
+let self = get_class "VNCoreMLTransformer"
 
 let initWithOptions x ~model ~error self = msg_send ~self ~cmd:(selector "initWithOptions:model:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x model error
 let model self = msg_send ~self ~cmd:(selector "model") ~typ:(returning id)

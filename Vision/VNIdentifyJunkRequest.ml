@@ -5,8 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreVideo
 
-let _class_ = get_class "VNIdentifyJunkRequest"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnidentifyjunkrequest?language=objc}VNIdentifyJunkRequest} *)
 
-let applicableDetectorTypeForRevision x ~error self = msg_send ~self ~cmd:(selector "applicableDetectorTypeForRevision:error:") ~typ:(ullong @-> ptr (id) @-> returning (id)) x error
-let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> ptr (id) @-> returning (bool)) x inContext error
+let self = get_class "VNIdentifyJunkRequest"
+
+let internalPerformRevision x ~inContext ~error self = msg_send ~self ~cmd:(selector "internalPerformRevision:inContext:error:") ~typ:(ullong @-> id @-> (ptr id) @-> returning bool) (ULLong.of_int x) inContext error
+let warmUpSession x ~error self = msg_send ~self ~cmd:(selector "warmUpSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error

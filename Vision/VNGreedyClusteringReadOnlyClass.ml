@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vngreedyclusteringreadonly?language=objc}VNGreedyClusteringReadOnly} *)
-
-let self = get_class "VNGreedyClusteringReadOnly"
 
 let addFaceObservations x ~toFaceDescriptorBuffer self = msg_send ~self ~cmd:(selector "addFaceObservations:toFaceDescriptorBuffer:") ~typ:(id @-> (ptr void) @-> returning void) x toFaceDescriptorBuffer
 let addFaceObservations' x ~withGroupingIdentifiers ~toFaceDescriptorBuffer self = msg_send ~self ~cmd:(selector "addFaceObservations:withGroupingIdentifiers:toFaceDescriptorBuffer:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x withGroupingIdentifiers toFaceDescriptorBuffer

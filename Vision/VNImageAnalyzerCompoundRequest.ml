@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnimageanalyzercompoundrequest?language=objc}VNImageAnalyzerCompoundRequest} *)
+
+let self = get_class "VNImageAnalyzerCompoundRequest"
 
 let allowsCachingOfResults self = msg_send ~self ~cmd:(selector "allowsCachingOfResults") ~typ:(returning bool)
 let initWithDetectorType x ~groupingConfiguration self = msg_send ~self ~cmd:(selector "initWithDetectorType:groupingConfiguration:") ~typ:(id @-> id @-> returning id) x groupingConfiguration

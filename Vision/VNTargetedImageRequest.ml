@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vntargetedimagerequest?language=objc}VNTargetedImageRequest} *)
+
+let self = get_class "VNTargetedImageRequest"
 
 let allowsCachingOfResults self = msg_send ~self ~cmd:(selector "allowsCachingOfResults") ~typ:(returning bool)
 let initWithTargetedCGImage x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCGImage:options:") ~typ:((ptr CGImage.t) @-> id @-> returning id) x options
@@ -26,10 +24,10 @@ let initWithTargetedCMSampleBuffer x ~options self = msg_send ~self ~cmd:(select
 let initWithTargetedCMSampleBuffer1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:options:completionHandler:") ~typ:((ptr void) @-> id @-> (ptr void) @-> returning id) x options completionHandler
 let initWithTargetedCMSampleBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:orientation:options:") ~typ:((ptr void) @-> uint @-> id @-> returning id) x orientation options
 let initWithTargetedCMSampleBuffer3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCMSampleBuffer:orientation:options:completionHandler:") ~typ:((ptr void) @-> uint @-> id @-> (ptr void) @-> returning id) x orientation options completionHandler
-let initWithTargetedCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:") ~typ:((ptr CVBuffer.t) @-> id @-> returning id) x options
-let initWithTargetedCVPixelBuffer1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:completionHandler:") ~typ:((ptr CVBuffer.t) @-> id @-> (ptr void) @-> returning id) x options completionHandler
-let initWithTargetedCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:") ~typ:((ptr CVBuffer.t) @-> uint @-> id @-> returning id) x orientation options
-let initWithTargetedCVPixelBuffer3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:completionHandler:") ~typ:((ptr CVBuffer.t) @-> uint @-> id @-> (ptr void) @-> returning id) x orientation options completionHandler
+let initWithTargetedCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:") ~typ:((ptr void) @-> id @-> returning id) x options
+let initWithTargetedCVPixelBuffer1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:options:completionHandler:") ~typ:((ptr void) @-> id @-> (ptr void) @-> returning id) x options completionHandler
+let initWithTargetedCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:") ~typ:((ptr void) @-> uint @-> id @-> returning id) x orientation options
+let initWithTargetedCVPixelBuffer3 x ~orientation ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedCVPixelBuffer:orientation:options:completionHandler:") ~typ:((ptr void) @-> uint @-> id @-> (ptr void) @-> returning id) x orientation options completionHandler
 let initWithTargetedImageBuffer x ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedImageBuffer:completionHandler:") ~typ:(id @-> (ptr void) @-> returning id) x completionHandler
 let initWithTargetedImageData x ~options self = msg_send ~self ~cmd:(selector "initWithTargetedImageData:options:") ~typ:(id @-> id @-> returning id) x options
 let initWithTargetedImageData1 x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "initWithTargetedImageData:options:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning id) x options completionHandler

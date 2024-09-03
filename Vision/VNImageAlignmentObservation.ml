@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnimagealignmentobservation?language=objc}VNImageAlignmentObservation} *)
+
+let self = get_class "VNImageAlignmentObservation"
 
 let alignmentTransform self = msg_send ~self ~cmd:(selector "alignmentTransform") ~typ:(returning CGAffineTransform.t)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

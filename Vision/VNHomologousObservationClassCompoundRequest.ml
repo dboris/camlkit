@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnhomologousobservationclasscompoundrequest?language=objc}VNHomologousObservationClassCompoundRequest} *)
+
+let self = get_class "VNHomologousObservationClassCompoundRequest"
 
 let assignOriginalRequestsResultsFromObservations x ~obtainedInPerformingContext self = msg_send ~self ~cmd:(selector "assignOriginalRequestsResultsFromObservations:obtainedInPerformingContext:") ~typ:(id @-> id @-> returning void) x obtainedInPerformingContext
 let initWithSubrequests x self = msg_send ~self ~cmd:(selector "initWithSubrequests:") ~typ:(id @-> returning id) x

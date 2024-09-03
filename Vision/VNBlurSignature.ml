@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnblursignature?language=objc}VNBlurSignature} *)
+
+let self = get_class "VNBlurSignature"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let getSignatureData self = msg_send ~self ~cmd:(selector "getSignatureData") ~typ:(returning (ptr void))

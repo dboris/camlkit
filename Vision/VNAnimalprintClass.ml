@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnanimalprint?language=objc}VNAnimalprint} *)
-
-let self = get_class "VNAnimalprint"
 
 let confidenceTypeForRevision x self = msg_send ~self ~cmd:(selector "confidenceTypeForRevision:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
 let currentCodingVersion self = msg_send ~self ~cmd:(selector "currentCodingVersion") ~typ:(returning uint)

@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vncoremlmodel?language=objc}VNCoreMLModel} *)
+
+let self = get_class "VNCoreMLModel"
 
 let boundingBoxOutputDescription self = msg_send ~self ~cmd:(selector "boundingBoxOutputDescription") ~typ:(returning id)
 let cachingIdentifier self = msg_send ~self ~cmd:(selector "cachingIdentifier") ~typ:(returning id)
@@ -26,7 +24,7 @@ let inputScenePrintKey self = msg_send ~self ~cmd:(selector "inputScenePrintKey"
 let inputScenePrintMLMultiArrayDataType self = msg_send ~self ~cmd:(selector "inputScenePrintMLMultiArrayDataType") ~typ:(returning llong)
 let model self = msg_send ~self ~cmd:(selector "model") ~typ:(returning id)
 let modelType self = msg_send ~self ~cmd:(selector "modelType") ~typ:(returning int)
-let predictWithCVPixelBuffer x ~options ~error self = msg_send ~self ~cmd:(selector "predictWithCVPixelBuffer:options:error:") ~typ:((ptr CVBuffer.t) @-> id @-> (ptr id) @-> returning id) x options error
+let predictWithCVPixelBuffer x ~options ~error self = msg_send ~self ~cmd:(selector "predictWithCVPixelBuffer:options:error:") ~typ:((ptr void) @-> id @-> (ptr id) @-> returning id) x options error
 let predictWithScenePrint x ~options ~error self = msg_send ~self ~cmd:(selector "predictWithScenePrint:options:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x options error
 let predictedFeatureKey self = msg_send ~self ~cmd:(selector "predictedFeatureKey") ~typ:(returning id)
 let predictedProbabilitiesKey self = msg_send ~self ~cmd:(selector "predictedProbabilitiesKey") ~typ:(returning id)

@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnrecognizetextrequest?language=objc}VNRecognizeTextRequest} *)
-
-let self = get_class "VNRecognizeTextRequest"
 
 let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning _Class)
 let revisionAvailability self = msg_send ~self ~cmd:(selector "revisionAvailability") ~typ:(returning (ptr void))

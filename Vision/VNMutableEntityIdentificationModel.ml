@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnmutableentityidentificationmodel?language=objc}VNMutableEntityIdentificationModel} *)
+
+let self = get_class "VNMutableEntityIdentificationModel"
 
 let addAllPersonsFromPersonsModel x ~error self = msg_send ~self ~cmd:(selector "addAllPersonsFromPersonsModel:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
 let addObservations x ~toEntityWithUniqueIdentifier ~error self = msg_send ~self ~cmd:(selector "addObservations:toEntityWithUniqueIdentifier:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x toEntityWithUniqueIdentifier error

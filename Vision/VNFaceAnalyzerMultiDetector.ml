@@ -5,13 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreVideo
 
-let _class_ = get_class "VNFaceAnalyzerMultiDetector"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfaceanalyzermultidetector?language=objc}VNFaceAnalyzerMultiDetector} *)
 
-module Class = struct
-  let faceBoundingBoxScalingFactorForFaceObservation x self = msg_send ~self ~cmd:(selector "faceBoundingBoxScalingFactorForFaceObservation:") ~typ:(ullong @-> returning (float)) x
-  let networkRequiredInputImagePixelFormatForConfigurationOptions x self = msg_send ~self ~cmd:(selector "networkRequiredInputImagePixelFormatForConfigurationOptions:") ~typ:(id @-> returning (uint)) x
-end
+let self = get_class "VNFaceAnalyzerMultiDetector"
 
-let calculateCropRectForInputFace x ~imageBuffer ~options ~error self = msg_send ~self ~cmd:(selector "calculateCropRectForInputFace:imageBuffer:options:error:") ~typ:(id @-> id @-> id @-> ptr (id) @-> returning (CGRect.t)) x imageBuffer options error
-let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> ptr (id) @-> returning (bool)) x error
+let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
+let processWithOptions x ~regionOfInterest ~warningRecorder ~error ~progressHandler self = msg_send ~self ~cmd:(selector "processWithOptions:regionOfInterest:warningRecorder:error:progressHandler:") ~typ:(id @-> CGRect.t @-> id @-> (ptr id) @-> (ptr void) @-> returning id) x regionOfInterest warningRecorder error progressHandler

@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnmodelfilescache?language=objc}VNModelFilesCache} *)
+
+let self = get_class "VNModelFilesCache"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let load x self = msg_send ~self ~cmd:(selector "load:") ~typ:(id @-> returning id) x

@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vndetector?language=objc}VNDetector} *)
+
+let self = get_class "VNDetector"
 
 let backingStore self = msg_send ~self ~cmd:(selector "backingStore") ~typ:(returning ullong)
 let canBehaveAsDetectorOfClass x ~withConfiguration self = msg_send ~self ~cmd:(selector "canBehaveAsDetectorOfClass:withConfiguration:") ~typ:(_Class @-> id @-> returning bool) x withConfiguration

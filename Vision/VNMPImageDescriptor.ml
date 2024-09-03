@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnmpimagedescriptor?language=objc}VNMPImageDescriptor} *)
+
+let self = get_class "VNMPImageDescriptor"
 
 let colorGaborDescriptor self = msg_send ~self ~cmd:(selector "colorGaborDescriptor") ~typ:(returning (ptr void))
 let computeConvnetDescriptorForImageData x ~context ~error self = msg_send ~self ~cmd:(selector "computeConvnetDescriptorForImageData:context:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x context error

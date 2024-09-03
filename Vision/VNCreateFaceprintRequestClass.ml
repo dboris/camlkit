@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vncreatefaceprintrequest?language=objc}VNCreateFaceprintRequest} *)
-
-let self = get_class "VNCreateFaceprintRequest"
 
 let configurationClass self = msg_send ~self ~cmd:(selector "configurationClass") ~typ:(returning _Class)
 let createVNEntityIdentificationModelEntryPrintForRevision x ~fromDescriptorData ~length ~elementCount ~error self = msg_send ~self ~cmd:(selector "createVNEntityIdentificationModelEntryPrintForRevision:fromDescriptorData:length:elementCount:error:") ~typ:(ullong @-> (ptr void) @-> ullong @-> ullong @-> (ptr id) @-> returning id) (ULLong.of_int x) fromDescriptorData (ULLong.of_int length) (ULLong.of_int elementCount) error

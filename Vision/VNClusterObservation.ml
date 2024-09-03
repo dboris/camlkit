@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnclusterobservation?language=objc}VNClusterObservation} *)
+
+let self = get_class "VNClusterObservation"
 
 let clusterState self = msg_send ~self ~cmd:(selector "clusterState") ~typ:(returning id)
 let clusteredFaceIds self = msg_send ~self ~cmd:(selector "clusteredFaceIds") ~typ:(returning id)

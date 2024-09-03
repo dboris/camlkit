@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vndatadetectorresult?language=objc}VNDataDetectorResult} *)
+
+let self = get_class "VNDataDetectorResult"
 
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
 let initWithDDScannerResult x ~observation self = msg_send ~self ~cmd:(selector "initWithDDScannerResult:observation:") ~typ:(id @-> id @-> returning id) x observation

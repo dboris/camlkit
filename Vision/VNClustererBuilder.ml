@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnclustererbuilder?language=objc}VNClustererBuilder} *)
+
+let self = get_class "VNClustererBuilder"
 
 let allClusteredFaceIdsAndReturnError x self = msg_send ~self ~cmd:(selector "allClusteredFaceIdsAndReturnError:") ~typ:((ptr id) @-> returning id) x
 let clusteredFaceIdsForClusterContainingFaceId x ~error self = msg_send ~self ~cmd:(selector "clusteredFaceIdsForClusterContainingFaceId:error:") ~typ:(id @-> (ptr id) @-> returning id) x error

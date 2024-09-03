@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnimagerequesthandler?language=objc}VNImageRequestHandler} *)
+
+let self = get_class "VNImageRequestHandler"
 
 let cancelAllRequests self = msg_send ~self ~cmd:(selector "cancelAllRequests") ~typ:(returning void)
 let initWithCGImage x ~options self = msg_send ~self ~cmd:(selector "initWithCGImage:options:") ~typ:((ptr CGImage.t) @-> id @-> returning id) x options
@@ -26,10 +24,10 @@ let initWithCMSampleBuffer x ~options self = msg_send ~self ~cmd:(selector "init
 let initWithCMSampleBuffer1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:options:session:") ~typ:((ptr void) @-> id @-> id @-> returning id) x options session
 let initWithCMSampleBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:orientation:options:") ~typ:((ptr void) @-> uint @-> id @-> returning id) x orientation options
 let initWithCMSampleBuffer3 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCMSampleBuffer:orientation:options:session:") ~typ:((ptr void) @-> uint @-> id @-> id @-> returning id) x orientation options session
-let initWithCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:") ~typ:((ptr CVBuffer.t) @-> id @-> returning id) x options
-let initWithCVPixelBuffer1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:session:") ~typ:((ptr CVBuffer.t) @-> id @-> id @-> returning id) x options session
-let initWithCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:") ~typ:((ptr CVBuffer.t) @-> uint @-> id @-> returning id) x orientation options
-let initWithCVPixelBuffer3 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:session:") ~typ:((ptr CVBuffer.t) @-> uint @-> id @-> id @-> returning id) x orientation options session
+let initWithCVPixelBuffer x ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:") ~typ:((ptr void) @-> id @-> returning id) x options
+let initWithCVPixelBuffer1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:options:session:") ~typ:((ptr void) @-> id @-> id @-> returning id) x options session
+let initWithCVPixelBuffer2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:") ~typ:((ptr void) @-> uint @-> id @-> returning id) x orientation options
+let initWithCVPixelBuffer3 x ~orientation ~options ~session self = msg_send ~self ~cmd:(selector "initWithCVPixelBuffer:orientation:options:session:") ~typ:((ptr void) @-> uint @-> id @-> id @-> returning id) x orientation options session
 let initWithData x ~options self = msg_send ~self ~cmd:(selector "initWithData:options:") ~typ:(id @-> id @-> returning id) x options
 let initWithData1 x ~options ~session self = msg_send ~self ~cmd:(selector "initWithData:options:session:") ~typ:(id @-> id @-> id @-> returning id) x options session
 let initWithData2 x ~orientation ~options self = msg_send ~self ~cmd:(selector "initWithData:orientation:options:") ~typ:(id @-> uint @-> id @-> returning id) x orientation options

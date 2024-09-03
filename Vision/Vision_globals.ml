@@ -4,12 +4,7 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
 open CoreGraphics
-open CoreGraphics_globals
-open CoreVideo
-open CoreVideo_globals
 
 let _VNAnimalIdentifierCat = new_string "VNAnimalIdentifierCat"
 let _VNAnimalIdentifierDog = new_string "VNAnimalIdentifierDog"

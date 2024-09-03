@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnanfdmultidetector?language=objc}VNANFDMultiDetector} *)
+
+let self = get_class "VNANFDMultiDetector"
 
 let completeInitializationForSession x ~error self = msg_send ~self ~cmd:(selector "completeInitializationForSession:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
 let processDetectedObject x ~originatingRequestSpecifier ~objectBoundingBox ~imageBuffer ~warningRecorder ~detectedObjectResults ~error self = msg_send ~self ~cmd:(selector "processDetectedObject:originatingRequestSpecifier:objectBoundingBox:imageBuffer:warningRecorder:detectedObjectResults:error:") ~typ:(id @-> id @-> CGRect.t @-> id @-> id @-> id @-> (ptr id) @-> returning bool) x originatingRequestSpecifier objectBoundingBox imageBuffer warningRecorder detectedObjectResults error

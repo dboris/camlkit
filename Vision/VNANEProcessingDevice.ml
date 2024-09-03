@@ -5,9 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreVideo
 
-let _class_ = get_class "VNANEProcessingDevice"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnaneprocessingdevice?language=objc}VNANEProcessingDevice} *)
 
-let computeDevice self = msg_send ~self ~cmd:(selector "computeDevice") ~typ:(returning (id))
-let espressoStorageType self = msg_send ~self ~cmd:(selector "espressoStorageType") ~typ:(returning (int))
-let targetsANE self = msg_send ~self ~cmd:(selector "targetsANE") ~typ:(returning (bool))
+let self = get_class "VNANEProcessingDevice"
+
+let espressoStorageType self = msg_send ~self ~cmd:(selector "espressoStorageType") ~typ:(returning int)
+let targetsANE self = msg_send ~self ~cmd:(selector "targetsANE") ~typ:(returning bool)

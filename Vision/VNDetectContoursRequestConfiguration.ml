@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vndetectcontoursrequestconfiguration?language=objc}VNDetectContoursRequestConfiguration} *)
+
+let self = get_class "VNDetectContoursRequestConfiguration"
 
 let contrastAdjustment self = msg_send ~self ~cmd:(selector "contrastAdjustment") ~typ:(returning float)
 let contrastPivot self = msg_send ~self ~cmd:(selector "contrastPivot") ~typ:(returning id)

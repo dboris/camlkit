@@ -5,9 +5,11 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreVideo
 
-let _class_ = get_class "VNOperationPointsProvider"
+(** Apple docs: {{:https://developer.apple.com/documentation/vision/vnoperationpointsprovider?language=objc}VNOperationPointsProvider} *)
 
-let initWithOperationPoints x self = msg_send ~self ~cmd:(selector "initWithOperationPoints:") ~typ:(id @-> returning (id)) x
-let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let operationPointsAndReturnError x self = msg_send ~self ~cmd:(selector "operationPointsAndReturnError:") ~typ:(ptr (id) @-> returning (id)) x
+let self = get_class "VNOperationPointsProvider"
+
+let initWithOperationPoints x self = msg_send ~self ~cmd:(selector "initWithOperationPoints:") ~typ:(id @-> returning id) x
+let operationPointsAndReturnError x self = msg_send ~self ~cmd:(selector "operationPointsAndReturnError:") ~typ:((ptr id) @-> returning id) x

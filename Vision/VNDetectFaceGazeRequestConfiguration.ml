@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vndetectfacegazerequestconfiguration?language=objc}VNDetectFaceGazeRequestConfiguration} *)
+
+let self = get_class "VNDetectFaceGazeRequestConfiguration"
 
 let commonGazeLocationRadius self = msg_send ~self ~cmd:(selector "commonGazeLocationRadius") ~typ:(returning float)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

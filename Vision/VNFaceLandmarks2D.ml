@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfacelandmarks2d?language=objc}VNFaceLandmarks2D} *)
+
+let self = get_class "VNFaceLandmarks2D"
 
 let allPoints self = msg_send ~self ~cmd:(selector "allPoints") ~typ:(returning id)
 let constellation self = msg_send ~self ~cmd:(selector "constellation") ~typ:(returning ullong)

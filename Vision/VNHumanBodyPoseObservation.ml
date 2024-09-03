@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnhumanbodyposeobservation?language=objc}VNHumanBodyPoseObservation} *)
+
+let self = get_class "VNHumanBodyPoseObservation"
 
 let availableJointNames self = msg_send ~self ~cmd:(selector "availableJointNames") ~typ:(returning id)
 let availableJointsGroupNames self = msg_send ~self ~cmd:(selector "availableJointsGroupNames") ~typ:(returning id)

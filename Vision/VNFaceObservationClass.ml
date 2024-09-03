@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfaceobservation?language=objc}VNFaceObservation} *)
-
-let self = get_class "VNFaceObservation"
 
 let computeYawPitchRollFromPoseMatrix x ~outputYaw ~outputPitch ~outputRoll self = msg_send ~self ~cmd:(selector "computeYawPitchRollFromPoseMatrix:outputYaw:outputPitch:outputRoll:") ~typ:(void @-> (ptr float) @-> (ptr float) @-> (ptr float) @-> returning bool) x outputYaw outputPitch outputRoll
 let defaultOriginatingRequestClassNameForRequestRevision x self = msg_send ~self ~cmd:(selector "defaultOriginatingRequestClassNameForRequestRevision:") ~typ:(ullong @-> returning id) (ULLong.of_int x)

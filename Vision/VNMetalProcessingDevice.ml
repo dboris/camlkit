@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnmetalprocessingdevice?language=objc}VNMetalProcessingDevice} *)
+
+let self = get_class "VNMetalProcessingDevice"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let espressoDeviceID self = msg_send ~self ~cmd:(selector "espressoDeviceID") ~typ:(returning int)

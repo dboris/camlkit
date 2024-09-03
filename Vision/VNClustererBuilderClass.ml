@@ -4,16 +4,10 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnclustererbuilder?language=objc}VNClustererBuilder} *)
-
-let self = get_class "VNClustererBuilder"
 
 let clustererBuilderWithOptions x ~error self = msg_send ~self ~cmd:(selector "clustererBuilderWithOptions:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
 let clustererModelFileNamesFromState x ~storedInPath ~error self = msg_send ~self ~cmd:(selector "clustererModelFileNamesFromState:storedInPath:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x storedInPath error

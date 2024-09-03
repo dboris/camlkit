@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnclusteringlogger?language=objc}VNClusteringLogger} *)
+
+let self = get_class "VNClusteringLogger"
 
 let fileNameBase self = msg_send ~self ~cmd:(selector "fileNameBase") ~typ:(returning id)
 let initWithOptions x ~logEnabled self = msg_send ~self ~cmd:(selector "initWithOptions:logEnabled:") ~typ:(id @-> bool @-> returning id) x logEnabled

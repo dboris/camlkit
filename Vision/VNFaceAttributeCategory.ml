@@ -4,14 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreVideo
-open CoreVideo_globals
 
 (** Apple docs: {{:https://developer.apple.com/documentation/vision/vnfaceattributecategory?language=objc}VNFaceAttributeCategory} *)
+
+let self = get_class "VNFaceAttributeCategory"
 
 let allLabelsWithConfidences self = msg_send ~self ~cmd:(selector "allLabelsWithConfidences") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
