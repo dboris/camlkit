@@ -1,6 +1,0 @@
-(library
- (name appkit_extra)
- (public_name camlkit-gui.appkit-extra)
- (libraries foundation))
-
-(documentation (package camlkit-gui))

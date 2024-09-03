@@ -1,7 +1,6 @@
 open Foundation
 open Runtime
-open Appkit
-open Appkit_globals
+open AppKit
 (* open Webkit *)
 
 let win_width = 400.
@@ -9,7 +8,7 @@ let win_height = 300.
 
 let app_window () =
   let win =
-    alloc NSWindow._class_
+    alloc NSWindow.self
     |> NSWindow.initWithContentRect
       (CGRect.make ~x: 0. ~y: 0. ~width: win_width ~height: win_height)
       ~styleMask: Bitmask.(
@@ -27,7 +26,7 @@ let app_window () =
   win
 
 let make_button ~title ~frame ~target ~action =
-  let btn = alloc NSButton._class_ |> NSButton.initWithFrame frame in
+  let btn = alloc NSButton.self |> NSButton.initWithFrame frame in
   btn |> NSControl.setTarget target;
   btn |> NSControl.setAction action;
   btn |> NSButton.setTitle title;
@@ -49,7 +48,7 @@ let make_button ~title ~frame ~target ~action =
 
 let main () =
   let _ = new_object "NSAutoreleasePool"
-  and app = NSApplication._class_ |> NSApplication.C.sharedApplication
+  and app = NSApplication.self |> NSApplicationClass.sharedApplication
   and win = app_window ()
   (* and url = NSURL.new_url "http://example.com/" *)
   in

@@ -1,4 +1,4 @@
 (executable
  (name main)
  (enabled_if (= %{system} macosx))
- (libraries foundation appkit WebKit))
+ (libraries foundation AppKit WebKit))
