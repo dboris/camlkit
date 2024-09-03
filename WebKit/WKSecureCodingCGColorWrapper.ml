@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksecurecodingcgcolorwrapper?language=objc}WKSecureCodingCGColorWrapper} *)
+
+let self = get_class "WKSecureCodingCGColorWrapper"
 
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCGColor x self = msg_send ~self ~cmd:(selector "initWithCGColor:") ~typ:((ptr CGColor.t) @-> returning id) x

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkusercontentcontroller?language=objc}WKUserContentController} *)
+
+let self = get_class "WKUserContentController"
 
 let addContentRuleList x self = msg_send ~self ~cmd:(selector "addContentRuleList:") ~typ:(id @-> returning void) x
 let addScriptMessageHandler x ~name self = msg_send ~self ~cmd:(selector "addScriptMessageHandler:name:") ~typ:(id @-> id @-> returning void) x name

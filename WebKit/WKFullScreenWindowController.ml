@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkfullscreenwindowcontroller?language=objc}WKFullScreenWindowController} *)
+
+let self = get_class "WKFullScreenWindowController"
 
 let beganEnterFullScreenWithInitialFrame x ~finalFrame self = msg_send ~self ~cmd:(selector "beganEnterFullScreenWithInitialFrame:finalFrame:") ~typ:(CGRect.t @-> CGRect.t @-> returning void) x finalFrame
 let beganExitFullScreenWithInitialFrame x ~finalFrame self = msg_send ~self ~cmd:(selector "beganExitFullScreenWithInitialFrame:finalFrame:") ~typ:(CGRect.t @-> CGRect.t @-> returning void) x finalFrame

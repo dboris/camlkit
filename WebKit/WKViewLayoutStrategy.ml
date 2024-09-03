@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkviewlayoutstrategy?language=objc}WKViewLayoutStrategy} *)
+
+let self = get_class "WKViewLayoutStrategy"
 
 let didChangeFrameSize self = msg_send ~self ~cmd:(selector "didChangeFrameSize") ~typ:(returning void)
 let didChangeViewScale self = msg_send ~self ~cmd:(selector "didChangeViewScale") ~typ:(returning void)

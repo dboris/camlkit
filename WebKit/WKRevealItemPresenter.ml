@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkrevealitempresenter?language=objc}WKRevealItemPresenter} *)
+
+let self = get_class "WKRevealItemPresenter"
 
 let initWithWebViewImpl x ~item ~frame ~menuLocation self = msg_send ~self ~cmd:(selector "initWithWebViewImpl:item:frame:menuLocation:") ~typ:((ptr void) @-> id @-> CGRect.t @-> CGPoint.t @-> returning id) x item frame menuLocation
 let revealContext x ~rectsForItem self = msg_send ~self ~cmd:(selector "revealContext:rectsForItem:") ~typ:(id @-> id @-> returning id) x rectsForItem

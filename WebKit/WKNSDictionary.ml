@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wknsdictionary?language=objc}WKNSDictionary} *)
+
+let self = get_class "WKNSDictionary"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpaymentauthorizationviewcontrollerdelegate?language=objc}WKPaymentAuthorizationViewControllerDelegate} *)
+
+let self = get_class "WKPaymentAuthorizationViewControllerDelegate"
 
 let initWithRequest x ~presenter self = msg_send ~self ~cmd:(selector "initWithRequest:presenter:") ~typ:(id @-> (ptr void) @-> returning id) x presenter
 let paymentAuthorizationViewController x ~didRequestMerchantSession self = msg_send ~self ~cmd:(selector "paymentAuthorizationViewController:didRequestMerchantSession:") ~typ:(id @-> (ptr void) @-> returning void) x didRequestMerchantSession

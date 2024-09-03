@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkcontentruleliststore?language=objc}WKContentRuleListStore} *)
+
+let self = get_class "WKContentRuleListStore"
 
 let compileContentExtensionForIdentifier x ~encodedContentExtension ~completionHandler self = msg_send ~self ~cmd:(selector "compileContentExtensionForIdentifier:encodedContentExtension:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x encodedContentExtension completionHandler
 let compileContentRuleListForIdentifier x ~encodedContentRuleList ~completionHandler self = msg_send ~self ~cmd:(selector "compileContentRuleListForIdentifier:encodedContentRuleList:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x encodedContentRuleList completionHandler

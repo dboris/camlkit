@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdownload?language=objc}WKDownload} *)
+
+let self = get_class "WKDownload"
 
 let cancel x self = msg_send ~self ~cmd:(selector "cancel:") ~typ:((ptr void) @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

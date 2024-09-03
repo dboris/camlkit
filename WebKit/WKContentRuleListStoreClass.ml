@@ -4,12 +4,9 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkcontentruleliststore?language=objc}WKContentRuleListStore} *)
-
-let self = get_class "WKContentRuleListStore"
 
 let defaultStore self = msg_send ~self ~cmd:(selector "defaultStore") ~typ:(returning id)
 let defaultStoreWithLegacyFilename self = msg_send ~self ~cmd:(selector "defaultStoreWithLegacyFilename") ~typ:(returning id)

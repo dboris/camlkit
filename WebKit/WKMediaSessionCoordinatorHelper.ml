@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkmediasessioncoordinatorhelper?language=objc}WKMediaSessionCoordinatorHelper} *)
+
+let self = get_class "WKMediaSessionCoordinatorHelper"
 
 let coordinatorStateChanged x self = msg_send ~self ~cmd:(selector "coordinatorStateChanged:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let initWithCoordinator x self = msg_send ~self ~cmd:(selector "initWithCoordinator:") ~typ:((ptr void) @-> returning id) x

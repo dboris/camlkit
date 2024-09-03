@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkscriptmessage?language=objc}WKScriptMessage} *)
+
+let self = get_class "WKScriptMessage"
 
 let body self = msg_send ~self ~cmd:(selector "body") ~typ:(returning id)
 let frameInfo self = msg_send ~self ~cmd:(selector "frameInfo") ~typ:(returning id)

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkimmediateactioncontroller?language=objc}WKImmediateActionController} *)
+
+let self = get_class "WKImmediateActionController"
 
 let didPerformImmediateActionHitTest x ~contentPreventsDefault ~userData self = msg_send ~self ~cmd:(selector "didPerformImmediateActionHitTest:contentPreventsDefault:userData:") ~typ:((ptr void) @-> bool @-> (ptr void) @-> returning void) x contentPreventsDefault userData
 let dismissContentRelativeChildWindows self = msg_send ~self ~cmd:(selector "dismissContentRelativeChildWindows") ~typ:(returning void)

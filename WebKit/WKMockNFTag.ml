@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkmocknftag?language=objc}WKMockNFTag} *)
+
+let self = get_class "WKMockNFTag"
 
 let _AppData self = msg_send ~self ~cmd:(selector "AppData") ~typ:(returning id)
 let _UID self = msg_send ~self ~cmd:(selector "UID") ~typ:(returning id)

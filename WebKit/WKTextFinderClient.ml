@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wktextfinderclient?language=objc}WKTextFinderClient} *)
+
+let self = get_class "WKTextFinderClient"
 
 let didFindStringMatchesWithRects x ~didWrapAround self = msg_send ~self ~cmd:(selector "didFindStringMatchesWithRects:didWrapAround:") ~typ:((ptr void) @-> bool @-> returning void) x didWrapAround
 let didGetImageForMatchResult x self = msg_send ~self ~cmd:(selector "didGetImageForMatchResult:") ~typ:((ptr void) @-> returning void) x

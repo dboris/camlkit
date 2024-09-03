@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebview?language=objc}WKWebView} *)
+
+let self = get_class "WKWebView"
 
 let _UIDelegate self = msg_send ~self ~cmd:(selector "UIDelegate") ~typ:(returning id)
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning id)

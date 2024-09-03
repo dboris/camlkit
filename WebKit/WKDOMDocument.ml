@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdomdocument?language=objc}WKDOMDocument} *)
+
+let self = get_class "WKDOMDocument"
 
 let body self = msg_send ~self ~cmd:(selector "body") ~typ:(returning id)
 let createDocumentFragmentWithMarkupString x ~baseURL self = msg_send ~self ~cmd:(selector "createDocumentFragmentWithMarkupString:baseURL:") ~typ:(id @-> id @-> returning id) x baseURL

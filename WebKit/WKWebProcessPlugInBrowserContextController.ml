@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebprocesspluginbrowsercontextcontroller?language=objc}WKWebProcessPlugInBrowserContextController} *)
+
+let self = get_class "WKWebProcessPlugInBrowserContextController"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let handle self = msg_send ~self ~cmd:(selector "handle") ~typ:(returning id)

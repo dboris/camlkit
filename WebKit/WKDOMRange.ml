@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdomrange?language=objc}WKDOMRange} *)
+
+let self = get_class "WKDOMRange"
 
 let collapse x self = msg_send ~self ~cmd:(selector "collapse:") ~typ:(bool @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

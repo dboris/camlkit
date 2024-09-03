@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkinspectorwkwebview?language=objc}WKInspectorWKWebView} *)
+
+let self = get_class "WKInspectorWKWebView"
 
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

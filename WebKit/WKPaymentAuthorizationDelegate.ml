@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpaymentauthorizationdelegate?language=objc}WKPaymentAuthorizationDelegate} *)
+
+let self = get_class "WKPaymentAuthorizationDelegate"
 
 let completeCouponCodeChange x self = msg_send ~self ~cmd:(selector "completeCouponCodeChange:") ~typ:(id @-> returning void) x
 let completeMerchantValidation x ~error self = msg_send ~self ~cmd:(selector "completeMerchantValidation:error:") ~typ:(id @-> id @-> returning void) x error

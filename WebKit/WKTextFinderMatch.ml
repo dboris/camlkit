@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wktextfindermatch?language=objc}WKTextFinderMatch} *)
+
+let self = get_class "WKTextFinderMatch"
 
 let containingView self = msg_send ~self ~cmd:(selector "containingView") ~typ:(returning id)
 let generateTextImage x self = msg_send ~self ~cmd:(selector "generateTextImage:") ~typ:((ptr void) @-> returning void) x

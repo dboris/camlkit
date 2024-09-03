@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkremoteobjectdecoder?language=objc}WKRemoteObjectDecoder} *)
+
+let self = get_class "WKRemoteObjectDecoder"
 
 let allowedClasses self = msg_send ~self ~cmd:(selector "allowedClasses") ~typ:(returning id)
 let allowsKeyedCoding self = msg_send ~self ~cmd:(selector "allowsKeyedCoding") ~typ:(returning bool)

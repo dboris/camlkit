@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebprocessbundleparameters?language=objc}WKWebProcessBundleParameters} *)
+
+let self = get_class "WKWebProcessBundleParameters"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let initWithDictionary x self = msg_send ~self ~cmd:(selector "initWithDictionary:") ~typ:(id @-> returning id) x

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkviewdynamicsizecomputedfromviewscalelayoutstrategy?language=objc}WKViewDynamicSizeComputedFromViewScaleLayoutStrategy} *)
+
+let self = get_class "WKViewDynamicSizeComputedFromViewScaleLayoutStrategy"
 
 let didChangeFrameSize self = msg_send ~self ~cmd:(selector "didChangeFrameSize") ~typ:(returning void)
 let didChangeViewScale self = msg_send ~self ~cmd:(selector "didChangeViewScale") ~typ:(returning void)

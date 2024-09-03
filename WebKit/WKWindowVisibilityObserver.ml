@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwindowvisibilityobserver?language=objc}WKWindowVisibilityObserver} *)
+
+let self = get_class "WKWindowVisibilityObserver"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithView x ~impl self = msg_send ~self ~cmd:(selector "initWithView:impl:") ~typ:(id @-> (ptr void) @-> returning id) x impl

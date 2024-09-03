@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkfindconfiguration?language=objc}WKFindConfiguration} *)
+
+let self = get_class "WKFindConfiguration"
 
 let backwards self = msg_send ~self ~cmd:(selector "backwards") ~typ:(returning bool)
 let caseSensitive self = msg_send ~self ~cmd:(selector "caseSensitive") ~typ:(returning bool)

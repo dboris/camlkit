@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wktexttouchbaritemcontroller?language=objc}WKTextTouchBarItemController} *)
+
+let self = get_class "WKTextTouchBarItemController"
 
 let candidateListTouchBarItem x ~changedCandidateListVisibility self = msg_send ~self ~cmd:(selector "candidateListTouchBarItem:changedCandidateListVisibility:") ~typ:(id @-> bool @-> returning void) x changedCandidateListVisibility
 let candidateListTouchBarItem' x ~endSelectingCandidateAtIndex self = msg_send ~self ~cmd:(selector "candidateListTouchBarItem:endSelectingCandidateAtIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int endSelectingCandidateAtIndex)

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpromisedattachmentcontext?language=objc}WKPromisedAttachmentContext} *)
+
+let self = get_class "WKPromisedAttachmentContext"
 
 let attachmentIdentifier self = msg_send ~self ~cmd:(selector "attachmentIdentifier") ~typ:(returning id)
 let fileName self = msg_send ~self ~cmd:(selector "fileName") ~typ:(returning id)

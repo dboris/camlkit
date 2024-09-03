@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkaccessibilitywebpageobjectbase?language=objc}WKAccessibilityWebPageObjectBase} *)
+
+let self = get_class "WKAccessibilityWebPageObjectBase"
 
 let accessibilityFocusedUIElement self = msg_send ~self ~cmd:(selector "accessibilityFocusedUIElement") ~typ:(returning id)
 let accessibilityPluginObject self = msg_send ~self ~cmd:(selector "accessibilityPluginObject") ~typ:(returning id)

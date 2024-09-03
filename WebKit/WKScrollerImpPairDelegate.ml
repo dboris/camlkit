@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkscrollerimppairdelegate?language=objc}WKScrollerImpPairDelegate} *)
+
+let self = get_class "WKScrollerImpPairDelegate"
 
 let contentAreaRectForScrollerImpPair x self = msg_send ~self ~cmd:(selector "contentAreaRectForScrollerImpPair:") ~typ:(id @-> returning CGRect.t) x
 let inLiveResizeForScrollerImpPair x self = msg_send ~self ~cmd:(selector "inLiveResizeForScrollerImpPair:") ~typ:(id @-> returning bool) x

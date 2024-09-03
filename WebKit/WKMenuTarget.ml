@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkmenutarget?language=objc}WKMenuTarget} *)
+
+let self = get_class "WKMenuTarget"
 
 let forwardContextMenuAction x self = msg_send ~self ~cmd:(selector "forwardContextMenuAction:") ~typ:(id @-> returning void) x
 let menuProxy self = msg_send ~self ~cmd:(selector "menuProxy") ~typ:(returning (ptr void))

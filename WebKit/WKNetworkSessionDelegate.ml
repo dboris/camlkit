@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wknetworksessiondelegate?language=objc}WKNetworkSessionDelegate} *)
+
+let self = get_class "WKNetworkSessionDelegate"
 
 let _URLSession x ~didBecomeInvalidWithError self = msg_send ~self ~cmd:(selector "URLSession:didBecomeInvalidWithError:") ~typ:(id @-> id @-> returning void) x didBecomeInvalidWithError
 let _URLSession1 x ~dataTask ~didBecomeDownloadTask self = msg_send ~self ~cmd:(selector "URLSession:dataTask:didBecomeDownloadTask:") ~typ:(id @-> id @-> id @-> returning void) x dataTask didBecomeDownloadTask

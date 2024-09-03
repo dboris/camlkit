@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdomtextiterator?language=objc}WKDOMTextIterator} *)
+
+let self = get_class "WKDOMTextIterator"
 
 let advance self = msg_send ~self ~cmd:(selector "advance") ~typ:(returning void)
 let atEnd self = msg_send ~self ~cmd:(selector "atEnd") ~typ:(returning bool)

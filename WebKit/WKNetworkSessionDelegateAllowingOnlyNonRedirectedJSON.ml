@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wknetworksessiondelegateallowingonlynonredirectedjson?language=objc}WKNetworkSessionDelegateAllowingOnlyNonRedirectedJSON} *)
+
+let self = get_class "WKNetworkSessionDelegateAllowingOnlyNonRedirectedJSON"
 
 let _URLSession x ~dataTask ~didReceiveResponse ~completionHandler self = msg_send ~self ~cmd:(selector "URLSession:dataTask:didReceiveResponse:completionHandler:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x dataTask didReceiveResponse completionHandler
 let _URLSession1 x ~task ~didReceiveChallenge ~completionHandler self = msg_send ~self ~cmd:(selector "URLSession:task:didReceiveChallenge:completionHandler:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x task didReceiveChallenge completionHandler

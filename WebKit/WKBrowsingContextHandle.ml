@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkbrowsingcontexthandle?language=objc}WKBrowsingContextHandle} *)
+
+let self = get_class "WKBrowsingContextHandle"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

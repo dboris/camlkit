@@ -4,12 +4,9 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebsitedatastore?language=objc}WKWebsiteDataStore} *)
-
-let self = get_class "WKWebsiteDataStore"
 
 let allWebsiteDataTypes self = msg_send ~self ~cmd:(selector "allWebsiteDataTypes") ~typ:(returning id)
 let defaultDataStore self = msg_send ~self ~cmd:(selector "defaultDataStore") ~typ:(returning id)

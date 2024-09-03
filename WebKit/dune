@@ -3,9 +3,6 @@
  (public_name camlkit-base.WebKit)
  (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework WebKit")
- (libraries
-  camlkit-base.Foundation
-  camlkit-base.CoreFoundation
-  camlkit-gui.CoreGraphics))
+ (libraries camlkit-base.runtime camlkit-base.Foundation))
 
 (documentation (package camlkit-base))

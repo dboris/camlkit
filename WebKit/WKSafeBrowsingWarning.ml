@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksafebrowsingwarning?language=objc}WKSafeBrowsingWarning} *)
+
+let self = get_class "WKSafeBrowsingWarning"
 
 let addContent self = msg_send ~self ~cmd:(selector "addContent") ~typ:(returning void)
 let clickedOnLink x self = msg_send ~self ~cmd:(selector "clickedOnLink:") ~typ:(id @-> returning void) x

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkprintingview?language=objc}WKPrintingView} *)
+
+let self = get_class "WKPrintingView"
 
 let beginDocument self = msg_send ~self ~cmd:(selector "beginDocument") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

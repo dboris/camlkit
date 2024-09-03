@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkbrowsingcontextgroup?language=objc}WKBrowsingContextGroup} *)
+
+let self = get_class "WKBrowsingContextGroup"
 
 let addUserScript x ~baseURL ~includeMatchPatternStrings ~excludeMatchPatternStrings ~injectionTime ~mainFrameOnly self = msg_send ~self ~cmd:(selector "addUserScript:baseURL:includeMatchPatternStrings:excludeMatchPatternStrings:injectionTime:mainFrameOnly:") ~typ:(id @-> id @-> id @-> id @-> int @-> bool @-> returning void) x baseURL includeMatchPatternStrings excludeMatchPatternStrings injectionTime mainFrameOnly
 let addUserStyleSheet x ~baseURL ~includeMatchPatternStrings ~excludeMatchPatternStrings ~mainFrameOnly self = msg_send ~self ~cmd:(selector "addUserStyleSheet:baseURL:includeMatchPatternStrings:excludeMatchPatternStrings:mainFrameOnly:") ~typ:(id @-> id @-> id @-> id @-> bool @-> returning void) x baseURL includeMatchPatternStrings excludeMatchPatternStrings mainFrameOnly

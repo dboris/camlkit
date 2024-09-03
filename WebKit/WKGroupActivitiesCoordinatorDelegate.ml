@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkgroupactivitiescoordinatordelegate?language=objc}WKGroupActivitiesCoordinatorDelegate} *)
+
+let self = get_class "WKGroupActivitiesCoordinatorDelegate"
 
 let initWithParent x self = msg_send ~self ~cmd:(selector "initWithParent:") ~typ:((ptr void) @-> returning id) x
 let playbackCoordinator x ~didIssuePrepareTransitionCommand self = msg_send ~self ~cmd:(selector "playbackCoordinator:didIssuePrepareTransitionCommand:") ~typ:(id @-> id @-> returning void) x didIssuePrepareTransitionCommand

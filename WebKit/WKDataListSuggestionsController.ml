@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdatalistsuggestionscontroller?language=objc}WKDataListSuggestionsController} *)
+
+let self = get_class "WKDataListSuggestionsController"
 
 let currentSelectedString self = msg_send ~self ~cmd:(selector "currentSelectedString") ~typ:(returning void)
 let dropdownRectForElementRect x self = msg_send ~self ~cmd:(selector "dropdownRectForElementRect:") ~typ:((ptr void) @-> returning CGRect.t) x

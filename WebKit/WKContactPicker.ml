@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkcontactpicker?language=objc}WKContactPicker} *)
+
+let self = get_class "WKContactPicker"
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let dismissWithContacts x self = msg_send ~self ~cmd:(selector "dismissWithContacts:") ~typ:(id @-> returning void) x

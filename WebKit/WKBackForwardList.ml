@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkbackforwardlist?language=objc}WKBackForwardList} *)
+
+let self = get_class "WKBackForwardList"
 
 let backItem self = msg_send ~self ~cmd:(selector "backItem") ~typ:(returning id)
 let backList self = msg_send ~self ~cmd:(selector "backList") ~typ:(returning id)

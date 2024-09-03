@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksharingservicepickerdelegate?language=objc}WKSharingServicePickerDelegate} *)
+
+let self = get_class "WKSharingServicePickerDelegate"
 
 let menuProxy self = msg_send ~self ~cmd:(selector "menuProxy") ~typ:(returning (ptr void))
 let setAttachmentID x self = msg_send ~self ~cmd:(selector "setAttachmentID:") ~typ:(void @-> returning void) x

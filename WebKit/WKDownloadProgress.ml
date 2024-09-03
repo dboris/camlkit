@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdownloadprogress?language=objc}WKDownloadProgress} *)
+
+let self = get_class "WKDownloadProgress"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithDownloadTask x ~download ~_URL ~sandboxExtension self = msg_send ~self ~cmd:(selector "initWithDownloadTask:download:URL:sandboxExtension:") ~typ:(id @-> (ptr void) @-> id @-> id @-> returning id) x download _URL sandboxExtension

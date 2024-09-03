@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wknsnumber?language=objc}WKNSNumber} *)
+
+let self = get_class "WKNSNumber"
 
 let charValue self = msg_send ~self ~cmd:(selector "charValue") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

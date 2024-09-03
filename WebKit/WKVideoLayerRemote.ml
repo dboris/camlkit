@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkvideolayerremote?language=objc}WKVideoLayerRemote} *)
+
+let self = get_class "WKVideoLayerRemote"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let layoutSublayers self = msg_send ~self ~cmd:(selector "layoutSublayers") ~typ:(returning void)

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkcustomprotocolloader?language=objc}WKCustomProtocolLoader} *)
+
+let self = get_class "WKCustomProtocolLoader"
 
 let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning void)
 let connection x ~didFailWithError self = msg_send ~self ~cmd:(selector "connection:didFailWithError:") ~typ:(id @-> id @-> returning void) x didFailWithError

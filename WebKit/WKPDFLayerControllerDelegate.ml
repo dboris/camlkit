@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpdflayercontrollerdelegate?language=objc}WKPDFLayerControllerDelegate} *)
+
+let self = get_class "WKPDFLayerControllerDelegate"
 
 let didChangeAnnotationState self = msg_send ~self ~cmd:(selector "didChangeAnnotationState") ~typ:(returning void)
 let initWithPDFPlugin x self = msg_send ~self ~cmd:(selector "initWithPDFPlugin:") ~typ:((ptr void) @-> returning id) x

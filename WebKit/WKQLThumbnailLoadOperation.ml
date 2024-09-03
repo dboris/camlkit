@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkqlthumbnailloadoperation?language=objc}WKQLThumbnailLoadOperation} *)
+
+let self = get_class "WKQLThumbnailLoadOperation"
 
 let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning id)
 let initWithAttachment x ~identifier self = msg_send ~self ~cmd:(selector "initWithAttachment:identifier:") ~typ:(id @-> id @-> returning id) x identifier

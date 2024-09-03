@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebprocesspluginnodehandle?language=objc}WKWebProcessPlugInNodeHandle} *)
+
+let self = get_class "WKWebProcessPlugInNodeHandle"
 
 let _HTMLInputElementIsAutoFilled self = msg_send ~self ~cmd:(selector "HTMLInputElementIsAutoFilled") ~typ:(returning bool)
 let _HTMLInputElementIsAutoFilledAndObscured self = msg_send ~self ~cmd:(selector "HTMLInputElementIsAutoFilledAndObscured") ~typ:(returning bool)

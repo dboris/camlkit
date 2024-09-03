@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkhttpcookiestore?language=objc}WKHTTPCookieStore} *)
+
+let self = get_class "WKHTTPCookieStore"
 
 let addObserver x self = msg_send ~self ~cmd:(selector "addObserver:") ~typ:(id @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

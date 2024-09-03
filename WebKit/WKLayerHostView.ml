@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wklayerhostview?language=objc}WKLayerHostView} *)
+
+let self = get_class "WKLayerHostView"
 
 let contextID self = msg_send ~self ~cmd:(selector "contextID") ~typ:(returning uint)
 let layerHost self = msg_send ~self ~cmd:(selector "layerHost") ~typ:(returning id)

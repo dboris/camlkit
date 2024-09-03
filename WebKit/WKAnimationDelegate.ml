@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkanimationdelegate?language=objc}WKAnimationDelegate} *)
+
+let self = get_class "WKAnimationDelegate"
 
 let animationDidStart x self = msg_send ~self ~cmd:(selector "animationDidStart:") ~typ:(id @-> returning void) x
 let animationDidStop x ~finished self = msg_send ~self ~cmd:(selector "animationDidStop:finished:") ~typ:(id @-> bool @-> returning void) x finished

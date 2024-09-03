@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdatetimepicker?language=objc}WKDateTimePicker} *)
+
+let self = get_class "WKDateTimePicker"
 
 let dateFormatStringForType x self = msg_send ~self ~cmd:(selector "dateFormatStringForType:") ~typ:(id @-> returning id) x
 let didChooseDate x self = msg_send ~self ~cmd:(selector "didChooseDate:") ~typ:(id @-> returning void) x

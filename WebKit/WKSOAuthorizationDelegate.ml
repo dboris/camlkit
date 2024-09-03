@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksoauthorizationdelegate?language=objc}WKSOAuthorizationDelegate} *)
+
+let self = get_class "WKSOAuthorizationDelegate"
 
 let authorization x ~didCompleteWithError self = msg_send ~self ~cmd:(selector "authorization:didCompleteWithError:") ~typ:(id @-> id @-> returning void) x didCompleteWithError
 let authorization1 x ~didCompleteWithHTTPAuthorizationHeaders self = msg_send ~self ~cmd:(selector "authorization:didCompleteWithHTTPAuthorizationHeaders:") ~typ:(id @-> id @-> returning void) x didCompleteWithHTTPAuthorizationHeaders

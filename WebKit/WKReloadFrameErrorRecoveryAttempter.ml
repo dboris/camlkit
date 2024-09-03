@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkreloadframeerrorrecoveryattempter?language=objc}WKReloadFrameErrorRecoveryAttempter} *)
+
+let self = get_class "WKReloadFrameErrorRecoveryAttempter"
 
 let attemptRecovery self = msg_send ~self ~cmd:(selector "attemptRecovery") ~typ:(returning bool)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x

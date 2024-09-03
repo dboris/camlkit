@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wktextinputwindowcontroller?language=objc}WKTextInputWindowController} *)
+
+let self = get_class "WKTextInputWindowController"
 
 let hasMarkedText self = msg_send ~self ~cmd:(selector "hasMarkedText") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

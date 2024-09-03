@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wknavigationresponse?language=objc}WKNavigationResponse} *)
+
+let self = get_class "WKNavigationResponse"
 
 let canShowMIMEType self = msg_send ~self ~cmd:(selector "canShowMIMEType") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

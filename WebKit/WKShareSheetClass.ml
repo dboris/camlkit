@@ -4,12 +4,9 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksharesheet?language=objc}WKShareSheet} *)
-
-let self = get_class "WKShareSheet"
 
 let applyQuarantineSandboxAndDownloadFlagsToFileAtPath x self = msg_send ~self ~cmd:(selector "applyQuarantineSandboxAndDownloadFlagsToFileAtPath:") ~typ:(id @-> returning bool) x
 let createRandomSharingDirectoryForFile x self = msg_send ~self ~cmd:(selector "createRandomSharingDirectoryForFile:") ~typ:(id @-> returning id) x

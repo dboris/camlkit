@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksharesheet?language=objc}WKShareSheet} *)
+
+let self = get_class "WKShareSheet"
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let dismiss self = msg_send ~self ~cmd:(selector "dismiss") ~typ:(returning void)

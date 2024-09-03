@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpdfpluginaccessibilityobject?language=objc}WKPDFPluginAccessibilityObject} *)
+
+let self = get_class "WKPDFPluginAccessibilityObject"
 
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning id)
 let accessibilityAssociatedControlForAnnotation x self = msg_send ~self ~cmd:(selector "accessibilityAssociatedControlForAnnotation:") ~typ:(id @-> returning id) x

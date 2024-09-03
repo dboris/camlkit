@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksosecretdelegate?language=objc}WKSOSecretDelegate} *)
+
+let self = get_class "WKSOSecretDelegate"
 
 let initWithSession x self = msg_send ~self ~cmd:(selector "initWithSession:") ~typ:((ptr void) @-> returning id) x
 let webView x ~didFinishNavigation self = msg_send ~self ~cmd:(selector "webView:didFinishNavigation:") ~typ:(id @-> id @-> returning void) x didFinishNavigation

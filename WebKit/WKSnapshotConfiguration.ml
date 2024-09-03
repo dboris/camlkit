@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wksnapshotconfiguration?language=objc}WKSnapshotConfiguration} *)
+
+let self = get_class "WKSnapshotConfiguration"
 
 let afterScreenUpdates self = msg_send ~self ~cmd:(selector "afterScreenUpdates") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

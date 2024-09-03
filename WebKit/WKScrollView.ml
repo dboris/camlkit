@@ -4,11 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
 open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkscrollview?language=objc}WKScrollView} *)
+
+let self = get_class "WKScrollView"
 
 let boundsDidChange x self = msg_send ~self ~cmd:(selector "boundsDidChange:") ~typ:(id @-> returning void) x
 let contentOffset self = msg_send ~self ~cmd:(selector "contentOffset") ~typ:(returning CGPoint.t)

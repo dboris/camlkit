@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkscrollerimpdelegate?language=objc}WKScrollerImpDelegate} *)
+
+let self = get_class "WKScrollerImpDelegate"
 
 let cancelAnimations self = msg_send ~self ~cmd:(selector "cancelAnimations") ~typ:(returning void)
 let convertRectFromBacking x self = msg_send ~self ~cmd:(selector "convertRectFromBacking:") ~typ:(CGRect.t @-> returning CGRect.t) x

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkquicklookpreviewcontroller?language=objc}WKQuickLookPreviewController} *)
+
+let self = get_class "WKQuickLookPreviewController"
 
 let beginControl x self = msg_send ~self ~cmd:(selector "beginControl:") ~typ:(id @-> returning void) x
 let closePanelIfNecessary self = msg_send ~self ~cmd:(selector "closePanelIfNecessary") ~typ:(returning void)

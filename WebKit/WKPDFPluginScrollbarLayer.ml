@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkpdfpluginscrollbarlayer?language=objc}WKPDFPluginScrollbarLayer} *)
+
+let self = get_class "WKPDFPluginScrollbarLayer"
 
 let actionForKey x self = msg_send ~self ~cmd:(selector "actionForKey:") ~typ:(id @-> returning id) x
 let drawInContext x self = msg_send ~self ~cmd:(selector "drawInContext:") ~typ:((ptr CGContext.t) @-> returning void) x

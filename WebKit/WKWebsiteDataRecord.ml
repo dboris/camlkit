@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebsitedatarecord?language=objc}WKWebsiteDataRecord} *)
+
+let self = get_class "WKWebsiteDataRecord"
 
 let dataTypes self = msg_send ~self ~cmd:(selector "dataTypes") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

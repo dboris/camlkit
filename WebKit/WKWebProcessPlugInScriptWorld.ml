@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkwebprocesspluginscriptworld?language=objc}WKWebProcessPlugInScriptWorld} *)
+
+let self = get_class "WKWebProcessPlugInScriptWorld"
 
 let clearWrappers self = msg_send ~self ~cmd:(selector "clearWrappers") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkinspectorresourceurlschemehandler?language=objc}WKInspectorResourceURLSchemeHandler} *)
+
+let self = get_class "WKInspectorResourceURLSchemeHandler"
 
 let allowedURLSchemesForCSP self = msg_send ~self ~cmd:(selector "allowedURLSchemesForCSP") ~typ:(returning id)
 let mainResourceURLsForCSP self = msg_send ~self ~cmd:(selector "mainResourceURLsForCSP") ~typ:(returning id)

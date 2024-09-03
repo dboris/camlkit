@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkdomelement?language=objc}WKDOMElement} *)
+
+let self = get_class "WKDOMElement"
 
 let getAttribute x self = msg_send ~self ~cmd:(selector "getAttribute:") ~typ:(id @-> returning id) x
 let hasAttribute x self = msg_send ~self ~cmd:(selector "hasAttribute:") ~typ:(id @-> returning bool) x

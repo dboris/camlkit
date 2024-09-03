@@ -4,10 +4,11 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreGraphics
+open Foundation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/webkit/wkremotewebinspectoruiproxyobjcadapter?language=objc}WKRemoteWebInspectorUIProxyObjCAdapter} *)
+
+let self = get_class "WKRemoteWebInspectorUIProxyObjCAdapter"
 
 let initWithRemoteWebInspectorUIProxy x self = msg_send ~self ~cmd:(selector "initWithRemoteWebInspectorUIProxy:") ~typ:((ptr void) @-> returning id) x
 let inspectorViewControllerInspectorDidCrash x self = msg_send ~self ~cmd:(selector "inspectorViewControllerInspectorDidCrash:") ~typ:(id @-> returning void) x
