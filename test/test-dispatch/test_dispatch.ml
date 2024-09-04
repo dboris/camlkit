@@ -1,5 +1,5 @@
 open Runtime
-open Dispatch.Dispatch_globals
+open Dispatch
 
 module A = Alcotest
 
