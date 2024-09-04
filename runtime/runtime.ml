@@ -491,5 +491,7 @@ let default_uncaught_exception_handler ex =
 let () =
   match Sys.backend_type with
   | Native ->
-    set_uncaught_exception_handler default_uncaught_exception_handler
+    begin try
+      set_uncaught_exception_handler default_uncaught_exception_handler
+    with SymbolNotFound _ -> () end
   | _ -> ()
