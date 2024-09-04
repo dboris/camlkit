@@ -3,6 +3,6 @@
  (public_name camlkit-gui.CoreImage)
  (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework CoreImage")
- (libraries camlkit-gui.CoreGraphics))
+ (libraries camlkit-base.CoreGraphics))
 
 (documentation (package camlkit-gui))

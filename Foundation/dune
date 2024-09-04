@@ -4,6 +4,6 @@
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation
-  camlkit-gui.CoreGraphics))
+  camlkit-base.CoreGraphics))
 
 (documentation (package camlkit-base))
