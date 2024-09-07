@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/phpickerviewcontroller?language=objc}PHPickerViewController} *)
+
+let self = get_class "PHPickerViewController"
 
 let configuration self = msg_send ~self ~cmd:(selector "configuration") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

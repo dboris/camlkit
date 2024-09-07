@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puassetpickercontainercontroller?language=objc}PUAssetPickerContainerController} *)
+
+let self = get_class "PUAssetPickerContainerController"
 
 let allAlbumsGadgetViewController self = msg_send ~self ~cmd:(selector "allAlbumsGadgetViewController") ~typ:(returning id)
 let allowSafeAreaChangeAnchor self = msg_send ~self ~cmd:(selector "allowSafeAreaChangeAnchor") ~typ:(returning bool)

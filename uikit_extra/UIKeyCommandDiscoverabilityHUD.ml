@@ -5,14 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKeyCommandDiscoverabilityHUD"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikeycommanddiscoverabilityhud?language=objc}UIKeyCommandDiscoverabilityHUD} *)
 
-module Class = struct
-  let clearHUDPopTimer self = msg_send ~self ~cmd:(selector "clearHUDPopTimer") ~typ:(returning (void))
-  let dismissHUD self = msg_send ~self ~cmd:(selector "dismissHUD") ~typ:(returning (void))
-  let sharedKeyCommandDiscoverabilityHUD self = msg_send ~self ~cmd:(selector "sharedKeyCommandDiscoverabilityHUD") ~typ:(returning (id))
-end
+let self = get_class "UIKeyCommandDiscoverabilityHUD"
 
-let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let handlePhysicalKeyboardEvent x self = msg_send ~self ~cmd:(selector "handlePhysicalKeyboardEvent:") ~typ:(id @-> returning (void)) x
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let handlePhysicalKeyboardEvent x self = msg_send ~self ~cmd:(selector "handlePhysicalKeyboardEvent:") ~typ:(id @-> returning void) x

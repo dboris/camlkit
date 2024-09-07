@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puextendedtoolbar?language=objc}PUExtendedToolbar} *)
+
+let self = get_class "PUExtendedToolbar"
 
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning id) x withEvent
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x

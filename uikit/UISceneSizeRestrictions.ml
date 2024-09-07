@@ -5,10 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UISceneSizeRestrictions"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiscenesizerestrictions?language=objc}UISceneSizeRestrictions} *)
 
-let maximumSize self = msg_send_stret ~self ~cmd:(selector "maximumSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let minimumSize self = msg_send_stret ~self ~cmd:(selector "minimumSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let setMaximumSize x self = msg_send ~self ~cmd:(selector "setMaximumSize:") ~typ:(CGSize.t @-> returning (void)) x
-let setMinimumSize x self = msg_send ~self ~cmd:(selector "setMinimumSize:") ~typ:(CGSize.t @-> returning (void)) x
+let self = get_class "UISceneSizeRestrictions"
+
+let maximumSize self = msg_send ~self ~cmd:(selector "maximumSize") ~typ:(returning CGSize.t)
+let minimumSize self = msg_send ~self ~cmd:(selector "minimumSize") ~typ:(returning CGSize.t)
+let setMaximumSize x self = msg_send ~self ~cmd:(selector "setMaximumSize:") ~typ:(CGSize.t @-> returning void) x
+let setMinimumSize x self = msg_send ~self ~cmd:(selector "setMinimumSize:") ~typ:(CGSize.t @-> returning void) x

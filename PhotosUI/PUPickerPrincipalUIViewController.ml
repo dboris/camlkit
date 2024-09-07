@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pupickerprincipaluiviewcontroller?language=objc}PUPickerPrincipalUIViewController} *)
+
+let self = get_class "PUPickerPrincipalUIViewController"
 
 let bottomConstraint self = msg_send ~self ~cmd:(selector "bottomConstraint") ~typ:(returning id)
 let confirmPicking x ~completionHandler self = msg_send ~self ~cmd:(selector "confirmPicking:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler

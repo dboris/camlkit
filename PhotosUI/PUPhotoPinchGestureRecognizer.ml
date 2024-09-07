@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotopinchgesturerecognizer?language=objc}PUPhotoPinchGestureRecognizer} *)
+
+let self = get_class "PUPhotoPinchGestureRecognizer"
 
 let adjustedInitialCenterInView x self = msg_send ~self ~cmd:(selector "adjustedInitialCenterInView:") ~typ:(id @-> returning CGPoint.t) x
 let adjustedRotationInView x self = msg_send ~self ~cmd:(selector "adjustedRotationInView:") ~typ:(id @-> returning double) x

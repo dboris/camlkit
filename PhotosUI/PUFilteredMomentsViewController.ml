@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pufilteredmomentsviewcontroller?language=objc}PUFilteredMomentsViewController} *)
+
+let self = get_class "PUFilteredMomentsViewController"
 
 let allowSlideshowButton self = msg_send ~self ~cmd:(selector "allowSlideshowButton") ~typ:(returning bool)
 let configureSupplementaryView x ~ofKind ~forIndexPath self = msg_send ~self ~cmd:(selector "configureSupplementaryView:ofKind:forIndexPath:") ~typ:(id @-> id @-> id @-> returning void) x ofKind forIndexPath

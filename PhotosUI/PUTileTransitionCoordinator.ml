@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putiletransitioncoordinator?language=objc}PUTileTransitionCoordinator} *)
+
+let self = get_class "PUTileTransitionCoordinator"
 
 let finalLayoutInfoForDisappearingTileController x ~fromLayoutInfo self = msg_send ~self ~cmd:(selector "finalLayoutInfoForDisappearingTileController:fromLayoutInfo:") ~typ:(id @-> id @-> returning id) x fromLayoutInfo
 let initialLayoutInfoForAppearingTileController x ~toLayoutInfo self = msg_send ~self ~cmd:(selector "initialLayoutInfoForAppearingTileController:toLayoutInfo:") ~typ:(id @-> id @-> returning id) x toLayoutInfo

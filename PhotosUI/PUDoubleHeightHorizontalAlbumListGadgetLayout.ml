@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pudoubleheighthorizontalalbumlistgadgetlayout?language=objc}PUDoubleHeightHorizontalAlbumListGadgetLayout} *)
+
+let self = get_class "PUDoubleHeightHorizontalAlbumListGadgetLayout"
 
 let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
 let initWithHorizontalLayoutDelegate x ~showsHorizontalScrollIndicator self = msg_send ~self ~cmd:(selector "initWithHorizontalLayoutDelegate:showsHorizontalScrollIndicator:") ~typ:(id @-> bool @-> returning id) x showsHorizontalScrollIndicator

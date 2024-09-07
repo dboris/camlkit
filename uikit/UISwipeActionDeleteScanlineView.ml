@@ -5,14 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UISwipeActionDeleteScanlineView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiswipeactiondeletescanlineview?language=objc}UISwipeActionDeleteScanlineView} *)
 
-module C = struct
-  let lineHeight self = msg_send ~self ~cmd:(selector "lineHeight") ~typ:(returning (double))
-end
+let self = get_class "UISwipeActionDeleteScanlineView"
 
-let deleteLineColor self = msg_send ~self ~cmd:(selector "deleteLineColor") ~typ:(returning (id))
-let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning (void))
-let setDeleteLineColor x self = msg_send ~self ~cmd:(selector "setDeleteLineColor:") ~typ:(id @-> returning (void)) x
+let deleteLineColor self = msg_send ~self ~cmd:(selector "deleteLineColor") ~typ:(returning id)
+let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
+let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
+let setDeleteLineColor x self = msg_send ~self ~cmd:(selector "setDeleteLineColor:") ~typ:(id @-> returning void) x

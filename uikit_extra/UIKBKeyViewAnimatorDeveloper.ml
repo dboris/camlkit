@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBKeyViewAnimatorDeveloper"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikbkeyviewanimatordeveloper?language=objc}UIKBKeyViewAnimatorDeveloper} *)
 
-let primaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "primaryGlyphNormalizedExitRect") ~typ:(returning (CGRect.t))
-let secondaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "secondaryGlyphNormalizedExitRect") ~typ:(returning (CGRect.t))
+let self = get_class "UIKBKeyViewAnimatorDeveloper"
+
+let primaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "primaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t)
+let secondaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "secondaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t)

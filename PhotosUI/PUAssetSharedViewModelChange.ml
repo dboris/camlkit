@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puassetsharedviewmodelchange?language=objc}PUAssetSharedViewModelChange} *)
+
+let self = get_class "PUAssetSharedViewModelChange"
 
 let deferredProcessingNeededChanged self = msg_send ~self ~cmd:(selector "deferredProcessingNeededChanged") ~typ:(returning bool)
 let flippingFullSizeRenderStateChanged self = msg_send ~self ~cmd:(selector "flippingFullSizeRenderStateChanged") ~typ:(returning bool)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pupxgridpresentation?language=objc}PUPXGridPresentation} *)
+
+let self = get_class "PUPXGridPresentation"
 
 let createAssetPickerPhotosAlbumViewControllerForAlbum x self = msg_send ~self ~cmd:(selector "createAssetPickerPhotosAlbumViewControllerForAlbum:") ~typ:(id @-> returning id) x
 let createGridViewControllerWithAssets x ~photoLibrary ~withTitle ~hideTabBar ~gridPresentationContext ~containerViewController ~barsUpdateDelegate ~andCompletion self = msg_send ~self ~cmd:(selector "createGridViewControllerWithAssets:photoLibrary:withTitle:hideTabBar:gridPresentationContext:containerViewController:barsUpdateDelegate:andCompletion:") ~typ:(id @-> id @-> id @-> bool @-> llong @-> id @-> id @-> (ptr void) @-> returning void) x photoLibrary withTitle hideTabBar (LLong.of_int gridPresentationContext) containerViewController barsUpdateDelegate andCompletion

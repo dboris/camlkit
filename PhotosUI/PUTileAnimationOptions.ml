@@ -4,20 +4,18 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putileanimationoptions?language=objc}PUTileAnimationOptions} *)
+
+let self = get_class "PUTileAnimationOptions"
 
 let completionGroup self = msg_send ~self ~cmd:(selector "completionGroup") ~typ:(returning id)
 let customViewAnimatorBlock self = msg_send ~self ~cmd:(selector "customViewAnimatorBlock") ~typ:(returning (ptr void))
 let delay self = msg_send ~self ~cmd:(selector "delay") ~typ:(returning double)
 let duration self = msg_send ~self ~cmd:(selector "duration") ~typ:(returning double)
 let highFrameRateReason self = msg_send ~self ~cmd:(selector "highFrameRateReason") ~typ:(returning uint)
-(* let initialVelocity self = msg_send ~self ~cmd:(selector "initialVelocity") ~typ:(returning PUDisplayVelocity.t) *)
 let isSynchronizedWithTransition self = msg_send ~self ~cmd:(selector "isSynchronizedWithTransition") ~typ:(returning bool)
 let kind self = msg_send ~self ~cmd:(selector "kind") ~typ:(returning llong)
 let setCompletionGroup x self = msg_send ~self ~cmd:(selector "setCompletionGroup:") ~typ:(id @-> returning void) x
@@ -25,7 +23,6 @@ let setCustomViewAnimatorBlock x self = msg_send ~self ~cmd:(selector "setCustom
 let setDelay x self = msg_send ~self ~cmd:(selector "setDelay:") ~typ:(double @-> returning void) x
 let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(double @-> returning void) x
 let setHighFrameRateReason x self = msg_send ~self ~cmd:(selector "setHighFrameRateReason:") ~typ:(uint @-> returning void) x
-(* let setInitialVelocity x self = msg_send ~self ~cmd:(selector "setInitialVelocity:") ~typ:(PUDisplayVelocity.t @-> returning void) x *)
 let setKind x self = msg_send ~self ~cmd:(selector "setKind:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setShouldFadeOutSnapshotAfterCompletionGroup x self = msg_send ~self ~cmd:(selector "setShouldFadeOutSnapshotAfterCompletionGroup:") ~typ:(bool @-> returning void) x
 let setSpringDampingRatio x self = msg_send ~self ~cmd:(selector "setSpringDampingRatio:") ~typ:(double @-> returning void) x

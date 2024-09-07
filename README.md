@@ -52,27 +52,26 @@ application:
 
 ```ocaml
 open Foundation
-open Uikit
-open Uikit_globals
+open UIKit
 open Runtime
 
 module AppDelegate = struct
   let show_hello _self _cmd _app _opts =
     let screen_bounds =
-      UIScreen._class_ |> UIScreen.C.mainScreen |> UIScreen.bounds
+      UIScreen.self |> UIScreenClass.mainScreen |> UIScreen.bounds
     in
     let win =
-      UIWindow._class_ |> NSObject.C.alloc
+      UIWindow.self |> NSObjectClass.alloc
       |> UIWindow.initWithFrame screen_bounds
-    and vc = UIViewController._class_ |> NSObject.C.new_
-    and label = UILabel._class_ |> NSObject.C.new_
+    and vc = UIViewController.self |> NSObjectClass.new_
+    and label = UILabel.self |> NSObjectClass.new_
     in
     let view = vc |> UIViewController.view in
     view |> UIView.setFrame screen_bounds;
-    view |> UIView.setBackgroundColor (UIColor._class_ |> UIColor.C.systemBackgroundColor);
+    view |> UIView.setBackgroundColor (UIColor.self |> UIColorClass.systemBackgroundColor);
 
     label |> UILabel.setText (new_string "Hello from OCaml!");
-    label |> UILabel.setTextColor (UIColor._class_ |> UIColor.C.systemBlackColor);
+    label |> UILabel.setTextColor (UIColor.self |> UIColorClass.systemBlackColor);
     label |> UILabel.setTextAlignment _UITextAlignmentCenter;
     label |> UIView.setFrame screen_bounds;
     view |> UIView.addSubview label;
@@ -81,10 +80,10 @@ module AppDelegate = struct
     win |> UIWindow.makeKeyAndVisible;
     true
 
-  let _class_ = Define._class_ "AppDelegate"
-    ~superclass: UIResponder._class_
+  let _class_ = Class.define "AppDelegate"
+    ~superclass: UIResponder.self
     ~methods:
-      [ Define._method_ show_hello
+      [ Method.define show_hello
         ~cmd: (selector "application:didFinishLaunchingWithOptions:")
         ~args: Objc_t.[id; id]
         ~return: Objc_t.bool

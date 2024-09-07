@@ -1,6 +1,6 @@
 (library
- (name uikit_extra)
- (public_name camlkit-gui.uikit-extra)
+ (name UIKit_extra)
+ (public_name camlkit-gui.UIKit_extra)
  (enabled_if (or
   (= %{context_name} default.ios)
   (= %{context_name} device.ios)
@@ -8,6 +8,9 @@
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
 ;  (flags :standard -ccopt "-framework UIKit")
- (libraries camlkit-base.Foundation))
+ (libraries
+  camlkit-base.Foundation
+  camlkit-base.CoreAnimation
+  camlkit-gui.CoreText))
 
 (documentation (package camlkit-gui))

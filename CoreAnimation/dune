@@ -1,7 +1,7 @@
 (library
  (name CoreAnimation)
- (public_name camlkit-gui.CoreAnimation)
+ (public_name camlkit-base.CoreAnimation)
  (flags :standard -ccopt "-framework QuartzCore")
- (libraries camlkit-base.runtime CoreFoundation CoreGraphics))
+ (libraries CoreFoundation CoreGraphics))
 
-(documentation (package camlkit-gui))
+(documentation (package camlkit-base))

@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIScreenshotMetadataRequestAction"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiscreenshotmetadatarequestaction?language=objc}UIScreenshotMetadataRequestAction} *)
 
-let _UIActionType self = msg_send ~self ~cmd:(selector "UIActionType") ~typ:(returning (llong))
-let fulfillRequest self = msg_send ~self ~cmd:(selector "fulfillRequest") ~typ:(returning (void))
+let self = get_class "UIScreenshotMetadataRequestAction"
+
+let _UIActionType self = msg_send ~self ~cmd:(selector "UIActionType") ~typ:(returning llong)
+let fulfillRequest self = msg_send ~self ~cmd:(selector "fulfillRequest") ~typ:(returning void)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pupickerbannerview?language=objc}PUPickerBannerView} *)
+
+let self = get_class "PUPickerBannerView"
 
 let animateImagesOntoView x ~inContainerView ~completionHandler self = msg_send ~self ~cmd:(selector "animateImagesOntoView:inContainerView:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x inContainerView completionHandler
 let animationDidStop x ~finished self = msg_send ~self ~cmd:(selector "animationDidStop:finished:") ~typ:(id @-> bool @-> returning void) x finished

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puimagepickersessioninfo?language=objc}PUImagePickerSessionInfo} *)
+
+let self = get_class "PUImagePickerSessionInfo"
 
 let initWithPhotoSelectionManager x self = msg_send ~self ~cmd:(selector "initWithPhotoSelectionManager:") ~typ:(id @-> returning id) x
 let initWithPhotosViewDelegate x ~loadingStatusManager ~allowMultipleSelection ~limitedLibrary self = msg_send ~self ~cmd:(selector "initWithPhotosViewDelegate:loadingStatusManager:allowMultipleSelection:limitedLibrary:") ~typ:(id @-> id @-> bool @-> bool @-> returning id) x loadingStatusManager allowMultipleSelection limitedLibrary

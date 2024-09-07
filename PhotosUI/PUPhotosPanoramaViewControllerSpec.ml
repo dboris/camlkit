@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotospanoramaviewcontrollerspec?language=objc}PUPhotosPanoramaViewControllerSpec} *)
+
+let self = get_class "PUPhotosPanoramaViewControllerSpec"
 
 let cellFillMode self = msg_send ~self ~cmd:(selector "cellFillMode") ~typ:(returning llong)
 let configureCollectionViewGridLayout x ~referenceWidth ~safeAreaInsets self = msg_send ~self ~cmd:(selector "configureCollectionViewGridLayout:referenceWidth:safeAreaInsets:") ~typ:(id @-> double @-> UIEdgeInsets.t @-> returning void) x referenceWidth safeAreaInsets

@@ -5,12 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIFocusEffect"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uifocuseffect?language=objc}UIFocusEffect} *)
 
-module Class = struct
-  let effect self = msg_send ~self ~cmd:(selector "effect") ~typ:(returning (id))
-end
+let self = get_class "UIFocusEffect"
 
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

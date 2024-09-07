@@ -5,29 +5,25 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIBarItem"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uibaritem?language=objc}UIBarItem} *)
 
-module C = struct
-  let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning (id))
-  let appearanceForTraitCollection x self = msg_send ~self ~cmd:(selector "appearanceForTraitCollection:") ~typ:(id @-> returning (id)) x
-  let appearanceForTraitCollection1 x ~whenContainedIn self = msg_send ~self ~cmd:(selector "appearanceForTraitCollection:whenContainedIn:") ~typ:(id @-> _Class @-> returning (id)) x whenContainedIn
-  let appearanceForTraitCollection2 x ~whenContainedInInstancesOfClasses self = msg_send ~self ~cmd:(selector "appearanceForTraitCollection:whenContainedInInstancesOfClasses:") ~typ:(id @-> id @-> returning (id)) x whenContainedInInstancesOfClasses
-  let appearanceWhenContainedIn x self = msg_send ~self ~cmd:(selector "appearanceWhenContainedIn:") ~typ:(_Class @-> returning (id)) x
-  let appearanceWhenContainedInInstancesOfClasses x self = msg_send ~self ~cmd:(selector "appearanceWhenContainedInInstancesOfClasses:") ~typ:(id @-> returning (id)) x
-end
+let self = get_class "UIBarItem"
 
-let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
-let hasImage self = msg_send ~self ~cmd:(selector "hasImage") ~typ:(returning (bool))
-let hasTitle self = msg_send ~self ~cmd:(selector "hasTitle") ~typ:(returning (bool))
-let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
-let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let largeContentSizeImage self = msg_send ~self ~cmd:(selector "largeContentSizeImage") ~typ:(returning (id))
-let resolvedTitle self = msg_send ~self ~cmd:(selector "resolvedTitle") ~typ:(returning (id))
-let selected self = msg_send ~self ~cmd:(selector "selected") ~typ:(returning (bool))
-let setLargeContentSizeImage x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImage:") ~typ:(id @-> returning (void)) x
-let setLargeContentSizeImageInsets x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImageInsets:") ~typ:(ptr void @-> returning (void)) x
-let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
-let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:forState:") ~typ:(id @-> ullong @-> returning (void)) x (ULLong.of_int forState)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning (llong))
-let titleTextAttributesForState x self = msg_send ~self ~cmd:(selector "titleTextAttributesForState:") ~typ:(ullong @-> returning (id)) (ULLong.of_int x)
+let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let hasImage self = msg_send ~self ~cmd:(selector "hasImage") ~typ:(returning bool)
+let hasTitle self = msg_send ~self ~cmd:(selector "hasTitle") ~typ:(returning bool)
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
+let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let largeContentSizeImage self = msg_send ~self ~cmd:(selector "largeContentSizeImage") ~typ:(returning id)
+let largeContentSizeImageInsets self = msg_send ~self ~cmd:(selector "largeContentSizeImageInsets") ~typ:(returning UIEdgeInsets.t)
+let resolvedTitle self = msg_send ~self ~cmd:(selector "resolvedTitle") ~typ:(returning id)
+let selected self = msg_send ~self ~cmd:(selector "selected") ~typ:(returning bool)
+let setLargeContentSizeImage x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImage:") ~typ:(id @-> returning void) x
+let setLargeContentSizeImageInsets x self = msg_send ~self ~cmd:(selector "setLargeContentSizeImageInsets:") ~typ:(UIEdgeInsets.t @-> returning void) x
+let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let titleTextAttributesForState x self = msg_send ~self ~cmd:(selector "titleTextAttributesForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putilingviewtransitionhelper?language=objc}PUTilingViewTransitionHelper} *)
+
+let self = get_class "PUTilingViewTransitionHelper"
 
 let animateTransitionWithOperation x ~startedInteractively self = msg_send ~self ~cmd:(selector "animateTransitionWithOperation:startedInteractively:") ~typ:(llong @-> bool @-> returning void) (LLong.of_int x) startedInteractively
 let dismissalDuration self = msg_send ~self ~cmd:(selector "dismissalDuration") ~typ:(returning double)

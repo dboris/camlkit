@@ -5,13 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBAutoFillTestArchiveMaker"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikbautofilltestarchivemaker?language=objc}UIKBAutoFillTestArchiveMaker} *)
 
-module C = struct
-  let archiveMakerWithViewControllerToSnapshot x self = msg_send ~self ~cmd:(selector "archiveMakerWithViewControllerToSnapshot:") ~typ:(id @-> returning (id)) x
-end
+let self = get_class "UIKBAutoFillTestArchiveMaker"
 
-let archiver x ~willEncodeObject self = msg_send ~self ~cmd:(selector "archiver:willEncodeObject:") ~typ:(id @-> id @-> returning (id)) x willEncodeObject
-let initWithViewControllerToSnapshot x self = msg_send ~self ~cmd:(selector "initWithViewControllerToSnapshot:") ~typ:(id @-> returning (id)) x
-let makeArchive self = msg_send ~self ~cmd:(selector "makeArchive") ~typ:(returning (id))
+let archiver x ~willEncodeObject self = msg_send ~self ~cmd:(selector "archiver:willEncodeObject:") ~typ:(id @-> id @-> returning id) x willEncodeObject
+let initWithViewControllerToSnapshot x self = msg_send ~self ~cmd:(selector "initWithViewControllerToSnapshot:") ~typ:(id @-> returning id) x
+let makeArchive self = msg_send ~self ~cmd:(selector "makeArchive") ~typ:(returning id)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puoneupsettings?language=objc}PUOneUpSettings} *)
+
+let self = get_class "PUOneUpSettings"
 
 let accessoryInitialTopPosition self = msg_send ~self ~cmd:(selector "accessoryInitialTopPosition") ~typ:(returning double)
 let allowAutoplayVideoForAsset x self = msg_send ~self ~cmd:(selector "allowAutoplayVideoForAsset:") ~typ:(id @-> returning bool) x

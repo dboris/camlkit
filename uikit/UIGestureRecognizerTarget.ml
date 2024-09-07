@@ -5,14 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIGestureRecognizerTarget"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uigesturerecognizertarget?language=objc}UIGestureRecognizerTarget} *)
 
-module C = struct
-  let gestureTargetWithTarget x ~action self = msg_send ~self ~cmd:(selector "gestureTargetWithTarget:action:") ~typ:(id @-> _SEL @-> returning (id)) x action
-end
+let self = get_class "UIGestureRecognizerTarget"
 
-let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning (_SEL))
-let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning (id))
-let isEqualToTarget x ~action self = msg_send ~self ~cmd:(selector "isEqualToTarget:action:") ~typ:(id @-> _SEL @-> returning (bool)) x action
-let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning (id))
+let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
+let isEqualToTarget x ~action self = msg_send ~self ~cmd:(selector "isEqualToTarget:action:") ~typ:(id @-> _SEL @-> returning bool) x action
+let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)

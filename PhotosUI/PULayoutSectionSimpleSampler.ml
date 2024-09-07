@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pulayoutsectionsimplesampler?language=objc}PULayoutSectionSimpleSampler} *)
+
+let self = get_class "PULayoutSectionSimpleSampler"
 
 let dumpInternalMemory self = msg_send ~self ~cmd:(selector "dumpInternalMemory") ~typ:(returning void)
 let enumerateUnsampledIndexesForSampledIndexInRange x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateUnsampledIndexesForSampledIndexInRange:usingBlock:") ~typ:(NSRange.t @-> (ptr void) @-> returning void) x usingBlock

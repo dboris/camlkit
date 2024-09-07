@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBRenderFactory10Key_LandscapeChoco"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikbrenderfactory10key_landscapechoco?language=objc}UIKBRenderFactory10Key_LandscapeChoco} *)
 
-let centerColumnWidthFactor self = msg_send ~self ~cmd:(selector "centerColumnWidthFactor") ~typ:(returning (double))
-let controlColumnWidthFactor self = msg_send ~self ~cmd:(selector "controlColumnWidthFactor") ~typ:(returning (double))
+let self = get_class "UIKBRenderFactory10Key_LandscapeChoco"
+
+let centerColumnWidthFactor self = msg_send ~self ~cmd:(selector "centerColumnWidthFactor") ~typ:(returning double)
+let controlColumnWidthFactor self = msg_send ~self ~cmd:(selector "controlColumnWidthFactor") ~typ:(returning double)

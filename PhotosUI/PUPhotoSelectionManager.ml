@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotoselectionmanager?language=objc}PUPhotoSelectionManager} *)
+
+let self = get_class "PUPhotoSelectionManager"
 
 let areAllAssetsSelectedInAssetCollection x self = msg_send ~self ~cmd:(selector "areAllAssetsSelectedInAssetCollection:") ~typ:(id @-> returning bool) x
 let areAllAssetsSelectedInAssetCollections x self = msg_send ~self ~cmd:(selector "areAllAssetsSelectedInAssetCollections:") ~typ:(id @-> returning bool) x
@@ -33,7 +32,6 @@ let localizedSelectionString self = msg_send ~self ~cmd:(selector "localizedSele
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning llong)
 let orderedSelectedAssets self = msg_send ~self ~cmd:(selector "orderedSelectedAssets") ~typ:(returning id)
 let registerChangeObserver x self = msg_send ~self ~cmd:(selector "registerChangeObserver:") ~typ:(id @-> returning void) x
-(* let requestAssetsMediaTypeCount self = msg_send ~self ~cmd:(selector "requestAssetsMediaTypeCount") ~typ:(returning PXAssetMediaTypeCount.t) *)
 let selectAllAssetsInAssetCollections x self = msg_send ~self ~cmd:(selector "selectAllAssetsInAssetCollections:") ~typ:(id @-> returning void) x
 let selectAssetAtIndex x ~inAssetCollection self = msg_send ~self ~cmd:(selector "selectAssetAtIndex:inAssetCollection:") ~typ:(ullong @-> id @-> returning void) (ULLong.of_int x) inAssetCollection
 let selectAssetsAtIndexes x ~inAssetCollection self = msg_send ~self ~cmd:(selector "selectAssetsAtIndexes:inAssetCollection:") ~typ:(id @-> id @-> returning void) x inAssetCollection

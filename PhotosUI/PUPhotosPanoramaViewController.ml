@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotospanoramaviewcontroller?language=objc}PUPhotosPanoramaViewController} *)
+
+let self = get_class "PUPhotosPanoramaViewController"
 
 let canBeginStackCollapseTransition self = msg_send ~self ~cmd:(selector "canBeginStackCollapseTransition") ~typ:(returning bool)
 let cellFillMode self = msg_send ~self ~cmd:(selector "cellFillMode") ~typ:(returning llong)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotosgridbarshelper?language=objc}PUPhotosGridBarsHelper} *)
+
+let self = get_class "PUPhotosGridBarsHelper"
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

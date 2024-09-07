@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puassetsdatasource?language=objc}PUAssetsDataSource} *)
+
+let self = get_class "PUAssetsDataSource"
 
 let assetAtIndexPath x self = msg_send ~self ~cmd:(selector "assetAtIndexPath:") ~typ:(id @-> returning id) x
 let assetCollectionAtIndexPath x self = msg_send ~self ~cmd:(selector "assetCollectionAtIndexPath:") ~typ:(id @-> returning id) x

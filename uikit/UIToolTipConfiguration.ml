@@ -5,15 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIToolTipConfiguration"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitooltipconfiguration?language=objc}UIToolTipConfiguration} *)
 
-module C = struct
-  let configurationWithToolTip x self = msg_send ~self ~cmd:(selector "configurationWithToolTip:") ~typ:(id @-> returning (id)) x
-  let configurationWithToolTip' x ~inRect self = msg_send ~self ~cmd:(selector "configurationWithToolTip:inRect:") ~typ:(id @-> CGRect.t @-> returning (id)) x inRect
-end
+let self = get_class "UIToolTipConfiguration"
 
-let setSourceRect x self = msg_send ~self ~cmd:(selector "setSourceRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setToolTip x self = msg_send ~self ~cmd:(selector "setToolTip:") ~typ:(id @-> returning (void)) x
-let sourceRect self = msg_send_stret ~self ~cmd:(selector "sourceRect") ~typ:(returning (CGRect.t)) ~return_type:CGRect.t
-let toolTip self = msg_send ~self ~cmd:(selector "toolTip") ~typ:(returning (id))
+let setSourceRect x self = msg_send ~self ~cmd:(selector "setSourceRect:") ~typ:(CGRect.t @-> returning void) x
+let setToolTip x self = msg_send ~self ~cmd:(selector "setToolTip:") ~typ:(id @-> returning void) x
+let sourceRect self = msg_send ~self ~cmd:(selector "sourceRect") ~typ:(returning CGRect.t)
+let toolTip self = msg_send ~self ~cmd:(selector "toolTip") ~typ:(returning id)

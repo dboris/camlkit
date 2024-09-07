@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pualbumpickerviewcontrollerspec?language=objc}PUAlbumPickerViewControllerSpec} *)
+
+let self = get_class "PUAlbumPickerViewControllerSpec"
 
 let albumListViewControllerSpec self = msg_send ~self ~cmd:(selector "albumListViewControllerSpec") ~typ:(returning id)
 let configureSessionInfo x self = msg_send ~self ~cmd:(selector "configureSessionInfo:") ~typ:(id @-> returning void) x

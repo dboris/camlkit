@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotosgriddownloadhelper?language=objc}PUPhotosGridDownloadHelper} *)
+
+let self = get_class "PUPhotosGridDownloadHelper"
 
 let cancelAllDownloads self = msg_send ~self ~cmd:(selector "cancelAllDownloads") ~typ:(returning void)
 let cancelDownloadForIdentifier x self = msg_send ~self ~cmd:(selector "cancelDownloadForIdentifier:") ~typ:(id @-> returning void) x

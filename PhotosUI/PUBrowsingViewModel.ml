@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pubrowsingviewmodel?language=objc}PUBrowsingViewModel} *)
+
+let self = get_class "PUBrowsingViewModel"
 
 let accessoryViewsDefaultVisibility self = msg_send ~self ~cmd:(selector "accessoryViewsDefaultVisibility") ~typ:(returning bool)
 let actionManager self = msg_send ~self ~cmd:(selector "actionManager") ~typ:(returning id)

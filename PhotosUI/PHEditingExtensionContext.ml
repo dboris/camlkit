@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pheditingextensioncontext?language=objc}PHEditingExtensionContext} *)
+
+let self = get_class "PHEditingExtensionContext"
 
 let attemptUndoManagerAutoSetup self = msg_send ~self ~cmd:(selector "attemptUndoManagerAutoSetup") ~typ:(returning bool)
 let beginContentEditingWithCompletionHandler x self = msg_send ~self ~cmd:(selector "beginContentEditingWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x

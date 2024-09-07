@@ -6,6 +6,6 @@
   camlkit-base.runtime
   camlkit-base.CoreFoundation
   camlkit-base.CoreGraphics
-  camlkit-gui.CoreAnimation))
+  camlkit-base.CoreAnimation))
 
 (documentation (package camlkit-gui))

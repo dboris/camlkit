@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puhorizontalalbumlistgadget?language=objc}PUHorizontalAlbumListGadget} *)
+
+let self = get_class "PUHorizontalAlbumListGadget"
 
 let accessoryButtonTitle self = msg_send ~self ~cmd:(selector "accessoryButtonTitle") ~typ:(returning id)
 let accessoryButtonType self = msg_send ~self ~cmd:(selector "accessoryButtonType") ~typ:(returning ullong)

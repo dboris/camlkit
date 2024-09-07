@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pualbumlisttableviewcell?language=objc}PUAlbumListTableViewCell} *)
+
+let self = get_class "PUAlbumListTableViewCell"
 
 let setStateChangeDelegate x self = msg_send ~self ~cmd:(selector "setStateChangeDelegate:") ~typ:(id @-> returning void) x
 let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/publackoneupinterfacetheme?language=objc}PUBlackOneUpInterfaceTheme} *)
+
+let self = get_class "PUBlackOneUpInterfaceTheme"
 
 let photoBrowserBarStyle self = msg_send ~self ~cmd:(selector "photoBrowserBarStyle") ~typ:(returning llong)
 let photoBrowserChromeVisibleBackgroundColor self = msg_send ~self ~cmd:(selector "photoBrowserChromeVisibleBackgroundColor") ~typ:(returning id)

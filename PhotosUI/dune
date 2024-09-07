@@ -12,6 +12,6 @@
   camlkit-base.runtime
   camlkit-base.CoreFoundation
   camlkit-base.CoreGraphics
-  camlkit-gui.uikit))
+  camlkit-gui.UIKit))
 
 (documentation (package camlkit-gui))

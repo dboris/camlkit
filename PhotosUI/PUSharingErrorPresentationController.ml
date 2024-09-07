@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pusharingerrorpresentationcontroller?language=objc}PUSharingErrorPresentationController} *)
+
+let self = get_class "PUSharingErrorPresentationController"
 
 let additionalRadarDescriptionLinesForAsset x self = msg_send ~self ~cmd:(selector "additionalRadarDescriptionLinesForAsset:") ~typ:(id @-> returning id) x
 let configureAlertPropertiesFromError x ~withAssets ~willShowFileRadarButton ~alertCompletion self = msg_send ~self ~cmd:(selector "configureAlertPropertiesFromError:withAssets:willShowFileRadarButton:alertCompletion:") ~typ:(id @-> id @-> bool @-> (ptr void) @-> returning void) x withAssets willShowFileRadarButton alertCompletion

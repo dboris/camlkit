@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pualbumsgadgetdatasourcemanager?language=objc}PUAlbumsGadgetDataSourceManager} *)
+
+let self = get_class "PUAlbumsGadgetDataSourceManager"
 
 let gadgetProviders self = msg_send ~self ~cmd:(selector "gadgetProviders") ~typ:(returning id)
 let initWithTraitCollection x ~sessionInfo self = msg_send ~self ~cmd:(selector "initWithTraitCollection:sessionInfo:") ~typ:(id @-> id @-> returning id) x sessionInfo

@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UISceneHitTestActionResponse"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiscenehittestactionresponse?language=objc}UISceneHitTestActionResponse} *)
 
-let initWithProcessIdentifier x self = msg_send ~self ~cmd:(selector "initWithProcessIdentifier:") ~typ:(int @-> returning (id)) x
-let processIdentifer self = msg_send ~self ~cmd:(selector "processIdentifer") ~typ:(returning (int))
+let self = get_class "UISceneHitTestActionResponse"
+
+let initWithProcessIdentifier x self = msg_send ~self ~cmd:(selector "initWithProcessIdentifier:") ~typ:(int @-> returning id) x
+let processIdentifer self = msg_send ~self ~cmd:(selector "processIdentifer") ~typ:(returning int)

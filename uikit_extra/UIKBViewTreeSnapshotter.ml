@@ -5,12 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBViewTreeSnapshotter"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikbviewtreesnapshotter?language=objc}UIKBViewTreeSnapshotter} *)
 
-module Class = struct
-  let snapshotterForKeyboardView x ~afterScreenUpdates self = msg_send ~self ~cmd:(selector "snapshotterForKeyboardView:afterScreenUpdates:") ~typ:(id @-> bool @-> returning (id)) x afterScreenUpdates
-end
+let self = get_class "UIKBViewTreeSnapshotter"
 
-let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let snapshotView self = msg_send ~self ~cmd:(selector "snapshotView") ~typ:(returning (id))
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let snapshotView self = msg_send ~self ~cmd:(selector "snapshotView") ~typ:(returning id)

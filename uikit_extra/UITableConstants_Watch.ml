@@ -5,12 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITableConstants_Watch"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitableconstants_watch?language=objc}UITableConstants_Watch} *)
 
-module Class = struct
-  let sharedConstants self = msg_send ~self ~cmd:(selector "sharedConstants") ~typ:(returning (id))
-end
+let self = get_class "UITableConstants_Watch"
 
-let defaultCheckmarkImageForCell x self = msg_send ~self ~cmd:(selector "defaultCheckmarkImageForCell:") ~typ:(id @-> returning (id)) x
-let useChromelessSectionHeadersAndFootersForTableStyle x self = msg_send ~self ~cmd:(selector "useChromelessSectionHeadersAndFootersForTableStyle:") ~typ:(llong @-> returning (bool)) x
+let defaultCheckmarkImageForCell x self = msg_send ~self ~cmd:(selector "defaultCheckmarkImageForCell:") ~typ:(id @-> returning id) x
+let useChromelessSectionHeadersAndFootersForTableStyle x self = msg_send ~self ~cmd:(selector "useChromelessSectionHeadersAndFootersForTableStyle:") ~typ:(llong @-> returning bool) (LLong.of_int x)

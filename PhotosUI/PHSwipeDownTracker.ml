@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/phswipedowntracker?language=objc}PHSwipeDownTracker} *)
+
+let self = get_class "PHSwipeDownTracker"
 
 let dismissalProgress self = msg_send ~self ~cmd:(selector "dismissalProgress") ~typ:(returning double)
 let finalAnimationDuration self = msg_send ~self ~cmd:(selector "finalAnimationDuration") ~typ:(returning double)
@@ -23,4 +22,3 @@ let trackGestureTranslation x ~velocity self = msg_send ~self ~cmd:(selector "tr
 let trackedBounds self = msg_send ~self ~cmd:(selector "trackedBounds") ~typ:(returning CGRect.t)
 let trackedCenter self = msg_send ~self ~cmd:(selector "trackedCenter") ~typ:(returning CGPoint.t)
 let trackedTransform self = msg_send ~self ~cmd:(selector "trackedTransform") ~typ:(returning CGAffineTransform.t)
-(* let trackedVelocity self = msg_send ~self ~cmd:(selector "trackedVelocity") ~typ:(returning PHDisplayVelocity.t) *)

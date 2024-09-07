@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotosgridcell?language=objc}PUPhotosGridCell} *)
+
+let self = get_class "PUPhotosGridCell"
 
 let addTemporaryPhotoContentView self = msg_send ~self ~cmd:(selector "addTemporaryPhotoContentView") ~typ:(returning void)
 let applyLayoutAttributes x self = msg_send ~self ~cmd:(selector "applyLayoutAttributes:") ~typ:(id @-> returning void) x

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puclampvaluefilter?language=objc}PUClampValueFilter} *)
+
+let self = get_class "PUClampValueFilter"
 
 let maximumValue self = msg_send ~self ~cmd:(selector "maximumValue") ~typ:(returning double)
 let minimumValue self = msg_send ~self ~cmd:(selector "minimumValue") ~typ:(returning double)

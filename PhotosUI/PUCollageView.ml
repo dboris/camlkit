@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pucollageview?language=objc}PUCollageView} *)
+
+let self = get_class "PUCollageView"
 
 let collageSize self = msg_send ~self ~cmd:(selector "collageSize") ~typ:(returning CGSize.t)
 let cornerRadius self = msg_send ~self ~cmd:(selector "cornerRadius") ~typ:(returning double)

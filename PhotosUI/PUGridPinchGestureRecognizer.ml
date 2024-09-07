@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pugridpinchgesturerecognizer?language=objc}PUGridPinchGestureRecognizer} *)
+
+let self = get_class "PUGridPinchGestureRecognizer"
 
 let centerOffset self = msg_send ~self ~cmd:(selector "centerOffset") ~typ:(returning CGSize.t)
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning void)

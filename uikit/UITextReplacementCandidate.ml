@@ -5,12 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITextReplacementCandidate"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitextreplacementcandidate?language=objc}UITextReplacementCandidate} *)
 
-module Class = struct
-  let textReplacementCandidateForTextReplacement x self = msg_send ~self ~cmd:(selector "textReplacementCandidateForTextReplacement:") ~typ:(id @-> returning (id)) x
-end
+let self = get_class "UITextReplacementCandidate"
 
-let label self = msg_send ~self ~cmd:(selector "label") ~typ:(returning (id))
-let replacement self = msg_send ~self ~cmd:(selector "replacement") ~typ:(returning (id))
+let label self = msg_send ~self ~cmd:(selector "label") ~typ:(returning id)
+let replacement self = msg_send ~self ~cmd:(selector "replacement") ~typ:(returning id)

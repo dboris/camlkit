@@ -5,13 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITextFieldLabel"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitextfieldlabel?language=objc}UITextFieldLabel} *)
 
-module C = struct
-  let defaultFont self = msg_send ~self ~cmd:(selector "defaultFont") ~typ:(returning (id))
-end
+let self = get_class "UITextFieldLabel"
 
-let drawTextInRect x self = msg_send ~self ~cmd:(selector "drawTextInRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setShouldRenderWithoutTextField x self = msg_send ~self ~cmd:(selector "setShouldRenderWithoutTextField:") ~typ:(bool @-> returning (void)) x
-let shouldRenderWithoutTextField self = msg_send ~self ~cmd:(selector "shouldRenderWithoutTextField") ~typ:(returning (bool))
+let drawTextInRect x self = msg_send ~self ~cmd:(selector "drawTextInRect:") ~typ:(CGRect.t @-> returning void) x
+let setShouldRenderWithoutTextField x self = msg_send ~self ~cmd:(selector "setShouldRenderWithoutTextField:") ~typ:(bool @-> returning void) x
+let shouldRenderWithoutTextField self = msg_send ~self ~cmd:(selector "shouldRenderWithoutTextField") ~typ:(returning bool)

@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITextRenderingAttributes"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitextrenderingattributes?language=objc}UITextRenderingAttributes} *)
 
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning (id))
+let self = get_class "UITextRenderingAttributes"
+
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotoviewcontenthelper?language=objc}PUPhotoViewContentHelper} *)
+
+let self = get_class "PUPhotoViewContentHelper"
 
 let animateCrossfadeToImage x self = msg_send ~self ~cmd:(selector "animateCrossfadeToImage:") ~typ:(id @-> returning void) x
 let animatedImage self = msg_send ~self ~cmd:(selector "animatedImage") ~typ:(returning id)
@@ -20,7 +19,6 @@ let avoidsImageViewIfPossible self = msg_send ~self ~cmd:(selector "avoidsImageV
 let avoidsPhotoDecoration self = msg_send ~self ~cmd:(selector "avoidsPhotoDecoration") ~typ:(returning bool)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let badgeContainerView self = msg_send ~self ~cmd:(selector "badgeContainerView") ~typ:(returning id)
-(* let badgeInfo self = msg_send ~self ~cmd:(selector "badgeInfo") ~typ:(returning PXAssetBadgeInfo.t) *)
 let badgeStyle self = msg_send ~self ~cmd:(selector "badgeStyle") ~typ:(returning llong)
 let collectionTileLayoutTemplate self = msg_send ~self ~cmd:(selector "collectionTileLayoutTemplate") ~typ:(returning id)
 let contentAlpha self = msg_send ~self ~cmd:(selector "contentAlpha") ~typ:(returning double)
@@ -70,7 +68,6 @@ let setAvalancheStackView x self = msg_send ~self ~cmd:(selector "setAvalancheSt
 let setAvoidsImageViewIfPossible x self = msg_send ~self ~cmd:(selector "setAvoidsImageViewIfPossible:") ~typ:(bool @-> returning void) x
 let setAvoidsPhotoDecoration x self = msg_send ~self ~cmd:(selector "setAvoidsPhotoDecoration:") ~typ:(bool @-> returning void) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning void) x
-(* let setBadgeInfo x self = msg_send ~self ~cmd:(selector "setBadgeInfo:") ~typ:(PXAssetBadgeInfo.t @-> returning void) x *)
 let setBadgeStyle x self = msg_send ~self ~cmd:(selector "setBadgeStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setCollectionTileLayoutTemplate x self = msg_send ~self ~cmd:(selector "setCollectionTileLayoutTemplate:") ~typ:(id @-> returning void) x
 let setContentAlpha x self = msg_send ~self ~cmd:(selector "setContentAlpha:") ~typ:(double @-> returning void) x

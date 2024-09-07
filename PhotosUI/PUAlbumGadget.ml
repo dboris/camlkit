@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pualbumgadget?language=objc}PUAlbumGadget} *)
+
+let self = get_class "PUAlbumGadget"
 
 let albumGadgetDelegate self = msg_send ~self ~cmd:(selector "albumGadgetDelegate") ~typ:(returning id)
 let albumListCellContentView self = msg_send ~self ~cmd:(selector "albumListCellContentView") ~typ:(returning id)

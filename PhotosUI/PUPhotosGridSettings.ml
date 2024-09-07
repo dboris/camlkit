@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotosgridsettings?language=objc}PUPhotosGridSettings} *)
+
+let self = get_class "PUPhotosGridSettings"
 
 let allowDynamicDetailsTitles self = msg_send ~self ~cmd:(selector "allowDynamicDetailsTitles") ~typ:(returning bool)
 let badgeAllItemsAsFavorites self = msg_send ~self ~cmd:(selector "badgeAllItemsAsFavorites") ~typ:(returning bool)

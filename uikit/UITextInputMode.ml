@@ -5,15 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITextInputMode"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitextinputmode?language=objc}UITextInputMode} *)
 
-module C = struct
-  let activeInputModes self = msg_send ~self ~cmd:(selector "activeInputModes") ~typ:(returning (id))
-  let currentInputMode self = msg_send ~self ~cmd:(selector "currentInputMode") ~typ:(returning (id))
-  let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning (bool))
-end
+let self = get_class "UITextInputMode"
 
-let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning (void)) x
-let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning (id)) x
-let primaryLanguage self = msg_send ~self ~cmd:(selector "primaryLanguage") ~typ:(returning (id))
+let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let primaryLanguage self = msg_send ~self ~cmd:(selector "primaryLanguage") ~typ:(returning id)

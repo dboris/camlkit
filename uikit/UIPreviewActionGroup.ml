@@ -5,19 +5,19 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIPreviewActionGroup"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uipreviewactiongroup?language=objc}UIPreviewActionGroup} *)
 
-module C = struct
-  let actionGroupWithTitle x ~style ~actions self = msg_send ~self ~cmd:(selector "actionGroupWithTitle:style:actions:") ~typ:(id @-> llong @-> id @-> returning (id)) x (LLong.of_int style) actions
-end
+let self = get_class "UIPreviewActionGroup"
 
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning (id))
-let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning (id))
-let setIdentifier x self = msg_send ~self ~cmd:(selector "setIdentifier:") ~typ:(id @-> returning (void)) x
-let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning (void)) x
-let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
-let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning (void)) x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning (llong))
-let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning (id))
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning id)
+let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
+let setIdentifier x self = msg_send ~self ~cmd:(selector "setIdentifier:") ~typ:(id @-> returning void) x
+let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning void) x
+let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)

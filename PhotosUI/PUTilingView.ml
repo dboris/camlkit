@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putilingview?language=objc}PUTilingView} *)
+
+let self = get_class "PUTilingView"
 
 let contentCoordinateSystem self = msg_send ~self ~cmd:(selector "contentCoordinateSystem") ~typ:(returning id)
 let deleteItemAtIndexPath x ~dataSource self = msg_send ~self ~cmd:(selector "deleteItemAtIndexPath:dataSource:") ~typ:(id @-> id @-> returning void) x dataSource

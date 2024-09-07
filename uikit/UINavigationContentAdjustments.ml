@@ -5,9 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UINavigationContentAdjustments"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uinavigationcontentadjustments?language=objc}UINavigationContentAdjustments} *)
 
-let adjustedScrollView self = msg_send ~self ~cmd:(selector "adjustedScrollView") ~typ:(returning (id))
-let setAdjustedScrollView x self = msg_send ~self ~cmd:(selector "setAdjustedScrollView:") ~typ:(id @-> returning (void)) x
-let setInsetAdjustment x self = msg_send ~self ~cmd:(selector "setInsetAdjustment:") ~typ:(ptr void @-> returning (void)) x
+let self = get_class "UINavigationContentAdjustments"
+
+let adjustedScrollView self = msg_send ~self ~cmd:(selector "adjustedScrollView") ~typ:(returning id)
+let insetAdjustment self = msg_send ~self ~cmd:(selector "insetAdjustment") ~typ:(returning UIEdgeInsets.t)
+let setAdjustedScrollView x self = msg_send ~self ~cmd:(selector "setAdjustedScrollView:") ~typ:(id @-> returning void) x
+let setInsetAdjustment x self = msg_send ~self ~cmd:(selector "setInsetAdjustment:") ~typ:(UIEdgeInsets.t @-> returning void) x

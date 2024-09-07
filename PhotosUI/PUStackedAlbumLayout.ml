@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pustackedalbumlayout?language=objc}PUStackedAlbumLayout} *)
+
+let self = get_class "PUStackedAlbumLayout"
 
 let albumListTransitionContext self = msg_send ~self ~cmd:(selector "albumListTransitionContext") ~typ:(returning id)
 let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)

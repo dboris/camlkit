@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotopickerhostviewcontroller?language=objc}PUPhotoPickerHostViewController} *)
+
+let self = get_class "PUPhotoPickerHostViewController"
 
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let hostExtensionContext self = msg_send ~self ~cmd:(selector "hostExtensionContext") ~typ:(returning id)

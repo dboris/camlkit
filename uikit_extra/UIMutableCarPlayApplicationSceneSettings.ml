@@ -5,9 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIMutableCarPlayApplicationSceneSettings"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uimutablecarplayapplicationscenesettings?language=objc}UIMutableCarPlayApplicationSceneSettings} *)
 
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:(id @-> returning (id)) x
-let disableFiveRowKeyboards self = msg_send ~self ~cmd:(selector "disableFiveRowKeyboards") ~typ:(returning (bool))
-let setDisableFiveRowKeyboards x self = msg_send ~self ~cmd:(selector "setDisableFiveRowKeyboards:") ~typ:(bool @-> returning (void)) x
+let self = get_class "UIMutableCarPlayApplicationSceneSettings"
+
+let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let disableFiveRowKeyboards self = msg_send ~self ~cmd:(selector "disableFiveRowKeyboards") ~typ:(returning bool)
+let setDisableFiveRowKeyboards x self = msg_send ~self ~cmd:(selector "setDisableFiveRowKeyboards:") ~typ:(bool @-> returning void) x

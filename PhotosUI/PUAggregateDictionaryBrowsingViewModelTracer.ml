@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puaggregatedictionarybrowsingviewmodeltracer?language=objc}PUAggregateDictionaryBrowsingViewModelTracer} *)
+
+let self = get_class "PUAggregateDictionaryBrowsingViewModelTracer"
 
 let addViewingContext x self = msg_send ~self ~cmd:(selector "addViewingContext:") ~typ:(id @-> returning void) x
 let browsingViewModel self = msg_send ~self ~cmd:(selector "browsingViewModel") ~typ:(returning id)

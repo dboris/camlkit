@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/punavigationcontroller?language=objc}PUNavigationController} *)
+
+let self = get_class "PUNavigationController"
 
 let canPerformAction x ~withSender self = msg_send ~self ~cmd:(selector "canPerformAction:withSender:") ~typ:(_SEL @-> id @-> returning bool) x withSender
 let childViewControllerForStatusBarHidden self = msg_send ~self ~cmd:(selector "childViewControllerForStatusBarHidden") ~typ:(returning id)

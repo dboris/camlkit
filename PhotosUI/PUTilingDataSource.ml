@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putilingdatasource?language=objc}PUTilingDataSource} *)
+
+let self = get_class "PUTilingDataSource"
 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let enumerateIndexPathsStartingAtIndexPath x ~reverseDirection ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateIndexPathsStartingAtIndexPath:reverseDirection:usingBlock:") ~typ:(id @-> bool @-> (ptr void) @-> returning void) x reverseDirection usingBlock

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puviewcontrollerspecchange?language=objc}PUViewControllerSpecChange} *)
+
+let self = get_class "PUViewControllerSpecChange"
 
 let changed self = msg_send ~self ~cmd:(selector "changed") ~typ:(returning bool)
 let layoutReferenceSizeChanged self = msg_send ~self ~cmd:(selector "layoutReferenceSizeChanged") ~typ:(returning bool)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puuiphotosalbumviewcontroller?language=objc}PUUIPhotosAlbumViewController} *)
+
+let self = get_class "PUUIPhotosAlbumViewController"
 
 let canBeginStackCollapseTransition self = msg_send ~self ~cmd:(selector "canBeginStackCollapseTransition") ~typ:(returning bool)
 let canDragIn self = msg_send ~self ~cmd:(selector "canDragIn") ~typ:(returning bool)

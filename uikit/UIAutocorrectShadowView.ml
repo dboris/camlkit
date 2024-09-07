@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIAutocorrectShadowView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiautocorrectshadowview?language=objc}UIAutocorrectShadowView} *)
 
-let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
-let setEdgeType x self = msg_send ~self ~cmd:(selector "setEdgeType:") ~typ:(int @-> returning (void)) x
+let self = get_class "UIAutocorrectShadowView"
+
+let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
+let setEdgeType x self = msg_send ~self ~cmd:(selector "setEdgeType:") ~typ:(int @-> returning void) x

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pubrowsingirisplayer?language=objc}PUBrowsingIrisPlayer} *)
+
+let self = get_class "PUBrowsingIrisPlayer"
 
 let addPeriodicTimeObserverForInterval x ~queue ~usingBlock self = msg_send ~self ~cmd:(selector "addPeriodicTimeObserverForInterval:queue:usingBlock:") ~typ:(void @-> id @-> (ptr void) @-> returning id) x queue usingBlock
 let allowLargeVitalityInset self = msg_send ~self ~cmd:(selector "allowLargeVitalityInset") ~typ:(returning bool)

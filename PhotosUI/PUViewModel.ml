@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puviewmodel?language=objc}PUViewModel} *)
+
+let self = get_class "PUViewModel"
 
 let assertInsideChangesBlock self = msg_send ~self ~cmd:(selector "assertInsideChangesBlock") ~typ:(returning void)
 let currentChange self = msg_send ~self ~cmd:(selector "currentChange") ~typ:(returning id)

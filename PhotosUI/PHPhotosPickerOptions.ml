@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/phphotospickeroptions?language=objc}PHPhotosPickerOptions} *)
+
+let self = get_class "PHPhotosPickerOptions"
 
 let excludedContentModes self = msg_send ~self ~cmd:(selector "excludedContentModes") ~typ:(returning id)
 let hideTabBar self = msg_send ~self ~cmd:(selector "hideTabBar") ~typ:(returning bool)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pueditinginitialpayload?language=objc}PUEditingInitialPayload} *)
+
+let self = get_class "PUEditingInitialPayload"
 
 let accessibilityDescription self = msg_send ~self ~cmd:(selector "accessibilityDescription") ~typ:(returning id)
 let adjustmentBaseVersion self = msg_send ~self ~cmd:(selector "adjustmentBaseVersion") ~typ:(returning llong)

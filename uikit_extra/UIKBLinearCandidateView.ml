@@ -5,8 +5,12 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBLinearCandidateView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikblinearcandidateview?language=objc}UIKBLinearCandidateView} *)
 
-let refreshSelectedCandidate self = msg_send ~self ~cmd:(selector "refreshSelectedCandidate") ~typ:(returning (void))
-let updateCandidateKey self = msg_send ~self ~cmd:(selector "updateCandidateKey") ~typ:(returning (void))
+let self = get_class "UIKBLinearCandidateView"
+
+let refreshSelectedCandidate self = msg_send ~self ~cmd:(selector "refreshSelectedCandidate") ~typ:(returning void)
+let updateCandidateKey self = msg_send ~self ~cmd:(selector "updateCandidateKey") ~typ:(returning void)

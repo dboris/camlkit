@@ -5,14 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIMenuSystem"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uimenusystem?language=objc}UIMenuSystem} *)
 
-module C = struct
-  let contextSystem self = msg_send ~self ~cmd:(selector "contextSystem") ~typ:(returning (id))
-  let mainSystem self = msg_send ~self ~cmd:(selector "mainSystem") ~typ:(returning (id))
-end
+let self = get_class "UIMenuSystem"
 
-let initWithRootMenuChildren x self = msg_send ~self ~cmd:(selector "initWithRootMenuChildren:") ~typ:(id @-> returning (id)) x
-let setNeedsRebuild self = msg_send ~self ~cmd:(selector "setNeedsRebuild") ~typ:(returning (void))
-let setNeedsRevalidate self = msg_send ~self ~cmd:(selector "setNeedsRevalidate") ~typ:(returning (void))
+let initWithRootMenuChildren x self = msg_send ~self ~cmd:(selector "initWithRootMenuChildren:") ~typ:(id @-> returning id) x
+let setNeedsRebuild self = msg_send ~self ~cmd:(selector "setNeedsRebuild") ~typ:(returning void)
+let setNeedsRevalidate self = msg_send ~self ~cmd:(selector "setNeedsRevalidate") ~typ:(returning void)

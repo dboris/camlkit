@@ -5,11 +5,15 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITransformer"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitransformer?language=objc}UITransformer} *)
 
-let descriptionBuilderWithMultilinePrefix x self = msg_send ~self ~cmd:(selector "descriptionBuilderWithMultilinePrefix:") ~typ:(id @-> returning (id)) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning (ullong))
-let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning (bool)) x
-let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:(id @-> returning (id)) x
-let transforms self = msg_send ~self ~cmd:(selector "transforms") ~typ:(returning (id))
+let self = get_class "UITransformer"
+
+let descriptionBuilderWithMultilinePrefix x self = msg_send ~self ~cmd:(selector "descriptionBuilderWithMultilinePrefix:") ~typ:(id @-> returning id) x
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
+let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
+let transforms self = msg_send ~self ~cmd:(selector "transforms") ~typ:(returning id)

@@ -5,12 +5,16 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITutorialAnimatedView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitutorialanimatedview?language=objc}UITutorialAnimatedView} *)
 
-let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning (llong))
-let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
-let initWithKeyboardAppearance x self = msg_send ~self ~cmd:(selector "initWithKeyboardAppearance:") ~typ:(llong @-> returning (id)) (LLong.of_int x)
-let package self = msg_send ~self ~cmd:(selector "package") ~typ:(returning (id))
-let setAppearance x self = msg_send ~self ~cmd:(selector "setAppearance:") ~typ:(llong @-> returning (void)) (LLong.of_int x)
-let setPackage x self = msg_send ~self ~cmd:(selector "setPackage:") ~typ:(id @-> returning (void)) x
+let self = get_class "UITutorialAnimatedView"
+
+let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning llong)
+let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
+let initWithKeyboardAppearance x self = msg_send ~self ~cmd:(selector "initWithKeyboardAppearance:") ~typ:(llong @-> returning id) (LLong.of_int x)
+let package self = msg_send ~self ~cmd:(selector "package") ~typ:(returning id)
+let setAppearance x self = msg_send ~self ~cmd:(selector "setAppearance:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setPackage x self = msg_send ~self ~cmd:(selector "setPackage:") ~typ:(id @-> returning void) x

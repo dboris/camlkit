@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puviewcontrollertransition?language=objc}PUViewControllerTransition} *)
+
+let self = get_class "PUViewControllerTransition"
 
 let animateTransition x self = msg_send ~self ~cmd:(selector "animateTransition:") ~typ:(id @-> returning void) x
 let animationEnded x self = msg_send ~self ~cmd:(selector "animationEnded:") ~typ:(bool @-> returning void) x

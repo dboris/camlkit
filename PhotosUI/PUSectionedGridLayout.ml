@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pusectionedgridlayout?language=objc}PUSectionedGridLayout} *)
+
+let self = get_class "PUSectionedGridLayout"
 
 let adjustEffectiveContentOriginForTransitionEndContentOffset x self = msg_send ~self ~cmd:(selector "adjustEffectiveContentOriginForTransitionEndContentOffset:") ~typ:(CGPoint.t @-> returning void) x
 let assetIndexPathsForElementsInRect x self = msg_send ~self ~cmd:(selector "assetIndexPathsForElementsInRect:") ~typ:(CGRect.t @-> returning id) x
@@ -37,9 +36,6 @@ let finalizeLayoutTransition self = msg_send ~self ~cmd:(selector "finalizeLayou
 let finalizeViewTransitionToSize self = msg_send ~self ~cmd:(selector "finalizeViewTransitionToSize") ~typ:(returning void)
 let firstPreparedVisualSection self = msg_send ~self ~cmd:(selector "firstPreparedVisualSection") ~typ:(returning llong)
 let floatingSectionHeadersEnabled self = msg_send ~self ~cmd:(selector "floatingSectionHeadersEnabled") ~typ:(returning bool)
-let frameForItemAtGridCoordinates x ~inTransitionSection self = msg_send ~self ~cmd:(selector "frameForItemAtGridCoordinates:inTransitionSection:") ~typ:(PUGridCoordinates.t @-> llong @-> returning CGRect.t) x (LLong.of_int inTransitionSection)
-let frameForItemAtGridCoordinates1 x ~inVisualSection self = msg_send ~self ~cmd:(selector "frameForItemAtGridCoordinates:inVisualSection:") ~typ:(PUGridCoordinates.t @-> llong @-> returning CGRect.t) x (LLong.of_int inVisualSection)
-let frameForItemAtGridCoordinates2 x ~inVisualSection ~indexPath self = msg_send ~self ~cmd:(selector "frameForItemAtGridCoordinates:inVisualSection:indexPath:") ~typ:(PUGridCoordinates.t @-> llong @-> id @-> returning CGRect.t) x (LLong.of_int inVisualSection) indexPath
 let frameForSectionHeaderAtVisualSection x self = msg_send ~self ~cmd:(selector "frameForSectionHeaderAtVisualSection:") ~typ:(llong @-> returning CGRect.t) (LLong.of_int x)
 let frameForSectionHeaderOfRealItem x self = msg_send ~self ~cmd:(selector "frameForSectionHeaderOfRealItem:") ~typ:(id @-> returning CGRect.t) x
 let getVisualSectionIndex x ~visualItemRange ~forRenderStripAtIndexPath self = msg_send ~self ~cmd:(selector "getVisualSectionIndex:visualItemRange:forRenderStripAtIndexPath:") ~typ:((ptr llong) @-> (ptr NSRange.t) @-> id @-> returning void) x visualItemRange forRenderStripAtIndexPath
@@ -50,10 +46,6 @@ let globalHeaderAttributes self = msg_send ~self ~cmd:(selector "globalHeaderAtt
 let globalHeaderHeight self = msg_send ~self ~cmd:(selector "globalHeaderHeight") ~typ:(returning double)
 let globalHeaderIndexPath self = msg_send ~self ~cmd:(selector "globalHeaderIndexPath") ~typ:(returning id)
 let globalTopPadding self = msg_send ~self ~cmd:(selector "globalTopPadding") ~typ:(returning double)
-let gridCoordinatesInSectionForItemAtVisualIndex x self = msg_send ~self ~cmd:(selector "gridCoordinatesInSectionForItemAtVisualIndex:") ~typ:(llong @-> returning PUGridCoordinates.t) (LLong.of_int x)
-let gridCoordinatesInTransitionSectionForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "gridCoordinatesInTransitionSectionForItemAtIndexPath:") ~typ:(id @-> returning PUGridCoordinates.t) x
-let gridCoordinatesInVisualSectionForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "gridCoordinatesInVisualSectionForItemAtIndexPath:") ~typ:(id @-> returning PUGridCoordinates.t) x
-let hasItemAtGridCoordinates x ~inTransitionSection self = msg_send ~self ~cmd:(selector "hasItemAtGridCoordinates:inTransitionSection:") ~typ:(PUGridCoordinates.t @-> llong @-> returning bool) x (LLong.of_int inTransitionSection)
 let hiddenItemIndexPaths self = msg_send ~self ~cmd:(selector "hiddenItemIndexPaths") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initialLayoutAttributesForAppearingItemAtIndexPath x self = msg_send ~self ~cmd:(selector "initialLayoutAttributesForAppearingItemAtIndexPath:") ~typ:(id @-> returning id) x
@@ -74,7 +66,6 @@ let layoutAttributesForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "l
 let layoutAttributesForSupplementaryViewOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForSupplementaryViewOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath
 let layoutItemSizeForColumn x self = msg_send ~self ~cmd:(selector "layoutItemSizeForColumn:") ~typ:(llong @-> returning CGSize.t) (LLong.of_int x)
 let layoutSectioning self = msg_send ~self ~cmd:(selector "layoutSectioning") ~typ:(returning id)
-let mainRealIndexPathAtGridCoordinates x ~inTransitionSection self = msg_send ~self ~cmd:(selector "mainRealIndexPathAtGridCoordinates:inTransitionSection:") ~typ:(PUGridCoordinates.t @-> llong @-> returning id) x (LLong.of_int inTransitionSection)
 let mainRealSectionForVisualSection x self = msg_send ~self ~cmd:(selector "mainRealSectionForVisualSection:") ~typ:(llong @-> returning llong) (LLong.of_int x)
 let maxItemIndexPathAbovePoint x self = msg_send ~self ~cmd:(selector "maxItemIndexPathAbovePoint:") ~typ:(CGPoint.t @-> returning id) x
 let maxItemIndexPathLeftOfPoint x self = msg_send ~self ~cmd:(selector "maxItemIndexPathLeftOfPoint:") ~typ:(CGPoint.t @-> returning id) x
@@ -139,7 +130,6 @@ let supplementaryViewIndexPathForVisualSection x ~supplementaryViewItemIndex sel
 let targetContentOffsetForProposedContentOffset x self = msg_send ~self ~cmd:(selector "targetContentOffsetForProposedContentOffset:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
 let targetContentOffsetForTransitionFromGridLayout x self = msg_send ~self ~cmd:(selector "targetContentOffsetForTransitionFromGridLayout:") ~typ:(id @-> returning CGPoint.t) x
 let targetContentOffsetForViewSizeTransitionContext x self = msg_send ~self ~cmd:(selector "targetContentOffsetForViewSizeTransitionContext:") ~typ:(id @-> returning CGPoint.t) x
-let targetTransitionGridCoordsForGridCoords x ~atVisualSection ~outTransitionSection self = msg_send ~self ~cmd:(selector "targetTransitionGridCoordsForGridCoords:atVisualSection:outTransitionSection:") ~typ:(PUGridCoordinates.t @-> llong @-> (ptr llong) @-> returning PUGridCoordinates.t) x (LLong.of_int atVisualSection) outTransitionSection
 let targetTransitionRealIndexPathForIndexPath x self = msg_send ~self ~cmd:(selector "targetTransitionRealIndexPathForIndexPath:") ~typ:(id @-> returning id) x
 let transitionActualContentSize self = msg_send ~self ~cmd:(selector "transitionActualContentSize") ~typ:(returning CGSize.t)
 let transitionAnchorColumnOffset self = msg_send ~self ~cmd:(selector "transitionAnchorColumnOffset") ~typ:(returning llong)
@@ -160,8 +150,6 @@ let transitioningDelegate self = msg_send ~self ~cmd:(selector "transitioningDel
 let updateReorderingTargetIndexPath x self = msg_send ~self ~cmd:(selector "updateReorderingTargetIndexPath:") ~typ:(id @-> returning void) x
 let usesAspectItems self = msg_send ~self ~cmd:(selector "usesAspectItems") ~typ:(returning bool)
 let usesRenderedStripTopExtendersForTransitions self = msg_send ~self ~cmd:(selector "usesRenderedStripTopExtendersForTransitions") ~typ:(returning bool)
-let visualGridCoordsForTransitionGridCoords x ~atTransitionSection ~outVisualSection self = msg_send ~self ~cmd:(selector "visualGridCoordsForTransitionGridCoords:atTransitionSection:outVisualSection:") ~typ:(PUGridCoordinates.t @-> llong @-> (ptr llong) @-> returning PUGridCoordinates.t) x (LLong.of_int atTransitionSection) outVisualSection
-let visualIndexForItemAtGridCoordinates x self = msg_send ~self ~cmd:(selector "visualIndexForItemAtGridCoordinates:") ~typ:(PUGridCoordinates.t @-> returning llong) x
 let visualRowsInRect x ~inVisualSection ~totalVisualSectionRows self = msg_send ~self ~cmd:(selector "visualRowsInRect:inVisualSection:totalVisualSectionRows:") ~typ:(CGRect.t @-> llong @-> (ptr llong) @-> returning NSRange.t) x (LLong.of_int inVisualSection) totalVisualSectionRows
 let visualSectionForHeaderIndexPath x self = msg_send ~self ~cmd:(selector "visualSectionForHeaderIndexPath:") ~typ:(id @-> returning llong) x
 let visualSectionForRealSection x self = msg_send ~self ~cmd:(selector "visualSectionForRealSection:") ~typ:(llong @-> returning llong) (LLong.of_int x)

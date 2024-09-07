@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puerrorpresentationcontroller?language=objc}PUErrorPresentationController} *)
+
+let self = get_class "PUErrorPresentationController"
 
 let additionalAlertActions self = msg_send ~self ~cmd:(selector "additionalAlertActions") ~typ:(returning id)
 let additionalQuestionsInRadarDescription self = msg_send ~self ~cmd:(selector "additionalQuestionsInRadarDescription") ~typ:(returning id)

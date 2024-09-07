@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotopickerabstractextensioncontext?language=objc}PUPhotoPickerAbstractExtensionContext} *)
+
+let self = get_class "PUPhotoPickerAbstractExtensionContext"
 
 let firstPayloadFromExtensionItems x ~completion self = msg_send ~self ~cmd:(selector "firstPayloadFromExtensionItems:completion:") ~typ:(id @-> (ptr void) @-> returning void) x completion
 let invalidateContext self = msg_send ~self ~cmd:(selector "invalidateContext") ~typ:(returning void)

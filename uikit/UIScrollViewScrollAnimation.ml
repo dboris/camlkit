@@ -5,10 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIScrollViewScrollAnimation"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiscrollviewscrollanimation?language=objc}UIScrollViewScrollAnimation} *)
 
-let adjustForContentOffsetDelta x self = msg_send ~self ~cmd:(selector "adjustForContentOffsetDelta:") ~typ:(CGPoint.t @-> returning (void)) x
-let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let progressForFraction x self = msg_send ~self ~cmd:(selector "progressForFraction:") ~typ:(float @-> returning (float)) x
-let setProgress x self = msg_send ~self ~cmd:(selector "setProgress:") ~typ:(float @-> returning (void)) x
+let self = get_class "UIScrollViewScrollAnimation"
+
+let adjustForContentOffsetDelta x self = msg_send ~self ~cmd:(selector "adjustForContentOffsetDelta:") ~typ:(CGPoint.t @-> returning void) x
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let progressForFraction x self = msg_send ~self ~cmd:(selector "progressForFraction:") ~typ:(float @-> returning float) x
+let setProgress x self = msg_send ~self ~cmd:(selector "setProgress:") ~typ:(float @-> returning void) x

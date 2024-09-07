@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putilinglayout?language=objc}PUTilingLayout} *)
+
+let self = get_class "PUTilingLayout"
 
 let contentBounds self = msg_send ~self ~cmd:(selector "contentBounds") ~typ:(returning CGRect.t)
 let coordinateSystem self = msg_send ~self ~cmd:(selector "coordinateSystem") ~typ:(returning id)

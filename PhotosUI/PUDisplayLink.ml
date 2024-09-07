@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pudisplaylink?language=objc}PUDisplayLink} *)
+
+let self = get_class "PUDisplayLink"
 
 let completionHandler self = msg_send ~self ~cmd:(selector "completionHandler") ~typ:(returning (ptr void))
 let displayLink self = msg_send ~self ~cmd:(selector "displayLink") ~typ:(returning id)

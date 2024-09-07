@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putileanimator?language=objc}PUTileAnimator} *)
+
+let self = get_class "PUTileAnimator"
 
 let animateTileController x ~toLayoutInfo ~withOptions ~completionHandler self = msg_send ~self ~cmd:(selector "animateTileController:toLayoutInfo:withOptions:completionHandler:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x toLayoutInfo withOptions completionHandler
 let currentTransition self = msg_send ~self ~cmd:(selector "currentTransition") ~typ:(returning id)

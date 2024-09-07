@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putiletree?language=objc}PUTileTree} *)
+
+let self = get_class "PUTileTree"
 
 let addObject x ~withTileIdentifier self = msg_send ~self ~cmd:(selector "addObject:withTileIdentifier:") ~typ:(id @-> id @-> returning void) x withTileIdentifier
 let containsObject x ~withTileIdentifier self = msg_send ~self ~cmd:(selector "containsObject:withTileIdentifier:") ~typ:(id @-> id @-> returning bool) x withTileIdentifier

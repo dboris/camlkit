@@ -5,10 +5,14 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIKBEmojiSnapshotSizingView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uikbemojisnapshotsizingview?language=objc}UIKBEmojiSnapshotSizingView} *)
 
-let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning (void))
-let initWithSnapshotView x self = msg_send ~self ~cmd:(selector "initWithSnapshotView:") ~typ:(id @-> returning (id)) x
-let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning (CGSize.t)) ~return_type:CGSize.t
-let snapshotView self = msg_send ~self ~cmd:(selector "snapshotView") ~typ:(returning (id))
+let self = get_class "UIKBEmojiSnapshotSizingView"
+
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let initWithSnapshotView x self = msg_send ~self ~cmd:(selector "initWithSnapshotView:") ~typ:(id @-> returning id) x
+let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let snapshotView self = msg_send ~self ~cmd:(selector "snapshotView") ~typ:(returning id)

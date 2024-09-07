@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pustackview?language=objc}PUStackView} *)
+
+let self = get_class "PUStackView"
 
 let combinesPhotoDecorations self = msg_send ~self ~cmd:(selector "combinesPhotoDecorations") ~typ:(returning bool)
 let continuousCorners self = msg_send ~self ~cmd:(selector "continuousCorners") ~typ:(returning bool)
@@ -36,8 +35,6 @@ let posterSquareCornerRadius self = msg_send ~self ~cmd:(selector "posterSquareC
 let posterSubitemCornerRadius self = msg_send ~self ~cmd:(selector "posterSubitemCornerRadius") ~typ:(returning double)
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning void)
 let rectOfStackItemAtIndex x ~inCoordinateSpace self = msg_send ~self ~cmd:(selector "rectOfStackItemAtIndex:inCoordinateSpace:") ~typ:(llong @-> id @-> returning CGRect.t) (LLong.of_int x) inCoordinateSpace
-(* let setBadgeInfo x ~forItemAtIndex self = msg_send ~self ~cmd:(selector "setBadgeInfo:forItemAtIndex:") ~typ:(PXAssetBadgeInfo.t @-> llong @-> returning void) x (LLong.of_int forItemAtIndex) *)
-(* let setBadgeInfo' x ~style ~forItemAtIndex self = msg_send ~self ~cmd:(selector "setBadgeInfo:style:forItemAtIndex:") ~typ:(PXAssetBadgeInfo.t @-> llong @-> llong @-> returning void) x (LLong.of_int style) (LLong.of_int forItemAtIndex) *)
 let setCollectionTileLayoutTemplate x ~forItemAtIndex self = msg_send ~self ~cmd:(selector "setCollectionTileLayoutTemplate:forItemAtIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int forItemAtIndex)
 let setCombinesPhotoDecorations x self = msg_send ~self ~cmd:(selector "setCombinesPhotoDecorations:") ~typ:(bool @-> returning void) x
 let setContinuousCorners x self = msg_send ~self ~cmd:(selector "setContinuousCorners:") ~typ:(bool @-> returning void) x

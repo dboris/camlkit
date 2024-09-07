@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pualbumlistviewcontrollerpadspec?language=objc}PUAlbumListViewControllerPadSpec} *)
+
+let self = get_class "PUAlbumListViewControllerPadSpec"
 
 let albumDeletionConfirmationStyle self = msg_send ~self ~cmd:(selector "albumDeletionConfirmationStyle") ~typ:(returning llong)
 let albumViewControllerSpec self = msg_send ~self ~cmd:(selector "albumViewControllerSpec") ~typ:(returning id)

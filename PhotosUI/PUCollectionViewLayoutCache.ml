@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pucollectionviewlayoutcache?language=objc}PUCollectionViewLayoutCache} *)
+
+let self = get_class "PUCollectionViewLayoutCache"
 
 let cachesResults self = msg_send ~self ~cmd:(selector "cachesResults") ~typ:(returning bool)
 let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)

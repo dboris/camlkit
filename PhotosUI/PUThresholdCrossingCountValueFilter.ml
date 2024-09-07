@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puthresholdcrossingcountvaluefilter?language=objc}PUThresholdCrossingCountValueFilter} *)
+
+let self = get_class "PUThresholdCrossingCountValueFilter"
 
 let maximumCrossingCount self = msg_send ~self ~cmd:(selector "maximumCrossingCount") ~typ:(returning llong)
 let setMaximumCrossingCount x self = msg_send ~self ~cmd:(selector "setMaximumCrossingCount:") ~typ:(llong @-> returning void) (LLong.of_int x)

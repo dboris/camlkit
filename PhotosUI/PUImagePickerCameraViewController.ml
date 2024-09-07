@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puimagepickercameraviewcontroller?language=objc}PUImagePickerCameraViewController} *)
+
+let self = get_class "PUImagePickerCameraViewController"
 
 let captureOutput x ~didStartRecordingToOutputFileAtURL ~fromConnections self = msg_send ~self ~cmd:(selector "captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:") ~typ:(id @-> id @-> id @-> returning void) x didStartRecordingToOutputFileAtURL fromConnections
 let captureOutput' x ~didFinishRecordingToOutputFileAtURL ~fromConnections ~error self = msg_send ~self ~cmd:(selector "captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:") ~typ:(id @-> id @-> id @-> id @-> returning void) x didFinishRecordingToOutputFileAtURL fromConnections error

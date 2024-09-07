@@ -5,8 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UITextEffectsWindowHosted"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitexteffectswindowhosted?language=objc}UITextEffectsWindowHosted} *)
 
-let actualSceneBounds self = msg_send ~self ~cmd:(selector "actualSceneBounds") ~typ:(returning (CGRect.t))
-let actualSceneBoundsForLandscape x self = msg_send ~self ~cmd:(selector "actualSceneBoundsForLandscape:") ~typ:(bool @-> returning (CGRect.t)) x
+let self = get_class "UITextEffectsWindowHosted"
+
+let actualSceneBounds self = msg_send ~self ~cmd:(selector "actualSceneBounds") ~typ:(returning CGRect.t)
+let actualSceneBoundsForLandscape x self = msg_send ~self ~cmd:(selector "actualSceneBoundsForLandscape:") ~typ:(bool @-> returning CGRect.t) x
+let safeAreaInsets self = msg_send ~self ~cmd:(selector "safeAreaInsets") ~typ:(returning UIEdgeInsets.t)

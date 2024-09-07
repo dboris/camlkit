@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pupickerbanner?language=objc}PUPickerBanner} *)
+
+let self = get_class "PUPickerBanner"
 
 let bannerView self = msg_send ~self ~cmd:(selector "bannerView") ~typ:(returning id)
 let height self = msg_send ~self ~cmd:(selector "height") ~typ:(returning double)

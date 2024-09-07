@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotoselectionentry?language=objc}PUPhotoSelectionEntry} *)
+
+let self = get_class "PUPhotoSelectionEntry"
 
 let assetCollection self = msg_send ~self ~cmd:(selector "assetCollection") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

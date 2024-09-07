@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puuiimagepickercontrollerhelper?language=objc}PUUIImagePickerControllerHelper} *)
+
+let self = get_class "PUUIImagePickerControllerHelper"
 
 let albumListViewController self = msg_send ~self ~cmd:(selector "albumListViewController") ~typ:(returning id)
 let allowsMultipleSelection self = msg_send ~self ~cmd:(selector "allowsMultipleSelection") ~typ:(returning bool)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puanimationgroup?language=objc}PUAnimationGroup} *)
+
+let self = get_class "PUAnimationGroup"
 
 let addSubAnimationGroup x self = msg_send ~self ~cmd:(selector "addSubAnimationGroup:") ~typ:(id @-> returning void) x
 let complete self = msg_send ~self ~cmd:(selector "complete") ~typ:(returning void)

@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puphotopickerextensionhostcontext?language=objc}PUPhotoPickerExtensionHostContext} *)
+
+let self = get_class "PUPhotoPickerExtensionHostContext"
 
 let cachedDidDisplayPhotoPickerPreview self = msg_send ~self ~cmd:(selector "cachedDidDisplayPhotoPickerPreview") ~typ:(returning bool)
 let cachedDidDisplayPhotoPickerSourceType self = msg_send ~self ~cmd:(selector "cachedDidDisplayPhotoPickerSourceType") ~typ:(returning id)

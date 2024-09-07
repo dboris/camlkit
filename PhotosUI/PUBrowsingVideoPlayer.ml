@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pubrowsingvideoplayer?language=objc}PUBrowsingVideoPlayer} *)
+
+let self = get_class "PUBrowsingVideoPlayer"
 
 let activityCoordinatorQueuePosition self = msg_send ~self ~cmd:(selector "activityCoordinatorQueuePosition") ~typ:(returning ullong)
 let alwaysRespectsMuteSwitch self = msg_send ~self ~cmd:(selector "alwaysRespectsMuteSwitch") ~typ:(returning bool)

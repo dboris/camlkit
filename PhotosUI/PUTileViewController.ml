@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/putileviewcontroller?language=objc}PUTileViewController} *)
+
+let self = get_class "PUTileViewController"
 
 let addToTilingView x self = msg_send ~self ~cmd:(selector "addToTilingView:") ~typ:(id @-> returning void) x
 let applyLayoutInfo x self = msg_send ~self ~cmd:(selector "applyLayoutInfo:") ~typ:(id @-> returning void) x

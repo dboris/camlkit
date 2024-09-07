@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puprogressindicatorview?language=objc}PUProgressIndicatorView} *)
+
+let self = get_class "PUProgressIndicatorView"
 
 let beginShowingProgressImmediately x ~animated self = msg_send ~self ~cmd:(selector "beginShowingProgressImmediately:animated:") ~typ:(bool @-> bool @-> returning void) x animated
 let beginShowingProgressWithDelay x ~animated self = msg_send ~self ~cmd:(selector "beginShowingProgressWithDelay:animated:") ~typ:(double @-> bool @-> returning void) x animated

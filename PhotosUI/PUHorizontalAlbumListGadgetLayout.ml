@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/puhorizontalalbumlistgadgetlayout?language=objc}PUHorizontalAlbumListGadgetLayout} *)
+
+let self = get_class "PUHorizontalAlbumListGadgetLayout"
 
 let albumCellSize self = msg_send ~self ~cmd:(selector "albumCellSize") ~typ:(returning CGSize.t)
 let collectionView x ~layout ~sizeForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:layout:sizeForItemAtIndexPath:") ~typ:(id @-> id @-> id @-> returning CGSize.t) x layout sizeForItemAtIndexPath

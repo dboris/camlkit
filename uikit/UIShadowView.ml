@@ -5,14 +5,13 @@ open Objc
 
 [@@@ocaml.warning "-33"]
 open Foundation
+open CoreAnimation
+open CoreText
 
-let _class_ = get_class "UIShadowView"
+(** Apple docs: {{:https://developer.apple.com/documentation/uikit/uishadowview?language=objc}UIShadowView} *)
 
-module C = struct
-  let bottomShadowImage self = msg_send ~self ~cmd:(selector "bottomShadowImage") ~typ:(returning (id))
-  let topShadowImage self = msg_send ~self ~cmd:(selector "topShadowImage") ~typ:(returning (id))
-end
+let self = get_class "UIShadowView"
 
-let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning (void)) x
-let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning (id)) x
-let setShadowImage x ~forEdge ~inside self = msg_send ~self ~cmd:(selector "setShadowImage:forEdge:inside:") ~typ:(id @-> ullong @-> bool @-> returning (void)) x (ULLong.of_int forEdge) inside
+let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
+let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
+let setShadowImage x ~forEdge ~inside self = msg_send ~self ~cmd:(selector "setShadowImage:forEdge:inside:") ~typ:(id @-> ullong @-> bool @-> returning void) x (ULLong.of_int forEdge) inside

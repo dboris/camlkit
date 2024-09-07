@@ -4,13 +4,12 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
-open Uikit
+open Foundation
+open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pustackedalbumtransition?language=objc}PUStackedAlbumTransition} *)
+
+let self = get_class "PUStackedAlbumTransition"
 
 let animatePopTransition self = msg_send ~self ~cmd:(selector "animatePopTransition") ~typ:(returning void)
 let animatePushTransition self = msg_send ~self ~cmd:(selector "animatePushTransition") ~typ:(returning void)
