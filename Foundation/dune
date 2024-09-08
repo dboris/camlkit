@@ -1,5 +1,5 @@
 (library
- (name foundation)
+ (name Foundation)
  (public_name camlkit-base.Foundation)
  (libraries
   camlkit-base.runtime

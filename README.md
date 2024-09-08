@@ -60,9 +60,7 @@ module AppDelegate = struct
     let screen_bounds =
       UIScreen.self |> UIScreenClass.mainScreen |> UIScreen.bounds
     in
-    let win =
-      UIWindow.self |> NSObjectClass.alloc
-      |> UIWindow.initWithFrame screen_bounds
+    let win = UIWindow.self |> alloc |> UIWindow.initWithFrame screen_bounds
     and vc = UIViewController.self |> NSObjectClass.new_
     and label = UILabel.self |> NSObjectClass.new_
     in
@@ -125,11 +123,11 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
   OCaml (showing multiple equivalent constructs):
   ```ocaml
-  NSObject.C.new_ NSObject._class_
-  _new_ NSObject._class_
-  NSString._class_ |> NSObject.C.alloc |> NSString.initWithUTF8String "Hello"
-  alloc NSString._class_ |> NSString.initWithUTF8String "Hello"
-  NSString._class_ |> NSString.C.stringWithUTF8String "Hello"
+  NSObjectClass.new_ NSObject.self
+  _new_ NSObject.self
+  NSString.self |> NSObjectClass.alloc |> NSString.initWithUTF8String "Hello"
+  alloc NSString.self |> NSString.initWithUTF8String "Hello"
+  NSString.self |> NSStringClass.stringWithUTF8String "Hello"
   new_string "Hello"
   ```
   To print a NSString in utop: `myNSStr |> NSString._UTF8String |> print_string`
@@ -153,10 +151,10 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
   OCaml:
   ```ocaml
-  Define._class_ "MyClass"
-    ~ivars: [ Define.ivar "myVar" Objc_t.id ]
+  Class.define "MyClass"
+    ~ivars: [ Ivar.define "myVar" Objc_t.id ]
     ~methods: [
-      Define._method_
+      Method.define
         ~cmd: (selector "myMethodWithArg1:arg2:")
         ~args: Objc_t.[id; id]
         ~return: Objc_t.void
@@ -235,8 +233,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   ```OCaml
   Block.make ~args: Objc_t.[id] ~return: Objc_t.void
     (fun block action -> (* block implementation *))
-  |> (UIAction._class_ |> UIAction.C.actionWithHandler)
-  |> (UIButton._class_ |> UIButton.C.systemButtonWithPrimaryAction)
+  |> (UIAction.self |> UIActionClass.actionWithHandler)
+  |> (UIButton.self |> UIButtonClass.systemButtonWithPrimaryAction)
   ```
 
   **_NOTE:_**
@@ -257,13 +255,6 @@ Some usefull sources you may wish to examine include:
 * [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/objc_t.ml)
 * [Usage examples](https://github.com/dboris/camlkit-examples/)
 * [The Ctypes documentation](https://ocaml.org/p/ctypes/latest/doc/Ctypes/index.html)
-
-
-## Project status
-
-The project is in active development and is still experimental. It can be
-considered at the alpha stage. If you are an early adopter, keep in mind
-that the API is subject to change.
 
 
 ## Related projects
