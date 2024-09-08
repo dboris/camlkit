@@ -1,6 +1,7 @@
 (library
  (name CoreText)
  (public_name camlkit-gui.CoreText)
+ (enabled_if (= %{system} macosx))
  (flags :standard -ccopt "-framework CoreText")
  (libraries camlkit-base.runtime CoreGraphics CoreFoundation))
 

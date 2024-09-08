@@ -2,6 +2,7 @@
  (name CoreVideo)
  (public_name camlkit-gui.CoreVideo)
  (flags :standard -ccopt "-framework CoreVideo")
+ (enabled_if (= %{system} macosx))
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation

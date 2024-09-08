@@ -1,6 +1,7 @@
 (library
  (name fsevents)
  (public_name camlkit-base.FSEvents)
+ (enabled_if (= %{system} macosx))
  (libraries camlkit-base.runtime camlkit-base.CoreFoundation))
 
 (documentation (package camlkit-base))

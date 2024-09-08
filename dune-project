@@ -17,7 +17,7 @@
  (synopsis "OCaml bindings to the Objective-C runtime and some base frameworks")
  (description "
 This package provides OCaml bindings to the Objective-C runtime and
-the following Cocoa frameworks: Foundation, WebKit, Vision, CoreImage, and Photos.")
+a selection of core Cocoa frameworks.")
  (depends
   ctypes
   ctypes-foreign
