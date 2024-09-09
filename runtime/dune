@@ -98,7 +98,7 @@
   (= %{context_name} simulator-arm.ios)))
  (action
   (with-stdout-to arch.ml
-   (bash "arch=%{read:arch.txt}
+   (system "arch=%{read:arch.txt}
     echo \"type t = Amd64 | Arm64
     let current = $(echo $arch | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\""))))
 
@@ -110,7 +110,7 @@
   (<> %{context_name} simulator-arm.ios)))
  (action
   (with-stdout-to arch.ml
-   (bash
+   (system
    "cat <<END
     type t = Amd64 | Arm64
     let current = $(echo %{architecture} | awk '{print toupper(substr($0, 1, 1)) substr($0, 2)}')\n\

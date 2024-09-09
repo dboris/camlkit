@@ -3,7 +3,7 @@
  (public_name camlkit-base.CoreGraphics)
 ;  (flags :standard -ccopt "-framework CoreGraphics")
 ;  (enabled_if (= %{system} macosx))
- (foreign_stubs (language c) (names CoreGraphics_inlines))
+;  (foreign_stubs (language c) (names CoreGraphics_inlines))
  (libraries camlkit-base.runtime CoreFoundation))
 
 (documentation (package camlkit-base))
