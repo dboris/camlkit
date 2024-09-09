@@ -2,6 +2,7 @@
  (name SpriteKit)
  (public_name camlkit-gui.SpriteKit)
  (flags :standard -ccopt "-framework SpriteKit")
+ (enabled_if (= %{system} macosx))
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation
