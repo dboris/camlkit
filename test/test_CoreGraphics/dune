@@ -1,7 +1,10 @@
 (test
  (name test_CoreGraphics)
  (package camlkit-gui)
- (build_if (= %{context_name} "default"))
+ (build_if (and
+  (= %{system} macosx)
+  (= %{context_name} "default")))
+ (flags :standard -ccopt "-framework CoreGraphics")
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation

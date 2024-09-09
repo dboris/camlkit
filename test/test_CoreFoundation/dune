@@ -1,7 +1,10 @@
 (test
  (name test_CoreFoundation)
  (package camlkit-base)
- (build_if (= %{context_name} "default"))
+ (build_if (and
+  (= %{system} macosx)
+  (= %{context_name} "default")))
+ (flags :standard -ccopt "-framework CoreFoundation")
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation

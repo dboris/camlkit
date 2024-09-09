@@ -1,7 +1,7 @@
 (library
  (name CoreFoundation)
  (public_name camlkit-base.CoreFoundation)
- (flags :standard -ccopt "-framework CoreFoundation")
+;  (flags :standard -ccopt "-framework CoreFoundation")
 ;  (foreign_stubs (language c) (names CoreFoundation_inlines))
  (libraries camlkit-base.runtime))
 
