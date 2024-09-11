@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSLevelIndicator"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let alwaysDrawRatingPlaceholder self = msg_send ~self ~cmd:(selector "alwaysDrawRatingPlaceholder") ~typ:(returning bool)
 let criticalFillColor self = msg_send ~self ~cmd:(selector "criticalFillColor") ~typ:(returning id)
 let criticalValue self = msg_send ~self ~cmd:(selector "criticalValue") ~typ:(returning double)
@@ -21,7 +21,7 @@ let customWarningFillColor self = msg_send ~self ~cmd:(selector "customWarningFi
 let drawsTieredCapacityLevels self = msg_send ~self ~cmd:(selector "drawsTieredCapacityLevels") ~typ:(returning bool)
 let fillColor self = msg_send ~self ~cmd:(selector "fillColor") ~typ:(returning id)
 let firstBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "firstBaselineOffsetFromTop") ~typ:(returning double)
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning bool)
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning bool)
 let levelIndicatorStyle self = msg_send ~self ~cmd:(selector "levelIndicatorStyle") ~typ:(returning ullong)
@@ -32,7 +32,7 @@ let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") 
 let placeholderVisibility self = msg_send ~self ~cmd:(selector "placeholderVisibility") ~typ:(returning llong)
 let ratingImage self = msg_send ~self ~cmd:(selector "ratingImage") ~typ:(returning id)
 let ratingPlaceholderImage self = msg_send ~self ~cmd:(selector "ratingPlaceholderImage") ~typ:(returning id)
-let rectOfTickMarkAtIndex x self = msg_send ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning CGRect.t) (LLong.of_int x)
+let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
 let setAlwaysDrawRatingPlaceholder x self = msg_send ~self ~cmd:(selector "setAlwaysDrawRatingPlaceholder:") ~typ:(bool @-> returning void) x
 let setCriticalFillColor x self = msg_send ~self ~cmd:(selector "setCriticalFillColor:") ~typ:(id @-> returning void) x
 let setCriticalValue x self = msg_send ~self ~cmd:(selector "setCriticalValue:") ~typ:(double @-> returning void) x

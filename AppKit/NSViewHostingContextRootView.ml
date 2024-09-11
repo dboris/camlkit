@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSViewHostingContextRootView"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)

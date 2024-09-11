@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSRectSet"
 
 let addClip self = msg_send ~self ~cmd:(selector "addClip") ~typ:(returning void)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let convertFromAncestor x ~toView ~clipTo self = msg_send ~self ~cmd:(selector "convertFromAncestor:toView:clipTo:") ~typ:(id @-> id @-> CGRect.t @-> returning void) x toView clipTo
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)

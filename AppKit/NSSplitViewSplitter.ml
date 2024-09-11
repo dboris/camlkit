@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSSplitViewSplitter"
 
-let accessibilityFrame self = msg_send ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning CGRect.t)
+let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let accessibilityHelp self = msg_send ~self ~cmd:(selector "accessibilityHelp") ~typ:(returning id)
 let accessibilityMaxValue self = msg_send ~self ~cmd:(selector "accessibilityMaxValue") ~typ:(returning id)
 let accessibilityMinValue self = msg_send ~self ~cmd:(selector "accessibilityMinValue") ~typ:(returning id)

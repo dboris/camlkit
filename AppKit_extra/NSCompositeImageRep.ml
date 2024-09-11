@@ -16,5 +16,5 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let draw self = msg_send ~self ~cmd:(selector "draw") ~typ:(returning bool)
 let initWithBaseImage x ~overlayImage ~overlayFrame self = msg_send ~self ~cmd:(selector "initWithBaseImage:overlayImage:overlayFrame:") ~typ:(id @-> id @-> CGRect.t @-> returning id) x overlayImage overlayFrame
-let overlayFrame self = msg_send ~self ~cmd:(selector "overlayFrame") ~typ:(returning CGRect.t)
+let overlayFrame self = msg_send_stret ~self ~cmd:(selector "overlayFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let overlayImage self = msg_send ~self ~cmd:(selector "overlayImage") ~typ:(returning id)

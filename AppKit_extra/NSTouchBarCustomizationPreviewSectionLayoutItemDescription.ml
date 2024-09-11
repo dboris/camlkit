@@ -11,12 +11,12 @@ open CoreAnimation
 
 let self = get_class "NSTouchBarCustomizationPreviewSectionLayoutItemDescription"
 
-let backupDragSize self = msg_send ~self ~cmd:(selector "backupDragSize") ~typ:(returning CGSize.t)
-let contentClippingSize self = msg_send ~self ~cmd:(selector "contentClippingSize") ~typ:(returning CGSize.t)
+let backupDragSize self = msg_send_stret ~self ~cmd:(selector "backupDragSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let contentClippingSize self = msg_send_stret ~self ~cmd:(selector "contentClippingSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
-let dragAnchorPoint self = msg_send ~self ~cmd:(selector "dragAnchorPoint") ~typ:(returning CGPoint.t)
-let dragPosition self = msg_send ~self ~cmd:(selector "dragPosition") ~typ:(returning CGPoint.t)
+let dragAnchorPoint self = msg_send_stret ~self ~cmd:(selector "dragAnchorPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let dragPosition self = msg_send_stret ~self ~cmd:(selector "dragPosition") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isCentered self = msg_send ~self ~cmd:(selector "isCentered") ~typ:(returning bool)
 let isDragging self = msg_send ~self ~cmd:(selector "isDragging") ~typ:(returning bool)
@@ -25,9 +25,9 @@ let isSpace self = msg_send ~self ~cmd:(selector "isSpace") ~typ:(returning bool
 let isStacked self = msg_send ~self ~cmd:(selector "isStacked") ~typ:(returning bool)
 let itemPosition self = msg_send ~self ~cmd:(selector "itemPosition") ~typ:(returning ullong)
 let itemState self = msg_send ~self ~cmd:(selector "itemState") ~typ:(returning llong)
-let maxSize self = msg_send ~self ~cmd:(selector "maxSize") ~typ:(returning CGSize.t)
-let minSize self = msg_send ~self ~cmd:(selector "minSize") ~typ:(returning CGSize.t)
-let preferredSize self = msg_send ~self ~cmd:(selector "preferredSize") ~typ:(returning CGSize.t)
+let maxSize self = msg_send_stret ~self ~cmd:(selector "maxSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let minSize self = msg_send_stret ~self ~cmd:(selector "minSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let preferredSize self = msg_send_stret ~self ~cmd:(selector "preferredSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let priorityIndex self = msg_send ~self ~cmd:(selector "priorityIndex") ~typ:(returning llong)
 let requiresTrueCenterLayout self = msg_send ~self ~cmd:(selector "requiresTrueCenterLayout") ~typ:(returning bool)
 let setBackupDragSize x self = msg_send ~self ~cmd:(selector "setBackupDragSize:") ~typ:(CGSize.t @-> returning void) x

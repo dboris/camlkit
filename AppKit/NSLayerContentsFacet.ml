@@ -12,10 +12,10 @@ open CoreAnimation
 let self = get_class "NSLayerContentsFacet"
 
 let contents self = msg_send ~self ~cmd:(selector "contents") ~typ:(returning id)
-let contentsCenter self = msg_send ~self ~cmd:(selector "contentsCenter") ~typ:(returning CGRect.t)
+let contentsCenter self = msg_send_stret ~self ~cmd:(selector "contentsCenter") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let contentsScale self = msg_send ~self ~cmd:(selector "contentsScale") ~typ:(returning double)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let drawingRect self = msg_send ~self ~cmd:(selector "drawingRect") ~typ:(returning CGRect.t)
+let drawingRect self = msg_send_stret ~self ~cmd:(selector "drawingRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let dropToImage self = msg_send ~self ~cmd:(selector "dropToImage") ~typ:(returning void)
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let setContents x self = msg_send ~self ~cmd:(selector "setContents:") ~typ:(id @-> returning void) x

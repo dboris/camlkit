@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSUndoTextOperation"
 
-let affectedRange self = msg_send ~self ~cmd:(selector "affectedRange") ~typ:(returning NSRange.t)
+let affectedRange self = msg_send_stret ~self ~cmd:(selector "affectedRange") ~typ:(returning NSRange.t) ~return_type:NSRange.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let firstTextViewForTextStorage x self = msg_send ~self ~cmd:(selector "firstTextViewForTextStorage:") ~typ:(id @-> returning id) x
 let initWithAffectedRange x ~layoutManager ~undoManager self = msg_send ~self ~cmd:(selector "initWithAffectedRange:layoutManager:undoManager:") ~typ:(NSRange.t @-> id @-> id @-> returning id) x layoutManager undoManager

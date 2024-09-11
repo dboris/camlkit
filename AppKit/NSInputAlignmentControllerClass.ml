@@ -9,4 +9,4 @@ open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/appkit/nsinputalignmentcontroller?language=objc}NSInputAlignmentController} *)
 
-let alignmentDeltaFromMatches x self = msg_send ~self ~cmd:(selector "alignmentDeltaFromMatches:") ~typ:(id @-> returning CGPoint.t) x
+let alignmentDeltaFromMatches x self = msg_send_stret ~self ~cmd:(selector "alignmentDeltaFromMatches:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x

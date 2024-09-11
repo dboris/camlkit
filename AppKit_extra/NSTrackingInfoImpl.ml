@@ -16,4 +16,4 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let selectedItem self = msg_send ~self ~cmd:(selector "selectedItem") ~typ:(returning id)
 let targetedItem self = msg_send ~self ~cmd:(selector "targetedItem") ~typ:(returning id)
-let targetedItemFrame self = msg_send ~self ~cmd:(selector "targetedItemFrame") ~typ:(returning CGRect.t)
+let targetedItemFrame self = msg_send_stret ~self ~cmd:(selector "targetedItemFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t

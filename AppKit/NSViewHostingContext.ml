@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSViewHostingContext"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
@@ -19,7 +19,7 @@ let firstResponder self = msg_send ~self ~cmd:(selector "firstResponder") ~typ:(
 let handleEvent x self = msg_send ~self ~cmd:(selector "handleEvent:") ~typ:(id @-> returning bool) x
 let hostingTraits self = msg_send ~self ~cmd:(selector "hostingTraits") ~typ:(returning id)
 let initWithContentView x ~traits self = msg_send ~self ~cmd:(selector "initWithContentView:traits:") ~typ:(id @-> id @-> returning id) x traits
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isInKeyWindow self = msg_send ~self ~cmd:(selector "isInKeyWindow") ~typ:(returning bool)
 let makeFirstResponder x self = msg_send ~self ~cmd:(selector "makeFirstResponder:") ~typ:(id @-> returning bool) x
 let recursiveDescription self = msg_send ~self ~cmd:(selector "recursiveDescription") ~typ:(returning id)

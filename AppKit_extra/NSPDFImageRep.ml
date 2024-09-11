@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSPDFImageRep"
 
 let _PDFRepresentation self = msg_send ~self ~cmd:(selector "PDFRepresentation") ~typ:(returning id)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSAccessibilityReparentingCellProxy"
 
 let accessibilityBoundsForRangeAttributeForParameter x self = msg_send ~self ~cmd:(selector "accessibilityBoundsForRangeAttributeForParameter:") ~typ:(id @-> returning id) x
-let accessibilityFrame self = msg_send ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning CGRect.t)
+let accessibilityFrame self = msg_send_stret ~self ~cmd:(selector "accessibilityFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let accessibilityHelpAttribute self = msg_send ~self ~cmd:(selector "accessibilityHelpAttribute") ~typ:(returning id)
 let accessibilityIsFocusedAttributeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsFocusedAttributeSettable") ~typ:(returning bool)
 let accessibilityLineForIndexAttributeForParameter x self = msg_send ~self ~cmd:(selector "accessibilityLineForIndexAttributeForParameter:") ~typ:(id @-> returning id) x

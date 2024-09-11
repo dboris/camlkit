@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSSearchField"
 
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
-let cancelButtonBounds self = msg_send ~self ~cmd:(selector "cancelButtonBounds") ~typ:(returning CGRect.t)
+let cancelButtonBounds self = msg_send_stret ~self ~cmd:(selector "cancelButtonBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let centersPlaceholder self = msg_send ~self ~cmd:(selector "centersPlaceholder") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -26,13 +26,13 @@ let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> 
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
 let recentSearches self = msg_send ~self ~cmd:(selector "recentSearches") ~typ:(returning id)
 let recentsAutosaveName self = msg_send ~self ~cmd:(selector "recentsAutosaveName") ~typ:(returning id)
-let rectForCancelButtonWhenCentered x self = msg_send ~self ~cmd:(selector "rectForCancelButtonWhenCentered:") ~typ:(bool @-> returning CGRect.t) x
-let rectForSearchButtonWhenCentered x self = msg_send ~self ~cmd:(selector "rectForSearchButtonWhenCentered:") ~typ:(bool @-> returning CGRect.t) x
-let rectForSearchTextWhenCentered x self = msg_send ~self ~cmd:(selector "rectForSearchTextWhenCentered:") ~typ:(bool @-> returning CGRect.t) x
-let searchButtonBounds self = msg_send ~self ~cmd:(selector "searchButtonBounds") ~typ:(returning CGRect.t)
+let rectForCancelButtonWhenCentered x self = msg_send_stret ~self ~cmd:(selector "rectForCancelButtonWhenCentered:") ~typ:(bool @-> returning CGRect.t) ~return_type:CGRect.t x
+let rectForSearchButtonWhenCentered x self = msg_send_stret ~self ~cmd:(selector "rectForSearchButtonWhenCentered:") ~typ:(bool @-> returning CGRect.t) ~return_type:CGRect.t x
+let rectForSearchTextWhenCentered x self = msg_send_stret ~self ~cmd:(selector "rectForSearchTextWhenCentered:") ~typ:(bool @-> returning CGRect.t) ~return_type:CGRect.t x
+let searchButtonBounds self = msg_send_stret ~self ~cmd:(selector "searchButtonBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let searchFieldCell x ~shouldChangeCancelButtonVisibility self = msg_send ~self ~cmd:(selector "searchFieldCell:shouldChangeCancelButtonVisibility:") ~typ:(id @-> bool @-> returning bool) x shouldChangeCancelButtonVisibility
 let searchMenuTemplate self = msg_send ~self ~cmd:(selector "searchMenuTemplate") ~typ:(returning id)
-let searchTextBounds self = msg_send ~self ~cmd:(selector "searchTextBounds") ~typ:(returning CGRect.t)
+let searchTextBounds self = msg_send_stret ~self ~cmd:(selector "searchTextBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let selectText x self = msg_send ~self ~cmd:(selector "selectText:") ~typ:(id @-> returning void) x
 let sendAction x ~to_ self = msg_send ~self ~cmd:(selector "sendAction:to:") ~typ:(_SEL @-> id @-> returning bool) x to_
 let sendsSearchStringImmediately self = msg_send ~self ~cmd:(selector "sendsSearchStringImmediately") ~typ:(returning bool)

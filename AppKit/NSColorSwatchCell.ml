@@ -25,5 +25,5 @@ let setAppearanceForRenderingColor x self = msg_send ~self ~cmd:(selector "setAp
 let setSwatchColor x self = msg_send ~self ~cmd:(selector "setSwatchColor:") ~typ:(id @-> returning void) x
 let setSwatchSize x self = msg_send ~self ~cmd:(selector "setSwatchSize:") ~typ:(CGSize.t @-> returning void) x
 let swatchColor self = msg_send ~self ~cmd:(selector "swatchColor") ~typ:(returning id)
-let swatchSize self = msg_send ~self ~cmd:(selector "swatchSize") ~typ:(returning CGSize.t)
-let titleRectForBounds x self = msg_send ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) x
+let swatchSize self = msg_send_stret ~self ~cmd:(selector "swatchSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x

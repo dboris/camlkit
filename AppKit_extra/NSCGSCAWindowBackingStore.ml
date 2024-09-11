@@ -33,5 +33,5 @@ let setColorSpace x self = msg_send ~self ~cmd:(selector "setColorSpace:") ~typ:
 let setDepth x self = msg_send ~self ~cmd:(selector "setDepth:") ~typ:(uint @-> returning void) x
 let setKeepsExcessAllocation x self = msg_send ~self ~cmd:(selector "setKeepsExcessAllocation:") ~typ:(bool @-> returning void) x
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning void) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let unlockBackBuffer self = msg_send ~self ~cmd:(selector "unlockBackBuffer") ~typ:(returning void)

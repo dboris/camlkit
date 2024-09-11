@@ -49,5 +49,5 @@ let tableView4 x ~setObjectValue ~forTableColumn ~row self = msg_send ~self ~cmd
 let tableView5 x ~validateDrop ~proposedRow ~proposedDropOperation self = msg_send ~self ~cmd:(selector "tableView:validateDrop:proposedRow:proposedDropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning ullong) x validateDrop (LLong.of_int proposedRow) (ULLong.of_int proposedDropOperation)
 let tableView6 x ~willDisplayCell ~forTableColumn ~row self = msg_send ~self ~cmd:(selector "tableView:willDisplayCell:forTableColumn:row:") ~typ:(id @-> id @-> id @-> llong @-> returning void) x willDisplayCell forTableColumn (LLong.of_int row)
 let windowDidUpdate x self = msg_send ~self ~cmd:(selector "windowDidUpdate:") ~typ:(id @-> returning void) x
-let windowWillResize x ~toSize self = msg_send ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) x toSize
+let windowWillResize x ~toSize self = msg_send_stret ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x toSize
 let worksWhenModal self = msg_send ~self ~cmd:(selector "worksWhenModal") ~typ:(returning bool)

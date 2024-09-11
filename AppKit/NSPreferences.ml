@@ -34,4 +34,4 @@ let window x ~willEncodeRestorableState self = msg_send ~self ~cmd:(selector "wi
 let windowDidResize x self = msg_send ~self ~cmd:(selector "windowDidResize:") ~typ:(id @-> returning void) x
 let windowShouldClose x self = msg_send ~self ~cmd:(selector "windowShouldClose:") ~typ:(id @-> returning bool) x
 let windowTitle self = msg_send ~self ~cmd:(selector "windowTitle") ~typ:(returning id)
-let windowWillResize x ~toSize self = msg_send ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) x toSize
+let windowWillResize x ~toSize self = msg_send_stret ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x toSize

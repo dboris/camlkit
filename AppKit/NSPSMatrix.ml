@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSPSMatrix"
 
-let _CGAffineTransform self = msg_send ~self ~cmd:(selector "CGAffineTransform") ~typ:(returning CGAffineTransform.t)
+let _CGAffineTransform self = msg_send_stret ~self ~cmd:(selector "CGAffineTransform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
 let concat x self = msg_send ~self ~cmd:(selector "concat:") ~typ:(id @-> returning id) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let getRotationAngle self = msg_send ~self ~cmd:(selector "getRotationAngle") ~typ:(returning double)

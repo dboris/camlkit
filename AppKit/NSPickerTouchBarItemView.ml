@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSPickerTouchBarItemView"
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let collapsedRepresentationImage self = msg_send ~self ~cmd:(selector "collapsedRepresentationImage") ~typ:(returning id)
 let collapsedRepresentationLabel self = msg_send ~self ~cmd:(selector "collapsedRepresentationLabel") ~typ:(returning id)
 let controlRepresentation self = msg_send ~self ~cmd:(selector "controlRepresentation") ~typ:(returning llong)
@@ -42,7 +42,7 @@ let setSelectionColor x self = msg_send ~self ~cmd:(selector "setSelectionColor:
 let setSelectionMode x self = msg_send ~self ~cmd:(selector "setSelectionMode:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setSourceItemForOverlay x self = msg_send ~self ~cmd:(selector "setSourceItemForOverlay:") ~typ:(id @-> returning void) x
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning void) x
-let sizeThatFitsProposedLayoutSize x self = msg_send ~self ~cmd:(selector "sizeThatFitsProposedLayoutSize:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFitsProposedLayoutSize x self = msg_send_stret ~self ~cmd:(selector "sizeThatFitsProposedLayoutSize:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let sourceItemForOverlay self = msg_send ~self ~cmd:(selector "sourceItemForOverlay") ~typ:(returning id)
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let updateConstraints self = msg_send ~self ~cmd:(selector "updateConstraints") ~typ:(returning void)

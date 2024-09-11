@@ -12,14 +12,14 @@ open CoreAnimation
 let self = get_class "NSRolloverButton"
 
 let accessibilityPerformPress self = msg_send ~self ~cmd:(selector "accessibilityPerformPress") ~typ:(returning bool)
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
 let alternateBackgroundColor self = msg_send ~self ~cmd:(selector "alternateBackgroundColor") ~typ:(returning id)
 let alternateColor self = msg_send ~self ~cmd:(selector "alternateColor") ~typ:(returning id)
 let alternateToolTipString self = msg_send ~self ~cmd:(selector "alternateToolTipString") ~typ:(returning id)
 let awakeFromNib self = msg_send ~self ~cmd:(selector "awakeFromNib") ~typ:(returning void)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
-let customAlignmentRectInsets self = msg_send ~self ~cmd:(selector "customAlignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let customAlignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "customAlignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let didBecomeActiveFirstResponder self = msg_send ~self ~cmd:(selector "didBecomeActiveFirstResponder") ~typ:(returning void)

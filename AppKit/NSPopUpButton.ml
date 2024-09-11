@@ -13,7 +13,7 @@ let self = get_class "NSPopUpButton"
 
 let addItemWithTitle x self = msg_send ~self ~cmd:(selector "addItemWithTitle:") ~typ:(id @-> returning void) x
 let addItemsWithTitles x self = msg_send ~self ~cmd:(selector "addItemsWithTitles:") ~typ:(id @-> returning void) x
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let autoenablesItems self = msg_send ~self ~cmd:(selector "autoenablesItems") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)

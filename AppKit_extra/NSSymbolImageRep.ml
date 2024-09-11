@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSSymbolImageRep"
 
-let alignmentRect self = msg_send ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t)
+let alignmentRect self = msg_send_stret ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let draw self = msg_send ~self ~cmd:(selector "draw") ~typ:(returning bool)

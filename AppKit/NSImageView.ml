@@ -13,7 +13,7 @@ let self = get_class "NSImageView"
 
 let accessibilityLabel self = msg_send ~self ~cmd:(selector "accessibilityLabel") ~typ:(returning id)
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let allowsCutCopyPaste self = msg_send ~self ~cmd:(selector "allowsCutCopyPaste") ~typ:(returning bool)
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
 let animates self = msg_send ~self ~cmd:(selector "animates") ~typ:(returning bool)
@@ -38,7 +38,7 @@ let imageFrameStyle self = msg_send ~self ~cmd:(selector "imageFrameStyle") ~typ
 let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> returning void) x

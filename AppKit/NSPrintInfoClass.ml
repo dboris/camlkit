@@ -15,5 +15,5 @@ let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returnin
 let setDefaultPrinter x self = msg_send ~self ~cmd:(selector "setDefaultPrinter:") ~typ:(id @-> returning void) x
 let setSharedPrintInfo x self = msg_send ~self ~cmd:(selector "setSharedPrintInfo:") ~typ:(id @-> returning void) x
 let sharedPrintInfo self = msg_send ~self ~cmd:(selector "sharedPrintInfo") ~typ:(returning id)
-let sizeForPaperName x self = msg_send ~self ~cmd:(selector "sizeForPaperName:") ~typ:(id @-> returning CGSize.t) x
+let sizeForPaperName x self = msg_send_stret ~self ~cmd:(selector "sizeForPaperName:") ~typ:(id @-> returning CGSize.t) ~return_type:CGSize.t x
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)

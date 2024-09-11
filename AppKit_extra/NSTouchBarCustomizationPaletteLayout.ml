@@ -12,13 +12,13 @@ open CoreAnimation
 let self = get_class "NSTouchBarCustomizationPaletteLayout"
 
 let calculateStatsForItemAtPath x ~remainingColumns self = msg_send ~self ~cmd:(selector "calculateStatsForItemAtPath:remainingColumns:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int remainingColumns)
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let columnSpacing self = msg_send ~self ~cmd:(selector "columnSpacing") ~typ:(returning double)
 let columnSpacingScaled self = msg_send ~self ~cmd:(selector "columnSpacingScaled") ~typ:(returning double)
 let columnWidth self = msg_send ~self ~cmd:(selector "columnWidth") ~typ:(returning double)
 let columnWidthScaled self = msg_send ~self ~cmd:(selector "columnWidthScaled") ~typ:(returning double)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
-let edgeInsets self = msg_send ~self ~cmd:(selector "edgeInsets") ~typ:(returning NSEdgeInsets.t)
+let edgeInsets self = msg_send_stret ~self ~cmd:(selector "edgeInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let flexibleColumnSpan self = msg_send ~self ~cmd:(selector "flexibleColumnSpan") ~typ:(returning llong)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let layoutAttributesForDecorationViewOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForDecorationViewOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath

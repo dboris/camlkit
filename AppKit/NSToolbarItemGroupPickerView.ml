@@ -13,7 +13,7 @@ let self = get_class "NSToolbarItemGroupPickerView"
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
 let additionalWidthRequiredForProposedLayoutSize x self = msg_send ~self ~cmd:(selector "additionalWidthRequiredForProposedLayoutSize:") ~typ:(CGSize.t @-> returning double) x
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let controlRepresentation self = msg_send ~self ~cmd:(selector "controlRepresentation") ~typ:(returning llong)
 let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -39,7 +39,7 @@ let setSelectionMode x self = msg_send ~self ~cmd:(selector "setSelectionMode:")
 let setSubitems x self = msg_send ~self ~cmd:(selector "setSubitems:") ~typ:(id @-> returning void) x
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
-let sizeThatFitsProposedLayoutSize x self = msg_send ~self ~cmd:(selector "sizeThatFitsProposedLayoutSize:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFitsProposedLayoutSize x self = msg_send_stret ~self ~cmd:(selector "sizeThatFitsProposedLayoutSize:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let subitems self = msg_send ~self ~cmd:(selector "subitems") ~typ:(returning id)
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)

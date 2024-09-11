@@ -10,10 +10,10 @@ open CoreAnimation
 (** Apple docs: {{:https://developer.apple.com/documentation/appkit/nscgswindow?language=objc}NSCGSWindow} *)
 
 let coalesceUpdateOnSendRight x self = msg_send ~self ~cmd:(selector "coalesceUpdateOnSendRight:") ~typ:(ptr void @-> returning void) x
-let convertPointFromCGCoordinates x self = msg_send ~self ~cmd:(selector "convertPointFromCGCoordinates:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
-let convertPointToCGCoordinates x self = msg_send ~self ~cmd:(selector "convertPointToCGCoordinates:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
-let convertRectFromCGCoordinates x self = msg_send ~self ~cmd:(selector "convertRectFromCGCoordinates:") ~typ:(CGRect.t @-> returning CGRect.t) x
-let convertRectToCGCoordinates x self = msg_send ~self ~cmd:(selector "convertRectToCGCoordinates:") ~typ:(CGRect.t @-> returning CGRect.t) x
+let convertPointFromCGCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertPointFromCGCoordinates:") ~typ:(CGPoint.t @-> returning CGPoint.t) ~return_type:CGPoint.t x
+let convertPointToCGCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertPointToCGCoordinates:") ~typ:(CGPoint.t @-> returning CGPoint.t) ~return_type:CGPoint.t x
+let convertRectFromCGCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertRectFromCGCoordinates:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
+let convertRectToCGCoordinates x self = msg_send_stret ~self ~cmd:(selector "convertRectToCGCoordinates:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let disableScreenUpdates self = msg_send ~self ~cmd:(selector "disableScreenUpdates") ~typ:(returning void)
 let isAnyWindowOnAVisibleSpace x self = msg_send ~self ~cmd:(selector "isAnyWindowOnAVisibleSpace:") ~typ:(id @-> returning bool) x
 let onScreenWindowCount self = msg_send ~self ~cmd:(selector "onScreenWindowCount") ~typ:(returning ullong)

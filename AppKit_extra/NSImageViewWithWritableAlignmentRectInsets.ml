@@ -11,5 +11,5 @@ open CoreAnimation
 
 let self = get_class "NSImageViewWithWritableAlignmentRectInsets"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let setAlignmentRectInsets x self = msg_send ~self ~cmd:(selector "setAlignmentRectInsets:") ~typ:(NSEdgeInsets.t @-> returning void) x

@@ -32,6 +32,6 @@ let selectWithFrame x ~inView ~editor ~delegate ~start ~length self = msg_send ~
 let setEchosBullets x self = msg_send ~self ~cmd:(selector "setEchosBullets:") ~typ:(bool @-> returning void) x
 let setKernelSecureMode x self = msg_send ~self ~cmd:(selector "setKernelSecureMode:") ~typ:(bool @-> returning void) x
 let setUpFieldEditorAttributes x self = msg_send ~self ~cmd:(selector "setUpFieldEditorAttributes:") ~typ:(id @-> returning id) x
-let textView x ~willChangeSelectionFromCharacterRange ~toCharacterRange self = msg_send ~self ~cmd:(selector "textView:willChangeSelectionFromCharacterRange:toCharacterRange:") ~typ:(id @-> NSRange.t @-> NSRange.t @-> returning NSRange.t) x willChangeSelectionFromCharacterRange toCharacterRange
+let textView x ~willChangeSelectionFromCharacterRange ~toCharacterRange self = msg_send_stret ~self ~cmd:(selector "textView:willChangeSelectionFromCharacterRange:toCharacterRange:") ~typ:(id @-> NSRange.t @-> NSRange.t @-> returning NSRange.t) ~return_type:NSRange.t x willChangeSelectionFromCharacterRange toCharacterRange
 let validatePasswordSessionValue x self = msg_send ~self ~cmd:(selector "validatePasswordSessionValue:") ~typ:(id @-> returning bool) x
 let wantsUpdateLayerInView x self = msg_send ~self ~cmd:(selector "wantsUpdateLayerInView:") ~typ:(id @-> returning bool) x

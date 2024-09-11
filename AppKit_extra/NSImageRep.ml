@@ -13,9 +13,9 @@ let self = get_class "NSImageRep"
 
 let _CGImageForProposedRect x ~context ~hints self = msg_send ~self ~cmd:(selector "CGImageForProposedRect:context:hints:") ~typ:((ptr CGRect.t) @-> id @-> id @-> returning (ptr CGImage.t)) x context hints
 let _CGImageForProposedRect' x ~context ~hints ~flipped self = msg_send ~self ~cmd:(selector "CGImageForProposedRect:context:hints:flipped:") ~typ:((ptr CGRect.t) @-> id @-> id @-> bool @-> returning (ptr CGImage.t)) x context hints flipped
-let alignmentRect self = msg_send ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t)
+let alignmentRect self = msg_send_stret ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let bitsPerSample self = msg_send ~self ~cmd:(selector "bitsPerSample") ~typ:(returning llong)
-let capInsets self = msg_send ~self ~cmd:(selector "capInsets") ~typ:(returning NSEdgeInsets.t)
+let capInsets self = msg_send_stret ~self ~cmd:(selector "capInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let colorSpace self = msg_send ~self ~cmd:(selector "colorSpace") ~typ:(returning id)
 let colorSpaceName self = msg_send ~self ~cmd:(selector "colorSpaceName") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
@@ -47,4 +47,4 @@ let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-
 let setPixelsHigh x self = msg_send ~self ~cmd:(selector "setPixelsHigh:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setPixelsWide x self = msg_send ~self ~cmd:(selector "setPixelsWide:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning void) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t

@@ -13,7 +13,7 @@ let self = get_class "NSPICTImageRep"
 
 let _CGImageForProposedRect x ~context ~hints self = msg_send ~self ~cmd:(selector "CGImageForProposedRect:context:hints:") ~typ:((ptr CGRect.t) @-> id @-> id @-> returning (ptr CGImage.t)) x context hints
 let _PICTRepresentation self = msg_send ~self ~cmd:(selector "PICTRepresentation") ~typ:(returning id)
-let boundingBox self = msg_send ~self ~cmd:(selector "boundingBox") ~typ:(returning CGRect.t)
+let boundingBox self = msg_send_stret ~self ~cmd:(selector "boundingBox") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let draw self = msg_send ~self ~cmd:(selector "draw") ~typ:(returning bool)

@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSStatusBar"
 
-let backgroundSelectionInset self = msg_send ~self ~cmd:(selector "backgroundSelectionInset") ~typ:(returning CGSize.t)
+let backgroundSelectionInset self = msg_send_stret ~self ~cmd:(selector "backgroundSelectionInset") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let backgroundStyleForHighlight x self = msg_send ~self ~cmd:(selector "backgroundStyleForHighlight:") ~typ:(bool @-> returning llong) x
 let contentPadding self = msg_send ~self ~cmd:(selector "contentPadding") ~typ:(returning double)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

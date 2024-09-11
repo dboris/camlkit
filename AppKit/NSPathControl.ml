@@ -13,7 +13,7 @@ let self = get_class "NSPathControl"
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning id)
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning bool) x
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let allowedTypes self = msg_send ~self ~cmd:(selector "allowedTypes") ~typ:(returning id)
 let arrayWithArray x ~transformedByBlock self = msg_send ~self ~cmd:(selector "arrayWithArray:transformedByBlock:") ~typ:(id @-> (ptr void) @-> returning id) x transformedByBlock
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)

@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSTouchBarCustomizationPreviewSectionLayout"
 
 let accessibilityDescription self = msg_send ~self ~cmd:(selector "accessibilityDescription") ~typ:(returning id)
-let cachedContainmentRect self = msg_send ~self ~cmd:(selector "cachedContainmentRect") ~typ:(returning CGRect.t)
+let cachedContainmentRect self = msg_send_stret ~self ~cmd:(selector "cachedContainmentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let cachedLayoutAttributes self = msg_send ~self ~cmd:(selector "cachedLayoutAttributes") ~typ:(returning id)
 let canInsertItem x ~atIndex self = msg_send ~self ~cmd:(selector "canInsertItem:atIndex:") ~typ:(id @-> llong @-> returning bool) x (LLong.of_int atIndex)
 let canMoveItemAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "canMoveItemAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning bool) (LLong.of_int x) (LLong.of_int toIndex)

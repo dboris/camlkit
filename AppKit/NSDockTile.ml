@@ -25,4 +25,4 @@ let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~ty
 let setMiniView x self = msg_send ~self ~cmd:(selector "setMiniView:") ~typ:(id @-> returning void) x
 let setShowsApplicationBadge x self = msg_send ~self ~cmd:(selector "setShowsApplicationBadge:") ~typ:(bool @-> returning void) x
 let showsApplicationBadge self = msg_send ~self ~cmd:(selector "showsApplicationBadge") ~typ:(returning bool)
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t

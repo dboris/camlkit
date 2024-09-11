@@ -20,4 +20,4 @@ let itemLoadingToken self = msg_send ~self ~cmd:(selector "itemLoadingToken") ~t
 let setCustomLabel x self = msg_send ~self ~cmd:(selector "setCustomLabel:") ~typ:(id @-> returning void) x
 let setTargetRange x self = msg_send ~self ~cmd:(selector "setTargetRange:") ~typ:(NSRange.t @-> returning void) x
 let targetElement self = msg_send ~self ~cmd:(selector "targetElement") ~typ:(returning id)
-let targetRange self = msg_send ~self ~cmd:(selector "targetRange") ~typ:(returning NSRange.t)
+let targetRange self = msg_send_stret ~self ~cmd:(selector "targetRange") ~typ:(returning NSRange.t) ~return_type:NSRange.t

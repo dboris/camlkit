@@ -12,14 +12,14 @@ open CoreAnimation
 let self = get_class "NSPopoverColorWell"
 
 let afterRenderer self = msg_send ~self ~cmd:(selector "afterRenderer") ~typ:(returning (ptr void))
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let drawColor self = msg_send ~self ~cmd:(selector "drawColor") ~typ:(returning bool)
 let hasNoSelection self = msg_send ~self ~cmd:(selector "hasNoSelection") ~typ:(returning bool)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isEmptyColorEnabled self = msg_send ~self ~cmd:(selector "isEmptyColorEnabled") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x

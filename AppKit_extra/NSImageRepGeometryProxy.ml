@@ -11,8 +11,8 @@ open CoreAnimation
 
 let self = get_class "NSImageRepGeometryProxy"
 
-let alignmentRect self = msg_send ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t)
-let capInsets self = msg_send ~self ~cmd:(selector "capInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRect self = msg_send_stret ~self ~cmd:(selector "alignmentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let capInsets self = msg_send_stret ~self ~cmd:(selector "capInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSSplitDividerView"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -20,7 +20,7 @@ let effectiveThickness self = msg_send ~self ~cmd:(selector "effectiveThickness"
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let initWithStyle x ~orientation self = msg_send ~self ~cmd:(selector "initWithStyle:orientation:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int orientation)
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let leadingOverhang self = msg_send ~self ~cmd:(selector "leadingOverhang") ~typ:(returning double)
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)

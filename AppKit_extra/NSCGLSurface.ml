@@ -21,6 +21,6 @@ let isCGLContextAttached x self = msg_send ~self ~cmd:(selector "isCGLContextAtt
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let setColorSpace x self = msg_send ~self ~cmd:(selector "setColorSpace:") ~typ:((ptr CGColorSpace.t) @-> returning void) x
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning void) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let surfaceID self = msg_send ~self ~cmd:(selector "surfaceID") ~typ:(returning ullong)
 let synchronize self = msg_send ~self ~cmd:(selector "synchronize") ~typ:(returning void)
