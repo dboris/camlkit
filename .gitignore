@@ -1,5 +1,6 @@
 /_build
 local/
 vendor/
+.vscode/
 .DS_Store
 *.mobileprovision
