@@ -11,14 +11,14 @@ open Foundation
 let self = get_class "WKScrollerImpDelegate"
 
 let cancelAnimations self = msg_send ~self ~cmd:(selector "cancelAnimations") ~typ:(returning void)
-let convertRectFromBacking x self = msg_send ~self ~cmd:(selector "convertRectFromBacking:") ~typ:(CGRect.t @-> returning CGRect.t) x
-let convertRectToBacking x self = msg_send ~self ~cmd:(selector "convertRectToBacking:") ~typ:(CGRect.t @-> returning CGRect.t) x
-let convertRectToLayer x self = msg_send ~self ~cmd:(selector "convertRectToLayer:") ~typ:(CGRect.t @-> returning CGRect.t) x
+let convertRectFromBacking x self = msg_send_stret ~self ~cmd:(selector "convertRectFromBacking:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
+let convertRectToBacking x self = msg_send_stret ~self ~cmd:(selector "convertRectToBacking:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
+let convertRectToLayer x self = msg_send_stret ~self ~cmd:(selector "convertRectToLayer:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let effectiveAppearanceForScrollerImp x self = msg_send ~self ~cmd:(selector "effectiveAppearanceForScrollerImp:") ~typ:(id @-> returning id) x
 let initWithScroller x self = msg_send ~self ~cmd:(selector "initWithScroller:") ~typ:((ptr void) @-> returning id) x
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let layer self = msg_send ~self ~cmd:(selector "layer") ~typ:(returning id)
-let mouseLocationInScrollerForScrollerImp x self = msg_send ~self ~cmd:(selector "mouseLocationInScrollerForScrollerImp:") ~typ:(id @-> returning CGPoint.t) x
+let mouseLocationInScrollerForScrollerImp x self = msg_send_stret ~self ~cmd:(selector "mouseLocationInScrollerForScrollerImp:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let scrollerImp x ~animateExpansionTransitionWithDuration self = msg_send ~self ~cmd:(selector "scrollerImp:animateExpansionTransitionWithDuration:") ~typ:(id @-> double @-> returning void) x animateExpansionTransitionWithDuration
 let scrollerImp1 x ~animateUIStateTransitionWithDuration self = msg_send ~self ~cmd:(selector "scrollerImp:animateUIStateTransitionWithDuration:") ~typ:(id @-> double @-> returning void) x animateUIStateTransitionWithDuration
 let scrollerImp2 x ~overlayScrollerStateChangedTo self = msg_send ~self ~cmd:(selector "scrollerImp:overlayScrollerStateChangedTo:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int overlayScrollerStateChangedTo)

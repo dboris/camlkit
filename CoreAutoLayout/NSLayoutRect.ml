@@ -38,5 +38,5 @@ let ruleContainingLayoutRect x self = msg_send ~self ~cmd:(selector "ruleContain
 let ruleEqualToLayoutRect x self = msg_send ~self ~cmd:(selector "ruleEqualToLayoutRect:") ~typ:(id @-> returning id) x
 let topAnchor self = msg_send ~self ~cmd:(selector "topAnchor") ~typ:(returning id)
 let trailingAnchor self = msg_send ~self ~cmd:(selector "trailingAnchor") ~typ:(returning id)
-let valueInItem x self = msg_send ~self ~cmd:(selector "valueInItem:") ~typ:(id @-> returning CGRect.t) x
+let valueInItem x self = msg_send_stret ~self ~cmd:(selector "valueInItem:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let widthAnchor self = msg_send ~self ~cmd:(selector "widthAnchor") ~typ:(returning id)

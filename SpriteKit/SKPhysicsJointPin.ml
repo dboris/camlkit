@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "SKPhysicsJointPin"
 
-let anchor self = msg_send ~self ~cmd:(selector "anchor") ~typ:(returning CGPoint.t)
+let anchor self = msg_send_stret ~self ~cmd:(selector "anchor") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let frictionTorque self = msg_send ~self ~cmd:(selector "frictionTorque") ~typ:(returning double)
 let lowerAngleLimit self = msg_send ~self ~cmd:(selector "lowerAngleLimit") ~typ:(returning double)
 let rotationSpeed self = msg_send ~self ~cmd:(selector "rotationSpeed") ~typ:(returning double)

@@ -11,4 +11,4 @@ open Foundation
 let self = get_class "WKSafeBrowsingTextView"
 
 let initWithAttributedString x ~forWarning self = msg_send ~self ~cmd:(selector "initWithAttributedString:forWarning:") ~typ:(id @-> id @-> returning id) x forWarning
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

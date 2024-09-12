@@ -27,4 +27,4 @@ let parsePredicate self = msg_send ~self ~cmd:(selector "parsePredicate") ~typ:(
 let parsePredicateList self = msg_send ~self ~cmd:(selector "parsePredicateList") ~typ:(returning void)
 let parsePredicateWithParentheses self = msg_send ~self ~cmd:(selector "parsePredicateWithParentheses") ~typ:(returning void)
 let parseView self = msg_send ~self ~cmd:(selector "parseView") ~typ:(returning id)
-let rangeOfName self = msg_send ~self ~cmd:(selector "rangeOfName") ~typ:(returning NSRange.t)
+let rangeOfName self = msg_send_stret ~self ~cmd:(selector "rangeOfName") ~typ:(returning NSRange.t) ~return_type:NSRange.t

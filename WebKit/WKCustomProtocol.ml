@@ -10,7 +10,7 @@ open Foundation
 
 let self = get_class "WKCustomProtocol"
 
-let customProtocolID self = msg_send ~self ~cmd:(selector "customProtocolID") ~typ:(returning id)
+let customProtocolID self = msg_send_stret ~self ~cmd:(selector "customProtocolID") ~typ:(returning id) ~return_type:id
 let initWithRequest x ~cachedResponse ~client self = msg_send ~self ~cmd:(selector "initWithRequest:cachedResponse:client:") ~typ:(id @-> id @-> id @-> returning id) x cachedResponse client
 let initializationRunLoop self = msg_send ~self ~cmd:(selector "initializationRunLoop") ~typ:(returning (ptr CFRunLoop.t))
 let startLoading self = msg_send ~self ~cmd:(selector "startLoading") ~typ:(returning void)

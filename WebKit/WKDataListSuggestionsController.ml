@@ -10,8 +10,8 @@ open Foundation
 
 let self = get_class "WKDataListSuggestionsController"
 
-let currentSelectedString self = msg_send ~self ~cmd:(selector "currentSelectedString") ~typ:(returning void)
-let dropdownRectForElementRect x self = msg_send ~self ~cmd:(selector "dropdownRectForElementRect:") ~typ:((ptr void) @-> returning CGRect.t) x
+let currentSelectedString self = msg_send_stret ~self ~cmd:(selector "currentSelectedString") ~typ:(returning void) ~return_type:void
+let dropdownRectForElementRect x self = msg_send_stret ~self ~cmd:(selector "dropdownRectForElementRect:") ~typ:((ptr void) @-> returning CGRect.t) ~return_type:CGRect.t x
 let initWithInformation x ~inView self = msg_send ~self ~cmd:(selector "initWithInformation:inView:") ~typ:((ptr void) @-> id @-> returning id) x inView
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let moveSelectionByDirection x self = msg_send ~self ~cmd:(selector "moveSelectionByDirection:") ~typ:((ptr void) @-> returning void) x

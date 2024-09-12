@@ -19,4 +19,4 @@ let setMediaPlayerPrivateRemote x self = msg_send ~self ~cmd:(selector "setMedia
 let setVideoGravity x self = msg_send ~self ~cmd:(selector "setVideoGravity:") ~typ:(uchar @-> returning void) x
 let setVideoLayerFrame x self = msg_send ~self ~cmd:(selector "setVideoLayerFrame:") ~typ:(CGRect.t @-> returning void) x
 let videoGravity self = msg_send ~self ~cmd:(selector "videoGravity") ~typ:(returning uchar)
-let videoLayerFrame self = msg_send ~self ~cmd:(selector "videoLayerFrame") ~typ:(returning CGRect.t)
+let videoLayerFrame self = msg_send_stret ~self ~cmd:(selector "videoLayerFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t

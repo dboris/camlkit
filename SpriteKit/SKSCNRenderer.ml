@@ -13,12 +13,12 @@ open CoreText
 let self = get_class "SKSCNRenderer"
 
 let backingScaleFactor self = msg_send ~self ~cmd:(selector "backingScaleFactor") ~typ:(returning double)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let ignoresSiblingOrder self = msg_send ~self ~cmd:(selector "ignoresSiblingOrder") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithSKCRenderer x self = msg_send ~self ~cmd:(selector "initWithSKCRenderer:") ~typ:((ptr void) @-> returning id) x
-let pixelSize self = msg_send ~self ~cmd:(selector "pixelSize") ~typ:(returning CGSize.t)
+let pixelSize self = msg_send_stret ~self ~cmd:(selector "pixelSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let render x self = msg_send ~self ~cmd:(selector "render:") ~typ:(bool @-> returning void) x
 let renderToFramebuffer x ~shouldClear self = msg_send ~self ~cmd:(selector "renderToFramebuffer:shouldClear:") ~typ:(int @-> bool @-> returning void) x shouldClear
 let renderToTexture x ~commandQueue self = msg_send ~self ~cmd:(selector "renderToTexture:commandQueue:") ~typ:(id @-> id @-> returning void) x commandQueue

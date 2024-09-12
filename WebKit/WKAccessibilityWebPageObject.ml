@@ -26,6 +26,6 @@ let accessibilityParameterizedAttributeNames self = msg_send ~self ~cmd:(selecto
 let accessibilitySetValue x ~forAttribute self = msg_send ~self ~cmd:(selector "accessibilitySetValue:forAttribute:") ~typ:(id @-> id @-> returning void) x forAttribute
 let accessibilityShouldUseUniqueId self = msg_send ~self ~cmd:(selector "accessibilityShouldUseUniqueId") ~typ:(returning bool)
 let cachedParameterizedAttributeNames self = msg_send ~self ~cmd:(selector "cachedParameterizedAttributeNames") ~typ:(returning id)
-let convertScreenPointToRootView x self = msg_send ~self ~cmd:(selector "convertScreenPointToRootView:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let convertScreenPointToRootView x self = msg_send_stret ~self ~cmd:(selector "convertScreenPointToRootView:") ~typ:(CGPoint.t @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let setCachedParameterizedAttributeNames x self = msg_send ~self ~cmd:(selector "setCachedParameterizedAttributeNames:") ~typ:(id @-> returning void) x

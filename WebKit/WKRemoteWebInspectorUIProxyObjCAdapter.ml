@@ -14,4 +14,4 @@ let initWithRemoteWebInspectorUIProxy x self = msg_send ~self ~cmd:(selector "in
 let inspectorViewControllerInspectorDidCrash x self = msg_send ~self ~cmd:(selector "inspectorViewControllerInspectorDidCrash:") ~typ:(id @-> returning void) x
 let inspectorViewControllerInspectorIsUnderTest x self = msg_send ~self ~cmd:(selector "inspectorViewControllerInspectorIsUnderTest:") ~typ:(id @-> returning bool) x
 let inspectorWKWebViewDidBecomeActive x self = msg_send ~self ~cmd:(selector "inspectorWKWebViewDidBecomeActive:") ~typ:(id @-> returning void) x
-let window x ~willPositionSheet ~usingRect self = msg_send ~self ~cmd:(selector "window:willPositionSheet:usingRect:") ~typ:(id @-> id @-> CGRect.t @-> returning CGRect.t) x willPositionSheet usingRect
+let window x ~willPositionSheet ~usingRect self = msg_send_stret ~self ~cmd:(selector "window:willPositionSheet:usingRect:") ~typ:(id @-> id @-> CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x willPositionSheet usingRect

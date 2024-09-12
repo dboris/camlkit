@@ -12,7 +12,7 @@ let self = get_class "WKWebViewConfiguration"
 
 let allowsAirPlayForMediaPlayback self = msg_send ~self ~cmd:(selector "allowsAirPlayForMediaPlayback") ~typ:(returning bool)
 let applicationNameForUserAgent self = msg_send ~self ~cmd:(selector "applicationNameForUserAgent") ~typ:(returning id)
-let copyPageConfiguration self = msg_send ~self ~cmd:(selector "copyPageConfiguration") ~typ:(returning id)
+let copyPageConfiguration self = msg_send_stret ~self ~cmd:(selector "copyPageConfiguration") ~typ:(returning id) ~return_type:id
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let defaultWebpagePreferences self = msg_send ~self ~cmd:(selector "defaultWebpagePreferences") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

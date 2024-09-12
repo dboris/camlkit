@@ -61,4 +61,4 @@ let setResting x self = msg_send ~self ~cmd:(selector "setResting:") ~typ:(bool 
 let setRestitution x self = msg_send ~self ~cmd:(selector "setRestitution:") ~typ:(double @-> returning void) x
 let setUsesPreciseCollisionDetection x self = msg_send ~self ~cmd:(selector "setUsesPreciseCollisionDetection:") ~typ:(bool @-> returning void) x
 let usesPreciseCollisionDetection self = msg_send ~self ~cmd:(selector "usesPreciseCollisionDetection") ~typ:(returning bool)
-let velocity self = msg_send ~self ~cmd:(selector "velocity") ~typ:(returning CGVector.t)
+let velocity self = msg_send_stret ~self ~cmd:(selector "velocity") ~typ:(returning CGVector.t) ~return_type:CGVector.t

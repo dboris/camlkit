@@ -23,6 +23,6 @@ let layoutPointByOffsettingWithXOffsetDimension x ~yOffsetDimension self = msg_s
 let pointByOffsettingWithXOffset x ~yOffset self = msg_send ~self ~cmd:(selector "pointByOffsettingWithXOffset:yOffset:") ~typ:(double @-> double @-> returning id) x yOffset
 let pointByOffsettingWithXOffsetDimension x ~yOffsetDimension self = msg_send ~self ~cmd:(selector "pointByOffsettingWithXOffsetDimension:yOffsetDimension:") ~typ:(id @-> id @-> returning id) x yOffsetDimension
 let ruleEqualToLayoutPoint x self = msg_send ~self ~cmd:(selector "ruleEqualToLayoutPoint:") ~typ:(id @-> returning id) x
-let valueInItem x self = msg_send ~self ~cmd:(selector "valueInItem:") ~typ:(id @-> returning CGPoint.t) x
+let valueInItem x self = msg_send_stret ~self ~cmd:(selector "valueInItem:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let xAxisAnchor self = msg_send ~self ~cmd:(selector "xAxisAnchor") ~typ:(returning id)
 let yAxisAnchor self = msg_send ~self ~cmd:(selector "yAxisAnchor") ~typ:(returning id)

@@ -11,7 +11,7 @@ open Foundation
 let self = get_class "WKScrollView"
 
 let boundsDidChange x self = msg_send ~self ~cmd:(selector "boundsDidChange:") ~typ:(id @-> returning void) x
-let contentOffset self = msg_send ~self ~cmd:(selector "contentOffset") ~typ:(returning CGPoint.t)
+let contentOffset self = msg_send_stret ~self ~cmd:(selector "contentOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x

@@ -32,4 +32,4 @@ let setPointOfView x self = msg_send ~self ~cmd:(selector "setPointOfView:") ~ty
 let setSceneTime x self = msg_send ~self ~cmd:(selector "setSceneTime:") ~typ:(double @-> returning void) x
 let setScnScene x self = msg_send ~self ~cmd:(selector "setScnScene:") ~typ:(id @-> returning void) x
 let setViewportSize x self = msg_send ~self ~cmd:(selector "setViewportSize:") ~typ:(CGSize.t @-> returning void) x
-let viewportSize self = msg_send ~self ~cmd:(selector "viewportSize") ~typ:(returning CGSize.t)
+let viewportSize self = msg_send_stret ~self ~cmd:(selector "viewportSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

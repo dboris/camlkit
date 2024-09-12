@@ -19,4 +19,4 @@ let initWithViewportSize x self = msg_send ~self ~cmd:(selector "initWithViewpor
 let needsRenderForTime x self = msg_send ~self ~cmd:(selector "needsRenderForTime:") ~typ:(double @-> returning bool) x
 let renderForTime x self = msg_send ~self ~cmd:(selector "renderForTime:") ~typ:(double @-> returning void) x
 let setViewportSize x self = msg_send ~self ~cmd:(selector "setViewportSize:") ~typ:(CGSize.t @-> returning void) x
-let viewportSize self = msg_send ~self ~cmd:(selector "viewportSize") ~typ:(returning CGSize.t)
+let viewportSize self = msg_send_stret ~self ~cmd:(selector "viewportSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

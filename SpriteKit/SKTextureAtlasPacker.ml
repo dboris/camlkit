@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "SKTextureAtlasPacker"
 
-let calcNonAlphaArea x self = msg_send ~self ~cmd:(selector "calcNonAlphaArea:") ~typ:((ptr CGImage.t) @-> returning CGRect.t) x
+let calcNonAlphaArea x self = msg_send_stret ~self ~cmd:(selector "calcNonAlphaArea:") ~typ:((ptr CGImage.t) @-> returning CGRect.t) ~return_type:CGRect.t x
 let copyRotateCGImage x ~direction self = msg_send ~self ~cmd:(selector "copyRotateCGImage:direction:") ~typ:((ptr CGImage.t) @-> bool @-> returning (ptr CGImage.t)) x direction
 let generateMetaData self = msg_send ~self ~cmd:(selector "generateMetaData") ~typ:(returning id)
 let generateTextureAtlasImages x ~outputDictionary ~forcePOT self = msg_send ~self ~cmd:(selector "generateTextureAtlasImages:outputDictionary:forcePOT:") ~typ:(id @-> (ptr id) @-> bool @-> returning void) x outputDictionary forcePOT
