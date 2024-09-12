@@ -1,8 +1,5 @@
 (* auto-generated, do not modify *)
 
-open Runtime
-open Objc
-
 let _PHYSICSKIT_MINUS_GL_IMPORTS = 1
 let _SKActionTimingEaseIn = 1
 let _SKActionTimingEaseInEaseOut = 3
