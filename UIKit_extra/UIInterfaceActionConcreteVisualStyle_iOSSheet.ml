@@ -13,6 +13,6 @@ open CoreText
 let self = get_class "UIInterfaceActionConcreteVisualStyle_iOSSheet"
 
 let actionSectionSpacing self = msg_send ~self ~cmd:(selector "actionSectionSpacing") ~typ:(returning double)
-let contentMargin self = msg_send ~self ~cmd:(selector "contentMargin") ~typ:(returning UIEdgeInsets.t)
-let minimumActionContentSize self = msg_send ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning CGSize.t)
+let contentMargin self = msg_send_stret ~self ~cmd:(selector "contentMargin") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
+let minimumActionContentSize self = msg_send_stret ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let newActionBackgroundViewForViewState x self = msg_send ~self ~cmd:(selector "newActionBackgroundViewForViewState:") ~typ:(id @-> returning id) x

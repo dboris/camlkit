@@ -12,5 +12,5 @@ open CoreText
 
 let self = get_class "UITextLoupePanGestureRecognizer"
 
-let startPoint self = msg_send ~self ~cmd:(selector "startPoint") ~typ:(returning CGPoint.t)
+let startPoint self = msg_send_stret ~self ~cmd:(selector "startPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let touchesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "touchesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent

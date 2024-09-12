@@ -18,6 +18,6 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let isUsableForCacheToken x ~withRenderFlags self = msg_send ~self ~cmd:(selector "isUsableForCacheToken:withRenderFlags:") ~typ:(id @-> llong @-> returning bool) x (LLong.of_int withRenderFlags)
 let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-> returning void) x
 let setStyling x self = msg_send ~self ~cmd:(selector "setStyling:") ~typ:(void @-> returning void) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let stringForSplitState x ~handBias self = msg_send ~self ~cmd:(selector "stringForSplitState:handBias:") ~typ:(bool @-> llong @-> returning id) x (LLong.of_int handBias)
 let styling self = msg_send ~self ~cmd:(selector "styling") ~typ:(returning void)

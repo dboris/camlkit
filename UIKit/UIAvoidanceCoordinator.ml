@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIAvoidanceCoordinator"
 
 let addAvoidanceObject x self = msg_send ~self ~cmd:(selector "addAvoidanceObject:") ~typ:(id @-> returning void) x
-let avoidanceFrame self = msg_send ~self ~cmd:(selector "avoidanceFrame") ~typ:(returning CGRect.t)
+let avoidanceFrame self = msg_send_stret ~self ~cmd:(selector "avoidanceFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let findBlockadesForName x self = msg_send ~self ~cmd:(selector "findBlockadesForName:") ~typ:(id @-> returning id) x
 let findClientsForBlockade x self = msg_send ~self ~cmd:(selector "findClientsForBlockade:") ~typ:(id @-> returning id) x

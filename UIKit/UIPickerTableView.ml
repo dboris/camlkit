@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIPickerTableView"
 
-let contentOffsetForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "contentOffsetForRowAtIndexPath:") ~typ:(id @-> returning CGPoint.t) x
+let contentOffsetForRowAtIndexPath x self = msg_send_stret ~self ~cmd:(selector "contentOffsetForRowAtIndexPath:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let didSelectDisabled x self = msg_send ~self ~cmd:(selector "didSelectDisabled:") ~typ:(bool @-> returning bool) x
 let generatorActivated self = msg_send ~self ~cmd:(selector "generatorActivated") ~typ:(returning bool)
@@ -28,7 +28,7 @@ let scrollViewWillBeginDragging x self = msg_send ~self ~cmd:(selector "scrollVi
 let scrollViewWillEndDragging x ~withVelocity ~targetContentOffset self = msg_send ~self ~cmd:(selector "scrollViewWillEndDragging:withVelocity:targetContentOffset:") ~typ:(id @-> CGPoint.t @-> (ptr CGPoint.t) @-> returning void) x withVelocity targetContentOffset
 let selectRow x ~animated ~notify self = msg_send ~self ~cmd:(selector "selectRow:animated:notify:") ~typ:(llong @-> bool @-> bool @-> returning bool) (LLong.of_int x) animated notify
 let selectRow' x ~animated ~notify ~updateChecked self = msg_send ~self ~cmd:(selector "selectRow:animated:notify:updateChecked:") ~typ:(llong @-> bool @-> bool @-> bool @-> returning bool) (LLong.of_int x) animated notify updateChecked
-let selectionBarRect self = msg_send ~self ~cmd:(selector "selectionBarRect") ~typ:(returning CGRect.t)
+let selectionBarRect self = msg_send_stret ~self ~cmd:(selector "selectionBarRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let selectionBarRow self = msg_send ~self ~cmd:(selector "selectionBarRow") ~typ:(returning llong)
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning void) x
 let setContentOffset x self = msg_send ~self ~cmd:(selector "setContentOffset:") ~typ:(CGPoint.t @-> returning void) x

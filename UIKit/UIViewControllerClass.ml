@@ -13,7 +13,7 @@ open CoreText
 let _XPCInterface self = msg_send ~self ~cmd:(selector "XPCInterface") ~typ:(returning id)
 let attemptRotationToDeviceOrientation self = msg_send ~self ~cmd:(selector "attemptRotationToDeviceOrientation") ~typ:(returning void)
 let customTransitionDuration self = msg_send ~self ~cmd:(selector "customTransitionDuration") ~typ:(returning double)
-let defaultFormSheetSize self = msg_send ~self ~cmd:(selector "defaultFormSheetSize") ~typ:(returning CGSize.t)
+let defaultFormSheetSize self = msg_send_stret ~self ~cmd:(selector "defaultFormSheetSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let doesOverridePreferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "doesOverridePreferredInterfaceOrientationForPresentation") ~typ:(returning bool)
 let doesOverrideViewControllerMethod x self = msg_send ~self ~cmd:(selector "doesOverrideViewControllerMethod:") ~typ:(_SEL @-> returning bool) x
 let doesOverrideViewControllerMethod' x ~inBaseClass self = msg_send ~self ~cmd:(selector "doesOverrideViewControllerMethod:inBaseClass:") ~typ:(_SEL @-> _Class @-> returning bool) x inBaseClass

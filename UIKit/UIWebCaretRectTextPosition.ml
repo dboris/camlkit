@@ -12,5 +12,5 @@ open CoreText
 
 let self = get_class "UIWebCaretRectTextPosition"
 
-let caretRect self = msg_send ~self ~cmd:(selector "caretRect") ~typ:(returning CGRect.t)
+let caretRect self = msg_send_stret ~self ~cmd:(selector "caretRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let initWithCaretRect x self = msg_send ~self ~cmd:(selector "initWithCaretRect:") ~typ:(CGRect.t @-> returning id) x

@@ -14,11 +14,11 @@ let self = get_class "UIInputViewSetPlacementAssistantOnScreen"
 
 let accessoryViewWillAppear self = msg_send ~self ~cmd:(selector "accessoryViewWillAppear") ~typ:(returning bool)
 let applicatorClassForKeyboard x self = msg_send ~self ~cmd:(selector "applicatorClassForKeyboard:") ~typ:(bool @-> returning _Class) x
-let inputAccessoryViewPadding self = msg_send ~self ~cmd:(selector "inputAccessoryViewPadding") ~typ:(returning UIEdgeInsets.t)
+let inputAccessoryViewPadding self = msg_send_stret ~self ~cmd:(selector "inputAccessoryViewPadding") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let inputAssistantViewHeightForInputViewSet x self = msg_send ~self ~cmd:(selector "inputAssistantViewHeightForInputViewSet:") ~typ:(id @-> returning double) x
 let inputViewWillAppear self = msg_send ~self ~cmd:(selector "inputViewWillAppear") ~typ:(returning bool)
 let isFloatingAssistantView self = msg_send ~self ~cmd:(selector "isFloatingAssistantView") ~typ:(returning bool)
-let remoteIntrinsicContentSizeForInputViewInSet x ~includingIAV self = msg_send ~self ~cmd:(selector "remoteIntrinsicContentSizeForInputViewInSet:includingIAV:") ~typ:(id @-> bool @-> returning CGRect.t) x includingIAV
+let remoteIntrinsicContentSizeForInputViewInSet x ~includingIAV self = msg_send_stret ~self ~cmd:(selector "remoteIntrinsicContentSizeForInputViewInSet:includingIAV:") ~typ:(id @-> bool @-> returning CGRect.t) ~return_type:CGRect.t x includingIAV
 let showsEditItems self = msg_send ~self ~cmd:(selector "showsEditItems") ~typ:(returning bool)
 let showsInputOrAssistantViews self = msg_send ~self ~cmd:(selector "showsInputOrAssistantViews") ~typ:(returning bool)
 let showsInputViews self = msg_send ~self ~cmd:(selector "showsInputViews") ~typ:(returning bool)

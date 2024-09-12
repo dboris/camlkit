@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIDebuggingInformationOverlay"
 
 let checkingTouches self = msg_send ~self ~cmd:(selector "checkingTouches") ~typ:(returning bool)
-let drawingOrigin self = msg_send ~self ~cmd:(selector "drawingOrigin") ~typ:(returning CGPoint.t)
+let drawingOrigin self = msg_send_stret ~self ~cmd:(selector "drawingOrigin") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning id) x withEvent
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x

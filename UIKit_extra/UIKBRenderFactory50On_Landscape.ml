@@ -18,4 +18,4 @@ let keyplaneSwitchKeyFontSize self = msg_send ~self ~cmd:(selector "keyplaneSwit
 let messagesWriteboardKeyImageName self = msg_send ~self ~cmd:(selector "messagesWriteboardKeyImageName") ~typ:(returning id)
 let returnKeyFontSize self = msg_send ~self ~cmd:(selector "returnKeyFontSize") ~typ:(returning double)
 let spaceKeyFontSize self = msg_send ~self ~cmd:(selector "spaceKeyFontSize") ~typ:(returning double)
-let symbolFrameInsets self = msg_send ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t)
+let symbolFrameInsets self = msg_send_stret ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

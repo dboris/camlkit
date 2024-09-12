@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIPanelController"
 
 let addWrapperBlockForNextUpdate x self = msg_send ~self ~cmd:(selector "addWrapperBlockForNextUpdate:") ~typ:((ptr void) @-> returning void) x
-let additionalSidebarSafeAreaInsets self = msg_send ~self ~cmd:(selector "additionalSidebarSafeAreaInsets") ~typ:(returning UIEdgeInsets.t)
+let additionalSidebarSafeAreaInsets self = msg_send_stret ~self ~cmd:(selector "additionalSidebarSafeAreaInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let allViewControllers self = msg_send ~self ~cmd:(selector "allViewControllers") ~typ:(returning id)
 let animateToRequest x self = msg_send ~self ~cmd:(selector "animateToRequest:") ~typ:(id @-> returning void) x
 let animateToRequest1 x ~forceOverlay self = msg_send ~self ~cmd:(selector "animateToRequest:forceOverlay:") ~typ:(id @-> bool @-> returning void) x forceOverlay

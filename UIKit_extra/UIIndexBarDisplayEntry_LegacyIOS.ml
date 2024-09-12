@@ -12,8 +12,8 @@ open CoreText
 
 let self = get_class "UIIndexBarDisplayEntry_LegacyIOS"
 
-let baselinePoint self = msg_send ~self ~cmd:(selector "baselinePoint") ~typ:(returning CGPoint.t)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let baselinePoint self = msg_send_stret ~self ~cmd:(selector "baselinePoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let line self = msg_send ~self ~cmd:(selector "line") ~typ:(returning id)
@@ -22,4 +22,4 @@ let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning void) x
 let setLine x self = msg_send ~self ~cmd:(selector "setLine:") ~typ:(id @-> returning void) x
 let setTypeBounds x self = msg_send ~self ~cmd:(selector "setTypeBounds:") ~typ:(CGRect.t @-> returning void) x
-let typeBounds self = msg_send ~self ~cmd:(selector "typeBounds") ~typ:(returning CGRect.t)
+let typeBounds self = msg_send_stret ~self ~cmd:(selector "typeBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t

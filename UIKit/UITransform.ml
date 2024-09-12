@@ -21,4 +21,4 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let succinctDescription self = msg_send ~self ~cmd:(selector "succinctDescription") ~typ:(returning id)
 let succinctDescriptionBuilder self = msg_send ~self ~cmd:(selector "succinctDescriptionBuilder") ~typ:(returning id)
-let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t)
+let transform self = msg_send_stret ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t

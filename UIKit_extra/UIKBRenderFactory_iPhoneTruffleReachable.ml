@@ -13,4 +13,4 @@ open CoreText
 let self = get_class "UIKBRenderFactory_iPhoneTruffleReachable"
 
 let variantWideShadowWeight self = msg_send ~self ~cmd:(selector "variantWideShadowWeight") ~typ:(returning double)
-let wideShadowPaddleInsets self = msg_send ~self ~cmd:(selector "wideShadowPaddleInsets") ~typ:(returning UIEdgeInsets.t)
+let wideShadowPaddleInsets self = msg_send_stret ~self ~cmd:(selector "wideShadowPaddleInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

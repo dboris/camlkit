@@ -14,7 +14,7 @@ let self = get_class "UIImageView"
 
 let adjustsImageSizeForAccessibilityContentSizeCategory self = msg_send ~self ~cmd:(selector "adjustsImageSizeForAccessibilityContentSizeCategory") ~typ:(returning bool)
 let adjustsImageWhenAncestorFocused self = msg_send ~self ~cmd:(selector "adjustsImageWhenAncestorFocused") ~typ:(returning bool)
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let animationDuration self = msg_send ~self ~cmd:(selector "animationDuration") ~typ:(returning double)
 let animationImages self = msg_send ~self ~cmd:(selector "animationImages") ~typ:(returning id)
 let animationRepeatCount self = msg_send ~self ~cmd:(selector "animationRepeatCount") ~typ:(returning llong)
@@ -73,7 +73,7 @@ let setPreferredSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setP
 let setSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "setSemanticContentAttribute:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setSymbolConfiguration:") ~typ:(id @-> returning void) x
 let setTranslatesAutoresizingMaskIntoConstraints x self = msg_send ~self ~cmd:(selector "setTranslatesAutoresizingMaskIntoConstraints:") ~typ:(bool @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let startAnimating self = msg_send ~self ~cmd:(selector "startAnimating") ~typ:(returning void)
 let stopAnimating self = msg_send ~self ~cmd:(selector "stopAnimating") ~typ:(returning void)
 let symbolConfiguration self = msg_send ~self ~cmd:(selector "symbolConfiguration") ~typ:(returning id)

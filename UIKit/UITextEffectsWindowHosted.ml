@@ -12,6 +12,6 @@ open CoreText
 
 let self = get_class "UITextEffectsWindowHosted"
 
-let actualSceneBounds self = msg_send ~self ~cmd:(selector "actualSceneBounds") ~typ:(returning CGRect.t)
-let actualSceneBoundsForLandscape x self = msg_send ~self ~cmd:(selector "actualSceneBoundsForLandscape:") ~typ:(bool @-> returning CGRect.t) x
-let safeAreaInsets self = msg_send ~self ~cmd:(selector "safeAreaInsets") ~typ:(returning UIEdgeInsets.t)
+let actualSceneBounds self = msg_send_stret ~self ~cmd:(selector "actualSceneBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let actualSceneBoundsForLandscape x self = msg_send_stret ~self ~cmd:(selector "actualSceneBoundsForLandscape:") ~typ:(bool @-> returning CGRect.t) ~return_type:CGRect.t x
+let safeAreaInsets self = msg_send_stret ~self ~cmd:(selector "safeAreaInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

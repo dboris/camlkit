@@ -10,4 +10,4 @@ open CoreText
 
 (** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiprogressview?language=objc}UIProgressView} *)
 
-let defaultSize self = msg_send ~self ~cmd:(selector "defaultSize") ~typ:(returning CGSize.t)
+let defaultSize self = msg_send_stret ~self ~cmd:(selector "defaultSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

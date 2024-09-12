@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIWKAutocorrectionRects"
 
-let firstRect self = msg_send ~self ~cmd:(selector "firstRect") ~typ:(returning CGRect.t)
-let lastRect self = msg_send ~self ~cmd:(selector "lastRect") ~typ:(returning CGRect.t)
+let firstRect self = msg_send_stret ~self ~cmd:(selector "firstRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let lastRect self = msg_send_stret ~self ~cmd:(selector "lastRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let setFirstRect x self = msg_send ~self ~cmd:(selector "setFirstRect:") ~typ:(CGRect.t @-> returning void) x
 let setLastRect x self = msg_send ~self ~cmd:(selector "setLastRect:") ~typ:(CGRect.t @-> returning void) x

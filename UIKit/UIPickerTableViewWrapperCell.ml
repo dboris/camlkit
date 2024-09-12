@@ -18,4 +18,4 @@ let resizeSubviewsWithOldSize x self = msg_send ~self ~cmd:(selector "resizeSubv
 let setWrappedView x self = msg_send ~self ~cmd:(selector "setWrappedView:") ~typ:(id @-> returning void) x
 let setWrappedViewInsets x self = msg_send ~self ~cmd:(selector "setWrappedViewInsets:") ~typ:(UIEdgeInsets.t @-> returning void) x
 let wrappedView self = msg_send ~self ~cmd:(selector "wrappedView") ~typ:(returning id)
-let wrappedViewInsets self = msg_send ~self ~cmd:(selector "wrappedViewInsets") ~typ:(returning UIEdgeInsets.t)
+let wrappedViewInsets self = msg_send_stret ~self ~cmd:(selector "wrappedViewInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

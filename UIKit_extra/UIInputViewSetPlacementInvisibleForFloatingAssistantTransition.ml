@@ -15,4 +15,4 @@ let self = get_class "UIInputViewSetPlacementInvisibleForFloatingAssistantTransi
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning double)
 let isCompactAssistantView self = msg_send ~self ~cmd:(selector "isCompactAssistantView") ~typ:(returning bool)
 let isFloatingAssistantView self = msg_send ~self ~cmd:(selector "isFloatingAssistantView") ~typ:(returning bool)
-let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t)
+let transform self = msg_send_stret ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t

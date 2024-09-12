@@ -14,7 +14,7 @@ let self = get_class "UITextInteractionSelectableInputDelegate"
 
 let baseWritingDirectionForPosition x ~inDirection self = msg_send ~self ~cmd:(selector "baseWritingDirectionForPosition:inDirection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int inDirection)
 let beginningOfDocument self = msg_send ~self ~cmd:(selector "beginningOfDocument") ~typ:(returning id)
-let caretRectForPosition x self = msg_send ~self ~cmd:(selector "caretRectForPosition:") ~typ:(id @-> returning CGRect.t) x
+let caretRectForPosition x self = msg_send_stret ~self ~cmd:(selector "caretRectForPosition:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let characterRangeAtPoint x self = msg_send ~self ~cmd:(selector "characterRangeAtPoint:") ~typ:(CGPoint.t @-> returning id) x
 let characterRangeByExtendingPosition x ~inDirection self = msg_send ~self ~cmd:(selector "characterRangeByExtendingPosition:inDirection:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int inDirection)
 let closestPositionToPoint x self = msg_send ~self ~cmd:(selector "closestPositionToPoint:") ~typ:(CGPoint.t @-> returning id) x
@@ -22,7 +22,7 @@ let closestPositionToPoint' x ~withinRange self = msg_send ~self ~cmd:(selector 
 let comparePosition x ~toPosition self = msg_send ~self ~cmd:(selector "comparePosition:toPosition:") ~typ:(id @-> id @-> returning llong) x toPosition
 let deleteBackward self = msg_send ~self ~cmd:(selector "deleteBackward") ~typ:(returning void)
 let endOfDocument self = msg_send ~self ~cmd:(selector "endOfDocument") ~typ:(returning id)
-let firstRectForRange x self = msg_send ~self ~cmd:(selector "firstRectForRange:") ~typ:(id @-> returning CGRect.t) x
+let firstRectForRange x self = msg_send_stret ~self ~cmd:(selector "firstRectForRange:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let hasText self = msg_send ~self ~cmd:(selector "hasText") ~typ:(returning bool)
 let inputDelegate self = msg_send ~self ~cmd:(selector "inputDelegate") ~typ:(returning id)
 let insertText x self = msg_send ~self ~cmd:(selector "insertText:") ~typ:(id @-> returning void) x

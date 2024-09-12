@@ -12,9 +12,9 @@ open CoreText
 
 let self = get_class "UIInterfaceActionConcreteVisualStyle_iOSInlineActionSheet"
 
-let contentMargin self = msg_send ~self ~cmd:(selector "contentMargin") ~typ:(returning UIEdgeInsets.t)
+let contentMargin self = msg_send_stret ~self ~cmd:(selector "contentMargin") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let horizontalImageContentSpacing self = msg_send ~self ~cmd:(selector "horizontalImageContentSpacing") ~typ:(returning double)
-let minimumActionContentSize self = msg_send ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning CGSize.t)
+let minimumActionContentSize self = msg_send_stret ~self ~cmd:(selector "minimumActionContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let newActionBackgroundViewForViewState x self = msg_send ~self ~cmd:(selector "newActionBackgroundViewForViewState:") ~typ:(id @-> returning id) x
 let newGroupBackgroundViewWithGroupViewState x self = msg_send ~self ~cmd:(selector "newGroupBackgroundViewWithGroupViewState:") ~typ:(id @-> returning id) x
 let verticalImageContentSpacing self = msg_send ~self ~cmd:(selector "verticalImageContentSpacing") ~typ:(returning double)

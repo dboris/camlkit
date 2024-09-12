@@ -14,13 +14,13 @@ let self = get_class "UIFieldBehavior"
 
 let addItem x self = msg_send ~self ~cmd:(selector "addItem:") ~typ:(id @-> returning void) x
 let animationSpeed self = msg_send ~self ~cmd:(selector "animationSpeed") ~typ:(returning double)
-let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning CGVector.t)
+let direction self = msg_send_stret ~self ~cmd:(selector "direction") ~typ:(returning CGVector.t) ~return_type:CGVector.t
 let falloff self = msg_send ~self ~cmd:(selector "falloff") ~typ:(returning double)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning bool)
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)
 let minimumRadius self = msg_send ~self ~cmd:(selector "minimumRadius") ~typ:(returning double)
-let position self = msg_send ~self ~cmd:(selector "position") ~typ:(returning CGPoint.t)
+let position self = msg_send_stret ~self ~cmd:(selector "position") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let region self = msg_send ~self ~cmd:(selector "region") ~typ:(returning id)
 let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:(id @-> returning void) x
 let setAnimationSpeed x self = msg_send ~self ~cmd:(selector "setAnimationSpeed:") ~typ:(double @-> returning void) x

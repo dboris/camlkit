@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIMovieScrubber"
 
-let alignmentMargins self = msg_send ~self ~cmd:(selector "alignmentMargins") ~typ:(returning UIEdgeInsets.t)
+let alignmentMargins self = msg_send_stret ~self ~cmd:(selector "alignmentMargins") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let animateAfterEdit self = msg_send ~self ~cmd:(selector "animateAfterEdit") ~typ:(returning void)
 let animateCancelEdit self = msg_send ~self ~cmd:(selector "animateCancelEdit") ~typ:(returning void)
 let beginTrackingWithLocatable x self = msg_send ~self ~cmd:(selector "beginTrackingWithLocatable:") ~typ:(id @-> returning void) x
@@ -30,7 +30,7 @@ let forceUnzoom self = msg_send ~self ~cmd:(selector "forceUnzoom") ~typ:(return
 let forceZoom self = msg_send ~self ~cmd:(selector "forceZoom") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isAnimatingValueChange self = msg_send ~self ~cmd:(selector "isAnimatingValueChange") ~typ:(returning bool)
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning bool)
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning bool)
@@ -75,10 +75,10 @@ let setValue' x ~animated self = msg_send ~self ~cmd:(selector "setValue:animate
 let setZoomAnimationDuration x self = msg_send ~self ~cmd:(selector "setZoomAnimationDuration:") ~typ:(double @-> returning void) x
 let setZoomDelay x self = msg_send ~self ~cmd:(selector "setZoomDelay:") ~typ:(double @-> returning void) x
 let showTimeViews self = msg_send ~self ~cmd:(selector "showTimeViews") ~typ:(returning bool)
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let thumbIsVisible self = msg_send ~self ~cmd:(selector "thumbIsVisible") ~typ:(returning bool)
-let thumbRectForValue x self = msg_send ~self ~cmd:(selector "thumbRectForValue:") ~typ:(double @-> returning CGRect.t) x
-let trackRect self = msg_send ~self ~cmd:(selector "trackRect") ~typ:(returning CGRect.t)
+let thumbRectForValue x self = msg_send_stret ~self ~cmd:(selector "thumbRectForValue:") ~typ:(double @-> returning CGRect.t) ~return_type:CGRect.t x
+let trackRect self = msg_send_stret ~self ~cmd:(selector "trackRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let trimEndValue self = msg_send ~self ~cmd:(selector "trimEndValue") ~typ:(returning double)
 let trimStartValue self = msg_send ~self ~cmd:(selector "trimStartValue") ~typ:(returning double)
 let value self = msg_send ~self ~cmd:(selector "value") ~typ:(returning double)

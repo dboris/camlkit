@@ -21,4 +21,4 @@ let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning 
 let showsInputOrAssistantViews self = msg_send ~self ~cmd:(selector "showsInputOrAssistantViews") ~typ:(returning bool)
 let showsInputViews self = msg_send ~self ~cmd:(selector "showsInputViews") ~typ:(returning bool)
 let showsKeyboard self = msg_send ~self ~cmd:(selector "showsKeyboard") ~typ:(returning bool)
-let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t)
+let transform self = msg_send_stret ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t

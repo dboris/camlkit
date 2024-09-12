@@ -46,6 +46,6 @@ let setOriginatingNavigationItem x self = msg_send ~self ~cmd:(selector "setOrig
 let setPointerInteractionEnabled x self = msg_send ~self ~cmd:(selector "setPointerInteractionEnabled:") ~typ:(bool @-> returning void) x
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(int @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning int)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)

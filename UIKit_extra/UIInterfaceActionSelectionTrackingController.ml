@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIInterfaceActionSelectionTrackingController"
 
-let actionSelectionInitialLocationInContainerView self = msg_send ~self ~cmd:(selector "actionSelectionInitialLocationInContainerView") ~typ:(returning CGPoint.t)
+let actionSelectionInitialLocationInContainerView self = msg_send_stret ~self ~cmd:(selector "actionSelectionInitialLocationInContainerView") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let actionsScrollView self = msg_send ~self ~cmd:(selector "actionsScrollView") ~typ:(returning id)
 let beginTrackingSessionByTakingOverForSystemProvidedGestureRecognizer x self = msg_send ~self ~cmd:(selector "beginTrackingSessionByTakingOverForSystemProvidedGestureRecognizer:") ~typ:(id @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

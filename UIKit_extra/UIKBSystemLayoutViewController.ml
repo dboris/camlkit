@@ -12,10 +12,10 @@ open CoreText
 
 let self = get_class "UIKBSystemLayoutViewController"
 
-let centeredOffsets self = msg_send ~self ~cmd:(selector "centeredOffsets") ~typ:(returning CGSize.t)
+let centeredOffsets self = msg_send_stret ~self ~cmd:(selector "centeredOffsets") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let horizontalLayoutType self = msg_send ~self ~cmd:(selector "horizontalLayoutType") ~typ:(returning ullong)
-let minimumInsets self = msg_send ~self ~cmd:(selector "minimumInsets") ~typ:(returning UIEdgeInsets.t)
+let minimumInsets self = msg_send_stret ~self ~cmd:(selector "minimumInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let setCenteredOffsets x self = msg_send ~self ~cmd:(selector "setCenteredOffsets:") ~typ:(CGSize.t @-> returning void) x
 let setHorizontalLayoutType x self = msg_send ~self ~cmd:(selector "setHorizontalLayoutType:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setMinimumInsets x self = msg_send ~self ~cmd:(selector "setMinimumInsets:") ~typ:(UIEdgeInsets.t @-> returning void) x

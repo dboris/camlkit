@@ -26,5 +26,5 @@ let setupLayoutSegments self = msg_send ~self ~cmd:(selector "setupLayoutSegment
 let shouldShowBottomRowEdge self = msg_send ~self ~cmd:(selector "shouldShowBottomRowEdge") ~typ:(returning bool)
 let shouldShowTopRowEdge self = msg_send ~self ~cmd:(selector "shouldShowTopRowEdge") ~typ:(returning bool)
 let spaceKeyFontSize self = msg_send ~self ~cmd:(selector "spaceKeyFontSize") ~typ:(returning double)
-let symbolFrameInsets self = msg_send ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t)
+let symbolFrameInsets self = msg_send_stret ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let thinKeycapsFontName self = msg_send ~self ~cmd:(selector "thinKeycapsFontName") ~typ:(returning id)

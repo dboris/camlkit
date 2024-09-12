@@ -14,5 +14,5 @@ let self = get_class "UIKBSplitTraits"
 
 let corners self = msg_send ~self ~cmd:(selector "corners") ~typ:(returning ullong)
 let initWithLeftFrame x ~rightFrame ~corners self = msg_send ~self ~cmd:(selector "initWithLeftFrame:rightFrame:corners:") ~typ:(CGRect.t @-> CGRect.t @-> ullong @-> returning id) x rightFrame (ULLong.of_int corners)
-let leftFrame self = msg_send ~self ~cmd:(selector "leftFrame") ~typ:(returning CGRect.t)
-let rightFrame self = msg_send ~self ~cmd:(selector "rightFrame") ~typ:(returning CGRect.t)
+let leftFrame self = msg_send_stret ~self ~cmd:(selector "leftFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let rightFrame self = msg_send_stret ~self ~cmd:(selector "rightFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t

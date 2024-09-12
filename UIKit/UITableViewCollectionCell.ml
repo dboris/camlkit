@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UITableViewCollectionCell"
 
-let backgroundInset self = msg_send ~self ~cmd:(selector "backgroundInset") ~typ:(returning UIEdgeInsets.t)
+let backgroundInset self = msg_send_stret ~self ~cmd:(selector "backgroundInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning bool)
 let defaultLeadingCellMarginWidth self = msg_send ~self ~cmd:(selector "defaultLeadingCellMarginWidth") ~typ:(returning double)
 let defaultTrailingCellMarginWidth self = msg_send ~self ~cmd:(selector "defaultTrailingCellMarginWidth") ~typ:(returning double)

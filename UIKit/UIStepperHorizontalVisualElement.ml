@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIStepperHorizontalVisualElement"
 
-let alignmentRectInsetsForControl x self = msg_send ~self ~cmd:(selector "alignmentRectInsetsForControl:") ~typ:(id @-> returning UIEdgeInsets.t) x
+let alignmentRectInsetsForControl x self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsetsForControl:") ~typ:(id @-> returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t x
 let autorepeat self = msg_send ~self ~cmd:(selector "autorepeat") ~typ:(returning bool)
 let backgroundImageForState x self = msg_send ~self ~cmd:(selector "backgroundImageForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let beginTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "beginTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
@@ -24,7 +24,7 @@ let endTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "endT
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning id) x withEvent
 let incrementImageForState x self = msg_send ~self ~cmd:(selector "incrementImageForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let intrinsicSizeWithinSize x ~forControl self = msg_send ~self ~cmd:(selector "intrinsicSizeWithinSize:forControl:") ~typ:(CGSize.t @-> id @-> returning CGSize.t) x forControl
+let intrinsicSizeWithinSize x ~forControl self = msg_send_stret ~self ~cmd:(selector "intrinsicSizeWithinSize:forControl:") ~typ:(CGSize.t @-> id @-> returning CGSize.t) ~return_type:CGSize.t x forControl
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning bool)
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
@@ -49,8 +49,8 @@ let setStepperControl x self = msg_send ~self ~cmd:(selector "setStepperControl:
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning void) x
 let setValue x self = msg_send ~self ~cmd:(selector "setValue:") ~typ:(double @-> returning void) x
 let setWraps x self = msg_send ~self ~cmd:(selector "setWraps:") ~typ:(bool @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
-let sizeThatFits' x ~forControl self = msg_send ~self ~cmd:(selector "sizeThatFits:forControl:") ~typ:(CGSize.t @-> id @-> returning CGSize.t) x forControl
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
+let sizeThatFits' x ~forControl self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:forControl:") ~typ:(CGSize.t @-> id @-> returning CGSize.t) ~return_type:CGSize.t x forControl
 let stepValue self = msg_send ~self ~cmd:(selector "stepValue") ~typ:(returning double)
 let stepperControl self = msg_send ~self ~cmd:(selector "stepperControl") ~typ:(returning id)
 let value self = msg_send ~self ~cmd:(selector "value") ~typ:(returning double)

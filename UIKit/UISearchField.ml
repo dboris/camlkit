@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UISearchField"
 
-let iconRect self = msg_send ~self ~cmd:(selector "iconRect") ~typ:(returning CGRect.t)
+let iconRect self = msg_send_stret ~self ~cmd:(selector "iconRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let rightViewRectForBounds x self = msg_send ~self ~cmd:(selector "rightViewRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) x
+let rightViewRectForBounds x self = msg_send_stret ~self ~cmd:(selector "rightViewRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let setPaddingTop x ~paddingLeft self = msg_send ~self ~cmd:(selector "setPaddingTop:paddingLeft:") ~typ:(float @-> float @-> returning void) x paddingLeft

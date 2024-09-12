@@ -13,8 +13,8 @@ open CoreText
 let self = get_class "UIStatusBarExternalForegroundStyleAttributes"
 
 let activityIndicatorStyleWithSyncActivity x self = msg_send ~self ~cmd:(selector "activityIndicatorStyleWithSyncActivity:") ~typ:(bool @-> returning llong) x
-let edgeInsetsForBatteryInsides self = msg_send ~self ~cmd:(selector "edgeInsetsForBatteryInsides") ~typ:(returning UIEdgeInsets.t)
-let edgeInsetsForBluetoothBatteryInsides self = msg_send ~self ~cmd:(selector "edgeInsetsForBluetoothBatteryInsides") ~typ:(returning UIEdgeInsets.t)
+let edgeInsetsForBatteryInsides self = msg_send_stret ~self ~cmd:(selector "edgeInsetsForBatteryInsides") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
+let edgeInsetsForBluetoothBatteryInsides self = msg_send_stret ~self ~cmd:(selector "edgeInsetsForBluetoothBatteryInsides") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let leftEdgePadding self = msg_send ~self ~cmd:(selector "leftEdgePadding") ~typ:(returning double)
 let makeTextFontForStyle x self = msg_send ~self ~cmd:(selector "makeTextFontForStyle:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let middlePadding self = msg_send ~self ~cmd:(selector "middlePadding") ~typ:(returning double)

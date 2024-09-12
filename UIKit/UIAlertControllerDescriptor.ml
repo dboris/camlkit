@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIAlertControllerDescriptor"
 
 let applicationIsFullscreen self = msg_send ~self ~cmd:(selector "applicationIsFullscreen") ~typ:(returning bool)
-let containerViewSafeAreaInsets self = msg_send ~self ~cmd:(selector "containerViewSafeAreaInsets") ~typ:(returning UIEdgeInsets.t)
+let containerViewSafeAreaInsets self = msg_send_stret ~self ~cmd:(selector "containerViewSafeAreaInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let hasContentViewController self = msg_send ~self ~cmd:(selector "hasContentViewController") ~typ:(returning bool)
 let hasHeaderContentViewController self = msg_send ~self ~cmd:(selector "hasHeaderContentViewController") ~typ:(returning bool)

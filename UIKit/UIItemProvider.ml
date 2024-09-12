@@ -24,7 +24,7 @@ let copyFileRepresentationForTypeIdentifier2 x ~toURL ~options ~completionBlock 
 let copyFileRepresentationForTypeIdentifier3 x ~toURL ~options ~error self = msg_send ~self ~cmd:(selector "copyFileRepresentationForTypeIdentifier:toURL:options:error:") ~typ:(id @-> id @-> id @-> (ptr id) @-> returning bool) x toURL options error
 let createObjectOfClass x ~completionBlock self = msg_send ~self ~cmd:(selector "createObjectOfClass:completionBlock:") ~typ:(_Class @-> (ptr void) @-> returning id) x completionBlock
 let createObjectOfClass' x ~error self = msg_send ~self ~cmd:(selector "createObjectOfClass:error:") ~typ:(_Class @-> (ptr id) @-> returning id) x error
-let estimatedDisplayedSize self = msg_send ~self ~cmd:(selector "estimatedDisplayedSize") ~typ:(returning CGSize.t)
+let estimatedDisplayedSize self = msg_send_stret ~self ~cmd:(selector "estimatedDisplayedSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let getInPlaceFileRepresentationForTypeIdentifier x ~completionBlock self = msg_send ~self ~cmd:(selector "getInPlaceFileRepresentationForTypeIdentifier:completionBlock:") ~typ:(id @-> (ptr void) @-> returning id) x completionBlock
 let getInPlaceFileRepresentationForTypeIdentifier1 x ~inPlace ~error self = msg_send ~self ~cmd:(selector "getInPlaceFileRepresentationForTypeIdentifier:inPlace:error:") ~typ:(id @-> (ptr bool) @-> (ptr id) @-> returning id) x inPlace error
 let getInPlaceFileRepresentationForTypeIdentifier2 x ~options ~completionBlock self = msg_send ~self ~cmd:(selector "getInPlaceFileRepresentationForTypeIdentifier:options:completionBlock:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x options completionBlock

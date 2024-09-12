@@ -14,7 +14,7 @@ let self = get_class "UIBackgroundConfiguration"
 
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let backgroundColorTransformer self = msg_send ~self ~cmd:(selector "backgroundColorTransformer") ~typ:(returning (ptr void))
-let backgroundInsets self = msg_send ~self ~cmd:(selector "backgroundInsets") ~typ:(returning NSDirectionalEdgeInsets.t)
+let backgroundInsets self = msg_send_stret ~self ~cmd:(selector "backgroundInsets") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let cornerRadius self = msg_send ~self ~cmd:(selector "cornerRadius") ~typ:(returning double)
 let customView self = msg_send ~self ~cmd:(selector "customView") ~typ:(returning id)

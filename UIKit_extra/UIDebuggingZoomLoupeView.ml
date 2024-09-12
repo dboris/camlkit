@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIDebuggingZoomLoupeView"
 
-let currentlyInspectedPoint self = msg_send ~self ~cmd:(selector "currentlyInspectedPoint") ~typ:(returning CGPoint.t)
+let currentlyInspectedPoint self = msg_send_stret ~self ~cmd:(selector "currentlyInspectedPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x

@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UICalloutBarBackground"
 
-let highlightRect self = msg_send ~self ~cmd:(selector "highlightRect") ~typ:(returning CGRect.t)
+let highlightRect self = msg_send_stret ~self ~cmd:(selector "highlightRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
 let setHighlightRect x self = msg_send ~self ~cmd:(selector "setHighlightRect:") ~typ:(CGRect.t @-> returning void) x

@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIKeyCommandDiscoverabilityHUDVisualStyleCompact"
 
 let _HUDPageControlBottomMargin self = msg_send ~self ~cmd:(selector "HUDPageControlBottomMargin") ~typ:(returning double)
-let _HUDViewInsets self = msg_send ~self ~cmd:(selector "HUDViewInsets") ~typ:(returning UIEdgeInsets.t)
+let _HUDViewInsets self = msg_send_stret ~self ~cmd:(selector "HUDViewInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let maxHUDWidthForWidth x self = msg_send ~self ~cmd:(selector "maxHUDWidthForWidth:") ~typ:(double @-> returning double) x
 let summaryDescriptionToModifiersSpacing self = msg_send ~self ~cmd:(selector "summaryDescriptionToModifiersSpacing") ~typ:(returning double)
 let summaryFont self = msg_send ~self ~cmd:(selector "summaryFont") ~typ:(returning id)

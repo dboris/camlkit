@@ -24,5 +24,5 @@ let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(
 let setAccessoryTintColor x self = msg_send ~self ~cmd:(selector "setAccessoryTintColor:") ~typ:(id @-> returning void) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning void) x
 let shouldTrack self = msg_send ~self ~cmd:(selector "shouldTrack") ~typ:(returning bool)
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let wantsMaskingWhileAnimatingDisabled self = msg_send ~self ~cmd:(selector "wantsMaskingWhileAnimatingDisabled") ~typ:(returning bool)

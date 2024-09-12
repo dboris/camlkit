@@ -12,6 +12,6 @@ open CoreText
 
 let self = get_class "UIKBRenderFactoryHWR_PortraitTruffle"
 
-let globeKeyTextOffset self = msg_send ~self ~cmd:(selector "globeKeyTextOffset") ~typ:(returning CGPoint.t)
-let moreKeyTextOffset self = msg_send ~self ~cmd:(selector "moreKeyTextOffset") ~typ:(returning CGPoint.t)
-let symbolFrameInsets self = msg_send ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t)
+let globeKeyTextOffset self = msg_send_stret ~self ~cmd:(selector "globeKeyTextOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let moreKeyTextOffset self = msg_send_stret ~self ~cmd:(selector "moreKeyTextOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let symbolFrameInsets self = msg_send_stret ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

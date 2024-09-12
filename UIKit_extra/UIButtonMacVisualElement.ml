@@ -12,14 +12,14 @@ open CoreText
 
 let self = get_class "UIButtonMacVisualElement"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let bridge self = msg_send ~self ~cmd:(selector "bridge") ~typ:(returning id)
 let button self = msg_send ~self ~cmd:(selector "button") ~typ:(returning id)
 let buttonControl self = msg_send ~self ~cmd:(selector "buttonControl") ~typ:(returning id)
 let contentTintColor self = msg_send ~self ~cmd:(selector "contentTintColor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithUIButtonRepesentable x self = msg_send ~self ~cmd:(selector "initWithUIButtonRepesentable:") ~typ:(id @-> returning id) x
-let intrinsicContentSize self = msg_send ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t)
+let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let setAttributedTitle x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning void) x
 let setBridge x self = msg_send ~self ~cmd:(selector "setBridge:") ~typ:(id @-> returning void) x

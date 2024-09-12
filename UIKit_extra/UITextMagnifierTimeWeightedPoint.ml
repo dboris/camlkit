@@ -13,11 +13,11 @@ open CoreText
 let self = get_class "UITextMagnifierTimeWeightedPoint"
 
 let clearHistory self = msg_send ~self ~cmd:(selector "clearHistory") ~typ:(returning void)
-let diffFromLastPoint self = msg_send ~self ~cmd:(selector "diffFromLastPoint") ~typ:(returning CGPoint.t)
-let displacementInInterval x self = msg_send ~self ~cmd:(selector "displacementInInterval:") ~typ:(double @-> returning CGSize.t) x
-let displacementInInterval' x ~priorTo self = msg_send ~self ~cmd:(selector "displacementInInterval:priorTo:") ~typ:(double @-> double @-> returning CGSize.t) x priorTo
+let diffFromLastPoint self = msg_send_stret ~self ~cmd:(selector "diffFromLastPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let displacementInInterval x self = msg_send_stret ~self ~cmd:(selector "displacementInInterval:") ~typ:(double @-> returning CGSize.t) ~return_type:CGSize.t x
+let displacementInInterval' x ~priorTo self = msg_send_stret ~self ~cmd:(selector "displacementInInterval:priorTo:") ~typ:(double @-> double @-> returning CGSize.t) ~return_type:CGSize.t x priorTo
 let distanceCoveredInInterval x self = msg_send ~self ~cmd:(selector "distanceCoveredInInterval:") ~typ:(double @-> returning float) x
 let distanceCoveredInInterval' x ~priorTo self = msg_send ~self ~cmd:(selector "distanceCoveredInInterval:priorTo:") ~typ:(double @-> double @-> returning float) x priorTo
 let historyCovers x self = msg_send ~self ~cmd:(selector "historyCovers:") ~typ:(double @-> returning bool) x
 let isPlacedCarefully self = msg_send ~self ~cmd:(selector "isPlacedCarefully") ~typ:(returning bool)
-let weightedPoint self = msg_send ~self ~cmd:(selector "weightedPoint") ~typ:(returning CGPoint.t)
+let weightedPoint self = msg_send_stret ~self ~cmd:(selector "weightedPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t

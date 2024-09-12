@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIInputSwitcherTableCell"
 
 let initWithStyle x ~reuseIdentifier self = msg_send ~self ~cmd:(selector "initWithStyle:reuseIdentifier:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) reuseIdentifier
-let interactiveInsets self = msg_send ~self ~cmd:(selector "interactiveInsets") ~typ:(returning UIEdgeInsets.t)
+let interactiveInsets self = msg_send_stret ~self ~cmd:(selector "interactiveInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let isFirst self = msg_send ~self ~cmd:(selector "isFirst") ~typ:(returning bool)
 let isLast self = msg_send ~self ~cmd:(selector "isLast") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)

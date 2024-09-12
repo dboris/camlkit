@@ -17,6 +17,6 @@ let initWithContinuousCornerRadius x self = msg_send ~self ~cmd:(selector "initW
 let setDismissButton x self = msg_send ~self ~cmd:(selector "setDismissButton:") ~typ:(id @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
 let setUsesShortCompactVerticalLayout x self = msg_send ~self ~cmd:(selector "setUsesShortCompactVerticalLayout:") ~typ:(bool @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let usesShortCompactVerticalLayout self = msg_send ~self ~cmd:(selector "usesShortCompactVerticalLayout") ~typ:(returning bool)

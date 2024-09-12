@@ -12,18 +12,18 @@ open CoreText
 
 let self = get_class "UIInputViewSetNotificationInfo"
 
-let assistantFrame self = msg_send ~self ~cmd:(selector "assistantFrame") ~typ:(returning CGRect.t)
+let assistantFrame self = msg_send_stret ~self ~cmd:(selector "assistantFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let assistantOnScreenOnly self = msg_send ~self ~cmd:(selector "assistantOnScreenOnly") ~typ:(returning bool)
 let assistantPosition self = msg_send ~self ~cmd:(selector "assistantPosition") ~typ:(returning ullong)
-let beginCenter self = msg_send ~self ~cmd:(selector "beginCenter") ~typ:(returning CGPoint.t)
-let beginFrame self = msg_send ~self ~cmd:(selector "beginFrame") ~typ:(returning CGRect.t)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let beginCenter self = msg_send_stret ~self ~cmd:(selector "beginCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let beginFrame self = msg_send_stret ~self ~cmd:(selector "beginFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let changedAccessoryOnly self = msg_send ~self ~cmd:(selector "changedAccessoryOnly") ~typ:(returning bool)
 let containsChange self = msg_send ~self ~cmd:(selector "containsChange") ~typ:(returning bool)
 let dueToRotation self = msg_send ~self ~cmd:(selector "dueToRotation") ~typ:(returning bool)
 let duration self = msg_send ~self ~cmd:(selector "duration") ~typ:(returning double)
-let endCenter self = msg_send ~self ~cmd:(selector "endCenter") ~typ:(returning CGPoint.t)
-let endFrame self = msg_send ~self ~cmd:(selector "endFrame") ~typ:(returning CGRect.t)
+let endCenter self = msg_send_stret ~self ~cmd:(selector "endCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let endFrame self = msg_send_stret ~self ~cmd:(selector "endFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let forceNotification self = msg_send ~self ~cmd:(selector "forceNotification") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let inverseInfo self = msg_send ~self ~cmd:(selector "inverseInfo") ~typ:(returning id)

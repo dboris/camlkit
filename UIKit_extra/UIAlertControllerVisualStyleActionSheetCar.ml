@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIAlertControllerVisualStyleActionSheetCar"
 
-let contentInsetsForContainerView x self = msg_send ~self ~cmd:(selector "contentInsetsForContainerView:") ~typ:(id @-> returning UIEdgeInsets.t) x
+let contentInsetsForContainerView x self = msg_send_stret ~self ~cmd:(selector "contentInsetsForContainerView:") ~typ:(id @-> returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t x
 let marginAboveTitleLabelFirstBaseline self = msg_send ~self ~cmd:(selector "marginAboveTitleLabelFirstBaseline") ~typ:(returning double)
 let marginBelowLastLabelLastBaseline self = msg_send ~self ~cmd:(selector "marginBelowLastLabelLastBaseline") ~typ:(returning double)
 let maximumNumberOfLinesInMessageLabel self = msg_send ~self ~cmd:(selector "maximumNumberOfLinesInMessageLabel") ~typ:(returning llong)

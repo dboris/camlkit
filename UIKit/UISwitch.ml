@@ -12,8 +12,8 @@ open CoreText
 
 let self = get_class "UISwitch"
 
-let accessibilityActivationPoint self = msg_send ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning CGPoint.t)
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t)
+let accessibilityActivationPoint self = msg_send_stret ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
@@ -47,7 +47,7 @@ let setThumbTintColor x self = msg_send ~self ~cmd:(selector "setThumbTintColor:
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
 let setVisualElement x self = msg_send ~self ~cmd:(selector "setVisualElement:") ~typ:(id @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
 let switchStyle self = msg_send ~self ~cmd:(selector "switchStyle") ~typ:(returning llong)
 let thumbTintColor self = msg_send ~self ~cmd:(selector "thumbTintColor") ~typ:(returning id)

@@ -12,9 +12,9 @@ open CoreText
 
 let self = get_class "UICollectionViewLayoutInvalidationContext"
 
-let contentOffsetAdjustment self = msg_send ~self ~cmd:(selector "contentOffsetAdjustment") ~typ:(returning CGPoint.t)
-let contentSizeAdjustment self = msg_send ~self ~cmd:(selector "contentSizeAdjustment") ~typ:(returning CGSize.t)
-let interactiveMovementTarget self = msg_send ~self ~cmd:(selector "interactiveMovementTarget") ~typ:(returning CGPoint.t)
+let contentOffsetAdjustment self = msg_send_stret ~self ~cmd:(selector "contentOffsetAdjustment") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let contentSizeAdjustment self = msg_send_stret ~self ~cmd:(selector "contentSizeAdjustment") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let interactiveMovementTarget self = msg_send_stret ~self ~cmd:(selector "interactiveMovementTarget") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let invalidateDataSourceCounts self = msg_send ~self ~cmd:(selector "invalidateDataSourceCounts") ~typ:(returning bool)
 let invalidateDecorationElementsOfKind x ~atIndexPaths self = msg_send ~self ~cmd:(selector "invalidateDecorationElementsOfKind:atIndexPaths:") ~typ:(id @-> id @-> returning void) x atIndexPaths
 let invalidateEverything self = msg_send ~self ~cmd:(selector "invalidateEverything") ~typ:(returning bool)

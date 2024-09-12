@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIKeyCommandDiscoverabilityHUDVisualStyleRegular"
 
 let _HUDPageControlBottomMargin self = msg_send ~self ~cmd:(selector "HUDPageControlBottomMargin") ~typ:(returning double)
-let _HUDViewInsets self = msg_send ~self ~cmd:(selector "HUDViewInsets") ~typ:(returning UIEdgeInsets.t)
+let _HUDViewInsets self = msg_send_stret ~self ~cmd:(selector "HUDViewInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let columnDividerHeightForHUDHeight x self = msg_send ~self ~cmd:(selector "columnDividerHeightForHUDHeight:") ~typ:(double @-> returning double) x
 let columnDividerWidth self = msg_send ~self ~cmd:(selector "columnDividerWidth") ~typ:(returning double)
 let dividerColor self = msg_send ~self ~cmd:(selector "dividerColor") ~typ:(returning id)

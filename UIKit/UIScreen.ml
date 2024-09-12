@@ -12,16 +12,16 @@ open CoreText
 
 let self = get_class "UIScreen"
 
-let applicationFrame self = msg_send ~self ~cmd:(selector "applicationFrame") ~typ:(returning CGRect.t)
+let applicationFrame self = msg_send_stret ~self ~cmd:(selector "applicationFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let availableModes self = msg_send ~self ~cmd:(selector "availableModes") ~typ:(returning id)
 let bitsPerComponent self = msg_send ~self ~cmd:(selector "bitsPerComponent") ~typ:(returning int)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let brightness self = msg_send ~self ~cmd:(selector "brightness") ~typ:(returning double)
 let calibratedLatency self = msg_send ~self ~cmd:(selector "calibratedLatency") ~typ:(returning double)
-let convertPoint x ~fromCoordinateSpace self = msg_send ~self ~cmd:(selector "convertPoint:fromCoordinateSpace:") ~typ:(CGPoint.t @-> id @-> returning CGPoint.t) x fromCoordinateSpace
-let convertPoint' x ~toCoordinateSpace self = msg_send ~self ~cmd:(selector "convertPoint:toCoordinateSpace:") ~typ:(CGPoint.t @-> id @-> returning CGPoint.t) x toCoordinateSpace
-let convertRect x ~fromCoordinateSpace self = msg_send ~self ~cmd:(selector "convertRect:fromCoordinateSpace:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) x fromCoordinateSpace
-let convertRect' x ~toCoordinateSpace self = msg_send ~self ~cmd:(selector "convertRect:toCoordinateSpace:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) x toCoordinateSpace
+let convertPoint x ~fromCoordinateSpace self = msg_send_stret ~self ~cmd:(selector "convertPoint:fromCoordinateSpace:") ~typ:(CGPoint.t @-> id @-> returning CGPoint.t) ~return_type:CGPoint.t x fromCoordinateSpace
+let convertPoint' x ~toCoordinateSpace self = msg_send_stret ~self ~cmd:(selector "convertPoint:toCoordinateSpace:") ~typ:(CGPoint.t @-> id @-> returning CGPoint.t) ~return_type:CGPoint.t x toCoordinateSpace
+let convertRect x ~fromCoordinateSpace self = msg_send_stret ~self ~cmd:(selector "convertRect:fromCoordinateSpace:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x fromCoordinateSpace
+let convertRect' x ~toCoordinateSpace self = msg_send_stret ~self ~cmd:(selector "convertRect:toCoordinateSpace:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x toCoordinateSpace
 let coordinateSpace self = msg_send ~self ~cmd:(selector "coordinateSpace") ~typ:(returning id)
 let currentMode self = msg_send ~self ~cmd:(selector "currentMode") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -42,11 +42,11 @@ let initWithDisplayConfiguration' x ~forceMainScreen self = msg_send ~self ~cmd:
 let isCaptured self = msg_send ~self ~cmd:(selector "isCaptured") ~typ:(returning bool)
 let maximumFramesPerSecond self = msg_send ~self ~cmd:(selector "maximumFramesPerSecond") ~typ:(returning llong)
 let mirroredScreen self = msg_send ~self ~cmd:(selector "mirroredScreen") ~typ:(returning id)
-let nativeBounds self = msg_send ~self ~cmd:(selector "nativeBounds") ~typ:(returning CGRect.t)
+let nativeBounds self = msg_send_stret ~self ~cmd:(selector "nativeBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let nativeScale self = msg_send ~self ~cmd:(selector "nativeScale") ~typ:(returning double)
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let overscanCompensation self = msg_send ~self ~cmd:(selector "overscanCompensation") ~typ:(returning llong)
-let overscanCompensationInsets self = msg_send ~self ~cmd:(selector "overscanCompensationInsets") ~typ:(returning UIEdgeInsets.t)
+let overscanCompensationInsets self = msg_send_stret ~self ~cmd:(selector "overscanCompensationInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let parentFocusEnvironment self = msg_send ~self ~cmd:(selector "parentFocusEnvironment") ~typ:(returning id)
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)

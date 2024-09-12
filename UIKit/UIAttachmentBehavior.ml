@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIAttachmentBehavior"
 
-let anchorPoint self = msg_send ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t)
+let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let attachedBehaviorType self = msg_send ~self ~cmd:(selector "attachedBehaviorType") ~typ:(returning llong)
 let attachmentRange self = msg_send ~self ~cmd:(selector "attachmentRange") ~typ:(returning void)
 let damping self = msg_send ~self ~cmd:(selector "damping") ~typ:(returning double)

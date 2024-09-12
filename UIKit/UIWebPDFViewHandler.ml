@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIWebPDFViewHandler"
 
-let activeRectForRectOfInterest x self = msg_send ~self ~cmd:(selector "activeRectForRectOfInterest:") ~typ:(CGRect.t @-> returning CGRect.t) x
+let activeRectForRectOfInterest x self = msg_send_stret ~self ~cmd:(selector "activeRectForRectOfInterest:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let adjustZoomScalesForScrollView self = msg_send ~self ~cmd:(selector "adjustZoomScalesForScrollView") ~typ:(returning void)
 let backgroundColorForUnRenderedContent self = msg_send ~self ~cmd:(selector "backgroundColorForUnRenderedContent") ~typ:(returning id)
 let clearActionSheet self = msg_send ~self ~cmd:(selector "clearActionSheet") ~typ:(returning void)
@@ -46,7 +46,7 @@ let hidePageViewsUntilReadyToRender self = msg_send ~self ~cmd:(selector "hidePa
 let highlightRect x self = msg_send ~self ~cmd:(selector "highlightRect:") ~typ:(CGRect.t @-> returning void) x
 let hostViewForSheet x self = msg_send ~self ~cmd:(selector "hostViewForSheet:") ~typ:(id @-> returning id) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
-let initialPresentationRectInHostViewForSheet x self = msg_send ~self ~cmd:(selector "initialPresentationRectInHostViewForSheet:") ~typ:(id @-> returning CGRect.t) x
+let initialPresentationRectInHostViewForSheet x self = msg_send_stret ~self ~cmd:(selector "initialPresentationRectInHostViewForSheet:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let minimumScaleForSize x self = msg_send ~self ~cmd:(selector "minimumScaleForSize:") ~typ:(CGSize.t @-> returning double) x
 let minimumVerticalContentOffset self = msg_send ~self ~cmd:(selector "minimumVerticalContentOffset") ~typ:(returning double)
 let passwordForPDFView x self = msg_send ~self ~cmd:(selector "passwordForPDFView:") ~typ:(id @-> returning id) x
@@ -54,9 +54,9 @@ let pdfHandlerDelegate self = msg_send ~self ~cmd:(selector "pdfHandlerDelegate"
 let pdfView self = msg_send ~self ~cmd:(selector "pdfView") ~typ:(returning id)
 let pdfView' x ~zoomToRect ~forPoint ~considerHeight self = msg_send ~self ~cmd:(selector "pdfView:zoomToRect:forPoint:considerHeight:") ~typ:(id @-> CGRect.t @-> CGPoint.t @-> bool @-> returning void) x zoomToRect forPoint considerHeight
 let performAction x ~fromAlertController self = msg_send ~self ~cmd:(selector "performAction:fromAlertController:") ~typ:(id @-> id @-> returning void) x fromAlertController
-let presentationRectInHostViewForSheet x self = msg_send ~self ~cmd:(selector "presentationRectInHostViewForSheet:") ~typ:(id @-> returning CGRect.t) x
-let rectOfInterestForPoint x self = msg_send ~self ~cmd:(selector "rectOfInterestForPoint:") ~typ:(CGPoint.t @-> returning CGRect.t) x
-let rectOfInterestForRotation self = msg_send ~self ~cmd:(selector "rectOfInterestForRotation") ~typ:(returning CGRect.t)
+let presentationRectInHostViewForSheet x self = msg_send_stret ~self ~cmd:(selector "presentationRectInHostViewForSheet:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
+let rectOfInterestForPoint x self = msg_send_stret ~self ~cmd:(selector "rectOfInterestForPoint:") ~typ:(CGPoint.t @-> returning CGRect.t) ~return_type:CGRect.t x
+let rectOfInterestForRotation self = msg_send_stret ~self ~cmd:(selector "rectOfInterestForRotation") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let removeViewFromSuperview self = msg_send ~self ~cmd:(selector "removeViewFromSuperview") ~typ:(returning void)
 let resetZoom x self = msg_send ~self ~cmd:(selector "resetZoom:") ~typ:(id @-> returning void) x
 let restoreStateFromHistoryItem x ~forWebView self = msg_send ~self ~cmd:(selector "restoreStateFromHistoryItem:forWebView:") ~typ:(id @-> id @-> returning void) x forWebView
@@ -84,5 +84,5 @@ let updateViewHierarchyForDocumentViewTabSwitch' x ~restoringZoomScale ~andScrol
 let updateViewHierarchyForFirstNonEmptyLayoutInFrame x self = msg_send ~self ~cmd:(selector "updateViewHierarchyForFirstNonEmptyLayoutInFrame:") ~typ:(id @-> returning void) x
 let updateViewSettings self = msg_send ~self ~cmd:(selector "updateViewSettings") ~typ:(returning void)
 let userDidEnterPassword x ~forPasswordView self = msg_send ~self ~cmd:(selector "userDidEnterPassword:forPasswordView:") ~typ:(id @-> id @-> returning void) x forPasswordView
-let visibleContentRect self = msg_send ~self ~cmd:(selector "visibleContentRect") ~typ:(returning CGRect.t)
+let visibleContentRect self = msg_send_stret ~self ~cmd:(selector "visibleContentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let zoomedDocumentScale self = msg_send ~self ~cmd:(selector "zoomedDocumentScale") ~typ:(returning double)

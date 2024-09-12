@@ -12,5 +12,5 @@ open CoreText
 
 let self = get_class "UIKBKeyViewAnimatorDeveloper"
 
-let primaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "primaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t)
-let secondaryGlyphNormalizedExitRect self = msg_send ~self ~cmd:(selector "secondaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t)
+let primaryGlyphNormalizedExitRect self = msg_send_stret ~self ~cmd:(selector "primaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let secondaryGlyphNormalizedExitRect self = msg_send_stret ~self ~cmd:(selector "secondaryGlyphNormalizedExitRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t

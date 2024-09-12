@@ -12,10 +12,10 @@ open CoreText
 
 let self = get_class "UITextMagnifierRanged"
 
-let adjustMagnificationPoint x self = msg_send ~self ~cmd:(selector "adjustMagnificationPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) x
+let adjustMagnificationPoint x self = msg_send_stret ~self ~cmd:(selector "adjustMagnificationPoint:") ~typ:(CGPoint.t @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let beginMagnifyingTarget x ~text ~magnificationPoint ~offset ~animated self = msg_send ~self ~cmd:(selector "beginMagnifyingTarget:text:magnificationPoint:offset:animated:") ~typ:(id @-> id @-> CGPoint.t @-> CGPoint.t @-> bool @-> returning void) x text magnificationPoint offset animated
-let caretRectClosestToPoint x self = msg_send ~self ~cmd:(selector "caretRectClosestToPoint:") ~typ:(CGPoint.t @-> returning CGRect.t) x
-let clipPoint x ~inRect self = msg_send ~self ~cmd:(selector "clipPoint:inRect:") ~typ:(CGPoint.t @-> CGRect.t @-> returning CGPoint.t) x inRect
+let caretRectClosestToPoint x self = msg_send_stret ~self ~cmd:(selector "caretRectClosestToPoint:") ~typ:(CGPoint.t @-> returning CGRect.t) ~return_type:CGRect.t x
+let clipPoint x ~inRect self = msg_send_stret ~self ~cmd:(selector "clipPoint:inRect:") ~typ:(CGPoint.t @-> CGRect.t @-> returning CGPoint.t) ~return_type:CGPoint.t x inRect
 let horizontalMovement self = msg_send ~self ~cmd:(selector "horizontalMovement") ~typ:(returning int)
 let horizontalMovementAtTime x self = msg_send ~self ~cmd:(selector "horizontalMovementAtTime:") ~typ:(double @-> returning int) x
 let initWithFrame self = msg_send ~self ~cmd:(selector "initWithFrame") ~typ:(returning id)

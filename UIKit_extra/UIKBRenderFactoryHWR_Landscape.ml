@@ -12,11 +12,11 @@ open CoreText
 
 let self = get_class "UIKBRenderFactoryHWR_Landscape"
 
-let deleteGlyphOffset self = msg_send ~self ~cmd:(selector "deleteGlyphOffset") ~typ:(returning CGPoint.t)
+let deleteGlyphOffset self = msg_send_stret ~self ~cmd:(selector "deleteGlyphOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let edgesAdjustedForTranslucentGapsForGeometry x ~key ~onKeyplane self = msg_send ~self ~cmd:(selector "edgesAdjustedForTranslucentGapsForGeometry:key:onKeyplane:") ~typ:(id @-> id @-> id @-> returning ullong) x key onKeyplane
-let handwritingAreaInsets self = msg_send ~self ~cmd:(selector "handwritingAreaInsets") ~typ:(returning UIEdgeInsets.t)
+let handwritingAreaInsets self = msg_send_stret ~self ~cmd:(selector "handwritingAreaInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let handwritingGradientStartLocation self = msg_send ~self ~cmd:(selector "handwritingGradientStartLocation") ~typ:(returning double)
 let setupLayoutSegments self = msg_send ~self ~cmd:(selector "setupLayoutSegments") ~typ:(returning void)
 let spaceKeyFontSize self = msg_send ~self ~cmd:(selector "spaceKeyFontSize") ~typ:(returning double)
-let spaceKeyTextOffset self = msg_send ~self ~cmd:(selector "spaceKeyTextOffset") ~typ:(returning CGPoint.t)
-let symbolFrameInsets self = msg_send ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t)
+let spaceKeyTextOffset self = msg_send_stret ~self ~cmd:(selector "spaceKeyTextOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let symbolFrameInsets self = msg_send_stret ~self ~cmd:(selector "symbolFrameInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

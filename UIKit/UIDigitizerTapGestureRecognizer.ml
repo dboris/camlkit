@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIDigitizerTapGestureRecognizer"
 
-let digitizerLocation self = msg_send ~self ~cmd:(selector "digitizerLocation") ~typ:(returning CGPoint.t)
+let digitizerLocation self = msg_send_stret ~self ~cmd:(selector "digitizerLocation") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning id) x action
 let maximumPressDuration self = msg_send ~self ~cmd:(selector "maximumPressDuration") ~typ:(returning double)
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent

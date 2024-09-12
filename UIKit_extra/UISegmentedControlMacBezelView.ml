@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UISegmentedControlMacBezelView"
 
-let contentOffsetForSegment x self = msg_send ~self ~cmd:(selector "contentOffsetForSegment:") ~typ:(id @-> returning CGSize.t) x
+let contentOffsetForSegment x self = msg_send_stret ~self ~cmd:(selector "contentOffsetForSegment:") ~typ:(id @-> returning CGSize.t) ~return_type:CGSize.t x
 let coreUIWidget self = msg_send ~self ~cmd:(selector "coreUIWidget") ~typ:(returning id)
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)

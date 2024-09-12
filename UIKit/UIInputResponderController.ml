@@ -24,5 +24,5 @@ let setAutomaticAppearanceEnabled x self = msg_send ~self ~cmd:(selector "setAut
 let setShouldSuppressInputAssistantUpdates x self = msg_send ~self ~cmd:(selector "setShouldSuppressInputAssistantUpdates:") ~typ:(bool @-> returning void) x
 let shouldSuppressInputAssistantUpdates self = msg_send ~self ~cmd:(selector "shouldSuppressInputAssistantUpdates") ~typ:(returning bool)
 let verticalOverlapForView x ~usingKeyboardInfo self = msg_send ~self ~cmd:(selector "verticalOverlapForView:usingKeyboardInfo:") ~typ:(id @-> id @-> returning double) x usingKeyboardInfo
-let visibleFrameInView x self = msg_send ~self ~cmd:(selector "visibleFrameInView:") ~typ:(id @-> returning CGRect.t) x
-let visibleInputViewFrameInView x self = msg_send ~self ~cmd:(selector "visibleInputViewFrameInView:") ~typ:(id @-> returning CGRect.t) x
+let visibleFrameInView x self = msg_send_stret ~self ~cmd:(selector "visibleFrameInView:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
+let visibleInputViewFrameInView x self = msg_send_stret ~self ~cmd:(selector "visibleInputViewFrameInView:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x

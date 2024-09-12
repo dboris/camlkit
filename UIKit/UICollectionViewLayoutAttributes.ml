@@ -13,11 +13,11 @@ open CoreText
 let self = get_class "UICollectionViewLayoutAttributes"
 
 let alpha self = msg_send ~self ~cmd:(selector "alpha") ~typ:(returning double)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
-let center self = msg_send ~self ~cmd:(selector "center") ~typ:(returning CGPoint.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let center self = msg_send_stret ~self ~cmd:(selector "center") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
-let frame self = msg_send ~self ~cmd:(selector "frame") ~typ:(returning CGRect.t)
+let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
 let indexPath self = msg_send ~self ~cmd:(selector "indexPath") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
@@ -38,7 +38,7 @@ let setSize x self = msg_send ~self ~cmd:(selector "setSize:") ~typ:(CGSize.t @-
 let setTransform3D x self = msg_send ~self ~cmd:(selector "setTransform3D:") ~typ:(CATransform3D.t @-> returning void) x
 let setTransform x self = msg_send ~self ~cmd:(selector "setTransform:") ~typ:(CGAffineTransform.t @-> returning void) x
 let setZIndex x self = msg_send ~self ~cmd:(selector "setZIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning CGSize.t)
-let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t)
-let transform3D self = msg_send ~self ~cmd:(selector "transform3D") ~typ:(returning CATransform3D.t)
+let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let transform self = msg_send_stret ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
+let transform3D self = msg_send_stret ~self ~cmd:(selector "transform3D") ~typ:(returning CATransform3D.t) ~return_type:CATransform3D.t
 let zIndex self = msg_send ~self ~cmd:(selector "zIndex") ~typ:(returning llong)

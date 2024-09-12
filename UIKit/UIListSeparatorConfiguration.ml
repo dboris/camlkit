@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIListSeparatorConfiguration"
 
-let bottomSeparatorInsets self = msg_send ~self ~cmd:(selector "bottomSeparatorInsets") ~typ:(returning NSDirectionalEdgeInsets.t)
+let bottomSeparatorInsets self = msg_send_stret ~self ~cmd:(selector "bottomSeparatorInsets") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let bottomSeparatorVisibility self = msg_send ~self ~cmd:(selector "bottomSeparatorVisibility") ~typ:(returning llong)
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
@@ -30,6 +30,6 @@ let setMultipleSelectionColor x self = msg_send ~self ~cmd:(selector "setMultipl
 let setTopSeparatorInsets x self = msg_send ~self ~cmd:(selector "setTopSeparatorInsets:") ~typ:(NSDirectionalEdgeInsets.t @-> returning void) x
 let setTopSeparatorVisibility x self = msg_send ~self ~cmd:(selector "setTopSeparatorVisibility:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setVisualEffect x self = msg_send ~self ~cmd:(selector "setVisualEffect:") ~typ:(id @-> returning void) x
-let topSeparatorInsets self = msg_send ~self ~cmd:(selector "topSeparatorInsets") ~typ:(returning NSDirectionalEdgeInsets.t)
+let topSeparatorInsets self = msg_send_stret ~self ~cmd:(selector "topSeparatorInsets") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let topSeparatorVisibility self = msg_send ~self ~cmd:(selector "topSeparatorVisibility") ~typ:(returning llong)
 let visualEffect self = msg_send ~self ~cmd:(selector "visualEffect") ~typ:(returning id)

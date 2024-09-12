@@ -26,5 +26,5 @@ let setDoneButtonAppearance x self = msg_send ~self ~cmd:(selector "setDoneButto
 let setLargeTitleTextAttributes x self = msg_send ~self ~cmd:(selector "setLargeTitleTextAttributes:") ~typ:(id @-> returning void) x
 let setTitlePositionAdjustment x self = msg_send ~self ~cmd:(selector "setTitlePositionAdjustment:") ~typ:(UIOffset.t @-> returning void) x
 let setTitleTextAttributes x self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:") ~typ:(id @-> returning void) x
-let titlePositionAdjustment self = msg_send ~self ~cmd:(selector "titlePositionAdjustment") ~typ:(returning UIOffset.t)
+let titlePositionAdjustment self = msg_send_stret ~self ~cmd:(selector "titlePositionAdjustment") ~typ:(returning UIOffset.t) ~return_type:UIOffset.t
 let titleTextAttributes self = msg_send ~self ~cmd:(selector "titleTextAttributes") ~typ:(returning id)

@@ -10,5 +10,5 @@ open CoreText
 
 (** Apple docs: {{:https://developer.apple.com/documentation/uikit/uiswitchmacvisualelement?language=objc}UISwitchMacVisualElement} *)
 
-let preferredAlignmentRectInsets self = msg_send ~self ~cmd:(selector "preferredAlignmentRectInsets") ~typ:(returning UIEdgeInsets.t)
-let preferredContentSize self = msg_send ~self ~cmd:(selector "preferredContentSize") ~typ:(returning CGSize.t)
+let preferredAlignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "preferredAlignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
+let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

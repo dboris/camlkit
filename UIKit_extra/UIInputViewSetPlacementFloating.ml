@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIInputViewSetPlacementFloating"
 
-let adjustBoundsForNotificationsWithOwner x self = msg_send ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning CGRect.t) x
+let adjustBoundsForNotificationsWithOwner x self = msg_send_stret ~self ~cmd:(selector "adjustBoundsForNotificationsWithOwner:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let applicatorClassForKeyboard x self = msg_send ~self ~cmd:(selector "applicatorClassForKeyboard:") ~typ:(bool @-> returning _Class) x
 let applicatorInfoForOwner x self = msg_send ~self ~cmd:(selector "applicatorInfoForOwner:") ~typ:(id @-> returning id) x
 let checkSizeForOwner x self = msg_send ~self ~cmd:(selector "checkSizeForOwner:") ~typ:(id @-> returning void) x

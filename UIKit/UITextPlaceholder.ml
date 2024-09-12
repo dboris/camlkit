@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UITextPlaceholder"
 
 let attachment self = msg_send ~self ~cmd:(selector "attachment") ~typ:(returning id)
-let caretRectBeforeInsertion self = msg_send ~self ~cmd:(selector "caretRectBeforeInsertion") ~typ:(returning CGRect.t)
+let caretRectBeforeInsertion self = msg_send_stret ~self ~cmd:(selector "caretRectBeforeInsertion") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let rects self = msg_send ~self ~cmd:(selector "rects") ~typ:(returning id)
 let setAttachment x self = msg_send ~self ~cmd:(selector "setAttachment:") ~typ:(id @-> returning void) x

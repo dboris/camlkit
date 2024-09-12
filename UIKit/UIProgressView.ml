@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIProgressView"
 
-let alignmentRectInsets self = msg_send ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t)
+let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -36,7 +36,7 @@ let setProgressTintColor x self = msg_send ~self ~cmd:(selector "setProgressTint
 let setProgressViewStyle x self = msg_send ~self ~cmd:(selector "setProgressViewStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setTrackImage x self = msg_send ~self ~cmd:(selector "setTrackImage:") ~typ:(id @-> returning void) x
 let setTrackTintColor x self = msg_send ~self ~cmd:(selector "setTrackTintColor:") ~typ:(id @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let tintColorDidChange self = msg_send ~self ~cmd:(selector "tintColorDidChange") ~typ:(returning void)
 let trackImage self = msg_send ~self ~cmd:(selector "trackImage") ~typ:(returning id)
 let trackTintColor self = msg_send ~self ~cmd:(selector "trackTintColor") ~typ:(returning id)

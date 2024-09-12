@@ -18,4 +18,4 @@ let setEndPlacement x self = msg_send ~self ~cmd:(selector "setEndPlacement:") ~
 let setSnapshot x self = msg_send ~self ~cmd:(selector "setSnapshot:") ~typ:(id @-> returning void) x
 let setSnapshotEndFrame x self = msg_send ~self ~cmd:(selector "setSnapshotEndFrame:") ~typ:(CGRect.t @-> returning void) x
 let snapshot self = msg_send ~self ~cmd:(selector "snapshot") ~typ:(returning id)
-let snapshotEndFrame self = msg_send ~self ~cmd:(selector "snapshotEndFrame") ~typ:(returning CGRect.t)
+let snapshotEndFrame self = msg_send_stret ~self ~cmd:(selector "snapshotEndFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t

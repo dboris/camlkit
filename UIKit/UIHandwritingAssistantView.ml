@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIHandwritingAssistantView"
 
-let assistantFrameForKeyplane x ~key self = msg_send ~self ~cmd:(selector "assistantFrameForKeyplane:key:") ~typ:(id @-> id @-> returning CGRect.t) x key
+let assistantFrameForKeyplane x ~key self = msg_send_stret ~self ~cmd:(selector "assistantFrameForKeyplane:key:") ~typ:(id @-> id @-> returning CGRect.t) ~return_type:CGRect.t x key
 let candidateList self = msg_send ~self ~cmd:(selector "candidateList") ~typ:(returning id)
 let candidateView self = msg_send ~self ~cmd:(selector "candidateView") ~typ:(returning id)
 let rightBorder self = msg_send ~self ~cmd:(selector "rightBorder") ~typ:(returning id)
