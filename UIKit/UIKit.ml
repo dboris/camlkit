@@ -1,4 +1,5 @@
 include UIKit_globals
+include CoreAutoLayout
 
 module NSDirectionalEdgeInsets = NSDirectionalEdgeInsets
 module UIAcceleration = UIAcceleration

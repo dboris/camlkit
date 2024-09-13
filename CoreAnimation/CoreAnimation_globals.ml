@@ -3,6 +3,9 @@
 open Runtime
 open Objc
 
+[@@@ocaml.warning "-33"]
+open CoreGraphics
+
 module CAPoint3D = struct
   let t : [`CAPoint3D] structure typ = structure "CAPoint3D"
 end

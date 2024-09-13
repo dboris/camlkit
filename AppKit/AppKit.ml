@@ -1,4 +1,5 @@
 include AppKit_globals
+include CoreAutoLayout
 
 module NSAcceleratorGestureRecognizer = NSAcceleratorGestureRecognizer
 module NSActionBinder = NSActionBinder

@@ -12,6 +12,6 @@
   camlkit-base.Foundation
   camlkit-base.CoreAnimation
   camlkit-gui.CoreText
-  camlkit-gui.UIKit_extra))
+  camlkit-gui.CoreAutoLayout))
 
 (documentation (package camlkit-gui))

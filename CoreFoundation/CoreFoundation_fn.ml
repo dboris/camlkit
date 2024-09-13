@@ -3,8 +3,6 @@
 open Runtime
 open Objc
 
-open CoreFoundation_globals
-
 let _CFAbsoluteTimeAddGregorianUnits = Foreign.foreign "CFAbsoluteTimeAddGregorianUnits" (double @-> (ptr CFTimeZone.t) @-> CFGregorianUnits.t @-> returning double)
 let _CFAbsoluteTimeGetCurrent = Foreign.foreign "CFAbsoluteTimeGetCurrent" (void @-> returning double)
 let _CFAbsoluteTimeGetDayOfWeek = Foreign.foreign "CFAbsoluteTimeGetDayOfWeek" (double @-> (ptr CFTimeZone.t) @-> returning int)
