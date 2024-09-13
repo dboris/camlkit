@@ -4,10 +4,7 @@ open Runtime
 open Objc
 
 [@@@ocaml.warning "-33"]
-open CoreFoundation
-open CoreFoundation_globals
-open CoreGraphics
-open CoreGraphics_globals
+open Foundation
 open CoreAnimation
 
 module CVDisplayLinkRef = struct
@@ -381,8 +378,8 @@ let _CVDisplayLinkRelease = Foreign.foreign "CVDisplayLinkRelease" ((ptr CVDispl
 let _CVDisplayLinkRetain = Foreign.foreign "CVDisplayLinkRetain" ((ptr CVDisplayLink.t) @-> returning (ptr CVDisplayLink.t))
 let _CVDisplayLinkSetCurrentCGDisplay = Foreign.foreign "CVDisplayLinkSetCurrentCGDisplay" ((ptr CVDisplayLink.t) @-> uint @-> returning int)
 let _CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext = Foreign.foreign "CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext" ((ptr CVDisplayLink.t) @-> (ptr CGLContextObject.t) @-> (ptr CGLPixelFormatObject.t) @-> returning int)
-let _CVDisplayLinkSetOutputCallback = Foreign.foreign "CVDisplayLinkSetOutputCallback" ((ptr CVDisplayLink.t) @-> (ptr (ptr void)) @-> (ptr CVDisplayLink.t) @-> (ptr CVTimeStamp.t) @-> (ptr CVTimeStamp.t) @-> ullong @-> (ptr ullong) @-> (ptr void) @-> (ptr void) @-> returning int)
-let _CVDisplayLinkSetOutputHandler = Foreign.foreign "CVDisplayLinkSetOutputHandler" ((ptr CVDisplayLink.t) @-> (ptr void) @-> (ptr CVDisplayLink.t) @-> (ptr CVTimeStamp.t) @-> (ptr CVTimeStamp.t) @-> ullong @-> (ptr ullong) @-> returning int)
+let _CVDisplayLinkSetOutputCallback = Foreign.foreign "CVDisplayLinkSetOutputCallback" ((ptr CVDisplayLink.t) @-> Foreign.funptr ((ptr CVDisplayLink.t) @-> (ptr CVTimeStamp.t) @-> (ptr CVTimeStamp.t) @-> ullong @-> (ptr ullong) @-> (ptr void) @-> returning int) @-> (ptr void) @-> returning int)
+let _CVDisplayLinkSetOutputHandler = Foreign.foreign "CVDisplayLinkSetOutputHandler" ((ptr CVDisplayLink.t) @-> Foreign.funptr ((ptr CVDisplayLink.t) @-> (ptr CVTimeStamp.t) @-> (ptr CVTimeStamp.t) @-> ullong @-> (ptr ullong) @-> returning int) @-> returning int)
 let _CVDisplayLinkStart = Foreign.foreign "CVDisplayLinkStart" ((ptr CVDisplayLink.t) @-> returning int)
 let _CVDisplayLinkStop = Foreign.foreign "CVDisplayLinkStop" ((ptr CVDisplayLink.t) @-> returning int)
 let _CVDisplayLinkTranslateTime = Foreign.foreign "CVDisplayLinkTranslateTime" ((ptr CVDisplayLink.t) @-> (ptr CVTimeStamp.t) @-> (ptr CVTimeStamp.t) @-> returning int)
@@ -433,9 +430,9 @@ let _CVOpenGLTextureRetain = Foreign.foreign "CVOpenGLTextureRetain" ((ptr CVBuf
 let _CVPixelBufferCopyCreationAttributes = Foreign.foreign "CVPixelBufferCopyCreationAttributes" ((ptr CVBuffer.t) @-> returning (ptr CFDictionary.t))
 let _CVPixelBufferCreate = Foreign.foreign "CVPixelBufferCreate" ((ptr CFAllocator.t) @-> ullong @-> ullong @-> uint @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning int)
 let _CVPixelBufferCreateResolvedAttributesDictionary = Foreign.foreign "CVPixelBufferCreateResolvedAttributesDictionary" ((ptr CFAllocator.t) @-> (ptr CFArray.t) @-> (ptr (ptr CFDictionary.t)) @-> returning int)
-let _CVPixelBufferCreateWithBytes = Foreign.foreign "CVPixelBufferCreateWithBytes" ((ptr CFAllocator.t) @-> ullong @-> ullong @-> uint @-> (ptr void) @-> ullong @-> (ptr (ptr void)) @-> (ptr void) @-> (ptr void) @-> (ptr void) @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning void)
+let _CVPixelBufferCreateWithBytes = Foreign.foreign "CVPixelBufferCreateWithBytes" ((ptr CFAllocator.t) @-> ullong @-> ullong @-> uint @-> (ptr void) @-> ullong @-> Foreign.funptr ((ptr void) @-> (ptr void) @-> returning void) @-> (ptr void) @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning int)
 let _CVPixelBufferCreateWithIOSurface = Foreign.foreign "CVPixelBufferCreateWithIOSurface" ((ptr CFAllocator.t) @-> (ptr IOSurface.t) @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning int)
-let _CVPixelBufferCreateWithPlanarBytes = Foreign.foreign "CVPixelBufferCreateWithPlanarBytes" ((ptr CFAllocator.t) @-> ullong @-> ullong @-> uint @-> (ptr void) @-> ullong @-> ullong @-> (ptr (ptr void)) @-> (ptr ullong) @-> (ptr ullong) @-> (ptr ullong) @-> (ptr (ptr void)) @-> (ptr void) @-> (ptr void) @-> ullong @-> ullong @-> (ptr (ptr void)) @-> (ptr void) @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning void)
+let _CVPixelBufferCreateWithPlanarBytes = Foreign.foreign "CVPixelBufferCreateWithPlanarBytes" ((ptr CFAllocator.t) @-> ullong @-> ullong @-> uint @-> (ptr void) @-> ullong @-> ullong @-> (ptr (ptr void)) @-> (ptr ullong) @-> (ptr ullong) @-> (ptr ullong) @-> Foreign.funptr ((ptr void) @-> (ptr void) @-> ullong @-> ullong @-> (ptr (ptr void)) @-> returning void) @-> (ptr void) @-> (ptr CFDictionary.t) @-> (ptr (ptr CVBuffer.t)) @-> returning int)
 let _CVPixelBufferFillExtendedPixels = Foreign.foreign "CVPixelBufferFillExtendedPixels" ((ptr CVBuffer.t) @-> returning int)
 let _CVPixelBufferGetBaseAddress = Foreign.foreign "CVPixelBufferGetBaseAddress" ((ptr CVBuffer.t) @-> returning (ptr void))
 let _CVPixelBufferGetBaseAddressOfPlane = Foreign.foreign "CVPixelBufferGetBaseAddressOfPlane" ((ptr CVBuffer.t) @-> ullong @-> returning (ptr void))

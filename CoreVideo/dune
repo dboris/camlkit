@@ -5,8 +5,7 @@
  (enabled_if (= %{system} macosx))
  (libraries
   camlkit-base.runtime
-  camlkit-base.CoreFoundation
-  camlkit-base.CoreGraphics
+  camlkit-base.Foundation
   camlkit-base.CoreAnimation))
 
 (documentation (package camlkit-gui))
