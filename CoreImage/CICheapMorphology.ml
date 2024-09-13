@@ -12,4 +12,4 @@ open CoreGraphics
 let self = get_class "CICheapMorphology"
 
 let outputImage self = msg_send ~self ~cmd:(selector "outputImage") ~typ:(returning id)
-let regionOf x ~destRect ~_Offset self = msg_send ~self ~cmd:(selector "regionOf:destRect:Offset:") ~typ:(id @-> CGRect.t @-> float @-> returning CGRect.t) x destRect _Offset
+let regionOf x ~destRect ~_Offset self = msg_send_stret ~self ~cmd:(selector "regionOf:destRect:Offset:") ~typ:(id @-> CGRect.t @-> float @-> returning CGRect.t) ~return_type:CGRect.t x destRect _Offset

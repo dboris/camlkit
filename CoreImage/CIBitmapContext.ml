@@ -11,7 +11,7 @@ open CoreGraphics
 
 let self = get_class "CIBitmapContext"
 
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let drawImage x ~inRect ~fromRect self = msg_send ~self ~cmd:(selector "drawImage:inRect:fromRect:") ~typ:(id @-> CGRect.t @-> CGRect.t @-> returning void) x inRect fromRect
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

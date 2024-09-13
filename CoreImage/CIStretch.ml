@@ -11,7 +11,7 @@ open CoreGraphics
 
 let self = get_class "CIStretch"
 
-let computeDOD x self = msg_send ~self ~cmd:(selector "computeDOD:") ~typ:(ptr void @-> returning CGRect.t) x
+let computeDOD x self = msg_send_stret ~self ~cmd:(selector "computeDOD:") ~typ:(ptr void @-> returning CGRect.t) ~return_type:CGRect.t x
 let inputImage self = msg_send ~self ~cmd:(selector "inputImage") ~typ:(returning id)
 let inputPoint self = msg_send ~self ~cmd:(selector "inputPoint") ~typ:(returning id)
 let inputSize self = msg_send ~self ~cmd:(selector "inputSize") ~typ:(returning id)

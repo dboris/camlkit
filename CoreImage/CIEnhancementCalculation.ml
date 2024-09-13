@@ -13,7 +13,7 @@ let self = get_class "CIEnhancementCalculation"
 
 let borderHist self = msg_send ~self ~cmd:(selector "borderHist") ~typ:(returning id)
 let curveCount self = msg_send ~self ~cmd:(selector "curveCount") ~typ:(returning ullong)
-let curvePointAtIndex x self = msg_send ~self ~cmd:(selector "curvePointAtIndex:") ~typ:(ullong @-> returning CGPoint.t) (ULLong.of_int x)
+let curvePointAtIndex x self = msg_send_stret ~self ~cmd:(selector "curvePointAtIndex:") ~typ:(ullong @-> returning CGPoint.t) ~return_type:CGPoint.t (ULLong.of_int x)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let downSampleHistogram x ~to_ ~storeIn self = msg_send ~self ~cmd:(selector "downSampleHistogram:to:storeIn:") ~typ:(id @-> uint @-> (ptr double) @-> returning void) x to_ storeIn
 let faceBalanceStrength self = msg_send ~self ~cmd:(selector "faceBalanceStrength") ~typ:(returning id)

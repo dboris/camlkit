@@ -11,7 +11,7 @@ open CoreGraphics
 
 let self = get_class "CIHoleDistortion"
 
-let computeDOD self = msg_send ~self ~cmd:(selector "computeDOD") ~typ:(returning CGRect.t)
+let computeDOD self = msg_send_stret ~self ~cmd:(selector "computeDOD") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let inputCenter self = msg_send ~self ~cmd:(selector "inputCenter") ~typ:(returning id)
 let inputImage self = msg_send ~self ~cmd:(selector "inputImage") ~typ:(returning id)
 let inputRadius self = msg_send ~self ~cmd:(selector "inputRadius") ~typ:(returning id)

@@ -74,6 +74,6 @@ let setRestrictedHostProcessId x self = msg_send ~self ~cmd:(selector "setRestri
 let setSecure x self = msg_send ~self ~cmd:(selector "setSecure:") ~typ:(bool @-> returning void) x
 let setUnobscuredRegionOfInterest x self = msg_send ~self ~cmd:(selector "setUnobscuredRegionOfInterest:") ~typ:(CGRect.t @-> returning void) x
 let transferSlot x ~toContextWithId self = msg_send ~self ~cmd:(selector "transferSlot:toContextWithId:") ~typ:(uint @-> uint @-> returning void) x toContextWithId
-let unobscuredRegionOfInterest self = msg_send ~self ~cmd:(selector "unobscuredRegionOfInterest") ~typ:(returning CGRect.t)
+let unobscuredRegionOfInterest self = msg_send_stret ~self ~cmd:(selector "unobscuredRegionOfInterest") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let valid self = msg_send ~self ~cmd:(selector "valid") ~typ:(returning bool)
 let waitForRenderingWithTimeout x self = msg_send ~self ~cmd:(selector "waitForRenderingWithTimeout:") ~typ:(double @-> returning bool) x

@@ -13,7 +13,7 @@ let self = get_class "CABackdropLayer"
 
 let allowsInPlaceFiltering self = msg_send ~self ~cmd:(selector "allowsInPlaceFiltering") ~typ:(returning bool)
 let allowsSubstituteColor self = msg_send ~self ~cmd:(selector "allowsSubstituteColor") ~typ:(returning bool)
-let backdropRect self = msg_send ~self ~cmd:(selector "backdropRect") ~typ:(returning CGRect.t)
+let backdropRect self = msg_send_stret ~self ~cmd:(selector "backdropRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let bleedAmount self = msg_send ~self ~cmd:(selector "bleedAmount") ~typ:(returning double)
 let captureOnly self = msg_send ~self ~cmd:(selector "captureOnly") ~typ:(returning bool)
 let didChangeValueForKey x self = msg_send ~self ~cmd:(selector "didChangeValueForKey:") ~typ:(id @-> returning void) x

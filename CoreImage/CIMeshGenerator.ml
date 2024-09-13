@@ -11,7 +11,7 @@ open CoreGraphics
 
 let self = get_class "CIMeshGenerator"
 
-let extentOfMeshStart x ~count ~halfWidth self = msg_send ~self ~cmd:(selector "extentOfMeshStart:count:halfWidth:") ~typ:(int @-> int @-> double @-> returning CGRect.t) x count halfWidth
+let extentOfMeshStart x ~count ~halfWidth self = msg_send_stret ~self ~cmd:(selector "extentOfMeshStart:count:halfWidth:") ~typ:(int @-> int @-> double @-> returning CGRect.t) ~return_type:CGRect.t x count halfWidth
 let inputColor self = msg_send ~self ~cmd:(selector "inputColor") ~typ:(returning id)
 let inputMesh self = msg_send ~self ~cmd:(selector "inputMesh") ~typ:(returning id)
 let inputWidth self = msg_send ~self ~cmd:(selector "inputWidth") ~typ:(returning id)

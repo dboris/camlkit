@@ -33,4 +33,4 @@ let setNeedsDisplayInRect2 x ~levelOfDetail ~options self = msg_send ~self ~cmd:
 let setTileSize x self = msg_send ~self ~cmd:(selector "setTileSize:") ~typ:(CGSize.t @-> returning void) x
 let setUnsafeUnretainedDelegate x self = msg_send ~self ~cmd:(selector "setUnsafeUnretainedDelegate:") ~typ:(id @-> returning void) x
 let shouldArchiveValueForKey x self = msg_send ~self ~cmd:(selector "shouldArchiveValueForKey:") ~typ:(id @-> returning bool) x
-let tileSize self = msg_send ~self ~cmd:(selector "tileSize") ~typ:(returning CGSize.t)
+let tileSize self = msg_send_stret ~self ~cmd:(selector "tileSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

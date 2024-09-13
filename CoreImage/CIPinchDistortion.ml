@@ -11,7 +11,7 @@ open CoreGraphics
 
 let self = get_class "CIPinchDistortion"
 
-let computeDOD x ~scale self = msg_send ~self ~cmd:(selector "computeDOD:scale:") ~typ:(float @-> float @-> returning CGRect.t) x scale
+let computeDOD x ~scale self = msg_send_stret ~self ~cmd:(selector "computeDOD:scale:") ~typ:(float @-> float @-> returning CGRect.t) ~return_type:CGRect.t x scale
 let inputCenter self = msg_send ~self ~cmd:(selector "inputCenter") ~typ:(returning id)
 let inputImage self = msg_send ~self ~cmd:(selector "inputImage") ~typ:(returning id)
 let inputRadius self = msg_send ~self ~cmd:(selector "inputRadius") ~typ:(returning id)

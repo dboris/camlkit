@@ -11,14 +11,14 @@ open CoreGraphics
 
 let self = get_class "CIContext"
 
-let _CTM self = msg_send ~self ~cmd:(selector "CTM") ~typ:(returning CGAffineTransform.t)
+let _CTM self = msg_send_stret ~self ~cmd:(selector "CTM") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
 let _HEIF10RepresentationOfImage x ~colorSpace ~options ~error self = msg_send ~self ~cmd:(selector "HEIF10RepresentationOfImage:colorSpace:options:error:") ~typ:(id @-> (ptr CGColorSpace.t) @-> id @-> (ptr id) @-> returning id) x colorSpace options error
 let _HEIFRepresentationOfImage x ~format ~colorSpace ~options self = msg_send ~self ~cmd:(selector "HEIFRepresentationOfImage:format:colorSpace:options:") ~typ:(id @-> int @-> (ptr CGColorSpace.t) @-> id @-> returning id) x format colorSpace options
 let _JPEGRepresentationOfImage x ~colorSpace ~options self = msg_send ~self ~cmd:(selector "JPEGRepresentationOfImage:colorSpace:options:") ~typ:(id @-> (ptr CGColorSpace.t) @-> id @-> returning id) x colorSpace options
 let _PNGRepresentationOfImage x ~format ~colorSpace ~options self = msg_send ~self ~cmd:(selector "PNGRepresentationOfImage:format:colorSpace:options:") ~typ:(id @-> int @-> (ptr CGColorSpace.t) @-> id @-> returning id) x format colorSpace options
 let _TIFFRepresentationOfImage x ~format ~colorSpace ~options self = msg_send ~self ~cmd:(selector "TIFFRepresentationOfImage:format:colorSpace:options:") ~typ:(id @-> int @-> (ptr CGColorSpace.t) @-> id @-> returning id) x format colorSpace options
 let abort self = msg_send ~self ~cmd:(selector "abort") ~typ:(returning void)
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let clearCaches self = msg_send ~self ~cmd:(selector "clearCaches") ~typ:(returning void)
 let clientCommandQueue self = msg_send ~self ~cmd:(selector "clientCommandQueue") ~typ:(returning id)
 let createCGImage x ~fromRect self = msg_send ~self ~cmd:(selector "createCGImage:fromRect:") ~typ:(id @-> CGRect.t @-> returning (ptr CGImage.t)) x fromRect
@@ -49,7 +49,7 @@ let initWithCGLContext2 x ~pixelFormat ~colorSpace ~options self = msg_send ~sel
 let initWithMTLCommandQueue x ~options self = msg_send ~self ~cmd:(selector "initWithMTLCommandQueue:options:") ~typ:(id @-> id @-> returning id) x options
 let initWithMTLDevice x ~options self = msg_send ~self ~cmd:(selector "initWithMTLDevice:options:") ~typ:(id @-> id @-> returning id) x options
 let initWithOptions x self = msg_send ~self ~cmd:(selector "initWithOptions:") ~typ:(id @-> returning id) x
-let inputImageMaximumSize self = msg_send ~self ~cmd:(selector "inputImageMaximumSize") ~typ:(returning CGSize.t)
+let inputImageMaximumSize self = msg_send_stret ~self ~cmd:(selector "inputImageMaximumSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let internalCommandQueue self = msg_send ~self ~cmd:(selector "internalCommandQueue") ~typ:(returning id)
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let loadArchive x self = msg_send ~self ~cmd:(selector "loadArchive:") ~typ:(id @-> returning bool) x
@@ -58,7 +58,7 @@ let maximumInputImageSize self = msg_send ~self ~cmd:(selector "maximumInputImag
 let maximumOutputImageSize self = msg_send ~self ~cmd:(selector "maximumOutputImageSize") ~typ:(returning ullong)
 (* let measureRequirementsOf x ~query ~results self = msg_send ~self ~cmd:(selector "measureRequirementsOf:query::results:") ~typ:(id @-> int @-> (ptr id) @-> (ptr CGRect.t) @-> returning bool) ? ? ? *)
 let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning id) x
-let outputImageMaximumSize self = msg_send ~self ~cmd:(selector "outputImageMaximumSize") ~typ:(returning CGSize.t)
+let outputImageMaximumSize self = msg_send_stret ~self ~cmd:(selector "outputImageMaximumSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let prepareRender x ~fromRect ~toDestination ~atPoint ~error self = msg_send ~self ~cmd:(selector "prepareRender:fromRect:toDestination:atPoint:error:") ~typ:(id @-> CGRect.t @-> id @-> CGPoint.t @-> (ptr id) @-> returning bool) x fromRect toDestination atPoint error
 let reclaimResources self = msg_send ~self ~cmd:(selector "reclaimResources") ~typ:(returning void)
 let render x self = msg_send ~self ~cmd:(selector "render:") ~typ:(id @-> returning void) x

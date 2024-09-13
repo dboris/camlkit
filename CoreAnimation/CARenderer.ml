@@ -13,7 +13,7 @@ let self = get_class "CARenderer"
 
 let addUpdateRect x self = msg_send ~self ~cmd:(selector "addUpdateRect:") ~typ:(CGRect.t @-> returning void) x
 let beginFrameAtTime x ~timeStamp self = msg_send ~self ~cmd:(selector "beginFrameAtTime:timeStamp:") ~typ:(double @-> (ptr void) @-> returning void) x timeStamp
-let bounds self = msg_send ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t)
+let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -27,4 +27,4 @@ let setContext x self = msg_send ~self ~cmd:(selector "setContext:") ~typ:(id @-
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let setDestination x self = msg_send ~self ~cmd:(selector "setDestination:") ~typ:(id @-> returning void) x
 let setLayer x self = msg_send ~self ~cmd:(selector "setLayer:") ~typ:(id @-> returning void) x
-let updateBounds self = msg_send ~self ~cmd:(selector "updateBounds") ~typ:(returning CGRect.t)
+let updateBounds self = msg_send_stret ~self ~cmd:(selector "updateBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t

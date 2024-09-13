@@ -11,9 +11,9 @@ open CoreGraphics
 
 let self = get_class "CIVector"
 
-let _CGAffineTransformValue self = msg_send ~self ~cmd:(selector "CGAffineTransformValue") ~typ:(returning CGAffineTransform.t)
-let _CGPointValue self = msg_send ~self ~cmd:(selector "CGPointValue") ~typ:(returning CGPoint.t)
-let _CGRectValue self = msg_send ~self ~cmd:(selector "CGRectValue") ~typ:(returning CGRect.t)
+let _CGAffineTransformValue self = msg_send_stret ~self ~cmd:(selector "CGAffineTransformValue") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
+let _CGPointValue self = msg_send_stret ~self ~cmd:(selector "CGPointValue") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let _CGRectValue self = msg_send_stret ~self ~cmd:(selector "CGRectValue") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let _W self = msg_send ~self ~cmd:(selector "W") ~typ:(returning double)
 let _X self = msg_send ~self ~cmd:(selector "X") ~typ:(returning double)
 let _Y self = msg_send ~self ~cmd:(selector "Y") ~typ:(returning double)
