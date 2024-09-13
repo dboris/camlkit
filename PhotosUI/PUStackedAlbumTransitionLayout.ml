@@ -11,12 +11,12 @@ open UIKit
 
 let self = get_class "PUStackedAlbumTransitionLayout"
 
-let currentCollapsedStackCenter self = msg_send ~self ~cmd:(selector "currentCollapsedStackCenter") ~typ:(returning CGPoint.t)
-let expandedStackFinalDelta self = msg_send ~self ~cmd:(selector "expandedStackFinalDelta") ~typ:(returning CGPoint.t)
-let finalCollapsedStackCenter self = msg_send ~self ~cmd:(selector "finalCollapsedStackCenter") ~typ:(returning CGPoint.t)
+let currentCollapsedStackCenter self = msg_send_stret ~self ~cmd:(selector "currentCollapsedStackCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let expandedStackFinalDelta self = msg_send_stret ~self ~cmd:(selector "expandedStackFinalDelta") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let finalCollapsedStackCenter self = msg_send_stret ~self ~cmd:(selector "finalCollapsedStackCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let initWithCurrentLayout x ~nextLayout ~isExpanding self = msg_send ~self ~cmd:(selector "initWithCurrentLayout:nextLayout:isExpanding:") ~typ:(id @-> id @-> bool @-> returning id) x nextLayout isExpanding
-let initialCollapsedStackCenter self = msg_send ~self ~cmd:(selector "initialCollapsedStackCenter") ~typ:(returning CGPoint.t)
-let interactionOffset self = msg_send ~self ~cmd:(selector "interactionOffset") ~typ:(returning CGPoint.t)
+let initialCollapsedStackCenter self = msg_send_stret ~self ~cmd:(selector "initialCollapsedStackCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
+let interactionOffset self = msg_send_stret ~self ~cmd:(selector "interactionOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let isExpanding self = msg_send ~self ~cmd:(selector "isExpanding") ~typ:(returning bool)
 let layoutAttributesForDecorationViewOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForDecorationViewOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath
 let layoutAttributesForElementsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForElementsInRect:") ~typ:(CGRect.t @-> returning id) x

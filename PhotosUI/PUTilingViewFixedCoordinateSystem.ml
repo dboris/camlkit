@@ -11,5 +11,5 @@ open UIKit
 
 let self = get_class "PUTilingViewFixedCoordinateSystem"
 
-let coordinateSystemOrigin self = msg_send ~self ~cmd:(selector "coordinateSystemOrigin") ~typ:(returning CGPoint.t)
+let coordinateSystemOrigin self = msg_send_stret ~self ~cmd:(selector "coordinateSystemOrigin") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let parentCoordinateSystem self = msg_send ~self ~cmd:(selector "parentCoordinateSystem") ~typ:(returning id)

@@ -11,7 +11,7 @@ open UIKit
 
 let self = get_class "PUDoubleHeightHorizontalAlbumListGadgetLayout"
 
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let initWithHorizontalLayoutDelegate x ~showsHorizontalScrollIndicator self = msg_send ~self ~cmd:(selector "initWithHorizontalLayoutDelegate:showsHorizontalScrollIndicator:") ~typ:(id @-> bool @-> returning id) x showsHorizontalScrollIndicator
 let invalidateLayout self = msg_send ~self ~cmd:(selector "invalidateLayout") ~typ:(returning void)
 let layoutAttributesByIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesByIndexPath") ~typ:(returning id)

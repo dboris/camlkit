@@ -53,6 +53,6 @@ let shouldSuppressAnimatedUpdates self = msg_send ~self ~cmd:(selector "shouldSu
 let startSuppressingAnimatedUpdatesWithReason x self = msg_send ~self ~cmd:(selector "startSuppressingAnimatedUpdatesWithReason:") ~typ:(id @-> returning void) x
 let stopSuppressingAnimatedUpdatesWithReason x self = msg_send ~self ~cmd:(selector "stopSuppressingAnimatedUpdatesWithReason:") ~typ:(id @-> returning void) x
 let tilingView self = msg_send ~self ~cmd:(selector "tilingView") ~typ:(returning id)
-let visibleRect self = msg_send ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t)
+let visibleRect self = msg_send_stret ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let wantsVisibleRectChanges self = msg_send ~self ~cmd:(selector "wantsVisibleRectChanges") ~typ:(returning bool)
 let willBeginAnimation self = msg_send ~self ~cmd:(selector "willBeginAnimation") ~typ:(returning llong)

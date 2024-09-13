@@ -11,7 +11,7 @@ open UIKit
 
 let self = get_class "PUGridPinchGestureRecognizer"
 
-let centerOffset self = msg_send ~self ~cmd:(selector "centerOffset") ~typ:(returning CGSize.t)
+let centerOffset self = msg_send_stret ~self ~cmd:(selector "centerOffset") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning void)
 let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let transitionDirection self = msg_send ~self ~cmd:(selector "transitionDirection") ~typ:(returning ullong)

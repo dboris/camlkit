@@ -13,4 +13,4 @@ let self = get_class "PUDisplayLocationProvider"
 
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithPoint x ~inCoordinateSpace self = msg_send ~self ~cmd:(selector "initWithPoint:inCoordinateSpace:") ~typ:(CGPoint.t @-> id @-> returning id) x inCoordinateSpace
-let locationInView x self = msg_send ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) x
+let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x

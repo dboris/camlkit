@@ -11,12 +11,12 @@ open UIKit
 
 let self = get_class "PUTransitionViewAnimator"
 
-let anchorPoint self = msg_send ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t)
+let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let appliesScaleViaTransform self = msg_send ~self ~cmd:(selector "appliesScaleViaTransform") ~typ:(returning bool)
 let autoUpdates self = msg_send ~self ~cmd:(selector "autoUpdates") ~typ:(returning bool)
 let cancelWithTranslationVelocity x ~rotationVelocity ~scaleVelocity ~shouldBounce self = msg_send ~self ~cmd:(selector "cancelWithTranslationVelocity:rotationVelocity:scaleVelocity:shouldBounce:") ~typ:(CGPoint.t @-> double @-> double @-> bool @-> returning void) x rotationVelocity scaleVelocity shouldBounce
 let cancelWithoutAnimation self = msg_send ~self ~cmd:(selector "cancelWithoutAnimation") ~typ:(returning void)
-let currentTranslation self = msg_send ~self ~cmd:(selector "currentTranslation") ~typ:(returning CGPoint.t)
+let currentTranslation self = msg_send_stret ~self ~cmd:(selector "currentTranslation") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning ullong)
 let finishWithTranslationVelocity x ~rotationVelocity ~scaleVelocity ~shouldBounce self = msg_send ~self ~cmd:(selector "finishWithTranslationVelocity:rotationVelocity:scaleVelocity:shouldBounce:") ~typ:(CGPoint.t @-> double @-> double @-> bool @-> returning void) x rotationVelocity scaleVelocity shouldBounce
@@ -28,8 +28,8 @@ let setAutoUpdates x self = msg_send ~self ~cmd:(selector "setAutoUpdates:") ~ty
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let shouldFinish self = msg_send ~self ~cmd:(selector "shouldFinish") ~typ:(returning bool)
 let shouldUseTargetAspectRatio self = msg_send ~self ~cmd:(selector "shouldUseTargetAspectRatio") ~typ:(returning bool)
-let sourceFrame self = msg_send ~self ~cmd:(selector "sourceFrame") ~typ:(returning CGRect.t)
-let targetFrame self = msg_send ~self ~cmd:(selector "targetFrame") ~typ:(returning CGRect.t)
+let sourceFrame self = msg_send_stret ~self ~cmd:(selector "sourceFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let targetFrame self = msg_send_stret ~self ~cmd:(selector "targetFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let unfilteredProgress self = msg_send ~self ~cmd:(selector "unfilteredProgress") ~typ:(returning double)
 let updateWithTranslation x ~rotation ~scale self = msg_send ~self ~cmd:(selector "updateWithTranslation:rotation:scale:") ~typ:(CGPoint.t @-> double @-> double @-> returning void) x rotation scale
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)

@@ -12,7 +12,7 @@ open UIKit
 let self = get_class "PUAlbumListCellContentViewHelper"
 
 let addSharedAlbumPlaceholderImage self = msg_send ~self ~cmd:(selector "addSharedAlbumPlaceholderImage") ~typ:(returning id)
-let albumCellSize self = msg_send ~self ~cmd:(selector "albumCellSize") ~typ:(returning CGSize.t)
+let albumCellSize self = msg_send_stret ~self ~cmd:(selector "albumCellSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let badgeManager self = msg_send ~self ~cmd:(selector "badgeManager") ~typ:(returning id)
 let collectionTileLayoutTemplate self = msg_send ~self ~cmd:(selector "collectionTileLayoutTemplate") ~typ:(returning id)
 let configuration self = msg_send ~self ~cmd:(selector "configuration") ~typ:(returning id)

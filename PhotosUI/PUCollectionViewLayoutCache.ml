@@ -12,7 +12,7 @@ open UIKit
 let self = get_class "PUCollectionViewLayoutCache"
 
 let cachesResults self = msg_send ~self ~cmd:(selector "cachesResults") ~typ:(returning bool)
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let flipsHorizontallyInOppositeLayoutDirection self = msg_send ~self ~cmd:(selector "flipsHorizontallyInOppositeLayoutDirection") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithProvider x self = msg_send ~self ~cmd:(selector "initWithProvider:") ~typ:(id @-> returning id) x

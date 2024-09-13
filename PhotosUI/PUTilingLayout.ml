@@ -11,9 +11,9 @@ open UIKit
 
 let self = get_class "PUTilingLayout"
 
-let contentBounds self = msg_send ~self ~cmd:(selector "contentBounds") ~typ:(returning CGRect.t)
+let contentBounds self = msg_send_stret ~self ~cmd:(selector "contentBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let coordinateSystem self = msg_send ~self ~cmd:(selector "coordinateSystem") ~typ:(returning id)
-let coordinateSystemOrigin self = msg_send ~self ~cmd:(selector "coordinateSystemOrigin") ~typ:(returning CGPoint.t)
+let coordinateSystemOrigin self = msg_send_stret ~self ~cmd:(selector "coordinateSystemOrigin") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let dataSource self = msg_send ~self ~cmd:(selector "dataSource") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
@@ -31,5 +31,5 @@ let setTilingView x self = msg_send ~self ~cmd:(selector "setTilingView:") ~typ:
 let setVisibleRect x self = msg_send ~self ~cmd:(selector "setVisibleRect:") ~typ:(CGRect.t @-> returning void) x
 let tileIdentifierForTileWithIndexPath x ~kind self = msg_send ~self ~cmd:(selector "tileIdentifierForTileWithIndexPath:kind:") ~typ:(id @-> id @-> returning id) x kind
 let tilingView self = msg_send ~self ~cmd:(selector "tilingView") ~typ:(returning id)
-let visibleRect self = msg_send ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t)
-let visibleRectForScrollingToItemAtIndexPath x ~scrollPosition self = msg_send ~self ~cmd:(selector "visibleRectForScrollingToItemAtIndexPath:scrollPosition:") ~typ:(id @-> llong @-> returning CGRect.t) x (LLong.of_int scrollPosition)
+let visibleRect self = msg_send_stret ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let visibleRectForScrollingToItemAtIndexPath x ~scrollPosition self = msg_send_stret ~self ~cmd:(selector "visibleRectForScrollingToItemAtIndexPath:scrollPosition:") ~typ:(id @-> llong @-> returning CGRect.t) ~return_type:CGRect.t x (LLong.of_int scrollPosition)

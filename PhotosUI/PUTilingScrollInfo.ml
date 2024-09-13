@@ -11,7 +11,7 @@ open UIKit
 
 let self = get_class "PUTilingScrollInfo"
 
-let interpageSpacing self = msg_send ~self ~cmd:(selector "interpageSpacing") ~typ:(returning CGSize.t)
+let interpageSpacing self = msg_send_stret ~self ~cmd:(selector "interpageSpacing") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let pagingFrictionAdjustment self = msg_send ~self ~cmd:(selector "pagingFrictionAdjustment") ~typ:(returning double)
 let pagingSpringPullAdjustment self = msg_send ~self ~cmd:(selector "pagingSpringPullAdjustment") ~typ:(returning double)
 let scrollDirections self = msg_send ~self ~cmd:(selector "scrollDirections") ~typ:(returning llong)

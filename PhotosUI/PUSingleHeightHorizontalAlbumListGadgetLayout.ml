@@ -11,6 +11,6 @@ open UIKit
 
 let self = get_class "PUSingleHeightHorizontalAlbumListGadgetLayout"
 
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let layoutAttributesForElementsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForElementsInRect:") ~typ:(CGRect.t @-> returning id) x
 let pagingEnabled self = msg_send ~self ~cmd:(selector "pagingEnabled") ~typ:(returning bool)

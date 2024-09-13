@@ -12,7 +12,7 @@ open UIKit
 let self = get_class "PUParallaxComputer"
 
 let axis self = msg_send ~self ~cmd:(selector "axis") ~typ:(returning ullong)
-let contentParallaxOffsetForViewFrame x ~visibleRect self = msg_send ~self ~cmd:(selector "contentParallaxOffsetForViewFrame:visibleRect:") ~typ:(CGRect.t @-> CGRect.t @-> returning CGPoint.t) x visibleRect
+let contentParallaxOffsetForViewFrame x ~visibleRect self = msg_send_stret ~self ~cmd:(selector "contentParallaxOffsetForViewFrame:visibleRect:") ~typ:(CGRect.t @-> CGRect.t @-> returning CGPoint.t) ~return_type:CGPoint.t x visibleRect
 let model self = msg_send ~self ~cmd:(selector "model") ~typ:(returning llong)
 let parallaxFactor self = msg_send ~self ~cmd:(selector "parallaxFactor") ~typ:(returning double)
 let setAxis x self = msg_send ~self ~cmd:(selector "setAxis:") ~typ:(ullong @-> returning void) (ULLong.of_int x)

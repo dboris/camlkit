@@ -11,8 +11,8 @@ open UIKit
 
 let self = get_class "PUHorizontalAlbumListGadgetLayout"
 
-let albumCellSize self = msg_send ~self ~cmd:(selector "albumCellSize") ~typ:(returning CGSize.t)
-let collectionView x ~layout ~sizeForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:layout:sizeForItemAtIndexPath:") ~typ:(id @-> id @-> id @-> returning CGSize.t) x layout sizeForItemAtIndexPath
+let albumCellSize self = msg_send_stret ~self ~cmd:(selector "albumCellSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let collectionView x ~layout ~sizeForItemAtIndexPath self = msg_send_stret ~self ~cmd:(selector "collectionView:layout:sizeForItemAtIndexPath:") ~typ:(id @-> id @-> id @-> returning CGSize.t) ~return_type:CGSize.t x layout sizeForItemAtIndexPath
 let horizontalLayoutDelegate self = msg_send ~self ~cmd:(selector "horizontalLayoutDelegate") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithHorizontalLayoutDelegate x ~showsHorizontalScrollIndicator self = msg_send ~self ~cmd:(selector "initWithHorizontalLayoutDelegate:showsHorizontalScrollIndicator:") ~typ:(id @-> bool @-> returning id) x showsHorizontalScrollIndicator

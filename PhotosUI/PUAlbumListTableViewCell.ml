@@ -12,6 +12,6 @@ open UIKit
 let self = get_class "PUAlbumListTableViewCell"
 
 let setStateChangeDelegate x self = msg_send ~self ~cmd:(selector "setStateChangeDelegate:") ~typ:(id @-> returning void) x
-let sizeThatFits x self = msg_send ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) x
+let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let stateChangeDelegate self = msg_send ~self ~cmd:(selector "stateChangeDelegate") ~typ:(returning id)
 let willTransitionToState x self = msg_send ~self ~cmd:(selector "willTransitionToState:") ~typ:(ullong @-> returning void) (ULLong.of_int x)

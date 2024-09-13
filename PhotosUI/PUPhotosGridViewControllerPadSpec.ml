@@ -12,7 +12,7 @@ open UIKit
 let self = get_class "PUPhotosGridViewControllerPadSpec"
 
 let albumPickerViewControllerSpec self = msg_send ~self ~cmd:(selector "albumPickerViewControllerSpec") ~typ:(returning id)
-let baseInterItemSpacing self = msg_send ~self ~cmd:(selector "baseInterItemSpacing") ~typ:(returning CGSize.t)
+let baseInterItemSpacing self = msg_send_stret ~self ~cmd:(selector "baseInterItemSpacing") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let canDisplayEditActionsInNavigationBar self = msg_send ~self ~cmd:(selector "canDisplayEditActionsInNavigationBar") ~typ:(returning bool)
 let canDisplayOptionsInPopover self = msg_send ~self ~cmd:(selector "canDisplayOptionsInPopover") ~typ:(returning bool)
 let canDisplaySlideshowButton self = msg_send ~self ~cmd:(selector "canDisplaySlideshowButton") ~typ:(returning bool)

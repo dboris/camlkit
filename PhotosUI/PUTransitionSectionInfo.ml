@@ -16,6 +16,7 @@ let contiguousRows self = msg_send ~self ~cmd:(selector "contiguousRows") ~typ:(
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let setAnchorRealPath x self = msg_send ~self ~cmd:(selector "setAnchorRealPath:") ~typ:(id @-> returning void) x
+let setAnchorShiftOffset x self = msg_send ~self ~cmd:(selector "setAnchorShiftOffset:") ~typ:(ptr void @-> returning void) x
 let setContiguousRows x self = msg_send ~self ~cmd:(selector "setContiguousRows:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setTransitionSection x self = msg_send ~self ~cmd:(selector "setTransitionSection:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setVisualRowStartMarkers x self = msg_send ~self ~cmd:(selector "setVisualRowStartMarkers:") ~typ:(id @-> returning void) x

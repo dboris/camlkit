@@ -13,7 +13,7 @@ let self = get_class "PUAlbumListSectionHeaderView"
 
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let sectionHeaderInsets self = msg_send ~self ~cmd:(selector "sectionHeaderInsets") ~typ:(returning UIEdgeInsets.t)
+let sectionHeaderInsets self = msg_send_stret ~self ~cmd:(selector "sectionHeaderInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let sectionHeaderTitle self = msg_send ~self ~cmd:(selector "sectionHeaderTitle") ~typ:(returning id)
 let sectionHeaderTitleFont self = msg_send ~self ~cmd:(selector "sectionHeaderTitleFont") ~typ:(returning id)
 let setSectionHeaderInsets x self = msg_send ~self ~cmd:(selector "setSectionHeaderInsets:") ~typ:(UIEdgeInsets.t @-> returning void) x

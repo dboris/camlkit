@@ -12,15 +12,15 @@ open UIKit
 let self = get_class "PUStackedAlbumLayout"
 
 let albumListTransitionContext self = msg_send ~self ~cmd:(selector "albumListTransitionContext") ~typ:(returning id)
-let collectionViewContentSize self = msg_send ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t)
-let contentSizeAdjust self = msg_send ~self ~cmd:(selector "contentSizeAdjust") ~typ:(returning CGSize.t)
+let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let contentSizeAdjust self = msg_send_stret ~self ~cmd:(selector "contentSizeAdjust") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let globalHeaderAttributes self = msg_send ~self ~cmd:(selector "globalHeaderAttributes") ~typ:(returning id)
 let isInteractive self = msg_send ~self ~cmd:(selector "isInteractive") ~typ:(returning bool)
 let layoutAttributesForElementsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForElementsInRect:") ~typ:(CGRect.t @-> returning id) x
 let layoutAttributesForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndexPath:") ~typ:(id @-> returning id) x
 let layoutAttributesForSupplementaryViewOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "layoutAttributesForSupplementaryViewOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning void)
-let referenceCenter self = msg_send ~self ~cmd:(selector "referenceCenter") ~typ:(returning CGPoint.t)
+let referenceCenter self = msg_send_stret ~self ~cmd:(selector "referenceCenter") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let referenceItemLayoutAttributes self = msg_send ~self ~cmd:(selector "referenceItemLayoutAttributes") ~typ:(returning id)
 let setAlbumListTransitionContext x self = msg_send ~self ~cmd:(selector "setAlbumListTransitionContext:") ~typ:(id @-> returning void) x
 let setContentSizeAdjust x self = msg_send ~self ~cmd:(selector "setContentSizeAdjust:") ~typ:(CGSize.t @-> returning void) x

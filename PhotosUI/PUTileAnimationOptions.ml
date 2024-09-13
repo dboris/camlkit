@@ -23,6 +23,7 @@ let setCustomViewAnimatorBlock x self = msg_send ~self ~cmd:(selector "setCustom
 let setDelay x self = msg_send ~self ~cmd:(selector "setDelay:") ~typ:(double @-> returning void) x
 let setDuration x self = msg_send ~self ~cmd:(selector "setDuration:") ~typ:(double @-> returning void) x
 let setHighFrameRateReason x self = msg_send ~self ~cmd:(selector "setHighFrameRateReason:") ~typ:(uint @-> returning void) x
+let setInitialVelocity x self = msg_send ~self ~cmd:(selector "setInitialVelocity:") ~typ:(ptr void @-> returning void) x
 let setKind x self = msg_send ~self ~cmd:(selector "setKind:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setShouldFadeOutSnapshotAfterCompletionGroup x self = msg_send ~self ~cmd:(selector "setShouldFadeOutSnapshotAfterCompletionGroup:") ~typ:(bool @-> returning void) x
 let setSpringDampingRatio x self = msg_send ~self ~cmd:(selector "setSpringDampingRatio:") ~typ:(double @-> returning void) x

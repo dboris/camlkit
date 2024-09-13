@@ -20,4 +20,4 @@ let initWithLocalizedDescription x ~targetSize self = msg_send ~self ~cmd:(selec
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let localizedDescription self = msg_send ~self ~cmd:(selector "localizedDescription") ~typ:(returning id)
 let localizedDescriptionForAssets x self = msg_send ~self ~cmd:(selector "localizedDescriptionForAssets:") ~typ:(id @-> returning id) x
-let targetSize self = msg_send ~self ~cmd:(selector "targetSize") ~typ:(returning CGSize.t)
+let targetSize self = msg_send_stret ~self ~cmd:(selector "targetSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t

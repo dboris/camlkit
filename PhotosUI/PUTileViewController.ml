@@ -33,5 +33,5 @@ let setContentViewEnabled x self = msg_send ~self ~cmd:(selector "setContentView
 let setEdgeAntialiasingEnabled x self = msg_send ~self ~cmd:(selector "setEdgeAntialiasingEnabled:") ~typ:(bool @-> returning void) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)
 let viewDidLoad self = msg_send ~self ~cmd:(selector "viewDidLoad") ~typ:(returning void)
-let visibleRect self = msg_send ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t)
+let visibleRect self = msg_send_stret ~self ~cmd:(selector "visibleRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let wantsVisibleRectChanges self = msg_send ~self ~cmd:(selector "wantsVisibleRectChanges") ~typ:(returning bool)
