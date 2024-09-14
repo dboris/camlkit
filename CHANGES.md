@@ -1,3 +1,8 @@
+## Release 0.2.1
+
+* Fix method bindings returning structs.
+
+
 ## Release 0.2.0
 
 API changes:
