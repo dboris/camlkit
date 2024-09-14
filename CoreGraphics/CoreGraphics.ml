@@ -1,8 +1,6 @@
 include CoreGraphics_globals
 include CoreGraphics_fn
 
-module CoreGraphics_globals = CoreGraphics_globals
-
 module CGAffineTransform = CGAffineTransform
 module CGColor = CGColor
 module CGColorConversionInfo = CGColorConversionInfo

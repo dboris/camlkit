@@ -1,8 +1,6 @@
 include CoreFoundation_globals
 include CoreFoundation_fn
 
-module CoreFoundation_globals = CoreFoundation_globals
-
 module CFAllocator = CFAllocator
 module CFAllocatorContext = CFAllocatorContext
 module CFArray = CFArray
