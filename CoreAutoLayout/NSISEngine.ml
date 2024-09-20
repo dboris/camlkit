@@ -27,6 +27,7 @@ let constraintsAffectingValueOfVariable x self = msg_send ~self ~cmd:(selector "
 let containsConstraintWithMarker x self = msg_send ~self ~cmd:(selector "containsConstraintWithMarker:") ~typ:(id @-> returning bool) x
 let containsVariable x self = msg_send ~self ~cmd:(selector "containsVariable:") ~typ:(id @-> returning bool) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let debugQuickLookObject self = msg_send ~self ~cmd:(selector "debugQuickLookObject") ~typ:(returning id)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let endBookkeepingForVariableIfUnused x self = msg_send ~self ~cmd:(selector "endBookkeepingForVariableIfUnused:") ~typ:(id @-> returning void) x
