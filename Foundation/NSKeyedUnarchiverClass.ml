@@ -9,6 +9,7 @@ open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc}NSKeyedUnarchiver} *)
 
+let axmSecurelyUnarchiveData x ~withExpectedClass ~otherAllowedClasses ~error self = msg_send ~self ~cmd:(selector "axmSecurelyUnarchiveData:withExpectedClass:otherAllowedClasses:error:") ~typ:(id @-> _Class @-> id @-> (ptr id) @-> returning id) x withExpectedClass otherAllowedClasses error
 let classForClassName x self = msg_send ~self ~cmd:(selector "classForClassName:") ~typ:(id @-> returning _Class) x
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let setClass x ~forClassName self = msg_send ~self ~cmd:(selector "setClass:forClassName:") ~typ:(_Class @-> id @-> returning void) x forClassName

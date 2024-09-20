@@ -26,6 +26,7 @@ let initWithExpressionType x ~operand ~selector_ ~argumentArray self = msg_send 
 let initWithSelector x ~argumentArray self = msg_send ~self ~cmd:(selector "initWithSelector:argumentArray:") ~typ:(_SEL @-> id @-> returning id) x argumentArray
 let initWithTarget x ~selectorName ~arguments self = msg_send ~self ~cmd:(selector "initWithTarget:selectorName:arguments:") ~typ:(id @-> id @-> id @-> returning id) x selectorName arguments
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
+let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning id) x
 let operand self = msg_send ~self ~cmd:(selector "operand") ~typ:(returning id)
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning id)
 let selector_ self = msg_send ~self ~cmd:(selector "selector") ~typ:(returning _SEL)

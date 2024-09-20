@@ -11,12 +11,14 @@ open CoreGraphics
 
 let self = get_class "NSUndoManager"
 
+let beginCreationUndoGrouping self = msg_send ~self ~cmd:(selector "beginCreationUndoGrouping") ~typ:(returning void)
 let beginUndoGrouping self = msg_send ~self ~cmd:(selector "beginUndoGrouping") ~typ:(returning void)
 let canRedo self = msg_send ~self ~cmd:(selector "canRedo") ~typ:(returning bool)
 let canUndo self = msg_send ~self ~cmd:(selector "canUndo") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let disableUndoRegistration self = msg_send ~self ~cmd:(selector "disableUndoRegistration") ~typ:(returning void)
 let enableUndoRegistration self = msg_send ~self ~cmd:(selector "enableUndoRegistration") ~typ:(returning void)
+let endCreationUndoGrouping self = msg_send ~self ~cmd:(selector "endCreationUndoGrouping") ~typ:(returning void)
 let endUndoGrouping self = msg_send ~self ~cmd:(selector "endUndoGrouping") ~typ:(returning void)
 let groupingLevel self = msg_send ~self ~cmd:(selector "groupingLevel") ~typ:(returning llong)
 let groupsByEvent self = msg_send ~self ~cmd:(selector "groupsByEvent") ~typ:(returning bool)
@@ -40,6 +42,7 @@ let setActionIsDiscardable x self = msg_send ~self ~cmd:(selector "setActionIsDi
 let setActionName x self = msg_send ~self ~cmd:(selector "setActionName:") ~typ:(id @-> returning void) x
 let setGroupsByEvent x self = msg_send ~self ~cmd:(selector "setGroupsByEvent:") ~typ:(bool @-> returning void) x
 let setLevelsOfUndo x self = msg_send ~self ~cmd:(selector "setLevelsOfUndo:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
+let setNonCreationActionName x self = msg_send ~self ~cmd:(selector "setNonCreationActionName:") ~typ:(id @-> returning void) x
 let setRunLoopModes x self = msg_send ~self ~cmd:(selector "setRunLoopModes:") ~typ:(id @-> returning void) x
 let undo self = msg_send ~self ~cmd:(selector "undo") ~typ:(returning void)
 let undoActionIsDiscardable self = msg_send ~self ~cmd:(selector "undoActionIsDiscardable") ~typ:(returning bool)

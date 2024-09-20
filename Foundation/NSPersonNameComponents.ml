@@ -11,6 +11,9 @@ open CoreGraphics
 
 let self = get_class "NSPersonNameComponents"
 
+let _CKDescribePropertiesUsing x self = msg_send ~self ~cmd:(selector "CKDescribePropertiesUsing:") ~typ:(id @-> returning void) x
+let _CKDescriptionPropertiesWithPublic x ~private_ ~shouldExpand self = msg_send ~self ~cmd:(selector "CKDescriptionPropertiesWithPublic:private:shouldExpand:") ~typ:(bool @-> bool @-> bool @-> returning id) x private_ shouldExpand
+let _CKShortDescriptionRedact x self = msg_send ~self ~cmd:(selector "CKShortDescriptionRedact:") ~typ:(bool @-> returning id) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
@@ -26,6 +29,7 @@ let middleName self = msg_send ~self ~cmd:(selector "middleName") ~typ:(returnin
 let namePrefix self = msg_send ~self ~cmd:(selector "namePrefix") ~typ:(returning id)
 let nameSuffix self = msg_send ~self ~cmd:(selector "nameSuffix") ~typ:(returning id)
 let nickname self = msg_send ~self ~cmd:(selector "nickname") ~typ:(returning id)
+let overrideComponentsInContact x self = msg_send ~self ~cmd:(selector "overrideComponentsInContact:") ~typ:(id @-> returning void) x
 let phoneticRepresentation self = msg_send ~self ~cmd:(selector "phoneticRepresentation") ~typ:(returning id)
 let setFamilyName x self = msg_send ~self ~cmd:(selector "setFamilyName:") ~typ:(id @-> returning void) x
 let setGivenName x self = msg_send ~self ~cmd:(selector "setGivenName:") ~typ:(id @-> returning void) x

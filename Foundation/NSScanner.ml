@@ -17,6 +17,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~typ:(id @-> returning id) x
 let isAtEnd self = msg_send ~self ~cmd:(selector "isAtEnd") ~typ:(returning bool)
 let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning id)
+let scanCGFloat x self = msg_send ~self ~cmd:(selector "scanCGFloat:") ~typ:((ptr double) @-> returning bool) x
 let scanCharactersFromSet x ~intoString self = msg_send ~self ~cmd:(selector "scanCharactersFromSet:intoString:") ~typ:(id @-> (ptr id) @-> returning bool) x intoString
 let scanDecimal x self = msg_send ~self ~cmd:(selector "scanDecimal:") ~typ:((ptr void) @-> returning bool) x
 let scanDouble x self = msg_send ~self ~cmd:(selector "scanDouble:") ~typ:((ptr double) @-> returning bool) x

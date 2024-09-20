@@ -37,3 +37,5 @@ let restoreOverItemAtURL x ~error self = msg_send ~self ~cmd:(selector "restoreO
 let setDiscardable x self = msg_send ~self ~cmd:(selector "setDiscardable:") ~typ:(bool @-> returning void) x
 let setResolved x self = msg_send ~self ~cmd:(selector "setResolved:") ~typ:(bool @-> returning void) x
 let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning ullong)
+let timelineItemDate self = msg_send ~self ~cmd:(selector "timelineItemDate") ~typ:(returning id)
+let timelineItemType self = msg_send ~self ~cmd:(selector "timelineItemType") ~typ:(returning ullong)

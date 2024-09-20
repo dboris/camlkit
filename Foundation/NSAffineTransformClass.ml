@@ -11,6 +11,7 @@ open CoreGraphics
 
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)
 let transform self = msg_send ~self ~cmd:(selector "transform") ~typ:(returning id)
+let transformWithCGAffineTransform x self = msg_send ~self ~cmd:(selector "transformWithCGAffineTransform:") ~typ:(CGAffineTransform.t @-> returning id) x
 let transformWithFlipUsingHeight x self = msg_send ~self ~cmd:(selector "transformWithFlipUsingHeight:") ~typ:(double @-> returning id) x
 let transformWithRotationInDegrees x self = msg_send ~self ~cmd:(selector "transformWithRotationInDegrees:") ~typ:(double @-> returning id) x
 let transformWithRotationInRadians x self = msg_send ~self ~cmd:(selector "transformWithRotationInRadians:") ~typ:(double @-> returning id) x

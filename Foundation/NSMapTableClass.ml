@@ -14,6 +14,7 @@ let mapTableWithStrongToStrongObjects self = msg_send ~self ~cmd:(selector "mapT
 let mapTableWithStrongToWeakObjects self = msg_send ~self ~cmd:(selector "mapTableWithStrongToWeakObjects") ~typ:(returning id)
 let mapTableWithWeakToStrongObjects self = msg_send ~self ~cmd:(selector "mapTableWithWeakToStrongObjects") ~typ:(returning id)
 let mapTableWithWeakToWeakObjects self = msg_send ~self ~cmd:(selector "mapTableWithWeakToWeakObjects") ~typ:(returning id)
+let msvIndexMapTableWithCapacity x self = msg_send ~self ~cmd:(selector "msvIndexMapTableWithCapacity:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let strongToStrongObjectsMapTable self = msg_send ~self ~cmd:(selector "strongToStrongObjectsMapTable") ~typ:(returning id)
 let strongToWeakObjectsMapTable self = msg_send ~self ~cmd:(selector "strongToWeakObjectsMapTable") ~typ:(returning id)
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)

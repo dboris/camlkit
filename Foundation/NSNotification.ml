@@ -22,5 +22,6 @@ let initWithName x ~object_ ~userInfo self = msg_send ~self ~cmd:(selector "init
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
 let object_ self = msg_send ~self ~cmd:(selector "object") ~typ:(returning id)
+let playerPath self = msg_send ~self ~cmd:(selector "playerPath") ~typ:(returning id)
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning id)

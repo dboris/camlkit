@@ -18,6 +18,7 @@ let flags self = msg_send ~self ~cmd:(selector "flags") ~typ:(returning ullong)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithOperatorType x ~modifier ~options self = msg_send ~self ~cmd:(selector "initWithOperatorType:modifier:options:") ~typ:(ullong @-> ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int modifier) (ULLong.of_int options)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
+let minimalFormInContext x ~ofPredicate self = msg_send ~self ~cmd:(selector "minimalFormInContext:ofPredicate:") ~typ:(id @-> id @-> returning id) x ofPredicate
 let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
 let performPrimitiveOperationUsingObject x ~andObject self = msg_send ~self ~cmd:(selector "performPrimitiveOperationUsingObject:andObject:") ~typ:(id @-> id @-> returning bool) x andObject
 let stringVersion self = msg_send ~self ~cmd:(selector "stringVersion") ~typ:(returning id)

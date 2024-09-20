@@ -23,6 +23,7 @@ let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithType x ~subpredicates self = msg_send ~self ~cmd:(selector "initWithType:subpredicates:") ~typ:(ullong @-> id @-> returning id) (ULLong.of_int x) subpredicates
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
+let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning id) x
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning id)
 let predicateOperator self = msg_send ~self ~cmd:(selector "predicateOperator") ~typ:(returning id)
 let predicateWithSubstitutionVariables x self = msg_send ~self ~cmd:(selector "predicateWithSubstitutionVariables:") ~typ:(id @-> returning id) x

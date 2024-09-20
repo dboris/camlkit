@@ -9,8 +9,14 @@ open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsnumber?language=objc}NSNumber} *)
 
+let createWithBytesNoCopy x ~length ~error self = msg_send ~self ~cmd:(selector "createWithBytesNoCopy:length:error:") ~typ:((ptr void) @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int length) error
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
+let modelOriginNumberFromUserDefinedDictionary x self = msg_send ~self ~cmd:(selector "modelOriginNumberFromUserDefinedDictionary:") ~typ:(id @-> returning id) x
+let newFromSqliteStatement x ~atIndex self = msg_send ~self ~cmd:(selector "newFromSqliteStatement:atIndex:") ~typ:((ptr void) @-> int @-> returning id) x atIndex
+let newFromSqliteValue x self = msg_send ~self ~cmd:(selector "newFromSqliteValue:") ~typ:((ptr void) @-> returning id) x
+let numberWithABPropertyType x self = msg_send ~self ~cmd:(selector "numberWithABPropertyType:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let numberWithBool x self = msg_send ~self ~cmd:(selector "numberWithBool:") ~typ:(bool @-> returning id) x
+let numberWithCGFloat x self = msg_send ~self ~cmd:(selector "numberWithCGFloat:") ~typ:(double @-> returning id) x
 let numberWithChar x self = msg_send ~self ~cmd:(selector "numberWithChar:") ~typ:(bool @-> returning id) x
 let numberWithDouble x self = msg_send ~self ~cmd:(selector "numberWithDouble:") ~typ:(double @-> returning id) x
 let numberWithFloat x self = msg_send ~self ~cmd:(selector "numberWithFloat:") ~typ:(float @-> returning id) x

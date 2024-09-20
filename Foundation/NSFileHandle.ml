@@ -12,6 +12,8 @@ open CoreGraphics
 let self = get_class "NSFileHandle"
 
 let availableData self = msg_send ~self ~cmd:(selector "availableData") ~typ:(returning id)
+let bmPathname self = msg_send ~self ~cmd:(selector "bmPathname") ~typ:(returning id)
+let bmSegmentName self = msg_send ~self ~cmd:(selector "bmSegmentName") ~typ:(returning id)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let closeAndReturnError x self = msg_send ~self ~cmd:(selector "closeAndReturnError:") ~typ:((ptr id) @-> returning bool) x
 let closeFile self = msg_send ~self ~cmd:(selector "closeFile") ~typ:(returning void)

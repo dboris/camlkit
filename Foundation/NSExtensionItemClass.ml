@@ -9,4 +9,5 @@ open CoreGraphics
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsextensionitem?language=objc}NSExtensionItem} *)
 
+let extensionItemWithAppleIDAuthenticationContext x self = msg_send ~self ~cmd:(selector "extensionItemWithAppleIDAuthenticationContext:") ~typ:(id @-> returning id) x
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)

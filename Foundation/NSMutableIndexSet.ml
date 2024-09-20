@@ -11,6 +11,7 @@ open CoreGraphics
 
 let self = get_class "NSMutableIndexSet"
 
+let _CKIntersectIndexes x self = msg_send ~self ~cmd:(selector "CKIntersectIndexes:") ~typ:(id @-> returning void) x
 let addIndex x self = msg_send ~self ~cmd:(selector "addIndex:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let addIndexes x self = msg_send ~self ~cmd:(selector "addIndexes:") ~typ:(id @-> returning void) x
 let addIndexes' x ~count self = msg_send ~self ~cmd:(selector "addIndexes:count:") ~typ:((ptr ullong) @-> ullong @-> returning void) x (ULLong.of_int count)

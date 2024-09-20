@@ -21,5 +21,6 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithType x ~leftExpression ~rightExpression self = msg_send ~self ~cmd:(selector "initWithType:leftExpression:rightExpression:") ~typ:(ullong @-> id @-> id @-> returning id) (ULLong.of_int x) leftExpression rightExpression
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let leftExpression self = msg_send ~self ~cmd:(selector "leftExpression") ~typ:(returning id)
+let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning id) x
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning id)
 let rightExpression self = msg_send ~self ~cmd:(selector "rightExpression") ~typ:(returning id)

@@ -13,7 +13,11 @@ let self = get_class "NSURLComponents"
 
 let _URL self = msg_send ~self ~cmd:(selector "URL") ~typ:(returning id)
 let _URLRelativeToURL x self = msg_send ~self ~cmd:(selector "URLRelativeToURL:") ~typ:(id @-> returning id) x
+let containsPercentEncodedQueryItemWithName x self = msg_send ~self ~cmd:(selector "containsPercentEncodedQueryItemWithName:") ~typ:(id @-> returning bool) x
+let containsQueryItemWithName x self = msg_send ~self ~cmd:(selector "containsQueryItemWithName:") ~typ:(id @-> returning bool) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let embeddedAMPURLRange self = msg_send_stret ~self ~cmd:(selector "embeddedAMPURLRange") ~typ:(returning NSRange.t) ~return_type:NSRange.t
+let firstQueryItemWithName x self = msg_send ~self ~cmd:(selector "firstQueryItemWithName:") ~typ:(id @-> returning id) x
 let fragment self = msg_send ~self ~cmd:(selector "fragment") ~typ:(returning id)
 let host self = msg_send ~self ~cmd:(selector "host") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

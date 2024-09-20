@@ -20,5 +20,7 @@ let evaluateWithObject x self = msg_send ~self ~cmd:(selector "evaluateWithObjec
 let evaluateWithObject' x ~substitutionVariables self = msg_send ~self ~cmd:(selector "evaluateWithObject:substitutionVariables:") ~typ:(id @-> id @-> returning bool) x substitutionVariables
 let generateMetadataDescription self = msg_send ~self ~cmd:(selector "generateMetadataDescription") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let minimalFormInContext x self = msg_send ~self ~cmd:(selector "minimalFormInContext:") ~typ:(id @-> returning id) x
+let predicateByAlsoMatchingNilValueForLeftExpression x ~modifier self = msg_send ~self ~cmd:(selector "predicateByAlsoMatchingNilValueForLeftExpression:modifier:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int modifier)
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning id)
 let predicateWithSubstitutionVariables x self = msg_send ~self ~cmd:(selector "predicateWithSubstitutionVariables:") ~typ:(id @-> returning id) x

@@ -11,6 +11,7 @@ open CoreGraphics
 
 let self = get_class "NSIndexSet"
 
+let _CKMap x self = msg_send ~self ~cmd:(selector "CKMap:") ~typ:((ptr void) @-> returning id) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let containsIndex x self = msg_send ~self ~cmd:(selector "containsIndex:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)
 let containsIndexes x self = msg_send ~self ~cmd:(selector "containsIndexes:") ~typ:(id @-> returning bool) x
@@ -30,6 +31,7 @@ let enumerateRangesWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selecto
 let firstIndex self = msg_send ~self ~cmd:(selector "firstIndex") ~typ:(returning ullong)
 let getIndexes x ~maxCount ~inIndexRange self = msg_send ~self ~cmd:(selector "getIndexes:maxCount:inIndexRange:") ~typ:((ptr ullong) @-> ullong @-> (ptr NSRange.t) @-> returning ullong) x (ULLong.of_int maxCount) inIndexRange
 let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let indexAtIndex x self = msg_send ~self ~cmd:(selector "indexAtIndex:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
 let indexGreaterThanIndex x self = msg_send ~self ~cmd:(selector "indexGreaterThanIndex:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
 let indexGreaterThanOrEqualToIndex x self = msg_send ~self ~cmd:(selector "indexGreaterThanOrEqualToIndex:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
 let indexInRange x ~options ~passingTest self = msg_send ~self ~cmd:(selector "indexInRange:options:passingTest:") ~typ:(NSRange.t @-> ullong @-> (ptr void) @-> returning ullong) x (ULLong.of_int options) passingTest
