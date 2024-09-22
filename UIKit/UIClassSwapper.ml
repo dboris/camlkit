@@ -17,4 +17,4 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithObject x ~andClassName self = msg_send ~self ~cmd:(selector "initWithObject:andClassName:") ~typ:(id @-> id @-> returning id) x andClassName
 let object_ self = msg_send ~self ~cmd:(selector "object") ~typ:(returning id)
-let performSelectorForObject x ~selector_ ~withObject ~withObject_ ~withObject_ self = msg_send ~self ~cmd:(selector "performSelectorForObject:selector:withObject:withObject:withObject:") ~typ:(id @-> _SEL @-> id @-> id @-> id @-> returning id) x selector_ withObject withObject_ withObject_
+let performSelectorForObject x ~selector_ ~withObject ~withObject_ ~withObject__ self = msg_send ~self ~cmd:(selector "performSelectorForObject:selector:withObject:withObject:withObject:") ~typ:(id @-> _SEL @-> id @-> id @-> id @-> returning id) x selector_ withObject withObject_ withObject__
