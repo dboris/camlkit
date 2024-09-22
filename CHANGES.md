@@ -1,3 +1,8 @@
+## Release 0.2.2
+
+* Add bindings for methods defined in UIKit and AppKit class extensions.
+
+
 ## Release 0.2.1
 
 * Fix method bindings returning structs.
