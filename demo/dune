@@ -5,7 +5,10 @@
   (= %{context_name} simulator.ios)
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
- (libraries camlkit-base.Foundation camlkit-gui.UIKit))
+ (flags :standard -ccopt "-framework UIKit")
+ (libraries
+  camlkit-base.Foundation
+  camlkit-gui.UIKit))
 
 (subdir Demo.app
  (rule

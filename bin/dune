@@ -1,5 +1,7 @@
 (executable
  (name main)
- (enabled_if (= %{system} macosx))
+ (enabled_if (and
+  (= %{system} macosx)
+  (= %{context_name} default)))
  (flags :standard -ccopt "-framework AppKit")
  (libraries Foundation AppKit WebKit))
