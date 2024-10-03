@@ -159,7 +159,7 @@ let test_value_accessors ~name x () =
 
 let test_object_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.obj_prop "myVar" Objc_t.id
+  and methods = Property.obj_prop "myVar"
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self

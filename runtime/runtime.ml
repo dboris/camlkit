@@ -450,10 +450,9 @@ module Property = struct
     ?(assign = false)
     ?(copy = false)
     ivar_name
-    typ
   =
-  let typ = Objc_t.(value_typ typ)
-  and enc = Objc_t.(Encode.value typ)
+  let typ = Objc_t.(value_typ id)
+  and enc = Objc_t.(Encode.value id)
   in
   [ obj_getter ~ivar_name ~typ ~enc
   ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()

@@ -159,10 +159,8 @@ module CamlObjectProxy = struct
             sel
       in
       let methods =
-        [ Property.obj_getter ~ivar_name ~typ: id ~enc: Objc_t.(Encode.value id)
-        ; Property.obj_setter ~ivar_name ~typ: id ~enc: Objc_t.(Encode.value id) ()
-
-        ; Method.define
+        Property.obj_prop ivar_name @
+        [ Method.define
           ~cmd: (selector "initWithTargetObject:")
           ~args: Objc_t.[id]
           ~return: Objc_t.id
