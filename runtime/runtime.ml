@@ -1,7 +1,7 @@
-include C.Types
-include Ctypes
-
+open C.Types
+open Ctypes
 open Foreign
+open Unsigned
 
 module Platform = Platform
 module Protocol = C.Functions.Protocol
@@ -26,15 +26,15 @@ module Class = struct
 
   let alignment_of_size size =
     let open Float in
-    Unsigned.Size_t.to_int size
+    Size_t.to_int size
     |> of_int
     |> log2
     |> round
     |> to_int
-    |> Unsigned.UInt8.of_int
+    |> UInt8.of_int
   ;;
 
-  let create_instance ?(extra_bytes = Unsigned.Size_t.of_int 0) cls =
+  let create_instance ?(extra_bytes = Size_t.of_int 0) cls =
     create_instance cls extra_bytes
 
   let add_method ~self ~cmd ~typ ~imp ~enc =
@@ -84,7 +84,7 @@ module Class = struct
     assert (add_protocol self proto));
 
   ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
-    let size = Unsigned.Size_t.of_int (sizeof typ) in
+    let size = Size_t.of_int (sizeof typ) in
     assert (add_ivar ~self ~name ~size ~enc));
 
   Objc.register_class self;
@@ -153,6 +153,7 @@ let to_selector = coerce (ptr void) _SEL
 
 module Objc = struct
   include C.Functions.Objc
+  include C.Types
   include Ctypes
   include Unsigned
   include Signed
@@ -239,6 +240,9 @@ let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
 let release self =
   Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
+let autorelease self =
+  Objc.msg_send ~self ~cmd: (selector "autorelease") ~typ: (returning void)
+
 (** Release ObjC object when OCaml ptr is garbage collected. *)
 let gc_autorelease self =
   Gc.finalise release self;
@@ -254,7 +258,8 @@ let nsstring_class = Objc.get_class "NSString"
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
-  Objc.msg_send ~self:nsstring_class
+  Objc.msg_send
+    ~self: nsstring_class
     ~cmd: (selector "stringWithUTF8String:")
     ~typ: (string @-> returning id)
     str
@@ -290,7 +295,7 @@ let is_nil = is_null
 
 module Bitmask = struct
   let of_list = List.fold_left Int.logor Int.zero
-  let of_list' = List.fold_left Unsigned.ULLong.logor Unsigned.ULLong.zero
+  let of_list' = List.fold_left ULLong.logor ULLong.zero
   let (+) = Int.logor
 end
 
@@ -302,8 +307,8 @@ module Block_descriptor = struct
   let () = seal t
   let make sz =
     let d = make t in
-    setf d reserved (Unsigned.ULLong.of_int 0);
-    setf d size (Unsigned.ULLong.of_int sz);
+    setf d reserved (ULLong.of_int 0);
+    setf d size (ULLong.of_int sz);
     d
 end
 
@@ -327,7 +332,7 @@ module Block = struct
     let b = make t in
     setf b isa self;
     setf b descriptor desc_ptr;
-    setf b invoke (coerce (Foreign.funptr typ) (ptr void) f);
+    setf b invoke (coerce (funptr typ) (ptr void) f);
     setf b flags block_is_global;
     allocate t b |> coerce (ptr t) (ptr void)
 

@@ -53,7 +53,7 @@ let test_define_custom_class () =
       ;;
     end)
   in
-  let obj = MyCustomClass._class_ |> alloc |> init in
+  let obj = MyCustomClass.self |> alloc |> init in
   let expected = 5 * 2
   and actual =
     Objc.msg_send ~self: obj
@@ -89,7 +89,7 @@ let test_define_CamlObjectProxy_class () =
   in
   let str = "Hello" in
   let obj =
-    NSStringCamlProxy.(alloc _class_ |> init_with_target_object (new_string str))
+    NSStringCamlProxy.(alloc self |> init_with_target_object (new_string str))
   in
   let x = 5 in
   let expected = x * 3
