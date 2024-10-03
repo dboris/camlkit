@@ -68,38 +68,35 @@ module Class = struct
     ?(class_methods = [])
     name
   =
-    let self =
-      Objc.allocate_class ~superclass name in
-    assert (not (is_null self));
+  let self = Objc.allocate_class ~superclass name in
+  assert (not (is_null self));
 
-    methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-      match Platform.current with
-      | GNUStep ->
-        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-        assert (add_method ~self ~cmd ~typ ~imp ~enc)
-      | _ ->
-        assert (add_method ~self ~cmd ~typ ~imp ~enc));
+  methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
+    match Platform.current with
+    | GNUStep ->
+      let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+      assert (add_method ~self ~cmd ~typ ~imp ~enc)
+    | _ ->
+      assert (add_method ~self ~cmd ~typ ~imp ~enc));
 
-    protocols |> List.iter (fun proto ->
-      assert (not (is_null proto));
-      assert (add_protocol self proto));
+  protocols |> List.iter (fun proto ->
+    assert (not (is_null proto));
+    assert (add_protocol self proto));
 
-    ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
-      let size = Unsigned.Size_t.of_int (sizeof typ) in
-      assert (add_ivar ~self ~name ~size ~enc));
+  ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
+    let size = Unsigned.Size_t.of_int (sizeof typ) in
+    assert (add_ivar ~self ~name ~size ~enc));
 
-      Objc.register_class self;
+  Objc.register_class self;
 
-    if (List.length class_methods > 0) then
-      begin
-        let metaclass = Objc.get_meta_class name in
-        assert (not (is_null metaclass));
-        class_methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-          assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
-      end;
+  if (List.length class_methods > 0) then begin
+    let metaclass = Objc.get_meta_class name in
+    assert (not (is_null metaclass));
+    class_methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
+      assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
+  end;
 
-    self
-  ;;
+  self
 end
 
 module Object = struct
@@ -324,11 +321,11 @@ module Block = struct
   let size = sizeof t
   let desc_ptr = allocate Block_descriptor.t (Block_descriptor.make size)
   let block_is_global = Int.(shift_left one 28)
-  let _class_ = Objc.get_class "__NSGlobalBlock"
+  let self = Objc.get_class "__NSGlobalBlock"
 
   let make' f ~typ =
     let b = make t in
-    setf b isa _class_;
+    setf b isa self;
     setf b descriptor desc_ptr;
     setf b invoke (coerce (Foreign.funptr typ) (ptr void) f);
     setf b flags block_is_global;
@@ -378,7 +375,7 @@ module Property = struct
     and imp self _cmd =
       !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
     in
-      method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
   ;;
 
   (** Setter for non-object values. *)
@@ -414,8 +411,7 @@ module Property = struct
     ~enc
     ()
   =
-    let cmd =
-      selector (setter_name_of_ivar ivar_name)
+    let cmd = selector (setter_name_of_ivar ivar_name)
     and imp self _cmd value =
       if not assign && not copy then
         value |> retain |> ignore;
@@ -434,9 +430,8 @@ module Property = struct
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
   ;;
 
-  (* Accessors *)
-
-  let value ivar_name typ =
+  (** Getter and setter for a non-object property. *)
+  let value_prop ivar_name typ =
     let typ = Objc_t.(value_typ typ)
     and enc = Objc_t.(Encode.value typ)
     in
@@ -445,20 +440,19 @@ module Property = struct
     ]
   ;;
 
-  let _object_
+  (** Getter and setter for an object property. *)
+  let obj_prop
     ?(assign = false)
     ?(copy = false)
     ivar_name
     typ
-    ()
   =
-    let typ = Objc_t.(value_typ typ)
-    and enc = Objc_t.(Encode.value typ)
-    in
-    [ obj_getter ~ivar_name ~typ ~enc
-    ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
-    ]
-  ;;
+  let typ = Objc_t.(value_typ typ)
+  and enc = Objc_t.(Encode.value typ)
+  in
+  [ obj_getter ~ivar_name ~typ ~enc
+  ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
+  ]
 end
 
 (* Exception handling *)

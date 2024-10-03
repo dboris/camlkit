@@ -115,15 +115,15 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_t.(Encode.value int)]
+    [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_t.(Encode.value int)]
   and methods =
     [ Property.getter
-        ~ivar_name:"myVar"
-        ~typ:int
+        ~ivar_name: "myVar"
+        ~typ: int
         ~enc: Objc_t.(Encode.value int)
     ; Property.setter
-        ~ivar_name:"myVar"
-        ~typ:int
+        ~ivar_name: "myVar"
+        ~typ: int
         ~enc: Objc_t.(Encode._method_ ~args: [int] void)
     ]
   in
@@ -138,6 +138,43 @@ let test_add_ivar ~name x () =
       ~typ: (returning int)
   in
   A.check A.int "set value and get same value" x v
+
+let test_value_accessors ~name x () =
+  let ivars = [Ivar.define "myVar" Objc_t.int]
+  and methods = Property.value_prop "myVar" Objc_t.int
+  in
+  let self = _new_ (Class.define name ~ivars ~methods) in
+  Objc.msg_send
+    ~self
+    ~cmd: (selector "setMyVar:")
+    ~typ: (int @-> returning void)
+    x;
+  let v =
+    Objc.msg_send
+      ~self
+      ~cmd: (selector "myVar")
+      ~typ: (returning int)
+  in
+  A.check A.int "set value and get same value" x v
+
+let test_object_accessors ~name x () =
+  let ivars = [Ivar.define "myVar" Objc_t.id]
+  and methods = Property.obj_prop "myVar" Objc_t.id
+  in
+  let self = _new_ (Class.define name ~ivars ~methods) in
+  Objc.msg_send ~self
+    ~cmd: (selector "setMyVar:")
+    ~typ: (id @-> returning void)
+    x;
+  let v =
+    Objc.msg_send ~self
+      ~cmd: (selector "myVar")
+      ~typ: (returning id)
+  in
+  A.check A.string "set value and get same value"
+    (NSString._UTF8String x)
+    (NSString._UTF8String v)
+;;
 
 let test_add_obj_ivar ~name x () =
   let ivars =
@@ -249,10 +286,10 @@ let suite =
   ; "gc_autorelease calls dealloc", `Quick, test_gc_autorelease
   ; "add protocol", `Quick, test_add_protocol
   ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass5" 53
-  ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass6" 12
-  ; "set and get object ivar", `Quick,
-    test_add_obj_ivar ~name:"MyClass7" (new_string "Hello")
-  ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass8" "Test"
+  ; "set and get object ivar", `Quick, test_add_obj_ivar ~name:"MyClass6" (new_string "Hello")
+  ; "value accessors", `Quick, test_value_accessors ~name:"MyClass7" 12
+  ; "object accessors", `Quick, test_object_accessors ~name:"MyClass8" (new_string "Hello")
+  ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass9" "Test"
   ; "get selector name as string", `Quick, test_string_of_selector
   ; "test block", `Quick, test_block
   ; "test msg_send_super", `Quick, test_msg_send_super
