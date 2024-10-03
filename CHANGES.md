@@ -1,3 +1,10 @@
+## Dev
+
+API changes:
+
+* `Property.value` is renamed to `Property.value_prop`,
+  `Property._object_` to `Property.obj_prop`
+
 ## Release 0.2.2
 
 * Add bindings for methods defined in UIKit and AppKit class extensions.
