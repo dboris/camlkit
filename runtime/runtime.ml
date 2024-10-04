@@ -21,7 +21,7 @@ end
 
 module Class = struct
   include C.Functions.Class
-  open Define
+
   module Objc = C.Functions.Objc
 
   let alignment_of_size size =
@@ -37,6 +37,7 @@ module Class = struct
   let create_instance ?(extra_bytes = Size_t.of_int 0) cls =
     create_instance cls extra_bytes
 
+  (** Adds a new method to a class with a given name and implementation. *)
   let add_method ~self ~cmd ~typ ~imp ~enc =
     let method_t = id @-> _SEL @-> typ in
     let ty =
@@ -60,6 +61,7 @@ module Class = struct
     foreign "class_isMetaClass" (_Class @-> returning bool)
   ;;
 
+  (** Defines a new class and registers it with the Objective-C runtime. *)
   let define
     ?(superclass = Objc.get_class "NSObject")
     ?(protocols = [])
@@ -68,35 +70,35 @@ module Class = struct
     ?(class_methods = [])
     name
   =
-  let self = Objc.allocate_class ~superclass name in
-  assert (not (is_null self));
+    let self = Objc.allocate_class ~superclass name in
+    assert (not (is_null self));
 
-  methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-    match Platform.current with
-    | GNUStep ->
-      let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-      assert (add_method ~self ~cmd ~typ ~imp ~enc)
-    | _ ->
-      assert (add_method ~self ~cmd ~typ ~imp ~enc));
+    methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
+      match Platform.current with
+      | GNUStep ->
+        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+      | _ ->
+        assert (add_method ~self ~cmd ~typ ~imp ~enc));
 
-  protocols |> List.iter (fun proto ->
-    assert (not (is_null proto));
-    assert (add_protocol self proto));
+    protocols |> List.iter (fun proto ->
+      assert (not (is_null proto));
+      assert (add_protocol self proto));
 
-  ivars |> List.iter (fun (IvarSpec {name; typ; enc}) ->
-    let size = Size_t.of_int (sizeof typ) in
-    assert (add_ivar ~self ~name ~size ~enc));
+    ivars |> List.iter (fun (Define.IvarSpec {name; typ; enc}) ->
+      let size = Size_t.of_int (sizeof typ) in
+      assert (add_ivar ~self ~name ~size ~enc));
 
-  Objc.register_class self;
+    Objc.register_class self;
 
-  if (List.length class_methods > 0) then begin
-    let metaclass = Objc.get_meta_class name in
-    assert (not (is_null metaclass));
-    class_methods |> List.iter (fun (MethodSpec {cmd; typ; imp; enc}) ->
-      assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
-  end;
+    if (List.length class_methods > 0) then begin
+      let metaclass = Objc.get_meta_class name in
+      assert (not (is_null metaclass));
+      class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
+        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
+    end;
 
-  self
+    self
 end
 
 module Object = struct
@@ -144,6 +146,9 @@ module Object = struct
   ;;
 end
 
+(** Registers a method with the Objective-C runtime system, maps the method
+    name to a selector, and returns the selector value. If the method name
+    has already been registered, this function simply returns the selector. *)
 let selector = Sel.register_name
 
 (** Returns the selector name as string. *)
@@ -180,9 +185,7 @@ module Objc = struct
 
   (** Sends a message with a simple return value to an instance of a class. *)
   let msg_send ~self ~cmd ~typ =
-    foreign "objc_msgSend"
-      (id @-> _SEL @-> typ)
-      self cmd
+    foreign "objc_msgSend" (id @-> _SEL @-> typ) self cmd
   ;;
 
   (** Sends a message with a simple return value to the superclass
@@ -266,11 +269,14 @@ let new_string str =
   |> gc_autorelease
 ;;
 
+(** Sends a message with a simple return value to an instance of a class. *)
 let msg_send cmd self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send ~self ~cmd ~typ
 ;;
 
+(** Sends a message with a simple return value to the superclass of an instance
+    of a class. *)
 let msg_super cmd self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send_super ~self ~cmd ~typ

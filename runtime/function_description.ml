@@ -109,6 +109,9 @@ module Functions = struct
   end
 
   module Sel = struct
+    (** Registers a method with the Objective-C runtime system, maps the method
+        name to a selector, and returns the selector value. If the method name
+        has already been registered, this function simply returns the selector. *)
     let register_name =
       foreign "sel_registerName" (string @-> returning _SEL)
 
