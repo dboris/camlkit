@@ -347,13 +347,21 @@ module Method = struct
   let invoke ~typ ~self m =
     foreign "method_invoke" (id @-> _Method @-> typ) self m
 
-  let define = Define._method_
+  let define imp ~cmd ~args ~return =
+    let typ = Objc_t.method_typ ~args return
+    and enc = Objc_t.Encode._method_ ~args return
+    in
+    Define.method_spec ~cmd ~typ ~imp ~enc
 end
 
 module Ivar = struct
   include C.Functions.Ivar
 
-  let define = Define.ivar
+  let define name typ =
+    let typ = Objc_t.(value_typ typ)
+    and enc = Objc_t.(Encode.value typ)
+    in
+    Define.ivar_spec ~name ~typ ~enc
 end
 
 let get_property ~typ prop_name self =
@@ -411,52 +419,62 @@ module Property = struct
   let obj_setter
     ?(assign = false)
     ?(copy = false)
-    ~ivar_name
     ~typ
     ~enc
-    ()
-  =
-    let cmd = selector (setter_name_of_ivar ivar_name)
-    and imp self _cmd value =
-      if not assign && not copy then
-        value |> retain |> ignore;
-
-      (* release old object *)
-      let ivar =
-        Class.get_instance_variable
-          ~self: (Object.get_class self)
-          ~name: ivar_name
-      in
-      Object.get_ivar ~self ~ivar |> release;
-
-      assert (not (is_null ivar));
-      Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
-    in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
-  ;;
-
-  (** Getter and setter for a non-object property. *)
-  let value_prop ivar_name typ =
-    let typ = Objc_t.(value_typ typ)
-    and enc = Objc_t.(Encode.value typ)
-    in
-    [ getter ~ivar_name ~typ ~enc
-    ; setter ~ivar_name ~typ ~enc
-    ]
-  ;;
-
-  (** Getter and setter for an object property. *)
-  let obj_prop
-    ?(assign = false)
-    ?(copy = false)
     ivar_name
   =
-  let typ = Objc_t.(value_typ id)
-  and enc = Objc_t.(Encode.value id)
+  let cmd = selector (setter_name_of_ivar ivar_name)
+  and imp self _cmd value =
+    if not assign && not copy then
+      value |> retain |> ignore;
+
+    (* release old object *)
+    let ivar =
+      Class.get_instance_variable
+        ~self: (Object.get_class self)
+        ~name: ivar_name
+    in
+    Object.get_ivar ~self ~ivar |> release;
+
+    assert (not (is_null ivar));
+    Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
   in
-  [ obj_getter ~ivar_name ~typ ~enc
-  ; obj_setter ~assign ~copy ~ivar_name ~typ ~enc ()
-  ]
+  method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+
+  (** Definition of a property getter and (optionally) setter. *)
+  let define :
+    type a.
+    ?assign:bool ->
+    ?copy:bool ->
+    ?readonly:bool ->
+    string ->
+    a Objc_t.t ->
+    Define.method_spec' list
+  = fun
+    ?(assign = false)
+    ?(copy = false)
+    ?(readonly = false)
+    ivar_name
+    t
+  ->
+    let typ = Objc_t.value_typ t
+    and enc = Objc_t.Encode.value t
+    in
+    match t with
+    | Objc_t.Id ->
+      if readonly then
+        [ obj_getter ~ivar_name ~typ ~enc ]
+      else
+        [ obj_getter ~ivar_name ~typ ~enc
+        ; obj_setter ~assign ~copy ~typ ~enc ivar_name
+        ]
+    | _ ->
+      if readonly then
+        [ getter ~ivar_name ~typ ~enc ]
+      else
+        [ getter ~ivar_name ~typ ~enc
+        ; setter ~ivar_name ~typ ~enc
+        ]
 end
 
 (* Exception handling *)

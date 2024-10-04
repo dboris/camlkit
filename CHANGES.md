@@ -2,8 +2,7 @@
 
 API changes:
 
-* `Property.value` is renamed to `Property.value_prop`,
-  `Property._object_` to `Property.obj_prop`
+* Replaced `Property.value` and `Property._object_` with a single `Property.define`.
 
 ## Release 0.2.2
 

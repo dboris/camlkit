@@ -141,7 +141,7 @@ let test_add_ivar ~name x () =
 
 let test_value_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.int]
-  and methods = Property.value_prop "myVar" Objc_t.int
+  and methods = Property.define "myVar" Objc_t.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send
@@ -159,7 +159,7 @@ let test_value_accessors ~name x () =
 
 let test_object_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.obj_prop "myVar"
+  and methods = Property.define "myVar" Objc_t.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self
@@ -250,7 +250,7 @@ let test_msg_send_super () =
   let class_a =
     Class.define "ClassA"
       ~methods:
-        [ Define._method_
+        [ Method.define
           ~cmd: (selector "someMethod")
           ~args: Objc_t.[]
           ~return: Objc_t.void
@@ -261,7 +261,7 @@ let test_msg_send_super () =
     Class.define "ClassB"
       ~superclass: class_a
       ~methods:
-        [ Define._method_
+        [ Method.define
           ~cmd: (selector "someMethod")
           ~args: Objc_t.[]
           ~return: Objc_t.void
