@@ -294,20 +294,6 @@ let msg_super cmd self ~args ~return =
   Objc.msg_send_super ~self ~cmd ~typ
 ;;
 
-let value_for_key key self =
-  Objc.msg_send ~self
-    ~cmd: (selector "valueForKey:")
-    ~typ: (id @-> returning id)
-    (new_string key)
-;;
-
-let set_value v ~for_key self =
-  Objc.msg_send ~self
-    ~cmd: (selector "setValue:forKey:")
-    ~typ: (id @-> id @-> returning void)
-    v (new_string for_key)
-;;
-
 module Bitmask = struct
   (** Represents a set of options or flags using a single integer value. *)
 

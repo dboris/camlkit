@@ -237,8 +237,8 @@ let test_kvc ~class_name x () =
     [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_t.(Encode.value id)]
   in
   let obj = _new_ (Class.define class_name ~ivars) in
-  obj |> set_value (new_string x) ~for_key: "myVar";
-  let v = obj |> value_for_key "myVar" in
+  obj |> NSObject.setValue (new_string x) ~forKey: (new_string "myVar");
+  let v = obj |> NSObject.valueForKey (new_string "myVar") in
   A.check A.string "set value and get same value" x (NSString._UTF8String v)
 ;;
 

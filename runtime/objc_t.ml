@@ -1,6 +1,7 @@
 open Ctypes
 include C.Types
 
+(** Represents an Objective-C type. *)
 type _ t =
   | Id : unit ptr t
   | Class : unit ptr t
@@ -120,10 +121,7 @@ module Encode = struct
     | Arr ty -> "[" ^ enc_of_t ty ^ "]"
     | Struc ty -> "{" ^ enc_of_t ty ^ "}"
     | Union ty -> "(" ^ enc_of_t ty ^ ")"
-    | Imp -> "?"
-    | Enc -> "?"
-    | Proto -> "?"
-    | Ivar -> "?"
+    | Imp | Enc | Proto | Ivar -> "?"
 
   let rec fold_enc : type a b. int -> (a, b) hlist -> string =
     fun arg_offset ->

@@ -34,10 +34,11 @@ module Functions = struct
           of registered class definitions without actually retrieving any class
           definitions.
 
-        @param buffer_count An integer value. Pass the number of pointers for which you have allocated
-          space in buffer. On return, this function fills in only this number of
-          elements. If this number is less than the number of registered classes,
-          this function returns an arbitrary subset of the registered classes.
+        @param buffer_count An integer value. Pass the number of pointers for
+          which you have allocated space in buffer. On return, this function
+          fills in only this number of elements. If this number is less than
+          the number of registered classes, this function returns an arbitrary
+          subset of the registered classes.
     *)
     let get_class_list =
       foreign "objc_getClassList" (ptr (ptr objc_class)
@@ -92,16 +93,19 @@ module Functions = struct
     (** Describes the instance methods implemented by a class.
     outCount
 
-      On return, contains the length of the returned array. If outCount is NULL, the length is not returned.
+      On return, contains the length of the returned array. If outCount is NULL,
+      the length is not returned.
     *)
     let copy_method_list =
-      foreign "class_copyMethodList" (_Class @-> ptr uint @-> returning (ptr _Method))
+      foreign "class_copyMethodList"
+        (_Class @-> ptr uint @-> returning (ptr _Method))
 
     (** Returns a specified instance method for a given class. *)
     let get_instance_method =
       foreign "class_getInstanceMethod" (_Class @-> _SEL @-> returning _Method)
 
-    (** Returns the function pointer that would be called if a particular message were sent to an instance of a class. *)
+    (** Returns the function pointer that would be called if a particular
+        message were sent to an instance of a class. *)
     let get_method_implementation =
       foreign "class_getMethodImplementation" (_Class @-> _SEL @-> returning _IMP)
   end
