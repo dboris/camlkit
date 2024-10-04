@@ -156,6 +156,33 @@ let test_value_accessors ~name x () =
       ~typ: (returning int)
   in
   A.check A.int "set value and get same value" x v
+;;
+
+let test_value_property ~name x () =
+  let ivars = [Ivar.define "myVar" Objc_t.int]
+  and methods = Property.define "myVar" Objc_t.int
+  in
+  let self = _new_ (Class.define name ~ivars ~methods) in
+  self |> Property.set ~typ: Objc_t.int "myVar" x;
+  let v =
+    self |> Property.get ~typ: Objc_t.int "myVar"
+  in
+  A.check A.int "set property value and get same value" x v
+;;
+
+let test_object_property ~name x () =
+  let ivars = [Ivar.define "myVar" Objc_t.id]
+  and methods = Property.define "myVar" Objc_t.id
+  in
+  let self = _new_ (Class.define name ~ivars ~methods) in
+  self |> Property.set ~typ: Objc_t.id "myVar" x;
+  let v =
+    self |> Property.get ~typ: Objc_t.id "myVar"
+  in
+  A.check A.string "set property value and get same value"
+    (NSString._UTF8String x)
+    (NSString._UTF8String v)
+;;
 
 let test_object_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.id]
@@ -290,6 +317,8 @@ let suite =
   ; "value accessors", `Quick, test_value_accessors ~name:"MyClass7" 12
   ; "object accessors", `Quick, test_object_accessors ~name:"MyClass8" (new_string "Hello")
   ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass9" "Test"
+  ; "value property", `Quick, test_value_property ~name:"MyClass10" 42
+  ; "object property", `Quick, test_object_property ~name:"MyClass11" (new_string "Hello")
   ; "get selector name as string", `Quick, test_string_of_selector
   ; "test block", `Quick, test_block
   ; "test msg_send_super", `Quick, test_msg_send_super

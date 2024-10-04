@@ -378,8 +378,10 @@ module Property = struct
   open Object
   open Define
 
+  (** Get the value of a property. *)
   let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
 
+  (** Set the value of a property. *)
   let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
 
   (** Getter for non-object values. *)
@@ -441,7 +443,7 @@ module Property = struct
   in
   method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 
-  (** Definition of a property getter and (optionally) setter. *)
+  (** Definition of a property getter and (by default) setter. *)
   let define :
     type a.
     ?assign:bool ->
@@ -449,7 +451,7 @@ module Property = struct
     ?readonly:bool ->
     string ->
     a Objc_t.t ->
-    Define.method_spec' list
+    method_spec' list
   = fun
     ?(assign = false)
     ?(copy = false)
