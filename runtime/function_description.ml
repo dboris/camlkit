@@ -65,12 +65,16 @@ module Functions = struct
     let get_name =
       foreign "class_getName" (_Class @-> returning string)
 
+    (** Returns the superclass of a class. *)
     let get_superclass =
       foreign "class_getSuperclass" (_Class @-> returning _Class)
 
+    (** Adds a protocol to a class. *)
     let add_protocol =
       foreign "class_addProtocol" (_Class @-> _Protocol @-> returning bool)
 
+    (** Returns a Boolean value that indicates whether a class conforms
+        to a given protocol. *)
     let conforms_to_protocol =
       foreign "class_conformsToProtocol" (_Class @-> _Protocol @-> returning bool)
 

@@ -22,8 +22,6 @@ end
 module Class = struct
   include C.Functions.Class
 
-  module Objc = C.Functions.Objc
-
   let alignment_of_size size =
     let open Float in
     Size_t.to_int size
@@ -63,14 +61,14 @@ module Class = struct
 
   (** Defines a new class and registers it with the Objective-C runtime. *)
   let define
-    ?(superclass = Objc.get_class "NSObject")
+    ?(superclass = C.Functions.Objc.get_class "NSObject")
     ?(protocols = [])
     ?(ivars = [])
     ?(methods = [])
     ?(class_methods = [])
     name
   =
-    let self = Objc.allocate_class ~superclass name in
+    let self = C.Functions.Objc.allocate_class ~superclass name in
     assert (not (is_null self));
 
     methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
@@ -89,10 +87,10 @@ module Class = struct
       let size = Size_t.of_int (sizeof typ) in
       assert (add_ivar ~self ~name ~size ~enc));
 
-    Objc.register_class self;
+    C.Functions.Objc.register_class self;
 
     if (List.length class_methods > 0) then begin
-      let metaclass = Objc.get_meta_class name in
+      let metaclass = C.Functions.Objc.get_meta_class name in
       assert (not (is_null metaclass));
       class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
         assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
@@ -266,7 +264,7 @@ let gc_autorelease self =
   self
 ;;
 
-(** Allocates an object and sends it "init" and "gc_autorelease". *)
+(** Allocates an object and sends it [init] and [gc_autorelease]. *)
 let new_object class_name =
   alloc_object class_name |> init |> gc_autorelease
 ;;
@@ -335,6 +333,10 @@ module Block_descriptor = struct
 end
 
 module Block = struct
+  (** Represents a single task or unit of behavior. Blocks are Objective-C
+      objects, which means they can be added to collections like [NSArray] or
+      [NSDictionary]. *)
+
   type t
 
   let t : t structure typ = structure "Block_literal_1"

@@ -2,33 +2,58 @@ open Ctypes
 include C.Types
 
 type _ t =
-| Id : unit ptr t
-| Class : unit ptr t
-| Sel : selector_t t
-| Void : unit t
-| Str : string t
-| Char : char t
-| Bool : bool t
-| Int : int t
-| Short : int t
-| Long : Signed.long t
-| LLong : Signed.llong t
-| ULLong : Unsigned.ullong t
-| Float : float t
-| Double : float t
-| Unknown : unit ptr t
-| Ptr : 'a t -> 'a ptr t
-| Arr : 'a t -> 'a carray t
-| Struc : 'a t -> 'a structure t
-| Union : 'a t -> 'a union t
-| Imp : unit ptr t
-| Enc : _Enc t
-| Proto : protocol_t t
-| Ivar : ivar_t t
+  | Id : unit ptr t
+  | Class : unit ptr t
+  | Sel : selector_t t
+  | Void : unit t
+  | Str : string t
+  | Char : char t
+  | Bool : bool t
+  | Int : int t
+  | Short : int t
+  | Long : Signed.long t
+  | LLong : Signed.llong t
+  | ULLong : Unsigned.ullong t
+  | Float : float t
+  | Double : float t
+  | Unknown : unit ptr t
+  | Ptr : 'a t -> 'a ptr t
+  | Arr : 'a t -> 'a carray t
+  | Struc : 'a t -> 'a structure t
+  | Union : 'a t -> 'a union t
+  | Imp : unit ptr t
+  | Enc : _Enc t
+  | Proto : protocol_t t
+  | Ivar : ivar_t t
 
 type (_, _) hlist =
-| [] : ('r, 'r) hlist
-| (::) : 'a t * ('b, 'r) hlist -> ('a -> 'b, 'r) hlist
+  | [] : ('r, 'r) hlist
+  | (::) : 'a t * ('b, 'r) hlist -> ('a -> 'b, 'r) hlist
+
+let rec ctype_of_t : type a. a t -> a typ =
+  function
+  | Id -> id
+  | Class -> _Class
+  | Sel -> _SEL
+  | Void -> void
+  | Str -> string
+  | Char -> char
+  | Bool -> bool
+  | Int -> int
+  | Short -> short
+  | Long -> long
+  | LLong -> llong
+  | ULLong -> ullong
+  | Float -> float
+  | Double -> double
+  | Unknown -> ptr void
+  | Ptr ty -> ptr (ctype_of_t ty)
+  | Arr ty -> array 0 (ctype_of_t ty)
+  | Imp -> _IMP
+  | Enc -> _Enc
+  | Proto -> _Protocol
+  | Ivar -> _Ivar
+  | Struc _ | Union _ -> invalid_arg "not implemented"
 
 let id = Id
 let _Class = Class
@@ -54,86 +79,51 @@ let array ty = Arr ty
 let struc ty = Struc ty
 let union ty = Union ty
 
-let rec ctype_of_t : type a. a t -> a typ =
-  let open Ctypes in
-  let open C.Types in
-  function
-  | Id -> id
-  | Class -> _Class
-  | Sel -> _SEL
-  | Void -> void
-  | Str -> string
-  | Char -> char
-  | Bool -> bool
-  | Int -> int
-  | Short -> short
-  | Long -> long
-  | LLong -> llong
-  | ULLong -> ullong
-  | Float -> float
-  | Double -> double
-  | Unknown -> ptr void
-  | Ptr ty -> ptr (ctype_of_t ty)
-  | Arr ty -> array 0 (ctype_of_t ty)
-  | Struc _ty -> structure ""  (* FIXME *)
-  | Union _ty -> union ""  (* FIXME *)
-  | Imp -> _IMP
-  | Enc -> _Enc
-  | Proto -> _Protocol
-  | Ivar -> _Ivar
-
 module Encode = struct
   exception Encode_struct of string
 
-  let byte_size_of_t : type a. a t -> int = function
-  | Id -> sizeof (ctype_of_t Id)
-  | Class -> sizeof (ctype_of_t Class)
-  | Sel -> sizeof (ctype_of_t Sel)
-  | Void -> sizeof (ctype_of_t Void)
-  | Str -> sizeof (ctype_of_t Str)
-  | Char -> sizeof (ctype_of_t Char)
-  | Bool -> sizeof (ctype_of_t Bool)
-  | Int -> sizeof (ctype_of_t Int)
-  | Short -> sizeof (ctype_of_t Short)
-  | Long -> sizeof (ctype_of_t Long)
-  | LLong -> sizeof (ctype_of_t LLong)
-  | ULLong -> sizeof (ctype_of_t ULLong)
-  | Float -> sizeof (ctype_of_t Float)
-  | Double -> sizeof (ctype_of_t Double)
-  | Unknown -> sizeof (ctype_of_t Unknown)
-  | Ptr ty -> sizeof (ctype_of_t ty)
-  | Arr _ty -> 0  (* FIXME *)
-  | Struc _ty -> 0  (* FIXME *)
-  | Union _ty -> 0  (* FIXME *)
-  | Imp -> 8
-  | Enc -> 0  (* FIXME *)
-  | Proto -> 8  (* FIXME *)
-  | Ivar -> 8  (* FIXME *)
+  let byte_size_of_t : type a. a t -> int =
+    let open Ctypes in
+    function
+    | Void -> sizeof void
+    | Str -> sizeof string
+    | Char -> sizeof char
+    | Bool -> sizeof bool
+    | Int -> sizeof int
+    | Short -> sizeof short
+    | Long -> sizeof long
+    | LLong -> sizeof llong
+    | ULLong -> sizeof ullong
+    | Float -> sizeof float
+    | Double -> sizeof double
+    | Id | Class | Sel | Ptr _ | Imp | Enc | Proto | Ivar | Unknown ->
+      sizeof (ptr void)
+    | Arr _ | Struc _ | Union _ -> invalid_arg "not implemented"
 
   let rec enc_of_t : type a. a t -> string = function
-  | Id -> "@"
-  | Class -> "#"
-  | Sel -> ":"
-  | Void -> "v"
-  | Str -> "*"
-  | Char -> "c"
-  | Bool -> "C"
-  | Int -> "i"
-  | Short -> "s"
-  | Long -> "l"
-  | LLong -> "q"
-  | ULLong -> "Q"
-  | Float -> "f"
-  | Double -> "d"
-  | Unknown -> "?"
-  | Ptr ty -> "^" ^ enc_of_t ty
-  | Arr ty -> "[" ^ enc_of_t ty ^ "]"
-  | Struc ty -> "{" ^ enc_of_t ty ^ "}"
-  | Union ty -> "(" ^ enc_of_t ty ^ ")"
-  | Imp -> "?"
-  | Enc -> "?"
-  | Proto -> "?"
-  | Ivar -> "?"
+    | Id -> "@"
+    | Class -> "#"
+    | Sel -> ":"
+    | Void -> "v"
+    | Str -> "*"
+    | Char -> "c"
+    | Bool -> "C"
+    | Int -> "i"
+    | Short -> "s"
+    | Long -> "l"
+    | LLong -> "q"
+    | ULLong -> "Q"
+    | Float -> "f"
+    | Double -> "d"
+    | Unknown -> "?"
+    | Ptr ty -> "^" ^ enc_of_t ty
+    | Arr ty -> "[" ^ enc_of_t ty ^ "]"
+    | Struc ty -> "{" ^ enc_of_t ty ^ "}"
+    | Union ty -> "(" ^ enc_of_t ty ^ ")"
+    | Imp -> "?"
+    | Enc -> "?"
+    | Proto -> "?"
+    | Ivar -> "?"
 
   let rec fold_enc : type a b. int -> (a, b) hlist -> string =
     fun arg_offset ->
