@@ -111,8 +111,7 @@ module Object = struct
 
   (** Sets the value of an instance variable in an object.
       object_setIvar is faster than object_setInstanceVariable if the Ivar
-      for the instance variable is already known.
-  *)
+      for the instance variable is already known. *)
   let set_ivar ~self ~ivar value =
     foreign "object_setIvar" (id @-> _Ivar @-> id @-> returning void)
     self ivar value
@@ -163,12 +162,17 @@ module Objc = struct
   include Unsigned
   include Signed
 
+  (** This module extends Ctypes with types and functions specific to Objective-C. *)
+
   module Objc_super = struct
     type t
+
     let t : t structure typ = structure "objc_super"
     let receiver = field t "receiver" id
     let super_class = field t "super_class" _Class
+
     let () = seal t
+
     let make self =
       let self_class = Object.get_class self in
       let sup_cls = Class.get_superclass self_class
@@ -220,29 +224,39 @@ module Objc = struct
       | 2 | 4 | 8 | 16 ->
         msg_send ~self ~cmd ~typ
       | _ ->
-        foreign "objc_msgSend_stret"
-          (id @-> _SEL @-> typ)
-          self cmd
+        foreign "objc_msgSend_stret" (id @-> _SEL @-> typ) self cmd
       end
     | Arm64 -> msg_send ~self ~cmd ~typ
-  ;;
 end
 
+let nil = null
+let is_nil = is_null
+
+(** Returns a new instance of the receiving class. *)
 let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
 
 let alloc_object class_name = alloc (Objc.get_class class_name)
 
+(** Allocates a new instance of the receiving class, sends it an init message,
+    and returns the initialized object. *)
 let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
 
+(** Implemented by subclasses to initialize a new object (the receiver)
+    immediately after memory for it has been allocated. *)
 let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
 
+(** Returns the object returned by copyWithZone: *)
 let _copy_ self = Objc.msg_send_vo ~self ~cmd: (selector "copy")
 
+(** Increments the receiver’s reference count. *)
 let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
 
+(** Decrements the receiver’s reference count. *)
 let release self =
   Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
+(** Decrements the receiver’s retain count at the end of the current
+    autorelease pool block. *)
 let autorelease self =
   Objc.msg_send ~self ~cmd: (selector "autorelease") ~typ: (returning void)
 
@@ -296,10 +310,9 @@ let set_value v ~for_key self =
     v (new_string for_key)
 ;;
 
-let nil = null
-let is_nil = is_null
-
 module Bitmask = struct
+  (** Represents a set of options or flags using a single integer value. *)
+
   let of_list = List.fold_left Int.logor Int.zero
   let of_list' = List.fold_left ULLong.logor ULLong.zero
   let (+) = Int.logor
@@ -307,10 +320,13 @@ end
 
 module Block_descriptor = struct
   type t
+
   let t : t structure typ = structure "Block_descriptor"
   let reserved = field t "reserved" ullong
   let size = field t "size" ullong
+
   let () = seal t
+
   let make sz =
     let d = make t in
     setf d reserved (ULLong.of_int 0);
@@ -320,6 +336,7 @@ end
 
 module Block = struct
   type t
+
   let t : t structure typ = structure "Block_literal_1"
   let isa = field t "isa" (ptr void)
   let flags = field t "flags" int
@@ -342,6 +359,8 @@ module Block = struct
     setf b flags block_is_global;
     allocate t b |> coerce (ptr t) (ptr void)
 
+  (** Create a global block which encapsulates the code for execution
+      at a later time. *)
   let make f ~args ~return =
     let typ = Objc_t.method_typ ~args: (Objc_t.id :: args) return in
     make' f ~typ
