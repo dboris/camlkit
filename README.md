@@ -65,8 +65,7 @@ module AppDelegate = struct
         let screen_bounds =
           UIScreen.self |> UIScreenClass.mainScreen |> UIScreen.bounds in
         let win =
-          UIWindow.self |> NSObjectClass.alloc
-          |> UIWindow.initWithFrame screen_bounds
+          UIWindow.self |> alloc |> UIWindow.initWithFrame screen_bounds
         and vc = UIViewController.self |> alloc |> init
         and label = UILabel.self |> alloc |> init in
         let view = vc |> UIViewController.view in
@@ -84,7 +83,9 @@ module AppDelegate = struct
         true)
 
   let define () =
-    Class.define "AppDelegate" ~superclass: UIResponder.self ~methods: [show_hello]
+    Class.define "AppDelegate"
+      ~superclass: UIResponder.self
+      ~methods: [show_hello]
 end
 
 let main () =
