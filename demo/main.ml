@@ -30,13 +30,12 @@ module AppDelegate = struct
         win |> UIWindow.makeKeyAndVisible;
         true)
 
-  let _class_ = Class.define "AppDelegate"
-    ~superclass: UIResponder.self
-    ~methods: [ show_hello ]
+  let define () =
+    Class.define "AppDelegate" ~superclass: UIResponder.self ~methods: [show_hello]
 end
 
 let main () =
-  let _ = NSObjectClass.new_ NSAutoreleasePool.self
+  let _ = AppDelegate.define ()
   and argc = Array.length Sys.argv
   and argv =
     Sys.argv
@@ -45,6 +44,5 @@ let main () =
     |> Objc.CArray.start
   in
   _UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
-;;
 
 let () = main ()

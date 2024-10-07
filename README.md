@@ -4,7 +4,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
   (all platforms)
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
-  (macOS and [GNUStep](https://gnustep.github.io/))
+  (macOS and [GNUstep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
   (iOS, macOS on Arm, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
@@ -83,13 +83,13 @@ module AppDelegate = struct
         win |> UIWindow.makeKeyAndVisible;
         true)
 
-  let _class_ = Class.define "AppDelegate"
-    ~superclass: UIResponder.self
-    ~methods: [ show_hello ]
+  let define () =
+    Class.define "AppDelegate" ~superclass: UIResponder.self ~methods: [show_hello]
 end
 
 let main () =
-  let argc = Array.length Sys.argv
+  let _ = AppDelegate.define ()
+  and argc = Array.length Sys.argv
   and argv =
     Sys.argv
     |> Array.to_list
@@ -97,7 +97,6 @@ let main () =
     |> Objc.CArray.start
   in
   _UIApplicationMain argc argv nil (new_string "AppDelegate") |> exit
-;;
 
 let () = main ()
 ```
