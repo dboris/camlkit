@@ -51,7 +51,6 @@ a taste of what a program in Camlkit looks like, here is a "Hello World" iOS
 application:
 
 ```ocaml
-open Foundation
 open UIKit
 open Runtime
 
