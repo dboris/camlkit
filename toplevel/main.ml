@@ -1,0 +1,1 @@
+let () = exit (Topmain.main ())

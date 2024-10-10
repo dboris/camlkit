@@ -1,0 +1,22 @@
+(executable
+ (public_name cktop)
+ (package camlkit)
+ (name main)
+ (enabled_if (and
+  (= %{system} macosx)
+  (= %{context_name} default)))
+ (flags :standard -ccopt "-framework Cocoa")
+ (link_flags (-linkall))
+ (modes byte)
+ (libraries
+  compiler-libs.toplevel
+  runtime
+  dispatch
+  Foundation
+  CoreFoundation
+  CoreGraphics
+  CoreAnimation
+  CoreText
+  CoreImage
+  AppKit
+  WebKit))
