@@ -121,3 +121,24 @@ let method_names cls =
   |> List.map Sel.get_name
   |> List.sort String.compare
 ;;
+
+let protocol_methods
+  ?(required = false)
+  ?(instance = true)
+  proto
+  =
+  let count = allocate uint Unsigned.UInt.zero in
+  let pm = Protocol.get_method_descriptions proto required instance count in
+  CArray.from_ptr pm (Unsigned.UInt.to_int (!@ count))
+  |> CArray.to_list
+;;
+
+let protocol_method_names
+  ?(required = false)
+  ?(instance = true)
+  proto
+  =
+  protocol_methods ~required ~instance proto
+  |> List.map Method_description.name
+  |> List.sort String.compare
+;;

@@ -172,5 +172,11 @@ module Functions = struct
     (** Returns the name of a protocol. *)
     let get_name =
       foreign "protocol_getName" (_Protocol @-> returning string)
+
+    (** Returns an array of method descriptions of methods meeting a given
+        specification for a given protocol. *)
+    let get_method_descriptions =
+      foreign "protocol_copyMethodDescriptionList"
+        (_Protocol @-> bool @-> bool @-> ptr uint @-> returning (ptr Method_description.t))
   end
 end

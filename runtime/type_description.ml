@@ -30,6 +30,17 @@ module Types = struct
   type ivar_t = objc_ivar structure ptr
   type _Enc = string
 
+  module Method_description = struct
+    let t : [`Method_desc] structure typ = structure "objc_method_description"
+    let name = field t "name" string
+    let types = field t "types" string
+
+    let () = seal t
+
+    let name t = getf t name
+    let types t = getf t types
+  end
+
   let id = ptr void
   let _Class = ptr void
   let _SEL = ptr objc_selector
