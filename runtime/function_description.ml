@@ -177,6 +177,7 @@ module Functions = struct
         specification for a given protocol. *)
     let get_method_descriptions =
       foreign "protocol_copyMethodDescriptionList"
-        (_Protocol @-> bool @-> bool @-> ptr uint @-> returning (ptr Method_description.t))
+        (_Protocol @-> bool @-> bool @-> ptr uint @->
+          returning (ptr Method_description.t))
   end
 end

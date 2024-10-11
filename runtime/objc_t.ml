@@ -81,8 +81,6 @@ let struc ty = Struc ty
 let union ty = Union ty
 
 module Encode = struct
-  exception Encode_struct of string
-
   let byte_size_of_t : type a. a t -> int =
     let open Ctypes in
     function
@@ -140,8 +138,7 @@ module Encode = struct
   let _method_ ~args return =
     let args = id :: _SEL :: args in
     let size_of_args = fold_size args in
-    enc_of_t return ^ string_of_int size_of_args ^
-    fold_enc 0 args
+    enc_of_t return ^ string_of_int size_of_args ^ fold_enc 0 args
 
   let value = enc_of_t
 end

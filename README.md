@@ -3,10 +3,11 @@
 Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
   (all platforms)
+* Core{Animation, AutoLayout, Foundation, Graphics, Image, Text, Video}
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
   (macOS and [GNUstep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
-  (iOS, macOS on Arm, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
+  (iOS, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
   (iOS and macOS)
 * [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc)
@@ -14,8 +15,6 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Vision](https://developer.apple.com/documentation/vision?language=objc)
   (iOS and macOS)
 * [Photos](https://developer.apple.com/documentation/photos?language=objc)
-  (iOS and macOS)
-* Core{Animation, AutoLayout, Foundation, Graphics, Image, Text, Video}
   (iOS and macOS)
 * [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc)
   (macOS and Mac Catalyst)
@@ -38,17 +37,15 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
 ## Getting started
 
 The fastest way to get started developing an iOS app is to use a starter project
-template. Two starter templates are provided:
+template. Two iOS starter templates are provided:
 * [storyboard-based template](https://github.com/dboris/camlkit-starter-storyboard)
 * [non-storyboard template](https://github.com/dboris/camlkit-starter-nostoryboard)
 
+For macOS, a few sample programs are provided in the
+[examples](https://github.com/dboris/camlkit-examples/) repository.
 
-## Sample programs
-
-A few sample programs are provided in the
-[examples](https://github.com/dboris/camlkit-examples/) repository. To give you
-a taste of what a program in Camlkit looks like, here is a "Hello World" iOS
-application:
+To give you a taste of what a program in Camlkit looks like, here is a
+"Hello World" iOS application:
 
 ```ocaml
 open UIKit
@@ -100,10 +97,6 @@ let main () =
 
 let () = main ()
 ```
-
-A [more substantial example](https://github.com/dboris/camlkit-starter-nostoryboard/blob/master/CamlLib/CamlLib.ml)
-is available in the [starter project template](https://github.com/dboris/camlkit-starter-nostoryboard).
-
 
 ## Introduction
 
@@ -188,7 +181,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 * Using frameworks when bindings are not available
 
   When bindings for the framework you need are not available, you have the
-  option to [generate the bindings yourself](https://discuss.ocaml.org/t/ann-camlkit-macos-ios-gnustep-toolkit-for-ocaml/14722/10) using the tools from [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
+  option to [generate the bindings yourself](https://discuss.ocaml.org/t/ann-camlkit-macos-ios-gnustep-toolkit-for-ocaml/14722/10) using the tools from
+  [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
 
   Another option is to use the lower-level functionality of the Objective-C
   runtime. The runtime functions enable you to get a hold of an arbitrary class
@@ -207,7 +201,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   Objective-C:
   ```objective-c
   - (void)viewDidLoad {
-    [super viewDidLoad]
+    [super viewDidLoad];
     ...
   }
   ```
