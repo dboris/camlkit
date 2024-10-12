@@ -6,6 +6,9 @@ open AppKit
 let win_width = 400.
 let win_height = 300.
 
+let m = NSTableViewDelegate.tableViewSelectionDidChange' (fun _self _cmd _tv -> ())
+let _ = Class.define ~methods: [m] "Hola"
+
 let app_window () =
   let win =
     alloc NSWindow.self
