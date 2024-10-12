@@ -7,7 +7,7 @@
   (= %{context_name} simulator.ios)
   (= %{context_name} simulator-arm.ios)
   (= %{context_name} catalyst.ios)))
- (flags :standard -ccopt "-framework PhotosUI")
+;  (flags :standard -ccopt "-framework PhotosUI")
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation

@@ -1,7 +1,7 @@
 (library
  (name Foundation)
  (public_name camlkit-base.Foundation)
- (flags :standard -ccopt "-framework Foundation")
+;  (flags :standard -ccopt "-framework Foundation")
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation
