@@ -2,4 +2,5 @@
  (names test_objc test_stret)
  (package camlkit-base)
  (build_if (= %{context_name} "default"))
+ (flags :standard -ccopt "-framework Foundation")
  (libraries camlkit-base.Foundation camlkit-base.runtime alcotest))
