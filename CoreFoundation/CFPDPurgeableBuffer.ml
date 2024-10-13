@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -13,5 +14,5 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let endAccessing self = msg_send ~self ~cmd:(selector "endAccessing") ~typ:(returning void)
 let initWithFileDescriptor x ~size self = msg_send ~self ~cmd:(selector "initWithFileDescriptor:size:") ~typ:(int @-> ullong @-> returning id) x (ULLong.of_int size)
 let initWithPropertyList x self = msg_send ~self ~cmd:(selector "initWithPropertyList:") ~typ:((ptr void) @-> returning id) x
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let purgable self = msg_send ~self ~cmd:(selector "purgable") ~typ:(returning bool)

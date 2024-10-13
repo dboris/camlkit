@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -12,8 +13,8 @@ let allValues self = msg_send ~self ~cmd:(selector "allValues") ~typ:(returning 
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let enumerateKeysAndObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateKeysAndObjectsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let getObjects x ~andKeys ~count self = msg_send ~self ~cmd:(selector "getObjects:andKeys:count:") ~typ:((ptr id) @-> (ptr id) @-> ullong @-> returning void) x andKeys (ULLong.of_int count)
@@ -29,4 +30,4 @@ let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(i
 let objectForKeyedSubscript x self = msg_send ~self ~cmd:(selector "objectForKeyedSubscript:") ~typ:(id @-> returning id) x
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int

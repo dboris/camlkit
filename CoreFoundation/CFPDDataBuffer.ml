@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -13,7 +14,7 @@ let copyCFData self = msg_send ~self ~cmd:(selector "copyCFData") ~typ:(returnin
 let copyPropertyListWithMutability x ~error self = msg_send ~self ~cmd:(selector "copyPropertyListWithMutability:error:") ~typ:(ullong @-> (ptr (ptr CFError.t)) @-> returning (ptr void)) (ULLong.of_int x) error
 let copyXPCData self = msg_send ~self ~cmd:(selector "copyXPCData") ~typ:(returning id)
 let endAccessing self = msg_send ~self ~cmd:(selector "endAccessing") ~typ:(returning void)
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let purgable self = msg_send ~self ~cmd:(selector "purgable") ~typ:(returning bool)
 let quicklyValidatePlistAndOnFailureInvokeBlock x self = msg_send ~self ~cmd:(selector "quicklyValidatePlistAndOnFailureInvokeBlock:") ~typ:((ptr void) @-> returning void) x
 let validatePlist self = msg_send ~self ~cmd:(selector "validatePlist") ~typ:(returning bool)

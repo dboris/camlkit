@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -15,6 +16,7 @@ let setDefaultTimeZone x self = msg_send ~self ~cmd:(selector "setDefaultTimeZon
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)
 let systemTimeZone self = msg_send ~self ~cmd:(selector "systemTimeZone") ~typ:(returning id)
 let timeZoneDataVersion self = msg_send ~self ~cmd:(selector "timeZoneDataVersion") ~typ:(returning id)
+let timeZoneForAddress x self = msg_send ~self ~cmd:(selector "timeZoneForAddress:") ~typ:(id @-> returning id) x
 let timeZoneForSecondsFromGMT x self = msg_send ~self ~cmd:(selector "timeZoneForSecondsFromGMT:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let timeZoneWithAbbreviation x self = msg_send ~self ~cmd:(selector "timeZoneWithAbbreviation:") ~typ:(id @-> returning id) x
 let timeZoneWithName x self = msg_send ~self ~cmd:(selector "timeZoneWithName:") ~typ:(id @-> returning id) x

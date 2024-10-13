@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -18,7 +19,7 @@ let initWithBytes' x ~length ~copy ~deallocator self = msg_send ~self ~cmd:(sele
 let initWithBytesNoCopy x ~length self = msg_send ~self ~cmd:(selector "initWithBytesNoCopy:length:") ~typ:((ptr void) @-> ullong @-> returning id) x (ULLong.of_int length)
 let initWithBytesNoCopy' x ~length ~freeWhenDone self = msg_send ~self ~cmd:(selector "initWithBytesNoCopy:length:freeWhenDone:") ~typ:((ptr void) @-> ullong @-> bool @-> returning id) x (ULLong.of_int length) freeWhenDone
 let initWithData x self = msg_send ~self ~cmd:(selector "initWithData:") ~typ:(id @-> returning id) x
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int

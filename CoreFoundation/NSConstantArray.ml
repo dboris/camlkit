@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -10,7 +11,7 @@ let self = get_class "NSConstantArray"
 let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(returning id)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let getObjects x ~range self = msg_send ~self ~cmd:(selector "getObjects:range:") ~typ:((ptr id) @-> NSRange.t @-> returning void) x range
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
@@ -22,4 +23,4 @@ let objectAtIndexedSubscript x self = msg_send ~self ~cmd:(selector "objectAtInd
 let objectEnumerator self = msg_send ~self ~cmd:(selector "objectEnumerator") ~typ:(returning id)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int

@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,17 +8,41 @@ open Objc
 
 let self = get_class "NSData"
 
+let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let _CEMHexString self = msg_send ~self ~cmd:(selector "CEMHexString") ~typ:(returning id)
+let _CEMSHA1Hash self = msg_send ~self ~cmd:(selector "CEMSHA1Hash") ~typ:(returning id)
+let _CEMSHA1HexString self = msg_send ~self ~cmd:(selector "CEMSHA1HexString") ~typ:(returning id)
+let _CKBase64URLSafeString self = msg_send ~self ~cmd:(selector "CKBase64URLSafeString") ~typ:(returning id)
+let _CKDescribePropertiesUsing x self = msg_send ~self ~cmd:(selector "CKDescribePropertiesUsing:") ~typ:(id @-> returning void) x
+let _CKDescriptionPropertiesWithPublic x ~private_ ~shouldExpand self = msg_send ~self ~cmd:(selector "CKDescriptionPropertiesWithPublic:private:shouldExpand:") ~typ:(bool @-> bool @-> bool @-> returning id) x private_ shouldExpand
+let _CKHashedDescription self = msg_send ~self ~cmd:(selector "CKHashedDescription") ~typ:(returning id)
 let _CKHexString self = msg_send ~self ~cmd:(selector "CKHexString") ~typ:(returning id)
 let _CKLowercaseHexStringWithoutSpaces self = msg_send ~self ~cmd:(selector "CKLowercaseHexStringWithoutSpaces") ~typ:(returning id)
+let _CKSHA256 self = msg_send ~self ~cmd:(selector "CKSHA256") ~typ:(returning id)
 let _CKUppercaseHexStringWithoutSpaces self = msg_send ~self ~cmd:(selector "CKUppercaseHexStringWithoutSpaces") ~typ:(returning id)
+let _DMCHexString self = msg_send ~self ~cmd:(selector "DMCHexString") ~typ:(returning id)
+let _DMCSHA256Hash self = msg_send ~self ~cmd:(selector "DMCSHA256Hash") ~typ:(returning id)
+let _NRSHA256 self = msg_send ~self ~cmd:(selector "NRSHA256") ~typ:(returning id)
+let _NRSHA256' x self = msg_send ~self ~cmd:(selector "NRSHA256:") ~typ:((ptr uchar) @-> returning void) x
+let _SHA1Data self = msg_send ~self ~cmd:(selector "SHA1Data") ~typ:(returning id)
+let _SHA1HexString self = msg_send ~self ~cmd:(selector "SHA1HexString") ~typ:(returning id)
+let _SHA256Data self = msg_send ~self ~cmd:(selector "SHA256Data") ~typ:(returning id)
+let abEncodeBase64DataBreakLines x ~allowSlash ~padChar self = msg_send ~self ~cmd:(selector "abEncodeBase64DataBreakLines:allowSlash:padChar:") ~typ:(bool @-> bool @-> bool @-> returning id) x allowSlash padChar
+let abEncodeVCardBase64DataWithInitialLength x self = msg_send ~self ~cmd:(selector "abEncodeVCardBase64DataWithInitialLength:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let abHexString self = msg_send ~self ~cmd:(selector "abHexString") ~typ:(returning id)
+let abMD5Hash self = msg_send ~self ~cmd:(selector "abMD5Hash") ~typ:(returning id)
 let base64EncodedDataWithOptions x self = msg_send ~self ~cmd:(selector "base64EncodedDataWithOptions:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let base64EncodedStringWithOptions x self = msg_send ~self ~cmd:(selector "base64EncodedStringWithOptions:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let base64Encoding self = msg_send ~self ~cmd:(selector "base64Encoding") ~typ:(returning id)
 let bytes self = msg_send ~self ~cmd:(selector "bytes") ~typ:(returning (ptr void))
+let ckCompare x self = msg_send ~self ~cmd:(selector "ckCompare:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let compressedDataUsingAlgorithm x ~error self = msg_send ~self ~cmd:(selector "compressedDataUsingAlgorithm:error:") ~typ:(llong @-> (ptr id) @-> returning id) (LLong.of_int x) error
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let cppData self = msg_send_stret ~self ~cmd:(selector "cppData") ~typ:(returning id) ~return_type:id
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
+let decodeSequenceData x ~data ~error self = msg_send ~self ~cmd:(selector "decodeSequenceData:data:error:") ~typ:((ptr id) @-> (ptr id) @-> (ptr id) @-> returning bool) x data error
+let decodeSequenceString x ~data ~error self = msg_send ~self ~cmd:(selector "decodeSequenceString:data:error:") ~typ:((ptr id) @-> (ptr id) @-> (ptr id) @-> returning bool) x data error
 let decompressedDataUsingAlgorithm x ~error self = msg_send ~self ~cmd:(selector "decompressedDataUsingAlgorithm:error:") ~typ:(llong @-> (ptr id) @-> returning id) (LLong.of_int x) error
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let deserializeAlignedBytesLengthAtCursor x self = msg_send ~self ~cmd:(selector "deserializeAlignedBytesLengthAtCursor:") ~typ:((ptr uint) @-> returning uint) x
@@ -27,12 +52,17 @@ let deserializeIntAtCursor x self = msg_send ~self ~cmd:(selector "deserializeIn
 let deserializeIntAtIndex x self = msg_send ~self ~cmd:(selector "deserializeIntAtIndex:") ~typ:(uint @-> returning int) x
 let deserializeInts x ~count ~atCursor self = msg_send ~self ~cmd:(selector "deserializeInts:count:atCursor:") ~typ:((ptr int) @-> uint @-> (ptr uint) @-> returning void) x count atCursor
 let deserializeInts' x ~count ~atIndex self = msg_send ~self ~cmd:(selector "deserializeInts:count:atIndex:") ~typ:((ptr int) @-> uint @-> uint @-> returning void) x count atIndex
+let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let encodedBytesAndReturnLength x ~error self = msg_send ~self ~cmd:(selector "encodedBytesAndReturnLength:error:") ~typ:((ptr ullong) @-> (ptr id) @-> returning string) x error
+let encodedDataAndReturnError x self = msg_send ~self ~cmd:(selector "encodedDataAndReturnError:") ~typ:((ptr id) @-> returning id) x
 let enumerateByteRangesUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateByteRangesUsingBlock:") ~typ:((ptr void) @-> returning void) x
 let getBytes x self = msg_send ~self ~cmd:(selector "getBytes:") ~typ:((ptr void) @-> returning void) x
 let getBytes1 x ~length self = msg_send ~self ~cmd:(selector "getBytes:length:") ~typ:((ptr void) @-> ullong @-> returning void) x (ULLong.of_int length)
 let getBytes2 x ~range self = msg_send ~self ~cmd:(selector "getBytes:range:") ~typ:((ptr void) @-> NSRange.t @-> returning void) x range
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let getFileIDFromXattr x ~docID ~genCount self = msg_send ~self ~cmd:(selector "getFileIDFromXattr:docID:genCount:") ~typ:((ptr ullong) @-> (ptr uint) @-> (ptr ullong) @-> returning bool) x docID genCount
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
+let hexString self = msg_send ~self ~cmd:(selector "hexString") ~typ:(returning id)
 let initWithBase64EncodedData x ~options self = msg_send ~self ~cmd:(selector "initWithBase64EncodedData:options:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int options)
 let initWithBase64EncodedString x ~options self = msg_send ~self ~cmd:(selector "initWithBase64EncodedString:options:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int options)
 let initWithBase64Encoding x self = msg_send ~self ~cmd:(selector "initWithBase64Encoding:") ~typ:(id @-> returning id) x
@@ -42,6 +72,7 @@ let initWithBytes2 x ~length ~copy ~freeWhenDone ~bytesAreVM self = msg_send ~se
 let initWithBytesNoCopy x ~length self = msg_send ~self ~cmd:(selector "initWithBytesNoCopy:length:") ~typ:((ptr void) @-> ullong @-> returning id) x (ULLong.of_int length)
 let initWithBytesNoCopy1 x ~length ~deallocator self = msg_send ~self ~cmd:(selector "initWithBytesNoCopy:length:deallocator:") ~typ:((ptr void) @-> ullong @-> (ptr void) @-> returning id) x (ULLong.of_int length) deallocator
 let initWithBytesNoCopy2 x ~length ~freeWhenDone self = msg_send ~self ~cmd:(selector "initWithBytesNoCopy:length:freeWhenDone:") ~typ:((ptr void) @-> ullong @-> bool @-> returning id) x (ULLong.of_int length) freeWhenDone
+let initWithCPPData x ~copy self = msg_send ~self ~cmd:(selector "initWithCPPData:copy:") ~typ:((ptr void) @-> bool @-> returning id) x copy
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithContentsOfFile x self = msg_send ~self ~cmd:(selector "initWithContentsOfFile:") ~typ:(id @-> returning id) x
 let initWithContentsOfFile1 x ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfFile:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
@@ -55,12 +86,17 @@ let initWithContentsOfURL2 x ~options ~maxLength ~error self = msg_send ~self ~c
 let initWithData x self = msg_send ~self ~cmd:(selector "initWithData:") ~typ:(id @-> returning id) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isEqualToData x self = msg_send ~self ~cmd:(selector "isEqualToData:") ~typ:(id @-> returning bool) x
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
+let matchesDataAtFilePath x self = msg_send ~self ~cmd:(selector "matchesDataAtFilePath:") ~typ:(id @-> returning bool) x
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
 let rangeOfData x ~options ~range self = msg_send_stret ~self ~cmd:(selector "rangeOfData:options:range:") ~typ:(id @-> ullong @-> NSRange.t @-> returning NSRange.t) ~return_type:NSRange.t x (ULLong.of_int options) range
 let replacementObjectForCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForCoder:") ~typ:(id @-> returning id) x
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
+let sqliteBind x ~index self = msg_send ~self ~cmd:(selector "sqliteBind:index:") ~typ:((ptr void) @-> int @-> returning void) x index
 let subdataWithRange x self = msg_send ~self ~cmd:(selector "subdataWithRange:") ~typ:(NSRange.t @-> returning id) x
+let subdataWithRangeNoCopy x self = msg_send ~self ~cmd:(selector "subdataWithRangeNoCopy:") ~typ:(NSRange.t @-> returning id) x
+let toUUID self = msg_send ~self ~cmd:(selector "toUUID") ~typ:(returning id)
+let truncatedDescription self = msg_send ~self ~cmd:(selector "truncatedDescription") ~typ:(returning id)
 let writeToFile x ~atomically self = msg_send ~self ~cmd:(selector "writeToFile:atomically:") ~typ:(id @-> bool @-> returning bool) x atomically
 let writeToFile1 x ~atomically ~error self = msg_send ~self ~cmd:(selector "writeToFile:atomically:error:") ~typ:(id @-> bool @-> (ptr id) @-> returning bool) x atomically error
 let writeToFile2 x ~options ~error self = msg_send ~self ~cmd:(selector "writeToFile:options:error:") ~typ:(id @-> ullong @-> (ptr id) @-> returning bool) x (ULLong.of_int options) error

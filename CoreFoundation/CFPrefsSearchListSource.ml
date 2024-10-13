@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -16,7 +17,7 @@ let deferredNotifyCausedByLocalWriteOfChangesToKey x ~fromValue ~toValue self = 
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let domainIdentifier self = msg_send ~self ~cmd:(selector "domainIdentifier") ~typ:(returning (ptr CFString.t))
 let fullCloudSynchronizeWithCompletionHandler x self = msg_send ~self ~cmd:(selector "fullCloudSynchronizeWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
-let generationCount self = msg_send ~self ~cmd:(selector "generationCount") ~typ:(returning llong)
+let generationCount self = msg_send ~self ~cmd:(selector "generationCount") ~typ:(returning llong) |> LLong.to_int
 let handleChangeNotificationForDomainIdentifier x ~isRemote self = msg_send ~self ~cmd:(selector "handleChangeNotificationForDomainIdentifier:isRemote:") ~typ:((ptr CFString.t) @-> bool @-> returning void) x isRemote
 let handleReply x ~toRequestNewDataMessage ~onConnection ~retryCount ~error self = msg_send ~self ~cmd:(selector "handleReply:toRequestNewDataMessage:onConnection:retryCount:error:") ~typ:(id @-> id @-> id @-> int @-> (ptr bool) @-> returning void) x toRequestNewDataMessage onConnection retryCount error
 let initWithIdentifier x ~containingPreferences self = msg_send ~self ~cmd:(selector "initWithIdentifier:containingPreferences:") ~typ:((ptr CFString.t) @-> id @-> returning id) x containingPreferences

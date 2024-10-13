@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,26 +8,35 @@ open Objc
 
 let self = get_class "NSSet"
 
+let _CAMLType self = msg_send ~self ~cmd:(selector "CAMLType") ~typ:(returning id)
+let _CKAssignToContainerWithID x self = msg_send ~self ~cmd:(selector "CKAssignToContainerWithID:") ~typ:(id @-> returning void) x
+let _CKMap x self = msg_send ~self ~cmd:(selector "CKMap:") ~typ:((ptr void) @-> returning id) x
 let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x forKeyPath (ULLong.of_int options) context
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let anyObject self = msg_send ~self ~cmd:(selector "anyObject") ~typ:(returning id)
+let channelsWithChannelProperties x self = msg_send ~self ~cmd:(selector "channelsWithChannelProperties:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let containsObject x self = msg_send ~self ~cmd:(selector "containsObject:") ~typ:(id @-> returning bool) x
+let containsPhoneNumber x self = msg_send ~self ~cmd:(selector "containsPhoneNumber:") ~typ:(id @-> returning id) x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
-let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning ullong) x
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
+let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning id) x
 let descriptionWithLocale' x ~indent self = msg_send ~self ~cmd:(selector "descriptionWithLocale:indent:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int indent)
+let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let enumerateIndexPathsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateIndexPathsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let enumerateObjectsUsingBlock x self = msg_send ~self ~cmd:(selector "enumerateObjectsUsingBlock:") ~typ:((ptr void) @-> returning void) x
 let enumerateObjectsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateObjectsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let filteredSetUsingPredicate x self = msg_send ~self ~cmd:(selector "filteredSetUsingPredicate:") ~typ:(id @-> returning id) x
 let getObjects x self = msg_send ~self ~cmd:(selector "getObjects:") ~typ:((ptr id) @-> returning void) x
 let getObjects1 x ~count self = msg_send ~self ~cmd:(selector "getObjects:count:") ~typ:((ptr id) @-> ullong @-> returning void) x (ULLong.of_int count)
 let getObjects2 x ~range self = msg_send ~self ~cmd:(selector "getObjects:range:") ~typ:((ptr id) @-> NSRange.t @-> returning void) x range
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
+let ibssNetworks self = msg_send ~self ~cmd:(selector "ibssNetworks") ~typ:(returning id)
+let infrastructureNetworks self = msg_send ~self ~cmd:(selector "infrastructureNetworks") ~typ:(returning id)
 let initWithArray x self = msg_send ~self ~cmd:(selector "initWithArray:") ~typ:(id @-> returning id) x
 let initWithArray1 x ~copyItems self = msg_send ~self ~cmd:(selector "initWithArray:copyItems:") ~typ:(id @-> bool @-> returning id) x copyItems
 let initWithArray2 x ~range self = msg_send ~self ~cmd:(selector "initWithArray:range:") ~typ:(id @-> NSRange.t @-> returning id) x range
@@ -41,6 +51,7 @@ let initWithOrderedSet2 x ~range self = msg_send ~self ~cmd:(selector "initWithO
 let initWithOrderedSet3 x ~range ~copyItems self = msg_send ~self ~cmd:(selector "initWithOrderedSet:range:copyItems:") ~typ:(id @-> NSRange.t @-> bool @-> returning id) x range copyItems
 let initWithSet x self = msg_send ~self ~cmd:(selector "initWithSet:") ~typ:(id @-> returning id) x
 let initWithSet' x ~copyItems self = msg_send ~self ~cmd:(selector "initWithSet:copyItems:") ~typ:(id @-> bool @-> returning id) x copyItems
+let initWithTrackedSet x self = msg_send ~self ~cmd:(selector "initWithTrackedSet:") ~typ:(id @-> returning id) x
 let intersectsOrderedSet x self = msg_send ~self ~cmd:(selector "intersectsOrderedSet:") ~typ:(id @-> returning bool) x
 let intersectsSet x self = msg_send ~self ~cmd:(selector "intersectsSet:") ~typ:(id @-> returning bool) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
@@ -51,7 +62,14 @@ let makeObjectsPerformSelector x self = msg_send ~self ~cmd:(selector "makeObjec
 let makeObjectsPerformSelector' x ~withObject self = msg_send ~self ~cmd:(selector "makeObjectsPerformSelector:withObject:") ~typ:(_SEL @-> id @-> returning void) x withObject
 let member x self = msg_send ~self ~cmd:(selector "member:") ~typ:(id @-> returning id) x
 let members x ~notFoundMarker self = msg_send ~self ~cmd:(selector "members:notFoundMarker:") ~typ:(id @-> id @-> returning id) x notFoundMarker
+let mergedNetworks self = msg_send ~self ~cmd:(selector "mergedNetworks") ~typ:(returning id)
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
+let networksWithChannels x self = msg_send ~self ~cmd:(selector "networksWithChannels:") ~typ:(id @-> returning id) x
+let networksWithNoiseMinimum x ~maximum self = msg_send ~self ~cmd:(selector "networksWithNoiseMinimum:maximum:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int maximum)
+let networksWithPHYMode x self = msg_send ~self ~cmd:(selector "networksWithPHYMode:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
+let networksWithRSSIMinimum x ~maximum self = msg_send ~self ~cmd:(selector "networksWithRSSIMinimum:maximum:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int maximum)
+let networksWithSSID x self = msg_send ~self ~cmd:(selector "networksWithSSID:") ~typ:(id @-> returning id) x
+let networksWithSecurityType x self = msg_send ~self ~cmd:(selector "networksWithSecurityType:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let objectEnumerator self = msg_send ~self ~cmd:(selector "objectEnumerator") ~typ:(returning id)
 let objectPassingTest x self = msg_send ~self ~cmd:(selector "objectPassingTest:") ~typ:((ptr void) @-> returning id) x
 let objectWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "objectWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning id) (ULLong.of_int x) passingTest
@@ -67,5 +85,6 @@ let setValue x ~forKey self = msg_send ~self ~cmd:(selector "setValue:forKey:") 
 let sortedArrayUsingComparator x self = msg_send ~self ~cmd:(selector "sortedArrayUsingComparator:") ~typ:((ptr void) @-> returning id) x
 let sortedArrayUsingDescriptors x self = msg_send ~self ~cmd:(selector "sortedArrayUsingDescriptors:") ~typ:(id @-> returning id) x
 let sortedArrayWithOptions x ~usingComparator self = msg_send ~self ~cmd:(selector "sortedArrayWithOptions:usingComparator:") ~typ:(ullong @-> (ptr void) @-> returning id) (ULLong.of_int x) usingComparator
+let sqliteBind x ~index self = msg_send ~self ~cmd:(selector "sqliteBind:index:") ~typ:((ptr void) @-> int @-> returning void) x index
 let valueForKey x self = msg_send ~self ~cmd:(selector "valueForKey:") ~typ:(id @-> returning id) x
 let valueForKeyPath x self = msg_send ~self ~cmd:(selector "valueForKeyPath:") ~typ:(id @-> returning id) x

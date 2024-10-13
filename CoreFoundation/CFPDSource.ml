@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -28,7 +29,7 @@ let drainPendingChanges self = msg_send ~self ~cmd:(selector "drainPendingChange
 let enqueueNewKey x ~value ~encoding ~inBatch ~fromMessage self = msg_send ~self ~cmd:(selector "enqueueNewKey:value:encoding:inBatch:fromMessage:") ~typ:(id @-> id @-> int @-> bool @-> id @-> returning bool) x value encoding inBatch fromMessage
 let finishedNonRequestWriteWithResult x self = msg_send ~self ~cmd:(selector "finishedNonRequestWriteWithResult:") ~typ:((ptr CFDictionary.t) @-> returning void) x
 let handleWritingResult x self = msg_send ~self ~cmd:(selector "handleWritingResult:") ~typ:((ptr CFDictionary.t) @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithDomain x ~userName ~byHost ~managed ~shmemIndex ~daemon self = msg_send ~self ~cmd:(selector "initWithDomain:userName:byHost:managed:shmemIndex:daemon:") ~typ:((ptr CFString.t) @-> (ptr CFString.t) @-> bool @-> bool @-> short @-> id @-> returning id) x userName byHost managed shmemIndex daemon
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let lock self = msg_send ~self ~cmd:(selector "lock") ~typ:(returning void)

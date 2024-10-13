@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -16,7 +17,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let exceptionAddingEntriesToUserInfo x self = msg_send ~self ~cmd:(selector "exceptionAddingEntriesToUserInfo:") ~typ:(id @-> returning id) x
 let exceptionRememberingObject x ~key self = msg_send ~self ~cmd:(selector "exceptionRememberingObject:key:") ~typ:(id @-> id @-> returning id) x key
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithName x ~reason ~userInfo self = msg_send ~self ~cmd:(selector "initWithName:reason:userInfo:") ~typ:(id @-> id @-> id @-> returning id) x reason userInfo

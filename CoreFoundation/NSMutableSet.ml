@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,6 +8,9 @@ open Objc
 
 let self = get_class "NSMutableSet"
 
+let _CKSynchronizedAddIfAbsent x self = msg_send ~self ~cmd:(selector "CKSynchronizedAddIfAbsent:") ~typ:(id @-> returning bool) x
+let _CKSynchronizedRemoveObject x self = msg_send ~self ~cmd:(selector "CKSynchronizedRemoveObject:") ~typ:(id @-> returning void) x
+let abAddNonNilObject x self = msg_send ~self ~cmd:(selector "abAddNonNilObject:") ~typ:(id @-> returning void) x
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let addObjects x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:((ptr id) @-> ullong @-> returning void) x (ULLong.of_int count)
 let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning void) x

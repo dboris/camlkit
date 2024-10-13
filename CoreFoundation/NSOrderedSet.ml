@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,6 +8,7 @@ open Objc
 
 let self = get_class "NSOrderedSet"
 
+let _CKDescriptionPropertiesWithPublic x ~private_ ~shouldExpand self = msg_send ~self ~cmd:(selector "CKDescriptionPropertiesWithPublic:private:shouldExpand:") ~typ:(bool @-> bool @-> bool @-> returning id) x private_ shouldExpand
 let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x forKeyPath (ULLong.of_int options) context
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let array self = msg_send ~self ~cmd:(selector "array") ~typ:(returning id)
@@ -14,10 +16,10 @@ let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(re
 let containsObject x self = msg_send ~self ~cmd:(selector "containsObject:") ~typ:(id @-> returning bool) x
 let containsObject' x ~inRange self = msg_send ~self ~cmd:(selector "containsObject:inRange:") ~typ:(id @-> NSRange.t @-> returning bool) x inRange
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
-let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning ullong) x
-let countForObject' x ~inRange self = msg_send ~self ~cmd:(selector "countForObject:inRange:") ~typ:(id @-> NSRange.t @-> returning ullong) x inRange
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
+let countForObject x self = msg_send ~self ~cmd:(selector "countForObject:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
+let countForObject' x ~inRange self = msg_send ~self ~cmd:(selector "countForObject:inRange:") ~typ:(id @-> NSRange.t @-> returning ullong) x inRange |> ULLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let descriptionWithLocale x self = msg_send ~self ~cmd:(selector "descriptionWithLocale:") ~typ:(id @-> returning id) x
 let descriptionWithLocale' x ~indent self = msg_send ~self ~cmd:(selector "descriptionWithLocale:indent:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int indent)
@@ -32,13 +34,13 @@ let filteredOrderedSetUsingPredicate x self = msg_send ~self ~cmd:(selector "fil
 let firstObject self = msg_send ~self ~cmd:(selector "firstObject") ~typ:(returning id)
 let getObjects x self = msg_send ~self ~cmd:(selector "getObjects:") ~typ:((ptr id) @-> returning void) x
 let getObjects' x ~range self = msg_send ~self ~cmd:(selector "getObjects:range:") ~typ:((ptr id) @-> NSRange.t @-> returning void) x range
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
-let indexOfObject x self = msg_send ~self ~cmd:(selector "indexOfObject:") ~typ:(id @-> returning ullong) x
-let indexOfObject1 x ~inRange self = msg_send ~self ~cmd:(selector "indexOfObject:inRange:") ~typ:(id @-> NSRange.t @-> returning ullong) x inRange
-let indexOfObject2 x ~inSortedRange ~options ~usingComparator self = msg_send ~self ~cmd:(selector "indexOfObject:inSortedRange:options:usingComparator:") ~typ:(id @-> NSRange.t @-> ullong @-> (ptr void) @-> returning ullong) x inSortedRange (ULLong.of_int options) usingComparator
-let indexOfObjectAtIndexes x ~options ~passingTest self = msg_send ~self ~cmd:(selector "indexOfObjectAtIndexes:options:passingTest:") ~typ:(id @-> ullong @-> (ptr void) @-> returning ullong) x (ULLong.of_int options) passingTest
-let indexOfObjectPassingTest x self = msg_send ~self ~cmd:(selector "indexOfObjectPassingTest:") ~typ:((ptr void) @-> returning ullong) x
-let indexOfObjectWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "indexOfObjectWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning ullong) (ULLong.of_int x) passingTest
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
+let indexOfObject x self = msg_send ~self ~cmd:(selector "indexOfObject:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
+let indexOfObject1 x ~inRange self = msg_send ~self ~cmd:(selector "indexOfObject:inRange:") ~typ:(id @-> NSRange.t @-> returning ullong) x inRange |> ULLong.to_int
+let indexOfObject2 x ~inSortedRange ~options ~usingComparator self = msg_send ~self ~cmd:(selector "indexOfObject:inSortedRange:options:usingComparator:") ~typ:(id @-> NSRange.t @-> ullong @-> (ptr void) @-> returning ullong) x inSortedRange (ULLong.of_int options) usingComparator |> ULLong.to_int
+let indexOfObjectAtIndexes x ~options ~passingTest self = msg_send ~self ~cmd:(selector "indexOfObjectAtIndexes:options:passingTest:") ~typ:(id @-> ullong @-> (ptr void) @-> returning ullong) x (ULLong.of_int options) passingTest |> ULLong.to_int
+let indexOfObjectPassingTest x self = msg_send ~self ~cmd:(selector "indexOfObjectPassingTest:") ~typ:((ptr void) @-> returning ullong) x |> ULLong.to_int
+let indexOfObjectWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "indexOfObjectWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning ullong) (ULLong.of_int x) passingTest |> ULLong.to_int
 let indexesOfObjectsAtIndexes x ~options ~passingTest self = msg_send ~self ~cmd:(selector "indexesOfObjectsAtIndexes:options:passingTest:") ~typ:(id @-> ullong @-> (ptr void) @-> returning id) x (ULLong.of_int options) passingTest
 let indexesOfObjectsPassingTest x self = msg_send ~self ~cmd:(selector "indexesOfObjectsPassingTest:") ~typ:((ptr void) @-> returning id) x
 let indexesOfObjectsWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "indexesOfObjectsWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning id) (ULLong.of_int x) passingTest

@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -11,14 +12,16 @@ let _AMSymbol self = msg_send ~self ~cmd:(selector "AMSymbol") ~typ:(returning i
 let _PMSymbol self = msg_send ~self ~cmd:(selector "PMSymbol") ~typ:(returning id)
 let calendarIdentifier self = msg_send ~self ~cmd:(selector "calendarIdentifier") ~typ:(returning id)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
-let compareDate x ~toDate ~toUnitGranularity self = msg_send ~self ~cmd:(selector "compareDate:toDate:toUnitGranularity:") ~typ:(id @-> id @-> ullong @-> returning llong) x toDate (ULLong.of_int toUnitGranularity)
-let component x ~fromDate self = msg_send ~self ~cmd:(selector "component:fromDate:") ~typ:(ullong @-> id @-> returning llong) (ULLong.of_int x) fromDate
+let compareDate x ~toDate ~toUnitGranularity self = msg_send ~self ~cmd:(selector "compareDate:toDate:toUnitGranularity:") ~typ:(id @-> id @-> ullong @-> returning llong) x toDate (ULLong.of_int toUnitGranularity) |> LLong.to_int
+let component x ~fromDate self = msg_send ~self ~cmd:(selector "component:fromDate:") ~typ:(ullong @-> id @-> returning llong) (ULLong.of_int x) fromDate |> LLong.to_int
 let components x ~fromDate self = msg_send ~self ~cmd:(selector "components:fromDate:") ~typ:(ullong @-> id @-> returning id) (ULLong.of_int x) fromDate
 let components1 x ~fromDate ~toDate ~options self = msg_send ~self ~cmd:(selector "components:fromDate:toDate:options:") ~typ:(ullong @-> id @-> id @-> ullong @-> returning id) (ULLong.of_int x) fromDate toDate (ULLong.of_int options)
 let components2 x ~fromDateComponents ~toDateComponents ~options self = msg_send ~self ~cmd:(selector "components:fromDateComponents:toDateComponents:options:") ~typ:(ullong @-> id @-> id @-> ullong @-> returning id) (ULLong.of_int x) fromDateComponents toDateComponents (ULLong.of_int options)
 let componentsInTimeZone x ~fromDate self = msg_send ~self ~cmd:(selector "componentsInTimeZone:fromDate:") ~typ:(id @-> id @-> returning id) x fromDate
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let date x ~matchesComponents self = msg_send ~self ~cmd:(selector "date:matchesComponents:") ~typ:(id @-> id @-> returning bool) x matchesComponents
+let date x ~isSameDayAsDate self = msg_send ~self ~cmd:(selector "date:isSameDayAsDate:") ~typ:(id @-> id @-> returning bool) x isSameDayAsDate
+let date1 x ~isSameYearAsDate self = msg_send ~self ~cmd:(selector "date:isSameYearAsDate:") ~typ:(id @-> id @-> returning bool) x isSameYearAsDate
+let date2 x ~matchesComponents self = msg_send ~self ~cmd:(selector "date:matchesComponents:") ~typ:(id @-> id @-> returning bool) x matchesComponents
 let dateByAddingComponents x ~toDate ~options self = msg_send ~self ~cmd:(selector "dateByAddingComponents:toDate:options:") ~typ:(id @-> id @-> ullong @-> returning id) x toDate (ULLong.of_int options)
 let dateByAddingUnit x ~value ~toDate ~options self = msg_send ~self ~cmd:(selector "dateByAddingUnit:value:toDate:options:") ~typ:(ullong @-> llong @-> id @-> ullong @-> returning id) (ULLong.of_int x) (LLong.of_int value) toDate (ULLong.of_int options)
 let dateBySettingHour x ~minute ~second ~ofDate ~options self = msg_send ~self ~cmd:(selector "dateBySettingHour:minute:second:ofDate:options:") ~typ:(llong @-> llong @-> llong @-> id @-> ullong @-> returning id) (LLong.of_int x) (LLong.of_int minute) (LLong.of_int second) ofDate (ULLong.of_int options)
@@ -29,12 +32,12 @@ let dateWithEra' x ~yearForWeekOfYear ~weekOfYear ~weekday ~hour ~minute ~second
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let enumerateDatesStartingAfterDate x ~matchingComponents ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x matchingComponents (ULLong.of_int options) usingBlock
 let eraSymbols self = msg_send ~self ~cmd:(selector "eraSymbols") ~typ:(returning id)
-let firstWeekday self = msg_send ~self ~cmd:(selector "firstWeekday") ~typ:(returning ullong)
+let firstWeekday self = msg_send ~self ~cmd:(selector "firstWeekday") ~typ:(returning ullong) |> ULLong.to_int
 let getEra x ~year ~month ~day ~fromDate self = msg_send ~self ~cmd:(selector "getEra:year:month:day:fromDate:") ~typ:((ptr llong) @-> (ptr llong) @-> (ptr llong) @-> (ptr llong) @-> id @-> returning void) x year month day fromDate
 let getEra' x ~yearForWeekOfYear ~weekOfYear ~weekday ~fromDate self = msg_send ~self ~cmd:(selector "getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:") ~typ:((ptr llong) @-> (ptr llong) @-> (ptr llong) @-> (ptr llong) @-> id @-> returning void) x yearForWeekOfYear weekOfYear weekday fromDate
 let getHour x ~minute ~second ~nanosecond ~fromDate self = msg_send ~self ~cmd:(selector "getHour:minute:second:nanosecond:fromDate:") ~typ:((ptr llong) @-> (ptr llong) @-> (ptr llong) @-> (ptr llong) @-> id @-> returning void) x minute second nanosecond fromDate
 let gregorianStartDate self = msg_send ~self ~cmd:(selector "gregorianStartDate") ~typ:(returning id)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCalendarIdentifier x self = msg_send ~self ~cmd:(selector "initWithCalendarIdentifier:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -48,14 +51,14 @@ let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> retu
 let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning id)
 let longEraSymbols self = msg_send ~self ~cmd:(selector "longEraSymbols") ~typ:(returning id)
 let maximumRangeOfUnit x self = msg_send_stret ~self ~cmd:(selector "maximumRangeOfUnit:") ~typ:(ullong @-> returning NSRange.t) ~return_type:NSRange.t (ULLong.of_int x)
-let minimumDaysInFirstWeek self = msg_send ~self ~cmd:(selector "minimumDaysInFirstWeek") ~typ:(returning ullong)
+let minimumDaysInFirstWeek self = msg_send ~self ~cmd:(selector "minimumDaysInFirstWeek") ~typ:(returning ullong) |> ULLong.to_int
 let minimumRangeOfUnit x self = msg_send_stret ~self ~cmd:(selector "minimumRangeOfUnit:") ~typ:(ullong @-> returning NSRange.t) ~return_type:NSRange.t (ULLong.of_int x)
 let monthSymbols self = msg_send ~self ~cmd:(selector "monthSymbols") ~typ:(returning id)
 let nextDateAfterDate x ~matchingComponents ~options self = msg_send ~self ~cmd:(selector "nextDateAfterDate:matchingComponents:options:") ~typ:(id @-> id @-> ullong @-> returning id) x matchingComponents (ULLong.of_int options)
 let nextDateAfterDate1 x ~matchingUnit ~value ~options self = msg_send ~self ~cmd:(selector "nextDateAfterDate:matchingUnit:value:options:") ~typ:(id @-> ullong @-> llong @-> ullong @-> returning id) x (ULLong.of_int matchingUnit) (LLong.of_int value) (ULLong.of_int options)
 let nextDateAfterDate2 x ~matchingHour ~minute ~second ~options self = msg_send ~self ~cmd:(selector "nextDateAfterDate:matchingHour:minute:second:options:") ~typ:(id @-> llong @-> llong @-> llong @-> ullong @-> returning id) x (LLong.of_int matchingHour) (LLong.of_int minute) (LLong.of_int second) (ULLong.of_int options)
 let nextWeekendStartDate x ~interval ~options ~afterDate self = msg_send ~self ~cmd:(selector "nextWeekendStartDate:interval:options:afterDate:") ~typ:((ptr id) @-> (ptr double) @-> ullong @-> id @-> returning bool) x interval (ULLong.of_int options) afterDate
-let ordinalityOfUnit x ~inUnit ~forDate self = msg_send ~self ~cmd:(selector "ordinalityOfUnit:inUnit:forDate:") ~typ:(ullong @-> ullong @-> id @-> returning ullong) (ULLong.of_int x) (ULLong.of_int inUnit) forDate
+let ordinalityOfUnit x ~inUnit ~forDate self = msg_send ~self ~cmd:(selector "ordinalityOfUnit:inUnit:forDate:") ~typ:(ullong @-> ullong @-> id @-> returning ullong) (ULLong.of_int x) (ULLong.of_int inUnit) forDate |> ULLong.to_int
 let quarterSymbols self = msg_send ~self ~cmd:(selector "quarterSymbols") ~typ:(returning id)
 let rangeOfUnit x ~inUnit ~forDate self = msg_send_stret ~self ~cmd:(selector "rangeOfUnit:inUnit:forDate:") ~typ:(ullong @-> ullong @-> id @-> returning NSRange.t) ~return_type:NSRange.t (ULLong.of_int x) (ULLong.of_int inUnit) forDate
 let rangeOfUnit' x ~startDate ~interval ~forDate self = msg_send ~self ~cmd:(selector "rangeOfUnit:startDate:interval:forDate:") ~typ:(ullong @-> (ptr id) @-> (ptr double) @-> id @-> returning bool) (ULLong.of_int x) startDate interval forDate

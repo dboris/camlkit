@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -12,4 +13,4 @@ let copyCFData self = msg_send ~self ~cmd:(selector "copyCFData") ~typ:(returnin
 let copyXPCData self = msg_send ~self ~cmd:(selector "copyXPCData") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let initWithCFData x self = msg_send ~self ~cmd:(selector "initWithCFData:") ~typ:((ptr CFData.t) @-> returning id) x
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int

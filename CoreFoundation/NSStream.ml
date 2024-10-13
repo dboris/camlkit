@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -17,4 +18,4 @@ let scheduleInRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "scheduleI
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let setProperty x ~forKey self = msg_send ~self ~cmd:(selector "setProperty:forKey:") ~typ:(id @-> id @-> returning bool) x forKey
 let streamError self = msg_send ~self ~cmd:(selector "streamError") ~typ:(returning id)
-let streamStatus self = msg_send ~self ~cmd:(selector "streamStatus") ~typ:(returning ullong)
+let streamStatus self = msg_send ~self ~cmd:(selector "streamStatus") ~typ:(returning ullong) |> ULLong.to_int

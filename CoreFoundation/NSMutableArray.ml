@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,6 +8,12 @@ open Objc
 
 let self = get_class "NSMutableArray"
 
+let abAddNonNilObject x self = msg_send ~self ~cmd:(selector "abAddNonNilObject:") ~typ:(id @-> returning void) x
+let abAddObjectsFromNonNilArray x self = msg_send ~self ~cmd:(selector "abAddObjectsFromNonNilArray:") ~typ:(id @-> returning void) x
+let abAddUniqueObjectsFromArray x self = msg_send ~self ~cmd:(selector "abAddUniqueObjectsFromArray:") ~typ:(id @-> returning void) x
+let abRotateRightRange x self = msg_send ~self ~cmd:(selector "abRotateRightRange:") ~typ:(NSRange.t @-> returning void) x
+let addImage x ~address ~size self = msg_send ~self ~cmd:(selector "addImage:address:size:") ~typ:((ptr uchar) @-> ullong @-> ullong @-> returning void) x (ULLong.of_int address) (ULLong.of_int size)
+let addImageLegacy x ~address ~size ~name ~path ~arch self = msg_send ~self ~cmd:(selector "addImageLegacy:address:size:name:path:arch:") ~typ:((ptr uchar) @-> ullong @-> ullong @-> string @-> string @-> string @-> returning void) x (ULLong.of_int address) (ULLong.of_int size) name path arch
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let addObjects x ~count self = msg_send ~self ~cmd:(selector "addObjects:count:") ~typ:((ptr id) @-> ullong @-> returning void) x (ULLong.of_int count)
 let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning void) x
@@ -14,9 +21,15 @@ let addObjectsFromArray' x ~range self = msg_send ~self ~cmd:(selector "addObjec
 let addObjectsFromOrderedSet x self = msg_send ~self ~cmd:(selector "addObjectsFromOrderedSet:") ~typ:(id @-> returning void) x
 let addObjectsFromOrderedSet' x ~range self = msg_send ~self ~cmd:(selector "addObjectsFromOrderedSet:range:") ~typ:(id @-> NSRange.t @-> returning void) x range
 let addObjectsFromSet x self = msg_send ~self ~cmd:(selector "addObjectsFromSet:") ~typ:(id @-> returning void) x
+let addPart x self = msg_send ~self ~cmd:(selector "addPart:") ~typ:(id @-> returning void) x
+let addRange x self = msg_send ~self ~cmd:(selector "addRange:") ~typ:(NSRange.t @-> returning void) x
 let applyDifference x self = msg_send ~self ~cmd:(selector "applyDifference:") ~typ:(id @-> returning void) x
 let arrayByAddingObjectsFromArray x self = msg_send ~self ~cmd:(selector "arrayByAddingObjectsFromArray:") ~typ:(id @-> returning id) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
+let comboBoxCell x ~indexOfItemWithStringValue self = msg_send ~self ~cmd:(selector "comboBoxCell:indexOfItemWithStringValue:") ~typ:(id @-> id @-> returning ullong) x indexOfItemWithStringValue |> ULLong.to_int
+let comboBoxCell' x ~objectValueForItemAtIndex self = msg_send ~self ~cmd:(selector "comboBoxCell:objectValueForItemAtIndex:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int objectValueForItemAtIndex)
+let dequeue self = msg_send ~self ~cmd:(selector "dequeue") ~typ:(returning id)
+let enqueue x self = msg_send ~self ~cmd:(selector "enqueue:") ~typ:(id @-> returning void) x
 let exchangeObjectAtIndex x ~withObjectAtIndex self = msg_send ~self ~cmd:(selector "exchangeObjectAtIndex:withObjectAtIndex:") ~typ:(ullong @-> ullong @-> returning void) (ULLong.of_int x) (ULLong.of_int withObjectAtIndex)
 let filterUsingPredicate x self = msg_send ~self ~cmd:(selector "filterUsingPredicate:") ~typ:(id @-> returning void) x
 let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
@@ -32,10 +45,19 @@ let insertObjectsFromArray' x ~range ~atIndex self = msg_send ~self ~cmd:(select
 let insertObjectsFromOrderedSet x ~atIndex self = msg_send ~self ~cmd:(selector "insertObjectsFromOrderedSet:atIndex:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int atIndex)
 let insertObjectsFromOrderedSet' x ~range ~atIndex self = msg_send ~self ~cmd:(selector "insertObjectsFromOrderedSet:range:atIndex:") ~typ:(id @-> NSRange.t @-> ullong @-> returning void) x range (ULLong.of_int atIndex)
 let insertObjectsFromSet x ~atIndex self = msg_send ~self ~cmd:(selector "insertObjectsFromSet:atIndex:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int atIndex)
+let insertRange x ~atIndex self = msg_send ~self ~cmd:(selector "insertRange:atIndex:") ~typ:(NSRange.t @-> ullong @-> returning void) x (ULLong.of_int atIndex)
+let moveItemFromIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveItemFromIndex:toIndex:") ~typ:(ullong @-> ullong @-> returning void) (ULLong.of_int x) (ULLong.of_int toIndex)
 let moveObjectsAtIndexes x ~toIndex self = msg_send ~self ~cmd:(selector "moveObjectsAtIndexes:toIndex:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int toIndex)
+let numberOfItemsInComboBoxCell x self = msg_send ~self ~cmd:(selector "numberOfItemsInComboBoxCell:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let parent self = msg_send ~self ~cmd:(selector "parent") ~typ:(returning id)
+let pop self = msg_send ~self ~cmd:(selector "pop") ~typ:(returning id)
+let popFirstObject self = msg_send ~self ~cmd:(selector "popFirstObject") ~typ:(returning id)
+let push x self = msg_send ~self ~cmd:(selector "push:") ~typ:(id @-> returning void) x
 let removeAllObjects self = msg_send ~self ~cmd:(selector "removeAllObjects") ~typ:(returning void)
 let removeFirstObject self = msg_send ~self ~cmd:(selector "removeFirstObject") ~typ:(returning void)
+let removeItemAtIndex x self = msg_send ~self ~cmd:(selector "removeItemAtIndex:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let removeLastObject self = msg_send ~self ~cmd:(selector "removeLastObject") ~typ:(returning void)
+let removeLastRange self = msg_send ~self ~cmd:(selector "removeLastRange") ~typ:(returning void)
 let removeObject x self = msg_send ~self ~cmd:(selector "removeObject:") ~typ:(id @-> returning void) x
 let removeObject' x ~inRange self = msg_send ~self ~cmd:(selector "removeObject:inRange:") ~typ:(id @-> NSRange.t @-> returning void) x inRange
 let removeObjectAtIndex x self = msg_send ~self ~cmd:(selector "removeObjectAtIndex:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
@@ -57,6 +79,8 @@ let removeObjectsInRange5 x ~inOrderedSet ~range self = msg_send ~self ~cmd:(sel
 let removeObjectsInSet x self = msg_send ~self ~cmd:(selector "removeObjectsInSet:") ~typ:(id @-> returning void) x
 let removeObjectsPassingTest x self = msg_send ~self ~cmd:(selector "removeObjectsPassingTest:") ~typ:((ptr void) @-> returning void) x
 let removeObjectsWithOptions x ~passingTest self = msg_send ~self ~cmd:(selector "removeObjectsWithOptions:passingTest:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) passingTest
+let removeRangeAtIndex x self = msg_send ~self ~cmd:(selector "removeRangeAtIndex:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
+let removeViewsFromSuperview self = msg_send ~self ~cmd:(selector "removeViewsFromSuperview") ~typ:(returning void)
 let replaceObject x self = msg_send ~self ~cmd:(selector "replaceObject:") ~typ:(id @-> returning void) x
 let replaceObject' x ~inRange self = msg_send ~self ~cmd:(selector "replaceObject:inRange:") ~typ:(id @-> NSRange.t @-> returning void) x inRange
 let replaceObjectAtIndex x ~withObject self = msg_send ~self ~cmd:(selector "replaceObjectAtIndex:withObject:") ~typ:(ullong @-> id @-> returning void) (ULLong.of_int x) withObject
@@ -67,11 +91,13 @@ let replaceObjectsInRange2 x ~withObjectsFromSet self = msg_send ~self ~cmd:(sel
 let replaceObjectsInRange3 x ~withObjects ~count self = msg_send ~self ~cmd:(selector "replaceObjectsInRange:withObjects:count:") ~typ:(NSRange.t @-> (ptr id) @-> ullong @-> returning void) x withObjects (ULLong.of_int count)
 let replaceObjectsInRange4 x ~withObjectsFromArray ~range self = msg_send ~self ~cmd:(selector "replaceObjectsInRange:withObjectsFromArray:range:") ~typ:(NSRange.t @-> id @-> NSRange.t @-> returning void) x withObjectsFromArray range
 let replaceObjectsInRange5 x ~withObjectsFromOrderedSet ~range self = msg_send ~self ~cmd:(selector "replaceObjectsInRange:withObjectsFromOrderedSet:range:") ~typ:(NSRange.t @-> id @-> NSRange.t @-> returning void) x withObjectsFromOrderedSet range
+let replaceRangeAtIndex x ~withRange self = msg_send ~self ~cmd:(selector "replaceRangeAtIndex:withRange:") ~typ:(ullong @-> NSRange.t @-> returning void) (ULLong.of_int x) withRange
 let setArray x self = msg_send ~self ~cmd:(selector "setArray:") ~typ:(id @-> returning void) x
 let setObject x ~atIndex self = msg_send ~self ~cmd:(selector "setObject:atIndex:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int atIndex)
 let setObject' x ~atIndexedSubscript self = msg_send ~self ~cmd:(selector "setObject:atIndexedSubscript:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int atIndexedSubscript)
 let setOrderedSet x self = msg_send ~self ~cmd:(selector "setOrderedSet:") ~typ:(id @-> returning void) x
 let setSet x self = msg_send ~self ~cmd:(selector "setSet:") ~typ:(id @-> returning void) x
+let sortByAddressAndSetInferredSizes self = msg_send ~self ~cmd:(selector "sortByAddressAndSetInferredSizes") ~typ:(returning void)
 let sortRange x ~options ~usingComparator self = msg_send ~self ~cmd:(selector "sortRange:options:usingComparator:") ~typ:(NSRange.t @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int options) usingComparator
 let sortUsingComparator x self = msg_send ~self ~cmd:(selector "sortUsingComparator:") ~typ:((ptr void) @-> returning void) x
 let sortUsingDescriptors x self = msg_send ~self ~cmd:(selector "sortUsingDescriptors:") ~typ:(id @-> returning void) x
@@ -80,3 +106,4 @@ let sortUsingFunction' x ~context ~range self = msg_send ~self ~cmd:(selector "s
 let sortUsingSelector x self = msg_send ~self ~cmd:(selector "sortUsingSelector:") ~typ:(_SEL @-> returning void) x
 let sortWithOptions x ~usingComparator self = msg_send ~self ~cmd:(selector "sortWithOptions:usingComparator:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingComparator
 let sortedArrayFromRange x ~options ~usingComparator self = msg_send ~self ~cmd:(selector "sortedArrayFromRange:options:usingComparator:") ~typ:(NSRange.t @-> ullong @-> (ptr void) @-> returning id) x (ULLong.of_int options) usingComparator
+let top self = msg_send ~self ~cmd:(selector "top") ~typ:(returning id)

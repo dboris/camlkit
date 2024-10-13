@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -17,7 +18,7 @@ let initWithFireDate' x ~interval ~target ~selector_ ~userInfo ~repeats self = m
 let interval self = msg_send ~self ~cmd:(selector "interval") ~typ:(returning double)
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let isValid self = msg_send ~self ~cmd:(selector "isValid") ~typ:(returning bool)
-let order self = msg_send ~self ~cmd:(selector "order") ~typ:(returning llong)
+let order self = msg_send ~self ~cmd:(selector "order") ~typ:(returning llong) |> LLong.to_int
 let setFireDate x self = msg_send ~self ~cmd:(selector "setFireDate:") ~typ:(id @-> returning void) x
 let setFireTime x self = msg_send ~self ~cmd:(selector "setFireTime:") ~typ:(double @-> returning void) x
 let setTolerance x self = msg_send ~self ~cmd:(selector "setTolerance:") ~typ:(double @-> returning void) x

@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,6 +8,7 @@ open Objc
 
 let self = get_class "NSTimeZone"
 
+let _ISO8601TimeZoneOffsetFromUTC self = msg_send ~self ~cmd:(selector "ISO8601TimeZoneOffsetFromUTC") ~typ:(returning id)
 let abbreviation self = msg_send ~self ~cmd:(selector "abbreviation") ~typ:(returning id)
 let abbreviationForDate x self = msg_send ~self ~cmd:(selector "abbreviationForDate:") ~typ:(id @-> returning id) x
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
@@ -16,7 +18,7 @@ let daylightSavingTimeOffset self = msg_send ~self ~cmd:(selector "daylightSavin
 let daylightSavingTimeOffsetForDate x self = msg_send ~self ~cmd:(selector "daylightSavingTimeOffsetForDate:") ~typ:(id @-> returning double) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithName x self = msg_send ~self ~cmd:(selector "initWithName:") ~typ:(id @-> returning id) x
 let initWithName' x ~data self = msg_send ~self ~cmd:(selector "initWithName:data:") ~typ:(id @-> id @-> returning id) x data
@@ -29,5 +31,5 @@ let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
 let nextDaylightSavingTimeTransition self = msg_send ~self ~cmd:(selector "nextDaylightSavingTimeTransition") ~typ:(returning id)
 let nextDaylightSavingTimeTransitionAfterDate x self = msg_send ~self ~cmd:(selector "nextDaylightSavingTimeTransitionAfterDate:") ~typ:(id @-> returning id) x
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
-let secondsFromGMT self = msg_send ~self ~cmd:(selector "secondsFromGMT") ~typ:(returning llong)
-let secondsFromGMTForDate x self = msg_send ~self ~cmd:(selector "secondsFromGMTForDate:") ~typ:(id @-> returning llong) x
+let secondsFromGMT self = msg_send ~self ~cmd:(selector "secondsFromGMT") ~typ:(returning llong) |> LLong.to_int
+let secondsFromGMTForDate x self = msg_send ~self ~cmd:(selector "secondsFromGMTForDate:") ~typ:(id @-> returning llong) x |> LLong.to_int

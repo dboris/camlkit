@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -13,7 +14,7 @@ let createRequestNewContentMessageForDaemon x self = msg_send ~self ~cmd:(select
 let createSynchronizeMessage self = msg_send ~self ~cmd:(selector "createSynchronizeMessage") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let domainIdentifier self = msg_send ~self ~cmd:(selector "domainIdentifier") ~typ:(returning (ptr CFString.t))
-let generationCount self = msg_send ~self ~cmd:(selector "generationCount") ~typ:(returning llong)
+let generationCount self = msg_send ~self ~cmd:(selector "generationCount") ~typ:(returning llong) |> LLong.to_int
 let handleReply x ~toRequestNewDataMessage ~onConnection ~retryCount ~error self = msg_send ~self ~cmd:(selector "handleReply:toRequestNewDataMessage:onConnection:retryCount:error:") ~typ:(id @-> id @-> id @-> int @-> (ptr bool) @-> returning void) x toRequestNewDataMessage onConnection retryCount error
 let initWithDomain x ~user ~byHost ~containerPath ~containingPreferences self = msg_send ~self ~cmd:(selector "initWithDomain:user:byHost:containerPath:containingPreferences:") ~typ:((ptr CFString.t) @-> (ptr CFString.t) @-> bool @-> (ptr CFString.t) @-> id @-> returning id) x user byHost containerPath containingPreferences
 let isByHost self = msg_send ~self ~cmd:(selector "isByHost") ~typ:(returning bool)

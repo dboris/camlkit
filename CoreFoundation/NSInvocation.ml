@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -7,6 +8,8 @@ open Objc
 
 let self = get_class "NSInvocation"
 
+let _CKInvokeAndNilOutReplyBlockWithError x ~forProtocol self = msg_send ~self ~cmd:(selector "CKInvokeAndNilOutReplyBlockWithError:forProtocol:") ~typ:(id @-> id @-> returning void) x forProtocol
+let _CKIterateArgumentsForIndexRange x ~primitiveTypeBlock ~objectBlock ~blockBlock self = msg_send ~self ~cmd:(selector "CKIterateArgumentsForIndexRange:primitiveTypeBlock:objectBlock:blockBlock:") ~typ:(NSRange.t @-> (ptr void) @-> (ptr void) @-> (ptr void) @-> returning void) x primitiveTypeBlock objectBlock blockBlock
 let argumentsRetained self = msg_send ~self ~cmd:(selector "argumentsRetained") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -28,3 +31,4 @@ let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> 
 let setUserInfo x self = msg_send ~self ~cmd:(selector "setUserInfo:") ~typ:(id @-> returning void) x
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning id)
+let wantsReturnValue self = msg_send ~self ~cmd:(selector "wantsReturnValue") ~typ:(returning bool)

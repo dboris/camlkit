@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -12,4 +13,4 @@ let hasSpaceAvailable self = msg_send ~self ~cmd:(selector "hasSpaceAvailable") 
 let initToBuffer x ~capacity self = msg_send ~self ~cmd:(selector "initToBuffer:capacity:") ~typ:(string @-> ullong @-> returning id) x (ULLong.of_int capacity)
 let initToMemory self = msg_send ~self ~cmd:(selector "initToMemory") ~typ:(returning id)
 let initWithURL x ~append self = msg_send ~self ~cmd:(selector "initWithURL:append:") ~typ:(id @-> bool @-> returning id) x append
-let write x ~maxLength self = msg_send ~self ~cmd:(selector "write:maxLength:") ~typ:(string @-> ullong @-> returning llong) x (ULLong.of_int maxLength)
+let write x ~maxLength self = msg_send ~self ~cmd:(selector "write:maxLength:") ~typ:(string @-> ullong @-> returning llong) x (ULLong.of_int maxLength) |> LLong.to_int

@@ -1,5 +1,6 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
@@ -8,6 +9,7 @@ open Objc
 let self = get_class "NSRunLoop"
 
 let acceptInputForMode x ~beforeDate self = msg_send ~self ~cmd:(selector "acceptInputForMode:beforeDate:") ~typ:(id @-> id @-> returning void) x beforeDate
+let addDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "addDisplayLink:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let addPort x ~forMode self = msg_send ~self ~cmd:(selector "addPort:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let addTimer x ~forMode self = msg_send ~self ~cmd:(selector "addTimer:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let allModes self = msg_send ~self ~cmd:(selector "allModes") ~typ:(returning id)
@@ -27,10 +29,12 @@ let performBlock x self = msg_send ~self ~cmd:(selector "performBlock:") ~typ:((
 let performInModes x ~block self = msg_send ~self ~cmd:(selector "performInModes:block:") ~typ:(id @-> (ptr void) @-> returning void) x block
 let performSelector x ~target ~argument ~order ~modes self = msg_send ~self ~cmd:(selector "performSelector:target:argument:order:modes:") ~typ:(_SEL @-> id @-> id @-> ullong @-> id @-> returning void) x target argument (ULLong.of_int order) modes
 let portsForMode x self = msg_send ~self ~cmd:(selector "portsForMode:") ~typ:(id @-> returning id) x
+let removeDisplayLink x ~forMode self = msg_send ~self ~cmd:(selector "removeDisplayLink:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let removePort x ~forMode self = msg_send ~self ~cmd:(selector "removePort:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let removeTimer x ~forMode self = msg_send ~self ~cmd:(selector "removeTimer:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let run self = msg_send ~self ~cmd:(selector "run") ~typ:(returning void)
 let runBeforeDate x self = msg_send ~self ~cmd:(selector "runBeforeDate:") ~typ:(id @-> returning bool) x
+let runLoopScheduledWithAction x self = msg_send ~self ~cmd:(selector "runLoopScheduledWithAction:") ~typ:(id @-> returning void) x
 let runMode x ~beforeDate self = msg_send ~self ~cmd:(selector "runMode:beforeDate:") ~typ:(id @-> id @-> returning bool) x beforeDate
 let runMode' x ~untilDate self = msg_send ~self ~cmd:(selector "runMode:untilDate:") ~typ:(id @-> id @-> returning bool) x untilDate
 let runUntilDate x self = msg_send ~self ~cmd:(selector "runUntilDate:") ~typ:(id @-> returning void) x
