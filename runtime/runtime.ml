@@ -456,7 +456,7 @@ module Property = struct
   in
   method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 
-  (** Definition of a property getter and (by default) setter. *)
+  (** Define a property getter and setter (unless [readonly] is [true]). *)
   let define :
     type a.
     ?assign:bool ->

@@ -41,8 +41,9 @@ template. Two iOS starter templates are provided:
 * [storyboard-based template](https://github.com/dboris/camlkit-starter-storyboard)
 * [non-storyboard template](https://github.com/dboris/camlkit-starter-nostoryboard)
 
-For macOS, a few sample programs are provided in the
-[examples](https://github.com/dboris/camlkit-examples/) repository.
+For macOS, there is a [starter project template](https://github.com/dboris/camlkit-starter-macos)
+and a few [sample programs](https://github.com/dboris/camlkit-examples/)
+demonstrating different ways to organize an application.
 
 To give you a taste of what a program in Camlkit looks like, here is a
 "Hello World" iOS application:
