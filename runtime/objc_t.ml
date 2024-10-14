@@ -153,3 +153,6 @@ let method_typ ~args return =
   fold_fn (returning (ctype_of_t return)) args
 
 let value_typ = ctype_of_t
+
+(** The method accepts only the implicit [self] and [cmd] arguments. *)
+let noargs = []
