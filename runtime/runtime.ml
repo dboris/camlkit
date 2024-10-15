@@ -165,6 +165,24 @@ let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
 let release self =
   Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
+(** Release ObjC object when OCaml ptr is garbage collected. *)
+let gc_autorelease self =
+  Gc.finalise release self;
+  self
+;;
+
+let nsstring_class = Objc.get_class "NSString"
+
+(** Creates a new NSString object autoreleased by OCaml's GC. *)
+let new_string str =
+  Objc.msg_send
+    ~self: nsstring_class
+    ~cmd: (selector "stringWithUTF8String:")
+    ~typ: (string @-> returning id)
+    str
+  |> gc_autorelease
+;;
+
 module Property = struct
   open Objc
   open Object
@@ -187,10 +205,12 @@ module Property = struct
 
   (** Setter for non-object values. *)
   let setter ~ivar_name ~typ ~enc =
-    let cmd =
-      selector (setter_name_of_ivar ivar_name)
-    and imp self _cmd value =
-      (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
+    let cmd = selector (setter_name_of_ivar ivar_name)
+    and key = new_string ivar_name in
+    let imp self _cmd value =
+      msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+      (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value;
+      msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
   ;;
@@ -217,7 +237,8 @@ module Property = struct
     ivar_name
   =
     let cmd = selector (setter_name_of_ivar ivar_name)
-    and imp self _cmd value =
+    and key = new_string ivar_name in
+    let imp self _cmd value =
       if not assign && not copy then
         value |> retain |> ignore;
 
@@ -228,7 +249,9 @@ module Property = struct
       Object.get_ivar ~self ~ivar |> release;
 
       assert (not (is_null ivar));
-      Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
+      msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+      Object.set_ivar ~self ~ivar (if copy then _copy_ value else value);
+      msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 
@@ -377,27 +400,9 @@ let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
 let autorelease self =
   Objc.msg_send ~self ~cmd: (selector "autorelease") ~typ: (returning void)
 
-(** Release ObjC object when OCaml ptr is garbage collected. *)
-let gc_autorelease self =
-  Gc.finalise release self;
-  self
-;;
-
 (** Allocates an object and sends it [init] and [gc_autorelease]. *)
 let new_object class_name =
   alloc_object class_name |> init |> gc_autorelease
-;;
-
-let nsstring_class = Objc.get_class "NSString"
-
-(** Creates a new NSString object autoreleased by OCaml's GC. *)
-let new_string str =
-  Objc.msg_send
-    ~self: nsstring_class
-    ~cmd: (selector "stringWithUTF8String:")
-    ~typ: (string @-> returning id)
-    str
-  |> gc_autorelease
 ;;
 
 (** Sends a message with a simple return value to an instance of a class. *)
