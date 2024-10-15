@@ -104,10 +104,33 @@ module Functions = struct
     let get_instance_method =
       foreign "class_getInstanceMethod" (_Class @-> _SEL @-> returning _Method)
 
+    (** Returns the Ivar for a specified instance variable of a given class. *)
+    let get_instance_variable =
+      foreign "class_getInstanceVariable" (_Class @-> string @-> returning _Ivar)
+
     (** Returns the function pointer that would be called if a particular
         message were sent to an instance of a class. *)
     let get_method_implementation =
       foreign "class_getMethodImplementation" (_Class @-> _SEL @-> returning _IMP)
+
+    (** Returns a Boolean value that indicates whether a class object is a metaclass. *)
+    let is_meta_class =
+      foreign "class_isMetaClass" (_Class @-> returning bool)
+
+    (** Describes the properties declared by a class. *)
+    let copy_property_list =
+      foreign "class_copyPropertyList"
+        (_Class @-> ptr uint @-> returning (ptr Property_attribute.t))
+
+    (** Adds a property to a class. *)
+    let add_property =
+      foreign "class_addProperty"
+        (_Class @-> string @-> ptr Property_attribute.t @-> uint @-> returning bool)
+
+    (** Returns a property with a given name of a given class. *)
+    let get_property =
+      foreign "class_getProperty"
+        (_Class @-> string @-> returning (ptr Property_attribute.t))
   end
 
   module Object = struct

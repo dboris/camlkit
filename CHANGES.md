@@ -2,7 +2,8 @@
 
 API changes:
 
-* Replaced `Property.value` and `Property._object_` with a single `Property.define`.
+* Replaced `Property.value` and `Property._object_` with a single `Property.accessor_methods`.
+* Added `Property.define` and a `properties` parameter to `Class.define`.
 
 ## Release 0.2.2
 

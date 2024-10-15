@@ -19,86 +19,6 @@ module Sel = struct
     | _ -> (fun _ _ -> assert false)
 end
 
-module Class = struct
-  include C.Functions.Class
-
-  let alignment_of_size size =
-    let open Float in
-    Size_t.to_int size
-    |> of_int
-    |> log2
-    |> round
-    |> to_int
-    |> UInt8.of_int
-  ;;
-
-  let create_instance ?(extra_bytes = Size_t.of_int 0) cls =
-    create_instance cls extra_bytes
-
-  (** Adds a new method to a class with a given name and implementation. *)
-  let add_method ~self ~cmd ~typ ~imp ~enc =
-    let method_t = id @-> _SEL @-> typ in
-    let ty =
-      _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
-    foreign "class_addMethod" ty self cmd imp enc
-
-  (** Adds a new instance variable to a class. *)
-  let add_ivar ~self ~name ~size ~enc =
-    foreign "class_addIvar"
-      (_Class @-> string @-> size_t @-> uint8_t @-> _Enc @-> returning bool)
-      self name size (alignment_of_size size) enc
-
-  (** Returns the Ivar for a specified instance variable of a given class. *)
-  let get_instance_variable ~self ~name =
-    foreign "class_getInstanceVariable"
-      (_Class @-> string @-> returning _Ivar)
-      self name
-
-  (** Returns a Boolean value that indicates whether a class object is a metaclass. *)
-  let is_meta_class =
-    foreign "class_isMetaClass" (_Class @-> returning bool)
-  ;;
-
-  (** Defines a new class and registers it with the Objective-C runtime. *)
-  let define
-    ?(superclass = C.Functions.Objc.get_class "NSObject")
-    ?(protocols = [])
-    ?(ivars = [])
-    ?(methods = [])
-    ?(class_methods = [])
-    name
-  =
-    let self = C.Functions.Objc.allocate_class ~superclass name in
-    assert (not (is_null self));
-
-    methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
-      match Platform.current with
-      | GNUStep ->
-        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-        assert (add_method ~self ~cmd ~typ ~imp ~enc)
-      | _ ->
-        assert (add_method ~self ~cmd ~typ ~imp ~enc));
-
-    protocols |> List.iter (fun proto ->
-      assert (not (is_null proto));
-      assert (add_protocol self proto));
-
-    ivars |> List.iter (fun (Define.IvarSpec {name; typ; enc}) ->
-      let size = Size_t.of_int (sizeof typ) in
-      assert (add_ivar ~self ~name ~size ~enc));
-
-    C.Functions.Objc.register_class self;
-
-    if (List.length class_methods > 0) then begin
-      let metaclass = C.Functions.Objc.get_meta_class name in
-      assert (not (is_null metaclass));
-      class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
-        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
-    end;
-
-    self
-end
-
 module Object = struct
   include C.Functions.Object
 
@@ -128,9 +48,7 @@ module Object = struct
 
   (** Returns pointer to an ivar in object [self]  *)
   let ivar_ptr ~self ~ivar_name =
-    Class.get_instance_variable
-      ~self: (get_class self)
-      ~name: ivar_name
+    C.Functions.Class.get_instance_variable (get_class self) ivar_name
     |> C.Functions.Ivar.get_offset
     |> Ptrdiff.to_nativeint
     |> Nativeint.add (raw_address_of_ptr self)
@@ -173,11 +91,11 @@ module Objc = struct
 
     let make self =
       let self_class = Object.get_class self in
-      let sup_cls = Class.get_superclass self_class
+      let sup_cls = C.Functions.Class.get_superclass self_class
       and d = make t
       in
       setf d receiver self;
-      (if Class.is_meta_class self_class then
+      (if C.Functions.Class.is_meta_class self_class then
         Object.get_class sup_cls
       else
         sup_cls)
@@ -197,7 +115,8 @@ module Objc = struct
     | GNUStep ->
       let self_class = Object.get_class self in
       let imp =
-        Class.get_method_implementation (Class.get_superclass self_class) cmd
+        C.Functions.Class.get_method_implementation
+          (C.Functions.Class.get_superclass self_class) cmd
       in
       let imp_fun = coerce _IMP (funptr (id @-> _SEL @-> typ)) imp in
       imp_fun self cmd
@@ -227,6 +146,216 @@ module Objc = struct
     | Arm64 -> msg_send ~self ~cmd ~typ
 end
 
+let get_property ~typ prop_name self =
+  Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
+;;
+
+let set_property ~typ prop_name value self =
+  let cmd = selector (Object.setter_name_of_ivar prop_name) in
+  Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
+;;
+
+(** Returns the object returned by copyWithZone: *)
+let _copy_ self = Objc.msg_send_vo ~self ~cmd: (selector "copy")
+
+(** Increments the receiver’s reference count. *)
+let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
+
+(** Decrements the receiver’s reference count. *)
+let release self =
+  Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
+
+module Property = struct
+  open Objc
+  open Object
+  open Define
+
+  (** Get the value of a property. *)
+  let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
+
+  (** Set the value of a property. *)
+  let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
+
+  (** Getter for non-object values. *)
+  let getter ~ivar_name ~typ ~enc =
+    let cmd = selector ivar_name
+    and imp self _cmd =
+      !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
+    in
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+  ;;
+
+  (** Setter for non-object values. *)
+  let setter ~ivar_name ~typ ~enc =
+    let cmd =
+      selector (setter_name_of_ivar ivar_name)
+    and imp self _cmd value =
+      (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
+    in
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+  ;;
+
+  (** Getter for object values. *)
+  let obj_getter ~ivar_name ~typ ~enc =
+    let cmd = selector ivar_name
+    and imp self _cmd =
+      let ivar =
+        C.Functions.Class.get_instance_variable
+          (Object.get_class self) ivar_name
+      in
+      Object.get_ivar ~self ~ivar
+    in
+    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+  ;;
+
+  (** Setter for object values. *)
+  let obj_setter
+    ?(assign = false)
+    ?(copy = false)
+    ~typ
+    ~enc
+    ivar_name
+  =
+    let cmd = selector (setter_name_of_ivar ivar_name)
+    and imp self _cmd value =
+      if not assign && not copy then
+        value |> retain |> ignore;
+
+      (* release old object *)
+      let ivar =
+        C.Functions.Class.get_instance_variable (Object.get_class self) ivar_name
+      in
+      Object.get_ivar ~self ~ivar |> release;
+
+      assert (not (is_null ivar));
+      Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
+    in
+    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+
+  (** Define a property getter and setter (unless [readonly] is [true]). *)
+  let accessor_methods :
+    type a.
+    ?assign:bool ->
+    ?copy:bool ->
+    ?readonly:bool ->
+    string ->
+    a Objc_t.t ->
+    method_spec' list
+  = fun
+    ?(assign = false)
+    ?(copy = false)
+    ?(readonly = false)
+    ivar_name
+    t
+  ->
+    let typ = Objc_t.value_typ t
+    and enc = Objc_t.Encode.value t
+    in
+    match t with
+    | Objc_t.Id ->
+      if readonly then
+        [ obj_getter ~ivar_name ~typ ~enc ]
+      else
+        [ obj_getter ~ivar_name ~typ ~enc
+        ; obj_setter ~assign ~copy ~typ ~enc ivar_name
+        ]
+    | _ ->
+      if readonly then
+        [ getter ~ivar_name ~typ ~enc ]
+      else
+        [ getter ~ivar_name ~typ ~enc
+        ; setter ~ivar_name ~typ ~enc
+        ]
+  ;;
+
+  (** Define a property with an ivar, getter, and setter
+      (unless [readonly] is [true]). *)
+  let define ?(retain = true) ?(copy = false) ?(readonly = false) name typ =
+    prop_spec ~retain ~copy ~readonly ~typ name
+end
+
+module Class = struct
+  include C.Functions.Class
+
+  let alignment_of_size size =
+    let open Float in
+    Size_t.to_int size
+    |> of_int
+    |> log2
+    |> round
+    |> to_int
+    |> UInt8.of_int
+  ;;
+
+  let create_instance ?(extra_bytes = Size_t.of_int 0) cls =
+    create_instance cls extra_bytes
+
+  (** Adds a new method to a class with a given name and implementation. *)
+  let add_method ~self ~cmd ~typ ~imp ~enc =
+    let method_t = id @-> _SEL @-> typ in
+    let ty =
+      _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
+    foreign "class_addMethod" ty self cmd imp enc
+
+  (** Adds a new instance variable to a class. *)
+  let add_ivar ~self ~name ~size ~enc =
+    foreign "class_addIvar"
+      (_Class @-> string @-> size_t @-> uint8_t @-> _Enc @-> returning bool)
+      self name size (alignment_of_size size) enc
+
+  (** Defines a new class and registers it with the Objective-C runtime. *)
+  let define
+    ?(superclass = C.Functions.Objc.get_class "NSObject")
+    ?(protocols = [])
+    ?(ivars = [])
+    ?(properties = [])
+    ?(methods = [])
+    ?(class_methods = [])
+    name
+  =
+    let self = C.Functions.Objc.allocate_class ~superclass name in
+    let add_method' (Define.MethodSpec {cmd; typ; imp; enc}) =
+      match Platform.current with
+      | GNUStep ->
+        let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
+        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+      | _ ->
+        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+    in
+    assert (not (is_null self));
+
+    methods |> List.iter add_method';
+
+    properties
+    |> List.iter (fun (Define.PropSpec {name; typ = t; retain; copy; readonly}) ->
+      let typ = Objc_t.value_typ t
+      and enc = Objc_t.Encode.value t
+      and assign = not retain in
+      let size = Size_t.of_int (sizeof typ) in
+      assert (add_ivar ~self ~name ~size ~enc);
+      Property.accessor_methods ~assign ~copy ~readonly name t
+      |> List.iter add_method');
+
+    protocols |> List.iter (fun proto ->
+      assert (not (is_null proto));
+      assert (add_protocol self proto));
+
+    ivars |> List.iter (fun (Define.IvarSpec {name; typ; enc}) ->
+      let size = Size_t.of_int (sizeof typ) in
+      assert (add_ivar ~self ~name ~size ~enc));
+
+    C.Functions.Objc.register_class self;
+
+    if (List.length class_methods > 0) then begin
+      let metaclass = C.Functions.Objc.get_meta_class name in
+      assert (not (is_null metaclass));
+      class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
+        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
+    end;
+
+    self
+end
+
 let nil = null
 let is_nil = is_null
 
@@ -242,16 +371,6 @@ let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
 (** Implemented by subclasses to initialize a new object (the receiver)
     immediately after memory for it has been allocated. *)
 let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
-
-(** Returns the object returned by copyWithZone: *)
-let _copy_ self = Objc.msg_send_vo ~self ~cmd: (selector "copy")
-
-(** Increments the receiver’s reference count. *)
-let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
-
-(** Decrements the receiver’s reference count. *)
-let release self =
-  Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
 (** Decrements the receiver’s retain count at the end of the current
     autorelease pool block. *)
@@ -375,121 +494,6 @@ module Ivar = struct
     and enc = Objc_t.(Encode.value typ)
     in
     Define.ivar_spec ~name ~typ ~enc
-end
-
-let get_property ~typ prop_name self =
-  Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
-;;
-
-let set_property ~typ prop_name value self =
-  let cmd = selector (Object.setter_name_of_ivar prop_name) in
-  Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
-;;
-
-module Property = struct
-  open Objc
-  open Object
-  open Define
-
-  (** Get the value of a property. *)
-  let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
-
-  (** Set the value of a property. *)
-  let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
-
-  (** Getter for non-object values. *)
-  let getter ~ivar_name ~typ ~enc =
-    let cmd = selector ivar_name
-    and imp self _cmd =
-      !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
-    in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
-  ;;
-
-  (** Setter for non-object values. *)
-  let setter ~ivar_name ~typ ~enc =
-    let cmd =
-      selector (setter_name_of_ivar ivar_name)
-    and imp self _cmd value =
-      (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
-    in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
-  ;;
-
-  (** Getter for object values. *)
-  let obj_getter ~ivar_name ~typ ~enc =
-    let cmd = selector ivar_name
-    and imp self _cmd =
-      let ivar =
-        Class.get_instance_variable
-          ~self: (Object.get_class self)
-          ~name: ivar_name
-      in
-        Object.get_ivar ~self ~ivar
-    in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
-  ;;
-
-  (** Setter for object values. *)
-  let obj_setter
-    ?(assign = false)
-    ?(copy = false)
-    ~typ
-    ~enc
-    ivar_name
-  =
-  let cmd = selector (setter_name_of_ivar ivar_name)
-  and imp self _cmd value =
-    if not assign && not copy then
-      value |> retain |> ignore;
-
-    (* release old object *)
-    let ivar =
-      Class.get_instance_variable
-        ~self: (Object.get_class self)
-        ~name: ivar_name
-    in
-    Object.get_ivar ~self ~ivar |> release;
-
-    assert (not (is_null ivar));
-    Object.set_ivar ~self ~ivar (if copy then _copy_ value else value)
-  in
-  method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
-
-  (** Define a property getter and setter (unless [readonly] is [true]). *)
-  let define :
-    type a.
-    ?assign:bool ->
-    ?copy:bool ->
-    ?readonly:bool ->
-    string ->
-    a Objc_t.t ->
-    method_spec' list
-  = fun
-    ?(assign = false)
-    ?(copy = false)
-    ?(readonly = false)
-    ivar_name
-    t
-  ->
-    let typ = Objc_t.value_typ t
-    and enc = Objc_t.Encode.value t
-    in
-    match t with
-    | Objc_t.Id ->
-      if readonly then
-        [ obj_getter ~ivar_name ~typ ~enc ]
-      else
-        [ obj_getter ~ivar_name ~typ ~enc
-        ; obj_setter ~assign ~copy ~typ ~enc ivar_name
-        ]
-    | _ ->
-      if readonly then
-        [ getter ~ivar_name ~typ ~enc ]
-      else
-        [ getter ~ivar_name ~typ ~enc
-        ; setter ~ivar_name ~typ ~enc
-        ]
 end
 
 (* Exception handling *)

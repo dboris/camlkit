@@ -41,6 +41,17 @@ module Types = struct
     let types t = getf t types
   end
 
+  module Property_attribute = struct
+    let t : [`Prop_attr] structure typ = structure "objc_property_attribute_t"
+    let name = field t "name" string
+    let value = field t "value" string
+
+    let () = seal t
+
+    let name t = getf t name
+    let value t = getf t value
+  end
+
   let id = ptr void
   let _Class = ptr void
   let _SEL = ptr objc_selector

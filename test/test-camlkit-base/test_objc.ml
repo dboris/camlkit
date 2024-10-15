@@ -141,7 +141,7 @@ let test_add_ivar ~name x () =
 
 let test_value_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.int]
-  and methods = Property.define "myVar" Objc_t.int
+  and methods = Property.accessor_methods "myVar" Objc_t.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send
@@ -160,7 +160,7 @@ let test_value_accessors ~name x () =
 
 let test_value_property ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.int]
-  and methods = Property.define "myVar" Objc_t.int
+  and methods = Property.accessor_methods "myVar" Objc_t.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   self |> Property.set ~typ: Objc_t.int "myVar" x;
@@ -172,7 +172,7 @@ let test_value_property ~name x () =
 
 let test_object_property ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.define "myVar" Objc_t.id
+  and methods = Property.accessor_methods "myVar" Objc_t.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   self |> Property.set ~typ: Objc_t.id "myVar" x;
@@ -186,7 +186,7 @@ let test_object_property ~name x () =
 
 let test_object_accessors ~name x () =
   let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.define "myVar" Objc_t.id
+  and methods = Property.accessor_methods "myVar" Objc_t.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self
@@ -302,6 +302,24 @@ let test_msg_send_super () =
   A.check A.bool "same bool" expected !actual
 ;;
 
+let test_value_property_def ~name x () =
+  let properties = [Property.define "myProp" Objc_t.int] in
+  let self = _new_ (Class.define name ~properties) in
+  self |> Property.set "myProp" x ~typ: Objc_t.int;
+  let v = self |> Property.get "myProp" ~typ: Objc_t.int in
+  A.check A.int "set value and get same value" x v
+;;
+
+let test_object_property_def ~name x () =
+  let properties = [Property.define "myProp" Objc_t.id] in
+  let self = _new_ (Class.define name ~properties) in
+  self |> Property.set "myProp" x ~typ: Objc_t.id;
+  let v = self |> Property.get "myProp" ~typ: Objc_t.id in
+  A.check A.string "set property value and get same value"
+    (NSString._UTF8String x)
+    (NSString._UTF8String v)
+;;
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -322,6 +340,8 @@ let suite =
   ; "get selector name as string", `Quick, test_string_of_selector
   ; "test block", `Quick, test_block
   ; "test msg_send_super", `Quick, test_msg_send_super
+  ; "value property def", `Quick, test_value_property_def ~name:"MyClass12" 42
+  ; "object property def", `Quick, test_object_property_def ~name:"MyClass13" (new_string "Hola")
   ]
 
 let () = A.run "objc" [ "Objc", suite ]
