@@ -146,14 +146,21 @@ module Objc = struct
     | Arm64 -> msg_send ~self ~cmd ~typ
 end
 
-let get_property ~typ prop_name self =
-  Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
-;;
+let nsstring_class = Objc.get_class "NSString"
 
-let set_property ~typ prop_name value self =
-  let cmd = selector (Object.setter_name_of_ivar prop_name) in
-  Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
-;;
+let nil = null
+let is_nil = is_null
+
+(** Returns a new instance of the receiving class. *)
+let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
+
+(** Allocates a new instance of the receiving class, sends it an init message,
+    and returns the initialized object. *)
+let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
+
+(** Implemented by subclasses to initialize a new object (the receiver)
+    immediately after memory for it has been allocated. *)
+let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
 
 (** Returns the object returned by copyWithZone: *)
 let _copy_ self = Objc.msg_send_vo ~self ~cmd: (selector "copy")
@@ -165,13 +172,23 @@ let retain self = Objc.msg_send_vo ~self ~cmd: (selector "retain")
 let release self =
   Objc.msg_send ~self ~cmd: (selector "release") ~typ: (returning void)
 
+(** Decrements the receiver’s retain count at the end of the current
+autorelease pool block. *)
+let autorelease self =
+  Objc.msg_send ~self ~cmd: (selector "autorelease") ~typ: (returning void)
+
 (** Release ObjC object when OCaml ptr is garbage collected. *)
 let gc_autorelease self =
   Gc.finalise release self;
   self
 ;;
 
-let nsstring_class = Objc.get_class "NSString"
+let alloc_object class_name = alloc (Objc.get_class class_name)
+
+(** Allocates an object and sends it [init] and [gc_autorelease]. *)
+let new_object class_name =
+  alloc_object class_name |> init |> gc_autorelease
+;;
 
 (** Creates a new NSString object autoreleased by OCaml's GC. *)
 let new_string str =
@@ -181,6 +198,56 @@ let new_string str =
     ~typ: (string @-> returning id)
     str
   |> gc_autorelease
+;;
+
+(** Sends a message with a simple return value to an instance of a class. *)
+let msg_send cmd self ~args ~return =
+  let typ = Objc_t.method_typ ~args return in
+  Objc.msg_send ~self ~cmd ~typ
+;;
+
+(** Sends a message with a simple return value to the superclass of an instance
+    of a class. *)
+let msg_super cmd self ~args ~return =
+  let typ = Objc_t.method_typ ~args return in
+  Objc.msg_send_super ~self ~cmd ~typ
+;;
+
+let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
+  fun ivar_name t self ->
+    match t with
+    | Objc_t.Id ->
+      let ivar =
+        C.Functions.Class.get_instance_variable
+          (Object.get_class self) ivar_name
+      in
+      Object.get_ivar ~self ~ivar
+    | _ ->
+      let typ = Objc_t.value_typ t in
+      !@ (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ)
+;;
+
+let set_ivar : type a. string -> a -> a Objc_t.t -> object_t -> unit =
+  fun ivar_name value t self ->
+    match t with
+    | Objc_t.Id ->
+      let ivar =
+        C.Functions.Class.get_instance_variable
+          (Object.get_class self) ivar_name
+      in
+      Object.set_ivar ~self ~ivar value
+    | _ ->
+      let typ = Objc_t.value_typ t in
+      (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
+;;
+
+let get_property ~typ prop_name self =
+  Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
+;;
+
+let set_property ~typ prop_name value self =
+  let cmd = selector (Object.setter_name_of_ivar prop_name) in
+  Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
 ;;
 
 module Property = struct
@@ -389,45 +456,6 @@ module Class = struct
 
     self
 end
-
-let nil = null
-let is_nil = is_null
-
-(** Returns a new instance of the receiving class. *)
-let alloc self = Objc.msg_send_vo ~self ~cmd: (selector "alloc")
-
-let alloc_object class_name = alloc (Objc.get_class class_name)
-
-(** Allocates a new instance of the receiving class, sends it an init message,
-    and returns the initialized object. *)
-let _new_ self = Objc.msg_send_vo ~self ~cmd: (selector "new")
-
-(** Implemented by subclasses to initialize a new object (the receiver)
-    immediately after memory for it has been allocated. *)
-let init self = Objc.msg_send_vo ~self ~cmd: (selector "init")
-
-(** Decrements the receiver’s retain count at the end of the current
-    autorelease pool block. *)
-let autorelease self =
-  Objc.msg_send ~self ~cmd: (selector "autorelease") ~typ: (returning void)
-
-(** Allocates an object and sends it [init] and [gc_autorelease]. *)
-let new_object class_name =
-  alloc_object class_name |> init |> gc_autorelease
-;;
-
-(** Sends a message with a simple return value to an instance of a class. *)
-let msg_send cmd self ~args ~return =
-  let typ = Objc_t.method_typ ~args return in
-  Objc.msg_send ~self ~cmd ~typ
-;;
-
-(** Sends a message with a simple return value to the superclass of an instance
-    of a class. *)
-let msg_super cmd self ~args ~return =
-  let typ = Objc_t.method_typ ~args return in
-  Objc.msg_send_super ~self ~cmd ~typ
-;;
 
 module Bitmask = struct
   (** Represents a set of options or flags using a single integer value. *)

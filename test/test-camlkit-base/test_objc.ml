@@ -316,6 +316,24 @@ let test_object_property_def ~name x () =
     (NSString._UTF8String v)
 ;;
 
+let test_set_and_get_ivar ~name x () =
+  let ivar_name = "myVar" and ivar_t = Objc_t.int in
+  let o = _new_ (Class.define name ~ivars: [Ivar.define ivar_name ivar_t ]) in
+  o |> set_ivar ivar_name x ivar_t;
+  let v = o |> get_ivar ivar_name ivar_t in
+  A.check A.int "set value and get same value" x v
+;;
+
+let test_set_and_get_object_ivar ~name x () =
+  let ivar_name = "myVar" and ivar_t = Objc_t.id in
+  let o = _new_ (Class.define name ~ivars: [Ivar.define ivar_name ivar_t ]) in
+  o |> set_ivar ivar_name x ivar_t;
+  let v = o |> get_ivar ivar_name ivar_t in
+  A.check A.string "set ivar value and get same value"
+    (NSString._UTF8String x)
+    (NSString._UTF8String v)
+;;
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -327,17 +345,25 @@ let suite =
   ; "gc_autorelease calls dealloc", `Quick, test_gc_autorelease
   ; "add protocol", `Quick, test_add_protocol
   ; "set and get ivar", `Quick, test_add_ivar ~name:"MyClass5" 53
-  ; "set and get object ivar", `Quick, test_add_obj_ivar ~name:"MyClass6" (new_string "Hello")
+  ; "set and get object ivar", `Quick,
+    test_add_obj_ivar ~name:"MyClass6" (new_string "Hello")
   ; "value accessors", `Quick, test_value_accessors ~name:"MyClass7" 12
-  ; "object accessors", `Quick, test_object_accessors ~name:"MyClass8" (new_string "Hello")
+  ; "object accessors", `Quick,
+    test_object_accessors ~name:"MyClass8" (new_string "Hello")
   ; "set and get ivar via kvc", `Quick, test_kvc ~class_name:"MyClass9" "Test"
   ; "value property", `Quick, test_value_property ~name:"MyClass10" 42
-  ; "object property", `Quick, test_object_property ~name:"MyClass11" (new_string "Hello")
+  ; "object property", `Quick,
+    test_object_property ~name:"MyClass11" (new_string "Hello")
   ; "get selector name as string", `Quick, test_string_of_selector
   ; "test block", `Quick, test_block
   ; "test msg_send_super", `Quick, test_msg_send_super
   ; "value property def", `Quick, test_value_property_def ~name:"MyClass12" 42
-  ; "object property def", `Quick, test_object_property_def ~name:"MyClass13" (new_string "Hola")
+  ; "object property def", `Quick,
+    test_object_property_def ~name:"MyClass13" (new_string "Hola")
+  ; "set and get ivar directly", `Quick,
+    test_set_and_get_ivar ~name:"MyClass14" 53
+  ; "set and get object ivar directly", `Quick,
+    test_set_and_get_object_ivar ~name:"MyClass15" (new_string "Hola")
   ]
 
 let () = A.run "objc" [ "Objc", suite ]
