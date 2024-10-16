@@ -195,7 +195,7 @@ module Property = struct
   let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
 
   (** Getter for non-object values. *)
-  let getter ~ivar_name ~typ ~enc =
+  let getter ~typ ~enc ivar_name =
     let cmd = selector ivar_name
     and imp self _cmd =
       !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
@@ -204,19 +204,23 @@ module Property = struct
   ;;
 
   (** Setter for non-object values. *)
-  let setter ~ivar_name ~typ ~enc =
+  let setter ?(notify_change = false) ~typ ~enc ivar_name =
     let cmd = selector (setter_name_of_ivar ivar_name)
     and key = new_string ivar_name in
     let imp self _cmd value =
-      msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+      if notify_change then
+        msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+
       (ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value;
-      msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
+
+      if notify_change then
+        msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
   ;;
 
   (** Getter for object values. *)
-  let obj_getter ~ivar_name ~typ ~enc =
+  let obj_getter ~typ ~enc ivar_name =
     let cmd = selector ivar_name
     and imp self _cmd =
       let ivar =
@@ -232,7 +236,7 @@ module Property = struct
   let obj_setter
     ?(assign = false)
     ?(copy = false)
-    ?(notify_kvo = true)
+    ?(notify_change = false)
     ~typ
     ~enc
     ivar_name
@@ -250,12 +254,12 @@ module Property = struct
       assert (not (is_null ivar));
       Object.get_ivar ~self ~ivar |> release;
 
-      if notify_kvo then
+      if notify_change then
         msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
 
       Object.set_ivar ~self ~ivar (if copy then _copy_ value else value);
 
-      if notify_kvo then
+      if notify_change then
         msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
@@ -266,7 +270,7 @@ module Property = struct
     ?assign:bool ->
     ?copy:bool ->
     ?readonly:bool ->
-    ?notify_kvo:bool ->
+    ?notify_change:bool ->
     string ->
     a Objc_t.t ->
     method_spec' list
@@ -274,7 +278,7 @@ module Property = struct
     ?(assign = false)
     ?(copy = false)
     ?(readonly = false)
-    ?(notify_kvo = true)
+    ?(notify_change = false)
     ivar_name
     t
   ->
@@ -284,17 +288,17 @@ module Property = struct
     match t with
     | Objc_t.Id ->
       if readonly then
-        [ obj_getter ~ivar_name ~typ ~enc ]
+        [ obj_getter ~typ ~enc ivar_name ]
       else
-        [ obj_getter ~ivar_name ~typ ~enc
-        ; obj_setter ~assign ~copy ~notify_kvo ~typ ~enc ivar_name
+        [ obj_getter ~typ ~enc ivar_name
+        ; obj_setter ~assign ~copy ~notify_change ~typ ~enc ivar_name
         ]
     | _ ->
       if readonly then
-        [ getter ~ivar_name ~typ ~enc ]
+        [ getter ~typ ~enc ivar_name ]
       else
-        [ getter ~ivar_name ~typ ~enc
-        ; setter ~ivar_name ~typ ~enc
+        [ getter ~typ ~enc ivar_name
+        ; setter ~typ ~enc ~notify_change ivar_name
         ]
   ;;
 

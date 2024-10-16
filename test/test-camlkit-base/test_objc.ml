@@ -117,12 +117,10 @@ let test_add_ivar ~name x () =
   let ivars =
     [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_t.(Encode.value int)]
   and methods =
-    [ Property.getter
-        ~ivar_name: "myVar"
+    [ Property.getter "myVar"
         ~typ: int
         ~enc: Objc_t.(Encode.value int)
-    ; Property.setter
-        ~ivar_name: "myVar"
+    ; Property.setter "myVar"
         ~typ: int
         ~enc: Objc_t.(Encode._method_ ~args: [int] void)
     ]
@@ -207,12 +205,10 @@ let test_add_obj_ivar ~name x () =
   let ivars =
     [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_t.(Encode.value int)]
   and methods =
-    [ Property.getter
-        ~ivar_name:"myVar"
+    [ Property.getter "myVar"
         ~typ:id
         ~enc: Objc_t.(Encode.value id)
-    ; Property.setter
-        ~ivar_name:"myVar"
+    ; Property.setter "myVar"
         ~typ:id
         ~enc: Objc_t.(Encode._method_ ~args: [id] void)
     ]
