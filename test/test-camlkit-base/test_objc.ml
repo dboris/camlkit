@@ -161,9 +161,9 @@ let test_value_property ~name x () =
   and methods = Property.accessor_methods "myVar" Objc_t.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
-  self |> Property.set ~typ: Objc_t.int "myVar" x;
+  self |> Property.set "myVar" x Objc_t.int;
   let v =
-    self |> Property.get ~typ: Objc_t.int "myVar"
+    self |> Property.get "myVar" Objc_t.int
   in
   A.check A.int "set property value and get same value" x v
 ;;
@@ -173,9 +173,9 @@ let test_object_property ~name x () =
   and methods = Property.accessor_methods "myVar" Objc_t.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
-  self |> Property.set ~typ: Objc_t.id "myVar" x;
+  self |> Property.set "myVar" x Objc_t.id;
   let v =
-    self |> Property.get ~typ: Objc_t.id "myVar"
+    self |> Property.get "myVar" Objc_t.id
   in
   A.check A.string "set property value and get same value"
     (NSString._UTF8String x)
@@ -301,16 +301,16 @@ let test_msg_send_super () =
 let test_value_property_def ~name x () =
   let properties = [Property.define "myProp" Objc_t.int] in
   let self = _new_ (Class.define name ~properties) in
-  self |> Property.set "myProp" x ~typ: Objc_t.int;
-  let v = self |> Property.get "myProp" ~typ: Objc_t.int in
+  self |> Property.set "myProp" x Objc_t.int;
+  let v = self |> Property.get "myProp" Objc_t.int in
   A.check A.int "set value and get same value" x v
 ;;
 
 let test_object_property_def ~name x () =
   let properties = [Property.define "myProp" Objc_t.id] in
   let self = _new_ (Class.define name ~properties) in
-  self |> Property.set "myProp" x ~typ: Objc_t.id;
-  let v = self |> Property.get "myProp" ~typ: Objc_t.id in
+  self |> Property.set "myProp" x Objc_t.id;
+  let v = self |> Property.get "myProp" Objc_t.id in
   A.check A.string "set property value and get same value"
     (NSString._UTF8String x)
     (NSString._UTF8String v)

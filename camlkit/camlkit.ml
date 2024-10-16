@@ -132,7 +132,7 @@ module CamlObjectProxy = struct
       let responds_to_selector_imp self cmd sel =
         D.responds_to_selector (string_of_selector sel) ||
         (msg_send
-          ~self: (self |> get_property ~typ: id ivar_name |> Object.get_class)
+          ~self: (self |> get_property ivar_name id |> Object.get_class)
           ~cmd
           ~typ: (_SEL @-> returning bool)
           sel)
@@ -144,7 +144,7 @@ module CamlObjectProxy = struct
         else
           invocation
           |> NSInvocation.invokeWithTarget
-              (self |> get_property ~typ: id ivar_name)
+              (self |> get_property ivar_name id)
       and method_signature_for_selector_imp self cmd sel =
         let str_sel = string_of_selector sel in
         if D.responds_to_selector str_sel then
@@ -153,7 +153,7 @@ module CamlObjectProxy = struct
               (D.method_signature_for_selector str_sel)
         else
           msg_send
-            ~self: (self |> get_property ~typ: id ivar_name)
+            ~self: (self |> get_property ivar_name id)
             ~cmd
             ~typ: (_SEL @-> returning id)
             sel
@@ -165,7 +165,7 @@ module CamlObjectProxy = struct
           ~args: Objc_t.[id]
           ~return: Objc_t.id
           (fun self _cmd target ->
-            self |> set_property ~typ: id ivar_name target;
+            self |> set_property ivar_name target id;
             self)
 
         ; Method.define

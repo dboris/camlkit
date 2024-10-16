@@ -183,6 +183,7 @@ let gc_autorelease self =
   self
 ;;
 
+(** Allocates an object given a class name. *)
 let alloc_object class_name = alloc (Objc.get_class class_name)
 
 (** Allocates an object and sends it [init] and [gc_autorelease]. *)
@@ -213,6 +214,7 @@ let msg_super cmd self ~args ~return =
   Objc.msg_send_super ~self ~cmd ~typ
 ;;
 
+(** Returns the value of an ivar reading it directly. *)
 let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
   fun ivar_name t self ->
     match t with
@@ -227,6 +229,7 @@ let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
       !@ (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ)
 ;;
 
+(** Sets the value of an ivar writing it directly. *)
 let set_ivar : type a. string -> a -> a Objc_t.t -> object_t -> unit =
   fun ivar_name value t self ->
     match t with
@@ -241,11 +244,11 @@ let set_ivar : type a. string -> a -> a Objc_t.t -> object_t -> unit =
       (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
 ;;
 
-let get_property ~typ prop_name self =
+let get_property prop_name typ self =
   Objc.(msg_send ~self ~cmd: (selector prop_name) ~typ: (returning typ))
 ;;
 
-let set_property ~typ prop_name value self =
+let set_property prop_name value typ self =
   let cmd = selector (Object.setter_name_of_ivar prop_name) in
   Objc.(msg_send ~self ~cmd ~typ: (typ @-> returning void)) value
 ;;
@@ -256,10 +259,11 @@ module Property = struct
   open Define
 
   (** Get the value of a property. *)
-  let get ~typ = get_property ~typ: (Objc_t.value_typ typ)
+  let get prop_name typ = get_property prop_name (Objc_t.value_typ typ)
 
   (** Set the value of a property. *)
-  let set ~typ = set_property ~typ: (Objc_t.value_typ typ)
+  let set prop_name value typ =
+    set_property prop_name value (Objc_t.value_typ typ)
 
   (** Getter for non-object values. *)
   let getter ~typ ~enc ivar_name =
