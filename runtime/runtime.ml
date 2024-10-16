@@ -232,6 +232,7 @@ module Property = struct
   let obj_setter
     ?(assign = false)
     ?(copy = false)
+    ?(notify_kvo = true)
     ~typ
     ~enc
     ivar_name
@@ -246,12 +247,16 @@ module Property = struct
       let ivar =
         C.Functions.Class.get_instance_variable (Object.get_class self) ivar_name
       in
+      assert (not (is_null ivar));
       Object.get_ivar ~self ~ivar |> release;
 
-      assert (not (is_null ivar));
-      msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+      if notify_kvo then
+        msg_send_ov ~self ~cmd: (selector "willChangeValueForKey:") key;
+
       Object.set_ivar ~self ~ivar (if copy then _copy_ value else value);
-      msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
+
+      if notify_kvo then
+        msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
     method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
 
@@ -261,6 +266,7 @@ module Property = struct
     ?assign:bool ->
     ?copy:bool ->
     ?readonly:bool ->
+    ?notify_kvo:bool ->
     string ->
     a Objc_t.t ->
     method_spec' list
@@ -268,6 +274,7 @@ module Property = struct
     ?(assign = false)
     ?(copy = false)
     ?(readonly = false)
+    ?(notify_kvo = true)
     ivar_name
     t
   ->
@@ -280,7 +287,7 @@ module Property = struct
         [ obj_getter ~ivar_name ~typ ~enc ]
       else
         [ obj_getter ~ivar_name ~typ ~enc
-        ; obj_setter ~assign ~copy ~typ ~enc ivar_name
+        ; obj_setter ~assign ~copy ~notify_kvo ~typ ~enc ivar_name
         ]
     | _ ->
       if readonly then
