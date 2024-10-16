@@ -202,14 +202,14 @@ let new_string str =
 ;;
 
 (** Sends a message with a simple return value to an instance of a class. *)
-let msg_send cmd self ~args ~return =
+let msg_send cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send ~self ~cmd ~typ
 ;;
 
 (** Sends a message with a simple return value to the superclass of an instance
     of a class. *)
-let msg_super cmd self ~args ~return =
+let msg_super cmd ~self ~args ~return =
   let typ = Objc_t.method_typ ~args return in
   Objc.msg_send_super ~self ~cmd ~typ
 ;;

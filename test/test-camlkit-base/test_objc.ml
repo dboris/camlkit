@@ -289,12 +289,12 @@ let test_msg_send_super () =
           ~args: Objc_t.[]
           ~return: Objc_t.void
           (fun self cmd ->
-            self |> msg_super cmd ~args: Objc_t.[] ~return: Objc_t.void)
+            msg_super cmd ~self ~args: Objc_t.[] ~return: Objc_t.void)
         ]
   and expected = true
   in
   let self = alloc class_b |> NSObject.init in
-  self |> R.msg_send (selector "someMethod") ~args: Objc_t.[] ~return: Objc_t.void;
+  R.msg_send (selector "someMethod") ~self ~args: Objc_t.[] ~return: Objc_t.void;
   A.check A.bool "same bool" expected !actual
 ;;
 
