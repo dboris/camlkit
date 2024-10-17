@@ -375,8 +375,15 @@ module Property = struct
 
   (** Define a property with an ivar, getter, and setter
       (unless [readonly] is [true]). *)
-  let define ?(retain = true) ?(copy = false) ?(readonly = false) name typ =
-    prop_spec ~retain ~copy ~readonly ~typ name
+  let define
+    ?(retain = true)
+    ?(copy = false)
+    ?(readonly = false)
+    ?(notify_change = false)
+    name
+    typ
+    =
+    prop_spec ~retain ~copy ~readonly ~notify_change ~typ name
 end
 
 module Class = struct
