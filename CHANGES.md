@@ -2,8 +2,14 @@
 
 API changes:
 
-* Replaced `Property.value` and `Property._object_` with a single `Property.accessor_methods`.
+* Replaced `Property.value` and `Property._object_` with a single
+  `Property.accessor_methods`.
 * Added `Property.define` and a `properties` parameter to `Class.define`.
+* Some runtime functions have changed signatures due to adding/removing labels
+  for some params.
+* Some common delegate protocols now have bindings available, eg
+  `UIApplicationDelegate`/`NSApplicationDelegate`,
+  `UITableViewDelegate`/`NSTableViewDelegate`, etc.
 
 ## Release 0.2.2
 
