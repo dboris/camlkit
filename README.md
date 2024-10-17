@@ -3,7 +3,7 @@
 Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
   (all platforms)
-* Core{Animation, AutoLayout, Foundation, Graphics, Image, Text, Video}
+* Core{Animation, AutoLayout, Data, Foundation, Graphics, Image, Text, Video}
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
   (macOS and [GNUstep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)

@@ -1,0 +1,9 @@
+(library
+ (name CoreData)
+ (public_name camlkit-base.CoreData)
+;  (flags :standard -ccopt "-framework CoreData")
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.CoreFoundation))
+
+(documentation (package camlkit-base))
