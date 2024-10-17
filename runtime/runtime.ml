@@ -432,13 +432,14 @@ module Class = struct
     methods |> List.iter add_method';
 
     properties
-    |> List.iter (fun (Define.PropSpec {name; typ = t; retain; copy; readonly}) ->
+    |> List.iter (fun (Define.PropSpec
+        {name; typ = t; retain; copy; readonly; notify_change}) ->
       let typ = Objc_t.value_typ t
       and enc = Objc_t.Encode.value t
       and assign = not retain in
       let size = Size_t.of_int (sizeof typ) in
       assert (add_ivar ~self ~name ~size ~enc);
-      Property.accessor_methods ~assign ~copy ~readonly name t
+      Property.accessor_methods ~assign ~copy ~readonly ~notify_change name t
       |> List.iter add_method');
 
     protocols |> List.iter (fun proto ->

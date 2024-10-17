@@ -24,6 +24,7 @@ type 'a prop_spec =
   ; retain : bool
   ; copy : bool
   ; readonly : bool
+  ; notify_change : bool
   }
 
 type prop_spec' = PropSpec : 'a prop_spec -> prop_spec'
@@ -32,5 +33,12 @@ let method_spec ~cmd ~typ ~imp ~enc = MethodSpec {cmd; typ; imp; enc}
 
 let ivar_spec ~name ~typ ~enc = IvarSpec {name; typ; enc}
 
-let prop_spec ?(retain = false) ?(copy = false) ?(readonly = false) name ~typ =
-  PropSpec {name; typ; retain; copy; readonly}
+let prop_spec
+  ?(retain = true)
+  ?(copy = false)
+  ?(readonly = false)
+  ?(notify_change = false)
+  name
+  ~typ
+  =
+  PropSpec {name; typ; retain; copy; readonly; notify_change}
