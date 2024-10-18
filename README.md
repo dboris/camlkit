@@ -3,31 +3,29 @@
 Camlkit provides OCaml bindings to the following Cocoa frameworks:
 * [Foundation](https://developer.apple.com/documentation/foundation?language=objc)
   (all platforms)
-* Core{Animation, AutoLayout, Data, Foundation, Graphics, Image, Text, Video}
 * [AppKit](https://developer.apple.com/documentation/appkit?language=objc)
   (macOS and [GNUstep](https://gnustep.github.io/))
 * [UIKit](https://developer.apple.com/documentation/uikit?language=objc)
-  (iOS, [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
-* [WebKit](https://developer.apple.com/documentation/webkit?language=objc)
+  (iOS and [Mac Catalyst](https://developer.apple.com/mac-catalyst/))
+* Core{Animation, AutoLayout, Data, Foundation, Graphics, Image, Text, Video}
   (iOS and macOS)
-* [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc)
-  (iOS and macOS)
-* [Vision](https://developer.apple.com/documentation/vision?language=objc)
-  (iOS and macOS)
-* [Photos](https://developer.apple.com/documentation/photos?language=objc)
-  (iOS and macOS)
-* [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc)
-  (macOS and Mac Catalyst)
-* [Dispatch (aka Grand Central Dispatch)](https://developer.apple.com/documentation/dispatch?language=objc)
+* [WebKit](https://developer.apple.com/documentation/webkit?language=objc),
+  [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc),
+  [Vision](https://developer.apple.com/documentation/vision?language=objc),
+  [Photos](https://developer.apple.com/documentation/photos?language=objc),
+  [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc),
+  [Dispatch (aka Grand Central Dispatch)](https://developer.apple.com/documentation/dispatch?language=objc)
   (iOS and macOS)
 
 ## Features
 
-* Using the classes and objects from these Cocoa frameworks, defining new
-  Cocoa classes, and accessing the functionality of other Cocoa frameworks
-  (via the low-level Objective-C runtime API bindings) can be done from the
-  comfort of OCaml. No need to write wrappers manually in C or Objective-C.
-* Cocoa object lifetimes can be managed by the OCaml GC.
+* Using the classes and objects from the above Cocoa frameworks and defining new
+  Cocoa classes can be done from the comfort of OCaml. No need to write wrappers
+  manually in C or Objective-C.
+* Accessing the functionality of other Cocoa frameworks is possible via the
+  Objective-C runtime API bindings. Framework bindings can also be
+  generated using [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
+* Cocoa object lifetimes on the OCaml side can be managed by the OCaml GC.
 * GUI object hierarchies can be created either programmatically or visually
   using Xcode's Interface Builder.
 * An Xcode project is not required. A complete macOS or iOS application can
@@ -165,19 +163,17 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
 * Memory management
 
-  A newly allocated object has a reference count of 1. When you want to keep
-  an object around, you send it the `retain` message. This increments the
-  reference count. When you no longer need an object, you send it the `release`
-  message. This decrements the reference count. When the reference count reaches
-  0, the object is sent the `dealloc` message and its memory is reclaimed.
-  See also `autorelease` and the
-  [`NSAutoreleasePool`](https://developer.apple.com/documentation/foundation/nsautoreleasepool/)
-  class.
+  Objective-C objects use reference counting to manage memory. Since we are not
+  compiling Objective-C source code, we cannot leverage [Automatic Reference
+  Counting (ARC)](https://clang.llvm.org/docs/AutomaticReferenceCounting.html).
+  We have to use [manual retain-release](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html), as well as override the `dealloc`
+  method when appropriate to release the objects owned by our classes.
 
-  Since OCaml has a garbage collector, you can leverage it to help manage the
-  lifetimes of Cocoa objects. To this effect, we provide the `gc_autorelease`
-  function, which ensures the object will be sent the `release` message when
-  the OCaml reference to it is garbage collected.
+  Objective-C objects that are referenced from the OCaml side can leverage the
+  OCaml garbage collector to automatically receive the `release` message when the
+  OCaml reference is garbage collected. This is achieved by the `gc_autorelease`
+  runtime function. `NSString` objects created with `new_string` will be
+  auto-released by the OCaml GC.
 
 * Using frameworks when bindings are not available
 
@@ -210,7 +206,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   OCaml:
   ```OCaml
   let viewDidLoad self cmd =
-    self |> msg_super cmd ~args: Objc_t.[] ~return: Objc_t.void;
+    msg_super ~self cmd ~args: Objc_t.[] ~return: Objc_t.void;
     ...
   ```
 
