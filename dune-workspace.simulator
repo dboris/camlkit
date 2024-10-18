@@ -1,0 +1,9 @@
+(lang dune 3.16)
+
+(context
+ (opam
+  (switch 4.14.2-simulator)
+  (name simulator)
+  (targets ios)
+  (merlin)
+  (disable_dynamically_linked_foreign_archives true)))

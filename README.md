@@ -11,7 +11,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (iOS and macOS)
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc),
   [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc),
-  [CloudKit](https://developer.apple.com/documentation/cloudkit?language=objc)
+  [CloudKit](https://developer.apple.com/documentation/cloudkit?language=objc),
   [Vision](https://developer.apple.com/documentation/vision?language=objc),
   [Photos](https://developer.apple.com/documentation/photos?language=objc),
   [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc),
@@ -28,7 +28,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   generated using [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
 * Cocoa object lifetimes on the OCaml side can be managed by the OCaml GC.
 * GUI object hierarchies can be created either programmatically or visually
-  using Xcode's Interface Builder.
+  using Interface Builder in Xcode.
 * An Xcode project is not required. A complete macOS or iOS application can
   be developed entirely in OCaml.
 
@@ -53,11 +53,8 @@ open Runtime
 
 module AppDelegate = struct
   let show_hello =
-    Method.define
-      ~cmd: (selector "application:didFinishLaunchingWithOptions:")
-      ~args: Objc_t.[id; id]
-      ~return: Objc_t.bool
-      (fun _self _cmd _app _opts ->
+    UIApplicationDelegate.application'didFinishLaunchingWithOptions' @@
+      fun _self _cmd _app _opts ->
         let screen_bounds =
           UIScreen.self |> UIScreenClass.mainScreen |> UIScreen.bounds in
         let win =
@@ -76,12 +73,12 @@ module AppDelegate = struct
 
         win |> UIWindow.setRootViewController vc;
         win |> UIWindow.makeKeyAndVisible;
-        true)
+        true
 
   let define () =
     Class.define "AppDelegate"
       ~superclass: UIResponder.self
-      ~methods: [show_hello]
+      ~methods: [ show_hello ]
 end
 
 let main () =
@@ -133,6 +130,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   @interface MyClass : NSObject {
       id myVar;
   }
+  @property (retain) id myProp;
   - (void)myMethodWithArg1:(id)arg1 arg2:(id)arg2;
   @end
 
@@ -147,12 +145,13 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   ```ocaml
   Class.define "MyClass"
     ~ivars: [ Ivar.define "myVar" Objc_t.id ]
+    ~properties: [ Property.define "myProp" Objc_t.id ]
     ~methods: [
       Method.define
         ~cmd: (selector "myMethodWithArg1:arg2:")
         ~args: Objc_t.[id; id]
-        ~return: Objc_t.void
-        (fun self cmd arg1 arg2 -> (* method implementation *))
+        ~return: Objc_t.void @@
+        fun self cmd arg1 arg2 -> (* method implementation *)
       ]
   ```
 
