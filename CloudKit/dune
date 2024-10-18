@@ -1,0 +1,9 @@
+(library
+ (name CloudKit)
+ (public_name camlkit-base.CloudKit)
+;  (flags :standard -ccopt "-framework CloudKit")
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.CoreFoundation))
+
+(documentation (package camlkit-base))

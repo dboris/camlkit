@@ -11,6 +11,7 @@ Camlkit provides OCaml bindings to the following Cocoa frameworks:
   (iOS and macOS)
 * [WebKit](https://developer.apple.com/documentation/webkit?language=objc),
   [SpriteKit](https://developer.apple.com/documentation/spritekit?language=objc),
+  [CloudKit](https://developer.apple.com/documentation/cloudkit?language=objc)
   [Vision](https://developer.apple.com/documentation/vision?language=objc),
   [Photos](https://developer.apple.com/documentation/photos?language=objc),
   [FSEvents](https://developer.apple.com/documentation/coreservices/file_system_events?language=objc),
