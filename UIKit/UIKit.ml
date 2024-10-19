@@ -1100,3 +1100,5 @@ module UIWindowLayer = UIWindowLayer
 module UIWindowScene = UIWindowScene
 module UIWindowSceneClass = UIWindowSceneClass
 module UIWindowSceneDelegate = UIWindowSceneDelegate
+module UIViewControllerMethods = UIViewControllerMethods
+module UITableViewControllerMethods = UITableViewControllerMethods

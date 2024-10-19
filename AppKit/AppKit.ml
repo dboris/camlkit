@@ -1076,3 +1076,4 @@ module NSWorkspaceClass = NSWorkspaceClass
 module NSWorkspaceNotificationCenter = NSWorkspaceNotificationCenter
 module NSWrapperCellView = NSWrapperCellView
 module NSWrapperCellViewClass = NSWrapperCellViewClass
+module NSViewControllerMethods = NSViewControllerMethods
