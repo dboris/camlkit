@@ -177,9 +177,9 @@ constructs by comparing the equivalent Objective-C and OCaml code.
 
 * Using frameworks when bindings are not available
 
-  When bindings for the framework you need are not available, you have the
-  option to [generate the bindings yourself](https://discuss.ocaml.org/t/ann-camlkit-macos-ios-gnustep-toolkit-for-ocaml/14722/10) using the tools from
-  [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
+  When bindings for the framework you need are not available, you can [generate
+  the bindings yourself](https://discuss.ocaml.org/t/ann-camlkit-macos-ios-gnustep-toolkit-for-ocaml/14722/10)
+  using the tools from [camlkit-bindings-generator](https://github.com/dboris/camlkit-bindings-generator/).
 
   Another option is to use the lower-level functionality of the Objective-C
   runtime. The runtime functions enable you to get a hold of an arbitrary class
@@ -188,7 +188,11 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   ```OCaml
   let a_class = Objc.get_class "AClassThatINeed" in
   let an_instance = alloc a_class |> init in
-  an_instance |> msg_send (selector "anArbitrarySelector") ~args: Objc_t.[] ~return: Objc_t.void
+  msg_send
+    (selector "anArbitrarySelector")
+    ~self: an_instance
+    ~args: Objc_t.[]
+    ~return: Objc_t.void
   ```
 
 * Sending a message to the superclass

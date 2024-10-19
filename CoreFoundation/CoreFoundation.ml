@@ -172,3 +172,7 @@ module NSURL = NSURL
 module NSURLClass = NSURLClass
 module NSUserDefaults = NSUserDefaults
 module NSUserDefaultsClass = NSUserDefaultsClass
+module CGPath = CGPath
+module CGPoint = CGPoint
+module CGRect = CGRect
+module CGSize = CGSize
