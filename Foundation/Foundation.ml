@@ -469,6 +469,7 @@ module NSNumberFormatter = NSNumberFormatter
 module NSNumberFormatterClass = NSNumberFormatterClass
 module NSObject = NSObject
 module NSObjectClass = NSObjectClass
+module NSObjectMethods = NSObjectMethods
 module NSObservableKeyPath = NSObservableKeyPath
 module NSObservation = NSObservation
 module NSObservationBuffer = NSObservationBuffer
