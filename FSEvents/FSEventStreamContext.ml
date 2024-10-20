@@ -27,7 +27,7 @@ let init
   setf t retain retain_v;
   setf t release release_v;
   setf t copyDescription copyDescription_v;
-t
+  t
 let version t = getf t version
 let info t = getf t info
 let retain t = getf t retain

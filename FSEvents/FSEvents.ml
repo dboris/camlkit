@@ -1,0 +1,3 @@
+include FSEvents_globals
+
+module FSEventStreamContext = FSEventStreamContext
