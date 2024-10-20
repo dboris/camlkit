@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsarraychanges?language=objc}NSArrayChanges} *)
 
@@ -15,7 +15,7 @@ let addChange x self = msg_send ~self ~cmd:(selector "addChange:") ~typ:(id @-> 
 let addChanges x self = msg_send ~self ~cmd:(selector "addChanges:") ~typ:(id @-> returning void) x
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let applyChangesToArray x self = msg_send ~self ~cmd:(selector "applyChangesToArray:") ~typ:(id @-> returning void) x
-let changeCount self = msg_send ~self ~cmd:(selector "changeCount") ~typ:(returning ullong)
+let changeCount self = msg_send ~self ~cmd:(selector "changeCount") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let enumerateChanges x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateChanges:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock

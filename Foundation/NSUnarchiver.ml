@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsunarchiver?language=objc}NSUnarchiver} *)
 
@@ -28,4 +28,4 @@ let objectZone self = msg_send ~self ~cmd:(selector "objectZone") ~typ:(returnin
 let replaceObject x ~withObject self = msg_send ~self ~cmd:(selector "replaceObject:withObject:") ~typ:(id @-> id @-> returning void) x withObject
 let setObjectZone x self = msg_send ~self ~cmd:(selector "setObjectZone:") ~typ:((ptr void) @-> returning void) x
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning uint)
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

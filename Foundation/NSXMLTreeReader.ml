@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmltreereader?language=objc}NSXMLTreeReader} *)
 
@@ -16,7 +16,7 @@ let _URI self = msg_send ~self ~cmd:(selector "URI") ~typ:(returning id)
 let allowedEntityURLs self = msg_send ~self ~cmd:(selector "allowedEntityURLs") ~typ:(returning id)
 let createNamedNodeFromNode x ~reader self = msg_send ~self ~cmd:(selector "createNamedNodeFromNode:reader:") ~typ:((ptr void) @-> (ptr void) @-> returning id) x reader
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let externalEntityLoadingPolicy self = msg_send ~self ~cmd:(selector "externalEntityLoadingPolicy") ~typ:(returning llong)
+let externalEntityLoadingPolicy self = msg_send ~self ~cmd:(selector "externalEntityLoadingPolicy") ~typ:(returning llong) |> LLong.to_int
 let initWithData x ~documentClass ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:options:error:") ~typ:(id @-> _Class @-> ullong @-> (ptr id) @-> returning id) x documentClass (ULLong.of_int options) error
 let initWithData' x ~documentClass ~isSingleDTDNode ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:documentClass:isSingleDTDNode:options:error:") ~typ:(id @-> _Class @-> bool @-> ullong @-> (ptr id) @-> returning id) x documentClass isSingleDTDNode (ULLong.of_int options) error
 let parse self = msg_send ~self ~cmd:(selector "parse") ~typ:(returning id)

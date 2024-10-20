@@ -1,16 +1,20 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspredicate?language=objc}NSPredicate} *)
 
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let newStringFrom x ~usingUnicodeTransforms self = msg_send ~self ~cmd:(selector "newStringFrom:usingUnicodeTransforms:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int usingUnicodeTransforms)
+let predicateForAssetsInAssetCollectionWithID x self = msg_send ~self ~cmd:(selector "predicateForAssetsInAssetCollectionWithID:") ~typ:(id @-> returning id) x
+let predicateForCloudInvitationsInAssetCollection x self = msg_send ~self ~cmd:(selector "predicateForCloudInvitationsInAssetCollection:") ~typ:(id @-> returning id) x
+let predicateForCommentsInAsset x self = msg_send ~self ~cmd:(selector "predicateForCommentsInAsset:") ~typ:(id @-> returning id) x
+let predicateForLikesInAsset x self = msg_send ~self ~cmd:(selector "predicateForLikesInAsset:") ~typ:(id @-> returning id) x
 let predicateFromMetadataQueryString x self = msg_send ~self ~cmd:(selector "predicateFromMetadataQueryString:") ~typ:(id @-> returning id) x
 let predicateWithBlock x self = msg_send ~self ~cmd:(selector "predicateWithBlock:") ~typ:((ptr void) @-> returning id) x
 let predicateWithFormat x self = msg_send ~self ~cmd:(selector "predicateWithFormat:") ~typ:(id @-> returning id) x

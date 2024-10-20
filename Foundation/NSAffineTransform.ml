@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsaffinetransform?language=objc}NSAffineTransform} *)
 
@@ -17,9 +17,10 @@ let appendTransform x self = msg_send ~self ~cmd:(selector "appendTransform:") ~
 let concat self = msg_send ~self ~cmd:(selector "concat") ~typ:(returning void)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
+let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithTransform x self = msg_send ~self ~cmd:(selector "initWithTransform:") ~typ:(id @-> returning id) x

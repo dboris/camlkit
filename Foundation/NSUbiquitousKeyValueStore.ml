@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore?language=objc}NSUbiquitousKeyValueStore} *)
 
@@ -24,11 +24,11 @@ let initWithBundleIdentifier1 x ~storeIdentifier self = msg_send ~self ~cmd:(sel
 let initWithBundleIdentifier2 x ~storeIdentifier ~additionalStore self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:additionalStore:") ~typ:(id @-> id @-> bool @-> returning id) x storeIdentifier additionalStore
 let initWithBundleIdentifier3 x ~storeIdentifier ~additionalStore ~storeType self = msg_send ~self ~cmd:(selector "initWithBundleIdentifier:storeIdentifier:additionalStore:storeType:") ~typ:(id @-> id @-> bool @-> llong @-> returning id) x storeIdentifier additionalStore (LLong.of_int storeType)
 let initWithStoreIdentifier x ~type_ self = msg_send ~self ~cmd:(selector "initWithStoreIdentifier:type:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int type_)
-let longLongForKey x self = msg_send ~self ~cmd:(selector "longLongForKey:") ~typ:(id @-> returning llong) x
-let maximumDataLengthPerKey self = msg_send ~self ~cmd:(selector "maximumDataLengthPerKey") ~typ:(returning ullong)
-let maximumKeyCount self = msg_send ~self ~cmd:(selector "maximumKeyCount") ~typ:(returning ullong)
-let maximumKeyLength self = msg_send ~self ~cmd:(selector "maximumKeyLength") ~typ:(returning ullong)
-let maximumTotalDataLength self = msg_send ~self ~cmd:(selector "maximumTotalDataLength") ~typ:(returning ullong)
+let longLongForKey x self = msg_send ~self ~cmd:(selector "longLongForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let maximumDataLengthPerKey self = msg_send ~self ~cmd:(selector "maximumDataLengthPerKey") ~typ:(returning ullong) |> ULLong.to_int
+let maximumKeyCount self = msg_send ~self ~cmd:(selector "maximumKeyCount") ~typ:(returning ullong) |> ULLong.to_int
+let maximumKeyLength self = msg_send ~self ~cmd:(selector "maximumKeyLength") ~typ:(returning ullong) |> ULLong.to_int
+let maximumTotalDataLength self = msg_send ~self ~cmd:(selector "maximumTotalDataLength") ~typ:(returning ullong) |> ULLong.to_int
 let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning id) x
 let registerDefaultValues x self = msg_send ~self ~cmd:(selector "registerDefaultValues:") ~typ:(id @-> returning void) x
 let removeObjectForKey x self = msg_send ~self ~cmd:(selector "removeObjectForKey:") ~typ:(id @-> returning void) x

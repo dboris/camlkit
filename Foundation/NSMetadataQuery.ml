@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmetadataquery?language=objc}NSMetadataQuery} *)
 
@@ -19,7 +19,7 @@ let enumerateResultsUsingBlock x self = msg_send ~self ~cmd:(selector "enumerate
 let enumerateResultsWithOptions x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateResultsWithOptions:usingBlock:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) usingBlock
 let groupedResults self = msg_send ~self ~cmd:(selector "groupedResults") ~typ:(returning id)
 let groupingAttributes self = msg_send ~self ~cmd:(selector "groupingAttributes") ~typ:(returning id)
-let indexOfResult x self = msg_send ~self ~cmd:(selector "indexOfResult:") ~typ:(id @-> returning ullong) x
+let indexOfResult x self = msg_send ~self ~cmd:(selector "indexOfResult:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isGathering self = msg_send ~self ~cmd:(selector "isGathering") ~typ:(returning bool)
 let isStarted self = msg_send ~self ~cmd:(selector "isStarted") ~typ:(returning bool)
@@ -29,7 +29,7 @@ let operationQueue self = msg_send ~self ~cmd:(selector "operationQueue") ~typ:(
 let predicate self = msg_send ~self ~cmd:(selector "predicate") ~typ:(returning id)
 let removeObserver x ~forKeyPath self = msg_send ~self ~cmd:(selector "removeObserver:forKeyPath:") ~typ:(id @-> id @-> returning void) x forKeyPath
 let resultAtIndex x self = msg_send ~self ~cmd:(selector "resultAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let resultCount self = msg_send ~self ~cmd:(selector "resultCount") ~typ:(returning ullong)
+let resultCount self = msg_send ~self ~cmd:(selector "resultCount") ~typ:(returning ullong) |> ULLong.to_int
 let results self = msg_send ~self ~cmd:(selector "results") ~typ:(returning id)
 let searchItemURLs self = msg_send ~self ~cmd:(selector "searchItemURLs") ~typ:(returning id)
 let searchItems self = msg_send ~self ~cmd:(selector "searchItems") ~typ:(returning id)

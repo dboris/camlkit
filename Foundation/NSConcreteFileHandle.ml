@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconcretefilehandle?language=objc}NSConcreteFileHandle} *)
 
@@ -27,11 +27,11 @@ let initWithFileDescriptor' x ~closeOnDealloc self = msg_send ~self ~cmd:(select
 let initWithPath x ~flags ~createMode self = msg_send ~self ~cmd:(selector "initWithPath:flags:createMode:") ~typ:(id @-> llong @-> llong @-> returning id) x (LLong.of_int flags) (LLong.of_int createMode)
 let initWithPath' x ~flags ~createMode ~error self = msg_send ~self ~cmd:(selector "initWithPath:flags:createMode:error:") ~typ:(id @-> llong @-> llong @-> (ptr id) @-> returning id) x (LLong.of_int flags) (LLong.of_int createMode) error
 let initWithURL x ~flags ~createMode ~error self = msg_send ~self ~cmd:(selector "initWithURL:flags:createMode:error:") ~typ:(id @-> llong @-> llong @-> (ptr id) @-> returning id) x (LLong.of_int flags) (LLong.of_int createMode) error
-let offsetInFile self = msg_send ~self ~cmd:(selector "offsetInFile") ~typ:(returning ullong)
+let offsetInFile self = msg_send ~self ~cmd:(selector "offsetInFile") ~typ:(returning ullong) |> ULLong.to_int
 let performActivity x ~modes self = msg_send ~self ~cmd:(selector "performActivity:modes:") ~typ:(llong @-> id @-> returning void) (LLong.of_int x) modes
 let port self = msg_send ~self ~cmd:(selector "port") ~typ:(returning id)
 let readDataOfLength x self = msg_send ~self ~cmd:(selector "readDataOfLength:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let readDataOfLength' x ~buffer self = msg_send ~self ~cmd:(selector "readDataOfLength:buffer:") ~typ:(ullong @-> string @-> returning ullong) (ULLong.of_int x) buffer
+let readDataOfLength' x ~buffer self = msg_send ~self ~cmd:(selector "readDataOfLength:buffer:") ~typ:(ullong @-> string @-> returning ullong) (ULLong.of_int x) buffer |> ULLong.to_int
 let readDataToEndOfFile self = msg_send ~self ~cmd:(selector "readDataToEndOfFile") ~typ:(returning id)
 let readDataToEndOfFileAndReturnError x self = msg_send ~self ~cmd:(selector "readDataToEndOfFileAndReturnError:") ~typ:((ptr id) @-> returning id) x
 let readDataUpToLength x ~error self = msg_send ~self ~cmd:(selector "readDataUpToLength:error:") ~typ:(ullong @-> (ptr id) @-> returning id) (ULLong.of_int x) error
@@ -40,7 +40,7 @@ let readInBackgroundAndNotifyForModes x self = msg_send ~self ~cmd:(selector "re
 let readToEndOfFileInBackgroundAndNotify self = msg_send ~self ~cmd:(selector "readToEndOfFileInBackgroundAndNotify") ~typ:(returning void)
 let readToEndOfFileInBackgroundAndNotifyForModes x self = msg_send ~self ~cmd:(selector "readToEndOfFileInBackgroundAndNotifyForModes:") ~typ:(id @-> returning void) x
 let readabilityHandler self = msg_send ~self ~cmd:(selector "readabilityHandler") ~typ:(returning (ptr void))
-let seekToEndOfFile self = msg_send ~self ~cmd:(selector "seekToEndOfFile") ~typ:(returning ullong)
+let seekToEndOfFile self = msg_send ~self ~cmd:(selector "seekToEndOfFile") ~typ:(returning ullong) |> ULLong.to_int
 let seekToEndReturningOffset x ~error self = msg_send ~self ~cmd:(selector "seekToEndReturningOffset:error:") ~typ:((ptr ullong) @-> (ptr id) @-> returning bool) x error
 let seekToFileOffset x self = msg_send ~self ~cmd:(selector "seekToFileOffset:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let seekToOffset x ~error self = msg_send ~self ~cmd:(selector "seekToOffset:error:") ~typ:(ullong @-> (ptr id) @-> returning bool) (ULLong.of_int x) error

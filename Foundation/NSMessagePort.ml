@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmessageport?language=objc}NSMessagePort} *)
 
@@ -22,7 +22,7 @@ let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let removeFromRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "removeFromRunLoop:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let scheduleInRunLoop x ~forMode self = msg_send ~self ~cmd:(selector "scheduleInRunLoop:forMode:") ~typ:(id @-> id @-> returning void) x forMode
 let sendBeforeDate x ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:components:from:reserved:") ~typ:(id @-> id @-> id @-> ullong @-> returning bool) x components from (ULLong.of_int reserved)
 let sendBeforeDate' x ~msgid ~components ~from ~reserved self = msg_send ~self ~cmd:(selector "sendBeforeDate:msgid:components:from:reserved:") ~typ:(id @-> ullong @-> id @-> id @-> ullong @-> returning bool) x (ULLong.of_int msgid) components from (ULLong.of_int reserved)

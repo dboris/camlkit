@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsclassicmaptable?language=objc}NSClassicMapTable} *)
 
@@ -14,11 +14,11 @@ let self = get_class "NSClassicMapTable"
 let allKeys self = msg_send ~self ~cmd:(selector "allKeys") ~typ:(returning id)
 let allValues self = msg_send ~self ~cmd:(selector "allValues") ~typ:(returning id)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let existingItemForSetItem x ~forAbsentKey self = msg_send ~self ~cmd:(selector "existingItemForSetItem:forAbsentKey:") ~typ:((ptr void) @-> (ptr void) @-> returning (ptr void)) x forAbsentKey
-let getKeys x ~values self = msg_send ~self ~cmd:(selector "getKeys:values:") ~typ:((ptr (ptr void)) @-> (ptr (ptr void)) @-> returning ullong) x values
+let getKeys x ~values self = msg_send ~self ~cmd:(selector "getKeys:values:") ~typ:((ptr (ptr void)) @-> (ptr (ptr void)) @-> returning ullong) x values |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let mapMember x ~originalKey ~value self = msg_send ~self ~cmd:(selector "mapMember:originalKey:value:") ~typ:((ptr void) @-> (ptr (ptr void)) @-> (ptr (ptr void)) @-> returning bool) x originalKey value

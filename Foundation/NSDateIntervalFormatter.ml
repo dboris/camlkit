@@ -1,21 +1,21 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdateintervalformatter?language=objc}NSDateIntervalFormatter} *)
 
 let self = get_class "NSDateIntervalFormatter"
 
 let attributedStringForObjectValue x ~withDefaultAttributes self = msg_send ~self ~cmd:(selector "attributedStringForObjectValue:withDefaultAttributes:") ~typ:(id @-> id @-> returning id) x withDefaultAttributes
-let boundaryStyle self = msg_send ~self ~cmd:(selector "boundaryStyle") ~typ:(returning ullong)
+let boundaryStyle self = msg_send ~self ~cmd:(selector "boundaryStyle") ~typ:(returning ullong) |> ULLong.to_int
 let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let dateStyle self = msg_send ~self ~cmd:(selector "dateStyle") ~typ:(returning ullong)
+let dateStyle self = msg_send ~self ~cmd:(selector "dateStyle") ~typ:(returning ullong) |> ULLong.to_int
 let dateTemplate self = msg_send ~self ~cmd:(selector "dateTemplate") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let editingStringForObjectValue x self = msg_send ~self ~cmd:(selector "editingStringForObjectValue:") ~typ:(id @-> returning id) x
@@ -36,5 +36,5 @@ let setTimeZone x self = msg_send ~self ~cmd:(selector "setTimeZone:") ~typ:(id 
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromDate x ~toDate self = msg_send ~self ~cmd:(selector "stringFromDate:toDate:") ~typ:(id @-> id @-> returning id) x toDate
 let stringFromDateInterval x self = msg_send ~self ~cmd:(selector "stringFromDateInterval:") ~typ:(id @-> returning id) x
-let timeStyle self = msg_send ~self ~cmd:(selector "timeStyle") ~typ:(returning ullong)
+let timeStyle self = msg_send ~self ~cmd:(selector "timeStyle") ~typ:(returning ullong) |> ULLong.to_int
 let timeZone self = msg_send ~self ~cmd:(selector "timeZone") ~typ:(returning id)

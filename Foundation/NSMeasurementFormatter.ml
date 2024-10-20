@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmeasurementformatter?language=objc}NSMeasurementFormatter} *)
 
@@ -25,5 +25,5 @@ let setUnitStyle x self = msg_send ~self ~cmd:(selector "setUnitStyle:") ~typ:(l
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromMeasurement x self = msg_send ~self ~cmd:(selector "stringFromMeasurement:") ~typ:(id @-> returning id) x
 let stringFromUnit x self = msg_send ~self ~cmd:(selector "stringFromUnit:") ~typ:(id @-> returning id) x
-let unitOptions self = msg_send ~self ~cmd:(selector "unitOptions") ~typ:(returning ullong)
-let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong)
+let unitOptions self = msg_send ~self ~cmd:(selector "unitOptions") ~typ:(returning ullong) |> ULLong.to_int
+let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong) |> LLong.to_int

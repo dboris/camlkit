@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyvaluenotifyingmutableset?language=objc}NSKeyValueNotifyingMutableSet} *)
 
@@ -13,7 +13,7 @@ let self = get_class "NSKeyValueNotifyingMutableSet"
 
 let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> returning void) x
 let addObjectsFromArray x self = msg_send ~self ~cmd:(selector "addObjectsFromArray:") ~typ:(id @-> returning void) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
 let intersectSet x self = msg_send ~self ~cmd:(selector "intersectSet:") ~typ:(id @-> returning void) x
 let member x self = msg_send ~self ~cmd:(selector "member:") ~typ:(id @-> returning id) x
 let minusSet x self = msg_send ~self ~cmd:(selector "minusSet:") ~typ:(id @-> returning void) x

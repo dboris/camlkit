@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdecimalnumber?language=objc}NSDecimalNumber} *)
 
@@ -14,7 +14,7 @@ let self = get_class "NSDecimalNumber"
 let boolValue self = msg_send ~self ~cmd:(selector "boolValue") ~typ:(returning bool)
 let charValue self = msg_send ~self ~cmd:(selector "charValue") ~typ:(returning bool)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
-let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning llong) x
+let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let decimalNumberByAdding x self = msg_send ~self ~cmd:(selector "decimalNumberByAdding:") ~typ:(id @-> returning id) x
@@ -46,12 +46,12 @@ let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~ty
 let initWithString' x ~locale self = msg_send ~self ~cmd:(selector "initWithString:locale:") ~typ:(id @-> id @-> returning id) x locale
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let longLongValue self = msg_send ~self ~cmd:(selector "longLongValue") ~typ:(returning llong)
-let longValue self = msg_send ~self ~cmd:(selector "longValue") ~typ:(returning llong)
+let longLongValue self = msg_send ~self ~cmd:(selector "longLongValue") ~typ:(returning llong) |> LLong.to_int
+let longValue self = msg_send ~self ~cmd:(selector "longValue") ~typ:(returning llong) |> LLong.to_int
 let objCType self = msg_send ~self ~cmd:(selector "objCType") ~typ:(returning string)
 let shortValue self = msg_send ~self ~cmd:(selector "shortValue") ~typ:(returning short)
 let unsignedCharValue self = msg_send ~self ~cmd:(selector "unsignedCharValue") ~typ:(returning uchar)
 let unsignedIntValue self = msg_send ~self ~cmd:(selector "unsignedIntValue") ~typ:(returning uint)
-let unsignedLongLongValue self = msg_send ~self ~cmd:(selector "unsignedLongLongValue") ~typ:(returning ullong)
-let unsignedLongValue self = msg_send ~self ~cmd:(selector "unsignedLongValue") ~typ:(returning ullong)
+let unsignedLongLongValue self = msg_send ~self ~cmd:(selector "unsignedLongLongValue") ~typ:(returning ullong) |> ULLong.to_int
+let unsignedLongValue self = msg_send ~self ~cmd:(selector "unsignedLongValue") ~typ:(returning ullong) |> ULLong.to_int
 let unsignedShortValue self = msg_send ~self ~cmd:(selector "unsignedShortValue") ~typ:(returning ushort)

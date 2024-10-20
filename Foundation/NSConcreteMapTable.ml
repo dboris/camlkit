@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconcretemaptable?language=objc}NSConcreteMapTable} *)
 
@@ -17,16 +17,16 @@ let assign x ~key ~value ~isNew self = msg_send ~self ~cmd:(selector "assign:key
 let checkCount x self = msg_send ~self ~cmd:(selector "checkCount:") ~typ:(string @-> returning void) x
 let containsKeys x ~values ~count self = msg_send ~self ~cmd:(selector "containsKeys:values:count:") ~typ:((ptr (ptr void)) @-> (ptr (ptr void)) @-> ullong @-> returning bool) x values (ULLong.of_int count)
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let dump self = msg_send ~self ~cmd:(selector "dump") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let existingItemForSetItem x ~forAbsentKey self = msg_send ~self ~cmd:(selector "existingItemForSetItem:forAbsentKey:") ~typ:((ptr void) @-> (ptr void) @-> returning (ptr void)) x forAbsentKey
-let getKeys x ~values self = msg_send ~self ~cmd:(selector "getKeys:values:") ~typ:((ptr (ptr void)) @-> (ptr (ptr void)) @-> returning ullong) x values
+let getKeys x ~values self = msg_send ~self ~cmd:(selector "getKeys:values:") ~typ:((ptr (ptr void)) @-> (ptr (ptr void)) @-> returning ullong) x values |> ULLong.to_int
 let grow self = msg_send ~self ~cmd:(selector "grow") ~typ:(returning void)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithKeyOptions x ~valueOptions ~capacity self = msg_send ~self ~cmd:(selector "initWithKeyOptions:valueOptions:capacity:") ~typ:(ullong @-> ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int valueOptions) (ULLong.of_int capacity)
@@ -38,9 +38,9 @@ let mapMember x ~originalKey ~value self = msg_send ~self ~cmd:(selector "mapMem
 let objectEnumerator self = msg_send ~self ~cmd:(selector "objectEnumerator") ~typ:(returning id)
 let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning id) x
 let raiseCountUnderflowException self = msg_send ~self ~cmd:(selector "raiseCountUnderflowException") ~typ:(returning void)
-let realCount self = msg_send ~self ~cmd:(selector "realCount") ~typ:(returning ullong)
+let realCount self = msg_send ~self ~cmd:(selector "realCount") ~typ:(returning ullong) |> ULLong.to_int
 let rehash self = msg_send ~self ~cmd:(selector "rehash") ~typ:(returning void)
-let rehashAround x self = msg_send ~self ~cmd:(selector "rehashAround:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
+let rehashAround x self = msg_send ~self ~cmd:(selector "rehashAround:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x) |> ULLong.to_int
 let removeAllItems self = msg_send ~self ~cmd:(selector "removeAllItems") ~typ:(returning void)
 let removeObjectForKey x self = msg_send ~self ~cmd:(selector "removeObjectForKey:") ~typ:(id @-> returning void) x
 let replaceItem x ~forExistingKey self = msg_send ~self ~cmd:(selector "replaceItem:forExistingKey:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x forExistingKey

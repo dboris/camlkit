@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconstantdoublenumber?language=objc}NSConstantDoubleNumber} *)
 
@@ -24,17 +24,17 @@ let getValue x self = msg_send ~self ~cmd:(selector "getValue:") ~typ:((ptr void
 let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:((ptr void) @-> ullong @-> returning void) x (ULLong.of_int size)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
-let longLongValue self = msg_send ~self ~cmd:(selector "longLongValue") ~typ:(returning llong)
-let longValue self = msg_send ~self ~cmd:(selector "longValue") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
+let longLongValue self = msg_send ~self ~cmd:(selector "longLongValue") ~typ:(returning llong) |> LLong.to_int
+let longValue self = msg_send ~self ~cmd:(selector "longValue") ~typ:(returning llong) |> LLong.to_int
 let objCType self = msg_send ~self ~cmd:(selector "objCType") ~typ:(returning string)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let shortValue self = msg_send ~self ~cmd:(selector "shortValue") ~typ:(returning short)
 let unsignedCharValue self = msg_send ~self ~cmd:(selector "unsignedCharValue") ~typ:(returning uchar)
 let unsignedIntValue self = msg_send ~self ~cmd:(selector "unsignedIntValue") ~typ:(returning uint)
-let unsignedIntegerValue self = msg_send ~self ~cmd:(selector "unsignedIntegerValue") ~typ:(returning ullong)
-let unsignedLongLongValue self = msg_send ~self ~cmd:(selector "unsignedLongLongValue") ~typ:(returning ullong)
-let unsignedLongValue self = msg_send ~self ~cmd:(selector "unsignedLongValue") ~typ:(returning ullong)
+let unsignedIntegerValue self = msg_send ~self ~cmd:(selector "unsignedIntegerValue") ~typ:(returning ullong) |> ULLong.to_int
+let unsignedLongLongValue self = msg_send ~self ~cmd:(selector "unsignedLongLongValue") ~typ:(returning ullong) |> ULLong.to_int
+let unsignedLongValue self = msg_send ~self ~cmd:(selector "unsignedLongValue") ~typ:(returning ullong) |> ULLong.to_int
 let unsignedShortValue self = msg_send ~self ~cmd:(selector "unsignedShortValue") ~typ:(returning ushort)

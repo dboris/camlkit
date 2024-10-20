@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbundle?language=objc}NSBundle} *)
 
@@ -89,4 +89,4 @@ let sharedFrameworksURL self = msg_send ~self ~cmd:(selector "sharedFrameworksUR
 let sharedSupportPath self = msg_send ~self ~cmd:(selector "sharedSupportPath") ~typ:(returning id)
 let sharedSupportURL self = msg_send ~self ~cmd:(selector "sharedSupportURL") ~typ:(returning id)
 let unload self = msg_send ~self ~cmd:(selector "unload") ~typ:(returning bool)
-let versionNumber self = msg_send ~self ~cmd:(selector "versionNumber") ~typ:(returning ullong)
+let versionNumber self = msg_send ~self ~cmd:(selector "versionNumber") ~typ:(returning ullong) |> ULLong.to_int

@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptargumentdescription?language=objc}NSScriptArgumentDescription} *)
 
@@ -26,5 +26,5 @@ let parameterDescriptorFromEvent x self = msg_send ~self ~cmd:(selector "paramet
 let presentableDescription self = msg_send ~self ~cmd:(selector "presentableDescription") ~typ:(returning id)
 let presentableNames self = msg_send ~self ~cmd:(selector "presentableNames") ~typ:(returning id)
 let reconcileToSuiteRegistry x ~suiteName ~commandName self = msg_send ~self ~cmd:(selector "reconcileToSuiteRegistry:suiteName:commandName:") ~typ:(id @-> id @-> id @-> returning void) x suiteName commandName
-let requiresAccess self = msg_send ~self ~cmd:(selector "requiresAccess") ~typ:(returning ullong)
+let requiresAccess self = msg_send ~self ~cmd:(selector "requiresAccess") ~typ:(returning ullong) |> ULLong.to_int
 let typeDescription self = msg_send ~self ~cmd:(selector "typeDescription") ~typ:(returning id)

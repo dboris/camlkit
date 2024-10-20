@@ -1,22 +1,22 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbytecountformatter?language=objc}NSByteCountFormatter} *)
 
 let self = get_class "NSByteCountFormatter"
 
-let allowedUnits self = msg_send ~self ~cmd:(selector "allowedUnits") ~typ:(returning ullong)
+let allowedUnits self = msg_send ~self ~cmd:(selector "allowedUnits") ~typ:(returning ullong) |> ULLong.to_int
 let allowsNonnumericFormatting self = msg_send ~self ~cmd:(selector "allowsNonnumericFormatting") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let countStyle self = msg_send ~self ~cmd:(selector "countStyle") ~typ:(returning llong)
+let countStyle self = msg_send ~self ~cmd:(selector "countStyle") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong)
+let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong) |> LLong.to_int
 let getObjectValue x ~forString ~errorDescription self = msg_send ~self ~cmd:(selector "getObjectValue:forString:errorDescription:") ~typ:((ptr id) @-> id @-> (ptr id) @-> returning bool) x forString errorDescription
 let includesActualByteCount self = msg_send ~self ~cmd:(selector "includesActualByteCount") ~typ:(returning bool)
 let includesCount self = msg_send ~self ~cmd:(selector "includesCount") ~typ:(returning bool)

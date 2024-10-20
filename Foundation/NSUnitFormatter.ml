@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsunitformatter?language=objc}NSUnitFormatter} *)
 
@@ -27,6 +27,6 @@ let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObject
 let stringForValue1 x ~unit1 ~value2 ~unit2 self = msg_send ~self ~cmd:(selector "stringForValue1:unit1:value2:unit2:") ~typ:(double @-> ullong @-> double @-> ullong @-> returning id) x (ULLong.of_int unit1) value2 (ULLong.of_int unit2)
 let stringForValue x ~unit self = msg_send ~self ~cmd:(selector "stringForValue:unit:") ~typ:(double @-> ullong @-> returning id) x (ULLong.of_int unit)
 let stringFromUnit x self = msg_send ~self ~cmd:(selector "stringFromUnit:") ~typ:(id @-> returning id) x
-let unitOptions self = msg_send ~self ~cmd:(selector "unitOptions") ~typ:(returning ullong)
+let unitOptions self = msg_send ~self ~cmd:(selector "unitOptions") ~typ:(returning ullong) |> ULLong.to_int
 let unitStringFromValue x ~unit self = msg_send ~self ~cmd:(selector "unitStringFromValue:unit:") ~typ:(double @-> ullong @-> returning id) x (ULLong.of_int unit)
-let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong)
+let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong) |> LLong.to_int

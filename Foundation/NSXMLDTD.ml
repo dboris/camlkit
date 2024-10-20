@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmldtd?language=objc}NSXMLDTD} *)
 
@@ -15,9 +15,9 @@ let addChild x self = msg_send ~self ~cmd:(selector "addChild:") ~typ:(id @-> re
 let attributeDeclarationForName x ~elementName self = msg_send ~self ~cmd:(selector "attributeDeclarationForName:elementName:") ~typ:(id @-> id @-> returning id) x elementName
 let canonicalXMLStringPreservingComments x self = msg_send ~self ~cmd:(selector "canonicalXMLStringPreservingComments:") ~typ:(bool @-> returning id) x
 let childAtIndex x self = msg_send ~self ~cmd:(selector "childAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong)
+let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong) |> ULLong.to_int
 let children self = msg_send ~self ~cmd:(selector "children") ~typ:(returning id)
-let countOfChildren self = msg_send ~self ~cmd:(selector "countOfChildren") ~typ:(returning ullong)
+let countOfChildren self = msg_send ~self ~cmd:(selector "countOfChildren") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let elementDeclarationForName x self = msg_send ~self ~cmd:(selector "elementDeclarationForName:") ~typ:(id @-> returning id) x
 let entityDeclarationForName x self = msg_send ~self ~cmd:(selector "entityDeclarationForName:") ~typ:(id @-> returning id) x

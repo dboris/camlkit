@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmassformatter?language=objc}NSMassFormatter} *)
 
@@ -27,7 +27,7 @@ let setUnitStyle x self = msg_send ~self ~cmd:(selector "setUnitStyle:") ~typ:(l
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromKilograms x self = msg_send ~self ~cmd:(selector "stringFromKilograms:") ~typ:(double @-> returning id) x
 let stringFromValue x ~unit self = msg_send ~self ~cmd:(selector "stringFromValue:unit:") ~typ:(double @-> llong @-> returning id) x (LLong.of_int unit)
-let targetUnitFromKilograms x self = msg_send ~self ~cmd:(selector "targetUnitFromKilograms:") ~typ:(double @-> returning llong) x
+let targetUnitFromKilograms x self = msg_send ~self ~cmd:(selector "targetUnitFromKilograms:") ~typ:(double @-> returning llong) x |> LLong.to_int
 let unitStringFromKilograms x ~usedUnit self = msg_send ~self ~cmd:(selector "unitStringFromKilograms:usedUnit:") ~typ:(double @-> (ptr llong) @-> returning id) x usedUnit
 let unitStringFromValue x ~unit self = msg_send ~self ~cmd:(selector "unitStringFromValue:unit:") ~typ:(double @-> llong @-> returning id) x (LLong.of_int unit)
-let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong)
+let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong) |> LLong.to_int

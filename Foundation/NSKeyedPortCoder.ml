@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedportcoder?language=objc}NSKeyedPortCoder} *)
 
@@ -24,9 +24,9 @@ let decodeDataObjectForKey x self = msg_send ~self ~cmd:(selector "decodeDataObj
 let decodeDoubleForKey x self = msg_send ~self ~cmd:(selector "decodeDoubleForKey:") ~typ:(id @-> returning double) x
 let decodeFloatForKey x self = msg_send ~self ~cmd:(selector "decodeFloatForKey:") ~typ:(id @-> returning float) x
 let decodeInt32ForKey x self = msg_send ~self ~cmd:(selector "decodeInt32ForKey:") ~typ:(id @-> returning int) x
-let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x
+let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let decodeIntForKey x self = msg_send ~self ~cmd:(selector "decodeIntForKey:") ~typ:(id @-> returning int) x
-let decodeIntegerForKey x self = msg_send ~self ~cmd:(selector "decodeIntegerForKey:") ~typ:(id @-> returning llong) x
+let decodeIntegerForKey x self = msg_send ~self ~cmd:(selector "decodeIntegerForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let decodeInvocation self = msg_send ~self ~cmd:(selector "decodeInvocation") ~typ:(returning id)
 let decodeObject self = msg_send ~self ~cmd:(selector "decodeObject") ~typ:(returning id)
 let decodeObjectForKey x self = msg_send ~self ~cmd:(selector "decodeObjectForKey:") ~typ:(id @-> returning id) x
@@ -66,4 +66,4 @@ let initWithReceivePort x ~sendPort ~components self = msg_send ~self ~cmd:(sele
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let isBycopy self = msg_send ~self ~cmd:(selector "isBycopy") ~typ:(returning bool)
 let isByref self = msg_send ~self ~cmd:(selector "isByref") ~typ:(returning bool)
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

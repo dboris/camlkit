@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstask?language=objc}NSTask} *)
 
@@ -24,7 +24,7 @@ let launch self = msg_send ~self ~cmd:(selector "launch") ~typ:(returning void)
 let launchAndReturnError x self = msg_send ~self ~cmd:(selector "launchAndReturnError:") ~typ:((ptr id) @-> returning bool) x
 let launchPath self = msg_send ~self ~cmd:(selector "launchPath") ~typ:(returning id)
 let processIdentifier self = msg_send ~self ~cmd:(selector "processIdentifier") ~typ:(returning int)
-let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong)
+let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong) |> LLong.to_int
 let resume self = msg_send ~self ~cmd:(selector "resume") ~typ:(returning bool)
 let setArguments x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(id @-> returning void) x
 let setCurrentDirectoryPath x self = msg_send ~self ~cmd:(selector "setCurrentDirectoryPath:") ~typ:(id @-> returning void) x
@@ -42,8 +42,8 @@ let standardError self = msg_send ~self ~cmd:(selector "standardError") ~typ:(re
 let standardInput self = msg_send ~self ~cmd:(selector "standardInput") ~typ:(returning id)
 let standardOutput self = msg_send ~self ~cmd:(selector "standardOutput") ~typ:(returning id)
 let suspend self = msg_send ~self ~cmd:(selector "suspend") ~typ:(returning bool)
-let suspendCount self = msg_send ~self ~cmd:(selector "suspendCount") ~typ:(returning llong)
+let suspendCount self = msg_send ~self ~cmd:(selector "suspendCount") ~typ:(returning llong) |> LLong.to_int
 let terminate self = msg_send ~self ~cmd:(selector "terminate") ~typ:(returning void)
 let terminationHandler self = msg_send ~self ~cmd:(selector "terminationHandler") ~typ:(returning (ptr void))
-let terminationReason self = msg_send ~self ~cmd:(selector "terminationReason") ~typ:(returning llong)
+let terminationReason self = msg_send ~self ~cmd:(selector "terminationReason") ~typ:(returning llong) |> LLong.to_int
 let terminationStatus self = msg_send ~self ~cmd:(selector "terminationStatus") ~typ:(returning int)

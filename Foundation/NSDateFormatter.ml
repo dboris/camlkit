@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdateformatter?language=objc}NSDateFormatter} *)
 
@@ -18,14 +18,14 @@ let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dateFormat self = msg_send ~self ~cmd:(selector "dateFormat") ~typ:(returning id)
 let dateFromString x self = msg_send ~self ~cmd:(selector "dateFromString:") ~typ:(id @-> returning id) x
-let dateStyle self = msg_send ~self ~cmd:(selector "dateStyle") ~typ:(returning ullong)
+let dateStyle self = msg_send ~self ~cmd:(selector "dateStyle") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defaultDate self = msg_send ~self ~cmd:(selector "defaultDate") ~typ:(returning id)
 let doesRelativeDateFormatting self = msg_send ~self ~cmd:(selector "doesRelativeDateFormatting") ~typ:(returning bool)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let eraSymbols self = msg_send ~self ~cmd:(selector "eraSymbols") ~typ:(returning id)
-let formatterBehavior self = msg_send ~self ~cmd:(selector "formatterBehavior") ~typ:(returning ullong)
-let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong)
+let formatterBehavior self = msg_send ~self ~cmd:(selector "formatterBehavior") ~typ:(returning ullong) |> ULLong.to_int
+let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong) |> LLong.to_int
 let generatesCalendarDates self = msg_send ~self ~cmd:(selector "generatesCalendarDates") ~typ:(returning bool)
 let getObjectValue x ~forString ~errorDescription self = msg_send ~self ~cmd:(selector "getObjectValue:forString:errorDescription:") ~typ:((ptr id) @-> id @-> (ptr id) @-> returning bool) x forString errorDescription
 let getObjectValue' x ~forString ~range ~error self = msg_send ~self ~cmd:(selector "getObjectValue:forString:range:error:") ~typ:((ptr id) @-> id @-> (ptr NSRange.t) @-> (ptr id) @-> returning bool) x forString range error
@@ -85,7 +85,7 @@ let standaloneQuarterSymbols self = msg_send ~self ~cmd:(selector "standaloneQua
 let standaloneWeekdaySymbols self = msg_send ~self ~cmd:(selector "standaloneWeekdaySymbols") ~typ:(returning id)
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromDate x self = msg_send ~self ~cmd:(selector "stringFromDate:") ~typ:(id @-> returning id) x
-let timeStyle self = msg_send ~self ~cmd:(selector "timeStyle") ~typ:(returning ullong)
+let timeStyle self = msg_send ~self ~cmd:(selector "timeStyle") ~typ:(returning ullong) |> ULLong.to_int
 let timeZone self = msg_send ~self ~cmd:(selector "timeZone") ~typ:(returning id)
 let twoDigitStartDate self = msg_send ~self ~cmd:(selector "twoDigitStartDate") ~typ:(returning id)
 let veryShortMonthSymbols self = msg_send ~self ~cmd:(selector "veryShortMonthSymbols") ~typ:(returning id)

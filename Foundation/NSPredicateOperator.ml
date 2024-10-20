@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspredicateoperator?language=objc}NSPredicateOperator} *)
 
@@ -15,15 +15,15 @@ let acceptVisitor x ~flags self = msg_send ~self ~cmd:(selector "acceptVisitor:f
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithOperatorType x self = msg_send ~self ~cmd:(selector "initWithOperatorType:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let initWithOperatorType1 x ~modifier self = msg_send ~self ~cmd:(selector "initWithOperatorType:modifier:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int modifier)
 let initWithOperatorType2 x ~modifier ~options self = msg_send ~self ~cmd:(selector "initWithOperatorType:modifier:options:") ~typ:(ullong @-> ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int modifier) (ULLong.of_int options)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let modifier self = msg_send ~self ~cmd:(selector "modifier") ~typ:(returning ullong)
-let operatorType self = msg_send ~self ~cmd:(selector "operatorType") ~typ:(returning ullong)
-let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
+let modifier self = msg_send ~self ~cmd:(selector "modifier") ~typ:(returning ullong) |> ULLong.to_int
+let operatorType self = msg_send ~self ~cmd:(selector "operatorType") ~typ:(returning ullong) |> ULLong.to_int
+let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong) |> ULLong.to_int
 let performOperationUsingObject x ~andObject self = msg_send ~self ~cmd:(selector "performOperationUsingObject:andObject:") ~typ:(id @-> id @-> returning bool) x andObject
 let performPrimitiveOperationUsingObject x ~andObject self = msg_send ~self ~cmd:(selector "performPrimitiveOperationUsingObject:andObject:") ~typ:(id @-> id @-> returning bool) x andObject
 let predicateFormat self = msg_send ~self ~cmd:(selector "predicateFormat") ~typ:(returning id)

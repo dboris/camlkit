@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssubrangedata?language=objc}NSSubrangeData} *)
 
@@ -19,4 +19,4 @@ let getBytes1 x ~length self = msg_send ~self ~cmd:(selector "getBytes:length:")
 let getBytes2 x ~range self = msg_send ~self ~cmd:(selector "getBytes:range:") ~typ:((ptr void) @-> NSRange.t @-> returning void) x range
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithData x ~range self = msg_send ~self ~cmd:(selector "initWithData:range:") ~typ:(id @-> NSRange.t @-> returning id) x range
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int

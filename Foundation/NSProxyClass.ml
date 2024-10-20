@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsproxy?language=objc}NSProxy} *)
 
@@ -14,7 +14,6 @@ let autorelease self = msg_send ~self ~cmd:(selector "autorelease") ~typ:(return
 let class_ self = msg_send ~self ~cmd:(selector "class") ~typ:(returning _Class)
 let conformsToProtocol x self = msg_send ~self ~cmd:(selector "conformsToProtocol:") ~typ:(id @-> returning bool) x
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
-let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
@@ -22,7 +21,7 @@ let doesNotRecognizeSelector x self = msg_send ~self ~cmd:(selector "doesNotReco
 let finalize self = msg_send ~self ~cmd:(selector "finalize") ~typ:(returning void)
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning void) x
 let forwardingTargetForSelector x self = msg_send ~self ~cmd:(selector "forwardingTargetForSelector:") ~typ:(_SEL @-> returning id) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let instanceMethodForSelector x self = msg_send ~self ~cmd:(selector "instanceMethodForSelector:") ~typ:(_SEL @-> returning (ptr (ptr void))) x
@@ -45,7 +44,7 @@ let performSelector2 x ~withObject ~withObject_ self = msg_send ~self ~cmd:(sele
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let respondsToSelector x self = msg_send ~self ~cmd:(selector "respondsToSelector:") ~typ:(_SEL @-> returning bool) x
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let retainWeakReference self = msg_send ~self ~cmd:(selector "retainWeakReference") ~typ:(returning bool)
 let self_ self = msg_send ~self ~cmd:(selector "self") ~typ:(returning id)
 let superclass self = msg_send ~self ~cmd:(selector "superclass") ~typ:(returning _Class)

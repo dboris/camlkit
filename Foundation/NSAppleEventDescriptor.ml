@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsappleeventdescriptor?language=objc}NSAppleEventDescriptor} *)
 
@@ -42,7 +42,7 @@ let int32Value self = msg_send ~self ~cmd:(selector "int32Value") ~typ:(returnin
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isRecordDescriptor self = msg_send ~self ~cmd:(selector "isRecordDescriptor") ~typ:(returning bool)
 let keywordForDescriptorAtIndex x self = msg_send ~self ~cmd:(selector "keywordForDescriptorAtIndex:") ~typ:(llong @-> returning uint) (LLong.of_int x)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
 let paramDescriptorForKeyword x self = msg_send ~self ~cmd:(selector "paramDescriptorForKeyword:") ~typ:(uint @-> returning id) x
 let removeDecriptorAtIndex x self = msg_send ~self ~cmd:(selector "removeDecriptorAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let removeDescriptorAtIndex x self = msg_send ~self ~cmd:(selector "removeDescriptorAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)

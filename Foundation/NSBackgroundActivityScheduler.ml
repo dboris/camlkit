@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsbackgroundactivityscheduler?language=objc}NSBackgroundActivityScheduler} *)
 
@@ -20,7 +20,7 @@ let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifie
 let interval self = msg_send ~self ~cmd:(selector "interval") ~typ:(returning double)
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let isPreregistered self = msg_send ~self ~cmd:(selector "isPreregistered") ~typ:(returning bool)
-let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong)
+let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong) |> LLong.to_int
 let repeats self = msg_send ~self ~cmd:(selector "repeats") ~typ:(returning bool)
 let scheduleWithBlock x self = msg_send ~self ~cmd:(selector "scheduleWithBlock:") ~typ:((ptr void) @-> returning void) x
 let setCheckInHandler x self = msg_send ~self ~cmd:(selector "setCheckInHandler:") ~typ:((ptr void) @-> returning void) x

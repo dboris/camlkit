@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsenergyformatter?language=objc}NSEnergyFormatter} *)
 
@@ -27,7 +27,7 @@ let setUnitStyle x self = msg_send ~self ~cmd:(selector "setUnitStyle:") ~typ:(l
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromJoules x self = msg_send ~self ~cmd:(selector "stringFromJoules:") ~typ:(double @-> returning id) x
 let stringFromValue x ~unit self = msg_send ~self ~cmd:(selector "stringFromValue:unit:") ~typ:(double @-> llong @-> returning id) x (LLong.of_int unit)
-let targetUnitFromJoules x self = msg_send ~self ~cmd:(selector "targetUnitFromJoules:") ~typ:(double @-> returning llong) x
+let targetUnitFromJoules x self = msg_send ~self ~cmd:(selector "targetUnitFromJoules:") ~typ:(double @-> returning llong) x |> LLong.to_int
 let unitStringFromJoules x ~usedUnit self = msg_send ~self ~cmd:(selector "unitStringFromJoules:usedUnit:") ~typ:(double @-> (ptr llong) @-> returning id) x usedUnit
 let unitStringFromValue x ~unit self = msg_send ~self ~cmd:(selector "unitStringFromValue:unit:") ~typ:(double @-> llong @-> returning id) x (LLong.of_int unit)
-let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong)
+let unitStyle self = msg_send ~self ~cmd:(selector "unitStyle") ~typ:(returning llong) |> LLong.to_int

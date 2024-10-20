@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspurgeabledata?language=objc}NSPurgeableData} *)
 
@@ -21,6 +21,6 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithBytes x ~length ~copy ~deallocator self = msg_send ~self ~cmd:(selector "initWithBytes:length:copy:deallocator:") ~typ:((ptr void) @-> ullong @-> bool @-> (ptr void) @-> returning id) x (ULLong.of_int length) copy deallocator
 let initWithCapacity x self = msg_send ~self ~cmd:(selector "initWithCapacity:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let isContentDiscarded self = msg_send ~self ~cmd:(selector "isContentDiscarded") ~typ:(returning bool)
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let mutableBytes self = msg_send ~self ~cmd:(selector "mutableBytes") ~typ:(returning (ptr void))
 let setLength x self = msg_send ~self ~cmd:(selector "setLength:") ~typ:(ullong @-> returning void) (ULLong.of_int x)

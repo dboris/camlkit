@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspersonnamecomponentsformatter?language=objc}NSPersonNameComponentsFormatter} *)
 
@@ -29,4 +29,4 @@ let setPhonetic x self = msg_send ~self ~cmd:(selector "setPhonetic:") ~typ:(boo
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let stringForObjectValue x self = msg_send ~self ~cmd:(selector "stringForObjectValue:") ~typ:(id @-> returning id) x
 let stringFromPersonNameComponents x self = msg_send ~self ~cmd:(selector "stringFromPersonNameComponents:") ~typ:(id @-> returning id) x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int

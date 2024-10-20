@@ -1,17 +1,17 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprocessinfo?language=objc}NSProcessInfo} *)
 
 let self = get_class "NSProcessInfo"
 
-let activeProcessorCount self = msg_send ~self ~cmd:(selector "activeProcessorCount") ~typ:(returning ullong)
+let activeProcessorCount self = msg_send ~self ~cmd:(selector "activeProcessorCount") ~typ:(returning ullong) |> ULLong.to_int
 let arguments self = msg_send ~self ~cmd:(selector "arguments") ~typ:(returning id)
 let automaticTerminationSupportEnabled self = msg_send ~self ~cmd:(selector "automaticTerminationSupportEnabled") ~typ:(returning bool)
 let beginActivityWithOptions x ~reason self = msg_send ~self ~cmd:(selector "beginActivityWithOptions:reason:") ~typ:(ullong @-> id @-> returning id) (ULLong.of_int x) reason
@@ -36,23 +36,23 @@ let isTranslated self = msg_send ~self ~cmd:(selector "isTranslated") ~typ:(retu
 let isiOSAppOnMac self = msg_send ~self ~cmd:(selector "isiOSAppOnMac") ~typ:(returning bool)
 let macCatalystVersion self = msg_send ~self ~cmd:(selector "macCatalystVersion") ~typ:(returning void)
 let macCatalystVersionIsAtLeastVersion x self = msg_send ~self ~cmd:(selector "macCatalystVersionIsAtLeastVersion:") ~typ:(void @-> returning bool) x
-let operatingSystem self = msg_send ~self ~cmd:(selector "operatingSystem") ~typ:(returning ullong)
+let operatingSystem self = msg_send ~self ~cmd:(selector "operatingSystem") ~typ:(returning ullong) |> ULLong.to_int
 let operatingSystemName self = msg_send ~self ~cmd:(selector "operatingSystemName") ~typ:(returning id)
 let operatingSystemVersion self = msg_send ~self ~cmd:(selector "operatingSystemVersion") ~typ:(returning void)
 let operatingSystemVersionString self = msg_send ~self ~cmd:(selector "operatingSystemVersionString") ~typ:(returning id)
 let performActivityWithOptions x ~reason ~block self = msg_send ~self ~cmd:(selector "performActivityWithOptions:reason:block:") ~typ:(ullong @-> id @-> (ptr void) @-> returning void) (ULLong.of_int x) reason block
 let performActivityWithOptions' x ~reason ~usingBlock self = msg_send ~self ~cmd:(selector "performActivityWithOptions:reason:usingBlock:") ~typ:(ullong @-> id @-> (ptr void) @-> returning void) (ULLong.of_int x) reason usingBlock
 let performExpiringActivityWithReason x ~usingBlock self = msg_send ~self ~cmd:(selector "performExpiringActivityWithReason:usingBlock:") ~typ:(id @-> (ptr void) @-> returning void) x usingBlock
-let physicalMemory self = msg_send ~self ~cmd:(selector "physicalMemory") ~typ:(returning ullong)
+let physicalMemory self = msg_send ~self ~cmd:(selector "physicalMemory") ~typ:(returning ullong) |> ULLong.to_int
 let processIdentifier self = msg_send ~self ~cmd:(selector "processIdentifier") ~typ:(returning int)
 let processName self = msg_send ~self ~cmd:(selector "processName") ~typ:(returning id)
 let processStartTime self = msg_send ~self ~cmd:(selector "processStartTime") ~typ:(returning id)
-let processorCount self = msg_send ~self ~cmd:(selector "processorCount") ~typ:(returning ullong)
+let processorCount self = msg_send ~self ~cmd:(selector "processorCount") ~typ:(returning ullong) |> ULLong.to_int
 let setArguments x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(id @-> returning void) x
 let setAutomaticTerminationSupportEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticTerminationSupportEnabled:") ~typ:(bool @-> returning void) x
 let setProcessName x self = msg_send ~self ~cmd:(selector "setProcessName:") ~typ:(id @-> returning void) x
 let systemStartTime self = msg_send ~self ~cmd:(selector "systemStartTime") ~typ:(returning id)
 let systemUptime self = msg_send ~self ~cmd:(selector "systemUptime") ~typ:(returning double)
-let thermalState self = msg_send ~self ~cmd:(selector "thermalState") ~typ:(returning llong)
+let thermalState self = msg_send ~self ~cmd:(selector "thermalState") ~typ:(returning llong) |> LLong.to_int
 let userHomeDirectory self = msg_send ~self ~cmd:(selector "userHomeDirectory") ~typ:(returning id)
 let userName self = msg_send ~self ~cmd:(selector "userName") ~typ:(returning id)

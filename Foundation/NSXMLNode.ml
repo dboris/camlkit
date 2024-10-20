@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlnode?language=objc}NSXMLNode} *)
 
@@ -18,20 +18,20 @@ let _XMLStringWithOptions x self = msg_send ~self ~cmd:(selector "XMLStringWithO
 let _XPath self = msg_send ~self ~cmd:(selector "XPath") ~typ:(returning id)
 let canonicalXMLStringPreservingComments x self = msg_send ~self ~cmd:(selector "canonicalXMLStringPreservingComments:") ~typ:(bool @-> returning id) x
 let childAtIndex x self = msg_send ~self ~cmd:(selector "childAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong)
+let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong) |> ULLong.to_int
 let children self = msg_send ~self ~cmd:(selector "children") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let detach self = msg_send ~self ~cmd:(selector "detach") ~typ:(returning void)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
-let index self = msg_send ~self ~cmd:(selector "index") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
+let index self = msg_send ~self ~cmd:(selector "index") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithKind x self = msg_send ~self ~cmd:(selector "initWithKind:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let initWithKind' x ~options self = msg_send ~self ~cmd:(selector "initWithKind:options:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int options)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let kind self = msg_send ~self ~cmd:(selector "kind") ~typ:(returning ullong)
-let level self = msg_send ~self ~cmd:(selector "level") ~typ:(returning ullong)
+let kind self = msg_send ~self ~cmd:(selector "kind") ~typ:(returning ullong) |> ULLong.to_int
+let level self = msg_send ~self ~cmd:(selector "level") ~typ:(returning ullong) |> ULLong.to_int
 let localName self = msg_send ~self ~cmd:(selector "localName") ~typ:(returning id)
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
 let nextNode self = msg_send ~self ~cmd:(selector "nextNode") ~typ:(returning id)

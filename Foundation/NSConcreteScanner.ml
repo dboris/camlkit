@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconcretescanner?language=objc}NSConcreteScanner} *)
 
@@ -17,7 +17,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~typ:(id @-> returning id) x
 let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning id)
 let scanInt x self = msg_send ~self ~cmd:(selector "scanInt:") ~typ:((ptr int) @-> returning bool) x
-let scanLocation self = msg_send ~self ~cmd:(selector "scanLocation") ~typ:(returning ullong)
+let scanLocation self = msg_send ~self ~cmd:(selector "scanLocation") ~typ:(returning ullong) |> ULLong.to_int
 let scanLongLong x self = msg_send ~self ~cmd:(selector "scanLongLong:") ~typ:((ptr llong) @-> returning bool) x
 let setCaseSensitive x self = msg_send ~self ~cmd:(selector "setCaseSensitive:") ~typ:(bool @-> returning void) x
 let setCharactersToBeSkipped x self = msg_send ~self ~cmd:(selector "setCharactersToBeSkipped:") ~typ:(id @-> returning void) x

@@ -1,17 +1,17 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptpropertydescription?language=objc}NSScriptPropertyDescription} *)
 
 let self = get_class "NSScriptPropertyDescription"
 
-let access self = msg_send ~self ~cmd:(selector "access") ~typ:(returning ullong)
+let access self = msg_send ~self ~cmd:(selector "access") ~typ:(returning ullong) |> ULLong.to_int
 let addAccessGroups x self = msg_send ~self ~cmd:(selector "addAccessGroups:") ~typ:(id @-> returning void) x
 let addReadAccessGroup x self = msg_send ~self ~cmd:(selector "addReadAccessGroup:") ~typ:(id @-> returning void) x
 let addWriteAccessGroup x self = msg_send ~self ~cmd:(selector "addWriteAccessGroup:") ~typ:(id @-> returning void) x

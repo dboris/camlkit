@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
 
 let t : [`NSRectArray] structure typ = structure "CGRect"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/cgrect?language=objc}CGRect} *)

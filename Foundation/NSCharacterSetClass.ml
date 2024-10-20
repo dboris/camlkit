@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscharacterset?language=objc}NSCharacterSet} *)
 
@@ -23,6 +23,7 @@ let characterSetWithContentsOfFile x self = msg_send ~self ~cmd:(selector "chara
 let characterSetWithRange x self = msg_send ~self ~cmd:(selector "characterSetWithRange:") ~typ:(NSRange.t @-> returning id) x
 let controlCharacterSet self = msg_send ~self ~cmd:(selector "controlCharacterSet") ~typ:(returning id)
 let countryCodeEndingSet self = msg_send ~self ~cmd:(selector "countryCodeEndingSet") ~typ:(returning id)
+let customUnknownScriptCharacterSet self = msg_send ~self ~cmd:(selector "customUnknownScriptCharacterSet") ~typ:(returning id)
 let decimalDigitCharacterSet self = msg_send ~self ~cmd:(selector "decimalDigitCharacterSet") ~typ:(returning id)
 let decomposableCharacterSet self = msg_send ~self ~cmd:(selector "decomposableCharacterSet") ~typ:(returning id)
 let eolSet self = msg_send ~self ~cmd:(selector "eolSet") ~typ:(returning id)

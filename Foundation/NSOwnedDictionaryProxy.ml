@@ -1,17 +1,17 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsowneddictionaryproxy?language=objc}NSOwnedDictionaryProxy} *)
 
 let self = get_class "NSOwnedDictionaryProxy"
 
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
 let initWithOwner x self = msg_send ~self ~cmd:(selector "initWithOwner:") ~typ:(id @-> returning id) x
 let keyEnumerator self = msg_send ~self ~cmd:(selector "keyEnumerator") ~typ:(returning id)
 let objectForKey x self = msg_send ~self ~cmd:(selector "objectForKey:") ~typ:(id @-> returning id) x

@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscfcharacterset?language=objc}NSCFCharacterSet} *)
 
@@ -23,7 +23,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let formIntersectionWithCharacterSet x self = msg_send ~self ~cmd:(selector "formIntersectionWithCharacterSet:") ~typ:(id @-> returning void) x
 let formUnionWithCharacterSet x self = msg_send ~self ~cmd:(selector "formUnionWithCharacterSet:") ~typ:(id @-> returning void) x
 let hasMemberInPlane x self = msg_send ~self ~cmd:(selector "hasMemberInPlane:") ~typ:(uchar @-> returning bool) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let invert self = msg_send ~self ~cmd:(selector "invert") ~typ:(returning void)
 let invertedSet self = msg_send ~self ~cmd:(selector "invertedSet") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
@@ -36,5 +36,5 @@ let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void
 let removeCharactersInRange x self = msg_send ~self ~cmd:(selector "removeCharactersInRange:") ~typ:(NSRange.t @-> returning void) x
 let removeCharactersInString x self = msg_send ~self ~cmd:(selector "removeCharactersInString:") ~typ:(id @-> returning void) x
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let retainWeakReference self = msg_send ~self ~cmd:(selector "retainWeakReference") ~typ:(returning bool)

@@ -1,17 +1,21 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsstring?language=objc}NSString} *)
 
 let _CKSuperscriptForLetter x self = msg_send ~self ~cmd:(selector "CKSuperscriptForLetter:") ~typ:(bool @-> returning id) x
 let _CKSuperscriptForNumber x self = msg_send ~self ~cmd:(selector "CKSuperscriptForNumber:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let _DMCMakeUUID self = msg_send ~self ~cmd:(selector "DMCMakeUUID") ~typ:(returning id)
+let _MSMSUserDirectory self = msg_send ~self ~cmd:(selector "MSMSUserDirectory") ~typ:(returning id)
+let _MSMakeUUID self = msg_send ~self ~cmd:(selector "MSMakeUUID") ~typ:(returning id)
+let _MSStringWithBool x self = msg_send ~self ~cmd:(selector "MSStringWithBool:") ~typ:(bool @-> returning id) x
+let _MSTempFileOutFileName x self = msg_send ~self ~cmd:(selector "MSTempFileOutFileName:") ~typ:((ptr id) @-> returning int) x
 let _NSStringFromLSInstallPhase x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallPhase:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let _NSStringFromLSInstallState x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let _NSStringFromLSInstallType x self = msg_send ~self ~cmd:(selector "NSStringFromLSInstallType:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
@@ -23,14 +27,16 @@ let copyStringGUIDForObject x self = msg_send ~self ~cmd:(selector "copyStringGU
 let createWithBytesNoCopy x ~length ~error self = msg_send ~self ~cmd:(selector "createWithBytesNoCopy:length:error:") ~typ:((ptr void) @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int length) error
 let cutStringGUID self = msg_send ~self ~cmd:(selector "cutStringGUID") ~typ:(returning id)
 let decodeFromDER x ~error self = msg_send ~self ~cmd:(selector "decodeFromDER:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
-let defaultAttachmentScaling self = msg_send ~self ~cmd:(selector "defaultAttachmentScaling") ~typ:(returning ullong)
+let defaultAttachmentScaling self = msg_send ~self ~cmd:(selector "defaultAttachmentScaling") ~typ:(returning ullong) |> ULLong.to_int
 let defaultBaselineOffsetForFont x self = msg_send ~self ~cmd:(selector "defaultBaselineOffsetForFont:") ~typ:(id @-> returning double) x
-let defaultCStringEncoding self = msg_send ~self ~cmd:(selector "defaultCStringEncoding") ~typ:(returning ullong)
+let defaultCStringEncoding self = msg_send ~self ~cmd:(selector "defaultCStringEncoding") ~typ:(returning ullong) |> ULLong.to_int
 let defaultLineHeightForFont x self = msg_send ~self ~cmd:(selector "defaultLineHeightForFont:") ~typ:(id @-> returning double) x
 let deferredLocalizedIntentsStringWithFormat x self = msg_send ~self ~cmd:(selector "deferredLocalizedIntentsStringWithFormat:") ~typ:(id @-> returning id) x
 let deferredLocalizedIntentsStringWithFormat1 x ~fromTable self = msg_send ~self ~cmd:(selector "deferredLocalizedIntentsStringWithFormat:fromTable:") ~typ:(id @-> id @-> returning id) x fromTable
 let deferredLocalizedIntentsStringWithFormat2 x ~fromTable ~arguments self = msg_send ~self ~cmd:(selector "deferredLocalizedIntentsStringWithFormat:fromTable:arguments:") ~typ:(id @-> id @-> (ptr (ptr void)) @-> returning id) x fromTable arguments
 let deferredLocalizedIntentsStringWithFormat3 x ~fromTable ~bundle self = msg_send ~self ~cmd:(selector "deferredLocalizedIntentsStringWithFormat:fromTable:bundle:") ~typ:(id @-> id @-> id @-> returning id) x fromTable bundle
+let editDistance x ~string_ self = msg_send ~self ~cmd:(selector "editDistance:string:") ~typ:(id @-> id @-> returning llong) x string_ |> LLong.to_int
+let editDistance' x ~string_ ~threshold self = msg_send ~self ~cmd:(selector "editDistance:string:threshold:") ~typ:(id @-> id @-> llong @-> returning llong) x string_ (LLong.of_int threshold) |> LLong.to_int
 let generatedRoomNameForGroupChat self = msg_send ~self ~cmd:(selector "generatedRoomNameForGroupChat") ~typ:(returning id)
 let hyphenationFactor self = msg_send ~self ~cmd:(selector "hyphenationFactor") ~typ:(returning float)
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
@@ -55,7 +61,8 @@ let setUsesScreenFonts x self = msg_send ~self ~cmd:(selector "setUsesScreenFont
 let showsControlCharacters self = msg_send ~self ~cmd:(selector "showsControlCharacters") ~typ:(returning bool)
 let showsInvisibleCharacters self = msg_send ~self ~cmd:(selector "showsInvisibleCharacters") ~typ:(returning bool)
 let string_ self = msg_send ~self ~cmd:(selector "string") ~typ:(returning id)
-let stringEncodingForData x ~encodingOptions ~convertedString ~usedLossyConversion self = msg_send ~self ~cmd:(selector "stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:") ~typ:(id @-> id @-> (ptr id) @-> (ptr bool) @-> returning ullong) x encodingOptions convertedString usedLossyConversion
+let stringEncodingForData x ~encodingOptions ~convertedString ~usedLossyConversion self = msg_send ~self ~cmd:(selector "stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:") ~typ:(id @-> id @-> (ptr id) @-> (ptr bool) @-> returning ullong) x encodingOptions convertedString usedLossyConversion |> ULLong.to_int
+let stringFromOSType x self = msg_send ~self ~cmd:(selector "stringFromOSType:") ~typ:(uint @-> returning id) x
 let stringGUID self = msg_send ~self ~cmd:(selector "stringGUID") ~typ:(returning id)
 let stringGUIDForObject x self = msg_send ~self ~cmd:(selector "stringGUIDForObject:") ~typ:(id @-> returning id) x
 let stringWithBytes x ~length ~encoding self = msg_send ~self ~cmd:(selector "stringWithBytes:length:encoding:") ~typ:((ptr void) @-> ullong @-> ullong @-> returning id) x (ULLong.of_int length) (ULLong.of_int encoding)
@@ -79,7 +86,8 @@ let stringWithUTF8String x self = msg_send ~self ~cmd:(selector "stringWithUTF8S
 let stringWithUnichar x self = msg_send ~self ~cmd:(selector "stringWithUnichar:") ~typ:(uint @-> returning id) x
 let stringWithValidatedFormat x ~validFormatSpecifiers ~error self = msg_send ~self ~cmd:(selector "stringWithValidatedFormat:validFormatSpecifiers:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x validFormatSpecifiers error
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)
-let typesetterBehavior self = msg_send ~self ~cmd:(selector "typesetterBehavior") ~typ:(returning llong)
+let triHashStrings x ~withDataSalt self = msg_send ~self ~cmd:(selector "triHashStrings:withDataSalt:") ~typ:(id @-> id @-> returning id) x withDataSalt
+let typesetterBehavior self = msg_send ~self ~cmd:(selector "typesetterBehavior") ~typ:(returning llong) |> LLong.to_int
 let usesFontLeading self = msg_send ~self ~cmd:(selector "usesFontLeading") ~typ:(returning bool)
 let usesScreenFonts self = msg_send ~self ~cmd:(selector "usesScreenFonts") ~typ:(returning bool)
 let writableTypeIdentifiersForItemProvider self = msg_send ~self ~cmd:(selector "writableTypeIdentifiersForItemProvider") ~typ:(returning id)

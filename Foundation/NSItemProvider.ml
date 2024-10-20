@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsitemprovider?language=objc}NSItemProvider} *)
 
@@ -24,6 +24,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithContentsOfURL x self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:") ~typ:(id @-> returning id) x
 let initWithItem x ~typeIdentifier self = msg_send ~self ~cmd:(selector "initWithItem:typeIdentifier:") ~typ:(id @-> id @-> returning id) x typeIdentifier
+let initWithLivePhoto x self = msg_send ~self ~cmd:(selector "initWithLivePhoto:") ~typ:(id @-> returning id) x
 let initWithObject x self = msg_send ~self ~cmd:(selector "initWithObject:") ~typ:(id @-> returning id) x
 let loadDataRepresentationForTypeIdentifier x ~completionHandler self = msg_send ~self ~cmd:(selector "loadDataRepresentationForTypeIdentifier:completionHandler:") ~typ:(id @-> (ptr void) @-> returning id) x completionHandler
 let loadFileRepresentationForTypeIdentifier x ~completionHandler self = msg_send ~self ~cmd:(selector "loadFileRepresentationForTypeIdentifier:completionHandler:") ~typ:(id @-> (ptr void) @-> returning id) x completionHandler
@@ -32,7 +33,7 @@ let loadItemForTypeIdentifier x ~options ~completionHandler self = msg_send ~sel
 let loadObjectOfClass x ~completionHandler self = msg_send ~self ~cmd:(selector "loadObjectOfClass:completionHandler:") ~typ:(_Class @-> (ptr void) @-> returning id) x completionHandler
 let loadPreviewImageWithOptions x ~completionHandler self = msg_send ~self ~cmd:(selector "loadPreviewImageWithOptions:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler
 let preferredPresentationSize self = msg_send_stret ~self ~cmd:(selector "preferredPresentationSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let preferredPresentationStyle self = msg_send ~self ~cmd:(selector "preferredPresentationStyle") ~typ:(returning llong)
+let preferredPresentationStyle self = msg_send ~self ~cmd:(selector "preferredPresentationStyle") ~typ:(returning llong) |> LLong.to_int
 let previewImageHandler self = msg_send ~self ~cmd:(selector "previewImageHandler") ~typ:(returning (ptr void))
 let registerCloudKitShare x ~container self = msg_send ~self ~cmd:(selector "registerCloudKitShare:container:") ~typ:(id @-> id @-> returning void) x container
 let registerCloudKitShareWithPreparationHandler x self = msg_send ~self ~cmd:(selector "registerCloudKitShareWithPreparationHandler:") ~typ:((ptr void) @-> returning void) x

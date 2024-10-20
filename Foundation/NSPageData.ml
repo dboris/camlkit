@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nspagedata?language=objc}NSPageData} *)
 
@@ -24,7 +24,7 @@ let initWithContentsOfMappedFile x self = msg_send ~self ~cmd:(selector "initWit
 let initWithContentsOfMappedFile' x ~withFileAttributes self = msg_send ~self ~cmd:(selector "initWithContentsOfMappedFile:withFileAttributes:") ~typ:(id @-> id @-> returning id) x withFileAttributes
 let initWithData x self = msg_send ~self ~cmd:(selector "initWithData:") ~typ:(id @-> returning id) x
 let initWithDataNoCopy x self = msg_send ~self ~cmd:(selector "initWithDataNoCopy:") ~typ:(id @-> returning id) x
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
-let writeFd x self = msg_send ~self ~cmd:(selector "writeFd:") ~typ:(llong @-> returning ullong) (LLong.of_int x)
-let writeFile x self = msg_send ~self ~cmd:(selector "writeFile:") ~typ:(id @-> returning ullong) x
-let writePath x ~docInfo ~errorHandler ~remapContents ~hardLinkPath self = msg_send ~self ~cmd:(selector "writePath:docInfo:errorHandler:remapContents:hardLinkPath:") ~typ:(id @-> id @-> id @-> bool @-> id @-> returning ullong) x docInfo errorHandler remapContents hardLinkPath
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
+let writeFd x self = msg_send ~self ~cmd:(selector "writeFd:") ~typ:(llong @-> returning ullong) (LLong.of_int x) |> ULLong.to_int
+let writeFile x self = msg_send ~self ~cmd:(selector "writeFile:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
+let writePath x ~docInfo ~errorHandler ~remapContents ~hardLinkPath self = msg_send ~self ~cmd:(selector "writePath:docInfo:errorHandler:remapContents:hardLinkPath:") ~typ:(id @-> id @-> id @-> bool @-> id @-> returning ullong) x docInfo errorHandler remapContents hardLinkPath |> ULLong.to_int

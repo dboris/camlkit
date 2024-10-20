@@ -1,14 +1,17 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc}NSKeyedUnarchiver} *)
 
+let _MSSafeUnarchiveAllowedClasses self = msg_send ~self ~cmd:(selector "MSSafeUnarchiveAllowedClasses") ~typ:(returning id)
+let _MSSafeUnarchiveObjectWithData x ~outError self = msg_send ~self ~cmd:(selector "MSSafeUnarchiveObjectWithData:outError:") ~typ:(id @-> (ptr id) @-> returning id) x outError
+let _MSSafeUnarchiveObjectWithFile x ~outError self = msg_send ~self ~cmd:(selector "MSSafeUnarchiveObjectWithFile:outError:") ~typ:(id @-> (ptr id) @-> returning id) x outError
 let axmSecurelyUnarchiveData x ~withExpectedClass ~otherAllowedClasses ~error self = msg_send ~self ~cmd:(selector "axmSecurelyUnarchiveData:withExpectedClass:otherAllowedClasses:error:") ~typ:(id @-> _Class @-> id @-> (ptr id) @-> returning id) x withExpectedClass otherAllowedClasses error
 let classForClassName x self = msg_send ~self ~cmd:(selector "classForClassName:") ~typ:(id @-> returning _Class) x
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)

@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlsaxparser?language=objc}NSXMLSAXParser} *)
 
@@ -16,7 +16,7 @@ let content self = msg_send ~self ~cmd:(selector "content") ~typ:(returning id)
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning (ptr void))
 let current self = msg_send ~self ~cmd:(selector "current") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let fidelityMask self = msg_send ~self ~cmd:(selector "fidelityMask") ~typ:(returning ullong)
+let fidelityMask self = msg_send ~self ~cmd:(selector "fidelityMask") ~typ:(returning ullong) |> ULLong.to_int
 let initWithContentsOfURL x ~options ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:options:error:") ~typ:(id @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int options) error
 let initWithData x ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:options:error:") ~typ:(id @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int options) error
 let initWithData' x ~isSingleDTDNode ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:isSingleDTDNode:options:error:") ~typ:(id @-> bool @-> ullong @-> (ptr id) @-> returning id) x isSingleDTDNode (ULLong.of_int options) error

@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier?language=objc}NSScriptObjectSpecifier} *)
 
@@ -20,7 +20,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let descriptor self = msg_send ~self ~cmd:(selector "descriptor") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let evaluationErrorNumber self = msg_send ~self ~cmd:(selector "evaluationErrorNumber") ~typ:(returning llong)
+let evaluationErrorNumber self = msg_send ~self ~cmd:(selector "evaluationErrorNumber") ~typ:(returning llong) |> LLong.to_int
 let evaluationErrorSpecifier self = msg_send ~self ~cmd:(selector "evaluationErrorSpecifier") ~typ:(returning id)
 let indicesOfObjectsByEvaluatingWithContainer x ~count self = msg_send ~self ~cmd:(selector "indicesOfObjectsByEvaluatingWithContainer:count:") ~typ:(id @-> (ptr llong) @-> returning (ptr llong)) x count
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

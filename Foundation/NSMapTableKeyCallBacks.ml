@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
 
 let t : [`NSMapTableKeyCallBacks] structure typ = structure "_NSMapTableKeyCallBacks"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsmaptablekeycallbacks?language=objc}_NSMapTableKeyCallBacks} *)

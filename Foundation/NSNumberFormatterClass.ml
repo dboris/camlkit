@@ -1,15 +1,15 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc}NSNumberFormatter} *)
 
-let defaultFormatterBehavior self = msg_send ~self ~cmd:(selector "defaultFormatterBehavior") ~typ:(returning ullong)
+let defaultFormatterBehavior self = msg_send ~self ~cmd:(selector "defaultFormatterBehavior") ~typ:(returning ullong) |> ULLong.to_int
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let localizedStringFromNumber x ~numberStyle self = msg_send ~self ~cmd:(selector "localizedStringFromNumber:numberStyle:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int numberStyle)
 let pkaxLocalizedDouble x self = msg_send ~self ~cmd:(selector "pkaxLocalizedDouble:") ~typ:(double @-> returning id) x

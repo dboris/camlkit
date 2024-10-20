@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nserror?language=objc}NSError} *)
 
@@ -28,18 +28,43 @@ let _DMCFindPrimaryError self = msg_send ~self ~cmd:(selector "DMCFindPrimaryErr
 let _DMCUSEnglishDescription self = msg_send ~self ~cmd:(selector "DMCUSEnglishDescription") ~typ:(returning id)
 let _DMCUSEnglishSuggestion self = msg_send ~self ~cmd:(selector "DMCUSEnglishSuggestion") ~typ:(returning id)
 let _DMCVerboseDescription self = msg_send ~self ~cmd:(selector "DMCVerboseDescription") ~typ:(returning id)
+let _MMCSErrorType self = msg_send ~self ~cmd:(selector "MMCSErrorType") ~typ:(returning int)
+let _MMCSIsAuthorizationError self = msg_send ~self ~cmd:(selector "MMCSIsAuthorizationError") ~typ:(returning bool)
+let _MMCSIsCancelError self = msg_send ~self ~cmd:(selector "MMCSIsCancelError") ~typ:(returning bool)
+let _MMCSIsFatalError self = msg_send ~self ~cmd:(selector "MMCSIsFatalError") ~typ:(returning bool)
+let _MMCSIsNetworkConditionsError self = msg_send ~self ~cmd:(selector "MMCSIsNetworkConditionsError") ~typ:(returning bool)
+let _MMCSRetryAfterDate self = msg_send ~self ~cmd:(selector "MMCSRetryAfterDate") ~typ:(returning id)
+let _MSASStateMachineIsCanceledError self = msg_send ~self ~cmd:(selector "MSASStateMachineIsCanceledError") ~typ:(returning bool)
+let _MSCanBeIgnored self = msg_send ~self ~cmd:(selector "MSCanBeIgnored") ~typ:(returning bool)
+let _MSContainsErrorWithDomain x ~code self = msg_send ~self ~cmd:(selector "MSContainsErrorWithDomain:code:") ~typ:(id @-> llong @-> returning bool) x (LLong.of_int code)
+let _MSFindPrimaryError self = msg_send ~self ~cmd:(selector "MSFindPrimaryError") ~typ:(returning id)
+let _MSIsAuthError self = msg_send ~self ~cmd:(selector "MSIsAuthError") ~typ:(returning bool)
+let _MSIsBadTokenError self = msg_send ~self ~cmd:(selector "MSIsBadTokenError") ~typ:(returning bool)
+let _MSIsCounted self = msg_send ~self ~cmd:(selector "MSIsCounted") ~typ:(returning bool)
+let _MSIsFatal self = msg_send ~self ~cmd:(selector "MSIsFatal") ~typ:(returning bool)
+let _MSIsQuotaError self = msg_send ~self ~cmd:(selector "MSIsQuotaError") ~typ:(returning bool)
+let _MSIsRegistrationError self = msg_send ~self ~cmd:(selector "MSIsRegistrationError") ~typ:(returning bool)
+let _MSIsTemporaryNetworkError self = msg_send ~self ~cmd:(selector "MSIsTemporaryNetworkError") ~typ:(returning bool)
+let _MSMMCSRetryAfterDate self = msg_send ~self ~cmd:(selector "MSMMCSRetryAfterDate") ~typ:(returning id)
+let _MSMakePrimaryError self = msg_send ~self ~cmd:(selector "MSMakePrimaryError") ~typ:(returning id)
+let _MSNeedsBackoff self = msg_send ~self ~cmd:(selector "MSNeedsBackoff") ~typ:(returning bool)
+let _MSVerboseDescription self = msg_send ~self ~cmd:(selector "MSVerboseDescription") ~typ:(returning id)
 let augmentWithPrefix x self = msg_send ~self ~cmd:(selector "augmentWithPrefix:") ~typ:(id @-> returning id) x
-let code self = msg_send ~self ~cmd:(selector "code") ~typ:(returning llong)
+let code self = msg_send ~self ~cmd:(selector "code") ~typ:(returning llong) |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let cplSafeErrorForXPC self = msg_send ~self ~cmd:(selector "cplSafeErrorForXPC") ~typ:(returning id)
+let cplShortDomainDescription self = msg_send ~self ~cmd:(selector "cplShortDomainDescription") ~typ:(returning id)
+let cplUnderlyingPOSIXError self = msg_send ~self ~cmd:(selector "cplUnderlyingPOSIXError") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let descriptionBuilderWithMultilinePrefix x self = msg_send ~self ~cmd:(selector "descriptionBuilderWithMultilinePrefix:") ~typ:(id @-> returning id) x
+let descriptionWithIndent x self = msg_send ~self ~cmd:(selector "descriptionWithIndent:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let descriptionWithMultilinePrefix x self = msg_send ~self ~cmd:(selector "descriptionWithMultilinePrefix:") ~typ:(id @-> returning id) x
 let domain self = msg_send ~self ~cmd:(selector "domain") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let extendedSqliteCode self = msg_send ~self ~cmd:(selector "extendedSqliteCode") ~typ:(returning llong)
+let extendedSqliteCode self = msg_send ~self ~cmd:(selector "extendedSqliteCode") ~typ:(returning llong) |> LLong.to_int
 let formattedCode self = msg_send ~self ~cmd:(selector "formattedCode") ~typ:(returning id)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let helpAnchor self = msg_send ~self ~cmd:(selector "helpAnchor") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -55,6 +80,10 @@ let initWithMRError3 x ~userInfo self = msg_send ~self ~cmd:(selector "initWithM
 let initWithOSStatus x ~userInfo self = msg_send ~self ~cmd:(selector "initWithOSStatus:userInfo:") ~typ:(int @-> id @-> returning id) x userInfo
 let initWithOSStatus' x ~description ~args self = msg_send ~self ~cmd:(selector "initWithOSStatus:description:args:") ~typ:(int @-> id @-> (ptr (ptr void)) @-> returning id) x description args
 let isBSServiceConnectionError self = msg_send ~self ~cmd:(selector "isBSServiceConnectionError") ~typ:(returning bool)
+let isCPLError self = msg_send ~self ~cmd:(selector "isCPLError") ~typ:(returning bool)
+let isCPLErrorWithCode x self = msg_send ~self ~cmd:(selector "isCPLErrorWithCode:") ~typ:(llong @-> returning bool) (LLong.of_int x)
+let isCPLOperationCancelledError self = msg_send ~self ~cmd:(selector "isCPLOperationCancelledError") ~typ:(returning bool)
+let isCPLOperationDeferredError self = msg_send ~self ~cmd:(selector "isCPLOperationDeferredError") ~typ:(returning bool)
 let isComparisonError self = msg_send ~self ~cmd:(selector "isComparisonError") ~typ:(returning bool)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isSqliteErrorCode x self = msg_send ~self ~cmd:(selector "isSqliteErrorCode:") ~typ:(llong @-> returning bool) (LLong.of_int x)

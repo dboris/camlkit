@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilepresentermanagedproxy?language=objc}NSFilePresenterManagedProxy} *)
 
@@ -15,7 +15,7 @@ let accommodateDeletionOfSubitemAtURL x ~completionHandler self = msg_send ~self
 let collectDebuggingInformationWithCompletionHandler x self = msg_send ~self ~cmd:(selector "collectDebuggingInformationWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let errorHandler self = msg_send ~self ~cmd:(selector "errorHandler") ~typ:(returning (ptr void))
-let filePresenterResponses self = msg_send ~self ~cmd:(selector "filePresenterResponses") ~typ:(returning ullong)
+let filePresenterResponses self = msg_send ~self ~cmd:(selector "filePresenterResponses") ~typ:(returning ullong) |> ULLong.to_int
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning void) x
 let initWithXPCProxy x self = msg_send ~self ~cmd:(selector "initWithXPCProxy:") ~typ:(id @-> returning id) x
 let methodSignatureForSelector x self = msg_send ~self ~cmd:(selector "methodSignatureForSelector:") ~typ:(_SEL @-> returning id) x

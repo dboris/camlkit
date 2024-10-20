@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxpcinterface?language=objc}NSXPCInterface} *)
 
@@ -27,5 +27,5 @@ let setProtocol x self = msg_send ~self ~cmd:(selector "setProtocol:") ~typ:(id 
 let setReplyBlockSignature x ~forSelector self = msg_send ~self ~cmd:(selector "setReplyBlockSignature:forSelector:") ~typ:(id @-> _SEL @-> returning void) x forSelector
 let setVersion x ~forSelector self = msg_send ~self ~cmd:(selector "setVersion:forSelector:") ~typ:(ullong @-> _SEL @-> returning void) (ULLong.of_int x) forSelector
 let setXPCType x ~forSelector ~argumentIndex ~ofReply self = msg_send ~self ~cmd:(selector "setXPCType:forSelector:argumentIndex:ofReply:") ~typ:((ptr void) @-> _SEL @-> ullong @-> bool @-> returning void) x forSelector (ULLong.of_int argumentIndex) ofReply
-let version self = msg_send ~self ~cmd:(selector "version") ~typ:(returning ullong)
-let versionForSelector x self = msg_send ~self ~cmd:(selector "versionForSelector:") ~typ:(_SEL @-> returning ullong) x
+let version self = msg_send ~self ~cmd:(selector "version") ~typ:(returning ullong) |> ULLong.to_int
+let versionForSelector x self = msg_send ~self ~cmd:(selector "versionForSelector:") ~typ:(_SEL @-> returning ullong) x |> ULLong.to_int

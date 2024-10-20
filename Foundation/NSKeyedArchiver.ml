@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedarchiver?language=objc}NSKeyedArchiver} *)
 
@@ -41,7 +41,7 @@ let finishEncoding self = msg_send ~self ~cmd:(selector "finishEncoding") ~typ:(
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initForWritingWithMutableData x self = msg_send ~self ~cmd:(selector "initForWritingWithMutableData:") ~typ:(id @-> returning id) x
 let initRequiringSecureCoding x self = msg_send ~self ~cmd:(selector "initRequiringSecureCoding:") ~typ:(bool @-> returning id) x
-let outputFormat self = msg_send ~self ~cmd:(selector "outputFormat") ~typ:(returning ullong)
+let outputFormat self = msg_send ~self ~cmd:(selector "outputFormat") ~typ:(returning ullong) |> ULLong.to_int
 let replaceObject x ~withObject self = msg_send ~self ~cmd:(selector "replaceObject:withObject:") ~typ:(id @-> id @-> returning void) x withObject
 let requiresSecureCoding self = msg_send ~self ~cmd:(selector "requiresSecureCoding") ~typ:(returning bool)
 let setClassName x ~forClass self = msg_send ~self ~cmd:(selector "setClassName:forClass:") ~typ:(id @-> _Class @-> returning void) x forClass
@@ -49,4 +49,4 @@ let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id 
 let setOutputFormat x self = msg_send ~self ~cmd:(selector "setOutputFormat:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setRequiresSecureCoding x self = msg_send ~self ~cmd:(selector "setRequiresSecureCoding:") ~typ:(bool @-> returning void) x
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning uint)
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

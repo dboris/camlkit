@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsorthographycheckingresult?language=objc}NSOrthographyCheckingResult} *)
 
@@ -19,4 +19,4 @@ let initWithRange x ~orthography self = msg_send ~self ~cmd:(selector "initWithR
 let orthography self = msg_send ~self ~cmd:(selector "orthography") ~typ:(returning id)
 let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning NSRange.t) ~return_type:NSRange.t
 let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning id) (LLong.of_int x)
-let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning ullong)
+let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning ullong) |> ULLong.to_int

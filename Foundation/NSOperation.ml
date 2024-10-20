@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsoperation?language=objc}NSOperation} *)
 
@@ -31,8 +31,8 @@ let isReady self = msg_send ~self ~cmd:(selector "isReady") ~typ:(returning bool
 let main self = msg_send ~self ~cmd:(selector "main") ~typ:(returning void)
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
 let observationInfo self = msg_send ~self ~cmd:(selector "observationInfo") ~typ:(returning (ptr void))
-let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong)
-let queuePriority self = msg_send ~self ~cmd:(selector "queuePriority") ~typ:(returning llong)
+let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong) |> LLong.to_int
+let queuePriority self = msg_send ~self ~cmd:(selector "queuePriority") ~typ:(returning llong) |> LLong.to_int
 let removeAllDependencies self = msg_send ~self ~cmd:(selector "removeAllDependencies") ~typ:(returning void)
 let removeDependency x self = msg_send ~self ~cmd:(selector "removeDependency:") ~typ:(id @-> returning void) x
 let removeObserver x ~forKeyPath self = msg_send ~self ~cmd:(selector "removeObserver:forKeyPath:") ~typ:(id @-> id @-> returning void) x forKeyPath

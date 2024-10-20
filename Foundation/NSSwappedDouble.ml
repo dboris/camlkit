@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
 
 let t : [`NSSwappedDouble] structure typ = structure "_NSSwappedDouble"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/_nsswappeddouble?language=objc}_NSSwappedDouble} *)

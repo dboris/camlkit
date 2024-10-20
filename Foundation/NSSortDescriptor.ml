@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssortdescriptor?language=objc}NSSortDescriptor} *)
 
@@ -14,7 +14,7 @@ let self = get_class "NSSortDescriptor"
 let allowEvaluation self = msg_send ~self ~cmd:(selector "allowEvaluation") ~typ:(returning void)
 let ascending self = msg_send ~self ~cmd:(selector "ascending") ~typ:(returning bool)
 let comparator self = msg_send ~self ~cmd:(selector "comparator") ~typ:(returning (ptr void))
-let compareObject x ~toObject self = msg_send ~self ~cmd:(selector "compareObject:toObject:") ~typ:(id @-> id @-> returning llong) x toObject
+let compareObject x ~toObject self = msg_send ~self ~cmd:(selector "compareObject:toObject:") ~typ:(id @-> id @-> returning llong) x toObject |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

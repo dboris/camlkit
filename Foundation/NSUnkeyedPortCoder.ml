@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsunkeyedportcoder?language=objc}NSUnkeyedPortCoder} *)
 
@@ -41,4 +41,4 @@ let initWithReceivePort x ~sendPort ~components self = msg_send ~self ~cmd:(sele
 let invalidate self = msg_send ~self ~cmd:(selector "invalidate") ~typ:(returning void)
 let isBycopy self = msg_send ~self ~cmd:(selector "isBycopy") ~typ:(returning bool)
 let isByref self = msg_send ~self ~cmd:(selector "isByref") ~typ:(returning bool)
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

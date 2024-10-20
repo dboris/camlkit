@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfileversion?language=objc}NSFileVersion} *)
 
@@ -17,7 +17,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let etag self = msg_send ~self ~cmd:(selector "etag") ~typ:(returning id)
 let hasLocalContents self = msg_send ~self ~cmd:(selector "hasLocalContents") ~typ:(returning bool)
 let hasThumbnail self = msg_send ~self ~cmd:(selector "hasThumbnail") ~typ:(returning bool)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isConflict self = msg_send ~self ~cmd:(selector "isConflict") ~typ:(returning bool)
 let isDiscardable self = msg_send ~self ~cmd:(selector "isDiscardable") ~typ:(returning bool)
@@ -36,6 +36,6 @@ let replaceItemAtURL x ~options ~error self = msg_send ~self ~cmd:(selector "rep
 let restoreOverItemAtURL x ~error self = msg_send ~self ~cmd:(selector "restoreOverItemAtURL:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
 let setDiscardable x self = msg_send ~self ~cmd:(selector "setDiscardable:") ~typ:(bool @-> returning void) x
 let setResolved x self = msg_send ~self ~cmd:(selector "setResolved:") ~typ:(bool @-> returning void) x
-let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning ullong)
+let size self = msg_send ~self ~cmd:(selector "size") ~typ:(returning ullong) |> ULLong.to_int
 let timelineItemDate self = msg_send ~self ~cmd:(selector "timelineItemDate") ~typ:(returning id)
-let timelineItemType self = msg_send ~self ~cmd:(selector "timelineItemType") ~typ:(returning ullong)
+let timelineItemType self = msg_send ~self ~cmd:(selector "timelineItemType") ~typ:(returning ullong) |> ULLong.to_int

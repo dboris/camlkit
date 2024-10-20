@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nskeyedunarchiver?language=objc}NSKeyedUnarchiver} *)
 
@@ -26,7 +26,7 @@ let decodeDictionaryWithKeysOfClasses x ~objectsOfClasses ~forKey self = msg_sen
 let decodeDoubleForKey x self = msg_send ~self ~cmd:(selector "decodeDoubleForKey:") ~typ:(id @-> returning double) x
 let decodeFloatForKey x self = msg_send ~self ~cmd:(selector "decodeFloatForKey:") ~typ:(id @-> returning float) x
 let decodeInt32ForKey x self = msg_send ~self ~cmd:(selector "decodeInt32ForKey:") ~typ:(id @-> returning int) x
-let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x
+let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let decodeIntForKey x self = msg_send ~self ~cmd:(selector "decodeIntForKey:") ~typ:(id @-> returning int) x
 let decodeObject self = msg_send ~self ~cmd:(selector "decodeObject") ~typ:(returning id)
 let decodeObjectForKey x self = msg_send ~self ~cmd:(selector "decodeObjectForKey:") ~typ:(id @-> returning id) x
@@ -35,7 +35,7 @@ let decodeObjectOfClasses x ~forKey self = msg_send ~self ~cmd:(selector "decode
 let decodePropertyList self = msg_send ~self ~cmd:(selector "decodePropertyList") ~typ:(returning id)
 let decodeValueOfObjCType x ~at self = msg_send ~self ~cmd:(selector "decodeValueOfObjCType:at:") ~typ:(string @-> (ptr void) @-> returning void) x at
 let decodeValuesOfObjCTypes x self = msg_send ~self ~cmd:(selector "decodeValuesOfObjCTypes:") ~typ:(string @-> returning void) x
-let decodingFailurePolicy self = msg_send ~self ~cmd:(selector "decodingFailurePolicy") ~typ:(returning llong)
+let decodingFailurePolicy self = msg_send ~self ~cmd:(selector "decodingFailurePolicy") ~typ:(returning llong) |> LLong.to_int
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let error self = msg_send ~self ~cmd:(selector "error") ~typ:(returning id)
@@ -52,4 +52,4 @@ let setDecodingFailurePolicy x self = msg_send ~self ~cmd:(selector "setDecoding
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let setRequiresSecureCoding x self = msg_send ~self ~cmd:(selector "setRequiresSecureCoding:") ~typ:(bool @-> returning void) x
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning uint)
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

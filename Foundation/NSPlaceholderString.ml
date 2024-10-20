@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsplaceholderstring?language=objc}NSPlaceholderString} *)
 
@@ -29,7 +29,7 @@ let initWithData x ~encoding self = msg_send ~self ~cmd:(selector "initWithData:
 let initWithFormat x ~locale ~arguments self = msg_send ~self ~cmd:(selector "initWithFormat:locale:arguments:") ~typ:(id @-> id @-> (ptr (ptr void)) @-> returning id) x locale arguments
 let initWithString x self = msg_send ~self ~cmd:(selector "initWithString:") ~typ:(id @-> returning id) x
 let initWithValidatedFormat x ~validFormatSpecifiers ~locale ~arguments ~error self = msg_send ~self ~cmd:(selector "initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:") ~typ:(id @-> id @-> id @-> (ptr (ptr void)) @-> (ptr id) @-> returning id) x validFormatSpecifiers locale arguments error
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int

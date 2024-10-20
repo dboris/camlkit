@@ -1,20 +1,20 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsurlqueue?language=objc}NSURLQueue} *)
 
 let self = get_class "NSURLQueue"
 
 let clear self = msg_send ~self ~cmd:(selector "clear") ~typ:(returning void)
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let indexOf x self = msg_send ~self ~cmd:(selector "indexOf:") ~typ:(id @-> returning llong) x
+let indexOf x self = msg_send ~self ~cmd:(selector "indexOf:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEmpty self = msg_send ~self ~cmd:(selector "isEmpty") ~typ:(returning bool)
 let peek self = msg_send ~self ~cmd:(selector "peek") ~typ:(returning id)

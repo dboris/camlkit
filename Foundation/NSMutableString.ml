@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsmutablestring?language=objc}NSMutableString} *)
 
@@ -21,6 +21,7 @@ let appendPrettyObject x ~withName ~andIndent ~options self = msg_send ~self ~cm
 let appendPrettyObject' x ~withName ~indent ~showFullContent self = msg_send ~self ~cmd:(selector "appendPrettyObject:withName:indent:showFullContent:") ~typ:(id @-> id @-> int @-> bool @-> returning void) x withName indent showFullContent
 let appendString x self = msg_send ~self ~cmd:(selector "appendString:") ~typ:(id @-> returning void) x
 let appendToStringAtColumnWithContent x ~column ~content ~appendAsNewLine ~addNewLine self = msg_send ~self ~cmd:(selector "appendToStringAtColumnWithContent:column:content:appendAsNewLine:addNewLine:") ~typ:((ptr int) @-> uchar @-> string @-> bool @-> bool @-> returning void) x column content appendAsNewLine addNewLine
+let applyRegex x ~withReplacementTemplate self = msg_send ~self ~cmd:(selector "applyRegex:withReplacementTemplate:") ~typ:(id @-> (ptr void) @-> returning id) x withReplacementTemplate
 let applyTransform x ~reverse ~range ~updatedRange self = msg_send ~self ~cmd:(selector "applyTransform:reverse:range:updatedRange:") ~typ:(id @-> bool @-> NSRange.t @-> (ptr NSRange.t) @-> returning bool) x reverse range updatedRange
 let axmAppendIndentation x self = msg_send ~self ~cmd:(selector "axmAppendIndentation:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
@@ -31,6 +32,6 @@ let replaceCharactersInRange x ~withString self = msg_send ~self ~cmd:(selector 
 let replaceCharactersInRange1 x ~withCString ~length self = msg_send ~self ~cmd:(selector "replaceCharactersInRange:withCString:length:") ~typ:(NSRange.t @-> string @-> ullong @-> returning void) x withCString (ULLong.of_int length)
 let replaceCharactersInRange2 x ~withCharacters ~length self = msg_send ~self ~cmd:(selector "replaceCharactersInRange:withCharacters:length:") ~typ:(NSRange.t @-> (ptr ushort) @-> ullong @-> returning void) x withCharacters (ULLong.of_int length)
 let replaceNewlinesWithSpaces self = msg_send ~self ~cmd:(selector "replaceNewlinesWithSpaces") ~typ:(returning void)
-let replaceOccurrencesOfString x ~withString ~options ~range self = msg_send ~self ~cmd:(selector "replaceOccurrencesOfString:withString:options:range:") ~typ:(id @-> id @-> ullong @-> NSRange.t @-> returning ullong) x withString (ULLong.of_int options) range
+let replaceOccurrencesOfString x ~withString ~options ~range self = msg_send ~self ~cmd:(selector "replaceOccurrencesOfString:withString:options:range:") ~typ:(id @-> id @-> ullong @-> NSRange.t @-> returning ullong) x withString (ULLong.of_int options) range |> ULLong.to_int
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
 let setString x self = msg_send ~self ~cmd:(selector "setString:") ~typ:(id @-> returning void) x

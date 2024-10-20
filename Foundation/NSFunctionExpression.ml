@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfunctionexpression?language=objc}NSFunctionExpression} *)
 
@@ -20,7 +20,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let expressionValueWithObject x ~context self = msg_send ~self ~cmd:(selector "expressionValueWithObject:context:") ~typ:(id @-> id @-> returning id) x context
 let function_ self = msg_send ~self ~cmd:(selector "function") ~typ:(returning id)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithExpressionType x ~operand ~selector_ ~argumentArray self = msg_send ~self ~cmd:(selector "initWithExpressionType:operand:selector:argumentArray:") ~typ:(ullong @-> id @-> _SEL @-> id @-> returning id) (ULLong.of_int x) operand selector_ argumentArray
 let initWithSelector x ~argumentArray self = msg_send ~self ~cmd:(selector "initWithSelector:argumentArray:") ~typ:(_SEL @-> id @-> returning id) x argumentArray

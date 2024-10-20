@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsuseractivity?language=objc}NSUserActivity} *)
 
@@ -32,7 +32,7 @@ let expirationDate self = msg_send ~self ~cmd:(selector "expirationDate") ~typ:(
 let externalMediaContentIdentifier self = msg_send ~self ~cmd:(selector "externalMediaContentIdentifier") ~typ:(returning id)
 let generateCachePayloadWithCompletion x self = msg_send ~self ~cmd:(selector "generateCachePayloadWithCompletion:") ~typ:((ptr void) @-> returning void) x
 let getContinuationStreamsWithCompletionHandler x self = msg_send ~self ~cmd:(selector "getContinuationStreamsWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let inInteraction self = msg_send ~self ~cmd:(selector "inInteraction") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithActivityType x self = msg_send ~self ~cmd:(selector "initWithActivityType:") ~typ:(id @-> returning id) x
@@ -88,7 +88,7 @@ let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> re
 let setUserInfo x self = msg_send ~self ~cmd:(selector "setUserInfo:") ~typ:(id @-> returning void) x
 let setWebPageURL x self = msg_send ~self ~cmd:(selector "setWebPageURL:") ~typ:(id @-> returning void) x
 let setWebpageURL x self = msg_send ~self ~cmd:(selector "setWebpageURL:") ~typ:(id @-> returning void) x
-let shortcutAvailability self = msg_send ~self ~cmd:(selector "shortcutAvailability") ~typ:(returning ullong)
+let shortcutAvailability self = msg_send ~self ~cmd:(selector "shortcutAvailability") ~typ:(returning ullong) |> ULLong.to_int
 let suggestedInvocationPhrase self = msg_send ~self ~cmd:(selector "suggestedInvocationPhrase") ~typ:(returning id)
 let supportsContinuationStreams self = msg_send ~self ~cmd:(selector "supportsContinuationStreams") ~typ:(returning bool)
 let targetContentIdentifier self = msg_send ~self ~cmd:(selector "targetContentIdentifier") ~typ:(returning id)

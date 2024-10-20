@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
 open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsvalue?language=objc}NSValue} *)
@@ -36,6 +35,10 @@ let _MKCoordinateValue self = msg_send_stret ~self ~cmd:(selector "MKCoordinateV
 let _MKMapRectValue self = msg_send ~self ~cmd:(selector "MKMapRectValue") ~typ:(returning void)
 let _PDFKitPDFPointValue self = msg_send_stret ~self ~cmd:(selector "PDFKitPDFPointValue") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let _PDFKitPDFRectValue self = msg_send_stret ~self ~cmd:(selector "PDFKitPDFRectValue") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let _PXDisplayAssetDetailedCountsValue self = msg_send ~self ~cmd:(selector "PXDisplayAssetDetailedCountsValue") ~typ:(returning void)
+let _PXDisplayAssetTypedCountValue self = msg_send ~self ~cmd:(selector "PXDisplayAssetTypedCountValue") ~typ:(returning void)
+let _PXEdgeInsetsValue self = msg_send_stret ~self ~cmd:(selector "PXEdgeInsetsValue") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
+let _RGBResultValue self = msg_send ~self ~cmd:(selector "RGBResultValue") ~typ:(returning void)
 let _UIEdgeInsetsValue self = msg_send_stret ~self ~cmd:(selector "UIEdgeInsetsValue") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let _UIKBHandwritingPointValue self = msg_send ~self ~cmd:(selector "UIKBHandwritingPointValue") ~typ:(returning void)
 let _UIOffsetValue self = msg_send_stret ~self ~cmd:(selector "UIOffsetValue") ~typ:(returning UIOffset.t) ~return_type:UIOffset.t
@@ -44,6 +47,7 @@ let akRectValue self = msg_send_stret ~self ~cmd:(selector "akRectValue") ~typ:(
 let akSizeValue self = msg_send_stret ~self ~cmd:(selector "akSizeValue") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(returning _Class)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
+let cplFullDescription self = msg_send ~self ~cmd:(selector "cplFullDescription") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let directionalEdgeInsetsValue self = msg_send_stret ~self ~cmd:(selector "directionalEdgeInsetsValue") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let edgeInsetsValue self = msg_send_stret ~self ~cmd:(selector "edgeInsetsValue") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
@@ -52,21 +56,22 @@ let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLW
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let getValue x self = msg_send ~self ~cmd:(selector "getValue:") ~typ:((ptr void) @-> returning void) x
 let getValue' x ~size self = msg_send ~self ~cmd:(selector "getValue:size:") ~typ:((ptr void) @-> ullong @-> returning void) x (ULLong.of_int size)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithBSXPCCoder x self = msg_send ~self ~cmd:(selector "initWithBSXPCCoder:") ~typ:(id @-> returning id) x
 let initWithBytes x ~objCType self = msg_send ~self ~cmd:(selector "initWithBytes:objCType:") ~typ:((ptr void) @-> string @-> returning id) x objCType
+let initWithCPLArchiver x self = msg_send ~self ~cmd:(selector "initWithCPLArchiver:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isEqualToValue x self = msg_send ~self ~cmd:(selector "isEqualToValue:") ~typ:(id @-> returning bool) x
 let nonretainedObjectValue self = msg_send ~self ~cmd:(selector "nonretainedObjectValue") ~typ:(returning id)
 let objCType self = msg_send ~self ~cmd:(selector "objCType") ~typ:(returning string)
+let plistArchiveWithCPLArchiver x self = msg_send ~self ~cmd:(selector "plistArchiveWithCPLArchiver:") ~typ:(id @-> returning id) x
 let pointValue self = msg_send_stret ~self ~cmd:(selector "pointValue") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let pointerValue self = msg_send ~self ~cmd:(selector "pointerValue") ~typ:(returning (ptr void))
 let rangeValue self = msg_send_stret ~self ~cmd:(selector "rangeValue") ~typ:(returning NSRange.t) ~return_type:NSRange.t
 let rectValue self = msg_send_stret ~self ~cmd:(selector "rectValue") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
-(* let signedRangeValue self = msg_send_stret ~self ~cmd:(selector "signedRangeValue") ~typ:(returning MSVSignedRange.t) ~return_type:MSVSignedRange.t *)
 let sizeValue self = msg_send_stret ~self ~cmd:(selector "sizeValue") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let supportsBSXPCSecureCoding self = msg_send ~self ~cmd:(selector "supportsBSXPCSecureCoding") ~typ:(returning bool)
 let weakObjectValue self = msg_send ~self ~cmd:(selector "weakObjectValue") ~typ:(returning id)

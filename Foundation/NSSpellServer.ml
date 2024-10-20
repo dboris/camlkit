@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsspellserver?language=objc}NSSpellServer} *)
 
@@ -26,4 +26,4 @@ let openUserDictionary x self = msg_send ~self ~cmd:(selector "openUserDictionar
 let registerLanguage x ~byVendor self = msg_send ~self ~cmd:(selector "registerLanguage:byVendor:") ~typ:(id @-> id @-> returning bool) x byVendor
 let run self = msg_send ~self ~cmd:(selector "run") ~typ:(returning void)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
-let sizeOfDictionary x self = msg_send ~self ~cmd:(selector "sizeOfDictionary:") ~typ:(id @-> returning llong) x
+let sizeOfDictionary x self = msg_send ~self ~cmd:(selector "sizeOfDictionary:") ~typ:(id @-> returning llong) x |> LLong.to_int

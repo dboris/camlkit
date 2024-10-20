@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsnumberformatter?language=objc}NSNumberFormatter} *)
 
@@ -30,15 +30,15 @@ let decimalSeparator self = msg_send ~self ~cmd:(selector "decimalSeparator") ~t
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let exponentSymbol self = msg_send ~self ~cmd:(selector "exponentSymbol") ~typ:(returning id)
 let format self = msg_send ~self ~cmd:(selector "format") ~typ:(returning id)
-let formatWidth self = msg_send ~self ~cmd:(selector "formatWidth") ~typ:(returning ullong)
-let formatterBehavior self = msg_send ~self ~cmd:(selector "formatterBehavior") ~typ:(returning ullong)
-let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong)
+let formatWidth self = msg_send ~self ~cmd:(selector "formatWidth") ~typ:(returning ullong) |> ULLong.to_int
+let formatterBehavior self = msg_send ~self ~cmd:(selector "formatterBehavior") ~typ:(returning ullong) |> ULLong.to_int
+let formattingContext self = msg_send ~self ~cmd:(selector "formattingContext") ~typ:(returning llong) |> LLong.to_int
 let generatesDecimalNumbers self = msg_send ~self ~cmd:(selector "generatesDecimalNumbers") ~typ:(returning bool)
 let getFormatter self = msg_send ~self ~cmd:(selector "getFormatter") ~typ:(returning (ptr void))
 let getObjectValue x ~forString ~errorDescription self = msg_send ~self ~cmd:(selector "getObjectValue:forString:errorDescription:") ~typ:((ptr id) @-> id @-> (ptr id) @-> returning bool) x forString errorDescription
 let getObjectValue' x ~forString ~range ~error self = msg_send ~self ~cmd:(selector "getObjectValue:forString:range:error:") ~typ:((ptr id) @-> id @-> (ptr NSRange.t) @-> (ptr id) @-> returning bool) x forString range error
 let groupingSeparator self = msg_send ~self ~cmd:(selector "groupingSeparator") ~typ:(returning id)
-let groupingSize self = msg_send ~self ~cmd:(selector "groupingSize") ~typ:(returning ullong)
+let groupingSize self = msg_send ~self ~cmd:(selector "groupingSize") ~typ:(returning ullong) |> ULLong.to_int
 let hasThousandSeparators self = msg_send ~self ~cmd:(selector "hasThousandSeparators") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -48,13 +48,13 @@ let isPartialStringValidationEnabled self = msg_send ~self ~cmd:(selector "isPar
 let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning id)
 let localizesFormat self = msg_send ~self ~cmd:(selector "localizesFormat") ~typ:(returning bool)
 let maximum self = msg_send ~self ~cmd:(selector "maximum") ~typ:(returning id)
-let maximumFractionDigits self = msg_send ~self ~cmd:(selector "maximumFractionDigits") ~typ:(returning ullong)
-let maximumIntegerDigits self = msg_send ~self ~cmd:(selector "maximumIntegerDigits") ~typ:(returning ullong)
-let maximumSignificantDigits self = msg_send ~self ~cmd:(selector "maximumSignificantDigits") ~typ:(returning ullong)
+let maximumFractionDigits self = msg_send ~self ~cmd:(selector "maximumFractionDigits") ~typ:(returning ullong) |> ULLong.to_int
+let maximumIntegerDigits self = msg_send ~self ~cmd:(selector "maximumIntegerDigits") ~typ:(returning ullong) |> ULLong.to_int
+let maximumSignificantDigits self = msg_send ~self ~cmd:(selector "maximumSignificantDigits") ~typ:(returning ullong) |> ULLong.to_int
 let minimum self = msg_send ~self ~cmd:(selector "minimum") ~typ:(returning id)
-let minimumFractionDigits self = msg_send ~self ~cmd:(selector "minimumFractionDigits") ~typ:(returning ullong)
-let minimumIntegerDigits self = msg_send ~self ~cmd:(selector "minimumIntegerDigits") ~typ:(returning ullong)
-let minimumSignificantDigits self = msg_send ~self ~cmd:(selector "minimumSignificantDigits") ~typ:(returning ullong)
+let minimumFractionDigits self = msg_send ~self ~cmd:(selector "minimumFractionDigits") ~typ:(returning ullong) |> ULLong.to_int
+let minimumIntegerDigits self = msg_send ~self ~cmd:(selector "minimumIntegerDigits") ~typ:(returning ullong) |> ULLong.to_int
+let minimumSignificantDigits self = msg_send ~self ~cmd:(selector "minimumSignificantDigits") ~typ:(returning ullong) |> ULLong.to_int
 let minusSign self = msg_send ~self ~cmd:(selector "minusSign") ~typ:(returning id)
 let multiplier self = msg_send ~self ~cmd:(selector "multiplier") ~typ:(returning id)
 let negativeFormat self = msg_send ~self ~cmd:(selector "negativeFormat") ~typ:(returning id)
@@ -64,9 +64,9 @@ let negativeSuffix self = msg_send ~self ~cmd:(selector "negativeSuffix") ~typ:(
 let nilSymbol self = msg_send ~self ~cmd:(selector "nilSymbol") ~typ:(returning id)
 let notANumberSymbol self = msg_send ~self ~cmd:(selector "notANumberSymbol") ~typ:(returning id)
 let numberFromString x self = msg_send ~self ~cmd:(selector "numberFromString:") ~typ:(id @-> returning id) x
-let numberStyle self = msg_send ~self ~cmd:(selector "numberStyle") ~typ:(returning ullong)
+let numberStyle self = msg_send ~self ~cmd:(selector "numberStyle") ~typ:(returning ullong) |> ULLong.to_int
 let paddingCharacter self = msg_send ~self ~cmd:(selector "paddingCharacter") ~typ:(returning id)
-let paddingPosition self = msg_send ~self ~cmd:(selector "paddingPosition") ~typ:(returning ullong)
+let paddingPosition self = msg_send ~self ~cmd:(selector "paddingPosition") ~typ:(returning ullong) |> ULLong.to_int
 let perMillSymbol self = msg_send ~self ~cmd:(selector "perMillSymbol") ~typ:(returning id)
 let percentSymbol self = msg_send ~self ~cmd:(selector "percentSymbol") ~typ:(returning id)
 let plusSign self = msg_send ~self ~cmd:(selector "plusSign") ~typ:(returning id)
@@ -79,8 +79,8 @@ let resetCheckLocaleChange self = msg_send ~self ~cmd:(selector "resetCheckLocal
 let resetCheckModify self = msg_send ~self ~cmd:(selector "resetCheckModify") ~typ:(returning void)
 let roundingBehavior self = msg_send ~self ~cmd:(selector "roundingBehavior") ~typ:(returning id)
 let roundingIncrement self = msg_send ~self ~cmd:(selector "roundingIncrement") ~typ:(returning id)
-let roundingMode self = msg_send ~self ~cmd:(selector "roundingMode") ~typ:(returning ullong)
-let secondaryGroupingSize self = msg_send ~self ~cmd:(selector "secondaryGroupingSize") ~typ:(returning ullong)
+let roundingMode self = msg_send ~self ~cmd:(selector "roundingMode") ~typ:(returning ullong) |> ULLong.to_int
+let secondaryGroupingSize self = msg_send ~self ~cmd:(selector "secondaryGroupingSize") ~typ:(returning ullong) |> ULLong.to_int
 let setAllowsFloats x self = msg_send ~self ~cmd:(selector "setAllowsFloats:") ~typ:(bool @-> returning void) x
 let setAlwaysShowsDecimalSeparator x self = msg_send ~self ~cmd:(selector "setAlwaysShowsDecimalSeparator:") ~typ:(bool @-> returning void) x
 let setAttributedStringForNil x self = msg_send ~self ~cmd:(selector "setAttributedStringForNil:") ~typ:(id @-> returning void) x

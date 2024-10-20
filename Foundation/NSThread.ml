@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsthread?language=objc}NSThread} *)
 
@@ -24,13 +24,13 @@ let isFinished self = msg_send ~self ~cmd:(selector "isFinished") ~typ:(returnin
 let isMainThread self = msg_send ~self ~cmd:(selector "isMainThread") ~typ:(returning bool)
 let main self = msg_send ~self ~cmd:(selector "main") ~typ:(returning void)
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
-let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong)
+let qualityOfService self = msg_send ~self ~cmd:(selector "qualityOfService") ~typ:(returning llong) |> LLong.to_int
 let runLoop self = msg_send ~self ~cmd:(selector "runLoop") ~typ:(returning id)
 let setName x self = msg_send ~self ~cmd:(selector "setName:") ~typ:(id @-> returning void) x
 let setQualityOfService x self = msg_send ~self ~cmd:(selector "setQualityOfService:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setStackSize x self = msg_send ~self ~cmd:(selector "setStackSize:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setThreadPriority x self = msg_send ~self ~cmd:(selector "setThreadPriority:") ~typ:(double @-> returning void) x
-let stackSize self = msg_send ~self ~cmd:(selector "stackSize") ~typ:(returning ullong)
+let stackSize self = msg_send ~self ~cmd:(selector "stackSize") ~typ:(returning ullong) |> ULLong.to_int
 let start self = msg_send ~self ~cmd:(selector "start") ~typ:(returning void)
 let threadDictionary self = msg_send ~self ~cmd:(selector "threadDictionary") ~typ:(returning id)
 let threadPriority self = msg_send ~self ~cmd:(selector "threadPriority") ~typ:(returning double)

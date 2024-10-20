@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsdistantobject?language=objc}NSDistantObject} *)
 
@@ -22,7 +22,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let forwardInvocation x self = msg_send ~self ~cmd:(selector "forwardInvocation:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithLocal x ~connection self = msg_send ~self ~cmd:(selector "initWithLocal:connection:") ~typ:(id @-> id @-> returning id) x connection
 let initWithTarget x ~connection self = msg_send ~self ~cmd:(selector "initWithTarget:connection:") ~typ:(id @-> id @-> returning id) x connection
@@ -33,7 +33,7 @@ let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZ
 let protocolForProxy self = msg_send ~self ~cmd:(selector "protocolForProxy") ~typ:(returning id)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let retainWireCount self = msg_send ~self ~cmd:(selector "retainWireCount") ~typ:(returning void)
 let setProtocolForProxy x self = msg_send ~self ~cmd:(selector "setProtocolForProxy:") ~typ:(id @-> returning void) x
 let stringByAppendingFormat x self = msg_send ~self ~cmd:(selector "stringByAppendingFormat:") ~typ:(id @-> returning id) x

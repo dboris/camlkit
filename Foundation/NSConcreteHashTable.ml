@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconcretehashtable?language=objc}NSConcreteHashTable} *)
 
@@ -15,14 +15,14 @@ let addObject x self = msg_send ~self ~cmd:(selector "addObject:") ~typ:(id @-> 
 let allObjects self = msg_send ~self ~cmd:(selector "allObjects") ~typ:(returning id)
 let assign x ~key self = msg_send ~self ~cmd:(selector "assign:key:") ~typ:(ullong @-> (ptr void) @-> returning void) (ULLong.of_int x) key
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let getItem x self = msg_send ~self ~cmd:(selector "getItem:") ~typ:((ptr void) @-> returning (ptr void)) x
 let getKeys x ~count self = msg_send ~self ~cmd:(selector "getKeys:count:") ~typ:((ptr (ptr void)) @-> (ptr ullong) @-> returning void) x count
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let hashGrow self = msg_send ~self ~cmd:(selector "hashGrow") ~typ:(returning void)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -35,6 +35,6 @@ let objectEnumerator self = msg_send ~self ~cmd:(selector "objectEnumerator") ~t
 let pointerFunctions self = msg_send ~self ~cmd:(selector "pointerFunctions") ~typ:(returning id)
 let raiseCountUnderflowException self = msg_send ~self ~cmd:(selector "raiseCountUnderflowException") ~typ:(returning void)
 let rehash self = msg_send ~self ~cmd:(selector "rehash") ~typ:(returning void)
-let rehashAround x self = msg_send ~self ~cmd:(selector "rehashAround:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
+let rehashAround x self = msg_send ~self ~cmd:(selector "rehashAround:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x) |> ULLong.to_int
 let removeAllItems self = msg_send ~self ~cmd:(selector "removeAllItems") ~typ:(returning void)
 let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:((ptr void) @-> returning void) x

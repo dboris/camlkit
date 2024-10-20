@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsfilemanager?language=objc}NSFileManager} *)
 
@@ -36,9 +36,15 @@ let copyItemAtPath2 x ~toPath ~uniquePath ~error self = msg_send ~self ~cmd:(sel
 let copyItemAtURL x ~toURL ~error self = msg_send ~self ~cmd:(selector "copyItemAtURL:toURL:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x toURL error
 let copyItemAtURL' x ~toURL ~options ~error self = msg_send ~self ~cmd:(selector "copyItemAtURL:toURL:options:error:") ~typ:(id @-> id @-> ullong @-> (ptr id) @-> returning bool) x toURL (ULLong.of_int options) error
 let copyPath x ~toPath ~handler self = msg_send ~self ~cmd:(selector "copyPath:toPath:handler:") ~typ:(id @-> id @-> id @-> returning bool) x toPath handler
+let cplCopyItemAtURL x ~toURL ~error self = msg_send ~self ~cmd:(selector "cplCopyItemAtURL:toURL:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x toURL error
+let cplFileExistsAtURL x self = msg_send ~self ~cmd:(selector "cplFileExistsAtURL:") ~typ:(id @-> returning bool) x
+let cplIsFileDoesNotExistError x self = msg_send ~self ~cmd:(selector "cplIsFileDoesNotExistError:") ~typ:(id @-> returning bool) x
+let cplIsFileExistsError x self = msg_send ~self ~cmd:(selector "cplIsFileExistsError:") ~typ:(id @-> returning bool) x
+let cplMoveItemAtURL x ~toURL ~error self = msg_send ~self ~cmd:(selector "cplMoveItemAtURL:toURL:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x toURL error
 let createDirectoryAtPath x ~attributes self = msg_send ~self ~cmd:(selector "createDirectoryAtPath:attributes:") ~typ:(id @-> id @-> returning bool) x attributes
 let createDirectoryAtPath' x ~withIntermediateDirectories ~attributes ~error self = msg_send ~self ~cmd:(selector "createDirectoryAtPath:withIntermediateDirectories:attributes:error:") ~typ:(id @-> bool @-> id @-> (ptr id) @-> returning bool) x withIntermediateDirectories attributes error
 let createDirectoryAtURL x ~withIntermediateDirectories ~attributes ~error self = msg_send ~self ~cmd:(selector "createDirectoryAtURL:withIntermediateDirectories:attributes:error:") ~typ:(id @-> bool @-> id @-> (ptr id) @-> returning bool) x withIntermediateDirectories attributes error
+let createDirectoryIfNeededAtPath x ~error self = msg_send ~self ~cmd:(selector "createDirectoryIfNeededAtPath:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
 let createFileAtPath x ~contents ~attributes self = msg_send ~self ~cmd:(selector "createFileAtPath:contents:attributes:") ~typ:(id @-> id @-> id @-> returning bool) x contents attributes
 let createSymbolicLinkAtPath x ~pathContent self = msg_send ~self ~cmd:(selector "createSymbolicLinkAtPath:pathContent:") ~typ:(id @-> id @-> returning bool) x pathContent
 let createSymbolicLinkAtPath' x ~withDestinationPath ~error self = msg_send ~self ~cmd:(selector "createSymbolicLinkAtPath:withDestinationPath:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x withDestinationPath error
@@ -55,6 +61,7 @@ let directoryCanBeCreatedAtPath x self = msg_send ~self ~cmd:(selector "director
 let directoryContentsAtPath x self = msg_send ~self ~cmd:(selector "directoryContentsAtPath:") ~typ:(id @-> returning id) x
 let directoryContentsAtPath1 x ~matchingExtension ~options ~keepExtension self = msg_send ~self ~cmd:(selector "directoryContentsAtPath:matchingExtension:options:keepExtension:") ~typ:(id @-> id @-> llong @-> bool @-> returning id) x matchingExtension (LLong.of_int options) keepExtension
 let directoryContentsAtPath2 x ~matchingExtension ~options ~keepExtension ~error self = msg_send ~self ~cmd:(selector "directoryContentsAtPath:matchingExtension:options:keepExtension:error:") ~typ:(id @-> id @-> llong @-> bool @-> (ptr id) @-> returning id) x matchingExtension (LLong.of_int options) keepExtension error
+let directoryExistsAtPath x self = msg_send ~self ~cmd:(selector "directoryExistsAtPath:") ~typ:(id @-> returning bool) x
 let displayNameAtPath x self = msg_send ~self ~cmd:(selector "displayNameAtPath:") ~typ:(id @-> returning id) x
 let enumeratorAtPath x self = msg_send ~self ~cmd:(selector "enumeratorAtPath:") ~typ:(id @-> returning id) x
 let enumeratorAtURL x ~includingPropertiesForKeys ~options ~errorHandler self = msg_send ~self ~cmd:(selector "enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning id) x includingPropertiesForKeys (ULLong.of_int options) errorHandler
@@ -95,6 +102,7 @@ let moveItemAtURL x ~toURL ~error self = msg_send ~self ~cmd:(selector "moveItem
 let moveItemAtURL' x ~toURL ~options ~error self = msg_send ~self ~cmd:(selector "moveItemAtURL:toURL:options:error:") ~typ:(id @-> id @-> ullong @-> (ptr id) @-> returning bool) x toURL (ULLong.of_int options) error
 let movePath x ~toPath ~handler self = msg_send ~self ~cmd:(selector "movePath:toPath:handler:") ~typ:(id @-> id @-> id @-> returning bool) x toPath handler
 let pathContentOfSymbolicLinkAtPath x self = msg_send ~self ~cmd:(selector "pathContentOfSymbolicLinkAtPath:") ~typ:(id @-> returning id) x
+let removeDirectoryAtPathIfEmpty x ~ancestors self = msg_send ~self ~cmd:(selector "removeDirectoryAtPathIfEmpty:ancestors:") ~typ:(id @-> int @-> returning bool) x ancestors
 let removeExtendedAttributeForKey x ~atPath ~error self = msg_send ~self ~cmd:(selector "removeExtendedAttributeForKey:atPath:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x atPath error
 let removeFileAtPath x ~handler self = msg_send ~self ~cmd:(selector "removeFileAtPath:handler:") ~typ:(id @-> id @-> returning bool) x handler
 let removeItemAtPath x ~error self = msg_send ~self ~cmd:(selector "removeItemAtPath:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
@@ -111,7 +119,12 @@ let subpathsOfDirectoryAtPath x ~error self = msg_send ~self ~cmd:(selector "sub
 let synchronouslyGetFileProviderServiceWithName x ~forItemAtURL ~completionHandler self = msg_send ~self ~cmd:(selector "synchronouslyGetFileProviderServiceWithName:forItemAtURL:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x forItemAtURL completionHandler
 let synchronouslyGetFileProviderServicesForItemAtURL x ~completionHandler self = msg_send ~self ~cmd:(selector "synchronouslyGetFileProviderServicesForItemAtURL:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler
 let temporaryDirectory self = msg_send ~self ~cmd:(selector "temporaryDirectory") ~typ:(returning id)
+let tmpFileForVideoTranscodeToPhotoDataDirectory x ~withExtension self = msg_send ~self ~cmd:(selector "tmpFileForVideoTranscodeToPhotoDataDirectory:withExtension:") ~typ:(bool @-> id @-> returning id) x withExtension
 let trashItemAtURL x ~resultingItemURL ~error self = msg_send ~self ~cmd:(selector "trashItemAtURL:resultingItemURL:error:") ~typ:(id @-> (ptr id) @-> (ptr id) @-> returning bool) x resultingItemURL error
+let triCreateDirectoryForPath x ~isDirectory ~error self = msg_send ~self ~cmd:(selector "triCreateDirectoryForPath:isDirectory:error:") ~typ:(id @-> bool @-> (ptr id) @-> returning id) x isDirectory error
+let triPath x ~relativeToParentPath self = msg_send ~self ~cmd:(selector "triPath:relativeToParentPath:") ~typ:(id @-> id @-> returning id) x relativeToParentPath
+let triRemoveItemAtPath x ~error self = msg_send ~self ~cmd:(selector "triRemoveItemAtPath:error:") ~typ:(id @-> (ptr id) @-> returning bool) x error
+let triSafeCopyItemAtPath x ~toPath ~error self = msg_send ~self ~cmd:(selector "triSafeCopyItemAtPath:toPath:error:") ~typ:(id @-> id @-> (ptr id) @-> returning bool) x toPath error
 let ubiquityIdentityToken self = msg_send ~self ~cmd:(selector "ubiquityIdentityToken") ~typ:(returning id)
 let uniqueFilename x ~atPath ~ofType self = msg_send ~self ~cmd:(selector "uniqueFilename:atPath:ofType:") ~typ:(id @-> id @-> id @-> returning id) x atPath ofType
 let unmountVolumeAtURL x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "unmountVolumeAtURL:options:completionHandler:") ~typ:(id @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int options) completionHandler

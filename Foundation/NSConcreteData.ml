@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconcretedata?language=objc}NSConcreteData} *)
 
@@ -20,4 +20,4 @@ let getBytes2 x ~range self = msg_send ~self ~cmd:(selector "getBytes:range:") ~
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithBytes x ~length ~copy ~deallocator self = msg_send ~self ~cmd:(selector "initWithBytes:length:copy:deallocator:") ~typ:((ptr void) @-> ullong @-> bool @-> (ptr void) @-> returning id) x (ULLong.of_int length) copy deallocator
 let initWithBytes' x ~length ~copy ~freeWhenDone ~bytesAreVM self = msg_send ~self ~cmd:(selector "initWithBytes:length:copy:freeWhenDone:bytesAreVM:") ~typ:((ptr void) @-> ullong @-> bool @-> bool @-> bool @-> returning id) x (ULLong.of_int length) copy freeWhenDone bytesAreVM
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int

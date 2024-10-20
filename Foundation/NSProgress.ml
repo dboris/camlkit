@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsprogress?language=objc}NSProgress} *)
 
@@ -22,7 +22,7 @@ let byteCompletedCount self = msg_send ~self ~cmd:(selector "byteCompletedCount"
 let byteTotalCount self = msg_send ~self ~cmd:(selector "byteTotalCount") ~typ:(returning id)
 let cancel self = msg_send ~self ~cmd:(selector "cancel") ~typ:(returning void)
 let cancellationHandler self = msg_send ~self ~cmd:(selector "cancellationHandler") ~typ:(returning (ptr void))
-let completedUnitCount self = msg_send ~self ~cmd:(selector "completedUnitCount") ~typ:(returning llong)
+let completedUnitCount self = msg_send ~self ~cmd:(selector "completedUnitCount") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let estimatedTimeRemaining self = msg_send ~self ~cmd:(selector "estimatedTimeRemaining") ~typ:(returning id)
@@ -36,9 +36,9 @@ let handleAcknowledgementByAppWithBundleIdentifier x ~usingBlock self = msg_send
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithParent x ~userInfo self = msg_send ~self ~cmd:(selector "initWithParent:userInfo:") ~typ:(id @-> id @-> returning id) x userInfo
 let initWithParent' x ~bundleID ~andPhase self = msg_send ~self ~cmd:(selector "initWithParent:bundleID:andPhase:") ~typ:(id @-> id @-> ullong @-> returning id) x bundleID (ULLong.of_int andPhase)
-let installPhase self = msg_send ~self ~cmd:(selector "installPhase") ~typ:(returning ullong)
+let installPhase self = msg_send ~self ~cmd:(selector "installPhase") ~typ:(returning ullong) |> ULLong.to_int
 let installPhaseString self = msg_send ~self ~cmd:(selector "installPhaseString") ~typ:(returning id)
-let installState self = msg_send ~self ~cmd:(selector "installState") ~typ:(returning ullong)
+let installState self = msg_send ~self ~cmd:(selector "installState") ~typ:(returning ullong) |> ULLong.to_int
 let isCancellable self = msg_send ~self ~cmd:(selector "isCancellable") ~typ:(returning bool)
 let isCancelled self = msg_send ~self ~cmd:(selector "isCancelled") ~typ:(returning bool)
 let isFinished self = msg_send ~self ~cmd:(selector "isFinished") ~typ:(returning bool)
@@ -50,7 +50,7 @@ let isPrioritizable self = msg_send ~self ~cmd:(selector "isPrioritizable") ~typ
 let kind self = msg_send ~self ~cmd:(selector "kind") ~typ:(returning id)
 let localizedAdditionalDescription self = msg_send ~self ~cmd:(selector "localizedAdditionalDescription") ~typ:(returning id)
 let localizedDescription self = msg_send ~self ~cmd:(selector "localizedDescription") ~typ:(returning id)
-let ownedDictionaryCount self = msg_send ~self ~cmd:(selector "ownedDictionaryCount") ~typ:(returning ullong)
+let ownedDictionaryCount self = msg_send ~self ~cmd:(selector "ownedDictionaryCount") ~typ:(returning ullong) |> ULLong.to_int
 let ownedDictionaryKeyEnumerator self = msg_send ~self ~cmd:(selector "ownedDictionaryKeyEnumerator") ~typ:(returning id)
 let ownedDictionaryObjectForKey x self = msg_send ~self ~cmd:(selector "ownedDictionaryObjectForKey:") ~typ:(id @-> returning id) x
 let pause self = msg_send ~self ~cmd:(selector "pause") ~typ:(returning void)
@@ -87,6 +87,6 @@ let setThroughput x self = msg_send ~self ~cmd:(selector "setThroughput:") ~typ:
 let setTotalUnitCount x self = msg_send ~self ~cmd:(selector "setTotalUnitCount:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setUserInfoObject x ~forKey self = msg_send ~self ~cmd:(selector "setUserInfoObject:forKey:") ~typ:(id @-> id @-> returning void) x forKey
 let throughput self = msg_send ~self ~cmd:(selector "throughput") ~typ:(returning id)
-let totalUnitCount self = msg_send ~self ~cmd:(selector "totalUnitCount") ~typ:(returning llong)
+let totalUnitCount self = msg_send ~self ~cmd:(selector "totalUnitCount") ~typ:(returning llong) |> LLong.to_int
 let unpublish self = msg_send ~self ~cmd:(selector "unpublish") ~typ:(returning void)
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning id)

@@ -1,21 +1,21 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmldtdnode?language=objc}NSXMLDTDNode} *)
 
 let self = get_class "NSXMLDTDNode"
 
-let _DTDKind self = msg_send ~self ~cmd:(selector "DTDKind") ~typ:(returning ullong)
+let _DTDKind self = msg_send ~self ~cmd:(selector "DTDKind") ~typ:(returning ullong) |> ULLong.to_int
 let _XPath self = msg_send ~self ~cmd:(selector "XPath") ~typ:(returning id)
 let canonicalXMLStringPreservingComments x self = msg_send ~self ~cmd:(selector "canonicalXMLStringPreservingComments:") ~typ:(bool @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithKind x self = msg_send ~self ~cmd:(selector "initWithKind:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let initWithKind' x ~options self = msg_send ~self ~cmd:(selector "initWithKind:options:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int options)

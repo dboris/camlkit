@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsconnection?language=objc}NSConnection} *)
 
@@ -70,4 +70,4 @@ let setReplyTimeout x self = msg_send ~self ~cmd:(selector "setReplyTimeout:") ~
 let setRequestTimeout x self = msg_send ~self ~cmd:(selector "setRequestTimeout:") ~typ:(double @-> returning void) x
 let setRootObject x self = msg_send ~self ~cmd:(selector "setRootObject:") ~typ:(id @-> returning void) x
 let statistics self = msg_send ~self ~cmd:(selector "statistics") ~typ:(returning id)
-let versionForClassNamed x self = msg_send ~self ~cmd:(selector "versionForClassNamed:") ~typ:(id @-> returning ullong) x
+let versionForClassNamed x self = msg_send ~self ~cmd:(selector "versionForClassNamed:") ~typ:(id @-> returning ullong) x |> ULLong.to_int

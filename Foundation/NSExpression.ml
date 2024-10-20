@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsexpression?language=objc}NSExpression} *)
 
@@ -21,7 +21,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let expressionBlock self = msg_send ~self ~cmd:(selector "expressionBlock") ~typ:(returning (ptr void))
-let expressionType self = msg_send ~self ~cmd:(selector "expressionType") ~typ:(returning ullong)
+let expressionType self = msg_send ~self ~cmd:(selector "expressionType") ~typ:(returning ullong) |> ULLong.to_int
 let expressionValueWithObject x ~context self = msg_send ~self ~cmd:(selector "expressionValueWithObject:context:") ~typ:(id @-> id @-> returning id) x context
 let falseExpression self = msg_send ~self ~cmd:(selector "falseExpression") ~typ:(returning id)
 let function_ self = msg_send ~self ~cmd:(selector "function") ~typ:(returning id)

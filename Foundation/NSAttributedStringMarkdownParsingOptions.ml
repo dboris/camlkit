@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsattributedstringmarkdownparsingoptions?language=objc}NSAttributedStringMarkdownParsingOptions} *)
 
@@ -15,10 +15,10 @@ let allowsExtendedAttributes self = msg_send ~self ~cmd:(selector "allowsExtende
 let appliesSourcePositionAttributes self = msg_send ~self ~cmd:(selector "appliesSourcePositionAttributes") ~typ:(returning bool)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let failurePolicy self = msg_send ~self ~cmd:(selector "failurePolicy") ~typ:(returning llong)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let failurePolicy self = msg_send ~self ~cmd:(selector "failurePolicy") ~typ:(returning llong) |> LLong.to_int
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
-let interpretedSyntax self = msg_send ~self ~cmd:(selector "interpretedSyntax") ~typ:(returning llong)
+let interpretedSyntax self = msg_send ~self ~cmd:(selector "interpretedSyntax") ~typ:(returning llong) |> LLong.to_int
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let languageCode self = msg_send ~self ~cmd:(selector "languageCode") ~typ:(returning id)
 let setAllowsExtendedAttributes x self = msg_send ~self ~cmd:(selector "setAllowsExtendedAttributes:") ~typ:(bool @-> returning void) x

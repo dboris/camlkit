@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nslocalizablestring?language=objc}NSLocalizableString} *)
 
@@ -20,7 +20,7 @@ let developmentLanguageString self = msg_send ~self ~cmd:(selector "developmentL
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithStringsFileKey x ~developmentLanguageString self = msg_send ~self ~cmd:(selector "initWithStringsFileKey:developmentLanguageString:") ~typ:(id @-> id @-> returning id) x developmentLanguageString
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
 let setDevelopmentLanguageString x self = msg_send ~self ~cmd:(selector "setDevelopmentLanguageString:") ~typ:(id @-> returning void) x
 let setStringsFileKey x self = msg_send ~self ~cmd:(selector "setStringsFileKey:") ~typ:(id @-> returning void) x
 let stringsFileKey self = msg_send ~self ~cmd:(selector "stringsFileKey") ~typ:(returning id)

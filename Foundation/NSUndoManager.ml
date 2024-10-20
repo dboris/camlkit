@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsundomanager?language=objc}NSUndoManager} *)
 
@@ -20,13 +20,13 @@ let disableUndoRegistration self = msg_send ~self ~cmd:(selector "disableUndoReg
 let enableUndoRegistration self = msg_send ~self ~cmd:(selector "enableUndoRegistration") ~typ:(returning void)
 let endCreationUndoGrouping self = msg_send ~self ~cmd:(selector "endCreationUndoGrouping") ~typ:(returning void)
 let endUndoGrouping self = msg_send ~self ~cmd:(selector "endUndoGrouping") ~typ:(returning void)
-let groupingLevel self = msg_send ~self ~cmd:(selector "groupingLevel") ~typ:(returning llong)
+let groupingLevel self = msg_send ~self ~cmd:(selector "groupingLevel") ~typ:(returning llong) |> LLong.to_int
 let groupsByEvent self = msg_send ~self ~cmd:(selector "groupsByEvent") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isRedoing self = msg_send ~self ~cmd:(selector "isRedoing") ~typ:(returning bool)
 let isUndoRegistrationEnabled self = msg_send ~self ~cmd:(selector "isUndoRegistrationEnabled") ~typ:(returning bool)
 let isUndoing self = msg_send ~self ~cmd:(selector "isUndoing") ~typ:(returning bool)
-let levelsOfUndo self = msg_send ~self ~cmd:(selector "levelsOfUndo") ~typ:(returning ullong)
+let levelsOfUndo self = msg_send ~self ~cmd:(selector "levelsOfUndo") ~typ:(returning ullong) |> ULLong.to_int
 let prepareWithInvocationTarget x self = msg_send ~self ~cmd:(selector "prepareWithInvocationTarget:") ~typ:(id @-> returning id) x
 let redo self = msg_send ~self ~cmd:(selector "redo") ~typ:(returning void)
 let redoActionIsDiscardable self = msg_send ~self ~cmd:(selector "redoActionIsDiscardable") ~typ:(returning bool)

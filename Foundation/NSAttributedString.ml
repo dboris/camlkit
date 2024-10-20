@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsattributedstring?language=objc}NSAttributedString} *)
 
@@ -48,7 +48,7 @@ let enumerateAttributesInRange x ~options ~usingBlock self = msg_send ~self ~cmd
 let fileWrapperFromRange x ~documentAttributes ~error self = msg_send ~self ~cmd:(selector "fileWrapperFromRange:documentAttributes:error:") ~typ:(NSRange.t @-> id @-> (ptr id) @-> returning id) x documentAttributes error
 let fontAttributesInRange x self = msg_send ~self ~cmd:(selector "fontAttributesInRange:") ~typ:(NSRange.t @-> returning id) x
 let hasColorGlyphsInRange x self = msg_send ~self ~cmd:(selector "hasColorGlyphsInRange:") ~typ:(NSRange.t @-> returning bool) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithAttachment x ~attributes self = msg_send ~self ~cmd:(selector "initWithAttachment:attributes:") ~typ:(id @-> id @-> returning id) x attributes
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithContentsOfMarkdownFileAtURL x ~options ~baseURL ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfMarkdownFileAtURL:options:baseURL:error:") ~typ:(id @-> id @-> id @-> (ptr id) @-> returning id) x options baseURL error
@@ -72,13 +72,13 @@ let initWithURL x ~documentAttributes self = msg_send ~self ~cmd:(selector "init
 let initWithURL' x ~options ~documentAttributes ~error self = msg_send ~self ~cmd:(selector "initWithURL:options:documentAttributes:error:") ~typ:(id @-> id @-> (ptr id) @-> (ptr id) @-> returning id) x options documentAttributes error
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isEqualToAttributedString x self = msg_send ~self ~cmd:(selector "isEqualToAttributedString:") ~typ:(id @-> returning bool) x
-let itemNumberInTextList x ~atIndex self = msg_send ~self ~cmd:(selector "itemNumberInTextList:atIndex:") ~typ:(id @-> ullong @-> returning llong) x (ULLong.of_int atIndex)
-let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong)
-let lineBreakBeforeIndex x ~withinRange self = msg_send ~self ~cmd:(selector "lineBreakBeforeIndex:withinRange:") ~typ:(ullong @-> NSRange.t @-> returning ullong) (ULLong.of_int x) withinRange
-let lineBreakByHyphenatingBeforeIndex x ~withinRange self = msg_send ~self ~cmd:(selector "lineBreakByHyphenatingBeforeIndex:withinRange:") ~typ:(ullong @-> NSRange.t @-> returning ullong) (ULLong.of_int x) withinRange
+let itemNumberInTextList x ~atIndex self = msg_send ~self ~cmd:(selector "itemNumberInTextList:atIndex:") ~typ:(id @-> ullong @-> returning llong) x (ULLong.of_int atIndex) |> LLong.to_int
+let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning ullong) |> ULLong.to_int
+let lineBreakBeforeIndex x ~withinRange self = msg_send ~self ~cmd:(selector "lineBreakBeforeIndex:withinRange:") ~typ:(ullong @-> NSRange.t @-> returning ullong) (ULLong.of_int x) withinRange |> ULLong.to_int
+let lineBreakByHyphenatingBeforeIndex x ~withinRange self = msg_send ~self ~cmd:(selector "lineBreakByHyphenatingBeforeIndex:withinRange:") ~typ:(ullong @-> NSRange.t @-> returning ullong) (ULLong.of_int x) withinRange |> ULLong.to_int
 let loadDataWithTypeIdentifier x ~forItemProviderCompletionHandler self = msg_send ~self ~cmd:(selector "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:") ~typ:(id @-> (ptr void) @-> returning id) x forItemProviderCompletionHandler
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
-let nextWordFromIndex x ~forward self = msg_send ~self ~cmd:(selector "nextWordFromIndex:forward:") ~typ:(ullong @-> bool @-> returning ullong) (ULLong.of_int x) forward
+let nextWordFromIndex x ~forward self = msg_send ~self ~cmd:(selector "nextWordFromIndex:forward:") ~typ:(ullong @-> bool @-> returning ullong) (ULLong.of_int x) forward |> ULLong.to_int
 let pasteboardPropertyListForType x self = msg_send ~self ~cmd:(selector "pasteboardPropertyListForType:") ~typ:(id @-> returning id) x
 let rangeOfTextBlock x ~atIndex self = msg_send_stret ~self ~cmd:(selector "rangeOfTextBlock:atIndex:") ~typ:(id @-> ullong @-> returning NSRange.t) ~return_type:NSRange.t x (ULLong.of_int atIndex)
 let rangeOfTextList x ~atIndex self = msg_send_stret ~self ~cmd:(selector "rangeOfTextList:atIndex:") ~typ:(id @-> ullong @-> returning NSRange.t) ~return_type:NSRange.t x (ULLong.of_int atIndex)
@@ -99,4 +99,4 @@ let stringByStrippingAttachmentCharactersAndConvertingWritingDirectionToBidiCont
 let trimmedString self = msg_send ~self ~cmd:(selector "trimmedString") ~typ:(returning id)
 let writableTypeIdentifiersForItemProvider self = msg_send ~self ~cmd:(selector "writableTypeIdentifiersForItemProvider") ~typ:(returning id)
 let writableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "writableTypesForPasteboard:") ~typ:(id @-> returning id) x
-let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard
+let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard |> ULLong.to_int

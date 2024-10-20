@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmldocument?language=objc}NSXMLDocument} *)
 
@@ -22,13 +22,13 @@ let addChild x self = msg_send ~self ~cmd:(selector "addChild:") ~typ:(id @-> re
 let canonicalXMLStringPreservingComments x self = msg_send ~self ~cmd:(selector "canonicalXMLStringPreservingComments:") ~typ:(bool @-> returning id) x
 let characterEncoding self = msg_send ~self ~cmd:(selector "characterEncoding") ~typ:(returning id)
 let childAtIndex x self = msg_send ~self ~cmd:(selector "childAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong)
+let childCount self = msg_send ~self ~cmd:(selector "childCount") ~typ:(returning ullong) |> ULLong.to_int
 let children self = msg_send ~self ~cmd:(selector "children") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let countOfChildren self = msg_send ~self ~cmd:(selector "countOfChildren") ~typ:(returning ullong)
+let countOfChildren self = msg_send ~self ~cmd:(selector "countOfChildren") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let documentContentKind self = msg_send ~self ~cmd:(selector "documentContentKind") ~typ:(returning ullong)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let documentContentKind self = msg_send ~self ~cmd:(selector "documentContentKind") ~typ:(returning ullong) |> ULLong.to_int
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithContentsOfURL x ~options ~error self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:options:error:") ~typ:(id @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int options) error
 let initWithData x ~options ~error self = msg_send ~self ~cmd:(selector "initWithData:options:error:") ~typ:(id @-> ullong @-> (ptr id) @-> returning id) x (ULLong.of_int options) error

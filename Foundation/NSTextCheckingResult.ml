@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nstextcheckingresult?language=objc}NSTextCheckingResult} *)
 
@@ -25,7 +25,7 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let grammarDetails self = msg_send ~self ~cmd:(selector "grammarDetails") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let leadingText self = msg_send ~self ~cmd:(selector "leadingText") ~typ:(returning id)
-let numberOfRanges self = msg_send ~self ~cmd:(selector "numberOfRanges") ~typ:(returning ullong)
+let numberOfRanges self = msg_send ~self ~cmd:(selector "numberOfRanges") ~typ:(returning ullong) |> ULLong.to_int
 let orthography self = msg_send ~self ~cmd:(selector "orthography") ~typ:(returning id)
 let phoneNumber self = msg_send ~self ~cmd:(selector "phoneNumber") ~typ:(returning id)
 let range self = msg_send_stret ~self ~cmd:(selector "range") ~typ:(returning NSRange.t) ~return_type:NSRange.t
@@ -35,7 +35,7 @@ let referenceDate self = msg_send ~self ~cmd:(selector "referenceDate") ~typ:(re
 let regularExpression self = msg_send ~self ~cmd:(selector "regularExpression") ~typ:(returning id)
 let replacementString self = msg_send ~self ~cmd:(selector "replacementString") ~typ:(returning id)
 let resultByAdjustingRangesWithOffset x self = msg_send ~self ~cmd:(selector "resultByAdjustingRangesWithOffset:") ~typ:(llong @-> returning id) (LLong.of_int x)
-let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning ullong)
+let resultType self = msg_send ~self ~cmd:(selector "resultType") ~typ:(returning ullong) |> ULLong.to_int
 let timeIsApproximate self = msg_send ~self ~cmd:(selector "timeIsApproximate") ~typ:(returning bool)
 let timeIsPast self = msg_send ~self ~cmd:(selector "timeIsPast") ~typ:(returning bool)
 let timeIsSignificant self = msg_send ~self ~cmd:(selector "timeIsSignificant") ~typ:(returning bool)

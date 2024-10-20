@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nshashtable?language=objc}NSHashTable} *)
 
@@ -18,8 +18,8 @@ let classForCoder self = msg_send ~self ~cmd:(selector "classForCoder") ~typ:(re
 let containsObject x self = msg_send ~self ~cmd:(selector "containsObject:") ~typ:(id @-> returning bool) x
 let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countByEnumeratingWithState x ~objects ~count self = msg_send ~self ~cmd:(selector "countByEnumeratingWithState:objects:count:") ~typ:((ptr void) @-> (ptr id) @-> ullong @-> returning ullong) x objects (ULLong.of_int count) |> ULLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let getItem x self = msg_send ~self ~cmd:(selector "getItem:") ~typ:((ptr void) @-> returning (ptr void)) x
@@ -45,4 +45,4 @@ let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:((ptr 
 let removeObject x self = msg_send ~self ~cmd:(selector "removeObject:") ~typ:(id @-> returning void) x
 let setRepresentation self = msg_send ~self ~cmd:(selector "setRepresentation") ~typ:(returning id)
 let unionHashTable x self = msg_send ~self ~cmd:(selector "unionHashTable:") ~typ:(id @-> returning void) x
-let weakCount self = msg_send ~self ~cmd:(selector "weakCount") ~typ:(returning ullong)
+let weakCount self = msg_send ~self ~cmd:(selector "weakCount") ~typ:(returning ullong) |> ULLong.to_int

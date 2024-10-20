@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nserror?language=objc}NSError} *)
 
@@ -17,6 +17,11 @@ let _DMCErrorWithDomain2 x ~code ~descriptionArray ~suggestion ~_USEnglishSugges
 let _GEOErrorWithCode x ~reason self = msg_send ~self ~cmd:(selector "GEOErrorWithCode:reason:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) reason
 let _GEOErrorWithCode1 x ~userInfo self = msg_send ~self ~cmd:(selector "GEOErrorWithCode:userInfo:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) userInfo
 let _GEOErrorWithCode2 x ~reason ~underlyingError self = msg_send ~self ~cmd:(selector "GEOErrorWithCode:reason:underlyingError:") ~typ:(llong @-> id @-> id @-> returning id) (LLong.of_int x) reason underlyingError
+let _MMCSErrorWithDomain x ~code ~description self = msg_send ~self ~cmd:(selector "MMCSErrorWithDomain:code:description:") ~typ:(id @-> llong @-> id @-> returning id) x (LLong.of_int code) description
+let _MSErrorWithDomain x ~code ~description self = msg_send ~self ~cmd:(selector "MSErrorWithDomain:code:description:") ~typ:(id @-> llong @-> id @-> returning id) x (LLong.of_int code) description
+let _MSErrorWithDomain1 x ~code ~description ~suggestion self = msg_send ~self ~cmd:(selector "MSErrorWithDomain:code:description:suggestion:") ~typ:(id @-> llong @-> id @-> id @-> returning id) x (LLong.of_int code) description suggestion
+let _MSErrorWithDomain2 x ~code ~description ~underlyingError self = msg_send ~self ~cmd:(selector "MSErrorWithDomain:code:description:underlyingError:") ~typ:(id @-> llong @-> id @-> id @-> returning id) x (LLong.of_int code) description underlyingError
+let _MSErrorWithDomain3 x ~code ~description ~underlyingError ~additionalUserInfo self = msg_send ~self ~cmd:(selector "MSErrorWithDomain:code:description:underlyingError:additionalUserInfo:") ~typ:(id @-> llong @-> id @-> id @-> id @-> returning id) x (LLong.of_int code) description underlyingError additionalUserInfo
 let _MSVErrorWithMissingDependencies x self = msg_send ~self ~cmd:(selector "MSVErrorWithMissingDependencies:") ~typ:(id @-> returning id) x
 let _MSVErrorWithMissingDependency x self = msg_send ~self ~cmd:(selector "MSVErrorWithMissingDependency:") ~typ:(id @-> returning id) x
 let errorForDB x self = msg_send ~self ~cmd:(selector "errorForDB:") ~typ:((ptr void) @-> returning id) x

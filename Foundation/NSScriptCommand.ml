@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsscriptcommand?language=objc}NSScriptCommand} *)
 
@@ -31,7 +31,7 @@ let receiversSpecifier self = msg_send ~self ~cmd:(selector "receiversSpecifier"
 let replacementObjectForPortCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForPortCoder:") ~typ:(id @-> returning id) x
 let resumeExecutionWithResult x self = msg_send ~self ~cmd:(selector "resumeExecutionWithResult:") ~typ:(id @-> returning void) x
 let scriptErrorExpectedTypeDescriptor self = msg_send ~self ~cmd:(selector "scriptErrorExpectedTypeDescriptor") ~typ:(returning id)
-let scriptErrorNumber self = msg_send ~self ~cmd:(selector "scriptErrorNumber") ~typ:(returning llong)
+let scriptErrorNumber self = msg_send ~self ~cmd:(selector "scriptErrorNumber") ~typ:(returning llong) |> LLong.to_int
 let scriptErrorOffendingObjectDescriptor self = msg_send ~self ~cmd:(selector "scriptErrorOffendingObjectDescriptor") ~typ:(returning id)
 let scriptErrorString self = msg_send ~self ~cmd:(selector "scriptErrorString") ~typ:(returning id)
 let setArguments x self = msg_send ~self ~cmd:(selector "setArguments:") ~typ:(id @-> returning void) x

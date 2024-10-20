@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsxmlparser?language=objc}NSXMLParser} *)
 
@@ -13,16 +13,16 @@ let self = get_class "NSXMLParser"
 
 let abortParsing self = msg_send ~self ~cmd:(selector "abortParsing") ~typ:(returning void)
 let allowedExternalEntityURLs self = msg_send ~self ~cmd:(selector "allowedExternalEntityURLs") ~typ:(returning id)
-let columnNumber self = msg_send ~self ~cmd:(selector "columnNumber") ~typ:(returning llong)
+let columnNumber self = msg_send ~self ~cmd:(selector "columnNumber") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
-let externalEntityResolvingPolicy self = msg_send ~self ~cmd:(selector "externalEntityResolvingPolicy") ~typ:(returning ullong)
+let externalEntityResolvingPolicy self = msg_send ~self ~cmd:(selector "externalEntityResolvingPolicy") ~typ:(returning ullong) |> ULLong.to_int
 let finishIncrementalParse self = msg_send ~self ~cmd:(selector "finishIncrementalParse") ~typ:(returning bool)
 let initForIncrementalParsing self = msg_send ~self ~cmd:(selector "initForIncrementalParsing") ~typ:(returning id)
 let initWithContentsOfURL x self = msg_send ~self ~cmd:(selector "initWithContentsOfURL:") ~typ:(id @-> returning id) x
 let initWithData x self = msg_send ~self ~cmd:(selector "initWithData:") ~typ:(id @-> returning id) x
 let initWithStream x self = msg_send ~self ~cmd:(selector "initWithStream:") ~typ:(id @-> returning id) x
-let lineNumber self = msg_send ~self ~cmd:(selector "lineNumber") ~typ:(returning llong)
+let lineNumber self = msg_send ~self ~cmd:(selector "lineNumber") ~typ:(returning llong) |> LLong.to_int
 let parse self = msg_send ~self ~cmd:(selector "parse") ~typ:(returning bool)
 let parseData x self = msg_send ~self ~cmd:(selector "parseData:") ~typ:(id @-> returning bool) x
 let parseFromStream self = msg_send ~self ~cmd:(selector "parseFromStream") ~typ:(returning bool)

@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nscoder?language=objc}NSCoder} *)
 
@@ -46,10 +46,10 @@ let decodeDirectionalEdgeInsetsForKey x self = msg_send_stret ~self ~cmd:(select
 let decodeDoubleForKey x self = msg_send ~self ~cmd:(selector "decodeDoubleForKey:") ~typ:(id @-> returning double) x
 let decodeFloatForKey x self = msg_send ~self ~cmd:(selector "decodeFloatForKey:") ~typ:(id @-> returning float) x
 let decodeInt32ForKey x self = msg_send ~self ~cmd:(selector "decodeInt32ForKey:") ~typ:(id @-> returning int) x
-let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x
+let decodeInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeInt64ForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let decodeIntForKey x self = msg_send ~self ~cmd:(selector "decodeIntForKey:") ~typ:(id @-> returning int) x
-let decodeIntegerForKey x self = msg_send ~self ~cmd:(selector "decodeIntegerForKey:") ~typ:(id @-> returning llong) x
-let decodeLongForKey x self = msg_send ~self ~cmd:(selector "decodeLongForKey:") ~typ:(id @-> returning llong) x
+let decodeIntegerForKey x self = msg_send ~self ~cmd:(selector "decodeIntegerForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let decodeLongForKey x self = msg_send ~self ~cmd:(selector "decodeLongForKey:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let decodeNXColor self = msg_send ~self ~cmd:(selector "decodeNXColor") ~typ:(returning id)
 let decodeNXObject self = msg_send ~self ~cmd:(selector "decodeNXObject") ~typ:(returning id)
 let decodeObject self = msg_send ~self ~cmd:(selector "decodeObject") ~typ:(returning id)
@@ -75,11 +75,11 @@ let decodeTopLevelObjectOfClass x ~forKey ~error self = msg_send ~self ~cmd:(sel
 let decodeTopLevelObjectOfClasses x ~forKey ~error self = msg_send ~self ~cmd:(selector "decodeTopLevelObjectOfClasses:forKey:error:") ~typ:(id @-> id @-> (ptr id) @-> returning id) x forKey error
 let decodeUIEdgeInsetsForKey x self = msg_send_stret ~self ~cmd:(selector "decodeUIEdgeInsetsForKey:") ~typ:(id @-> returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t x
 let decodeUIOffsetForKey x self = msg_send_stret ~self ~cmd:(selector "decodeUIOffsetForKey:") ~typ:(id @-> returning UIOffset.t) ~return_type:UIOffset.t x
-let decodeUInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeUInt64ForKey:") ~typ:(id @-> returning ullong) x
+let decodeUInt64ForKey x self = msg_send ~self ~cmd:(selector "decodeUInt64ForKey:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let decodeValueOfObjCType x ~at self = msg_send ~self ~cmd:(selector "decodeValueOfObjCType:at:") ~typ:(string @-> (ptr void) @-> returning void) x at
 let decodeValueOfObjCType' x ~at ~size self = msg_send ~self ~cmd:(selector "decodeValueOfObjCType:at:size:") ~typ:(string @-> (ptr void) @-> ullong @-> returning void) x at (ULLong.of_int size)
 let decodeValuesOfObjCTypes x self = msg_send ~self ~cmd:(selector "decodeValuesOfObjCTypes:") ~typ:(string @-> returning void) x
-let decodingFailurePolicy self = msg_send ~self ~cmd:(selector "decodingFailurePolicy") ~typ:(returning llong)
+let decodingFailurePolicy self = msg_send ~self ~cmd:(selector "decodingFailurePolicy") ~typ:(returning llong) |> LLong.to_int
 let encodeArrayOfObjCType x ~count ~at self = msg_send ~self ~cmd:(selector "encodeArrayOfObjCType:count:at:") ~typ:(string @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int count) at
 let encodeBool x ~forKey self = msg_send ~self ~cmd:(selector "encodeBool:forKey:") ~typ:(bool @-> id @-> returning void) x forKey
 let encodeBycopyObject x self = msg_send ~self ~cmd:(selector "encodeBycopyObject:") ~typ:(id @-> returning void) x
@@ -133,4 +133,4 @@ let setObjectZone x self = msg_send ~self ~cmd:(selector "setObjectZone:") ~typ:
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning uint)
 let validateAllowedClass x ~forKey self = msg_send ~self ~cmd:(selector "validateAllowedClass:forKey:") ~typ:(_Class @-> id @-> returning bool) x forKey
 let validateClassSupportsSecureCoding x self = msg_send ~self ~cmd:(selector "validateClassSupportsSecureCoding:") ~typ:(_Class @-> returning bool) x
-let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x
+let versionForClassName x self = msg_send ~self ~cmd:(selector "versionForClassName:") ~typ:(id @-> returning llong) x |> LLong.to_int

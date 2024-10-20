@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsurlhandle?language=objc}NSURLHandle} *)
 
@@ -19,7 +19,7 @@ let cancelLoadInBackground self = msg_send ~self ~cmd:(selector "cancelLoadInBac
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let didLoadBytes x ~loadComplete self = msg_send ~self ~cmd:(selector "didLoadBytes:loadComplete:") ~typ:(id @-> bool @-> returning void) x loadComplete
 let endLoadInBackground self = msg_send ~self ~cmd:(selector "endLoadInBackground") ~typ:(returning void)
-let expectedResourceDataSize self = msg_send ~self ~cmd:(selector "expectedResourceDataSize") ~typ:(returning llong)
+let expectedResourceDataSize self = msg_send ~self ~cmd:(selector "expectedResourceDataSize") ~typ:(returning llong) |> LLong.to_int
 let failureReason self = msg_send ~self ~cmd:(selector "failureReason") ~typ:(returning id)
 let flushCachedData self = msg_send ~self ~cmd:(selector "flushCachedData") ~typ:(returning void)
 let initWithURL x ~cached self = msg_send ~self ~cmd:(selector "initWithURL:cached:") ~typ:(id @-> bool @-> returning id) x cached
@@ -29,6 +29,6 @@ let propertyForKey x self = msg_send ~self ~cmd:(selector "propertyForKey:") ~ty
 let propertyForKeyIfAvailable x self = msg_send ~self ~cmd:(selector "propertyForKeyIfAvailable:") ~typ:(id @-> returning id) x
 let removeClient x self = msg_send ~self ~cmd:(selector "removeClient:") ~typ:(id @-> returning void) x
 let resourceData self = msg_send ~self ~cmd:(selector "resourceData") ~typ:(returning id)
-let status self = msg_send ~self ~cmd:(selector "status") ~typ:(returning ullong)
+let status self = msg_send ~self ~cmd:(selector "status") ~typ:(returning ullong) |> ULLong.to_int
 let writeData x self = msg_send ~self ~cmd:(selector "writeData:") ~typ:(id @-> returning bool) x
 let writeProperty x ~forKey self = msg_send ~self ~cmd:(selector "writeProperty:forKey:") ~typ:(id @-> id @-> returning bool) x forKey

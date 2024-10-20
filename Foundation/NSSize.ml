@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
 
 let t : [`NSSize] structure typ = structure "CGSize"
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/cgsize?language=objc}CGSize} *)

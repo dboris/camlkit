@@ -1,11 +1,11 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nssubstringpredicateoperator?language=objc}NSSubstringPredicateOperator} *)
 
@@ -16,6 +16,6 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithOperatorType x ~modifier ~variant ~position self = msg_send ~self ~cmd:(selector "initWithOperatorType:modifier:variant:position:") ~typ:(ullong @-> ullong @-> ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int modifier) (ULLong.of_int variant) (ULLong.of_int position)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let performPrimitiveOperationUsingObject x ~andObject self = msg_send ~self ~cmd:(selector "performPrimitiveOperationUsingObject:andObject:") ~typ:(id @-> id @-> returning bool) x andObject
-let position self = msg_send ~self ~cmd:(selector "position") ~typ:(returning ullong)
+let position self = msg_send ~self ~cmd:(selector "position") ~typ:(returning ullong) |> ULLong.to_int
 let selector_ self = msg_send ~self ~cmd:(selector "selector") ~typ:(returning _SEL)
 let symbol self = msg_send ~self ~cmd:(selector "symbol") ~typ:(returning id)

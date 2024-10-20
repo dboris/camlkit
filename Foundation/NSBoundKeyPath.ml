@@ -1,18 +1,18 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
-open CoreGraphics
+open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/foundation/nsboundkeypath?language=objc}NSBoundKeyPath} *)
 
 let self = get_class "NSBoundKeyPath"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let keyPath self = msg_send ~self ~cmd:(selector "keyPath") ~typ:(returning id)
 let mutableArrayValue self = msg_send ~self ~cmd:(selector "mutableArrayValue") ~typ:(returning id)
