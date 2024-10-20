@@ -1,0 +1,9 @@
+(library
+ (name NaturalLanguage)
+ (public_name camlkit-base.NaturalLanguage)
+;  (flags :standard -ccopt "-framework NaturalLanguage")
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.CoreFoundation))
+
+(documentation (package camlkit-base))
