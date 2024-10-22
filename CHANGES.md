@@ -1,27 +1,37 @@
-## Dev
+## v0.3.0
 
 API changes:
 
+* AppKit and UIKit now include only modules corresponding to "public" classes.
+  The private/internal class modules have been moved to AppKit_extra and
+  UIKit_extra for reference purposes.
+* Some frequently subclassed classes and some common delegate protocols now
+  have method definitions available, eg
+  `NSObjectMethods`, `UIViewControllerMethods`/`NSViewControllerMethods`,
+  `UIApplicationDelegate`/`NSApplicationDelegate`,
+  `UITableViewDelegate`/`NSTableViewDelegate`, etc.
+  These can be used when overriding or implementing methods by providing an
+  implementation.
+* Most method bindings that returned llong/ullong now return an OCaml int.
 * Replaced `Property.value` and `Property._object_` with a single
   `Property.accessor_methods`.
 * Added `Property.define` and a `properties` parameter to `Class.define`.
 * Some runtime functions have changed signatures due to adding/removing labels
   for some params.
-* Some common delegate protocols now have bindings available, eg
-  `UIApplicationDelegate`/`NSApplicationDelegate`,
-  `UITableViewDelegate`/`NSTableViewDelegate`, etc.
+* Added bindings for CoreData, CloudKit, and NaturalLanguage frameworks.
 
-## Release 0.2.2
+
+## v0.2.2
 
 * Add bindings for methods defined in UIKit and AppKit class extensions.
 
 
-## Release 0.2.1
+## v0.2.1
 
 * Fix method bindings returning structs.
 
 
-## Release 0.2.0
+## v0.2.0
 
 API changes:
 
