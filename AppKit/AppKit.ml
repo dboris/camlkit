@@ -98,6 +98,7 @@ module NSDocumentClass = NSDocumentClass
 module NSDocumentController = NSDocumentController
 module NSDocumentControllerClass = NSDocumentControllerClass
 module NSDocumentControllerSubMenuDelegate = NSDocumentControllerSubMenuDelegate
+module NSDocumentMethods = NSDocumentMethods
 module NSDraggingImageComponent = NSDraggingImageComponent
 module NSDraggingImageComponentClass = NSDraggingImageComponentClass
 module NSDraggingItem = NSDraggingItem
