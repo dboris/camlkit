@@ -1,15 +1,16 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/appkit/nsimage?language=objc}NSImage} *)
 
 let canInitWithPasteboard x self = msg_send ~self ~cmd:(selector "canInitWithPasteboard:") ~typ:(id @-> returning bool) x
+let createImageWithSymbolName x ~scale self = msg_send ~self ~cmd:(selector "createImageWithSymbolName:scale:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int scale)
 let imageFileTypes self = msg_send ~self ~cmd:(selector "imageFileTypes") ~typ:(returning id)
 let imageNamed x self = msg_send ~self ~cmd:(selector "imageNamed:") ~typ:(id @-> returning id) x
 let imagePasteboardTypes self = msg_send ~self ~cmd:(selector "imagePasteboardTypes") ~typ:(returning id)

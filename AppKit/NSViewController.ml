@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -68,6 +68,7 @@ let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void
 let removeChildViewControllerAtIndex x self = msg_send ~self ~cmd:(selector "removeChildViewControllerAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let removeFromParentViewController self = msg_send ~self ~cmd:(selector "removeFromParentViewController") ~typ:(returning void)
 let representedObject self = msg_send ~self ~cmd:(selector "representedObject") ~typ:(returning id)
+let respondsToAction x ~fromTask self = msg_send ~self ~cmd:(selector "respondsToAction:fromTask:") ~typ:(_SEL @-> void @-> returning bool) x fromTask
 let segueForUnwindingToViewController x ~fromViewController ~identifier self = msg_send ~self ~cmd:(selector "segueForUnwindingToViewController:fromViewController:identifier:") ~typ:(id @-> id @-> id @-> returning id) x fromViewController identifier
 let setChildViewControllers x self = msg_send ~self ~cmd:(selector "setChildViewControllers:") ~typ:(id @-> returning void) x
 let setConstrainServiceScreenFrameBlock x self = msg_send ~self ~cmd:(selector "setConstrainServiceScreenFrameBlock:") ~typ:((ptr void) @-> returning void) x

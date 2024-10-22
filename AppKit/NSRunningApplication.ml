@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSRunningApplication"
 
 let activateWithOptions x self = msg_send ~self ~cmd:(selector "activateWithOptions:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)
-let activationPolicy self = msg_send ~self ~cmd:(selector "activationPolicy") ~typ:(returning llong)
+let activationPolicy self = msg_send ~self ~cmd:(selector "activationPolicy") ~typ:(returning llong) |> LLong.to_int
 let addObserver x ~forKeyPath ~options ~context self = msg_send ~self ~cmd:(selector "addObserver:forKeyPath:options:context:") ~typ:(id @-> id @-> ullong @-> (ptr void) @-> returning void) x forKeyPath (ULLong.of_int options) context
 let applicationSerialNumber self = msg_send ~self ~cmd:(selector "applicationSerialNumber") ~typ:(returning (ptr void))
 let applyPendingPropertyChanges self = msg_send ~self ~cmd:(selector "applyPendingPropertyChanges") ~typ:(returning bool)
@@ -20,10 +20,10 @@ let bundleIdentifier self = msg_send ~self ~cmd:(selector "bundleIdentifier") ~t
 let bundleURL self = msg_send ~self ~cmd:(selector "bundleURL") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
-let executableArchitecture self = msg_send ~self ~cmd:(selector "executableArchitecture") ~typ:(returning llong)
+let executableArchitecture self = msg_send ~self ~cmd:(selector "executableArchitecture") ~typ:(returning llong) |> LLong.to_int
 let executableURL self = msg_send ~self ~cmd:(selector "executableURL") ~typ:(returning id)
 let forceTerminate self = msg_send ~self ~cmd:(selector "forceTerminate") ~typ:(returning bool)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let hide self = msg_send ~self ~cmd:(selector "hide") ~typ:(returning bool)
 let icon self = msg_send ~self ~cmd:(selector "icon") ~typ:(returning id)
 let initWithApplicationSerialNumber x self = msg_send ~self ~cmd:(selector "initWithApplicationSerialNumber:") ~typ:((ptr void) @-> returning id) x

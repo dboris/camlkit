@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -47,12 +47,12 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
 let getPeriodicDelay x ~interval self = msg_send ~self ~cmd:(selector "getPeriodicDelay:interval:") ~typ:((ptr float) @-> (ptr float) @-> returning void) x interval
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let increment self = msg_send ~self ~cmd:(selector "increment") ~typ:(returning double)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
 let maxValue self = msg_send ~self ~cmd:(selector "maxValue") ~typ:(returning double)
 let minValue self = msg_send ~self ~cmd:(selector "minValue") ~typ:(returning double)
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)

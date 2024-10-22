@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -21,14 +21,14 @@ let expansionFrameWithFrame x ~inView self = msg_send_stret ~self ~cmd:(selector
 let highlight x ~withFrame ~inView self = msg_send ~self ~cmd:(selector "highlight:withFrame:inView:") ~typ:(bool @-> CGRect.t @-> id @-> returning void) x withFrame inView
 let highlightColorInView x self = msg_send ~self ~cmd:(selector "highlightColorInView:") ~typ:(id @-> returning id) x
 let highlightColorWithFrame x ~inView self = msg_send ~self ~cmd:(selector "highlightColorWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning id) x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initImageCell x self = msg_send ~self ~cmd:(selector "initImageCell:") ~typ:(id @-> returning id) x
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isLeaf self = msg_send ~self ~cmd:(selector "isLeaf") ~typ:(returning bool)
 let isLoaded self = msg_send ~self ~cmd:(selector "isLoaded") ~typ:(returning bool)
 let reset self = msg_send ~self ~cmd:(selector "reset") ~typ:(returning void)

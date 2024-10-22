@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSPanGestureRecognizer"
 
-let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong)
+let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let flagsChanged x self = msg_send ~self ~cmd:(selector "flagsChanged:") ~typ:(id @-> returning void) x
@@ -21,7 +21,7 @@ let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDragged x self = msg_send ~self ~cmd:(selector "mouseDragged:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
-let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong)
+let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong) |> LLong.to_int
 let otherMouseDown x self = msg_send ~self ~cmd:(selector "otherMouseDown:") ~typ:(id @-> returning void) x
 let otherMouseDragged x self = msg_send ~self ~cmd:(selector "otherMouseDragged:") ~typ:(id @-> returning void) x
 let otherMouseUp x self = msg_send ~self ~cmd:(selector "otherMouseUp:") ~typ:(id @-> returning void) x

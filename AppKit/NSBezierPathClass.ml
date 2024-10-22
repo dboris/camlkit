@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -15,17 +15,17 @@ let bezierPathWithRect x self = msg_send ~self ~cmd:(selector "bezierPathWithRec
 let bezierPathWithRoundedRect x ~xRadius ~yRadius self = msg_send ~self ~cmd:(selector "bezierPathWithRoundedRect:xRadius:yRadius:") ~typ:(CGRect.t @-> double @-> double @-> returning id) x xRadius yRadius
 let clipRect x self = msg_send ~self ~cmd:(selector "clipRect:") ~typ:(CGRect.t @-> returning void) x
 let defaultFlatness self = msg_send ~self ~cmd:(selector "defaultFlatness") ~typ:(returning double)
-let defaultLineCapStyle self = msg_send ~self ~cmd:(selector "defaultLineCapStyle") ~typ:(returning ullong)
-let defaultLineJoinStyle self = msg_send ~self ~cmd:(selector "defaultLineJoinStyle") ~typ:(returning ullong)
+let defaultLineCapStyle self = msg_send ~self ~cmd:(selector "defaultLineCapStyle") ~typ:(returning ullong) |> ULLong.to_int
+let defaultLineJoinStyle self = msg_send ~self ~cmd:(selector "defaultLineJoinStyle") ~typ:(returning ullong) |> ULLong.to_int
 let defaultLineWidth self = msg_send ~self ~cmd:(selector "defaultLineWidth") ~typ:(returning double)
 let defaultMiterLimit self = msg_send ~self ~cmd:(selector "defaultMiterLimit") ~typ:(returning double)
-let defaultWindingRule self = msg_send ~self ~cmd:(selector "defaultWindingRule") ~typ:(returning ullong)
+let defaultWindingRule self = msg_send ~self ~cmd:(selector "defaultWindingRule") ~typ:(returning ullong) |> ULLong.to_int
 let drawPackedGlyphs x ~atPoint self = msg_send ~self ~cmd:(selector "drawPackedGlyphs:atPoint:") ~typ:(string @-> CGPoint.t @-> returning void) x atPoint
 let fillRect x self = msg_send ~self ~cmd:(selector "fillRect:") ~typ:(CGRect.t @-> returning void) x
 let flatness self = msg_send ~self ~cmd:(selector "flatness") ~typ:(returning double)
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
-let lineCapStyle self = msg_send ~self ~cmd:(selector "lineCapStyle") ~typ:(returning ullong)
-let lineJoinStyle self = msg_send ~self ~cmd:(selector "lineJoinStyle") ~typ:(returning ullong)
+let lineCapStyle self = msg_send ~self ~cmd:(selector "lineCapStyle") ~typ:(returning ullong) |> ULLong.to_int
+let lineJoinStyle self = msg_send ~self ~cmd:(selector "lineJoinStyle") ~typ:(returning ullong) |> ULLong.to_int
 let lineWidth self = msg_send ~self ~cmd:(selector "lineWidth") ~typ:(returning double)
 let miterLimit self = msg_send ~self ~cmd:(selector "miterLimit") ~typ:(returning double)
 let setDefaultFlatness x self = msg_send ~self ~cmd:(selector "setDefaultFlatness:") ~typ:(double @-> returning void) x
@@ -43,4 +43,4 @@ let setWindingRule x self = msg_send ~self ~cmd:(selector "setWindingRule:") ~ty
 let strokeLineFromPoint x ~toPoint self = msg_send ~self ~cmd:(selector "strokeLineFromPoint:toPoint:") ~typ:(CGPoint.t @-> CGPoint.t @-> returning void) x toPoint
 let strokeRect x self = msg_send ~self ~cmd:(selector "strokeRect:") ~typ:(CGRect.t @-> returning void) x
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)
-let windingRule self = msg_send ~self ~cmd:(selector "windingRule") ~typ:(returning ullong)
+let windingRule self = msg_send ~self ~cmd:(selector "windingRule") ~typ:(returning ullong) |> ULLong.to_int

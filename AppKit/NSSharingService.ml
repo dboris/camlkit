@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -45,4 +45,5 @@ let shkSharingService self = msg_send ~self ~cmd:(selector "shkSharingService") 
 let subject self = msg_send ~self ~cmd:(selector "subject") ~typ:(returning id)
 let subtitle self = msg_send ~self ~cmd:(selector "subtitle") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int
+let uiActivityType self = msg_send ~self ~cmd:(selector "uiActivityType") ~typ:(returning id)

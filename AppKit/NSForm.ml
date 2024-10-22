@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -19,8 +19,8 @@ let calcSize self = msg_send ~self ~cmd:(selector "calcSize") ~typ:(returning vo
 let cellAtIndex x self = msg_send ~self ~cmd:(selector "cellAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let drawCellAtIndex x self = msg_send ~self ~cmd:(selector "drawCellAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning id)
-let indexOfCellWithTag x self = msg_send ~self ~cmd:(selector "indexOfCellWithTag:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong)
+let indexOfCellWithTag x self = msg_send ~self ~cmd:(selector "indexOfCellWithTag:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong) |> LLong.to_int
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let insertEntry x ~atIndex self = msg_send ~self ~cmd:(selector "insertEntry:atIndex:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int atIndex)
 let preferredTextFieldWidth self = msg_send ~self ~cmd:(selector "preferredTextFieldWidth") ~typ:(returning double)

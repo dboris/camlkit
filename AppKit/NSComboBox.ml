@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -16,7 +16,7 @@ let addItemWithObjectValue x self = msg_send ~self ~cmd:(selector "addItemWithOb
 let addItemsWithObjectValues x self = msg_send ~self ~cmd:(selector "addItemsWithObjectValues:") ~typ:(id @-> returning void) x
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let comboBoxCell x ~completedString self = msg_send ~self ~cmd:(selector "comboBoxCell:completedString:") ~typ:(id @-> id @-> returning id) x completedString
-let comboBoxCell1 x ~indexOfItemWithStringValue self = msg_send ~self ~cmd:(selector "comboBoxCell:indexOfItemWithStringValue:") ~typ:(id @-> id @-> returning ullong) x indexOfItemWithStringValue
+let comboBoxCell1 x ~indexOfItemWithStringValue self = msg_send ~self ~cmd:(selector "comboBoxCell:indexOfItemWithStringValue:") ~typ:(id @-> id @-> returning ullong) x indexOfItemWithStringValue |> ULLong.to_int
 let comboBoxCell2 x ~objectValueForItemAtIndex self = msg_send ~self ~cmd:(selector "comboBoxCell:objectValueForItemAtIndex:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int objectValueForItemAtIndex)
 let comboBoxCellSelectionDidChange x self = msg_send ~self ~cmd:(selector "comboBoxCellSelectionDidChange:") ~typ:(id @-> returning void) x
 let comboBoxCellSelectionIsChanging x self = msg_send ~self ~cmd:(selector "comboBoxCellSelectionIsChanging:") ~typ:(id @-> returning void) x
@@ -29,8 +29,8 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id
 let deselectItemAtIndex x self = msg_send ~self ~cmd:(selector "deselectItemAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let hasVerticalScroller self = msg_send ~self ~cmd:(selector "hasVerticalScroller") ~typ:(returning bool)
-let indexOfItemWithObjectValue x self = msg_send ~self ~cmd:(selector "indexOfItemWithObjectValue:") ~typ:(id @-> returning llong) x
-let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong)
+let indexOfItemWithObjectValue x self = msg_send ~self ~cmd:(selector "indexOfItemWithObjectValue:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong) |> LLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let insertItemWithObjectValue x ~atIndex self = msg_send ~self ~cmd:(selector "insertItemWithObjectValue:atIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int atIndex)
@@ -41,9 +41,9 @@ let itemObjectValueAtIndex x self = msg_send ~self ~cmd:(selector "itemObjectVal
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
 let noteNumberOfItemsChanged self = msg_send ~self ~cmd:(selector "noteNumberOfItemsChanged") ~typ:(returning void)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
-let numberOfItemsInComboBoxCell x self = msg_send ~self ~cmd:(selector "numberOfItemsInComboBoxCell:") ~typ:(id @-> returning llong) x
-let numberOfVisibleItems self = msg_send ~self ~cmd:(selector "numberOfVisibleItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
+let numberOfItemsInComboBoxCell x self = msg_send ~self ~cmd:(selector "numberOfItemsInComboBoxCell:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let numberOfVisibleItems self = msg_send ~self ~cmd:(selector "numberOfVisibleItems") ~typ:(returning llong) |> LLong.to_int
 let objectValueOfSelectedItem self = msg_send ~self ~cmd:(selector "objectValueOfSelectedItem") ~typ:(returning id)
 let objectValues self = msg_send ~self ~cmd:(selector "objectValues") ~typ:(returning id)
 let reloadData self = msg_send ~self ~cmd:(selector "reloadData") ~typ:(returning void)

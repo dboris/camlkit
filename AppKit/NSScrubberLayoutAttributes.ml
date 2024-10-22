@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -16,10 +16,10 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let escapesFromScrollView self = msg_send ~self ~cmd:(selector "escapesFromScrollView") ~typ:(returning bool)
 let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let itemIndex self = msg_send ~self ~cmd:(selector "itemIndex") ~typ:(returning llong)
+let itemIndex self = msg_send ~self ~cmd:(selector "itemIndex") ~typ:(returning llong) |> LLong.to_int
 let setAlpha x self = msg_send ~self ~cmd:(selector "setAlpha:") ~typ:(double @-> returning void) x
 let setEscapesFromScrollView x self = msg_send ~self ~cmd:(selector "setEscapesFromScrollView:") ~typ:(bool @-> returning void) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning void) x

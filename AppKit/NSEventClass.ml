@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -22,11 +22,11 @@ let isSwipeTrackingFromScrollEventsEnabled self = msg_send ~self ~cmd:(selector 
 let keyEventWithType x ~location ~modifierFlags ~timestamp ~windowNumber ~context ~characters ~charactersIgnoringModifiers ~isARepeat ~keyCode self = msg_send ~self ~cmd:(selector "keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> double @-> llong @-> id @-> id @-> id @-> bool @-> ushort @-> returning id) (ULLong.of_int x) location (ULLong.of_int modifierFlags) timestamp (LLong.of_int windowNumber) context characters charactersIgnoringModifiers isARepeat keyCode
 let keyRepeatDelay self = msg_send ~self ~cmd:(selector "keyRepeatDelay") ~typ:(returning double)
 let keyRepeatInterval self = msg_send ~self ~cmd:(selector "keyRepeatInterval") ~typ:(returning double)
-let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning ullong)
+let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning ullong) |> ULLong.to_int
 let mouseEventWithType x ~location ~modifierFlags ~timestamp ~windowNumber ~context ~eventNumber ~clickCount ~pressure self = msg_send ~self ~cmd:(selector "mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> double @-> llong @-> id @-> llong @-> llong @-> float @-> returning id) (ULLong.of_int x) location (ULLong.of_int modifierFlags) timestamp (LLong.of_int windowNumber) context (LLong.of_int eventNumber) (LLong.of_int clickCount) pressure
 let mouseLocation self = msg_send_stret ~self ~cmd:(selector "mouseLocation") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let otherEventWithType x ~location ~modifierFlags ~timestamp ~windowNumber ~context ~subtype ~data1 ~data2 self = msg_send ~self ~cmd:(selector "otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:") ~typ:(ullong @-> CGPoint.t @-> ullong @-> double @-> llong @-> id @-> short @-> llong @-> llong @-> returning id) (ULLong.of_int x) location (ULLong.of_int modifierFlags) timestamp (LLong.of_int windowNumber) context subtype (LLong.of_int data1) (LLong.of_int data2)
-let pressedMouseButtons self = msg_send ~self ~cmd:(selector "pressedMouseButtons") ~typ:(returning ullong)
+let pressedMouseButtons self = msg_send ~self ~cmd:(selector "pressedMouseButtons") ~typ:(returning ullong) |> ULLong.to_int
 let removeMonitor x self = msg_send ~self ~cmd:(selector "removeMonitor:") ~typ:(id @-> returning void) x
 let setMouseCoalescingEnabled x self = msg_send ~self ~cmd:(selector "setMouseCoalescingEnabled:") ~typ:(bool @-> returning void) x
 let standardMagnificationThreshold self = msg_send ~self ~cmd:(selector "standardMagnificationThreshold") ~typ:(returning double)

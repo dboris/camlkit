@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -58,8 +58,8 @@ let setTitleWidth x self = msg_send ~self ~cmd:(selector "setTitleWidth:") ~typ:
 let setTitleWithMnemonic x self = msg_send ~self ~cmd:(selector "setTitleWithMnemonic:") ~typ:(id @-> returning void) x
 let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
-let titleAlignment self = msg_send ~self ~cmd:(selector "titleAlignment") ~typ:(returning llong)
-let titleBaseWritingDirection self = msg_send ~self ~cmd:(selector "titleBaseWritingDirection") ~typ:(returning llong)
+let titleAlignment self = msg_send ~self ~cmd:(selector "titleAlignment") ~typ:(returning llong) |> LLong.to_int
+let titleBaseWritingDirection self = msg_send ~self ~cmd:(selector "titleBaseWritingDirection") ~typ:(returning llong) |> LLong.to_int
 let titleFont self = msg_send ~self ~cmd:(selector "titleFont") ~typ:(returning id)
 let titleWidth self = msg_send ~self ~cmd:(selector "titleWidth") ~typ:(returning double)
 let titleWidth' x self = msg_send ~self ~cmd:(selector "titleWidth:") ~typ:(CGSize.t @-> returning double) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -26,7 +26,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning id) x bundle
 let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning bool)
 let isToolbarAccessoryView self = msg_send ~self ~cmd:(selector "isToolbarAccessoryView") ~typ:(returning bool)
-let layoutAttribute self = msg_send ~self ~cmd:(selector "layoutAttribute") ~typ:(returning llong)
+let layoutAttribute self = msg_send ~self ~cmd:(selector "layoutAttribute") ~typ:(returning llong) |> LLong.to_int
 let prefersDefaultSize self = msg_send ~self ~cmd:(selector "prefersDefaultSize") ~typ:(returning bool)
 let recalculateKeyViewLoop self = msg_send ~self ~cmd:(selector "recalculateKeyViewLoop") ~typ:(returning void)
 let revealAmount self = msg_send ~self ~cmd:(selector "revealAmount") ~typ:(returning double)

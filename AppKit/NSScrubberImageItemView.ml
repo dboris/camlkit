@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,7 +14,7 @@ let self = get_class "NSScrubberImageItemView"
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
-let imageAlignment self = msg_send ~self ~cmd:(selector "imageAlignment") ~typ:(returning ullong)
+let imageAlignment self = msg_send ~self ~cmd:(selector "imageAlignment") ~typ:(returning ullong) |> ULLong.to_int
 let imageView self = msg_send ~self ~cmd:(selector "imageView") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x

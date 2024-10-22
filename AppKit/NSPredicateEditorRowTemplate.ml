@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -24,11 +24,11 @@ let initWithLeftExpressions x ~rightExpressionAttributeType ~modifier ~operators
 let initWithLeftExpressions' x ~rightExpressions ~modifier ~operators ~options self = msg_send ~self ~cmd:(selector "initWithLeftExpressions:rightExpressions:modifier:operators:options:") ~typ:(id @-> id @-> ullong @-> id @-> ullong @-> returning id) x rightExpressions (ULLong.of_int modifier) operators (ULLong.of_int options)
 let leftExpressions self = msg_send ~self ~cmd:(selector "leftExpressions") ~typ:(returning id)
 let matchForPredicate x self = msg_send ~self ~cmd:(selector "matchForPredicate:") ~typ:(id @-> returning double) x
-let modifier self = msg_send ~self ~cmd:(selector "modifier") ~typ:(returning ullong)
+let modifier self = msg_send ~self ~cmd:(selector "modifier") ~typ:(returning ullong) |> ULLong.to_int
 let operators self = msg_send ~self ~cmd:(selector "operators") ~typ:(returning id)
-let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
+let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong) |> ULLong.to_int
 let predicateWithSubpredicates x self = msg_send ~self ~cmd:(selector "predicateWithSubpredicates:") ~typ:(id @-> returning id) x
-let rightExpressionAttributeType self = msg_send ~self ~cmd:(selector "rightExpressionAttributeType") ~typ:(returning ullong)
+let rightExpressionAttributeType self = msg_send ~self ~cmd:(selector "rightExpressionAttributeType") ~typ:(returning ullong) |> ULLong.to_int
 let rightExpressions self = msg_send ~self ~cmd:(selector "rightExpressions") ~typ:(returning id)
 let setPredicate x self = msg_send ~self ~cmd:(selector "setPredicate:") ~typ:(id @-> returning void) x
 let templateViews self = msg_send ~self ~cmd:(selector "templateViews") ~typ:(returning id)

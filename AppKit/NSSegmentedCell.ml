@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -30,7 +30,7 @@ let accessibilityRoleAttribute self = msg_send ~self ~cmd:(selector "accessibili
 let accessibilitySetFocus x ~forChild self = msg_send ~self ~cmd:(selector "accessibilitySetFocus:forChild:") ~typ:(id @-> id @-> returning void) x forChild
 let accessibilitySizeOfChild x self = msg_send ~self ~cmd:(selector "accessibilitySizeOfChild:") ~typ:(id @-> returning id) x
 let accessibilityValueAttribute self = msg_send ~self ~cmd:(selector "accessibilityValueAttribute") ~typ:(returning id)
-let alignmentForSegment x self = msg_send ~self ~cmd:(selector "alignmentForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let alignmentForSegment x self = msg_send ~self ~cmd:(selector "alignmentForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let alternateImageForSegment x self = msg_send ~self ~cmd:(selector "alternateImageForSegment:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let continueTracking x ~at ~inView self = msg_send ~self ~cmd:(selector "continueTracking:at:inView:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> returning bool) x at inView
@@ -49,16 +49,16 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
 let getPeriodicDelay x ~interval self = msg_send ~self ~cmd:(selector "getPeriodicDelay:interval:") ~typ:((ptr float) @-> (ptr float) @-> returning void) x interval
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let imageForSegment x self = msg_send ~self ~cmd:(selector "imageForSegment:") ~typ:(llong @-> returning id) (LLong.of_int x)
-let imageScalingForSegment x self = msg_send ~self ~cmd:(selector "imageScalingForSegment:") ~typ:(llong @-> returning ullong) (LLong.of_int x)
-let indexOfSegmentContainingPoint x ~inCellFrame self = msg_send ~self ~cmd:(selector "indexOfSegmentContainingPoint:inCellFrame:") ~typ:(CGPoint.t @-> CGRect.t @-> returning llong) x inCellFrame
-let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong)
+let imageScalingForSegment x self = msg_send ~self ~cmd:(selector "imageScalingForSegment:") ~typ:(llong @-> returning ullong) (LLong.of_int x) |> ULLong.to_int
+let indexOfSegmentContainingPoint x ~inCellFrame self = msg_send ~self ~cmd:(selector "indexOfSegmentContainingPoint:inCellFrame:") ~typ:(CGPoint.t @-> CGRect.t @-> returning llong) x inCellFrame |> LLong.to_int
+let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong) |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
-let interiorBackgroundStyleForSegment x self = msg_send ~self ~cmd:(selector "interiorBackgroundStyleForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
+let interiorBackgroundStyleForSegment x self = msg_send ~self ~cmd:(selector "interiorBackgroundStyleForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let isEnabledForSegment x self = msg_send ~self ~cmd:(selector "isEnabledForSegment:") ~typ:(llong @-> returning bool) (LLong.of_int x)
 let isMenuIndicatorShownForSegment x self = msg_send ~self ~cmd:(selector "isMenuIndicatorShownForSegment:") ~typ:(llong @-> returning bool) (LLong.of_int x)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
@@ -74,11 +74,11 @@ let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id 
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
 let rectForSegment x ~inFrame self = msg_send_stret ~self ~cmd:(selector "rectForSegment:inFrame:") ~typ:(llong @-> CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x) inFrame
-let segmentCount self = msg_send ~self ~cmd:(selector "segmentCount") ~typ:(returning llong)
-let segmentDistribution self = msg_send ~self ~cmd:(selector "segmentDistribution") ~typ:(returning llong)
-let segmentStyle self = msg_send ~self ~cmd:(selector "segmentStyle") ~typ:(returning llong)
+let segmentCount self = msg_send ~self ~cmd:(selector "segmentCount") ~typ:(returning llong) |> LLong.to_int
+let segmentDistribution self = msg_send ~self ~cmd:(selector "segmentDistribution") ~typ:(returning llong) |> LLong.to_int
+let segmentStyle self = msg_send ~self ~cmd:(selector "segmentStyle") ~typ:(returning llong) |> LLong.to_int
 let selectSegmentWithTag x self = msg_send ~self ~cmd:(selector "selectSegmentWithTag:") ~typ:(llong @-> returning bool) (LLong.of_int x)
-let selectedSegment self = msg_send ~self ~cmd:(selector "selectedSegment") ~typ:(returning llong)
+let selectedSegment self = msg_send ~self ~cmd:(selector "selectedSegment") ~typ:(returning llong) |> LLong.to_int
 let setAccessibilityLabel x ~forSegment self = msg_send ~self ~cmd:(selector "setAccessibilityLabel:forSegment:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int forSegment)
 let setAlignment x ~forSegment self = msg_send ~self ~cmd:(selector "setAlignment:forSegment:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int forSegment)
 let setAlternateImage x ~forSegment self = msg_send ~self ~cmd:(selector "setAlternateImage:forSegment:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int forSegment)
@@ -115,13 +115,13 @@ let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setU
 let setWidth x ~forSegment self = msg_send ~self ~cmd:(selector "setWidth:forSegment:") ~typ:(double @-> llong @-> returning void) x (LLong.of_int forSegment)
 let showsMenuIndicatorForSegment x self = msg_send ~self ~cmd:(selector "showsMenuIndicatorForSegment:") ~typ:(llong @-> returning bool) (LLong.of_int x)
 let springLoadingActivated x ~draggingInfo self = msg_send ~self ~cmd:(selector "springLoadingActivated:draggingInfo:") ~typ:(bool @-> id @-> returning void) x draggingInfo
-let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x
+let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let springLoadingExited x self = msg_send ~self ~cmd:(selector "springLoadingExited:") ~typ:(id @-> returning void) x
 let springLoadingHighlightChanged x self = msg_send ~self ~cmd:(selector "springLoadingHighlightChanged:") ~typ:(id @-> returning void) x
-let springLoadingUpdated x self = msg_send ~self ~cmd:(selector "springLoadingUpdated:") ~typ:(id @-> returning ullong) x
+let springLoadingUpdated x self = msg_send ~self ~cmd:(selector "springLoadingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let startTrackingAt x ~inView self = msg_send ~self ~cmd:(selector "startTrackingAt:inView:") ~typ:(CGPoint.t @-> id @-> returning bool) x inView
 let stopTracking x ~at ~inView ~mouseIsUp self = msg_send ~self ~cmd:(selector "stopTracking:at:inView:mouseIsUp:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> bool @-> returning void) x at inView mouseIsUp
-let tagForSegment x self = msg_send ~self ~cmd:(selector "tagForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let tagForSegment x self = msg_send ~self ~cmd:(selector "tagForSegment:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let toolTipForSegment x self = msg_send ~self ~cmd:(selector "toolTipForSegment:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let touchBeganAt x ~inView self = msg_send ~self ~cmd:(selector "touchBeganAt:inView:") ~typ:(CGPoint.t @-> id @-> returning void) x inView
@@ -129,7 +129,7 @@ let touchCancelledAt x ~inView self = msg_send ~self ~cmd:(selector "touchCancel
 let touchEndedAt x ~inView self = msg_send ~self ~cmd:(selector "touchEndedAt:inView:") ~typ:(CGPoint.t @-> id @-> returning void) x inView
 let touchMovedFrom x ~to_ ~inView self = msg_send ~self ~cmd:(selector "touchMovedFrom:to:inView:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> returning void) x to_ inView
 let trackMouse x ~inRect ~ofView ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> bool @-> returning bool) x inRect ofView untilMouseUp
-let trackingMode self = msg_send ~self ~cmd:(selector "trackingMode") ~typ:(returning ullong)
+let trackingMode self = msg_send ~self ~cmd:(selector "trackingMode") ~typ:(returning ullong) |> ULLong.to_int
 let updateTrackingAreaWithFrame x ~inView self = msg_send ~self ~cmd:(selector "updateTrackingAreaWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let wantsUpdateLayerInView x self = msg_send ~self ~cmd:(selector "wantsUpdateLayerInView:") ~typ:(id @-> returning bool) x
 let widthForSegment x self = msg_send ~self ~cmd:(selector "widthForSegment:") ~typ:(llong @-> returning double) (LLong.of_int x)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -28,7 +28,7 @@ let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstRespon
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
 let deactivate self = msg_send ~self ~cmd:(selector "deactivate") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let drawColor self = msg_send ~self ~cmd:(selector "drawColor") ~typ:(returning bool)
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let drawWellInside x self = msg_send ~self ~cmd:(selector "drawWellInside:") ~typ:(CGRect.t @-> returning void) x

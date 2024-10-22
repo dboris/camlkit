@@ -1,9 +1,0 @@
-(library
- (name AppKit_extra)
- (public_name camlkit-gui.AppKit_extra)
- (libraries
-  camlkit-base.runtime
-  camlkit-base.Foundation
-  camlkit-base.CoreAnimation))
-
-(documentation (package camlkit-gui))

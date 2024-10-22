@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -32,7 +32,7 @@ let navigateForwardToObject x self = msg_send ~self ~cmd:(selector "navigateForw
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let removeForwardNavigableObjects self = msg_send ~self ~cmd:(selector "removeForwardNavigableObjects") ~typ:(returning void)
 let scrollWheel x self = msg_send ~self ~cmd:(selector "scrollWheel:") ~typ:(id @-> returning void) x
-let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong)
+let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong) |> LLong.to_int
 let selectedViewController self = msg_send ~self ~cmd:(selector "selectedViewController") ~typ:(returning id)
 let setAnimations x self = msg_send ~self ~cmd:(selector "setAnimations:") ~typ:(id @-> returning void) x
 let setArrangedObjects x self = msg_send ~self ~cmd:(selector "setArrangedObjects:") ~typ:(id @-> returning void) x
@@ -45,6 +45,6 @@ let setSelectedViewController x self = msg_send ~self ~cmd:(selector "setSelecte
 let setTransitionStyle x self = msg_send ~self ~cmd:(selector "setTransitionStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let takeSelectedIndexFrom x self = msg_send ~self ~cmd:(selector "takeSelectedIndexFrom:") ~typ:(id @-> returning void) x
-let transitionStyle self = msg_send ~self ~cmd:(selector "transitionStyle") ~typ:(returning llong)
+let transitionStyle self = msg_send ~self ~cmd:(selector "transitionStyle") ~typ:(returning llong) |> LLong.to_int
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning bool) x
 let wantsScrollEventsForSwipeTrackingOnAxis x self = msg_send ~self ~cmd:(selector "wantsScrollEventsForSwipeTrackingOnAxis:") ~typ:(llong @-> returning bool) (LLong.of_int x)

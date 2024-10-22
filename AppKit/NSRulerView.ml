@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -59,7 +59,7 @@ let measurementUnits self = msg_send ~self ~cmd:(selector "measurementUnits") ~t
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
 let moveRulerlineFromLocation x ~toLocation self = msg_send ~self ~cmd:(selector "moveRulerlineFromLocation:toLocation:") ~typ:(double @-> double @-> returning void) x toLocation
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning ullong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning ullong) |> ULLong.to_int
 let originOffset self = msg_send ~self ~cmd:(selector "originOffset") ~typ:(returning double)
 let removeMarker x self = msg_send ~self ~cmd:(selector "removeMarker:") ~typ:(id @-> returning void) x
 let requiredThickness self = msg_send ~self ~cmd:(selector "requiredThickness") ~typ:(returning double)
@@ -85,5 +85,5 @@ let setScrollView x self = msg_send ~self ~cmd:(selector "setScrollView:") ~typ:
 let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let testPart x self = msg_send ~self ~cmd:(selector "testPart:") ~typ:(CGPoint.t @-> returning id) x
 let trackMarker x ~withMouseEvent self = msg_send ~self ~cmd:(selector "trackMarker:withMouseEvent:") ~typ:(id @-> id @-> returning bool) x withMouseEvent
-let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong)
+let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let viewDidEndLiveResize self = msg_send ~self ~cmd:(selector "viewDidEndLiveResize") ~typ:(returning void)

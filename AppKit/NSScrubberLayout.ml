@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -19,11 +19,11 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let invalidateLayout self = msg_send ~self ~cmd:(selector "invalidateLayout") ~typ:(returning void)
 let layoutAttributesForItemAtIndex x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let layoutAttributesForItemsInRect x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemsInRect:") ~typ:(CGRect.t @-> returning id) x
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning void)
 let scrubber self = msg_send ~self ~cmd:(selector "scrubber") ~typ:(returning id)
 let scrubberContentSize self = msg_send_stret ~self ~cmd:(selector "scrubberContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let selectedItem self = msg_send ~self ~cmd:(selector "selectedItem") ~typ:(returning llong)
+let selectedItem self = msg_send ~self ~cmd:(selector "selectedItem") ~typ:(returning llong) |> LLong.to_int
 let shouldInvalidateLayoutForChangeFromVisibleRect x ~toVisibleRect self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForChangeFromVisibleRect:toVisibleRect:") ~typ:(CGRect.t @-> CGRect.t @-> returning bool) x toVisibleRect
 let shouldInvalidateLayoutForHighlightChange self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForHighlightChange") ~typ:(returning bool)
 let shouldInvalidateLayoutForSelectionChange self = msg_send ~self ~cmd:(selector "shouldInvalidateLayoutForSelectionChange") ~typ:(returning bool)

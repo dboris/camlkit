@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -46,15 +46,15 @@ let endEditing x self = msg_send ~self ~cmd:(selector "endEditing:") ~typ:(id @-
 let filterEvents x self = msg_send ~self ~cmd:(selector "filterEvents:") ~typ:(id @-> returning void) x
 let frameForPopUpWithOldFrame x ~cellFrame ~controlView self = msg_send_stret ~self ~cmd:(selector "frameForPopUpWithOldFrame:cellFrame:controlView:") ~typ:(CGRect.t @-> CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x cellFrame controlView
 let hasVerticalScroller self = msg_send ~self ~cmd:(selector "hasVerticalScroller") ~typ:(returning bool)
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
-let indexOfItemWithObjectValue x self = msg_send ~self ~cmd:(selector "indexOfItemWithObjectValue:") ~typ:(id @-> returning llong) x
-let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong)
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
+let indexOfItemWithObjectValue x self = msg_send ~self ~cmd:(selector "indexOfItemWithObjectValue:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong) |> LLong.to_int
 let initPopUpWindow self = msg_send ~self ~cmd:(selector "initPopUpWindow") ~typ:(returning void)
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let insertItemWithObjectValue x ~atIndex self = msg_send ~self ~cmd:(selector "insertItemWithObjectValue:atIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int atIndex)
 let intercellSpacing self = msg_send_stret ~self ~cmd:(selector "intercellSpacing") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isButtonBordered self = msg_send ~self ~cmd:(selector "isButtonBordered") ~typ:(returning bool)
 let isButtonHighlighted self = msg_send ~self ~cmd:(selector "isButtonHighlighted") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
@@ -62,9 +62,9 @@ let itemHeight self = msg_send ~self ~cmd:(selector "itemHeight") ~typ:(returnin
 let itemObjectValueAtIndex x self = msg_send ~self ~cmd:(selector "itemObjectValueAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let moveDown x self = msg_send ~self ~cmd:(selector "moveDown:") ~typ:(id @-> returning void) x
 let noteNumberOfItemsChanged self = msg_send ~self ~cmd:(selector "noteNumberOfItemsChanged") ~typ:(returning void)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
-let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x
-let numberOfVisibleItems self = msg_send ~self ~cmd:(selector "numberOfVisibleItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
+let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let numberOfVisibleItems self = msg_send ~self ~cmd:(selector "numberOfVisibleItems") ~typ:(returning llong) |> LLong.to_int
 let objectValueOfSelectedItem self = msg_send ~self ~cmd:(selector "objectValueOfSelectedItem") ~typ:(returning id)
 let objectValues self = msg_send ~self ~cmd:(selector "objectValues") ~typ:(returning id)
 let orderOutPopUpWindow x self = msg_send ~self ~cmd:(selector "orderOutPopUpWindow:") ~typ:(id @-> returning void) x

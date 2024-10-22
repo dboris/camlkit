@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let canInitWithPasteboard x self = msg_send ~self ~cmd:(selector "canInitWithPas
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let playSound x ~flags ~completionHandler self = msg_send ~self ~cmd:(selector "playSound:flags:completionHandler:") ~typ:(id @-> ullong @-> (ptr void) @-> returning bool) x (ULLong.of_int flags) completionHandler
 let readableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "readableTypesForPasteboard:") ~typ:(id @-> returning id) x
-let readingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "readingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard
+let readingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "readingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard |> ULLong.to_int
 let soundNamed x self = msg_send ~self ~cmd:(selector "soundNamed:") ~typ:(id @-> returning id) x
 let soundUnfilteredFileTypes self = msg_send ~self ~cmd:(selector "soundUnfilteredFileTypes") ~typ:(returning id)
 let soundUnfilteredPasteboardTypes self = msg_send ~self ~cmd:(selector "soundUnfilteredPasteboardTypes") ~typ:(returning id)

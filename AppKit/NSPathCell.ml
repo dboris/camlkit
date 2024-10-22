@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -38,7 +38,7 @@ let animation x ~didReachProgressMark self = msg_send ~self ~cmd:(selector "anim
 let animationDidEnd x self = msg_send ~self ~cmd:(selector "animationDidEnd:") ~typ:(id @-> returning void) x
 let animationDidStop x self = msg_send ~self ~cmd:(selector "animationDidStop:") ~typ:(id @-> returning void) x
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
-let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong)
+let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong) |> ULLong.to_int
 let borderColorForEdge x self = msg_send ~self ~cmd:(selector "borderColorForEdge:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let clickedPathComponentCell self = msg_send ~self ~cmd:(selector "clickedPathComponentCell") ~typ:(returning id)
@@ -54,7 +54,7 @@ let editWithFrame x ~inView ~editor ~delegate ~event self = msg_send ~self ~cmd:
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let expansionFrameWithFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "expansionFrameWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let insertPathComponentCell x ~atIndex self = msg_send ~self ~cmd:(selector "insertPathComponentCell:atIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int atIndex)
@@ -64,7 +64,7 @@ let mouseEntered x ~withFrame ~inView self = msg_send ~self ~cmd:(selector "mous
 let mouseExited x ~withFrame ~inView self = msg_send ~self ~cmd:(selector "mouseExited:withFrame:inView:") ~typ:(id @-> CGRect.t @-> id @-> returning void) x withFrame inView
 let pathComponentCellAtPoint x ~withFrame ~inView self = msg_send ~self ~cmd:(selector "pathComponentCellAtPoint:withFrame:inView:") ~typ:(CGPoint.t @-> CGRect.t @-> id @-> returning id) x withFrame inView
 let pathComponentCells self = msg_send ~self ~cmd:(selector "pathComponentCells") ~typ:(returning id)
-let pathStyle self = msg_send ~self ~cmd:(selector "pathStyle") ~typ:(returning llong)
+let pathStyle self = msg_send ~self ~cmd:(selector "pathStyle") ~typ:(returning llong) |> LLong.to_int
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
 let placeholderAttributedString self = msg_send ~self ~cmd:(selector "placeholderAttributedString") ~typ:(returning id)
 let placeholderString self = msg_send ~self ~cmd:(selector "placeholderString") ~typ:(returning id)

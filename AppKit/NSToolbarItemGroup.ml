@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSToolbarItemGroup"
 
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
 let configureForDisplayMode x ~andSizeMode self = msg_send ~self ~cmd:(selector "configureForDisplayMode:andSizeMode:") ~typ:(ullong @-> ullong @-> returning void) (ULLong.of_int x) (ULLong.of_int andSizeMode)
-let controlRepresentation self = msg_send ~self ~cmd:(selector "controlRepresentation") ~typ:(returning llong)
+let controlRepresentation self = msg_send ~self ~cmd:(selector "controlRepresentation") ~typ:(returning llong) |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
@@ -25,8 +25,8 @@ let isSelectedAtIndex x self = msg_send ~self ~cmd:(selector "isSelectedAtIndex:
 let menuFormRepresentation self = msg_send ~self ~cmd:(selector "menuFormRepresentation") ~typ:(returning id)
 let rectForItem x ~inBounds self = msg_send_stret ~self ~cmd:(selector "rectForItem:inBounds:") ~typ:(id @-> CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x inBounds
 let rectForItem' x ~inBounds ~controlBounds self = msg_send_stret ~self ~cmd:(selector "rectForItem:inBounds:controlBounds:") ~typ:(id @-> CGRect.t @-> CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x inBounds controlBounds
-let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong)
-let selectionMode self = msg_send ~self ~cmd:(selector "selectionMode") ~typ:(returning llong)
+let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong) |> LLong.to_int
+let selectionMode self = msg_send ~self ~cmd:(selector "selectionMode") ~typ:(returning llong) |> LLong.to_int
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning void) x
 let setBordered x self = msg_send ~self ~cmd:(selector "setBordered:") ~typ:(bool @-> returning void) x
 let setControlRepresentation x self = msg_send ~self ~cmd:(selector "setControlRepresentation:") ~typ:(llong @-> returning void) (LLong.of_int x)

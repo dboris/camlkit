@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -19,7 +19,7 @@ let attachColorList x self = msg_send ~self ~cmd:(selector "attachColorList:") ~
 let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ:(returning void)
 let changeWindowFrameSizeByDelta x ~display ~animate self = msg_send ~self ~cmd:(selector "changeWindowFrameSizeByDelta:display:animate:") ~typ:(CGSize.t @-> bool @-> bool @-> returning void) x display animate
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
-let colorMask self = msg_send ~self ~cmd:(selector "colorMask") ~typ:(returning llong)
+let colorMask self = msg_send ~self ~cmd:(selector "colorMask") ~typ:(returning llong) |> LLong.to_int
 let colorPickerViewController x ~didSelectColor self = msg_send ~self ~cmd:(selector "colorPickerViewController:didSelectColor:") ~typ:(id @-> id @-> returning void) x didSelectColor
 let conformsToProtocol x self = msg_send ~self ~cmd:(selector "conformsToProtocol:") ~typ:(id @-> returning bool) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -33,7 +33,7 @@ let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(retu
 let isUsingModalAppearance self = msg_send ~self ~cmd:(selector "isUsingModalAppearance") ~typ:(returning bool)
 let isViewOfPickerLoaded x self = msg_send ~self ~cmd:(selector "isViewOfPickerLoaded:") ~typ:(id @-> returning bool) x
 let makeTouchBar self = msg_send ~self ~cmd:(selector "makeTouchBar") ~typ:(returning id)
-let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong)
+let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let resignKeyWindow self = msg_send ~self ~cmd:(selector "resignKeyWindow") ~typ:(returning void)
 let setAccessoryView x self = msg_send ~self ~cmd:(selector "setAccessoryView:") ~typ:(id @-> returning void) x

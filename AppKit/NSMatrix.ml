@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSMatrix"
 
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning bool) x
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning bool)
-let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x
+let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning id) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning id)
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning id)
@@ -21,7 +21,7 @@ let accessibilityCurrentEditorForCell x self = msg_send ~self ~cmd:(selector "ac
 let accessibilityFocusedUIElement self = msg_send ~self ~cmd:(selector "accessibilityFocusedUIElement") ~typ:(returning id)
 let accessibilityHelpStringForChild x self = msg_send ~self ~cmd:(selector "accessibilityHelpStringForChild:") ~typ:(id @-> returning id) x
 let accessibilityHitTest x self = msg_send ~self ~cmd:(selector "accessibilityHitTest:") ~typ:(CGPoint.t @-> returning id) x
-let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x
+let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityIsChildFocusable x self = msg_send ~self ~cmd:(selector "accessibilityIsChildFocusable:") ~typ:(id @-> returning bool) x
 let accessibilityIsFocusedAttributeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsFocusedAttributeSettable") ~typ:(returning bool)
 let accessibilityIsOrientationAttributeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsOrientationAttributeSettable") ~typ:(returning bool)
@@ -100,16 +100,16 @@ let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> retu
 let keyUp x self = msg_send ~self ~cmd:(selector "keyUp:") ~typ:(id @-> returning void) x
 let makeCellAtRow x ~column self = msg_send ~self ~cmd:(selector "makeCellAtRow:column:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int column)
 let menuForEvent x self = msg_send ~self ~cmd:(selector "menuForEvent:") ~typ:(id @-> returning id) x
-let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning ullong)
+let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning ullong) |> ULLong.to_int
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
-let mouseDownFlags self = msg_send ~self ~cmd:(selector "mouseDownFlags") ~typ:(returning llong)
+let mouseDownFlags self = msg_send ~self ~cmd:(selector "mouseDownFlags") ~typ:(returning llong) |> LLong.to_int
 let moveDown x self = msg_send ~self ~cmd:(selector "moveDown:") ~typ:(id @-> returning void) x
 let moveLeft x self = msg_send ~self ~cmd:(selector "moveLeft:") ~typ:(id @-> returning void) x
 let moveRight x self = msg_send ~self ~cmd:(selector "moveRight:") ~typ:(id @-> returning void) x
 let moveUp x self = msg_send ~self ~cmd:(selector "moveUp:") ~typ:(id @-> returning void) x
 let needsPanelToBecomeKey self = msg_send ~self ~cmd:(selector "needsPanelToBecomeKey") ~typ:(returning bool)
-let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong)
-let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong)
+let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong) |> LLong.to_int
+let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong) |> LLong.to_int
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
 let performKeyEquivalent x self = msg_send ~self ~cmd:(selector "performKeyEquivalent:") ~typ:(id @-> returning bool) x
 let prototype self = msg_send ~self ~cmd:(selector "prototype") ~typ:(returning id)
@@ -133,8 +133,8 @@ let selectText x self = msg_send ~self ~cmd:(selector "selectText:") ~typ:(id @-
 let selectTextAtRow x ~column self = msg_send ~self ~cmd:(selector "selectTextAtRow:column:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int column)
 let selectedCell self = msg_send ~self ~cmd:(selector "selectedCell") ~typ:(returning id)
 let selectedCells self = msg_send ~self ~cmd:(selector "selectedCells") ~typ:(returning id)
-let selectedColumn self = msg_send ~self ~cmd:(selector "selectedColumn") ~typ:(returning llong)
-let selectedRow self = msg_send ~self ~cmd:(selector "selectedRow") ~typ:(returning llong)
+let selectedColumn self = msg_send ~self ~cmd:(selector "selectedColumn") ~typ:(returning llong) |> LLong.to_int
+let selectedRow self = msg_send ~self ~cmd:(selector "selectedRow") ~typ:(returning llong) |> LLong.to_int
 let sendAction self = msg_send ~self ~cmd:(selector "sendAction") ~typ:(returning bool)
 let sendAction1 x ~to_ self = msg_send ~self ~cmd:(selector "sendAction:to:") ~typ:(_SEL @-> id @-> returning bool) x to_
 let sendAction2 x ~to_ ~forAllCells self = msg_send ~self ~cmd:(selector "sendAction:to:forAllCells:") ~typ:(_SEL @-> id @-> bool @-> returning void) x to_ forAllCells

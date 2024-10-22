@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -24,7 +24,7 @@ let drawStateImageWithFrame x ~inView self = msg_send ~self ~cmd:(selector "draw
 let drawTitleWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawTitleWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let imageWidth self = msg_send ~self ~cmd:(selector "imageWidth") ~typ:(returning double)
@@ -38,7 +38,7 @@ let keyEquivalentRectForBounds x self = msg_send_stret ~self ~cmd:(selector "key
 let keyEquivalentWidth self = msg_send ~self ~cmd:(selector "keyEquivalentWidth") ~typ:(returning double)
 let menuItem self = msg_send ~self ~cmd:(selector "menuItem") ~typ:(returning id)
 let menuView self = msg_send ~self ~cmd:(selector "menuView") ~typ:(returning id)
-let mnemonicLocation self = msg_send ~self ~cmd:(selector "mnemonicLocation") ~typ:(returning ullong)
+let mnemonicLocation self = msg_send ~self ~cmd:(selector "mnemonicLocation") ~typ:(returning ullong) |> ULLong.to_int
 let needsDisplay self = msg_send ~self ~cmd:(selector "needsDisplay") ~typ:(returning bool)
 let needsSizing self = msg_send ~self ~cmd:(selector "needsSizing") ~typ:(returning bool)
 let representedObject self = msg_send ~self ~cmd:(selector "representedObject") ~typ:(returning id)
@@ -50,10 +50,10 @@ let setNeedsDisplay x self = msg_send ~self ~cmd:(selector "setNeedsDisplay:") ~
 let setNeedsSizing x self = msg_send ~self ~cmd:(selector "setNeedsSizing:") ~typ:(bool @-> returning void) x
 let setRepresentedObject x self = msg_send ~self ~cmd:(selector "setRepresentedObject:") ~typ:(id @-> returning void) x
 let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let stateImageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "stateImageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let stateImageWidth self = msg_send ~self ~cmd:(selector "stateImageWidth") ~typ:(returning double)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let titleWidth self = msg_send ~self ~cmd:(selector "titleWidth") ~typ:(returning double)

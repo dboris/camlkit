@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -38,4 +38,4 @@ let setCanDownloadUbiquitousContents x self = msg_send ~self ~cmd:(selector "set
 let setCanResolveUbiquitousConflicts x self = msg_send ~self ~cmd:(selector "setCanResolveUbiquitousConflicts:") ~typ:(bool @-> returning void) x
 let setResolvesAliases x self = msg_send ~self ~cmd:(selector "setResolvesAliases:") ~typ:(bool @-> returning void) x
 let startRectForSheet x self = msg_send_stret ~self ~cmd:(selector "startRectForSheet:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
-let styleMaskForHostWindow self = msg_send ~self ~cmd:(selector "styleMaskForHostWindow") ~typ:(returning ullong)
+let styleMaskForHostWindow self = msg_send ~self ~cmd:(selector "styleMaskForHostWindow") ~typ:(returning ullong) |> ULLong.to_int

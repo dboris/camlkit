@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -38,7 +38,7 @@ let allowedInputSourceLocales self = msg_send ~self ~cmd:(selector "allowedInput
 let allowsCharacterPickerTouchBarItem self = msg_send ~self ~cmd:(selector "allowsCharacterPickerTouchBarItem") ~typ:(returning bool)
 let allowsDefaultTighteningForTruncation self = msg_send ~self ~cmd:(selector "allowsDefaultTighteningForTruncation") ~typ:(returning bool)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
-let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong)
+let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong) |> ULLong.to_int
 let cachesLineRef self = msg_send ~self ~cmd:(selector "cachesLineRef") ~typ:(returning bool)
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
@@ -52,14 +52,14 @@ let drawsBackground self = msg_send ~self ~cmd:(selector "drawsBackground") ~typ
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let expansionFrameWithFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "expansionFrameWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isAutomaticTextCompletionEnabled self = msg_send ~self ~cmd:(selector "isAutomaticTextCompletionEnabled") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
-let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong)
+let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong) |> ULLong.to_int
 let placeholderAttributedString self = msg_send ~self ~cmd:(selector "placeholderAttributedString") ~typ:(returning id)
 let placeholderString self = msg_send ~self ~cmd:(selector "placeholderString") ~typ:(returning id)
 let setAllowedInputSourceLocales x self = msg_send ~self ~cmd:(selector "setAllowedInputSourceLocales:") ~typ:(id @-> returning void) x
@@ -78,7 +78,7 @@ let setPlaceholderString x self = msg_send ~self ~cmd:(selector "setPlaceholderS
 let setTextColor x self = msg_send ~self ~cmd:(selector "setTextColor:") ~typ:(id @-> returning void) x
 let setUpFieldEditorAttributes x self = msg_send ~self ~cmd:(selector "setUpFieldEditorAttributes:") ~typ:(id @-> returning id) x
 let setWantsNotificationForMarkedText x self = msg_send ~self ~cmd:(selector "setWantsNotificationForMarkedText:") ~typ:(bool @-> returning void) x
-let textAlignmentPolicy self = msg_send ~self ~cmd:(selector "textAlignmentPolicy") ~typ:(returning ullong)
+let textAlignmentPolicy self = msg_send ~self ~cmd:(selector "textAlignmentPolicy") ~typ:(returning ullong) |> ULLong.to_int
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning id)
 let titleRectForBounds x self = msg_send_stret ~self ~cmd:(selector "titleRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let trackMouse x ~inRect ~ofView ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> bool @-> returning bool) x inRect ofView untilMouseUp

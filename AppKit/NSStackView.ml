@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSStackView"
 
 let addArrangedSubview x self = msg_send ~self ~cmd:(selector "addArrangedSubview:") ~typ:(id @-> returning void) x
 let addView x ~inGravity self = msg_send ~self ~cmd:(selector "addView:inGravity:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int inGravity)
-let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong)
+let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong) |> LLong.to_int
 let alignmentPriority self = msg_send ~self ~cmd:(selector "alignmentPriority") ~typ:(returning float)
 let arrangedSubviews self = msg_send ~self ~cmd:(selector "arrangedSubviews") ~typ:(returning id)
 let attachedViews self = msg_send ~self ~cmd:(selector "attachedViews") ~typ:(returning id)
@@ -29,7 +29,7 @@ let declaredLayoutConstraints self = msg_send ~self ~cmd:(selector "declaredLayo
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let detachedViews self = msg_send ~self ~cmd:(selector "detachedViews") ~typ:(returning id)
 let detachesHiddenViews self = msg_send ~self ~cmd:(selector "detachesHiddenViews") ~typ:(returning bool)
-let distribution self = msg_send ~self ~cmd:(selector "distribution") ~typ:(returning llong)
+let distribution self = msg_send ~self ~cmd:(selector "distribution") ~typ:(returning llong) |> LLong.to_int
 let edgeInsets self = msg_send_stret ~self ~cmd:(selector "edgeInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let effectiveSpacingAfterView x self = msg_send ~self ~cmd:(selector "effectiveSpacingAfterView:") ~typ:(id @-> returning double) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
@@ -49,13 +49,13 @@ let leadingOrTopViewsManager self = msg_send ~self ~cmd:(selector "leadingOrTopV
 let leftSpacer self = msg_send ~self ~cmd:(selector "leftSpacer") ~typ:(returning id)
 let middleViewsContainer self = msg_send ~self ~cmd:(selector "middleViewsContainer") ~typ:(returning id)
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong)
-let perpendicularAlignment self = msg_send ~self ~cmd:(selector "perpendicularAlignment") ~typ:(returning llong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong) |> LLong.to_int
+let perpendicularAlignment self = msg_send ~self ~cmd:(selector "perpendicularAlignment") ~typ:(returning llong) |> LLong.to_int
 let removeArrangedSubview x self = msg_send ~self ~cmd:(selector "removeArrangedSubview:") ~typ:(id @-> returning void) x
 let removeView x self = msg_send ~self ~cmd:(selector "removeView:") ~typ:(id @-> returning void) x
 let replaceSubview x ~with_ self = msg_send ~self ~cmd:(selector "replaceSubview:with:") ~typ:(id @-> id @-> returning void) x with_
 let rightSpacer self = msg_send ~self ~cmd:(selector "rightSpacer") ~typ:(returning id)
-let secondaryAlignment self = msg_send ~self ~cmd:(selector "secondaryAlignment") ~typ:(returning llong)
+let secondaryAlignment self = msg_send ~self ~cmd:(selector "secondaryAlignment") ~typ:(returning llong) |> LLong.to_int
 let secondaryAlignmentPriority self = msg_send ~self ~cmd:(selector "secondaryAlignmentPriority") ~typ:(returning float)
 let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setAlignmentPriority x self = msg_send ~self ~cmd:(selector "setAlignmentPriority:") ~typ:(float @-> returning void) x
@@ -82,7 +82,7 @@ let setVisibilityPriority x ~forView self = msg_send ~self ~cmd:(selector "setVi
 let spacing self = msg_send ~self ~cmd:(selector "spacing") ~typ:(returning double)
 let topSpacer self = msg_send ~self ~cmd:(selector "topSpacer") ~typ:(returning id)
 let trailingOrBottomViewsManager self = msg_send ~self ~cmd:(selector "trailingOrBottomViewsManager") ~typ:(returning id)
-let transverseAlignment self = msg_send ~self ~cmd:(selector "transverseAlignment") ~typ:(returning llong)
+let transverseAlignment self = msg_send ~self ~cmd:(selector "transverseAlignment") ~typ:(returning llong) |> LLong.to_int
 let transverseAlignmentPriority self = msg_send ~self ~cmd:(selector "transverseAlignmentPriority") ~typ:(returning float)
 let updateConstraints self = msg_send ~self ~cmd:(selector "updateConstraints") ~typ:(returning void)
 let views self = msg_send ~self ~cmd:(selector "views") ~typ:(returning id)

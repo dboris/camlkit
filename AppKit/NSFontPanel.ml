@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,19 +14,19 @@ let self = get_class "NSFontPanel"
 let accessoryView self = msg_send ~self ~cmd:(selector "accessoryView") ~typ:(returning id)
 let applicationDidBecomeActive x self = msg_send ~self ~cmd:(selector "applicationDidBecomeActive:") ~typ:(id @-> returning void) x
 let collectionButtonPressed x self = msg_send ~self ~cmd:(selector "collectionButtonPressed:") ~typ:(id @-> returning void) x
-let comboBox x ~indexOfItemWithStringValue self = msg_send ~self ~cmd:(selector "comboBox:indexOfItemWithStringValue:") ~typ:(id @-> id @-> returning ullong) x indexOfItemWithStringValue
+let comboBox x ~indexOfItemWithStringValue self = msg_send ~self ~cmd:(selector "comboBox:indexOfItemWithStringValue:") ~typ:(id @-> id @-> returning ullong) x indexOfItemWithStringValue |> ULLong.to_int
 let comboBox' x ~objectValueForItemAtIndex self = msg_send ~self ~cmd:(selector "comboBox:objectValueForItemAtIndex:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int objectValueForItemAtIndex)
 let conformsToProtocol x self = msg_send ~self ~cmd:(selector "conformsToProtocol:") ~typ:(id @-> returning bool) x
 let convertAttributes x self = msg_send ~self ~cmd:(selector "convertAttributes:") ~typ:(id @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let draggingSourceOperationMaskForTableView x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForTableView:") ~typ:(id @-> returning ullong) x
+let draggingSourceOperationMaskForTableView x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForTableView:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithContentRect x ~styleMask ~backing ~defer self = msg_send ~self ~cmd:(selector "initWithContentRect:styleMask:backing:defer:") ~typ:(CGRect.t @-> ullong @-> ullong @-> bool @-> returning id) x (ULLong.of_int styleMask) (ULLong.of_int backing) defer
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning bool)
 let loadFaces x self = msg_send ~self ~cmd:(selector "loadFaces:") ~typ:(id @-> returning void) x
-let numberOfItemsInComboBox x self = msg_send ~self ~cmd:(selector "numberOfItemsInComboBox:") ~typ:(id @-> returning llong) x
-let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x
+let numberOfItemsInComboBox x self = msg_send ~self ~cmd:(selector "numberOfItemsInComboBox:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let panelConvertFont x self = msg_send ~self ~cmd:(selector "panelConvertFont:") ~typ:(id @-> returning id) x
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let reloadDefaultFontFamilies self = msg_send ~self ~cmd:(selector "reloadDefaultFontFamilies") ~typ:(returning void)
@@ -46,7 +46,7 @@ let tableView1 x ~shouldEditTableColumn ~row self = msg_send ~self ~cmd:(selecto
 let tableView2 x ~writeRowsWithIndexes ~toPasteboard self = msg_send ~self ~cmd:(selector "tableView:writeRowsWithIndexes:toPasteboard:") ~typ:(id @-> id @-> id @-> returning bool) x writeRowsWithIndexes toPasteboard
 let tableView3 x ~acceptDrop ~row ~dropOperation self = msg_send ~self ~cmd:(selector "tableView:acceptDrop:row:dropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning bool) x acceptDrop (LLong.of_int row) (ULLong.of_int dropOperation)
 let tableView4 x ~setObjectValue ~forTableColumn ~row self = msg_send ~self ~cmd:(selector "tableView:setObjectValue:forTableColumn:row:") ~typ:(id @-> id @-> id @-> llong @-> returning void) x setObjectValue forTableColumn (LLong.of_int row)
-let tableView5 x ~validateDrop ~proposedRow ~proposedDropOperation self = msg_send ~self ~cmd:(selector "tableView:validateDrop:proposedRow:proposedDropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning ullong) x validateDrop (LLong.of_int proposedRow) (ULLong.of_int proposedDropOperation)
+let tableView5 x ~validateDrop ~proposedRow ~proposedDropOperation self = msg_send ~self ~cmd:(selector "tableView:validateDrop:proposedRow:proposedDropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning ullong) x validateDrop (LLong.of_int proposedRow) (ULLong.of_int proposedDropOperation) |> ULLong.to_int
 let tableView6 x ~willDisplayCell ~forTableColumn ~row self = msg_send ~self ~cmd:(selector "tableView:willDisplayCell:forTableColumn:row:") ~typ:(id @-> id @-> id @-> llong @-> returning void) x willDisplayCell forTableColumn (LLong.of_int row)
 let windowDidUpdate x self = msg_send ~self ~cmd:(selector "windowDidUpdate:") ~typ:(id @-> returning void) x
 let windowWillResize x ~toSize self = msg_send_stret ~self ~cmd:(selector "windowWillResize:toSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x toSize

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -31,19 +31,19 @@ let accessibilitySetFocus x ~forChild self = msg_send ~self ~cmd:(selector "acce
 let accessibilitySizeOfChild x self = msg_send ~self ~cmd:(selector "accessibilitySizeOfChild:") ~typ:(id @-> returning id) x
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
 let addTarget x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning void) x action (ULLong.of_int forControlEvents)
-let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong)
+let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong) |> LLong.to_int
 let allowsExpansionToolTips self = msg_send ~self ~cmd:(selector "allowsExpansionToolTips") ~typ:(returning bool)
 let allowsLogicalLayoutDirection self = msg_send ~self ~cmd:(selector "allowsLogicalLayoutDirection") ~typ:(returning bool)
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
 let attributedStringValue self = msg_send ~self ~cmd:(selector "attributedStringValue") ~typ:(returning id)
-let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong)
-let baseWritingDirection self = msg_send ~self ~cmd:(selector "baseWritingDirection") ~typ:(returning llong)
+let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong) |> LLong.to_int
+let baseWritingDirection self = msg_send ~self ~cmd:(selector "baseWritingDirection") ~typ:(returning llong) |> LLong.to_int
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ:(returning void)
 let calcSize self = msg_send ~self ~cmd:(selector "calcSize") ~typ:(returning void)
 let cell self = msg_send ~self ~cmd:(selector "cell") ~typ:(returning id)
 let cellIfExists self = msg_send ~self ~cmd:(selector "cellIfExists") ~typ:(returning id)
-let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
+let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong) |> ULLong.to_int
 let currentEditor self = msg_send ~self ~cmd:(selector "currentEditor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let didChangeValueForKey x self = msg_send ~self ~cmd:(selector "didChangeValueForKey:") ~typ:(id @-> returning void) x
@@ -60,7 +60,7 @@ let expansionFrameWithFrame x self = msg_send_stret ~self ~cmd:(selector "expans
 let firstBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "firstBaselineOffsetFromTop") ~typ:(returning double)
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let focusRingMaskBounds self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let focusRingType self = msg_send ~self ~cmd:(selector "focusRingType") ~typ:(returning ullong)
+let focusRingType self = msg_send ~self ~cmd:(selector "focusRingType") ~typ:(returning ullong) |> ULLong.to_int
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning id)
 let formatter self = msg_send ~self ~cmd:(selector "formatter") ~typ:(returning id)
 let getPeriodicDelay x ~interval self = msg_send ~self ~cmd:(selector "getPeriodicDelay:interval:") ~typ:((ptr float) @-> (ptr float) @-> returning void) x interval
@@ -68,7 +68,7 @@ let ignoresMultiClick self = msg_send ~self ~cmd:(selector "ignoresMultiClick") 
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let invalidateIntrinsicContentSizeForCell x self = msg_send ~self ~cmd:(selector "invalidateIntrinsicContentSizeForCell:") ~typ:(id @-> returning void) x
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning bool)
@@ -78,11 +78,11 @@ let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bo
 let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> returning void) x
 let keyUp x self = msg_send ~self ~cmd:(selector "keyUp:") ~typ:(id @-> returning void) x
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning void)
-let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning ullong)
+let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning ullong) |> ULLong.to_int
 let menuForEvent x self = msg_send ~self ~cmd:(selector "menuForEvent:") ~typ:(id @-> returning id) x
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
-let mouseDownFlags self = msg_send ~self ~cmd:(selector "mouseDownFlags") ~typ:(returning llong)
+let mouseDownFlags self = msg_send ~self ~cmd:(selector "mouseDownFlags") ~typ:(returning llong) |> LLong.to_int
 let needsPanelToBecomeKey self = msg_send ~self ~cmd:(selector "needsPanelToBecomeKey") ~typ:(returning bool)
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
@@ -96,10 +96,10 @@ let rightMouseDown x self = msg_send ~self ~cmd:(selector "rightMouseDown:") ~ty
 let selectCell x self = msg_send ~self ~cmd:(selector "selectCell:") ~typ:(id @-> returning void) x
 let selectWithFrame x ~editor ~delegate ~start ~length self = msg_send ~self ~cmd:(selector "selectWithFrame:editor:delegate:start:length:") ~typ:(CGRect.t @-> id @-> id @-> llong @-> llong @-> returning void) x editor delegate (LLong.of_int start) (LLong.of_int length)
 let selectedCell self = msg_send ~self ~cmd:(selector "selectedCell") ~typ:(returning id)
-let selectedTag self = msg_send ~self ~cmd:(selector "selectedTag") ~typ:(returning llong)
+let selectedTag self = msg_send ~self ~cmd:(selector "selectedTag") ~typ:(returning llong) |> LLong.to_int
 let sendAction x ~to_ self = msg_send ~self ~cmd:(selector "sendAction:to:") ~typ:(_SEL @-> id @-> returning bool) x to_
-let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning llong) (ULLong.of_int x)
-let sendActionOnMask self = msg_send ~self ~cmd:(selector "sendActionOnMask") ~typ:(returning ullong)
+let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning llong) (ULLong.of_int x) |> LLong.to_int
+let sendActionOnMask self = msg_send ~self ~cmd:(selector "sendActionOnMask") ~typ:(returning ullong) |> ULLong.to_int
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning void) x
 let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setAllowsExpansionToolTips x self = msg_send ~self ~cmd:(selector "setAllowsExpansionToolTips:") ~typ:(bool @-> returning void) x
@@ -139,7 +139,7 @@ let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning void)
 let skipEditValidation self = msg_send ~self ~cmd:(selector "skipEditValidation") ~typ:(returning bool)
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning id)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let takeDoubleValueFrom x self = msg_send ~self ~cmd:(selector "takeDoubleValueFrom:") ~typ:(id @-> returning void) x
 let takeFloatValueFrom x self = msg_send ~self ~cmd:(selector "takeFloatValueFrom:") ~typ:(id @-> returning void) x
 let takeIntValueFrom x self = msg_send ~self ~cmd:(selector "takeIntValueFrom:") ~typ:(id @-> returning void) x
@@ -149,8 +149,8 @@ let takeStringValueFrom x self = msg_send ~self ~cmd:(selector "takeStringValueF
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let textView x ~willChangeSelectionFromCharacterRange ~toCharacterRange self = msg_send_stret ~self ~cmd:(selector "textView:willChangeSelectionFromCharacterRange:toCharacterRange:") ~typ:(id @-> NSRange.t @-> NSRange.t @-> returning NSRange.t) ~return_type:NSRange.t x willChangeSelectionFromCharacterRange toCharacterRange
 let textViewDidChangeSelection x self = msg_send ~self ~cmd:(selector "textViewDidChangeSelection:") ~typ:(id @-> returning void) x
-let touchBarInsetMitigation self = msg_send ~self ~cmd:(selector "touchBarInsetMitigation") ~typ:(returning llong)
-let touchBarRestingMitigation self = msg_send ~self ~cmd:(selector "touchBarRestingMitigation") ~typ:(returning llong)
+let touchBarInsetMitigation self = msg_send ~self ~cmd:(selector "touchBarInsetMitigation") ~typ:(returning llong) |> LLong.to_int
+let touchBarRestingMitigation self = msg_send ~self ~cmd:(selector "touchBarRestingMitigation") ~typ:(returning llong) |> LLong.to_int
 let touchesBeganWithEvent x self = msg_send ~self ~cmd:(selector "touchesBeganWithEvent:") ~typ:(id @-> returning void) x
 let touchesCancelledWithEvent x self = msg_send ~self ~cmd:(selector "touchesCancelledWithEvent:") ~typ:(id @-> returning void) x
 let touchesEndedWithEvent x self = msg_send ~self ~cmd:(selector "touchesEndedWithEvent:") ~typ:(id @-> returning void) x
@@ -159,7 +159,7 @@ let updateCell x self = msg_send ~self ~cmd:(selector "updateCell:") ~typ:(id @-
 let updateCellInside x self = msg_send ~self ~cmd:(selector "updateCellInside:") ~typ:(id @-> returning void) x
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning void)
 let updateTrackingAreas self = msg_send ~self ~cmd:(selector "updateTrackingAreas") ~typ:(returning void)
-let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong)
+let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let usesSingleLineMode self = msg_send ~self ~cmd:(selector "usesSingleLineMode") ~typ:(returning bool)
 let validateEditing self = msg_send ~self ~cmd:(selector "validateEditing") ~typ:(returning void)
 let viewDidChangeEffectiveAppearance self = msg_send ~self ~cmd:(selector "viewDidChangeEffectiveAppearance") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,8 +14,8 @@ let self = get_class "NSInputManager"
 let activateInputManagerFromMenu x self = msg_send ~self ~cmd:(selector "activateInputManagerFromMenu:") ~typ:(id @-> returning void) x
 let attributedSubstringFromRange x self = msg_send ~self ~cmd:(selector "attributedSubstringFromRange:") ~typ:(NSRange.t @-> returning id) x
 let bundleObject self = msg_send ~self ~cmd:(selector "bundleObject") ~typ:(returning id)
-let characterIndexForPoint x self = msg_send ~self ~cmd:(selector "characterIndexForPoint:") ~typ:(CGPoint.t @-> returning ullong) x
-let conversationIdentifier self = msg_send ~self ~cmd:(selector "conversationIdentifier") ~typ:(returning llong)
+let characterIndexForPoint x self = msg_send ~self ~cmd:(selector "characterIndexForPoint:") ~typ:(CGPoint.t @-> returning ullong) x |> ULLong.to_int
+let conversationIdentifier self = msg_send ~self ~cmd:(selector "conversationIdentifier") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let doCommandBySelector x self = msg_send ~self ~cmd:(selector "doCommandBySelector:") ~typ:(_SEL @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -76,7 +76,7 @@ let controlLightHighlightColor self = msg_send ~self ~cmd:(selector "controlLigh
 let controlShadowColor self = msg_send ~self ~cmd:(selector "controlShadowColor") ~typ:(returning id)
 let controlStripSeparatorColor self = msg_send ~self ~cmd:(selector "controlStripSeparatorColor") ~typ:(returning id)
 let controlTextColor self = msg_send ~self ~cmd:(selector "controlTextColor") ~typ:(returning id)
-let currentControlTint self = msg_send ~self ~cmd:(selector "currentControlTint") ~typ:(returning ullong)
+let currentControlTint self = msg_send ~self ~cmd:(selector "currentControlTint") ~typ:(returning ullong) |> ULLong.to_int
 let cyanColor self = msg_send ~self ~cmd:(selector "cyanColor") ~typ:(returning id)
 let darkGrayColor self = msg_send ~self ~cmd:(selector "darkGrayColor") ~typ:(returning id)
 let detailAccentColor self = msg_send ~self ~cmd:(selector "detailAccentColor") ~typ:(returning id)

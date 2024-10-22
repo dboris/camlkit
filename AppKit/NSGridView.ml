@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -23,8 +23,8 @@ let deleteColumn x self = msg_send ~self ~cmd:(selector "deleteColumn:") ~typ:(i
 let deleteRow x self = msg_send ~self ~cmd:(selector "deleteRow:") ~typ:(id @-> returning void) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let indexOfColumn x self = msg_send ~self ~cmd:(selector "indexOfColumn:") ~typ:(id @-> returning llong) x
-let indexOfRow x self = msg_send ~self ~cmd:(selector "indexOfRow:") ~typ:(id @-> returning llong) x
+let indexOfColumn x self = msg_send ~self ~cmd:(selector "indexOfColumn:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfRow x self = msg_send ~self ~cmd:(selector "indexOfRow:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let insertColumnAtIndex x ~withViews self = msg_send ~self ~cmd:(selector "insertColumnAtIndex:withViews:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) withViews
@@ -32,12 +32,12 @@ let insertRowAtIndex x ~withViews self = msg_send ~self ~cmd:(selector "insertRo
 let mergeCellsInHorizontalRange x ~verticalRange self = msg_send ~self ~cmd:(selector "mergeCellsInHorizontalRange:verticalRange:") ~typ:(NSRange.t @-> NSRange.t @-> returning void) x verticalRange
 let moveColumnAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveColumnAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toIndex)
 let moveRowAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveRowAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toIndex)
-let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong)
-let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong)
+let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong) |> LLong.to_int
+let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong) |> LLong.to_int
 let removeColumnAtIndex x self = msg_send ~self ~cmd:(selector "removeColumnAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let removeRowAtIndex x self = msg_send ~self ~cmd:(selector "removeRowAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let replaceSubview x ~with_ self = msg_send ~self ~cmd:(selector "replaceSubview:with:") ~typ:(id @-> id @-> returning void) x with_
-let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(returning llong)
+let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(returning llong) |> LLong.to_int
 let rowAtIndex x self = msg_send ~self ~cmd:(selector "rowAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let rowSpacing self = msg_send ~self ~cmd:(selector "rowSpacing") ~typ:(returning double)
 let setColumnSpacing x self = msg_send ~self ~cmd:(selector "setColumnSpacing:") ~typ:(double @-> returning void) x
@@ -46,5 +46,5 @@ let setRowSpacing x self = msg_send ~self ~cmd:(selector "setRowSpacing:") ~typ:
 let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let willRemoveSubview x self = msg_send ~self ~cmd:(selector "willRemoveSubview:") ~typ:(id @-> returning void) x
-let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning llong)
-let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning llong)
+let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning llong) |> LLong.to_int
+let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning llong) |> LLong.to_int

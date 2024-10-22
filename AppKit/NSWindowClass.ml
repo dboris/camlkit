@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -36,7 +36,7 @@ let shouldPreferWindowTabbingForEvent x self = msg_send ~self ~cmd:(selector "sh
 let shouldPreferWindowTabbingForEvent' x ~withIdentifier self = msg_send ~self ~cmd:(selector "shouldPreferWindowTabbingForEvent:withIdentifier:") ~typ:(id @-> id @-> returning bool) x withIdentifier
 let standardContentBorderThicknessForEdge x ~borderSize ~styleMask self = msg_send ~self ~cmd:(selector "standardContentBorderThicknessForEdge:borderSize:styleMask:") ~typ:(ullong @-> ullong @-> ullong @-> returning double) (ULLong.of_int x) (ULLong.of_int borderSize) (ULLong.of_int styleMask)
 let standardWindowButton x ~forStyleMask self = msg_send ~self ~cmd:(selector "standardWindowButton:forStyleMask:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int forStyleMask)
-let userTabbingPreference self = msg_send ~self ~cmd:(selector "userTabbingPreference") ~typ:(returning llong)
-let windowNumberAtPoint x ~belowWindowWithWindowNumber self = msg_send ~self ~cmd:(selector "windowNumberAtPoint:belowWindowWithWindowNumber:") ~typ:(CGPoint.t @-> llong @-> returning llong) x (LLong.of_int belowWindowWithWindowNumber)
+let userTabbingPreference self = msg_send ~self ~cmd:(selector "userTabbingPreference") ~typ:(returning llong) |> LLong.to_int
+let windowNumberAtPoint x ~belowWindowWithWindowNumber self = msg_send ~self ~cmd:(selector "windowNumberAtPoint:belowWindowWithWindowNumber:") ~typ:(CGPoint.t @-> llong @-> returning llong) x (LLong.of_int belowWindowWithWindowNumber) |> LLong.to_int
 let windowNumbersWithOptions x self = msg_send ~self ~cmd:(selector "windowNumbersWithOptions:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let windowWithContentViewController x self = msg_send ~self ~cmd:(selector "windowWithContentViewController:") ~typ:(id @-> returning id) x

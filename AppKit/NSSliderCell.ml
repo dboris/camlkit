@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -44,7 +44,7 @@ let altIncrementValue self = msg_send ~self ~cmd:(selector "altIncrementValue") 
 let animates self = msg_send ~self ~cmd:(selector "animates") ~typ:(returning bool)
 let barRectFlipped x self = msg_send_stret ~self ~cmd:(selector "barRectFlipped:") ~typ:(bool @-> returning CGRect.t) ~return_type:CGRect.t x
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning CGSize.t) ~return_type:CGSize.t x
-let closestTickMarkIndexToValue x self = msg_send ~self ~cmd:(selector "closestTickMarkIndexToValue:") ~typ:(double @-> returning llong) x
+let closestTickMarkIndexToValue x self = msg_send ~self ~cmd:(selector "closestTickMarkIndexToValue:") ~typ:(double @-> returning llong) x |> LLong.to_int
 let closestTickMarkValueToValue x self = msg_send ~self ~cmd:(selector "closestTickMarkValueToValue:") ~typ:(double @-> returning double) x
 let continueTracking x ~at ~inView self = msg_send ~self ~cmd:(selector "continueTracking:at:inView:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> returning bool) x at inView
 let continueTrackingGesture x ~inView self = msg_send ~self ~cmd:(selector "continueTrackingGesture:inView:") ~typ:(id @-> id @-> returning bool) x inView
@@ -60,13 +60,13 @@ let drawTickMarks self = msg_send ~self ~cmd:(selector "drawTickMarks") ~typ:(re
 let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
-let indexOfTickMarkAtPoint x self = msg_send ~self ~cmd:(selector "indexOfTickMarkAtPoint:") ~typ:(CGPoint.t @-> returning llong) x
+let indexOfTickMarkAtPoint x self = msg_send ~self ~cmd:(selector "indexOfTickMarkAtPoint:") ~typ:(CGPoint.t @-> returning llong) x |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
 let invalidateRect x ~forControlView self = msg_send ~self ~cmd:(selector "invalidateRect:forControlView:") ~typ:(CGRect.t @-> id @-> returning void) x forControlView
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
@@ -81,7 +81,7 @@ let minValue self = msg_send ~self ~cmd:(selector "minValue") ~typ:(returning do
 let minValueImage self = msg_send ~self ~cmd:(selector "minValueImage") ~typ:(returning id)
 let minimumValueAccessory self = msg_send ~self ~cmd:(selector "minimumValueAccessory") ~typ:(returning id)
 let normalizedTickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "normalizedTickMarkValueAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
-let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong)
+let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong) |> LLong.to_int
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
 let setAllowsTickMarkValuesOnly x self = msg_send ~self ~cmd:(selector "setAllowsTickMarkValuesOnly:") ~typ:(bool @-> returning void) x
@@ -114,12 +114,12 @@ let setTitleColor x self = msg_send ~self ~cmd:(selector "setTitleColor:") ~typ:
 let setTitleFont x self = msg_send ~self ~cmd:(selector "setTitleFont:") ~typ:(id @-> returning void) x
 let setTrackFillColor x self = msg_send ~self ~cmd:(selector "setTrackFillColor:") ~typ:(id @-> returning void) x
 let setVertical x self = msg_send ~self ~cmd:(selector "setVertical:") ~typ:(bool @-> returning void) x
-let sliderType self = msg_send ~self ~cmd:(selector "sliderType") ~typ:(returning ullong)
+let sliderType self = msg_send ~self ~cmd:(selector "sliderType") ~typ:(returning ullong) |> ULLong.to_int
 let startTrackingAt x ~inView self = msg_send ~self ~cmd:(selector "startTrackingAt:inView:") ~typ:(CGPoint.t @-> id @-> returning bool) x inView
 let stopTracking x ~at ~inView ~mouseIsUp self = msg_send ~self ~cmd:(selector "stopTracking:at:inView:mouseIsUp:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> bool @-> returning void) x at inView mouseIsUp
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning id)
 let tickMarkIsProminentAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkIsProminentAtIndex:") ~typ:(llong @-> returning bool) (LLong.of_int x)
-let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong)
+let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong) |> ULLong.to_int
 let tickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkValueAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titleCell self = msg_send ~self ~cmd:(selector "titleCell") ~typ:(returning id)

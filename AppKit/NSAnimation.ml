@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,8 +12,8 @@ open CoreAnimation
 let self = get_class "NSAnimation"
 
 let addProgressMark x self = msg_send ~self ~cmd:(selector "addProgressMark:") ~typ:(float @-> returning void) x
-let animationBlockingMode self = msg_send ~self ~cmd:(selector "animationBlockingMode") ~typ:(returning ullong)
-let animationCurve self = msg_send ~self ~cmd:(selector "animationCurve") ~typ:(returning ullong)
+let animationBlockingMode self = msg_send ~self ~cmd:(selector "animationBlockingMode") ~typ:(returning ullong) |> ULLong.to_int
+let animationCurve self = msg_send ~self ~cmd:(selector "animationCurve") ~typ:(returning ullong) |> ULLong.to_int
 let clearStartAnimation self = msg_send ~self ~cmd:(selector "clearStartAnimation") ~typ:(returning void)
 let clearStopAnimation self = msg_send ~self ~cmd:(selector "clearStopAnimation") ~typ:(returning void)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x

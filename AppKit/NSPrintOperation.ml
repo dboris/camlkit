@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -18,16 +18,16 @@ let canSpawnSeparateThread self = msg_send ~self ~cmd:(selector "canSpawnSeparat
 let cleanUpOperation self = msg_send ~self ~cmd:(selector "cleanUpOperation") ~typ:(returning void)
 let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let createContext self = msg_send ~self ~cmd:(selector "createContext") ~typ:(returning id)
-let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong)
+let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong) |> LLong.to_int
 let deliverResult self = msg_send ~self ~cmd:(selector "deliverResult") ~typ:(returning bool)
 let destroyContext self = msg_send ~self ~cmd:(selector "destroyContext") ~typ:(returning void)
 let isCopyingOperation self = msg_send ~self ~cmd:(selector "isCopyingOperation") ~typ:(returning bool)
 let isEPSOperation self = msg_send ~self ~cmd:(selector "isEPSOperation") ~typ:(returning bool)
 let jobStyleHint self = msg_send ~self ~cmd:(selector "jobStyleHint") ~typ:(returning id)
 let jobTitle self = msg_send ~self ~cmd:(selector "jobTitle") ~typ:(returning id)
-let pageOrder self = msg_send ~self ~cmd:(selector "pageOrder") ~typ:(returning llong)
+let pageOrder self = msg_send ~self ~cmd:(selector "pageOrder") ~typ:(returning llong) |> LLong.to_int
 let pageRange self = msg_send_stret ~self ~cmd:(selector "pageRange") ~typ:(returning NSRange.t) ~return_type:NSRange.t
-let preferredRenderingQuality self = msg_send ~self ~cmd:(selector "preferredRenderingQuality") ~typ:(returning llong)
+let preferredRenderingQuality self = msg_send ~self ~cmd:(selector "preferredRenderingQuality") ~typ:(returning llong) |> LLong.to_int
 let printInfo self = msg_send ~self ~cmd:(selector "printInfo") ~typ:(returning id)
 let printPanel self = msg_send ~self ~cmd:(selector "printPanel") ~typ:(returning id)
 let runOperation self = msg_send ~self ~cmd:(selector "runOperation") ~typ:(returning bool)

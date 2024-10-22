@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -26,7 +26,7 @@ let attributedTitle self = msg_send ~self ~cmd:(selector "attributedTitle") ~typ
 let baselineOffsetFromBottom self = msg_send ~self ~cmd:(selector "baselineOffsetFromBottom") ~typ:(returning double)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let bezelColor self = msg_send ~self ~cmd:(selector "bezelColor") ~typ:(returning id)
-let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong)
+let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong) |> ULLong.to_int
 let compressWithPrioritizedCompressionOptions x self = msg_send ~self ~cmd:(selector "compressWithPrioritizedCompressionOptions:") ~typ:(id @-> returning void) x
 let contentTintColor self = msg_send ~self ~cmd:(selector "contentTintColor") ~typ:(returning id)
 let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(returning id)
@@ -38,8 +38,8 @@ let hasDestructiveAction self = msg_send ~self ~cmd:(selector "hasDestructiveAct
 let highlight x self = msg_send ~self ~cmd:(selector "highlight:") ~typ:(bool @-> returning void) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageHugsTitle self = msg_send ~self ~cmd:(selector "imageHugsTitle") ~typ:(returning bool)
-let imagePosition self = msg_send ~self ~cmd:(selector "imagePosition") ~typ:(returning ullong)
-let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong)
+let imagePosition self = msg_send ~self ~cmd:(selector "imagePosition") ~typ:(returning ullong) |> ULLong.to_int
+let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
@@ -50,10 +50,10 @@ let isGuarded self = msg_send ~self ~cmd:(selector "isGuarded") ~typ:(returning 
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning bool)
 let isTransparent self = msg_send ~self ~cmd:(selector "isTransparent") ~typ:(returning bool)
 let keyEquivalent self = msg_send ~self ~cmd:(selector "keyEquivalent") ~typ:(returning id)
-let keyEquivalentModifierMask self = msg_send ~self ~cmd:(selector "keyEquivalentModifierMask") ~typ:(returning ullong)
+let keyEquivalentModifierMask self = msg_send ~self ~cmd:(selector "keyEquivalentModifierMask") ~typ:(returning ullong) |> ULLong.to_int
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning void)
-let material self = msg_send ~self ~cmd:(selector "material") ~typ:(returning llong)
-let maxAcceleratorLevel self = msg_send ~self ~cmd:(selector "maxAcceleratorLevel") ~typ:(returning llong)
+let material self = msg_send ~self ~cmd:(selector "material") ~typ:(returning llong) |> LLong.to_int
+let maxAcceleratorLevel self = msg_send ~self ~cmd:(selector "maxAcceleratorLevel") ~typ:(returning llong) |> LLong.to_int
 let minimumPressDuration self = msg_send ~self ~cmd:(selector "minimumPressDuration") ~typ:(returning double)
 let minimumSizeWithPrioritizedCompressionOptions x self = msg_send_stret ~self ~cmd:(selector "minimumSizeWithPrioritizedCompressionOptions:") ~typ:(id @-> returning CGSize.t) ~return_type:CGSize.t x
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
@@ -69,19 +69,23 @@ let setAlternateTitle x self = msg_send ~self ~cmd:(selector "setAlternateTitle:
 let setAlwaysEnablesRadioButtonExclusivity x self = msg_send ~self ~cmd:(selector "setAlwaysEnablesRadioButtonExclusivity:") ~typ:(bool @-> returning void) x
 let setAttributedAlternateTitle x self = msg_send ~self ~cmd:(selector "setAttributedAlternateTitle:") ~typ:(id @-> returning void) x
 let setAttributedTitle x self = msg_send ~self ~cmd:(selector "setAttributedTitle:") ~typ:(id @-> returning void) x
+let setAttributedTitle' x ~forState self = msg_send ~self ~cmd:(selector "setAttributedTitle:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
 let setBezelColor x self = msg_send ~self ~cmd:(selector "setBezelColor:") ~typ:(id @-> returning void) x
 let setBezelStyle x self = msg_send ~self ~cmd:(selector "setBezelStyle:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setBordered x self = msg_send ~self ~cmd:(selector "setBordered:") ~typ:(bool @-> returning void) x
+let setButtonRole x self = msg_send ~self ~cmd:(selector "setButtonRole:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setButtonType x self = msg_send ~self ~cmd:(selector "setButtonType:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setCell x self = msg_send ~self ~cmd:(selector "setCell:") ~typ:(id @-> returning void) x
 let setContentTintColor x self = msg_send ~self ~cmd:(selector "setContentTintColor:") ~typ:(id @-> returning void) x
 let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~typ:(id @-> returning void) x
+let setContextMenuIsPrimary x self = msg_send ~self ~cmd:(selector "setContextMenuIsPrimary:") ~typ:(bool @-> returning void) x
 let setDestructive x self = msg_send ~self ~cmd:(selector "setDestructive:") ~typ:(bool @-> returning void) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning void) x
 let setGuarded x self = msg_send ~self ~cmd:(selector "setGuarded:") ~typ:(bool @-> returning void) x
 let setHasDestructiveAction x self = msg_send ~self ~cmd:(selector "setHasDestructiveAction:") ~typ:(bool @-> returning void) x
 let setHidden x self = msg_send ~self ~cmd:(selector "setHidden:") ~typ:(bool @-> returning void) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning void) x
+let setImage' x ~forState self = msg_send ~self ~cmd:(selector "setImage:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
 let setImageHugsTitle x self = msg_send ~self ~cmd:(selector "setImageHugsTitle:") ~typ:(bool @-> returning void) x
 let setImagePosition x self = msg_send ~self ~cmd:(selector "setImagePosition:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setImageScaling x self = msg_send ~self ~cmd:(selector "setImageScaling:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
@@ -102,23 +106,25 @@ let setSpringLoaded x self = msg_send ~self ~cmd:(selector "setSpringLoaded:") ~
 let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setSymbolConfiguration x self = msg_send ~self ~cmd:(selector "setSymbolConfiguration:") ~typ:(id @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
+let setTitle' x ~forState self = msg_send ~self ~cmd:(selector "setTitle:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
 let setTitleWithMnemonic x self = msg_send ~self ~cmd:(selector "setTitleWithMnemonic:") ~typ:(id @-> returning void) x
 let setToolbarAppearance x self = msg_send ~self ~cmd:(selector "setToolbarAppearance:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setTransparent x self = msg_send ~self ~cmd:(selector "setTransparent:") ~typ:(bool @-> returning void) x
+let setUIMenu x self = msg_send ~self ~cmd:(selector "setUIMenu:") ~typ:(id @-> returning void) x
 let shiftModifySelection x self = msg_send ~self ~cmd:(selector "shiftModifySelection:") ~typ:(id @-> returning void) x
 let showsBorderOnlyWhileMouseInside self = msg_send ~self ~cmd:(selector "showsBorderOnlyWhileMouseInside") ~typ:(returning bool)
 let showsDisclosureChevron self = msg_send ~self ~cmd:(selector "showsDisclosureChevron") ~typ:(returning bool)
 let showsProgressIndicator self = msg_send ~self ~cmd:(selector "showsProgressIndicator") ~typ:(returning bool)
 let sound self = msg_send ~self ~cmd:(selector "sound") ~typ:(returning id)
 let springLoadingActivated x ~draggingInfo self = msg_send ~self ~cmd:(selector "springLoadingActivated:draggingInfo:") ~typ:(bool @-> id @-> returning void) x draggingInfo
-let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x
+let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let springLoadingHighlightChanged x self = msg_send ~self ~cmd:(selector "springLoadingHighlightChanged:") ~typ:(id @-> returning void) x
 let startSpeaking x self = msg_send ~self ~cmd:(selector "startSpeaking:") ~typ:(id @-> returning void) x
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let stopSpeaking x self = msg_send ~self ~cmd:(selector "stopSpeaking:") ~typ:(id @-> returning void) x
 let symbolConfiguration self = msg_send ~self ~cmd:(selector "symbolConfiguration") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
-let toolbarAppearance self = msg_send ~self ~cmd:(selector "toolbarAppearance") ~typ:(returning llong)
+let toolbarAppearance self = msg_send ~self ~cmd:(selector "toolbarAppearance") ~typ:(returning llong) |> LLong.to_int
 let touchBarHitTestInsets self = msg_send_stret ~self ~cmd:(selector "touchBarHitTestInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let updateCell x self = msg_send ~self ~cmd:(selector "updateCell:") ~typ:(id @-> returning void) x
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning bool) x

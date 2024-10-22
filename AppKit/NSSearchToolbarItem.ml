@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -30,7 +30,7 @@ let endSearchSession self = msg_send ~self ~cmd:(selector "endSearchSession") ~t
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithItemIdentifier x self = msg_send ~self ~cmd:(selector "initWithItemIdentifier:") ~typ:(id @-> returning id) x
 let isEditing self = msg_send ~self ~cmd:(selector "isEditing") ~typ:(returning bool)
-let itemPosition self = msg_send ~self ~cmd:(selector "itemPosition") ~typ:(returning ullong)
+let itemPosition self = msg_send ~self ~cmd:(selector "itemPosition") ~typ:(returning ullong) |> ULLong.to_int
 let minimumWidthForSearchFieldRepresentation self = msg_send ~self ~cmd:(selector "minimumWidthForSearchFieldRepresentation") ~typ:(returning double)
 let placeholderString self = msg_send ~self ~cmd:(selector "placeholderString") ~typ:(returning id)
 let preferredWidthForSearchField self = msg_send ~self ~cmd:(selector "preferredWidthForSearchField") ~typ:(returning double)
@@ -53,11 +53,11 @@ let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> ret
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning void) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning id)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let textFieldDidAttachFieldEditor self = msg_send ~self ~cmd:(selector "textFieldDidAttachFieldEditor") ~typ:(returning void)
 let textFieldDidDetachFieldEditor self = msg_send ~self ~cmd:(selector "textFieldDidDetachFieldEditor") ~typ:(returning void)
 let updateVisualStateForEditingBegan self = msg_send ~self ~cmd:(selector "updateVisualStateForEditingBegan") ~typ:(returning void)
 let updateVisualStateForEditingEnded self = msg_send ~self ~cmd:(selector "updateVisualStateForEditingEnded") ~typ:(returning void)
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)
-let visibilityPriority self = msg_send ~self ~cmd:(selector "visibilityPriority") ~typ:(returning llong)
+let visibilityPriority self = msg_send ~self ~cmd:(selector "visibilityPriority") ~typ:(returning llong) |> LLong.to_int

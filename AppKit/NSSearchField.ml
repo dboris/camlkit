@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -21,7 +21,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isCurrentlyEditing self = msg_send ~self ~cmd:(selector "isCurrentlyEditing") ~typ:(returning bool)
 let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> returning void) x
 let keyUp x self = msg_send ~self ~cmd:(selector "keyUp:") ~typ:(id @-> returning void) x
-let maximumRecents self = msg_send ~self ~cmd:(selector "maximumRecents") ~typ:(returning llong)
+let maximumRecents self = msg_send ~self ~cmd:(selector "maximumRecents") ~typ:(returning llong) |> LLong.to_int
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
 let recentSearches self = msg_send ~self ~cmd:(selector "recentSearches") ~typ:(returning id)

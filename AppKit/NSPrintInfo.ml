@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,7 +20,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let dictionary self = msg_send ~self ~cmd:(selector "dictionary") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let horizontalPagination self = msg_send ~self ~cmd:(selector "horizontalPagination") ~typ:(returning ullong)
+let horizontalPagination self = msg_send ~self ~cmd:(selector "horizontalPagination") ~typ:(returning ullong) |> ULLong.to_int
 let imageablePageBounds self = msg_send_stret ~self ~cmd:(selector "imageablePageBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -31,7 +31,7 @@ let isVerticallyCentered self = msg_send ~self ~cmd:(selector "isVerticallyCente
 let jobDisposition self = msg_send ~self ~cmd:(selector "jobDisposition") ~typ:(returning id)
 let leftMargin self = msg_send ~self ~cmd:(selector "leftMargin") ~typ:(returning double)
 let localizedPaperName self = msg_send ~self ~cmd:(selector "localizedPaperName") ~typ:(returning id)
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong) |> LLong.to_int
 let paperName self = msg_send ~self ~cmd:(selector "paperName") ~typ:(returning id)
 let paperSize self = msg_send_stret ~self ~cmd:(selector "paperSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let printSettings self = msg_send ~self ~cmd:(selector "printSettings") ~typ:(returning id)
@@ -58,4 +58,4 @@ let takeSettingsFromPDFInfo x self = msg_send ~self ~cmd:(selector "takeSettings
 let topMargin self = msg_send ~self ~cmd:(selector "topMargin") ~typ:(returning double)
 let updateFromPMPageFormat self = msg_send ~self ~cmd:(selector "updateFromPMPageFormat") ~typ:(returning void)
 let updateFromPMPrintSettings self = msg_send ~self ~cmd:(selector "updateFromPMPrintSettings") ~typ:(returning void)
-let verticalPagination self = msg_send ~self ~cmd:(selector "verticalPagination") ~typ:(returning ullong)
+let verticalPagination self = msg_send ~self ~cmd:(selector "verticalPagination") ~typ:(returning ullong) |> ULLong.to_int

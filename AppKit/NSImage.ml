@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -27,7 +27,7 @@ let bestRepresentationForDevice x self = msg_send ~self ~cmd:(selector "bestRepr
 let bestRepresentationForHints x self = msg_send ~self ~cmd:(selector "bestRepresentationForHints:") ~typ:(id @-> returning id) x
 let bestRepresentationForRect x ~context ~hints self = msg_send ~self ~cmd:(selector "bestRepresentationForRect:context:hints:") ~typ:(CGRect.t @-> id @-> id @-> returning id) x context hints
 let cacheDepthMatchesImageDepth self = msg_send ~self ~cmd:(selector "cacheDepthMatchesImageDepth") ~typ:(returning bool)
-let cacheMode self = msg_send ~self ~cmd:(selector "cacheMode") ~typ:(returning ullong)
+let cacheMode self = msg_send ~self ~cmd:(selector "cacheMode") ~typ:(returning ullong) |> ULLong.to_int
 let cancelIncrementalLoad self = msg_send ~self ~cmd:(selector "cancelIncrementalLoad") ~typ:(returning void)
 let capInsets self = msg_send_stret ~self ~cmd:(selector "capInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let compositeToPoint x ~operation self = msg_send ~self ~cmd:(selector "compositeToPoint:operation:") ~typ:(CGPoint.t @-> ullong @-> returning void) x (ULLong.of_int operation)
@@ -52,7 +52,7 @@ let hitTestPoint x ~withImageDestinationRect ~context ~hints self = msg_send ~se
 let hitTestRect x ~withImageDestinationRect ~context ~hints self = msg_send ~self ~cmd:(selector "hitTestRect:withImageDestinationRect:context:hints:") ~typ:(CGRect.t @-> CGRect.t @-> id @-> id @-> returning bool) x withImageDestinationRect context hints
 let hitTestRect' x ~withImageDestinationRect ~context ~hints ~flipped self = msg_send ~self ~cmd:(selector "hitTestRect:withImageDestinationRect:context:hints:flipped:") ~typ:(CGRect.t @-> CGRect.t @-> id @-> id @-> bool @-> returning bool) x withImageDestinationRect context hints flipped
 let imageForBounds x ~attributes ~location ~textContainer self = msg_send ~self ~cmd:(selector "imageForBounds:attributes:location:textContainer:") ~typ:(CGRect.t @-> id @-> id @-> id @-> returning id) x attributes location textContainer
-let imageInterpolation self = msg_send ~self ~cmd:(selector "imageInterpolation") ~typ:(returning ullong)
+let imageInterpolation self = msg_send ~self ~cmd:(selector "imageInterpolation") ~typ:(returning ullong) |> ULLong.to_int
 let imageWithSymbolConfiguration x self = msg_send ~self ~cmd:(selector "imageWithSymbolConfiguration:") ~typ:(id @-> returning id) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initByReferencingFile x self = msg_send ~self ~cmd:(selector "initByReferencingFile:") ~typ:(id @-> returning id) x
@@ -93,7 +93,7 @@ let recommendedLayerContentsScale x self = msg_send ~self ~cmd:(selector "recomm
 let removeRepresentation x self = msg_send ~self ~cmd:(selector "removeRepresentation:") ~typ:(id @-> returning void) x
 let replacementObjectForCoder x self = msg_send ~self ~cmd:(selector "replacementObjectForCoder:") ~typ:(id @-> returning id) x
 let representations self = msg_send ~self ~cmd:(selector "representations") ~typ:(returning id)
-let resizingMode self = msg_send ~self ~cmd:(selector "resizingMode") ~typ:(returning llong)
+let resizingMode self = msg_send ~self ~cmd:(selector "resizingMode") ~typ:(returning llong) |> LLong.to_int
 let scalesWhenResized self = msg_send ~self ~cmd:(selector "scalesWhenResized") ~typ:(returning bool)
 let setAccessibilityDescription x self = msg_send ~self ~cmd:(selector "setAccessibilityDescription:") ~typ:(id @-> returning void) x
 let setAlignmentRect x self = msg_send ~self ~cmd:(selector "setAlignmentRect:") ~typ:(CGRect.t @-> returning void) x

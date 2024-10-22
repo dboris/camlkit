@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -34,7 +34,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let draggingImageComponents self = msg_send ~self ~cmd:(selector "draggingImageComponents") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let highlightState self = msg_send ~self ~cmd:(selector "highlightState") ~typ:(returning llong)
+let highlightState self = msg_send ~self ~cmd:(selector "highlightState") ~typ:(returning llong) |> LLong.to_int
 let imageView self = msg_send ~self ~cmd:(selector "imageView") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning id) x bundle

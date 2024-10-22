@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -35,7 +35,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let desktopImageOptionsForScreen x self = msg_send ~self ~cmd:(selector "desktopImageOptionsForScreen:") ~typ:(id @-> returning id) x
 let desktopImageURLForScreen x self = msg_send ~self ~cmd:(selector "desktopImageURLForScreen:") ~typ:(id @-> returning id) x
 let duplicateURLs x ~completionHandler self = msg_send ~self ~cmd:(selector "duplicateURLs:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler
-let extendPowerOffBy x self = msg_send ~self ~cmd:(selector "extendPowerOffBy:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let extendPowerOffBy x self = msg_send ~self ~cmd:(selector "extendPowerOffBy:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let fileLabelColors self = msg_send ~self ~cmd:(selector "fileLabelColors") ~typ:(returning id)
 let fileLabels self = msg_send ~self ~cmd:(selector "fileLabels") ~typ:(returning id)
 let fileNameExtension x ~isValidForType self = msg_send ~self ~cmd:(selector "fileNameExtension:isValidForType:") ~typ:(id @-> id @-> returning bool) x isValidForType

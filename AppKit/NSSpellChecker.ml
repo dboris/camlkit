@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSSpellChecker"
 
 let accessoryView self = msg_send ~self ~cmd:(selector "accessoryView") ~typ:(returning id)
-let adjustOffsetToNextWordBoundaryInString x ~startingAt self = msg_send ~self ~cmd:(selector "adjustOffsetToNextWordBoundaryInString:startingAt:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int startingAt)
+let adjustOffsetToNextWordBoundaryInString x ~startingAt self = msg_send ~self ~cmd:(selector "adjustOffsetToNextWordBoundaryInString:startingAt:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int startingAt) |> LLong.to_int
 let alternativesForPinyinInputString x ~inSpellDocumentWithTag self = msg_send ~self ~cmd:(selector "alternativesForPinyinInputString:inSpellDocumentWithTag:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int inSpellDocumentWithTag)
 let automaticallyIdentifiesLanguages self = msg_send ~self ~cmd:(selector "automaticallyIdentifiesLanguages") ~typ:(returning bool)
 let availableLanguages self = msg_send ~self ~cmd:(selector "availableLanguages") ~typ:(returning id)
@@ -40,7 +40,7 @@ let controlTextDidChange x self = msg_send ~self ~cmd:(selector "controlTextDidC
 let controlTextDidEndEditing x self = msg_send ~self ~cmd:(selector "controlTextDidEndEditing:") ~typ:(id @-> returning void) x
 let correctionForWordRange x ~inString ~language ~inSpellDocumentWithTag self = msg_send ~self ~cmd:(selector "correctionForWordRange:inString:language:inSpellDocumentWithTag:") ~typ:(NSRange.t @-> id @-> id @-> llong @-> returning id) x inString language (LLong.of_int inSpellDocumentWithTag)
 let correctionIndicatorForView x self = msg_send ~self ~cmd:(selector "correctionIndicatorForView:") ~typ:(id @-> returning id) x
-let countWordsInString x ~language self = msg_send ~self ~cmd:(selector "countWordsInString:language:") ~typ:(id @-> id @-> returning llong) x language
+let countWordsInString x ~language self = msg_send ~self ~cmd:(selector "countWordsInString:language:") ~typ:(id @-> id @-> returning llong) x language |> LLong.to_int
 let defaultEmojiReplacementsDictionary self = msg_send ~self ~cmd:(selector "defaultEmojiReplacementsDictionary") ~typ:(returning id)
 let deletesAutospaceBeforeString x ~language self = msg_send ~self ~cmd:(selector "deletesAutospaceBeforeString:language:") ~typ:(id @-> id @-> returning bool) x language
 let deletesAutospaceBetweenString x ~andString ~language self = msg_send ~self ~cmd:(selector "deletesAutospaceBetweenString:andString:language:") ~typ:(id @-> id @-> id @-> returning bool) x andString language
@@ -77,13 +77,13 @@ let makeCorrectionBubbleKeyForView x self = msg_send ~self ~cmd:(selector "makeC
 let menuForResult x ~string_ ~options ~atLocation ~inView self = msg_send ~self ~cmd:(selector "menuForResult:string:options:atLocation:inView:") ~typ:(id @-> id @-> id @-> CGPoint.t @-> id @-> returning id) x string_ options atLocation inView
 let nextLetterDictionariesForPartialWordRange x ~inString ~language ~inSpellDocumentWithTag self = msg_send ~self ~cmd:(selector "nextLetterDictionariesForPartialWordRange:inString:language:inSpellDocumentWithTag:") ~typ:(NSRange.t @-> id @-> id @-> llong @-> returning id) x inString language (LLong.of_int inSpellDocumentWithTag)
 let noteSentenceCorrectionResult x ~grammarResult ~inString ~offset self = msg_send ~self ~cmd:(selector "noteSentenceCorrectionResult:grammarResult:inString:offset:") ~typ:(id @-> id @-> id @-> ullong @-> returning void) x grammarResult inString (ULLong.of_int offset)
-let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x
+let numberOfRowsInTableView x self = msg_send ~self ~cmd:(selector "numberOfRowsInTableView:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let preventsAutocorrectionBeforeString x ~language self = msg_send ~self ~cmd:(selector "preventsAutocorrectionBeforeString:language:") ~typ:(id @-> id @-> returning bool) x language
 let recordAcceptedCandidateIndex x ~inCandidates ~firstCandidateIsTypedString self = msg_send ~self ~cmd:(selector "recordAcceptedCandidateIndex:inCandidates:firstCandidateIsTypedString:") ~typ:(ullong @-> id @-> bool @-> returning void) (ULLong.of_int x) inCandidates firstCandidateIsTypedString
 let recordResponse x ~toCorrection ~forWord ~language ~inSpellDocumentWithTag self = msg_send ~self ~cmd:(selector "recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:") ~typ:(llong @-> id @-> id @-> id @-> llong @-> returning void) (LLong.of_int x) toCorrection forWord language (LLong.of_int inSpellDocumentWithTag)
 let recordSentenceCorrections x self = msg_send ~self ~cmd:(selector "recordSentenceCorrections:") ~typ:(id @-> returning void) x
-let requestCandidatesForSelectedRange x ~inString ~types ~options ~inSpellDocumentWithTag ~completionHandler self = msg_send ~self ~cmd:(selector "requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:") ~typ:(NSRange.t @-> id @-> ullong @-> id @-> llong @-> (ptr void) @-> returning llong) x inString (ULLong.of_int types) options (LLong.of_int inSpellDocumentWithTag) completionHandler
-let requestCheckingOfString x ~range ~types ~options ~inSpellDocumentWithTag ~completionHandler self = msg_send ~self ~cmd:(selector "requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> llong @-> (ptr void) @-> returning llong) x range (ULLong.of_int types) options (LLong.of_int inSpellDocumentWithTag) completionHandler
+let requestCandidatesForSelectedRange x ~inString ~types ~options ~inSpellDocumentWithTag ~completionHandler self = msg_send ~self ~cmd:(selector "requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:") ~typ:(NSRange.t @-> id @-> ullong @-> id @-> llong @-> (ptr void) @-> returning llong) x inString (ULLong.of_int types) options (LLong.of_int inSpellDocumentWithTag) completionHandler |> LLong.to_int
+let requestCheckingOfString x ~range ~types ~options ~inSpellDocumentWithTag ~completionHandler self = msg_send ~self ~cmd:(selector "requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> llong @-> (ptr void) @-> returning llong) x range (ULLong.of_int types) options (LLong.of_int inSpellDocumentWithTag) completionHandler |> LLong.to_int
 let result x ~isSentenceCorrectionInString self = msg_send ~self ~cmd:(selector "result:isSentenceCorrectionInString:") ~typ:(id @-> id @-> returning bool) x isSentenceCorrectionInString
 let setAccessoryView x self = msg_send ~self ~cmd:(selector "setAccessoryView:") ~typ:(id @-> returning void) x
 let setAdditionalTextReplacementsDictionary x self = msg_send ~self ~cmd:(selector "setAdditionalTextReplacementsDictionary:") ~typ:(id @-> returning void) x
@@ -104,7 +104,7 @@ let setSubstitutionsPanelAccessoryViewController x self = msg_send ~self ~cmd:(s
 let setWordFieldStringValue x self = msg_send ~self ~cmd:(selector "setWordFieldStringValue:") ~typ:(id @-> returning void) x
 let setupGuessesBrowser self = msg_send ~self ~cmd:(selector "setupGuessesBrowser") ~typ:(returning void)
 let sheetDidEnd x ~returnCode self = msg_send ~self ~cmd:(selector "sheetDidEnd:returnCode:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int returnCode)
-let showCorrection x ~forStringInRect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "showCorrection:forStringInRect:view:completionHandler:") ~typ:(id @-> CGRect.t @-> id @-> (ptr void) @-> returning llong) x forStringInRect view completionHandler
+let showCorrection x ~forStringInRect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "showCorrection:forStringInRect:view:completionHandler:") ~typ:(id @-> CGRect.t @-> id @-> (ptr void) @-> returning llong) x forStringInRect view completionHandler |> LLong.to_int
 let showCorrectionBubbleOfType x ~primaryString ~alternativeStrings ~forStringInRect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "showCorrectionBubbleOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:") ~typ:(llong @-> id @-> id @-> CGRect.t @-> id @-> (ptr void) @-> returning void) (LLong.of_int x) primaryString alternativeStrings forStringInRect view completionHandler
 let showCorrectionIndicatorOfType x ~primaryString ~alternativeStrings ~forStringInRect ~view ~completionHandler self = msg_send ~self ~cmd:(selector "showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:") ~typ:(llong @-> id @-> id @-> CGRect.t @-> id @-> (ptr void) @-> returning void) (LLong.of_int x) primaryString alternativeStrings forStringInRect view completionHandler
 let spellingPanel self = msg_send ~self ~cmd:(selector "spellingPanel") ~typ:(returning id)
@@ -117,7 +117,7 @@ let tableView2 x ~shouldEditTableColumn ~row self = msg_send ~self ~cmd:(selecto
 let tableView3 x ~writeRowsWithIndexes ~toPasteboard self = msg_send ~self ~cmd:(selector "tableView:writeRowsWithIndexes:toPasteboard:") ~typ:(id @-> id @-> id @-> returning bool) x writeRowsWithIndexes toPasteboard
 let tableView4 x ~acceptDrop ~row ~dropOperation self = msg_send ~self ~cmd:(selector "tableView:acceptDrop:row:dropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning bool) x acceptDrop (LLong.of_int row) (ULLong.of_int dropOperation)
 let tableView5 x ~setObjectValue ~forTableColumn ~row self = msg_send ~self ~cmd:(selector "tableView:setObjectValue:forTableColumn:row:") ~typ:(id @-> id @-> id @-> llong @-> returning void) x setObjectValue forTableColumn (LLong.of_int row)
-let tableView6 x ~validateDrop ~proposedRow ~proposedDropOperation self = msg_send ~self ~cmd:(selector "tableView:validateDrop:proposedRow:proposedDropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning ullong) x validateDrop (LLong.of_int proposedRow) (ULLong.of_int proposedDropOperation)
+let tableView6 x ~validateDrop ~proposedRow ~proposedDropOperation self = msg_send ~self ~cmd:(selector "tableView:validateDrop:proposedRow:proposedDropOperation:") ~typ:(id @-> id @-> llong @-> ullong @-> returning ullong) x validateDrop (LLong.of_int proposedRow) (ULLong.of_int proposedDropOperation) |> ULLong.to_int
 let tableView7 x ~willDisplayCell ~forTableColumn ~row self = msg_send ~self ~cmd:(selector "tableView:willDisplayCell:forTableColumn:row:") ~typ:(id @-> id @-> id @-> llong @-> returning void) x willDisplayCell forTableColumn (LLong.of_int row)
 let tableViewSelectionDidChange x self = msg_send ~self ~cmd:(selector "tableViewSelectionDidChange:") ~typ:(id @-> returning void) x
 let unlearnWord x self = msg_send ~self ~cmd:(selector "unlearnWord:") ~typ:(id @-> returning void) x

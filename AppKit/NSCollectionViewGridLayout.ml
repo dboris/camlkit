@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -23,13 +23,13 @@ let layoutAttributesForInterItemGapBeforeIndexPath x self = msg_send ~self ~cmd:
 let layoutAttributesForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "layoutAttributesForItemAtIndexPath:") ~typ:(id @-> returning id) x
 let margins self = msg_send_stret ~self ~cmd:(selector "margins") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
 let maximumItemSize self = msg_send_stret ~self ~cmd:(selector "maximumItemSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let maximumNumberOfColumns self = msg_send ~self ~cmd:(selector "maximumNumberOfColumns") ~typ:(returning ullong)
-let maximumNumberOfRows self = msg_send ~self ~cmd:(selector "maximumNumberOfRows") ~typ:(returning ullong)
+let maximumNumberOfColumns self = msg_send ~self ~cmd:(selector "maximumNumberOfColumns") ~typ:(returning ullong) |> ULLong.to_int
+let maximumNumberOfRows self = msg_send ~self ~cmd:(selector "maximumNumberOfRows") ~typ:(returning ullong) |> ULLong.to_int
 let minimumInteritemSpacing self = msg_send ~self ~cmd:(selector "minimumInteritemSpacing") ~typ:(returning double)
 let minimumItemSize self = msg_send_stret ~self ~cmd:(selector "minimumItemSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let minimumLineSpacing self = msg_send ~self ~cmd:(selector "minimumLineSpacing") ~typ:(returning double)
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning void)
-let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning llong)
+let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning llong) |> LLong.to_int
 let setBackgroundColors x self = msg_send ~self ~cmd:(selector "setBackgroundColors:") ~typ:(id @-> returning void) x
 let setMargins x self = msg_send ~self ~cmd:(selector "setMargins:") ~typ:(NSEdgeInsets.t @-> returning void) x
 let setMaximumItemSize x self = msg_send ~self ~cmd:(selector "setMaximumItemSize:") ~typ:(CGSize.t @-> returning void) x

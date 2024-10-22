@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -33,6 +33,7 @@ let presentError' x ~modalForWindow ~delegate ~didPresentSelector ~contextInfo s
 let presentViewController x ~asPopoverRelativeToRect ~ofView ~preferredEdge ~behavior self = msg_send ~self ~cmd:(selector "presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> llong @-> returning void) x asPopoverRelativeToRect ofView (ULLong.of_int preferredEdge) (LLong.of_int behavior)
 let presentingViewController self = msg_send ~self ~cmd:(selector "presentingViewController") ~typ:(returning id)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
+let seamlessOpeningContentFrame self = msg_send_stret ~self ~cmd:(selector "seamlessOpeningContentFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let setContentViewController x self = msg_send ~self ~cmd:(selector "setContentViewController:") ~typ:(id @-> returning void) x
 let setDocument x self = msg_send ~self ~cmd:(selector "setDocument:") ~typ:(id @-> returning void) x
 let setDocumentEdited x self = msg_send ~self ~cmd:(selector "setDocumentEdited:") ~typ:(bool @-> returning void) x

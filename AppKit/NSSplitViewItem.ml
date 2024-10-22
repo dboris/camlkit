@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -19,14 +19,14 @@ let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returnin
 let autoHidesWhenFullscreen self = msg_send ~self ~cmd:(selector "autoHidesWhenFullscreen") ~typ:(returning bool)
 let automaticMaximumSize self = msg_send ~self ~cmd:(selector "automaticMaximumSize") ~typ:(returning double)
 let automaticMaximumThickness self = msg_send ~self ~cmd:(selector "automaticMaximumThickness") ~typ:(returning double)
-let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong)
+let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong) |> LLong.to_int
 let canCollapse self = msg_send ~self ~cmd:(selector "canCollapse") ~typ:(returning bool)
 let canCollapseFromWindowResize self = msg_send ~self ~cmd:(selector "canCollapseFromWindowResize") ~typ:(returning bool)
 let canOverlay self = msg_send ~self ~cmd:(selector "canOverlay") ~typ:(returning bool)
-let collapseBehavior self = msg_send ~self ~cmd:(selector "collapseBehavior") ~typ:(returning llong)
+let collapseBehavior self = msg_send ~self ~cmd:(selector "collapseBehavior") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let effectiveAppearance self = msg_send ~self ~cmd:(selector "effectiveAppearance") ~typ:(returning id)
-let effectiveCollapseBehavior self = msg_send ~self ~cmd:(selector "effectiveCollapseBehavior") ~typ:(returning llong)
+let effectiveCollapseBehavior self = msg_send ~self ~cmd:(selector "effectiveCollapseBehavior") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let hasUserSetSize self = msg_send ~self ~cmd:(selector "hasUserSetSize") ~typ:(returning bool)
 let holdingPriority self = msg_send ~self ~cmd:(selector "holdingPriority") ~typ:(returning float)
@@ -73,5 +73,5 @@ let setSidebar x self = msg_send ~self ~cmd:(selector "setSidebar:") ~typ:(bool 
 let setSpringLoaded x self = msg_send ~self ~cmd:(selector "setSpringLoaded:") ~typ:(bool @-> returning void) x
 let setTitlebarSeparatorStyle x self = msg_send ~self ~cmd:(selector "setTitlebarSeparatorStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setViewController x self = msg_send ~self ~cmd:(selector "setViewController:") ~typ:(id @-> returning void) x
-let titlebarSeparatorStyle self = msg_send ~self ~cmd:(selector "titlebarSeparatorStyle") ~typ:(returning llong)
+let titlebarSeparatorStyle self = msg_send ~self ~cmd:(selector "titlebarSeparatorStyle") ~typ:(returning llong) |> LLong.to_int
 let viewController self = msg_send ~self ~cmd:(selector "viewController") ~typ:(returning id)

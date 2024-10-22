@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,7 +20,7 @@ let completionDelay self = msg_send ~self ~cmd:(selector "completionDelay") ~typ
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let fieldEditorForView x self = msg_send ~self ~cmd:(selector "fieldEditorForView:") ~typ:(id @-> returning id) x
 let hasMenuForTokenAttachment x self = msg_send ~self ~cmd:(selector "hasMenuForTokenAttachment:") ~typ:(id @-> returning bool) x
@@ -56,7 +56,7 @@ let textView1 x ~willChangeSelectionFromCharacterRange ~toCharacterRange self = 
 let textView2 x ~completions ~forPartialWordRange ~indexOfSelectedItem self = msg_send ~self ~cmd:(selector "textView:completions:forPartialWordRange:indexOfSelectedItem:") ~typ:(id @-> id @-> NSRange.t @-> (ptr llong) @-> returning id) x completions forPartialWordRange indexOfSelectedItem
 let tokenAttachment x ~shouldUseTokenAttachmentCell self = msg_send ~self ~cmd:(selector "tokenAttachment:shouldUseTokenAttachmentCell:") ~typ:(id @-> id @-> returning id) x shouldUseTokenAttachmentCell
 let tokenAttachment' x ~doubleClickedInRect ~ofView ~atCharacterIndex self = msg_send ~self ~cmd:(selector "tokenAttachment:doubleClickedInRect:ofView:atCharacterIndex:") ~typ:(id @-> CGRect.t @-> id @-> ullong @-> returning bool) x doubleClickedInRect ofView (ULLong.of_int atCharacterIndex)
-let tokenStyle self = msg_send ~self ~cmd:(selector "tokenStyle") ~typ:(returning ullong)
+let tokenStyle self = msg_send ~self ~cmd:(selector "tokenStyle") ~typ:(returning ullong) |> ULLong.to_int
 let tokenTextView x ~shouldUseDraggingPasteboardTypes self = msg_send ~self ~cmd:(selector "tokenTextView:shouldUseDraggingPasteboardTypes:") ~typ:(id @-> id @-> returning id) x shouldUseDraggingPasteboardTypes
 let tokenTextView1 x ~shouldUseReadablePasteboardTypes self = msg_send ~self ~cmd:(selector "tokenTextView:shouldUseReadablePasteboardTypes:") ~typ:(id @-> id @-> returning id) x shouldUseReadablePasteboardTypes
 let tokenTextView2 x ~shouldUseWritablePasteboardTypes self = msg_send ~self ~cmd:(selector "tokenTextView:shouldUseWritablePasteboardTypes:") ~typ:(id @-> id @-> returning id) x shouldUseWritablePasteboardTypes

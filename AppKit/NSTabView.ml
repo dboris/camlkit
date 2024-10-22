@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -34,8 +34,8 @@ let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ:(returning void)
 let contentRect self = msg_send_stret ~self ~cmd:(selector "contentRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
-let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong)
+let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong) |> ULLong.to_int
+let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong) |> ULLong.to_int
 let currentEditor self = msg_send ~self ~cmd:(selector "currentEditor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -46,8 +46,8 @@ let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encod
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let focusRingMaskBounds self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning id)
-let indexOfTabViewItem x self = msg_send ~self ~cmd:(selector "indexOfTabViewItem:") ~typ:(id @-> returning llong) x
-let indexOfTabViewItemWithIdentifier x self = msg_send ~self ~cmd:(selector "indexOfTabViewItemWithIdentifier:") ~typ:(id @-> returning llong) x
+let indexOfTabViewItem x self = msg_send ~self ~cmd:(selector "indexOfTabViewItem:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfTabViewItemWithIdentifier x self = msg_send ~self ~cmd:(selector "indexOfTabViewItemWithIdentifier:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let insertTabViewItem x ~atIndex self = msg_send ~self ~cmd:(selector "insertTabViewItem:atIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int atIndex)
@@ -66,7 +66,7 @@ let moveLeft x self = msg_send ~self ~cmd:(selector "moveLeft:") ~typ:(id @-> re
 let moveRight x self = msg_send ~self ~cmd:(selector "moveRight:") ~typ:(id @-> returning void) x
 let moveUp x self = msg_send ~self ~cmd:(selector "moveUp:") ~typ:(id @-> returning void) x
 let needsPanelToBecomeKey self = msg_send ~self ~cmd:(selector "needsPanelToBecomeKey") ~typ:(returning bool)
-let numberOfTabViewItems self = msg_send ~self ~cmd:(selector "numberOfTabViewItems") ~typ:(returning llong)
+let numberOfTabViewItems self = msg_send ~self ~cmd:(selector "numberOfTabViewItems") ~typ:(returning llong) |> LLong.to_int
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
 let removeFromSuperview self = msg_send ~self ~cmd:(selector "removeFromSuperview") ~typ:(returning void)
 let removeFromSuperviewWithoutNeedingDisplay self = msg_send ~self ~cmd:(selector "removeFromSuperviewWithoutNeedingDisplay") ~typ:(returning void)
@@ -97,17 +97,17 @@ let setTabViewItems x self = msg_send ~self ~cmd:(selector "setTabViewItems:") ~
 let setTabViewMinimumSizeConstraint x self = msg_send ~self ~cmd:(selector "setTabViewMinimumSizeConstraint:") ~typ:(id @-> returning void) x
 let setTabViewType x self = msg_send ~self ~cmd:(selector "setTabViewType:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let springLoadingActivated x ~draggingInfo self = msg_send ~self ~cmd:(selector "springLoadingActivated:draggingInfo:") ~typ:(bool @-> id @-> returning void) x draggingInfo
-let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x
+let springLoadingEntered x self = msg_send ~self ~cmd:(selector "springLoadingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let springLoadingExited x self = msg_send ~self ~cmd:(selector "springLoadingExited:") ~typ:(id @-> returning void) x
 let springLoadingHighlightChanged x self = msg_send ~self ~cmd:(selector "springLoadingHighlightChanged:") ~typ:(id @-> returning void) x
-let springLoadingUpdated x self = msg_send ~self ~cmd:(selector "springLoadingUpdated:") ~typ:(id @-> returning ullong) x
-let tabPosition self = msg_send ~self ~cmd:(selector "tabPosition") ~typ:(returning ullong)
-let tabViewBorderType self = msg_send ~self ~cmd:(selector "tabViewBorderType") ~typ:(returning ullong)
+let springLoadingUpdated x self = msg_send ~self ~cmd:(selector "springLoadingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
+let tabPosition self = msg_send ~self ~cmd:(selector "tabPosition") ~typ:(returning ullong) |> ULLong.to_int
+let tabViewBorderType self = msg_send ~self ~cmd:(selector "tabViewBorderType") ~typ:(returning ullong) |> ULLong.to_int
 let tabViewItemAtIndex x self = msg_send ~self ~cmd:(selector "tabViewItemAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let tabViewItemAtPoint x self = msg_send ~self ~cmd:(selector "tabViewItemAtPoint:") ~typ:(CGPoint.t @-> returning id) x
 let tabViewItems self = msg_send ~self ~cmd:(selector "tabViewItems") ~typ:(returning id)
 let tabViewMinimumSizeConstraint self = msg_send ~self ~cmd:(selector "tabViewMinimumSizeConstraint") ~typ:(returning id)
-let tabViewType self = msg_send ~self ~cmd:(selector "tabViewType") ~typ:(returning ullong)
+let tabViewType self = msg_send ~self ~cmd:(selector "tabViewType") ~typ:(returning ullong) |> ULLong.to_int
 let takeSelectedTabViewItemFromSender x self = msg_send ~self ~cmd:(selector "takeSelectedTabViewItemFromSender:") ~typ:(id @-> returning void) x
 let updateConstraints self = msg_send ~self ~cmd:(selector "updateConstraints") ~typ:(returning void)
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -22,11 +22,11 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithRow x ~column self = msg_send ~self ~cmd:(selector "initWithRow:column:") ~typ:(id @-> id @-> returning id) x column
 let layoutRect self = msg_send ~self ~cmd:(selector "layoutRect") ~typ:(returning id)
 let row self = msg_send ~self ~cmd:(selector "row") ~typ:(returning id)
-let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(returning llong)
+let rowAlignment self = msg_send ~self ~cmd:(selector "rowAlignment") ~typ:(returning llong) |> LLong.to_int
 let setContentView x self = msg_send ~self ~cmd:(selector "setContentView:") ~typ:(id @-> returning void) x
 let setCustomPlacementConstraints x self = msg_send ~self ~cmd:(selector "setCustomPlacementConstraints:") ~typ:(id @-> returning void) x
 let setRowAlignment x self = msg_send ~self ~cmd:(selector "setRowAlignment:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setXPlacement x self = msg_send ~self ~cmd:(selector "setXPlacement:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setYPlacement x self = msg_send ~self ~cmd:(selector "setYPlacement:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning llong)
-let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning llong)
+let xPlacement self = msg_send ~self ~cmd:(selector "xPlacement") ~typ:(returning llong) |> LLong.to_int
+let yPlacement self = msg_send ~self ~cmd:(selector "yPlacement") ~typ:(returning llong) |> LLong.to_int

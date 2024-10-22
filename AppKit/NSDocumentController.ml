@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -50,7 +50,7 @@ let makeDocumentWithContentsOfURL1 x ~ofType ~error self = msg_send ~self ~cmd:(
 let makeDocumentWithContentsOfURL2 x ~alternateContents ~ofType ~completionHandler self = msg_send ~self ~cmd:(selector "makeDocumentWithContentsOfURL:alternateContents:ofType:completionHandler:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x alternateContents ofType completionHandler
 let makeUntitledDocumentOfType x self = msg_send ~self ~cmd:(selector "makeUntitledDocumentOfType:") ~typ:(id @-> returning id) x
 let makeUntitledDocumentOfType' x ~error self = msg_send ~self ~cmd:(selector "makeUntitledDocumentOfType:error:") ~typ:(id @-> (ptr id) @-> returning id) x error
-let maximumRecentDocumentCount self = msg_send ~self ~cmd:(selector "maximumRecentDocumentCount") ~typ:(returning ullong)
+let maximumRecentDocumentCount self = msg_send ~self ~cmd:(selector "maximumRecentDocumentCount") ~typ:(returning ullong) |> ULLong.to_int
 let newDocument x self = msg_send ~self ~cmd:(selector "newDocument:") ~typ:(id @-> returning void) x
 let newWindowForTab x self = msg_send ~self ~cmd:(selector "newWindowForTab:") ~typ:(id @-> returning void) x
 let noteNewRecentDocument x self = msg_send ~self ~cmd:(selector "noteNewRecentDocument:") ~typ:(id @-> returning void) x
@@ -71,7 +71,7 @@ let reopenDocumentForURL' x ~withContentsOfURL ~display ~completionHandler self 
 let respondsToSelector x self = msg_send ~self ~cmd:(selector "respondsToSelector:") ~typ:(_SEL @-> returning bool) x
 let reviewUnsavedDocumentsWithAlertTitle x ~cancellable self = msg_send ~self ~cmd:(selector "reviewUnsavedDocumentsWithAlertTitle:cancellable:") ~typ:(id @-> bool @-> returning bool) x cancellable
 let reviewUnsavedDocumentsWithAlertTitle' x ~cancellable ~delegate ~didReviewAllSelector ~contextInfo self = msg_send ~self ~cmd:(selector "reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:") ~typ:(id @-> bool @-> id @-> _SEL @-> (ptr void) @-> returning void) x cancellable delegate didReviewAllSelector contextInfo
-let runModalOpenPanel x ~forTypes self = msg_send ~self ~cmd:(selector "runModalOpenPanel:forTypes:") ~typ:(id @-> id @-> returning llong) x forTypes
+let runModalOpenPanel x ~forTypes self = msg_send ~self ~cmd:(selector "runModalOpenPanel:forTypes:") ~typ:(id @-> id @-> returning llong) x forTypes |> LLong.to_int
 let saveAllDocuments x self = msg_send ~self ~cmd:(selector "saveAllDocuments:") ~typ:(id @-> returning void) x
 let setAutosavingDelay x self = msg_send ~self ~cmd:(selector "setAutosavingDelay:") ~typ:(double @-> returning void) x
 let setShouldCreateUI x self = msg_send ~self ~cmd:(selector "setShouldCreateUI:") ~typ:(bool @-> returning void) x

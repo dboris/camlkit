@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -24,7 +24,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let isIncrementalSearchingEnabled self = msg_send ~self ~cmd:(selector "isIncrementalSearchingEnabled") ~typ:(returning bool)
 let noteClientStringWillChange self = msg_send ~self ~cmd:(selector "noteClientStringWillChange") ~typ:(returning void)
 let performAction x self = msg_send ~self ~cmd:(selector "performAction:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let preferredTextFinderStyle self = msg_send ~self ~cmd:(selector "preferredTextFinderStyle") ~typ:(returning llong)
+let preferredTextFinderStyle self = msg_send ~self ~cmd:(selector "preferredTextFinderStyle") ~typ:(returning llong) |> LLong.to_int
 let setClient x self = msg_send ~self ~cmd:(selector "setClient:") ~typ:(id @-> returning void) x
 let setFindBarContainer x self = msg_send ~self ~cmd:(selector "setFindBarContainer:") ~typ:(id @-> returning void) x
 let setFindIndicatorNeedsUpdate x self = msg_send ~self ~cmd:(selector "setFindIndicatorNeedsUpdate:") ~typ:(bool @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -43,7 +43,7 @@ let automaticallyAdjustsContentViewInsets self = msg_send ~self ~cmd:(selector "
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let beginGestureWithEvent x self = msg_send ~self ~cmd:(selector "beginGestureWithEvent:") ~typ:(id @-> returning void) x
-let borderType self = msg_send ~self ~cmd:(selector "borderType") ~typ:(returning ullong)
+let borderType self = msg_send ~self ~cmd:(selector "borderType") ~typ:(returning ullong) |> ULLong.to_int
 let computedHasScrolledContentsUnderTitlebar self = msg_send ~self ~cmd:(selector "computedHasScrolledContentsUnderTitlebar") ~typ:(returning bool)
 let computedScrollViewFrame self = msg_send_stret ~self ~cmd:(selector "computedScrollViewFrame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let contentAreaRectForScrollerImpPair x self = msg_send_stret ~self ~cmd:(selector "contentAreaRectForScrollerImpPair:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
@@ -65,7 +65,7 @@ let drawsContentShadow self = msg_send ~self ~cmd:(selector "drawsContentShadow"
 let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let endGestureWithEvent x self = msg_send ~self ~cmd:(selector "endGestureWithEvent:") ~typ:(id @-> returning void) x
-let findBarPosition self = msg_send ~self ~cmd:(selector "findBarPosition") ~typ:(returning llong)
+let findBarPosition self = msg_send ~self ~cmd:(selector "findBarPosition") ~typ:(returning llong) |> LLong.to_int
 let findBarView self = msg_send ~self ~cmd:(selector "findBarView") ~typ:(returning id)
 let findBarViewDidChangeHeight self = msg_send ~self ~cmd:(selector "findBarViewDidChangeHeight") ~typ:(returning void)
 let flashScrollers self = msg_send ~self ~cmd:(selector "flashScrollers") ~typ:(returning void)
@@ -84,7 +84,7 @@ let horizontalLineScroll self = msg_send ~self ~cmd:(selector "horizontalLineScr
 let horizontalPageScroll self = msg_send ~self ~cmd:(selector "horizontalPageScroll") ~typ:(returning double)
 let horizontalRulerView self = msg_send ~self ~cmd:(selector "horizontalRulerView") ~typ:(returning id)
 let horizontalScrollDecelerationFactor self = msg_send ~self ~cmd:(selector "horizontalScrollDecelerationFactor") ~typ:(returning double)
-let horizontalScrollElasticity self = msg_send ~self ~cmd:(selector "horizontalScrollElasticity") ~typ:(returning llong)
+let horizontalScrollElasticity self = msg_send ~self ~cmd:(selector "horizontalScrollElasticity") ~typ:(returning llong) |> LLong.to_int
 let horizontalScroller self = msg_send ~self ~cmd:(selector "horizontalScroller") ~typ:(returning id)
 let inLiveResizeForScrollerImpPair x self = msg_send ~self ~cmd:(selector "inLiveResizeForScrollerImpPair:") ~typ:(id @-> returning bool) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -118,8 +118,8 @@ let scrollerImpPair1 x ~isContentPointVisible self = msg_send ~self ~cmd:(select
 let scrollerImpPair2 x ~updateScrollerStyleForNewRecommendedScrollerStyle self = msg_send ~self ~cmd:(selector "scrollerImpPair:updateScrollerStyleForNewRecommendedScrollerStyle:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int updateScrollerStyleForNewRecommendedScrollerStyle)
 let scrollerImpPair3 x ~convertContentPoint ~toScrollerImp self = msg_send_stret ~self ~cmd:(selector "scrollerImpPair:convertContentPoint:toScrollerImp:") ~typ:(id @-> CGPoint.t @-> id @-> returning CGPoint.t) ~return_type:CGPoint.t x convertContentPoint toScrollerImp
 let scrollerInsets self = msg_send_stret ~self ~cmd:(selector "scrollerInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
-let scrollerKnobStyle self = msg_send ~self ~cmd:(selector "scrollerKnobStyle") ~typ:(returning llong)
-let scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerStyle") ~typ:(returning llong)
+let scrollerKnobStyle self = msg_send ~self ~cmd:(selector "scrollerKnobStyle") ~typ:(returning llong) |> LLong.to_int
+let scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerStyle") ~typ:(returning llong) |> LLong.to_int
 let scrollsDynamically self = msg_send ~self ~cmd:(selector "scrollsDynamically") ~typ:(returning bool)
 let separatorOffset self = msg_send ~self ~cmd:(selector "separatorOffset") ~typ:(returning double)
 let setAllowsMagnification x self = msg_send ~self ~cmd:(selector "setAllowsMagnification:") ~typ:(bool @-> returning void) x
@@ -191,7 +191,7 @@ let verticalLineScroll self = msg_send ~self ~cmd:(selector "verticalLineScroll"
 let verticalPageScroll self = msg_send ~self ~cmd:(selector "verticalPageScroll") ~typ:(returning double)
 let verticalRulerView self = msg_send ~self ~cmd:(selector "verticalRulerView") ~typ:(returning id)
 let verticalScrollDecelerationFactor self = msg_send ~self ~cmd:(selector "verticalScrollDecelerationFactor") ~typ:(returning double)
-let verticalScrollElasticity self = msg_send ~self ~cmd:(selector "verticalScrollElasticity") ~typ:(returning llong)
+let verticalScrollElasticity self = msg_send ~self ~cmd:(selector "verticalScrollElasticity") ~typ:(returning llong) |> LLong.to_int
 let verticalScroller self = msg_send ~self ~cmd:(selector "verticalScroller") ~typ:(returning id)
 let viewDidChangeBackingProperties self = msg_send ~self ~cmd:(selector "viewDidChangeBackingProperties") ~typ:(returning void)
 let viewDidChangeEffectiveAppearance self = msg_send ~self ~cmd:(selector "viewDidChangeEffectiveAppearance") ~typ:(returning void)

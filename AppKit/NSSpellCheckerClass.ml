@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,4 +20,4 @@ let isAutomaticTextReplacementEnabled self = msg_send ~self ~cmd:(selector "isAu
 let restoreWindowWithIdentifier x ~state ~completionHandler self = msg_send ~self ~cmd:(selector "restoreWindowWithIdentifier:state:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning void) x state completionHandler
 let sharedSpellChecker self = msg_send ~self ~cmd:(selector "sharedSpellChecker") ~typ:(returning id)
 let sharedSpellCheckerExists self = msg_send ~self ~cmd:(selector "sharedSpellCheckerExists") ~typ:(returning bool)
-let uniqueSpellDocumentTag self = msg_send ~self ~cmd:(selector "uniqueSpellDocumentTag") ~typ:(returning llong)
+let uniqueSpellDocumentTag self = msg_send ~self ~cmd:(selector "uniqueSpellDocumentTag") ~typ:(returning llong) |> LLong.to_int

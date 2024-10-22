@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -102,10 +102,10 @@ let requestAppEnabledStateForItems x ~replyBlock self = msg_send ~self ~cmd:(sel
 let requiredFileType self = msg_send ~self ~cmd:(selector "requiredFileType") ~typ:(returning id)
 let resolvesAliases self = msg_send ~self ~cmd:(selector "resolvesAliases") ~typ:(returning bool)
 let retained self = msg_send ~self ~cmd:(selector "retained") ~typ:(returning bool)
-let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong)
-let runModalForDirectory x ~file self = msg_send ~self ~cmd:(selector "runModalForDirectory:file:") ~typ:(id @-> id @-> returning llong) x file
-let runModalForDirectory' x ~file ~types self = msg_send ~self ~cmd:(selector "runModalForDirectory:file:types:") ~typ:(id @-> id @-> id @-> returning llong) x file types
-let runModalForTypes x self = msg_send ~self ~cmd:(selector "runModalForTypes:") ~typ:(id @-> returning llong) x
+let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong) |> LLong.to_int
+let runModalForDirectory x ~file self = msg_send ~self ~cmd:(selector "runModalForDirectory:file:") ~typ:(id @-> id @-> returning llong) x file |> LLong.to_int
+let runModalForDirectory' x ~file ~types self = msg_send ~self ~cmd:(selector "runModalForDirectory:file:types:") ~typ:(id @-> id @-> id @-> returning llong) x file types |> LLong.to_int
+let runModalForTypes x self = msg_send ~self ~cmd:(selector "runModalForTypes:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let runningAppModalExplicitly self = msg_send ~self ~cmd:(selector "runningAppModalExplicitly") ~typ:(returning bool)
 let runningAsASheet self = msg_send ~self ~cmd:(selector "runningAsASheet") ~typ:(returning bool)
 let serviceViewControllerInterface self = msg_send ~self ~cmd:(selector "serviceViewControllerInterface") ~typ:(returning id)
@@ -164,7 +164,7 @@ let setValue x ~forUndefinedKey self = msg_send ~self ~cmd:(selector "setValue:f
 let shouldRetainExportedObject self = msg_send ~self ~cmd:(selector "shouldRetainExportedObject") ~typ:(returning bool)
 let showsHiddenFiles self = msg_send ~self ~cmd:(selector "showsHiddenFiles") ~typ:(returning bool)
 let showsTagField self = msg_send ~self ~cmd:(selector "showsTagField") ~typ:(returning bool)
-let styleMaskForHostWindow self = msg_send ~self ~cmd:(selector "styleMaskForHostWindow") ~typ:(returning ullong)
+let styleMaskForHostWindow self = msg_send ~self ~cmd:(selector "styleMaskForHostWindow") ~typ:(returning ullong) |> ULLong.to_int
 let tagNames self = msg_send ~self ~cmd:(selector "tagNames") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let treatsFilePackagesAsDirectories self = msg_send ~self ~cmd:(selector "treatsFilePackagesAsDirectories") ~typ:(returning bool)

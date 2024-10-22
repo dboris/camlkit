@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,7 +14,7 @@ let self = get_class "NSTextField"
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning bool) x
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning bool)
 let accessibilityFrameForRange x self = msg_send_stret ~self ~cmd:(selector "accessibilityFrameForRange:") ~typ:(NSRange.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let accessibilityLineForIndex x self = msg_send ~self ~cmd:(selector "accessibilityLineForIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let accessibilityLineForIndex x self = msg_send ~self ~cmd:(selector "accessibilityLineForIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let accessibilityRangeForLine x self = msg_send_stret ~self ~cmd:(selector "accessibilityRangeForLine:") ~typ:(llong @-> returning NSRange.t) ~return_type:NSRange.t (LLong.of_int x)
 let accessibilityStringForRange x self = msg_send ~self ~cmd:(selector "accessibilityStringForRange:") ~typ:(NSRange.t @-> returning id) x
 let accessibilityValue self = msg_send ~self ~cmd:(selector "accessibilityValue") ~typ:(returning id)
@@ -25,7 +25,7 @@ let allowsEditingTextAttributes self = msg_send ~self ~cmd:(selector "allowsEdit
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let baselineOffsetFromBottom self = msg_send ~self ~cmd:(selector "baselineOffsetFromBottom") ~typ:(returning double)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
-let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong)
+let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong) |> ULLong.to_int
 let boundsOutsetsForTextLayer x self = msg_send_stret ~self ~cmd:(selector "boundsOutsetsForTextLayer:") ~typ:(id @-> returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t x
 let contentType self = msg_send ~self ~cmd:(selector "contentType") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -48,9 +48,9 @@ let isBordered self = msg_send ~self ~cmd:(selector "isBordered") ~typ:(returnin
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning bool)
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning bool)
 let isSelectable self = msg_send ~self ~cmd:(selector "isSelectable") ~typ:(returning bool)
-let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong)
+let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong) |> ULLong.to_int
 let makeBackingLayer self = msg_send ~self ~cmd:(selector "makeBackingLayer") ~typ:(returning id)
-let maximumNumberOfLines self = msg_send ~self ~cmd:(selector "maximumNumberOfLines") ~typ:(returning llong)
+let maximumNumberOfLines self = msg_send ~self ~cmd:(selector "maximumNumberOfLines") ~typ:(returning llong) |> LLong.to_int
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
 let placeholderAttributedString self = msg_send ~self ~cmd:(selector "placeholderAttributedString") ~typ:(returning id)
@@ -91,7 +91,7 @@ let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~
 let startSpeaking x self = msg_send ~self ~cmd:(selector "startSpeaking:") ~typ:(id @-> returning void) x
 let stopSpeaking x self = msg_send ~self ~cmd:(selector "stopSpeaking:") ~typ:(id @-> returning void) x
 let styleEffectConfiguration self = msg_send ~self ~cmd:(selector "styleEffectConfiguration") ~typ:(returning id)
-let textAlignmentPolicy self = msg_send ~self ~cmd:(selector "textAlignmentPolicy") ~typ:(returning ullong)
+let textAlignmentPolicy self = msg_send ~self ~cmd:(selector "textAlignmentPolicy") ~typ:(returning ullong) |> ULLong.to_int
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning id)
 let textDidBeginEditing x self = msg_send ~self ~cmd:(selector "textDidBeginEditing:") ~typ:(id @-> returning void) x
 let textDidChange x self = msg_send ~self ~cmd:(selector "textDidChange:") ~typ:(id @-> returning void) x

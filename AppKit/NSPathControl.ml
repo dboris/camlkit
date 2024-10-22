@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -27,10 +27,10 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id
 let doubleAction self = msg_send ~self ~cmd:(selector "doubleAction") ~typ:(returning _SEL)
 let draggedImage x ~beganAt self = msg_send ~self ~cmd:(selector "draggedImage:beganAt:") ~typ:(id @-> CGPoint.t @-> returning void) x beganAt
 let draggedImage' x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning void) x endedAt (ULLong.of_int operation)
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning void) x
-let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x
-let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x
+let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x |> ULLong.to_int
+let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let ignoreModifierKeysWhileDragging self = msg_send ~self ~cmd:(selector "ignoreModifierKeysWhileDragging") ~typ:(returning bool)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -46,7 +46,7 @@ let pathCell x ~willDisplayOpenPanel self = msg_send ~self ~cmd:(selector "pathC
 let pathCell' x ~willPopUpMenu self = msg_send ~self ~cmd:(selector "pathCell:willPopUpMenu:") ~typ:(id @-> id @-> returning void) x willPopUpMenu
 let pathComponentCells self = msg_send ~self ~cmd:(selector "pathComponentCells") ~typ:(returning id)
 let pathItems self = msg_send ~self ~cmd:(selector "pathItems") ~typ:(returning id)
-let pathStyle self = msg_send ~self ~cmd:(selector "pathStyle") ~typ:(returning llong)
+let pathStyle self = msg_send ~self ~cmd:(selector "pathStyle") ~typ:(returning llong) |> LLong.to_int
 let performDragOperation x self = msg_send ~self ~cmd:(selector "performDragOperation:") ~typ:(id @-> returning bool) x
 let placeholderAttributedString self = msg_send ~self ~cmd:(selector "placeholderAttributedString") ~typ:(returning id)
 let placeholderString self = msg_send ~self ~cmd:(selector "placeholderString") ~typ:(returning id)

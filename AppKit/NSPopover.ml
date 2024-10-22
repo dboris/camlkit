@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -22,11 +22,11 @@ let accessibilityParent self = msg_send ~self ~cmd:(selector "accessibilityParen
 let accessibilitySectionsAttribute self = msg_send ~self ~cmd:(selector "accessibilitySectionsAttribute") ~typ:(returning id)
 let accessibilitySetValue x ~forAttribute self = msg_send ~self ~cmd:(selector "accessibilitySetValue:forAttribute:") ~typ:(id @-> id @-> returning void) x forAttribute
 let accessibilitySupportsOverriddenAttributes self = msg_send ~self ~cmd:(selector "accessibilitySupportsOverriddenAttributes") ~typ:(returning bool)
-let anchorEdge self = msg_send ~self ~cmd:(selector "anchorEdge") ~typ:(returning ullong)
+let anchorEdge self = msg_send ~self ~cmd:(selector "anchorEdge") ~typ:(returning ullong) |> ULLong.to_int
 let anchorSize self = msg_send_stret ~self ~cmd:(selector "anchorSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let animates self = msg_send ~self ~cmd:(selector "animates") ~typ:(returning bool)
 let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning id)
-let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong)
+let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong) |> LLong.to_int
 let cancel x self = msg_send ~self ~cmd:(selector "cancel:") ~typ:(id @-> returning void) x
 let cancelOperation x self = msg_send ~self ~cmd:(selector "cancelOperation:") ~typ:(id @-> returning void) x
 let close self = msg_send ~self ~cmd:(selector "close") ~typ:(returning void)
@@ -55,7 +55,7 @@ let popoverShouldClose x self = msg_send ~self ~cmd:(selector "popoverShouldClos
 let popoverShouldDetach x self = msg_send ~self ~cmd:(selector "popoverShouldDetach:") ~typ:(id @-> returning bool) x
 let popoverWillClose x self = msg_send ~self ~cmd:(selector "popoverWillClose:") ~typ:(id @-> returning void) x
 let popoverWillShow x self = msg_send ~self ~cmd:(selector "popoverWillShow:") ~typ:(id @-> returning void) x
-let positioningOptions self = msg_send ~self ~cmd:(selector "positioningOptions") ~typ:(returning ullong)
+let positioningOptions self = msg_send ~self ~cmd:(selector "positioningOptions") ~typ:(returning ullong) |> ULLong.to_int
 let positioningRect self = msg_send_stret ~self ~cmd:(selector "positioningRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let positioningView self = msg_send ~self ~cmd:(selector "positioningView") ~typ:(returning id)
 let positioningViewGeometryInWindowDidChange x self = msg_send ~self ~cmd:(selector "positioningViewGeometryInWindowDidChange:") ~typ:(id @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -39,7 +39,7 @@ let getHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector
 let getRed x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "getRed:green:blue:alpha:") ~typ:((ptr double) @-> (ptr double) @-> (ptr double) @-> (ptr double) @-> returning void) x green blue alpha
 let getWhite x ~alpha self = msg_send ~self ~cmd:(selector "getWhite:alpha:") ~typ:((ptr double) @-> (ptr double) @-> returning void) x alpha
 let greenComponent self = msg_send ~self ~cmd:(selector "greenComponent") ~typ:(returning double)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let highlightWithLevel x self = msg_send ~self ~cmd:(selector "highlightWithLevel:") ~typ:(double @-> returning id) x
 let hueComponent self = msg_send ~self ~cmd:(selector "hueComponent") ~typ:(returning double)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
@@ -49,7 +49,7 @@ let isUniform self = msg_send ~self ~cmd:(selector "isUniform") ~typ:(returning 
 let localizedCatalogNameComponent self = msg_send ~self ~cmd:(selector "localizedCatalogNameComponent") ~typ:(returning id)
 let localizedColorNameComponent self = msg_send ~self ~cmd:(selector "localizedColorNameComponent") ~typ:(returning id)
 let magentaComponent self = msg_send ~self ~cmd:(selector "magentaComponent") ~typ:(returning double)
-let numberOfComponents self = msg_send ~self ~cmd:(selector "numberOfComponents") ~typ:(returning llong)
+let numberOfComponents self = msg_send ~self ~cmd:(selector "numberOfComponents") ~typ:(returning llong) |> LLong.to_int
 let pasteboardPropertyListForType x self = msg_send ~self ~cmd:(selector "pasteboardPropertyListForType:") ~typ:(id @-> returning id) x
 let patternImage self = msg_send ~self ~cmd:(selector "patternImage") ~typ:(returning id)
 let redComponent self = msg_send ~self ~cmd:(selector "redComponent") ~typ:(returning double)
@@ -60,7 +60,7 @@ let set self = msg_send ~self ~cmd:(selector "set") ~typ:(returning void)
 let setFill self = msg_send ~self ~cmd:(selector "setFill") ~typ:(returning void)
 let setStroke self = msg_send ~self ~cmd:(selector "setStroke") ~typ:(returning void)
 let shadowWithLevel x self = msg_send ~self ~cmd:(selector "shadowWithLevel:") ~typ:(double @-> returning id) x
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int
 let whiteComponent self = msg_send ~self ~cmd:(selector "whiteComponent") ~typ:(returning double)
 let writableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "writableTypesForPasteboard:") ~typ:(id @-> returning id) x
 let writeToPasteboard x self = msg_send ~self ~cmd:(selector "writeToPasteboard:") ~typ:(id @-> returning void) x

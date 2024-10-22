@@ -1,16 +1,16 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
 (** Apple docs: {{:https://developer.apple.com/documentation/appkit/nscolorpanel?language=objc}NSColorPanel} *)
 
 let dragColor x ~withEvent ~fromView self = msg_send ~self ~cmd:(selector "dragColor:withEvent:fromView:") ~typ:(id @-> id @-> id @-> returning bool) x withEvent fromView
-let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x
+let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x |> ULLong.to_int
 let ignoreModifierKeysWhileDragging self = msg_send ~self ~cmd:(selector "ignoreModifierKeysWhileDragging") ~typ:(returning bool)
 let keyPathsForValuesAffectingTouchBar self = msg_send ~self ~cmd:(selector "keyPathsForValuesAffectingTouchBar") ~typ:(returning id)
 let loadsExternalColorPickers self = msg_send ~self ~cmd:(selector "loadsExternalColorPickers") ~typ:(returning bool)

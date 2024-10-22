@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -30,10 +30,10 @@ let accessibilitySetValueAttribute x self = msg_send ~self ~cmd:(selector "acces
 let accessibilitySizeOfChild x self = msg_send ~self ~cmd:(selector "accessibilitySizeOfChild:") ~typ:(id @-> returning id) x
 let accessibilityValueAttribute self = msg_send ~self ~cmd:(selector "accessibilityValueAttribute") ~typ:(returning id)
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
-let arrowsPosition self = msg_send ~self ~cmd:(selector "arrowsPosition") ~typ:(returning ullong)
+let arrowsPosition self = msg_send ~self ~cmd:(selector "arrowsPosition") ~typ:(returning ullong) |> ULLong.to_int
 let checkSpaceForParts self = msg_send ~self ~cmd:(selector "checkSpaceForParts") ~typ:(returning void)
-let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
-let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong)
+let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong) |> ULLong.to_int
+let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let doubleValue self = msg_send ~self ~cmd:(selector "doubleValue") ~typ:(returning double)
 let drawArrow x ~highlight self = msg_send ~self ~cmd:(selector "drawArrow:highlight:") ~typ:(ullong @-> bool @-> returning void) (ULLong.of_int x) highlight
@@ -46,14 +46,14 @@ let effectiveAppearance self = msg_send ~self ~cmd:(selector "effectiveAppearanc
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let highlight x self = msg_send ~self ~cmd:(selector "highlight:") ~typ:(bool @-> returning void) x
-let hitPart self = msg_send ~self ~cmd:(selector "hitPart") ~typ:(returning ullong)
+let hitPart self = msg_send ~self ~cmd:(selector "hitPart") ~typ:(returning ullong) |> ULLong.to_int
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let knobProportion self = msg_send ~self ~cmd:(selector "knobProportion") ~typ:(returning double)
-let knobStyle self = msg_send ~self ~cmd:(selector "knobStyle") ~typ:(returning llong)
+let knobStyle self = msg_send ~self ~cmd:(selector "knobStyle") ~typ:(returning llong) |> LLong.to_int
 let layer x ~shouldInheritContentsScale ~fromWindow self = msg_send ~self ~cmd:(selector "layer:shouldInheritContentsScale:fromWindow:") ~typ:(id @-> double @-> id @-> returning bool) x shouldInheritContentsScale fromWindow
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseLocationInScrollerForScrollerImp x self = msg_send_stret ~self ~cmd:(selector "mouseLocationInScrollerForScrollerImp:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
@@ -67,7 +67,7 @@ let scrollerImp2 x ~animateUIStateTransitionWithDuration self = msg_send ~self ~
 let scrollerImp3 x ~overlayScrollerStateChangedTo self = msg_send ~self ~cmd:(selector "scrollerImp:overlayScrollerStateChangedTo:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int overlayScrollerStateChangedTo)
 let scrollerImp4 x ~animateKnobAlphaTo ~duration self = msg_send ~self ~cmd:(selector "scrollerImp:animateKnobAlphaTo:duration:") ~typ:(id @-> double @-> double @-> returning void) x animateKnobAlphaTo duration
 let scrollerImp5 x ~animateTrackAlphaTo ~duration self = msg_send ~self ~cmd:(selector "scrollerImp:animateTrackAlphaTo:duration:") ~typ:(id @-> double @-> double @-> returning void) x animateTrackAlphaTo duration
-let scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerStyle") ~typ:(returning llong)
+let scrollerStyle self = msg_send ~self ~cmd:(selector "scrollerStyle") ~typ:(returning llong) |> LLong.to_int
 let sendAction x ~to_ self = msg_send ~self ~cmd:(selector "sendAction:to:") ~typ:(_SEL @-> id @-> returning bool) x to_
 let setArrowsPosition x self = msg_send ~self ~cmd:(selector "setArrowsPosition:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setControlSize x self = msg_send ~self ~cmd:(selector "setControlSize:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
@@ -89,12 +89,12 @@ let setScrollerStyle x self = msg_send ~self ~cmd:(selector "setScrollerStyle:")
 let setUiStateTransitionProgress x self = msg_send ~self ~cmd:(selector "setUiStateTransitionProgress:") ~typ:(double @-> returning void) x
 let setUsePresentationValue x self = msg_send ~self ~cmd:(selector "setUsePresentationValue:") ~typ:(bool @-> returning void) x
 let shouldUseLayerPerPartForScrollerImp x self = msg_send ~self ~cmd:(selector "shouldUseLayerPerPartForScrollerImp:") ~typ:(id @-> returning bool) x
-let testPart x self = msg_send ~self ~cmd:(selector "testPart:") ~typ:(CGPoint.t @-> returning ullong) x
+let testPart x self = msg_send ~self ~cmd:(selector "testPart:") ~typ:(CGPoint.t @-> returning ullong) x |> ULLong.to_int
 let trackKnob x self = msg_send ~self ~cmd:(selector "trackKnob:") ~typ:(id @-> returning void) x
 let trackPagingArea x self = msg_send ~self ~cmd:(selector "trackPagingArea:") ~typ:(id @-> returning void) x
 let trackScrollButtons x self = msg_send ~self ~cmd:(selector "trackScrollButtons:") ~typ:(id @-> returning void) x
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning void)
 let updateTrackingAreas self = msg_send ~self ~cmd:(selector "updateTrackingAreas") ~typ:(returning void)
-let usableParts self = msg_send ~self ~cmd:(selector "usableParts") ~typ:(returning ullong)
+let usableParts self = msg_send ~self ~cmd:(selector "usableParts") ~typ:(returning ullong) |> ULLong.to_int
 let wantsLayer self = msg_send ~self ~cmd:(selector "wantsLayer") ~typ:(returning bool)
 let wantsUpdateLayer self = msg_send ~self ~cmd:(selector "wantsUpdateLayer") ~typ:(returning bool)

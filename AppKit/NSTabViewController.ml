@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -26,7 +26,7 @@ let moveTabViewItem x ~toIndex self = msg_send ~self ~cmd:(selector "moveTabView
 let removeChildViewControllerAtIndex x self = msg_send ~self ~cmd:(selector "removeChildViewControllerAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let removeTabViewItem x self = msg_send ~self ~cmd:(selector "removeTabViewItem:") ~typ:(id @-> returning void) x
 let selectedTabBarViewItemAfterClosingCurrentTabInTabBar x self = msg_send ~self ~cmd:(selector "selectedTabBarViewItemAfterClosingCurrentTabInTabBar:") ~typ:(id @-> returning id) x
-let selectedTabViewItemIndex self = msg_send ~self ~cmd:(selector "selectedTabViewItemIndex") ~typ:(returning llong)
+let selectedTabViewItemIndex self = msg_send ~self ~cmd:(selector "selectedTabViewItemIndex") ~typ:(returning llong) |> LLong.to_int
 let setCanPropagateSelectedChildViewControllerTitle x self = msg_send ~self ~cmd:(selector "setCanPropagateSelectedChildViewControllerTitle:") ~typ:(bool @-> returning void) x
 let setChildViewControllers x self = msg_send ~self ~cmd:(selector "setChildViewControllers:") ~typ:(id @-> returning void) x
 let setSelectedTabViewItemIndex x self = msg_send ~self ~cmd:(selector "setSelectedTabViewItemIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
@@ -44,13 +44,13 @@ let tabBar2 x ~destinationWindowForDetachedTabBarViewItem self = msg_send ~self 
 let tabBar3 x ~detachedWindowImageForDraggedTabBarViewItem self = msg_send ~self ~cmd:(selector "tabBar:detachedWindowImageForDraggedTabBarViewItem:") ~typ:(id @-> id @-> returning id) x detachedWindowImageForDraggedTabBarViewItem
 let tabBar4 x ~didFinishTransitionAnimationForWindow self = msg_send ~self ~cmd:(selector "tabBar:didFinishTransitionAnimationForWindow:") ~typ:(id @-> id @-> returning void) x didFinishTransitionAnimationForWindow
 let tabBar5 x ~selectTabBarViewItem self = msg_send ~self ~cmd:(selector "tabBar:selectTabBarViewItem:") ~typ:(id @-> id @-> returning void) x selectTabBarViewItem
-let tabBar6 x ~validateDrop self = msg_send ~self ~cmd:(selector "tabBar:validateDrop:") ~typ:(id @-> id @-> returning ullong) x validateDrop
-let tabBar7 x ~validateTabDrop self = msg_send ~self ~cmd:(selector "tabBar:validateTabDrop:") ~typ:(id @-> id @-> returning ullong) x validateTabDrop
+let tabBar6 x ~validateDrop self = msg_send ~self ~cmd:(selector "tabBar:validateDrop:") ~typ:(id @-> id @-> returning ullong) x validateDrop |> ULLong.to_int
+let tabBar7 x ~validateTabDrop self = msg_send ~self ~cmd:(selector "tabBar:validateTabDrop:") ~typ:(id @-> id @-> returning ullong) x validateTabDrop |> ULLong.to_int
 let tabBar8 x ~acceptDrop ~index self = msg_send ~self ~cmd:(selector "tabBar:acceptDrop:index:") ~typ:(id @-> id @-> ullong @-> returning bool) x acceptDrop (ULLong.of_int index)
 let tabBar9 x ~acceptTabDrop ~index self = msg_send ~self ~cmd:(selector "tabBar:acceptTabDrop:index:") ~typ:(id @-> id @-> ullong @-> returning bool) x acceptTabDrop (ULLong.of_int index)
 let tabBar10 x ~menuForTabBarViewItem ~event self = msg_send ~self ~cmd:(selector "tabBar:menuForTabBarViewItem:event:") ~typ:(id @-> id @-> id @-> returning id) x menuForTabBarViewItem event
 let tabBar11 x ~didMoveTabBarViewItem ~fromIndex ~toIndex ~isChangingPinnedness self = msg_send ~self ~cmd:(selector "tabBar:didMoveTabBarViewItem:fromIndex:toIndex:isChangingPinnedness:") ~typ:(id @-> id @-> ullong @-> ullong @-> bool @-> returning void) x didMoveTabBarViewItem (ULLong.of_int fromIndex) (ULLong.of_int toIndex) isChangingPinnedness
-let tabStyle self = msg_send ~self ~cmd:(selector "tabStyle") ~typ:(returning llong)
+let tabStyle self = msg_send ~self ~cmd:(selector "tabStyle") ~typ:(returning llong) |> LLong.to_int
 let tabView self = msg_send ~self ~cmd:(selector "tabView") ~typ:(returning id)
 let tabView1 x ~didSelectTabViewItem self = msg_send ~self ~cmd:(selector "tabView:didSelectTabViewItem:") ~typ:(id @-> id @-> returning void) x didSelectTabViewItem
 let tabView2 x ~shouldSelectTabViewItem self = msg_send ~self ~cmd:(selector "tabView:shouldSelectTabViewItem:") ~typ:(id @-> id @-> returning bool) x shouldSelectTabViewItem
@@ -65,7 +65,7 @@ let toolbarDefaultItemIdentifiers x self = msg_send ~self ~cmd:(selector "toolba
 let toolbarDidRemoveItem x self = msg_send ~self ~cmd:(selector "toolbarDidRemoveItem:") ~typ:(id @-> returning void) x
 let toolbarSelectableItemIdentifiers x self = msg_send ~self ~cmd:(selector "toolbarSelectableItemIdentifiers:") ~typ:(id @-> returning id) x
 let toolbarWillAddItem x self = msg_send ~self ~cmd:(selector "toolbarWillAddItem:") ~typ:(id @-> returning void) x
-let transitionOptions self = msg_send ~self ~cmd:(selector "transitionOptions") ~typ:(returning ullong)
+let transitionOptions self = msg_send ~self ~cmd:(selector "transitionOptions") ~typ:(returning ullong) |> ULLong.to_int
 let updateViewConstraints self = msg_send ~self ~cmd:(selector "updateViewConstraints") ~typ:(returning void)
 let viewDidLoad self = msg_send ~self ~cmd:(selector "viewDidLoad") ~typ:(returning void)
 let windowTabsDelegate self = msg_send ~self ~cmd:(selector "windowTabsDelegate") ~typ:(returning id)

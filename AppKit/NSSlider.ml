@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -29,7 +29,7 @@ let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t 
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let incrementValue self = msg_send ~self ~cmd:(selector "incrementValue") ~typ:(returning double)
-let indexOfTickMarkAtPoint x self = msg_send ~self ~cmd:(selector "indexOfTickMarkAtPoint:") ~typ:(CGPoint.t @-> returning llong) x
+let indexOfTickMarkAtPoint x self = msg_send ~self ~cmd:(selector "indexOfTickMarkAtPoint:") ~typ:(CGPoint.t @-> returning llong) x |> LLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
@@ -52,7 +52,7 @@ let moveLeft x self = msg_send ~self ~cmd:(selector "moveLeft:") ~typ:(id @-> re
 let moveRight x self = msg_send ~self ~cmd:(selector "moveRight:") ~typ:(id @-> returning void) x
 let moveUp x self = msg_send ~self ~cmd:(selector "moveUp:") ~typ:(id @-> returning void) x
 let normalizedTickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "normalizedTickMarkValueAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
-let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong)
+let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong) |> LLong.to_int
 let pageDown x self = msg_send ~self ~cmd:(selector "pageDown:") ~typ:(id @-> returning void) x
 let pageUp x self = msg_send ~self ~cmd:(selector "pageUp:") ~typ:(id @-> returning void) x
 let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
@@ -93,9 +93,9 @@ let sliderCellDidChangeSliderType x self = msg_send ~self ~cmd:(selector "slider
 let sliderCellDidChangeTickMarkPosition x self = msg_send ~self ~cmd:(selector "sliderCellDidChangeTickMarkPosition:") ~typ:(id @-> returning void) x
 let sliderCellDidChangeVertical x self = msg_send ~self ~cmd:(selector "sliderCellDidChangeVertical:") ~typ:(id @-> returning void) x
 let sliderCellDidInvalidateComponentRects x self = msg_send ~self ~cmd:(selector "sliderCellDidInvalidateComponentRects:") ~typ:(id @-> returning void) x
-let sliderType self = msg_send ~self ~cmd:(selector "sliderType") ~typ:(returning ullong)
+let sliderType self = msg_send ~self ~cmd:(selector "sliderType") ~typ:(returning ullong) |> ULLong.to_int
 let tickMarkIsProminentAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkIsProminentAtIndex:") ~typ:(llong @-> returning bool) (LLong.of_int x)
-let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong)
+let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong) |> ULLong.to_int
 let tickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkValueAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titleCell self = msg_send ~self ~cmd:(selector "titleCell") ~typ:(returning id)

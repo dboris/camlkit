@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -29,9 +29,9 @@ let convertFont3 x ~toFamily self = msg_send ~self ~cmd:(selector "convertFont:t
 let convertFont4 x ~toHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toHaveTrait:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int toHaveTrait)
 let convertFont5 x ~toNotHaveTrait self = msg_send ~self ~cmd:(selector "convertFont:toNotHaveTrait:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int toNotHaveTrait)
 let convertFont6 x ~toSize self = msg_send ~self ~cmd:(selector "convertFont:toSize:") ~typ:(id @-> double @-> returning id) x toSize
-let convertFontTraits x self = msg_send ~self ~cmd:(selector "convertFontTraits:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x)
+let convertFontTraits x self = msg_send ~self ~cmd:(selector "convertFontTraits:") ~typ:(ullong @-> returning ullong) (ULLong.of_int x) |> ULLong.to_int
 let convertWeight x ~ofFont self = msg_send ~self ~cmd:(selector "convertWeight:ofFont:") ~typ:(bool @-> id @-> returning id) x ofFont
-let currentFontAction self = msg_send ~self ~cmd:(selector "currentFontAction") ~typ:(returning ullong)
+let currentFontAction self = msg_send ~self ~cmd:(selector "currentFontAction") ~typ:(returning ullong) |> ULLong.to_int
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let displayNameForCollectionWithName x self = msg_send ~self ~cmd:(selector "displayNameForCollectionWithName:") ~typ:(id @-> returning id) x
 let fontDescriptorsInCollection x self = msg_send ~self ~cmd:(selector "fontDescriptorsInCollection:") ~typ:(id @-> returning id) x
@@ -70,8 +70,8 @@ let setSelectedFont x ~isMultiple self = msg_send ~self ~cmd:(selector "setSelec
 let setTarget x self = msg_send ~self ~cmd:(selector "setTarget:") ~typ:(id @-> returning void) x
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let toggleFontPanelShown x self = msg_send ~self ~cmd:(selector "toggleFontPanelShown:") ~typ:(id @-> returning void) x
-let traitsOfFont x self = msg_send ~self ~cmd:(selector "traitsOfFont:") ~typ:(id @-> returning ullong) x
+let traitsOfFont x self = msg_send ~self ~cmd:(selector "traitsOfFont:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning bool) x
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning bool) x
-let weightOfFont x self = msg_send ~self ~cmd:(selector "weightOfFont:") ~typ:(id @-> returning llong) x
+let weightOfFont x self = msg_send ~self ~cmd:(selector "weightOfFont:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let worksWhenModal self = msg_send ~self ~cmd:(selector "worksWhenModal") ~typ:(returning bool)

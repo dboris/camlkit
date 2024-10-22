@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSTableColumn"
 
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning id) x
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning id)
-let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x
+let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning id) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning id)
 let accessibilityAttributeValue x self = msg_send ~self ~cmd:(selector "accessibilityAttributeValue:") ~typ:(id @-> returning id) x
@@ -66,7 +66,7 @@ let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning bo
 let isResizable self = msg_send ~self ~cmd:(selector "isResizable") ~typ:(returning bool)
 let maxWidth self = msg_send ~self ~cmd:(selector "maxWidth") ~typ:(returning double)
 let minWidth self = msg_send ~self ~cmd:(selector "minWidth") ~typ:(returning double)
-let resizingMask self = msg_send ~self ~cmd:(selector "resizingMask") ~typ:(returning ullong)
+let resizingMask self = msg_send ~self ~cmd:(selector "resizingMask") ~typ:(returning ullong) |> ULLong.to_int
 let setDataCell x self = msg_send ~self ~cmd:(selector "setDataCell:") ~typ:(id @-> returning void) x
 let setEditable x self = msg_send ~self ~cmd:(selector "setEditable:") ~typ:(bool @-> returning void) x
 let setHeaderCell x self = msg_send ~self ~cmd:(selector "setHeaderCell:") ~typ:(id @-> returning void) x

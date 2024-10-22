@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -16,13 +16,13 @@ let _CGContext self = msg_send ~self ~cmd:(selector "CGContext") ~typ:(returning
 let _CIContext self = msg_send ~self ~cmd:(selector "CIContext") ~typ:(returning id)
 let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning id)
 let colorFactory self = msg_send ~self ~cmd:(selector "colorFactory") ~typ:(returning id)
-let colorRenderingIntent self = msg_send ~self ~cmd:(selector "colorRenderingIntent") ~typ:(returning llong)
-let compositingOperation self = msg_send ~self ~cmd:(selector "compositingOperation") ~typ:(returning ullong)
+let colorRenderingIntent self = msg_send ~self ~cmd:(selector "colorRenderingIntent") ~typ:(returning llong) |> LLong.to_int
+let compositingOperation self = msg_send ~self ~cmd:(selector "compositingOperation") ~typ:(returning ullong) |> ULLong.to_int
 let contextID self = msg_send ~self ~cmd:(selector "contextID") ~typ:(returning uint)
 let flushGraphics self = msg_send ~self ~cmd:(selector "flushGraphics") ~typ:(returning void)
 let focusStack self = msg_send ~self ~cmd:(selector "focusStack") ~typ:(returning id)
 let graphicsPort self = msg_send ~self ~cmd:(selector "graphicsPort") ~typ:(returning (ptr void))
-let imageInterpolation self = msg_send ~self ~cmd:(selector "imageInterpolation") ~typ:(returning ullong)
+let imageInterpolation self = msg_send ~self ~cmd:(selector "imageInterpolation") ~typ:(returning ullong) |> ULLong.to_int
 let isDrawingToScreen self = msg_send ~self ~cmd:(selector "isDrawingToScreen") ~typ:(returning bool)
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning bool)
 let patternPhase self = msg_send_stret ~self ~cmd:(selector "patternPhase") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -39,9 +39,9 @@ let currentPoint self = msg_send_stret ~self ~cmd:(selector "currentPoint") ~typ
 let curveToPoint x ~controlPoint1 ~controlPoint2 self = msg_send ~self ~cmd:(selector "curveToPoint:controlPoint1:controlPoint2:") ~typ:(CGPoint.t @-> CGPoint.t @-> CGPoint.t @-> returning void) x controlPoint1 controlPoint2
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
-let elementAtIndex x self = msg_send ~self ~cmd:(selector "elementAtIndex:") ~typ:(llong @-> returning ullong) (LLong.of_int x)
-let elementAtIndex' x ~associatedPoints self = msg_send ~self ~cmd:(selector "elementAtIndex:associatedPoints:") ~typ:(llong @-> (ptr CGPoint.t) @-> returning ullong) (LLong.of_int x) associatedPoints
-let elementCount self = msg_send ~self ~cmd:(selector "elementCount") ~typ:(returning llong)
+let elementAtIndex x self = msg_send ~self ~cmd:(selector "elementAtIndex:") ~typ:(llong @-> returning ullong) (LLong.of_int x) |> ULLong.to_int
+let elementAtIndex' x ~associatedPoints self = msg_send ~self ~cmd:(selector "elementAtIndex:associatedPoints:") ~typ:(llong @-> (ptr CGPoint.t) @-> returning ullong) (LLong.of_int x) associatedPoints |> ULLong.to_int
+let elementCount self = msg_send ~self ~cmd:(selector "elementCount") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let fill self = msg_send ~self ~cmd:(selector "fill") ~typ:(returning void)
 let flatness self = msg_send ~self ~cmd:(selector "flatness") ~typ:(returning double)
@@ -50,8 +50,8 @@ let getLineDash x ~count ~phase self = msg_send ~self ~cmd:(selector "getLineDas
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let isEmpty self = msg_send ~self ~cmd:(selector "isEmpty") ~typ:(returning bool)
-let lineCapStyle self = msg_send ~self ~cmd:(selector "lineCapStyle") ~typ:(returning ullong)
-let lineJoinStyle self = msg_send ~self ~cmd:(selector "lineJoinStyle") ~typ:(returning ullong)
+let lineCapStyle self = msg_send ~self ~cmd:(selector "lineCapStyle") ~typ:(returning ullong) |> ULLong.to_int
+let lineJoinStyle self = msg_send ~self ~cmd:(selector "lineJoinStyle") ~typ:(returning ullong) |> ULLong.to_int
 let lineToPoint x self = msg_send ~self ~cmd:(selector "lineToPoint:") ~typ:(CGPoint.t @-> returning void) x
 let lineWidth self = msg_send ~self ~cmd:(selector "lineWidth") ~typ:(returning double)
 let miterLimit self = msg_send ~self ~cmd:(selector "miterLimit") ~typ:(returning double)
@@ -73,4 +73,4 @@ let setWindingRule x self = msg_send ~self ~cmd:(selector "setWindingRule:") ~ty
 let stroke self = msg_send ~self ~cmd:(selector "stroke") ~typ:(returning void)
 let subdivideBezierWithFlatness x ~startPoint ~controlPoint1 ~controlPoint2 ~endPoint self = msg_send ~self ~cmd:(selector "subdivideBezierWithFlatness:startPoint:controlPoint1:controlPoint2:endPoint:") ~typ:(double @-> CGPoint.t @-> CGPoint.t @-> CGPoint.t @-> CGPoint.t @-> returning void) x startPoint controlPoint1 controlPoint2 endPoint
 let transformUsingAffineTransform x self = msg_send ~self ~cmd:(selector "transformUsingAffineTransform:") ~typ:(id @-> returning void) x
-let windingRule self = msg_send ~self ~cmd:(selector "windingRule") ~typ:(returning ullong)
+let windingRule self = msg_send ~self ~cmd:(selector "windingRule") ~typ:(returning ullong) |> ULLong.to_int

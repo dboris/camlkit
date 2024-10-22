@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -28,7 +28,7 @@ let minimumSliderWidth self = msg_send ~self ~cmd:(selector "minimumSliderWidth"
 let minimumValue self = msg_send ~self ~cmd:(selector "minimumValue") ~typ:(returning double)
 let minimumValueAccessory self = msg_send ~self ~cmd:(selector "minimumValueAccessory") ~typ:(returning id)
 let preferredPopoverTransposerClass self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerClass") ~typ:(returning _Class)
-let preferredPopoverTransposerPriority self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerPriority") ~typ:(returning llong)
+let preferredPopoverTransposerPriority self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerPriority") ~typ:(returning llong) |> LLong.to_int
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let sendAction self = msg_send ~self ~cmd:(selector "sendAction") ~typ:(returning void)
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning void) x

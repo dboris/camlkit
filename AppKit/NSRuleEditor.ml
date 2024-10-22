@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -22,10 +22,10 @@ let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id
 let displayValuesForRow x self = msg_send ~self ~cmd:(selector "displayValuesForRow:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let displayValuesKeyPath self = msg_send ~self ~cmd:(selector "displayValuesKeyPath") ~typ:(returning id)
 let draggedImage x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning void) x endedAt (ULLong.of_int operation)
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning void) x
-let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x
-let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x
+let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x |> ULLong.to_int
+let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let formattingDictionary self = msg_send ~self ~cmd:(selector "formattingDictionary") ~typ:(returning id)
 let formattingStringsFilename self = msg_send ~self ~cmd:(selector "formattingStringsFilename") ~typ:(returning id)
@@ -35,10 +35,10 @@ let insertRowAtIndex x ~withType ~asSubrowOfRow ~animate self = msg_send ~self ~
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isEditable self = msg_send ~self ~cmd:(selector "isEditable") ~typ:(returning bool)
 let isFlipped self = msg_send ~self ~cmd:(selector "isFlipped") ~typ:(returning bool)
-let nestingMode self = msg_send ~self ~cmd:(selector "nestingMode") ~typ:(returning ullong)
-let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong)
+let nestingMode self = msg_send ~self ~cmd:(selector "nestingMode") ~typ:(returning ullong) |> ULLong.to_int
+let numberOfRows self = msg_send ~self ~cmd:(selector "numberOfRows") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
-let parentRowForRow x self = msg_send ~self ~cmd:(selector "parentRowForRow:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let parentRowForRow x self = msg_send ~self ~cmd:(selector "parentRowForRow:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let performDragOperation x self = msg_send ~self ~cmd:(selector "performDragOperation:") ~typ:(id @-> returning bool) x
 let predicate self = msg_send ~self ~cmd:(selector "predicate") ~typ:(returning id)
 let predicateForRow x self = msg_send ~self ~cmd:(selector "predicateForRow:") ~typ:(llong @-> returning id) (LLong.of_int x)
@@ -47,9 +47,9 @@ let reloadPredicate self = msg_send ~self ~cmd:(selector "reloadPredicate") ~typ
 let removeRowAtIndex x self = msg_send ~self ~cmd:(selector "removeRowAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let removeRowsAtIndexes x ~includeSubrows self = msg_send ~self ~cmd:(selector "removeRowsAtIndexes:includeSubrows:") ~typ:(id @-> bool @-> returning void) x includeSubrows
 let rowClass self = msg_send ~self ~cmd:(selector "rowClass") ~typ:(returning _Class)
-let rowForDisplayValue x self = msg_send ~self ~cmd:(selector "rowForDisplayValue:") ~typ:(id @-> returning llong) x
+let rowForDisplayValue x self = msg_send ~self ~cmd:(selector "rowForDisplayValue:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let rowHeight self = msg_send ~self ~cmd:(selector "rowHeight") ~typ:(returning double)
-let rowTypeForRow x self = msg_send ~self ~cmd:(selector "rowTypeForRow:") ~typ:(llong @-> returning ullong) (LLong.of_int x)
+let rowTypeForRow x self = msg_send ~self ~cmd:(selector "rowTypeForRow:") ~typ:(llong @-> returning ullong) (LLong.of_int x) |> ULLong.to_int
 let rowTypeKeyPath self = msg_send ~self ~cmd:(selector "rowTypeKeyPath") ~typ:(returning id)
 let selectAll x self = msg_send ~self ~cmd:(selector "selectAll:") ~typ:(id @-> returning void) x
 let selectRowIndexes x ~byExtendingSelection self = msg_send ~self ~cmd:(selector "selectRowIndexes:byExtendingSelection:") ~typ:(id @-> bool @-> returning void) x byExtendingSelection

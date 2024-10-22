@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -25,7 +25,7 @@ let isExplicit self = msg_send ~self ~cmd:(selector "isExplicit") ~typ:(returnin
 let isImplicit self = msg_send ~self ~cmd:(selector "isImplicit") ~typ:(returning bool)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let retain self = msg_send ~self ~cmd:(selector "retain") ~typ:(returning id)
-let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong)
+let retainCount self = msg_send ~self ~cmd:(selector "retainCount") ~typ:(returning ullong) |> ULLong.to_int
 let retainWeakReference self = msg_send ~self ~cmd:(selector "retainWeakReference") ~typ:(returning bool)
 let setAllowsAsynchronousAnimation x self = msg_send ~self ~cmd:(selector "setAllowsAsynchronousAnimation:") ~typ:(bool @-> returning void) x
 let setAllowsImplicitAnimation x self = msg_send ~self ~cmd:(selector "setAllowsImplicitAnimation:") ~typ:(bool @-> returning void) x

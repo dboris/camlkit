@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -59,7 +59,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifier:") ~typ:(id @-> returning id) x
 let initialFirstResponder self = msg_send ~self ~cmd:(selector "initialFirstResponder") ~typ:(returning id)
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let label self = msg_send ~self ~cmd:(selector "label") ~typ:(returning id)
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let setAlternateImage x self = msg_send ~self ~cmd:(selector "setAlternateImage:") ~typ:(id @-> returning void) x
@@ -73,7 +73,7 @@ let setToolTip x self = msg_send ~self ~cmd:(selector "setToolTip:") ~typ:(id @-
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let setViewController x self = msg_send ~self ~cmd:(selector "setViewController:") ~typ:(id @-> returning void) x
 let sizeOfLabel x self = msg_send_stret ~self ~cmd:(selector "sizeOfLabel:") ~typ:(bool @-> returning CGSize.t) ~return_type:CGSize.t x
-let tabState self = msg_send ~self ~cmd:(selector "tabState") ~typ:(returning ullong)
+let tabState self = msg_send ~self ~cmd:(selector "tabState") ~typ:(returning ullong) |> ULLong.to_int
 let tabView self = msg_send ~self ~cmd:(selector "tabView") ~typ:(returning id)
 let toolTip self = msg_send ~self ~cmd:(selector "toolTip") ~typ:(returning id)
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)

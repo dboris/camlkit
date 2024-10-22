@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSPopoverTouchBarItem"
 
 let closeButtonHandler self = msg_send ~self ~cmd:(selector "closeButtonHandler") ~typ:(returning (ptr void))
 let collapsedRepresentation self = msg_send ~self ~cmd:(selector "collapsedRepresentation") ~typ:(returning id)
-let collapsedRepresentationChevronBehavior self = msg_send ~self ~cmd:(selector "collapsedRepresentationChevronBehavior") ~typ:(returning llong)
+let collapsedRepresentationChevronBehavior self = msg_send ~self ~cmd:(selector "collapsedRepresentationChevronBehavior") ~typ:(returning llong) |> LLong.to_int
 let collapsedRepresentationImage self = msg_send ~self ~cmd:(selector "collapsedRepresentationImage") ~typ:(returning id)
 let collapsedRepresentationLabel self = msg_send ~self ~cmd:(selector "collapsedRepresentationLabel") ~typ:(returning id)
 let collapsedRepresentationShowsChevron self = msg_send ~self ~cmd:(selector "collapsedRepresentationShowsChevron") ~typ:(returning bool)
@@ -21,7 +21,7 @@ let customizationLabel self = msg_send ~self ~cmd:(selector "customizationLabel"
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let dismissPopover x self = msg_send ~self ~cmd:(selector "dismissPopover:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let fingerBias self = msg_send ~self ~cmd:(selector "fingerBias") ~typ:(returning llong)
+let fingerBias self = msg_send ~self ~cmd:(selector "fingerBias") ~typ:(returning llong) |> LLong.to_int
 let gestureRecognizer x ~shouldBeRequiredToFailByGestureRecognizer self = msg_send ~self ~cmd:(selector "gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:") ~typ:(id @-> id @-> returning bool) x shouldBeRequiredToFailByGestureRecognizer
 let gestureRecognizer' x ~shouldRequireFailureOfGestureRecognizer self = msg_send ~self ~cmd:(selector "gestureRecognizer:shouldRequireFailureOfGestureRecognizer:") ~typ:(id @-> id @-> returning bool) x shouldRequireFailureOfGestureRecognizer
 let gestureRecognizerShouldBegin x self = msg_send ~self ~cmd:(selector "gestureRecognizerShouldBegin:") ~typ:(id @-> returning bool) x

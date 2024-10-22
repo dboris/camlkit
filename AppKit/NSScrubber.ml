@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,14 +13,14 @@ let self = get_class "NSScrubber"
 
 let accessibilityActionDescription x self = msg_send ~self ~cmd:(selector "accessibilityActionDescription:") ~typ:(id @-> returning id) x
 let accessibilityActionNames self = msg_send ~self ~cmd:(selector "accessibilityActionNames") ~typ:(returning id)
-let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x
+let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning id) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning id)
 let accessibilityAutoScrollContentIntoView self = msg_send ~self ~cmd:(selector "accessibilityAutoScrollContentIntoView") ~typ:(returning bool)
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning id)
 let accessibilityDecrementButton self = msg_send ~self ~cmd:(selector "accessibilityDecrementButton") ~typ:(returning id)
 let accessibilityIncrementButton self = msg_send ~self ~cmd:(selector "accessibilityIncrementButton") ~typ:(returning id)
-let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x
+let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityIsIgnored self = msg_send ~self ~cmd:(selector "accessibilityIsIgnored") ~typ:(returning bool)
 let accessibilityParameterizedAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityParameterizedAttributeNames") ~typ:(returning id)
 let accessibilityPerformAction x self = msg_send ~self ~cmd:(selector "accessibilityPerformAction:") ~typ:(id @-> returning void) x
@@ -45,7 +45,7 @@ let endcapCornerRadius self = msg_send ~self ~cmd:(selector "endcapCornerRadius"
 let floatsSelectionViews self = msg_send ~self ~cmd:(selector "floatsSelectionViews") ~typ:(returning bool)
 let gestureRecognizer x ~shouldRecognizeSimultaneouslyWithGestureRecognizer self = msg_send ~self ~cmd:(selector "gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:") ~typ:(id @-> id @-> returning bool) x shouldRecognizeSimultaneouslyWithGestureRecognizer
 let gestureRecognizerShouldBegin x self = msg_send ~self ~cmd:(selector "gestureRecognizerShouldBegin:") ~typ:(id @-> returning bool) x
-let highlightedIndex self = msg_send ~self ~cmd:(selector "highlightedIndex") ~typ:(returning llong)
+let highlightedIndex self = msg_send ~self ~cmd:(selector "highlightedIndex") ~typ:(returning llong) |> LLong.to_int
 let hitTest x self = msg_send ~self ~cmd:(selector "hitTest:") ~typ:(CGPoint.t @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
@@ -54,14 +54,14 @@ let insertItemAtIndex x self = msg_send ~self ~cmd:(selector "insertItemAtIndex:
 let insertItemsAtIndexes x self = msg_send ~self ~cmd:(selector "insertItemsAtIndexes:") ~typ:(id @-> returning void) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isContinuous self = msg_send ~self ~cmd:(selector "isContinuous") ~typ:(returning bool)
-let itemAlignment self = msg_send ~self ~cmd:(selector "itemAlignment") ~typ:(returning llong)
+let itemAlignment self = msg_send ~self ~cmd:(selector "itemAlignment") ~typ:(returning llong) |> LLong.to_int
 let itemViewForItemAtIndex x self = msg_send ~self ~cmd:(selector "itemViewForItemAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning void)
 let makeItemWithIdentifier x ~owner self = msg_send ~self ~cmd:(selector "makeItemWithIdentifier:owner:") ~typ:(id @-> id @-> returning id) x owner
-let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong)
+let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong) |> LLong.to_int
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let moveItemAtIndex x ~toIndex self = msg_send ~self ~cmd:(selector "moveItemAtIndex:toIndex:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toIndex)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let pendingChanges self = msg_send ~self ~cmd:(selector "pendingChanges") ~typ:(returning id)
 let performBatchUpdates x self = msg_send ~self ~cmd:(selector "performBatchUpdates:") ~typ:((ptr void) @-> returning void) x
@@ -82,9 +82,9 @@ let scrollItemAtIndex' x ~toAlignment ~animated self = msg_send ~self ~cmd:(sele
 let scrollView self = msg_send ~self ~cmd:(selector "scrollView") ~typ:(returning id)
 let scrollViewBeganMomentum x ~withVelocity ~targetContentOffset self = msg_send ~self ~cmd:(selector "scrollViewBeganMomentum:withVelocity:targetContentOffset:") ~typ:(id @-> CGPoint.t @-> (ptr CGPoint.t) @-> returning void) x withVelocity targetContentOffset
 let scrubberLayout self = msg_send ~self ~cmd:(selector "scrubberLayout") ~typ:(returning id)
-let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong)
+let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning llong) |> LLong.to_int
 let selectionBackgroundStyle self = msg_send ~self ~cmd:(selector "selectionBackgroundStyle") ~typ:(returning id)
-let selectionIndex self = msg_send ~self ~cmd:(selector "selectionIndex") ~typ:(returning llong)
+let selectionIndex self = msg_send ~self ~cmd:(selector "selectionIndex") ~typ:(returning llong) |> LLong.to_int
 let selectionLensPopTimer self = msg_send ~self ~cmd:(selector "selectionLensPopTimer") ~typ:(returning id)
 let selectionLensSize self = msg_send_stret ~self ~cmd:(selector "selectionLensSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let selectionOverlayStyle self = msg_send ~self ~cmd:(selector "selectionOverlayStyle") ~typ:(returning id)
@@ -116,7 +116,7 @@ let setTag x self = msg_send ~self ~cmd:(selector "setTag:") ~typ:(llong @-> ret
 let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let showsAdditionalContentIndicators self = msg_send ~self ~cmd:(selector "showsAdditionalContentIndicators") ~typ:(returning bool)
 let showsArrowButtons self = msg_send ~self ~cmd:(selector "showsArrowButtons") ~typ:(returning bool)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let unregisterDependencyObservations self = msg_send ~self ~cmd:(selector "unregisterDependencyObservations") ~typ:(returning void)
 let viewDidMoveToWindow self = msg_send ~self ~cmd:(selector "viewDidMoveToWindow") ~typ:(returning void)
 let visibleContentRectForLayout self = msg_send_stret ~self ~cmd:(selector "visibleContentRectForLayout") ~typ:(returning CGRect.t) ~return_type:CGRect.t

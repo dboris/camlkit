@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -42,11 +42,11 @@ let becomeKeyWindow self = msg_send ~self ~cmd:(selector "becomeKeyWindow") ~typ
 let beforeDraw self = msg_send ~self ~cmd:(selector "beforeDraw") ~typ:(returning void)
 let canDragRowsWithIndexes x ~inColumn ~withEvent self = msg_send ~self ~cmd:(selector "canDragRowsWithIndexes:inColumn:withEvent:") ~typ:(id @-> llong @-> id @-> returning bool) x (LLong.of_int inColumn) withEvent
 let cellPrototype self = msg_send ~self ~cmd:(selector "cellPrototype") ~typ:(returning id)
-let clickedColumn self = msg_send ~self ~cmd:(selector "clickedColumn") ~typ:(returning llong)
-let clickedRow self = msg_send ~self ~cmd:(selector "clickedRow") ~typ:(returning llong)
+let clickedColumn self = msg_send ~self ~cmd:(selector "clickedColumn") ~typ:(returning llong) |> LLong.to_int
+let clickedRow self = msg_send ~self ~cmd:(selector "clickedRow") ~typ:(returning llong) |> LLong.to_int
 let columnContentWidthForColumnWidth x self = msg_send ~self ~cmd:(selector "columnContentWidthForColumnWidth:") ~typ:(double @-> returning double) x
-let columnOfMatrix x self = msg_send ~self ~cmd:(selector "columnOfMatrix:") ~typ:(id @-> returning llong) x
-let columnResizingType self = msg_send ~self ~cmd:(selector "columnResizingType") ~typ:(returning ullong)
+let columnOfMatrix x self = msg_send ~self ~cmd:(selector "columnOfMatrix:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let columnResizingType self = msg_send ~self ~cmd:(selector "columnResizingType") ~typ:(returning ullong) |> ULLong.to_int
 let columnWidthForColumnContentWidth x self = msg_send ~self ~cmd:(selector "columnWidthForColumnContentWidth:") ~typ:(double @-> returning double) x
 let columnsAutosaveName self = msg_send ~self ~cmd:(selector "columnsAutosaveName") ~typ:(returning id)
 let contentInsets self = msg_send_stret ~self ~cmd:(selector "contentInsets") ~typ:(returning NSEdgeInsets.t) ~return_type:NSEdgeInsets.t
@@ -63,16 +63,16 @@ let doubleAction self = msg_send ~self ~cmd:(selector "doubleAction") ~typ:(retu
 let draggedImage x ~beganAt self = msg_send ~self ~cmd:(selector "draggedImage:beganAt:") ~typ:(id @-> CGPoint.t @-> returning void) x beganAt
 let draggedImage' x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning void) x endedAt (ULLong.of_int operation)
 let draggingEnded x self = msg_send ~self ~cmd:(selector "draggingEnded:") ~typ:(id @-> returning void) x
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning void) x
 let draggingImageForRowsWithIndexes x ~inColumn ~withEvent ~offset self = msg_send ~self ~cmd:(selector "draggingImageForRowsWithIndexes:inColumn:withEvent:offset:") ~typ:(id @-> llong @-> id @-> (ptr CGPoint.t) @-> returning id) x (LLong.of_int inColumn) withEvent offset
-let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x
-let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x
+let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x |> ULLong.to_int
+let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let drawTitleOfColumn x ~inRect self = msg_send ~self ~cmd:(selector "drawTitleOfColumn:inRect:") ~typ:(llong @-> CGRect.t @-> returning void) (LLong.of_int x) inRect
 let editItemAtIndexPath x ~withEvent ~select self = msg_send ~self ~cmd:(selector "editItemAtIndexPath:withEvent:select:") ~typ:(id @-> id @-> bool @-> returning void) x withEvent select
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let firstVisibleColumn self = msg_send ~self ~cmd:(selector "firstVisibleColumn") ~typ:(returning llong)
+let firstVisibleColumn self = msg_send ~self ~cmd:(selector "firstVisibleColumn") ~typ:(returning llong) |> LLong.to_int
 let frameOfColumn x self = msg_send_stret ~self ~cmd:(selector "frameOfColumn:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
 let frameOfInsideOfColumn x self = msg_send_stret ~self ~cmd:(selector "frameOfInsideOfColumn:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
 let frameOfRow x ~inColumn self = msg_send_stret ~self ~cmd:(selector "frameOfRow:inColumn:") ~typ:(llong @-> llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x) (LLong.of_int inColumn)
@@ -91,20 +91,20 @@ let itemAtIndexPath x self = msg_send ~self ~cmd:(selector "itemAtIndexPath:") ~
 let itemAtRow x ~column self = msg_send ~self ~cmd:(selector "itemAtRow:column:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int column)
 let itemAtRow' x ~inColumn self = msg_send ~self ~cmd:(selector "itemAtRow:inColumn:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int inColumn)
 let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> returning void) x
-let lastColumn self = msg_send ~self ~cmd:(selector "lastColumn") ~typ:(returning llong)
-let lastVisibleColumn self = msg_send ~self ~cmd:(selector "lastVisibleColumn") ~typ:(returning llong)
+let lastColumn self = msg_send ~self ~cmd:(selector "lastColumn") ~typ:(returning llong) |> LLong.to_int
+let lastVisibleColumn self = msg_send ~self ~cmd:(selector "lastVisibleColumn") ~typ:(returning llong) |> LLong.to_int
 let loadColumnZero self = msg_send ~self ~cmd:(selector "loadColumnZero") ~typ:(returning void)
 let loadedCellAtRow x ~column self = msg_send ~self ~cmd:(selector "loadedCellAtRow:column:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int column)
 let matrixClass self = msg_send ~self ~cmd:(selector "matrixClass") ~typ:(returning _Class)
 let matrixInColumn x self = msg_send ~self ~cmd:(selector "matrixInColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
-let maxVisibleColumns self = msg_send ~self ~cmd:(selector "maxVisibleColumns") ~typ:(returning llong)
+let maxVisibleColumns self = msg_send ~self ~cmd:(selector "maxVisibleColumns") ~typ:(returning llong) |> LLong.to_int
 let minColumnWidth self = msg_send ~self ~cmd:(selector "minColumnWidth") ~typ:(returning double)
 let moveLeft x self = msg_send ~self ~cmd:(selector "moveLeft:") ~typ:(id @-> returning void) x
 let moveRight x self = msg_send ~self ~cmd:(selector "moveRight:") ~typ:(id @-> returning void) x
 let namesOfPromisedFilesDroppedAtDestination x self = msg_send ~self ~cmd:(selector "namesOfPromisedFilesDroppedAtDestination:") ~typ:(id @-> returning id) x
 let needsPanelToBecomeKey self = msg_send ~self ~cmd:(selector "needsPanelToBecomeKey") ~typ:(returning bool)
 let noteHeightOfRowsWithIndexesChanged x ~inColumn self = msg_send ~self ~cmd:(selector "noteHeightOfRowsWithIndexesChanged:inColumn:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int inColumn)
-let numberOfVisibleColumns self = msg_send ~self ~cmd:(selector "numberOfVisibleColumns") ~typ:(returning llong)
+let numberOfVisibleColumns self = msg_send ~self ~cmd:(selector "numberOfVisibleColumns") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let parentForItem x self = msg_send ~self ~cmd:(selector "parentForItem:") ~typ:(id @-> returning id) x
 let parentForItemsInColumn x self = msg_send ~self ~cmd:(selector "parentForItemsInColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
@@ -136,8 +136,8 @@ let selectRowIndexes x ~inColumn self = msg_send ~self ~cmd:(selector "selectRow
 let selectedCell self = msg_send ~self ~cmd:(selector "selectedCell") ~typ:(returning id)
 let selectedCellInColumn x self = msg_send ~self ~cmd:(selector "selectedCellInColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let selectedCells self = msg_send ~self ~cmd:(selector "selectedCells") ~typ:(returning id)
-let selectedColumn self = msg_send ~self ~cmd:(selector "selectedColumn") ~typ:(returning llong)
-let selectedRowInColumn x self = msg_send ~self ~cmd:(selector "selectedRowInColumn:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let selectedColumn self = msg_send ~self ~cmd:(selector "selectedColumn") ~typ:(returning llong) |> LLong.to_int
+let selectedRowInColumn x self = msg_send ~self ~cmd:(selector "selectedRowInColumn:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let selectedRowIndexesInColumn x self = msg_send ~self ~cmd:(selector "selectedRowIndexesInColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let selectionIndexPath self = msg_send ~self ~cmd:(selector "selectionIndexPath") ~typ:(returning id)
 let selectionIndexPaths self = msg_send ~self ~cmd:(selector "selectionIndexPaths") ~typ:(returning id)

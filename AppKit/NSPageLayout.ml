@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -24,7 +24,7 @@ let pickedUnits x self = msg_send ~self ~cmd:(selector "pickedUnits:") ~typ:(id 
 let printInfo self = msg_send ~self ~cmd:(selector "printInfo") ~typ:(returning id)
 let readPrintInfo self = msg_send ~self ~cmd:(selector "readPrintInfo") ~typ:(returning void)
 let removeAccessoryController x self = msg_send ~self ~cmd:(selector "removeAccessoryController:") ~typ:(id @-> returning void) x
-let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong)
-let runModalWithPrintInfo x self = msg_send ~self ~cmd:(selector "runModalWithPrintInfo:") ~typ:(id @-> returning llong) x
+let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong) |> LLong.to_int
+let runModalWithPrintInfo x self = msg_send ~self ~cmd:(selector "runModalWithPrintInfo:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let setAccessoryView x self = msg_send ~self ~cmd:(selector "setAccessoryView:") ~typ:(id @-> returning void) x
 let writePrintInfo self = msg_send ~self ~cmd:(selector "writePrintInfo") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,7 +20,7 @@ let fallbackItemSizeForCustomization self = msg_send_stret ~self ~cmd:(selector 
 let frameChangesEnded self = msg_send ~self ~cmd:(selector "frameChangesEnded") ~typ:(returning void)
 let groupHasAlertStyle self = msg_send ~self ~cmd:(selector "groupHasAlertStyle") ~typ:(returning bool)
 let groupTouchBar self = msg_send ~self ~cmd:(selector "groupTouchBar") ~typ:(returning id)
-let groupUserInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "groupUserInterfaceLayoutDirection") ~typ:(returning llong)
+let groupUserInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "groupUserInterfaceLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let hasAutomaticLayoutDirection self = msg_send ~self ~cmd:(selector "hasAutomaticLayoutDirection") ~typ:(returning bool)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifier:") ~typ:(id @-> returning id) x
@@ -40,3 +40,4 @@ let setHasAutomaticLayoutDirection x self = msg_send ~self ~cmd:(selector "setHa
 let setPreferredItemWidth x self = msg_send ~self ~cmd:(selector "setPreferredItemWidth:") ~typ:(double @-> returning void) x
 let setPrefersEqualWidths x self = msg_send ~self ~cmd:(selector "setPrefersEqualWidths:") ~typ:(bool @-> returning void) x
 let setPrioritizedCompressionOptions x self = msg_send ~self ~cmd:(selector "setPrioritizedCompressionOptions:") ~typ:(id @-> returning void) x
+let viewServiceTouchBarControllerDescription self = msg_send ~self ~cmd:(selector "viewServiceTouchBarControllerDescription") ~typ:(returning id)

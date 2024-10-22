@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -38,7 +38,8 @@ let isSpace self = msg_send ~self ~cmd:(selector "isSpace") ~typ:(returning bool
 let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning bool)
 let itemGroup self = msg_send ~self ~cmd:(selector "itemGroup") ~typ:(returning id)
 let itemIdentifier self = msg_send ~self ~cmd:(selector "itemIdentifier") ~typ:(returning id)
-let itemPosition self = msg_send ~self ~cmd:(selector "itemPosition") ~typ:(returning ullong)
+let itemMenuFormRepresentation self = msg_send ~self ~cmd:(selector "itemMenuFormRepresentation") ~typ:(returning id)
+let itemPosition self = msg_send ~self ~cmd:(selector "itemPosition") ~typ:(returning ullong) |> ULLong.to_int
 let label self = msg_send ~self ~cmd:(selector "label") ~typ:(returning id)
 let maxSize self = msg_send_stret ~self ~cmd:(selector "maxSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let menuFormRepresentation self = msg_send ~self ~cmd:(selector "menuFormRepresentation") ~typ:(returning id)
@@ -54,6 +55,7 @@ let setBordered x self = msg_send ~self ~cmd:(selector "setBordered:") ~typ:(boo
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning void) x
 let setImage x self = msg_send ~self ~cmd:(selector "setImage:") ~typ:(id @-> returning void) x
 let setItemGroup x self = msg_send ~self ~cmd:(selector "setItemGroup:") ~typ:(id @-> returning void) x
+let setItemMenuFormRepresentation x self = msg_send ~self ~cmd:(selector "setItemMenuFormRepresentation:") ~typ:(id @-> returning void) x
 let setLabel x self = msg_send ~self ~cmd:(selector "setLabel:") ~typ:(id @-> returning void) x
 let setMaxSize x self = msg_send ~self ~cmd:(selector "setMaxSize:") ~typ:(CGSize.t @-> returning void) x
 let setMenuFormRepresentation x self = msg_send ~self ~cmd:(selector "setMenuFormRepresentation:") ~typ:(id @-> returning void) x
@@ -69,7 +71,7 @@ let setToolTip x self = msg_send ~self ~cmd:(selector "setToolTip:") ~typ:(id @-
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let setVisibilityPriority x self = msg_send ~self ~cmd:(selector "setVisibilityPriority:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setWantsToBeCentered x self = msg_send ~self ~cmd:(selector "setWantsToBeCentered:") ~typ:(bool @-> returning void) x
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let toolTip self = msg_send ~self ~cmd:(selector "toolTip") ~typ:(returning id)
@@ -78,7 +80,7 @@ let usesMenuFormRepresentationInDisplayMode x self = msg_send ~self ~cmd:(select
 let validate self = msg_send ~self ~cmd:(selector "validate") ~typ:(returning void)
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning bool) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)
-let visibilityPriority self = msg_send ~self ~cmd:(selector "visibilityPriority") ~typ:(returning llong)
+let visibilityPriority self = msg_send ~self ~cmd:(selector "visibilityPriority") ~typ:(returning llong) |> LLong.to_int
 let wantsHiddenLabelInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsHiddenLabelInDisplayMode:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)
 let wantsToBeCentered self = msg_send ~self ~cmd:(selector "wantsToBeCentered") ~typ:(returning bool)
 let wantsToDrawIconInDisplayMode x self = msg_send ~self ~cmd:(selector "wantsToDrawIconInDisplayMode:") ~typ:(ullong @-> returning bool) (ULLong.of_int x)

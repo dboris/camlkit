@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,8 +12,8 @@ open CoreAnimation
 let self = get_class "NSClickGestureRecognizer"
 
 let allowableMovement self = msg_send ~self ~cmd:(selector "allowableMovement") ~typ:(returning double)
-let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong)
-let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong)
+let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning llong) |> LLong.to_int
+let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong) |> ULLong.to_int
 let canPreventGestureRecognizer x self = msg_send ~self ~cmd:(selector "canPreventGestureRecognizer:") ~typ:(id @-> returning bool) x
 let clearClickTimer self = msg_send ~self ~cmd:(selector "clearClickTimer") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -24,8 +24,8 @@ let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDragged x self = msg_send ~self ~cmd:(selector "mouseDragged:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
-let numberOfClicksRequired self = msg_send ~self ~cmd:(selector "numberOfClicksRequired") ~typ:(returning llong)
-let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong)
+let numberOfClicksRequired self = msg_send ~self ~cmd:(selector "numberOfClicksRequired") ~typ:(returning llong) |> LLong.to_int
+let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong) |> LLong.to_int
 let otherMouseDown x self = msg_send ~self ~cmd:(selector "otherMouseDown:") ~typ:(id @-> returning void) x
 let otherMouseDragged x self = msg_send ~self ~cmd:(selector "otherMouseDragged:") ~typ:(id @-> returning void) x
 let otherMouseUp x self = msg_send ~self ~cmd:(selector "otherMouseUp:") ~typ:(id @-> returning void) x
@@ -40,7 +40,7 @@ let setBehavior x self = msg_send ~self ~cmd:(selector "setBehavior:") ~typ:(llo
 let setButtonMask x self = msg_send ~self ~cmd:(selector "setButtonMask:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setNumberOfClicksRequired x self = msg_send ~self ~cmd:(selector "setNumberOfClicksRequired:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setNumberOfTouchesRequired x self = msg_send ~self ~cmd:(selector "setNumberOfTouchesRequired:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let stage self = msg_send ~self ~cmd:(selector "stage") ~typ:(returning llong)
+let stage self = msg_send ~self ~cmd:(selector "stage") ~typ:(returning llong) |> LLong.to_int
 let stageTransition self = msg_send ~self ~cmd:(selector "stageTransition") ~typ:(returning double)
 let startClickTimer x self = msg_send ~self ~cmd:(selector "startClickTimer:") ~typ:(double @-> returning void) x
 let tooSlow x self = msg_send ~self ~cmd:(selector "tooSlow:") ~typ:(id @-> returning void) x

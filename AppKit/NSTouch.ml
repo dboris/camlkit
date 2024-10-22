@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,8 +20,8 @@ let identity self = msg_send ~self ~cmd:(selector "identity") ~typ:(returning id
 let isResting self = msg_send ~self ~cmd:(selector "isResting") ~typ:(returning bool)
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let normalizedPosition self = msg_send_stret ~self ~cmd:(selector "normalizedPosition") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
-let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning ullong)
+let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning ullong) |> ULLong.to_int
 let previousLocationInView x self = msg_send_stret ~self ~cmd:(selector "previousLocationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let previousNormalizedPosition self = msg_send_stret ~self ~cmd:(selector "previousNormalizedPosition") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let timestamp self = msg_send ~self ~cmd:(selector "timestamp") ~typ:(returning double)
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -31,4 +31,4 @@ let initWithColorsAndLocations x self = msg_send ~self ~cmd:(selector "initWithC
 let initWithStartingColor x ~endingColor self = msg_send ~self ~cmd:(selector "initWithStartingColor:endingColor:") ~typ:(id @-> id @-> returning id) x endingColor
 let interpolatedColorAtLocation x self = msg_send ~self ~cmd:(selector "interpolatedColorAtLocation:") ~typ:(double @-> returning id) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let numberOfColorStops self = msg_send ~self ~cmd:(selector "numberOfColorStops") ~typ:(returning llong)
+let numberOfColorStops self = msg_send ~self ~cmd:(selector "numberOfColorStops") ~typ:(returning llong) |> LLong.to_int

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -20,22 +20,22 @@ let animates self = msg_send ~self ~cmd:(selector "animates") ~typ:(returning bo
 let asynchronousPreparation x ~prepareResultUsingParameters self = msg_send ~self ~cmd:(selector "asynchronousPreparation:prepareResultUsingParameters:") ~typ:(id @-> id @-> returning id) x prepareResultUsingParameters
 let asynchronousPreparationDidChangePreparedResult x self = msg_send ~self ~cmd:(selector "asynchronousPreparationDidChangePreparedResult:") ~typ:(id @-> returning void) x
 let awakeFromNib self = msg_send ~self ~cmd:(selector "awakeFromNib") ~typ:(returning void)
-let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong)
+let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let concludeDragOperation x self = msg_send ~self ~cmd:(selector "concludeDragOperation:") ~typ:(id @-> returning void) x
 let contentTintColor self = msg_send ~self ~cmd:(selector "contentTintColor") ~typ:(returning id)
 let copy x self = msg_send ~self ~cmd:(selector "copy:") ~typ:(id @-> returning void) x
 let cut x self = msg_send ~self ~cmd:(selector "cut:") ~typ:(id @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delete x self = msg_send ~self ~cmd:(selector "delete:") ~typ:(id @-> returning void) x
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning void) x
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let firstBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "firstBaselineOffsetFromTop") ~typ:(returning double)
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
-let imageAlignment self = msg_send ~self ~cmd:(selector "imageAlignment") ~typ:(returning ullong)
-let imageFrameStyle self = msg_send ~self ~cmd:(selector "imageFrameStyle") ~typ:(returning ullong)
-let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong)
+let imageAlignment self = msg_send ~self ~cmd:(selector "imageAlignment") ~typ:(returning ullong) |> ULLong.to_int
+let imageFrameStyle self = msg_send ~self ~cmd:(selector "imageFrameStyle") ~typ:(returning ullong) |> ULLong.to_int
+let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
@@ -73,7 +73,7 @@ let setTemplateTintColor x self = msg_send ~self ~cmd:(selector "setTemplateTint
 let shouldBeTreatedAsInkEvent x self = msg_send ~self ~cmd:(selector "shouldBeTreatedAsInkEvent:") ~typ:(id @-> returning bool) x
 let symbolConfiguration self = msg_send ~self ~cmd:(selector "symbolConfiguration") ~typ:(returning id)
 let symbolFont self = msg_send ~self ~cmd:(selector "symbolFont") ~typ:(returning id)
-let symbolScale self = msg_send ~self ~cmd:(selector "symbolScale") ~typ:(returning llong)
+let symbolScale self = msg_send ~self ~cmd:(selector "symbolScale") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let templateTintColor self = msg_send ~self ~cmd:(selector "templateTintColor") ~typ:(returning id)
 let updateCell x self = msg_send ~self ~cmd:(selector "updateCell:") ~typ:(id @-> returning void) x

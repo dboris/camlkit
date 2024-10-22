@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -15,7 +15,7 @@ let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning bool)
 let accessibilityChildForColumn x self = msg_send ~self ~cmd:(selector "accessibilityChildForColumn:") ~typ:(id @-> returning id) x
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning id)
-let accessibilityColumnForChild x self = msg_send ~self ~cmd:(selector "accessibilityColumnForChild:") ~typ:(id @-> returning ullong) x
+let accessibilityColumnForChild x self = msg_send ~self ~cmd:(selector "accessibilityColumnForChild:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityHelpStringForChild x self = msg_send ~self ~cmd:(selector "accessibilityHelpStringForChild:") ~typ:(id @-> returning id) x
 let accessibilityHitTest x self = msg_send ~self ~cmd:(selector "accessibilityHitTest:") ~typ:(CGPoint.t @-> returning id) x
 let accessibilityIsChildFocusable x self = msg_send ~self ~cmd:(selector "accessibilityIsChildFocusable:") ~typ:(id @-> returning bool) x
@@ -25,9 +25,9 @@ let accessibilityPositionOfChild x self = msg_send ~self ~cmd:(selector "accessi
 let accessibilityRoleAttribute self = msg_send ~self ~cmd:(selector "accessibilityRoleAttribute") ~typ:(returning id)
 let accessibilitySizeOfChild x self = msg_send ~self ~cmd:(selector "accessibilitySizeOfChild:") ~typ:(id @-> returning id) x
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
-let columnAtPoint x self = msg_send ~self ~cmd:(selector "columnAtPoint:") ~typ:(CGPoint.t @-> returning llong) x
+let columnAtPoint x self = msg_send ~self ~cmd:(selector "columnAtPoint:") ~typ:(CGPoint.t @-> returning llong) x |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let draggedColumn self = msg_send ~self ~cmd:(selector "draggedColumn") ~typ:(returning llong)
+let draggedColumn self = msg_send ~self ~cmd:(selector "draggedColumn") ~typ:(returning llong) |> LLong.to_int
 let draggedDistance self = msg_send ~self ~cmd:(selector "draggedDistance") ~typ:(returning double)
 let drawBackgroundOverhangInRect x self = msg_send ~self ~cmd:(selector "drawBackgroundOverhangInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
@@ -42,7 +42,7 @@ let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bo
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
 let resetCursorRects self = msg_send ~self ~cmd:(selector "resetCursorRects") ~typ:(returning void)
-let resizedColumn self = msg_send ~self ~cmd:(selector "resizedColumn") ~typ:(returning llong)
+let resizedColumn self = msg_send ~self ~cmd:(selector "resizedColumn") ~typ:(returning llong) |> LLong.to_int
 let setDrawsBackground x self = msg_send ~self ~cmd:(selector "setDrawsBackground:") ~typ:(bool @-> returning void) x
 let setFrameOrigin x self = msg_send ~self ~cmd:(selector "setFrameOrigin:") ~typ:(CGPoint.t @-> returning void) x
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning void) x

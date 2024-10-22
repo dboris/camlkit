@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -29,7 +29,7 @@ let bridgedTextTouchBarController self = msg_send ~self ~cmd:(selector "bridgedT
 let candidateListTouchBarItem self = msg_send ~self ~cmd:(selector "candidateListTouchBarItem") ~typ:(returning id)
 let capitalizeWord x self = msg_send ~self ~cmd:(selector "capitalizeWord:") ~typ:(id @-> returning void) x
 let changeSpelling x self = msg_send ~self ~cmd:(selector "changeSpelling:") ~typ:(id @-> returning void) x
-let characterIndexForPoint x self = msg_send ~self ~cmd:(selector "characterIndexForPoint:") ~typ:(CGPoint.t @-> returning ullong) x
+let characterIndexForPoint x self = msg_send ~self ~cmd:(selector "characterIndexForPoint:") ~typ:(CGPoint.t @-> returning ullong) x |> ULLong.to_int
 let characterIndexForPoint' x ~completionHandler self = msg_send ~self ~cmd:(selector "characterIndexForPoint:completionHandler:") ~typ:(CGPoint.t @-> (ptr void) @-> returning void) x completionHandler
 let characterPickerTouchBarItem self = msg_send ~self ~cmd:(selector "characterPickerTouchBarItem") ~typ:(returning id)
 let characterPickerViewController self = msg_send ~self ~cmd:(selector "characterPickerViewController") ~typ:(returning id)
@@ -77,7 +77,7 @@ let hasMarkedText self = msg_send ~self ~cmd:(selector "hasMarkedText") ~typ:(re
 let hasMarkedTextWithCompletionHandler x self = msg_send ~self ~cmd:(selector "hasMarkedTextWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
 let ignoreSpelling x self = msg_send ~self ~cmd:(selector "ignoreSpelling:") ~typ:(id @-> returning void) x
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
-let incrementalSearchClientGeometry self = msg_send ~self ~cmd:(selector "incrementalSearchClientGeometry") ~typ:(returning ullong)
+let incrementalSearchClientGeometry self = msg_send ~self ~cmd:(selector "incrementalSearchClientGeometry") ~typ:(returning ullong) |> ULLong.to_int
 let initWithClient x self = msg_send ~self ~cmd:(selector "initWithClient:") ~typ:(id @-> returning id) x
 let insertText x ~replacementRange self = msg_send ~self ~cmd:(selector "insertText:replacementRange:") ~typ:(id @-> NSRange.t @-> returning void) x replacementRange
 let insertText' x ~replacementRange ~completionHandler self = msg_send ~self ~cmd:(selector "insertText:replacementRange:completionHandler:") ~typ:(id @-> NSRange.t @-> (ptr void) @-> returning void) x replacementRange completionHandler
@@ -162,5 +162,5 @@ let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:")
 let wantsToDelayTextChangeNotifications self = msg_send ~self ~cmd:(selector "wantsToDelayTextChangeNotifications") ~typ:(returning bool)
 let wantsToHandleMouseEvents self = msg_send ~self ~cmd:(selector "wantsToHandleMouseEvents") ~typ:(returning bool)
 let wantsToInterpretAllKeystrokes self = msg_send ~self ~cmd:(selector "wantsToInterpretAllKeystrokes") ~typ:(returning bool)
-let windowLevel self = msg_send ~self ~cmd:(selector "windowLevel") ~typ:(returning llong)
+let windowLevel self = msg_send ~self ~cmd:(selector "windowLevel") ~typ:(returning llong) |> LLong.to_int
 let wouldHandleEvent x ~completionHandler self = msg_send ~self ~cmd:(selector "wouldHandleEvent:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler

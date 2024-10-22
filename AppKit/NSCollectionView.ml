@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,14 +13,14 @@ let self = get_class "NSCollectionView"
 
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning bool) x
 let acceptsFirstResponder self = msg_send ~self ~cmd:(selector "acceptsFirstResponder") ~typ:(returning bool)
-let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x
+let accessibilityArrayAttributeCount x self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeCount:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityArrayAttributeValues x ~index ~maxCount self = msg_send ~self ~cmd:(selector "accessibilityArrayAttributeValues:index:maxCount:") ~typ:(id @-> ullong @-> ullong @-> returning id) x (ULLong.of_int index) (ULLong.of_int maxCount)
 let accessibilityAttributeNames self = msg_send ~self ~cmd:(selector "accessibilityAttributeNames") ~typ:(returning id)
 let accessibilityChildrenAttribute self = msg_send ~self ~cmd:(selector "accessibilityChildrenAttribute") ~typ:(returning id)
 let accessibilityColumnCountAttribute self = msg_send ~self ~cmd:(selector "accessibilityColumnCountAttribute") ~typ:(returning id)
 let accessibilityEnabledAttribute self = msg_send ~self ~cmd:(selector "accessibilityEnabledAttribute") ~typ:(returning id)
 let accessibilityHitTest x self = msg_send ~self ~cmd:(selector "accessibilityHitTest:") ~typ:(CGPoint.t @-> returning id) x
-let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x
+let accessibilityIndexOfChild x self = msg_send ~self ~cmd:(selector "accessibilityIndexOfChild:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let accessibilityIsColumnCountAttributeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsColumnCountAttributeSettable") ~typ:(returning bool)
 let accessibilityIsIgnored self = msg_send ~self ~cmd:(selector "accessibilityIsIgnored") ~typ:(returning bool)
 let accessibilityIsOrderedByRowAttributeSettable self = msg_send ~self ~cmd:(selector "accessibilityIsOrderedByRowAttributeSettable") ~typ:(returning bool)
@@ -81,17 +81,17 @@ let discardEditing self = msg_send ~self ~cmd:(selector "discardEditing") ~typ:(
 let draggedImage x ~beganAt self = msg_send ~self ~cmd:(selector "draggedImage:beganAt:") ~typ:(id @-> CGPoint.t @-> returning void) x beganAt
 let draggedImage' x ~endedAt ~operation self = msg_send ~self ~cmd:(selector "draggedImage:endedAt:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning void) x endedAt (ULLong.of_int operation)
 let draggingEnded x self = msg_send ~self ~cmd:(selector "draggingEnded:") ~typ:(id @-> returning void) x
-let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x
+let draggingEntered x self = msg_send ~self ~cmd:(selector "draggingEntered:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let draggingExited x self = msg_send ~self ~cmd:(selector "draggingExited:") ~typ:(id @-> returning void) x
 let draggingImageForItemsAtIndexPaths x ~withEvent ~offset self = msg_send ~self ~cmd:(selector "draggingImageForItemsAtIndexPaths:withEvent:offset:") ~typ:(id @-> id @-> (ptr CGPoint.t) @-> returning id) x withEvent offset
 let draggingImageForItemsAtIndexes x ~withEvent ~offset self = msg_send ~self ~cmd:(selector "draggingImageForItemsAtIndexes:withEvent:offset:") ~typ:(id @-> id @-> (ptr CGPoint.t) @-> returning id) x withEvent offset
 let draggingSession x ~movedToPoint self = msg_send ~self ~cmd:(selector "draggingSession:movedToPoint:") ~typ:(id @-> CGPoint.t @-> returning void) x movedToPoint
 let draggingSession1 x ~namesOfPromisedFilesDroppedAtDestination self = msg_send ~self ~cmd:(selector "draggingSession:namesOfPromisedFilesDroppedAtDestination:") ~typ:(id @-> id @-> returning id) x namesOfPromisedFilesDroppedAtDestination
-let draggingSession2 x ~sourceOperationMaskForDraggingContext self = msg_send ~self ~cmd:(selector "draggingSession:sourceOperationMaskForDraggingContext:") ~typ:(id @-> llong @-> returning ullong) x (LLong.of_int sourceOperationMaskForDraggingContext)
+let draggingSession2 x ~sourceOperationMaskForDraggingContext self = msg_send ~self ~cmd:(selector "draggingSession:sourceOperationMaskForDraggingContext:") ~typ:(id @-> llong @-> returning ullong) x (LLong.of_int sourceOperationMaskForDraggingContext) |> ULLong.to_int
 let draggingSession3 x ~willBeginAtPoint self = msg_send ~self ~cmd:(selector "draggingSession:willBeginAtPoint:") ~typ:(id @-> CGPoint.t @-> returning void) x willBeginAtPoint
 let draggingSession4 x ~endedAtPoint ~operation self = msg_send ~self ~cmd:(selector "draggingSession:endedAtPoint:operation:") ~typ:(id @-> CGPoint.t @-> ullong @-> returning void) x endedAtPoint (ULLong.of_int operation)
-let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x
-let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x
+let draggingSourceOperationMaskForLocal x self = msg_send ~self ~cmd:(selector "draggingSourceOperationMaskForLocal:") ~typ:(bool @-> returning ullong) x |> ULLong.to_int
+let draggingUpdated x self = msg_send ~self ~cmd:(selector "draggingUpdated:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let drawBackgroundOverhangInRect x self = msg_send ~self ~cmd:(selector "drawBackgroundOverhangInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
@@ -124,8 +124,8 @@ let layoutAttributesForSupplementaryElementOfKind x ~atIndexPath self = msg_send
 let makeItemWithIdentifier x ~forIndexPath self = msg_send ~self ~cmd:(selector "makeItemWithIdentifier:forIndexPath:") ~typ:(id @-> id @-> returning id) x forIndexPath
 let makeSupplementaryViewOfKind x ~withIdentifier ~forIndexPath self = msg_send ~self ~cmd:(selector "makeSupplementaryViewOfKind:withIdentifier:forIndexPath:") ~typ:(id @-> id @-> id @-> returning id) x withIdentifier forIndexPath
 let maxItemSize self = msg_send_stret ~self ~cmd:(selector "maxItemSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let maxNumberOfColumns self = msg_send ~self ~cmd:(selector "maxNumberOfColumns") ~typ:(returning ullong)
-let maxNumberOfRows self = msg_send ~self ~cmd:(selector "maxNumberOfRows") ~typ:(returning ullong)
+let maxNumberOfColumns self = msg_send ~self ~cmd:(selector "maxNumberOfColumns") ~typ:(returning ullong) |> ULLong.to_int
+let maxNumberOfRows self = msg_send ~self ~cmd:(selector "maxNumberOfRows") ~typ:(returning ullong) |> ULLong.to_int
 let minItemSize self = msg_send_stret ~self ~cmd:(selector "minItemSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDragged x self = msg_send ~self ~cmd:(selector "mouseDragged:") ~typ:(id @-> returning void) x
@@ -149,8 +149,8 @@ let moveWordRightAndModifySelection x self = msg_send ~self ~cmd:(selector "move
 let namesOfPromisedFilesDroppedAtDestination x self = msg_send ~self ~cmd:(selector "namesOfPromisedFilesDroppedAtDestination:") ~typ:(id @-> returning id) x
 let needsPanelToBecomeKey self = msg_send ~self ~cmd:(selector "needsPanelToBecomeKey") ~typ:(returning bool)
 let newItemForRepresentedObject x self = msg_send ~self ~cmd:(selector "newItemForRepresentedObject:") ~typ:(id @-> returning id) x
-let numberOfItemsInSection x self = msg_send ~self ~cmd:(selector "numberOfItemsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong)
+let numberOfItemsInSection x self = msg_send ~self ~cmd:(selector "numberOfItemsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let performBatchUpdates x ~completion self = msg_send ~self ~cmd:(selector "performBatchUpdates:completion:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x completion
 let performBatchUpdates' x ~completionHandler self = msg_send ~self ~cmd:(selector "performBatchUpdates:completionHandler:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x completionHandler

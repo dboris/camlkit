@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -16,5 +16,5 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithPressureBehavior x self = msg_send ~self ~cmd:(selector "initWithPressureBehavior:") ~typ:(llong @-> returning id) (LLong.of_int x)
-let pressureBehavior self = msg_send ~self ~cmd:(selector "pressureBehavior") ~typ:(returning llong)
+let pressureBehavior self = msg_send ~self ~cmd:(selector "pressureBehavior") ~typ:(returning llong) |> LLong.to_int
 let set self = msg_send ~self ~cmd:(selector "set") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -56,25 +56,25 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let fillColor self = msg_send ~self ~cmd:(selector "fillColor") ~typ:(returning id)
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initImageCell x self = msg_send ~self ~cmd:(selector "initImageCell:") ~typ:(id @-> returning id) x
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithLevelIndicatorStyle x self = msg_send ~self ~cmd:(selector "initWithLevelIndicatorStyle:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let isSelectable self = msg_send ~self ~cmd:(selector "isSelectable") ~typ:(returning bool)
 let keyDown x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "keyDown:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning bool) x inRect ofView
 let layoutLayerWithFrame x ~inView self = msg_send ~self ~cmd:(selector "layoutLayerWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
-let levelIndicatorStyle self = msg_send ~self ~cmd:(selector "levelIndicatorStyle") ~typ:(returning ullong)
+let levelIndicatorStyle self = msg_send ~self ~cmd:(selector "levelIndicatorStyle") ~typ:(returning ullong) |> ULLong.to_int
 let maxValue self = msg_send ~self ~cmd:(selector "maxValue") ~typ:(returning double)
 let minValue self = msg_send ~self ~cmd:(selector "minValue") ~typ:(returning double)
-let numberOfMajorTickMarks self = msg_send ~self ~cmd:(selector "numberOfMajorTickMarks") ~typ:(returning llong)
-let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong)
+let numberOfMajorTickMarks self = msg_send ~self ~cmd:(selector "numberOfMajorTickMarks") ~typ:(returning llong) |> LLong.to_int
+let numberOfTickMarks self = msg_send ~self ~cmd:(selector "numberOfTickMarks") ~typ:(returning llong) |> LLong.to_int
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
-let placeholderVisibility self = msg_send ~self ~cmd:(selector "placeholderVisibility") ~typ:(returning llong)
+let placeholderVisibility self = msg_send ~self ~cmd:(selector "placeholderVisibility") ~typ:(returning llong) |> LLong.to_int
 let ratingImage self = msg_send ~self ~cmd:(selector "ratingImage") ~typ:(returning id)
 let ratingPlaceholderImage self = msg_send ~self ~cmd:(selector "ratingPlaceholderImage") ~typ:(returning id)
 let rectOfTickMarkAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectOfTickMarkAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
@@ -110,7 +110,7 @@ let setWarningValue x self = msg_send ~self ~cmd:(selector "setWarningValue:") ~
 let startTrackingAt x ~inView self = msg_send ~self ~cmd:(selector "startTrackingAt:inView:") ~typ:(CGPoint.t @-> id @-> returning bool) x inView
 let stopTracking x ~at ~inView ~mouseIsUp self = msg_send ~self ~cmd:(selector "stopTracking:at:inView:mouseIsUp:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> bool @-> returning void) x at inView mouseIsUp
 let stringValue self = msg_send ~self ~cmd:(selector "stringValue") ~typ:(returning id)
-let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong)
+let tickMarkPosition self = msg_send ~self ~cmd:(selector "tickMarkPosition") ~typ:(returning ullong) |> ULLong.to_int
 let tickMarkValueAtIndex x self = msg_send ~self ~cmd:(selector "tickMarkValueAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
 let touchBeganAt x ~inView self = msg_send ~self ~cmd:(selector "touchBeganAt:inView:") ~typ:(CGPoint.t @-> id @-> returning void) x inView
 let trackMouse x ~inRect ~ofView ~untilMouseUp self = msg_send ~self ~cmd:(selector "trackMouse:inRect:ofView:untilMouseUp:") ~typ:(id @-> CGRect.t @-> id @-> bool @-> returning bool) x inRect ofView untilMouseUp

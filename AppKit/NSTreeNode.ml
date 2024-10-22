@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -11,10 +11,10 @@ open CoreAnimation
 
 let self = get_class "NSTreeNode"
 
-let childCountForKeyPath x self = msg_send ~self ~cmd:(selector "childCountForKeyPath:") ~typ:(id @-> returning ullong) x
+let childCountForKeyPath x self = msg_send ~self ~cmd:(selector "childCountForKeyPath:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let childNodes self = msg_send ~self ~cmd:(selector "childNodes") ~typ:(returning id)
-let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong)
-let countOfSubNodes self = msg_send ~self ~cmd:(selector "countOfSubNodes") ~typ:(returning ullong)
+let count self = msg_send ~self ~cmd:(selector "count") ~typ:(returning ullong) |> ULLong.to_int
+let countOfSubNodes self = msg_send ~self ~cmd:(selector "countOfSubNodes") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let descendantNodeAtIndexPath x self = msg_send ~self ~cmd:(selector "descendantNodeAtIndexPath:") ~typ:(id @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

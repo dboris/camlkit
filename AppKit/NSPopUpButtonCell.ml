@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -22,7 +22,7 @@ let accessibilityValueAttribute self = msg_send ~self ~cmd:(selector "accessibil
 let addItemWithTitle x self = msg_send ~self ~cmd:(selector "addItemWithTitle:") ~typ:(id @-> returning void) x
 let addItemsWithTitles x self = msg_send ~self ~cmd:(selector "addItemsWithTitles:") ~typ:(id @-> returning void) x
 let altersStateOfSelectedItem self = msg_send ~self ~cmd:(selector "altersStateOfSelectedItem") ~typ:(returning bool)
-let arrowPosition self = msg_send ~self ~cmd:(selector "arrowPosition") ~typ:(returning ullong)
+let arrowPosition self = msg_send ~self ~cmd:(selector "arrowPosition") ~typ:(returning ullong) |> ULLong.to_int
 let attachPopUpWithFrame x ~inView self = msg_send ~self ~cmd:(selector "attachPopUpWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let attributedTitle self = msg_send ~self ~cmd:(selector "attributedTitle") ~typ:(returning id)
 let autoenablesItems self = msg_send ~self ~cmd:(selector "autoenablesItems") ~typ:(returning bool)
@@ -37,19 +37,19 @@ let drawTitle x ~withFrame ~inView self = msg_send_stret ~self ~cmd:(selector "d
 let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let imageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let indexOfItem x self = msg_send ~self ~cmd:(selector "indexOfItem:") ~typ:(id @-> returning llong) x
-let indexOfItemWithRepresentedObject x self = msg_send ~self ~cmd:(selector "indexOfItemWithRepresentedObject:") ~typ:(id @-> returning llong) x
-let indexOfItemWithTag x self = msg_send ~self ~cmd:(selector "indexOfItemWithTag:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let indexOfItemWithTarget x ~andAction self = msg_send ~self ~cmd:(selector "indexOfItemWithTarget:andAction:") ~typ:(id @-> _SEL @-> returning llong) x andAction
-let indexOfItemWithTitle x self = msg_send ~self ~cmd:(selector "indexOfItemWithTitle:") ~typ:(id @-> returning llong) x
-let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong)
+let indexOfItem x self = msg_send ~self ~cmd:(selector "indexOfItem:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfItemWithRepresentedObject x self = msg_send ~self ~cmd:(selector "indexOfItemWithRepresentedObject:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfItemWithTag x self = msg_send ~self ~cmd:(selector "indexOfItemWithTag:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let indexOfItemWithTarget x ~andAction self = msg_send ~self ~cmd:(selector "indexOfItemWithTarget:andAction:") ~typ:(id @-> _SEL @-> returning llong) x andAction |> LLong.to_int
+let indexOfItemWithTitle x self = msg_send ~self ~cmd:(selector "indexOfItemWithTitle:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let indexOfSelectedItem self = msg_send ~self ~cmd:(selector "indexOfSelectedItem") ~typ:(returning llong) |> LLong.to_int
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initTextCell' x ~pullsDown self = msg_send ~self ~cmd:(selector "initTextCell:pullsDown:") ~typ:(id @-> bool @-> returning id) x pullsDown
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let insertItemWithTitle x ~atIndex self = msg_send ~self ~cmd:(selector "insertItemWithTitle:atIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int atIndex)
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let itemArray self = msg_send ~self ~cmd:(selector "itemArray") ~typ:(returning id)
 let itemAtIndex x self = msg_send ~self ~cmd:(selector "itemAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
@@ -62,12 +62,12 @@ let lastItem self = msg_send ~self ~cmd:(selector "lastItem") ~typ:(returning id
 let layoutLayerWithFrame x ~inView self = msg_send ~self ~cmd:(selector "layoutLayerWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let menuView self = msg_send ~self ~cmd:(selector "menuView") ~typ:(returning id)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let observeMenuItemProperties self = msg_send ~self ~cmd:(selector "observeMenuItemProperties") ~typ:(returning void)
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let performClickWithFrame x ~inView self = msg_send ~self ~cmd:(selector "performClickWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
-let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning ullong)
+let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning ullong) |> ULLong.to_int
 let pullsDown self = msg_send ~self ~cmd:(selector "pullsDown") ~typ:(returning bool)
 let removeAllItems self = msg_send ~self ~cmd:(selector "removeAllItems") ~typ:(returning void)
 let removeItemAtIndex x self = msg_send ~self ~cmd:(selector "removeItemAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)

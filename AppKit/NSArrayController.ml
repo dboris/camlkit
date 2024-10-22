@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -54,7 +54,7 @@ let removeSelectionIndexes x self = msg_send ~self ~cmd:(selector "removeSelecti
 let selectNext x self = msg_send ~self ~cmd:(selector "selectNext:") ~typ:(id @-> returning void) x
 let selectPrevious x self = msg_send ~self ~cmd:(selector "selectPrevious:") ~typ:(id @-> returning void) x
 let selectedObjects self = msg_send ~self ~cmd:(selector "selectedObjects") ~typ:(returning id)
-let selectionIndex self = msg_send ~self ~cmd:(selector "selectionIndex") ~typ:(returning ullong)
+let selectionIndex self = msg_send ~self ~cmd:(selector "selectionIndex") ~typ:(returning ullong) |> ULLong.to_int
 let selectionIndexes self = msg_send ~self ~cmd:(selector "selectionIndexes") ~typ:(returning id)
 let selectsInsertedObjects self = msg_send ~self ~cmd:(selector "selectsInsertedObjects") ~typ:(returning bool)
 let setAlwaysUsesMultipleValuesMarker x self = msg_send ~self ~cmd:(selector "setAlwaysUsesMultipleValuesMarker:") ~typ:(bool @-> returning void) x

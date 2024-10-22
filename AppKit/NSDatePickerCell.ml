@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -27,9 +27,9 @@ let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id
 let cellSize self = msg_send_stret ~self ~cmd:(selector "cellSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let continueTracking x ~at ~inView self = msg_send ~self ~cmd:(selector "continueTracking:at:inView:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> returning bool) x at inView
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let datePickerElements self = msg_send ~self ~cmd:(selector "datePickerElements") ~typ:(returning ullong)
-let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning ullong)
-let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning ullong)
+let datePickerElements self = msg_send ~self ~cmd:(selector "datePickerElements") ~typ:(returning ullong) |> ULLong.to_int
+let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning ullong) |> ULLong.to_int
+let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning ullong) |> ULLong.to_int
 let dateValue self = msg_send ~self ~cmd:(selector "dateValue") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -38,7 +38,7 @@ let drawWithFrame x ~inView self = msg_send ~self ~cmd:(selector "drawWithFrame:
 let drawsBackground self = msg_send ~self ~cmd:(selector "drawsBackground") ~typ:(returning bool)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x

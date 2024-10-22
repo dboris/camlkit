@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -28,17 +28,17 @@ let accessibilityTitleAttribute self = msg_send ~self ~cmd:(selector "accessibil
 let accessibilityValueAttribute self = msg_send ~self ~cmd:(selector "accessibilityValueAttribute") ~typ:(returning id)
 let alternateImage self = msg_send ~self ~cmd:(selector "alternateImage") ~typ:(returning id)
 let alternateMnemonic self = msg_send ~self ~cmd:(selector "alternateMnemonic") ~typ:(returning id)
-let alternateMnemonicLocation self = msg_send ~self ~cmd:(selector "alternateMnemonicLocation") ~typ:(returning ullong)
+let alternateMnemonicLocation self = msg_send ~self ~cmd:(selector "alternateMnemonicLocation") ~typ:(returning ullong) |> ULLong.to_int
 let alternateTitle self = msg_send ~self ~cmd:(selector "alternateTitle") ~typ:(returning id)
 let attributedAlternateTitle self = msg_send ~self ~cmd:(selector "attributedAlternateTitle") ~typ:(returning id)
 let attributedStringValue self = msg_send ~self ~cmd:(selector "attributedStringValue") ~typ:(returning id)
 let attributedTitle self = msg_send ~self ~cmd:(selector "attributedTitle") ~typ:(returning id)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
-let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong)
-let cellAttribute x self = msg_send ~self ~cmd:(selector "cellAttribute:") ~typ:(ullong @-> returning llong) (ULLong.of_int x)
+let bezelStyle self = msg_send ~self ~cmd:(selector "bezelStyle") ~typ:(returning ullong) |> ULLong.to_int
+let cellAttribute x self = msg_send ~self ~cmd:(selector "cellAttribute:") ~typ:(ullong @-> returning llong) (ULLong.of_int x) |> LLong.to_int
 let cellSizeForBounds x self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:") ~typ:(CGRect.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let cellSizeForBounds' x ~compressionOptions self = msg_send_stret ~self ~cmd:(selector "cellSizeForBounds:compressionOptions:") ~typ:(CGRect.t @-> id @-> returning CGSize.t) ~return_type:CGSize.t x compressionOptions
-let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning llong) x
+let compare x self = msg_send ~self ~cmd:(selector "compare:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let compressionOptions self = msg_send ~self ~cmd:(selector "compressionOptions") ~typ:(returning id)
 let continueTracking x ~at ~inView self = msg_send ~self ~cmd:(selector "continueTracking:at:inView:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> returning bool) x at inView
 let continueTrackingGesture x ~inView self = msg_send ~self ~cmd:(selector "continueTrackingGesture:inView:") ~typ:(id @-> id @-> returning bool) x inView
@@ -56,23 +56,23 @@ let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~
 let floatValue self = msg_send ~self ~cmd:(selector "floatValue") ~typ:(returning float)
 let focusRingMaskBoundsForFrame x ~inView self = msg_send_stret ~self ~cmd:(selector "focusRingMaskBoundsForFrame:inView:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x inView
 let getPeriodicDelay x ~interval self = msg_send ~self ~cmd:(selector "getPeriodicDelay:interval:") ~typ:((ptr float) @-> (ptr float) @-> returning void) x interval
-let gradientType self = msg_send ~self ~cmd:(selector "gradientType") ~typ:(returning ullong)
+let gradientType self = msg_send ~self ~cmd:(selector "gradientType") ~typ:(returning ullong) |> ULLong.to_int
 let highlight x ~withFrame ~inView self = msg_send ~self ~cmd:(selector "highlight:withFrame:inView:") ~typ:(bool @-> CGRect.t @-> id @-> returning void) x withFrame inView
-let highlightsBy self = msg_send ~self ~cmd:(selector "highlightsBy") ~typ:(returning ullong)
-let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView
+let highlightsBy self = msg_send ~self ~cmd:(selector "highlightsBy") ~typ:(returning ullong) |> ULLong.to_int
+let hitTestForEvent x ~inRect ~ofView self = msg_send ~self ~cmd:(selector "hitTestForEvent:inRect:ofView:") ~typ:(id @-> CGRect.t @-> id @-> returning ullong) x inRect ofView |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageDimsWhenDisabled self = msg_send ~self ~cmd:(selector "imageDimsWhenDisabled") ~typ:(returning bool)
 let imageHugsTitle self = msg_send ~self ~cmd:(selector "imageHugsTitle") ~typ:(returning bool)
-let imagePosition self = msg_send ~self ~cmd:(selector "imagePosition") ~typ:(returning ullong)
+let imagePosition self = msg_send ~self ~cmd:(selector "imagePosition") ~typ:(returning ullong) |> ULLong.to_int
 let imageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "imageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong)
+let imageScaling self = msg_send ~self ~cmd:(selector "imageScaling") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initImageCell x self = msg_send ~self ~cmd:(selector "initImageCell:") ~typ:(id @-> returning id) x
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let intValue self = msg_send ~self ~cmd:(selector "intValue") ~typ:(returning int)
-let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong)
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let integerValue self = msg_send ~self ~cmd:(selector "integerValue") ~typ:(returning llong) |> LLong.to_int
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isBordered self = msg_send ~self ~cmd:(selector "isBordered") ~typ:(returning bool)
 let isOpaque self = msg_send ~self ~cmd:(selector "isOpaque") ~typ:(returning bool)
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning bool)
@@ -80,17 +80,17 @@ let isSpringLoadingEmphasized self = msg_send ~self ~cmd:(selector "isSpringLoad
 let isTransparent self = msg_send ~self ~cmd:(selector "isTransparent") ~typ:(returning bool)
 let keyEquivalent self = msg_send ~self ~cmd:(selector "keyEquivalent") ~typ:(returning id)
 let keyEquivalentFont self = msg_send ~self ~cmd:(selector "keyEquivalentFont") ~typ:(returning id)
-let keyEquivalentModifierMask self = msg_send ~self ~cmd:(selector "keyEquivalentModifierMask") ~typ:(returning ullong)
+let keyEquivalentModifierMask self = msg_send ~self ~cmd:(selector "keyEquivalentModifierMask") ~typ:(returning ullong) |> ULLong.to_int
 let layoutLayerWithFrame x ~inView self = msg_send ~self ~cmd:(selector "layoutLayerWithFrame:inView:") ~typ:(CGRect.t @-> id @-> returning void) x inView
-let maxAcceleratorLevel self = msg_send ~self ~cmd:(selector "maxAcceleratorLevel") ~typ:(returning llong)
+let maxAcceleratorLevel self = msg_send ~self ~cmd:(selector "maxAcceleratorLevel") ~typ:(returning llong) |> LLong.to_int
 let mnemonic self = msg_send ~self ~cmd:(selector "mnemonic") ~typ:(returning id)
 let mouseEntered x self = msg_send ~self ~cmd:(selector "mouseEntered:") ~typ:(id @-> returning void) x
 let mouseExited x self = msg_send ~self ~cmd:(selector "mouseExited:") ~typ:(id @-> returning void) x
-let nextState self = msg_send ~self ~cmd:(selector "nextState") ~typ:(returning llong)
+let nextState self = msg_send ~self ~cmd:(selector "nextState") ~typ:(returning llong) |> LLong.to_int
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let performClick x self = msg_send ~self ~cmd:(selector "performClick:") ~typ:(id @-> returning void) x
 let progressRectForBounds x self = msg_send_stret ~self ~cmd:(selector "progressRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let sendActionOnMask self = msg_send ~self ~cmd:(selector "sendActionOnMask") ~typ:(returning ullong)
+let sendActionOnMask self = msg_send ~self ~cmd:(selector "sendActionOnMask") ~typ:(returning ullong) |> ULLong.to_int
 let setAlignment x self = msg_send ~self ~cmd:(selector "setAlignment:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setAlternateImage x self = msg_send ~self ~cmd:(selector "setAlternateImage:") ~typ:(id @-> returning void) x
 let setAlternateMnemonicLocation x self = msg_send ~self ~cmd:(selector "setAlternateMnemonicLocation:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
@@ -141,7 +141,7 @@ let setTitleWithMnemonic x self = msg_send ~self ~cmd:(selector "setTitleWithMne
 let setTransparent x self = msg_send ~self ~cmd:(selector "setTransparent:") ~typ:(bool @-> returning void) x
 let setUserInterfaceLayoutDirection x self = msg_send ~self ~cmd:(selector "setUserInterfaceLayoutDirection:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let showsBorderOnlyWhileMouseInside self = msg_send ~self ~cmd:(selector "showsBorderOnlyWhileMouseInside") ~typ:(returning bool)
-let showsStateBy self = msg_send ~self ~cmd:(selector "showsStateBy") ~typ:(returning ullong)
+let showsStateBy self = msg_send ~self ~cmd:(selector "showsStateBy") ~typ:(returning ullong) |> ULLong.to_int
 let sound self = msg_send ~self ~cmd:(selector "sound") ~typ:(returning id)
 let startTrackingAt x ~inView self = msg_send ~self ~cmd:(selector "startTrackingAt:inView:") ~typ:(CGPoint.t @-> id @-> returning bool) x inView
 let stopTracking x ~at ~inView ~mouseIsUp self = msg_send ~self ~cmd:(selector "stopTracking:at:inView:mouseIsUp:") ~typ:(CGPoint.t @-> CGPoint.t @-> id @-> bool @-> returning void) x at inView mouseIsUp

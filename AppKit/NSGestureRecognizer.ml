@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,7 +14,7 @@ let self = get_class "NSGestureRecognizer"
 let acceptsFirstMouse x self = msg_send ~self ~cmd:(selector "acceptsFirstMouse:") ~typ:(id @-> returning bool) x
 let action self = msg_send ~self ~cmd:(selector "action") ~typ:(returning _SEL)
 let addTarget x ~action self = msg_send ~self ~cmd:(selector "addTarget:action:") ~typ:(id @-> _SEL @-> returning void) x action
-let allowedTouchTypes self = msg_send ~self ~cmd:(selector "allowedTouchTypes") ~typ:(returning ullong)
+let allowedTouchTypes self = msg_send ~self ~cmd:(selector "allowedTouchTypes") ~typ:(returning ullong) |> ULLong.to_int
 let canBePreventedByGestureRecognizer x self = msg_send ~self ~cmd:(selector "canBePreventedByGestureRecognizer:") ~typ:(id @-> returning bool) x
 let canPreventGestureRecognizer x self = msg_send ~self ~cmd:(selector "canPreventGestureRecognizer:") ~typ:(id @-> returning bool) x
 let cancelsTouchesInView self = msg_send ~self ~cmd:(selector "cancelsTouchesInView") ~typ:(returning bool)
@@ -37,7 +37,7 @@ let keyDown x self = msg_send ~self ~cmd:(selector "keyDown:") ~typ:(id @-> retu
 let keyUp x self = msg_send ~self ~cmd:(selector "keyUp:") ~typ:(id @-> returning void) x
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let magnifyWithEvent x self = msg_send ~self ~cmd:(selector "magnifyWithEvent:") ~typ:(id @-> returning void) x
-let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning ullong)
+let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning ullong) |> ULLong.to_int
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDragged x self = msg_send ~self ~cmd:(selector "mouseDragged:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
@@ -75,7 +75,7 @@ let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> retu
 let shouldBeArchived self = msg_send ~self ~cmd:(selector "shouldBeArchived") ~typ:(returning bool)
 let shouldBeRequiredToFailByGestureRecognizer x self = msg_send ~self ~cmd:(selector "shouldBeRequiredToFailByGestureRecognizer:") ~typ:(id @-> returning bool) x
 let shouldRequireFailureOfGestureRecognizer x self = msg_send ~self ~cmd:(selector "shouldRequireFailureOfGestureRecognizer:") ~typ:(id @-> returning bool) x
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let tabletPoint x self = msg_send ~self ~cmd:(selector "tabletPoint:") ~typ:(id @-> returning void) x
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let touchesBeganWithEvent x self = msg_send ~self ~cmd:(selector "touchesBeganWithEvent:") ~typ:(id @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -17,9 +17,9 @@ let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ
 let baselineOffsetFromBottom self = msg_send ~self ~cmd:(selector "baselineOffsetFromBottom") ~typ:(returning double)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id)
-let datePickerElements self = msg_send ~self ~cmd:(selector "datePickerElements") ~typ:(returning ullong)
-let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning ullong)
-let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning ullong)
+let datePickerElements self = msg_send ~self ~cmd:(selector "datePickerElements") ~typ:(returning ullong) |> ULLong.to_int
+let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning ullong) |> ULLong.to_int
+let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning ullong) |> ULLong.to_int
 let dateValue self = msg_send ~self ~cmd:(selector "dateValue") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)

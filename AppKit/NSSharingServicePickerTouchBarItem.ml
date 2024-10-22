@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -11,6 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSSharingServicePickerTouchBarItem"
 
+let activityItemsConfiguration self = msg_send ~self ~cmd:(selector "activityItemsConfiguration") ~typ:(returning id)
 let buttonImage self = msg_send ~self ~cmd:(selector "buttonImage") ~typ:(returning id)
 let buttonTitle self = msg_send ~self ~cmd:(selector "buttonTitle") ~typ:(returning id)
 let customizationLabel self = msg_send ~self ~cmd:(selector "customizationLabel") ~typ:(returning id)
@@ -26,6 +27,7 @@ let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)
 let itemsForSharingServicePickerTouchBarItem x self = msg_send ~self ~cmd:(selector "itemsForSharingServicePickerTouchBarItem:") ~typ:(id @-> returning id) x
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let popoverFunctionBar self = msg_send ~self ~cmd:(selector "popoverFunctionBar") ~typ:(returning id)
+let setActivityItemsConfiguration x self = msg_send ~self ~cmd:(selector "setActivityItemsConfiguration:") ~typ:(id @-> returning void) x
 let setButtonImage x self = msg_send ~self ~cmd:(selector "setButtonImage:") ~typ:(id @-> returning void) x
 let setButtonTitle x self = msg_send ~self ~cmd:(selector "setButtonTitle:") ~typ:(id @-> returning void) x
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning void) x

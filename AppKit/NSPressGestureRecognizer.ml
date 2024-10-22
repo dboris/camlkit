@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,7 +12,7 @@ open CoreAnimation
 let self = get_class "NSPressGestureRecognizer"
 
 let allowableMovement self = msg_send ~self ~cmd:(selector "allowableMovement") ~typ:(returning double)
-let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong)
+let buttonMask self = msg_send ~self ~cmd:(selector "buttonMask") ~typ:(returning ullong) |> ULLong.to_int
 let canPreventGestureRecognizer x self = msg_send ~self ~cmd:(selector "canPreventGestureRecognizer:") ~typ:(id @-> returning bool) x
 let cancelPastAllowableMovement self = msg_send ~self ~cmd:(selector "cancelPastAllowableMovement") ~typ:(returning bool)
 let clearTimer self = msg_send ~self ~cmd:(selector "clearTimer") ~typ:(returning void)
@@ -26,7 +26,7 @@ let minimumPressDuration self = msg_send ~self ~cmd:(selector "minimumPressDurat
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDragged x self = msg_send ~self ~cmd:(selector "mouseDragged:") ~typ:(id @-> returning void) x
 let mouseUp x self = msg_send ~self ~cmd:(selector "mouseUp:") ~typ:(id @-> returning void) x
-let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong)
+let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning llong) |> LLong.to_int
 let otherMouseDown x self = msg_send ~self ~cmd:(selector "otherMouseDown:") ~typ:(id @-> returning void) x
 let otherMouseDragged x self = msg_send ~self ~cmd:(selector "otherMouseDragged:") ~typ:(id @-> returning void) x
 let otherMouseUp x self = msg_send ~self ~cmd:(selector "otherMouseUp:") ~typ:(id @-> returning void) x

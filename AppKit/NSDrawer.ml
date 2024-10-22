@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -38,7 +38,7 @@ let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(return
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let doCommandBySelector x self = msg_send ~self ~cmd:(selector "doCommandBySelector:") ~typ:(_SEL @-> returning void) x
-let edge self = msg_send ~self ~cmd:(selector "edge") ~typ:(returning ullong)
+let edge self = msg_send ~self ~cmd:(selector "edge") ~typ:(returning ullong) |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let flushBufferedKeyEvents self = msg_send ~self ~cmd:(selector "flushBufferedKeyEvents") ~typ:(returning void)
 let helpRequested x self = msg_send ~self ~cmd:(selector "helpRequested:") ~typ:(id @-> returning void) x
@@ -55,7 +55,7 @@ let open_' x self = msg_send ~self ~cmd:(selector "open:") ~typ:(id @-> returnin
 let openOnEdge x self = msg_send ~self ~cmd:(selector "openOnEdge:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let parentWindow self = msg_send ~self ~cmd:(selector "parentWindow") ~typ:(returning id)
 let performKeyEquivalent x self = msg_send ~self ~cmd:(selector "performKeyEquivalent:") ~typ:(id @-> returning bool) x
-let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning ullong)
+let preferredEdge self = msg_send ~self ~cmd:(selector "preferredEdge") ~typ:(returning ullong) |> ULLong.to_int
 let removeImmediately x self = msg_send ~self ~cmd:(selector "removeImmediately:") ~typ:(bool @-> returning void) x
 let setAutosaveName x self = msg_send ~self ~cmd:(selector "setAutosaveName:") ~typ:(id @-> returning void) x
 let setContentSize x self = msg_send ~self ~cmd:(selector "setContentSize:") ~typ:(CGSize.t @-> returning void) x
@@ -68,7 +68,7 @@ let setMinContentSize x self = msg_send ~self ~cmd:(selector "setMinContentSize:
 let setParentWindow x self = msg_send ~self ~cmd:(selector "setParentWindow:") ~typ:(id @-> returning void) x
 let setPreferredEdge x self = msg_send ~self ~cmd:(selector "setPreferredEdge:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setTrailingOffset x self = msg_send ~self ~cmd:(selector "setTrailingOffset:") ~typ:(double @-> returning void) x
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let toggle x self = msg_send ~self ~cmd:(selector "toggle:") ~typ:(id @-> returning void) x
 let trailingOffset self = msg_send ~self ~cmd:(selector "trailingOffset") ~typ:(returning double)
 let tryToPerform x ~with_ self = msg_send ~self ~cmd:(selector "tryToPerform:with:") ~typ:(_SEL @-> id @-> returning bool) x with_

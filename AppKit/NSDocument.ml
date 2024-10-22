@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -17,7 +17,7 @@ let accommodatePresentedItemDisconnectionWithCompletionHandler x self = msg_send
 let addWindowController x self = msg_send ~self ~cmd:(selector "addWindowController:") ~typ:(id @-> returning void) x
 let allowsDocumentSharing self = msg_send ~self ~cmd:(selector "allowsDocumentSharing") ~typ:(returning bool)
 let alternateContents self = msg_send ~self ~cmd:(selector "alternateContents") ~typ:(returning id)
-let alternateContentsDisassociationReason self = msg_send ~self ~cmd:(selector "alternateContentsDisassociationReason") ~typ:(returning ullong)
+let alternateContentsDisassociationReason self = msg_send ~self ~cmd:(selector "alternateContentsDisassociationReason") ~typ:(returning ullong) |> ULLong.to_int
 let autosaveDocumentWithDelegate x ~didAutosaveSelector ~contextInfo self = msg_send ~self ~cmd:(selector "autosaveDocumentWithDelegate:didAutosaveSelector:contextInfo:") ~typ:(id @-> _SEL @-> (ptr void) @-> returning void) x didAutosaveSelector contextInfo
 let autosaveWithImplicitCancellability x ~completionHandler self = msg_send ~self ~cmd:(selector "autosaveWithImplicitCancellability:completionHandler:") ~typ:(bool @-> (ptr void) @-> returning void) x completionHandler
 let autosavedContentsFileURL self = msg_send ~self ~cmd:(selector "autosavedContentsFileURL") ~typ:(returning id)
@@ -162,10 +162,10 @@ let revertToContentsOfURL x ~ofType ~error self = msg_send ~self ~cmd:(selector 
 let revertToSavedFromFile x ~ofType self = msg_send ~self ~cmd:(selector "revertToSavedFromFile:ofType:") ~typ:(id @-> id @-> returning bool) x ofType
 let revertToSavedFromURL x ~ofType self = msg_send ~self ~cmd:(selector "revertToSavedFromURL:ofType:") ~typ:(id @-> id @-> returning bool) x ofType
 let runModalMovePanelWithDelegate x ~didMoveSelector ~contextInfo self = msg_send ~self ~cmd:(selector "runModalMovePanelWithDelegate:didMoveSelector:contextInfo:") ~typ:(id @-> _SEL @-> (ptr void) @-> returning void) x didMoveSelector contextInfo
-let runModalPageLayoutWithPrintInfo x self = msg_send ~self ~cmd:(selector "runModalPageLayoutWithPrintInfo:") ~typ:(id @-> returning llong) x
+let runModalPageLayoutWithPrintInfo x self = msg_send ~self ~cmd:(selector "runModalPageLayoutWithPrintInfo:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let runModalPageLayoutWithPrintInfo' x ~delegate ~didRunSelector ~contextInfo self = msg_send ~self ~cmd:(selector "runModalPageLayoutWithPrintInfo:delegate:didRunSelector:contextInfo:") ~typ:(id @-> id @-> _SEL @-> (ptr void) @-> returning void) x delegate didRunSelector contextInfo
 let runModalPrintOperation x ~delegate ~didRunSelector ~contextInfo self = msg_send ~self ~cmd:(selector "runModalPrintOperation:delegate:didRunSelector:contextInfo:") ~typ:(id @-> id @-> _SEL @-> (ptr void) @-> returning void) x delegate didRunSelector contextInfo
-let runModalSavePanel x ~withAccessoryView self = msg_send ~self ~cmd:(selector "runModalSavePanel:withAccessoryView:") ~typ:(id @-> id @-> returning llong) x withAccessoryView
+let runModalSavePanel x ~withAccessoryView self = msg_send ~self ~cmd:(selector "runModalSavePanel:withAccessoryView:") ~typ:(id @-> id @-> returning llong) x withAccessoryView |> LLong.to_int
 let runModalSavePanelForSaveOperation x ~delegate ~didSaveSelector ~contextInfo self = msg_send ~self ~cmd:(selector "runModalSavePanelForSaveOperation:delegate:didSaveSelector:contextInfo:") ~typ:(ullong @-> id @-> _SEL @-> (ptr void) @-> returning void) (ULLong.of_int x) delegate didSaveSelector contextInfo
 let runPageLayout x self = msg_send ~self ~cmd:(selector "runPageLayout:") ~typ:(id @-> returning void) x
 let saveDocument x self = msg_send ~self ~cmd:(selector "saveDocument:") ~typ:(id @-> returning void) x
@@ -205,7 +205,7 @@ let shareItemType self = msg_send ~self ~cmd:(selector "shareItemType") ~typ:(re
 let shareItemURL self = msg_send ~self ~cmd:(selector "shareItemURL") ~typ:(returning id)
 let shareUbiquitousDocument x self = msg_send ~self ~cmd:(selector "shareUbiquitousDocument:") ~typ:(id @-> returning void) x
 let shareUbiquitousDocumentWithCompletionHandler x self = msg_send ~self ~cmd:(selector "shareUbiquitousDocumentWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
-let sharingState self = msg_send ~self ~cmd:(selector "sharingState") ~typ:(returning ullong)
+let sharingState self = msg_send ~self ~cmd:(selector "sharingState") ~typ:(returning ullong) |> ULLong.to_int
 let shouldChangePrintInfo x self = msg_send ~self ~cmd:(selector "shouldChangePrintInfo:") ~typ:(id @-> returning bool) x
 let shouldCloseWindowController x self = msg_send ~self ~cmd:(selector "shouldCloseWindowController:") ~typ:(id @-> returning bool) x
 let shouldCloseWindowController' x ~delegate ~shouldCloseSelector ~contextInfo self = msg_send ~self ~cmd:(selector "shouldCloseWindowController:delegate:shouldCloseSelector:contextInfo:") ~typ:(id @-> id @-> _SEL @-> (ptr void) @-> returning void) x delegate shouldCloseSelector contextInfo

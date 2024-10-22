@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -31,6 +31,7 @@ let presentSystemModalTouchBar' x ~placement ~systemTrayItemIdentifier self = ms
 let resetUserDefinedTouchBar self = msg_send ~self ~cmd:(selector "resetUserDefinedTouchBar") ~typ:(returning void)
 let setAllowsTouchesDuringTrackingLoops x self = msg_send ~self ~cmd:(selector "setAllowsTouchesDuringTrackingLoops:") ~typ:(bool @-> returning void) x
 let setAutomaticCustomizeTouchBarMenuItemEnabled x self = msg_send ~self ~cmd:(selector "setAutomaticCustomizeTouchBarMenuItemEnabled:") ~typ:(bool @-> returning void) x
+let touchBarForIdentifier x self = msg_send ~self ~cmd:(selector "touchBarForIdentifier:") ~typ:(id @-> returning id) x
 let touchBarWithDelegate x ~itemIdentifiers self = msg_send ~self ~cmd:(selector "touchBarWithDelegate:itemIdentifiers:") ~typ:(id @-> id @-> returning id) x itemIdentifiers
 let touchBarWithDelegate' x ~customizationIdentifier ~defaultItemIdentifiers ~allowedItemIdentifiers self = msg_send ~self ~cmd:(selector "touchBarWithDelegate:customizationIdentifier:defaultItemIdentifiers:allowedItemIdentifiers:") ~typ:(id @-> id @-> id @-> id @-> returning id) x customizationIdentifier defaultItemIdentifiers allowedItemIdentifiers
 let touchBarWithItems x self = msg_send ~self ~cmd:(selector "touchBarWithItems:") ~typ:(id @-> returning id) x

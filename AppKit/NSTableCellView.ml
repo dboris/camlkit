@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -11,7 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSTableCellView"
 
-let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong)
+let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let draggingImageComponents self = msg_send ~self ~cmd:(selector "draggingImageComponents") ~typ:(returning id)
 let firstBaselineOffsetFromTop self = msg_send ~self ~cmd:(selector "firstBaselineOffsetFromTop") ~typ:(returning double)
@@ -22,7 +22,7 @@ let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning void)
 let objectValue self = msg_send ~self ~cmd:(selector "objectValue") ~typ:(returning id)
 let preservesContentDuringLiveResize self = msg_send ~self ~cmd:(selector "preservesContentDuringLiveResize") ~typ:(returning bool)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
-let rowSizeStyle self = msg_send ~self ~cmd:(selector "rowSizeStyle") ~typ:(returning llong)
+let rowSizeStyle self = msg_send ~self ~cmd:(selector "rowSizeStyle") ~typ:(returning llong) |> LLong.to_int
 let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setFrameSize x self = msg_send ~self ~cmd:(selector "setFrameSize:") ~typ:(CGSize.t @-> returning void) x
 let setImageView x self = msg_send ~self ~cmd:(selector "setImageView:") ~typ:(id @-> returning void) x

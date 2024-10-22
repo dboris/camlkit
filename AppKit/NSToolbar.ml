@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -23,7 +23,7 @@ let customizableItems self = msg_send ~self ~cmd:(selector "customizableItems") 
 let customizationPaletteIsRunning self = msg_send ~self ~cmd:(selector "customizationPaletteIsRunning") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
-let displayMode self = msg_send ~self ~cmd:(selector "displayMode") ~typ:(returning ullong)
+let displayMode self = msg_send ~self ~cmd:(selector "displayMode") ~typ:(returning ullong) |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let fullScreenAccessoryView self = msg_send ~self ~cmd:(selector "fullScreenAccessoryView") ~typ:(returning id)
 let fullScreenAccessoryViewMaxHeight self = msg_send ~self ~cmd:(selector "fullScreenAccessoryViewMaxHeight") ~typ:(returning double)
@@ -75,7 +75,7 @@ let setShowsBaselineSeparator x self = msg_send ~self ~cmd:(selector "setShowsBa
 let setSizeMode x self = msg_send ~self ~cmd:(selector "setSizeMode:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setVisible x self = msg_send ~self ~cmd:(selector "setVisible:") ~typ:(bool @-> returning void) x
 let showsBaselineSeparator self = msg_send ~self ~cmd:(selector "showsBaselineSeparator") ~typ:(returning bool)
-let sizeMode self = msg_send ~self ~cmd:(selector "sizeMode") ~typ:(returning ullong)
+let sizeMode self = msg_send ~self ~cmd:(selector "sizeMode") ~typ:(returning ullong) |> ULLong.to_int
 let toolbar x ~itemForItemIdentifier ~willBeInsertedIntoToolbar self = msg_send ~self ~cmd:(selector "toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:") ~typ:(id @-> id @-> bool @-> returning id) x itemForItemIdentifier willBeInsertedIntoToolbar
 let toolbarAllowedItemIdentifiers x self = msg_send ~self ~cmd:(selector "toolbarAllowedItemIdentifiers:") ~typ:(id @-> returning id) x
 let toolbarDefaultItemIdentifiers x self = msg_send ~self ~cmd:(selector "toolbarDefaultItemIdentifiers:") ~typ:(id @-> returning id) x

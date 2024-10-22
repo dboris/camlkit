@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -25,4 +25,4 @@ let setString x ~forType self = msg_send ~self ~cmd:(selector "setString:forType
 let stringForType x self = msg_send ~self ~cmd:(selector "stringForType:") ~typ:(id @-> returning id) x
 let types self = msg_send ~self ~cmd:(selector "types") ~typ:(returning id)
 let writableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "writableTypesForPasteboard:") ~typ:(id @-> returning id) x
-let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard
+let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard |> ULLong.to_int

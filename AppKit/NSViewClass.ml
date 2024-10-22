@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let automaticallyNotifiesObserversOfHidden self = msg_send ~self ~cmd:(selector 
 let automaticallyNotifiesObserversOfHiddenOrHasHiddenAncestor self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfHiddenOrHasHiddenAncestor") ~typ:(returning bool)
 let automaticallyNotifiesObserversOfWantsLayer self = msg_send ~self ~cmd:(selector "automaticallyNotifiesObserversOfWantsLayer") ~typ:(returning bool)
 let defaultAnimationForKey x self = msg_send ~self ~cmd:(selector "defaultAnimationForKey:") ~typ:(id @-> returning id) x
-let defaultFocusRingType self = msg_send ~self ~cmd:(selector "defaultFocusRingType") ~typ:(returning ullong)
+let defaultFocusRingType self = msg_send ~self ~cmd:(selector "defaultFocusRingType") ~typ:(returning ullong) |> ULLong.to_int
 let defaultMenu self = msg_send ~self ~cmd:(selector "defaultMenu") ~typ:(returning id)
 let focusView self = msg_send ~self ~cmd:(selector "focusView") ~typ:(returning id)
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -32,7 +32,7 @@ let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifie
 let initWithIdentifier' x ~buttonTitle ~buttonImage self = msg_send ~self ~cmd:(selector "initWithIdentifier:buttonTitle:buttonImage:") ~typ:(id @-> id @-> id @-> returning id) x buttonTitle buttonImage
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning bool)
 let isPresented self = msg_send ~self ~cmd:(selector "isPresented") ~typ:(returning bool)
-let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong)
+let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong) |> LLong.to_int
 let popoverTouchBar self = msg_send ~self ~cmd:(selector "popoverTouchBar") ~typ:(returning id)
 let release self = msg_send ~self ~cmd:(selector "release") ~typ:(returning void)
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -16,12 +16,12 @@ let animatesToDraggingFormationOnBeginDrag self = msg_send ~self ~cmd:(selector 
 let animatesToStartingPositionsOnCancelOrFail self = msg_send ~self ~cmd:(selector "animatesToStartingPositionsOnCancelOrFail") ~typ:(returning bool)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let dragRef self = msg_send ~self ~cmd:(selector "dragRef") ~typ:(returning (ptr void))
-let draggingFormation self = msg_send ~self ~cmd:(selector "draggingFormation") ~typ:(returning llong)
+let draggingFormation self = msg_send ~self ~cmd:(selector "draggingFormation") ~typ:(returning llong) |> LLong.to_int
 let draggingImageOffset self = msg_send_stret ~self ~cmd:(selector "draggingImageOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
-let draggingLeaderIndex self = msg_send ~self ~cmd:(selector "draggingLeaderIndex") ~typ:(returning llong)
+let draggingLeaderIndex self = msg_send ~self ~cmd:(selector "draggingLeaderIndex") ~typ:(returning llong) |> LLong.to_int
 let draggingLocation self = msg_send_stret ~self ~cmd:(selector "draggingLocation") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let draggingPasteboard self = msg_send ~self ~cmd:(selector "draggingPasteboard") ~typ:(returning id)
-let draggingSequenceNumber self = msg_send ~self ~cmd:(selector "draggingSequenceNumber") ~typ:(returning llong)
+let draggingSequenceNumber self = msg_send ~self ~cmd:(selector "draggingSequenceNumber") ~typ:(returning llong) |> LLong.to_int
 let enumerateDraggingItemsForClass x ~view ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateDraggingItemsForClass:view:usingBlock:") ~typ:(_Class @-> id @-> (ptr void) @-> returning void) x view usingBlock
 let enumerateDraggingItemsWithOptions x ~forView ~classes ~searchOptions ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:") ~typ:(ullong @-> id @-> id @-> id @-> (ptr void) @-> returning void) (ULLong.of_int x) forView classes searchOptions usingBlock
 let filePromiseDragSource self = msg_send ~self ~cmd:(selector "filePromiseDragSource") ~typ:(returning id)

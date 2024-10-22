@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -12,20 +12,20 @@ open CoreAnimation
 let self = get_class "NSTableRowView"
 
 let accessibilityFocusedUIElement self = msg_send ~self ~cmd:(selector "accessibilityFocusedUIElement") ~typ:(returning id)
-let accessibilityIndex self = msg_send ~self ~cmd:(selector "accessibilityIndex") ~typ:(returning llong)
+let accessibilityIndex self = msg_send ~self ~cmd:(selector "accessibilityIndex") ~typ:(returning llong) |> LLong.to_int
 let accessibilityParentAttribute self = msg_send ~self ~cmd:(selector "accessibilityParentAttribute") ~typ:(returning id)
 let associateView x ~withColumn self = msg_send ~self ~cmd:(selector "associateView:withColumn:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int withColumn)
 let associatedViewWithReuseIdentifier x self = msg_send ~self ~cmd:(selector "associatedViewWithReuseIdentifier:") ~typ:(id @-> returning id) x
 let associatedViewsForColumn x self = msg_send ~self ~cmd:(selector "associatedViewsForColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
-let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong)
+let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let canUseSelectionMaterialWithRegularHighlights self = msg_send ~self ~cmd:(selector "canUseSelectionMaterialWithRegularHighlights") ~typ:(returning bool)
-let columnCount self = msg_send ~self ~cmd:(selector "columnCount") ~typ:(returning llong)
+let columnCount self = msg_send ~self ~cmd:(selector "columnCount") ~typ:(returning llong) |> LLong.to_int
 let consumingActionButton self = msg_send ~self ~cmd:(selector "consumingActionButton") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let didAddSubview x self = msg_send ~self ~cmd:(selector "didAddSubview:") ~typ:(id @-> returning void) x
-let draggingDestinationFeedbackStyle self = msg_send ~self ~cmd:(selector "draggingDestinationFeedbackStyle") ~typ:(returning llong)
+let draggingDestinationFeedbackStyle self = msg_send ~self ~cmd:(selector "draggingDestinationFeedbackStyle") ~typ:(returning llong) |> LLong.to_int
 let drawBackgroundInRect x self = msg_send ~self ~cmd:(selector "drawBackgroundInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawDraggingDestinationFeedbackInRect x self = msg_send ~self ~cmd:(selector "drawDraggingDestinationFeedbackInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawOverlayRect x self = msg_send ~self ~cmd:(selector "drawOverlayRect:") ~typ:(CGRect.t @-> returning void) x
@@ -39,13 +39,13 @@ let emphasizedForDropOperation self = msg_send ~self ~cmd:(selector "emphasizedF
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let extractAssociatedViewWithReuseIdentifier x self = msg_send ~self ~cmd:(selector "extractAssociatedViewWithReuseIdentifier:") ~typ:(id @-> returning id) x
 let floatingStyle self = msg_send ~self ~cmd:(selector "floatingStyle") ~typ:(returning bool)
-let gridStyleMask self = msg_send ~self ~cmd:(selector "gridStyleMask") ~typ:(returning ullong)
-let groupRowStyle2 self = msg_send ~self ~cmd:(selector "groupRowStyle2") ~typ:(returning llong)
+let gridStyleMask self = msg_send ~self ~cmd:(selector "gridStyleMask") ~typ:(returning ullong) |> ULLong.to_int
+let groupRowStyle2 self = msg_send ~self ~cmd:(selector "groupRowStyle2") ~typ:(returning llong) |> LLong.to_int
 let indentationForDropOperation self = msg_send ~self ~cmd:(selector "indentationForDropOperation") ~typ:(returning double)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let insertColumnAtIndex x self = msg_send ~self ~cmd:(selector "insertColumnAtIndex:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isEmphasized self = msg_send ~self ~cmd:(selector "isEmphasized") ~typ:(returning bool)
 let isFloating self = msg_send ~self ~cmd:(selector "isFloating") ~typ:(returning bool)
 let isGroupRowStyle self = msg_send ~self ~cmd:(selector "isGroupRowStyle") ~typ:(returning bool)
@@ -58,7 +58,7 @@ let isStatic self = msg_send ~self ~cmd:(selector "isStatic") ~typ:(returning bo
 let isTargetForDropOperation self = msg_send ~self ~cmd:(selector "isTargetForDropOperation") ~typ:(returning bool)
 let layout self = msg_send ~self ~cmd:(selector "layout") ~typ:(returning void)
 let moveViewsFromColumn x ~toColumn self = msg_send ~self ~cmd:(selector "moveViewsFromColumn:toColumn:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toColumn)
-let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong)
+let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong) |> LLong.to_int
 let overlayBounds self = msg_send_stret ~self ~cmd:(selector "overlayBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let performHandler x ~onAssociatedViewsWithColumn self = msg_send ~self ~cmd:(selector "performHandler:onAssociatedViewsWithColumn:") ~typ:((ptr void) @-> llong @-> returning void) x (LLong.of_int onAssociatedViewsWithColumn)
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning void)
@@ -69,8 +69,8 @@ let removeColumnAtIndex x self = msg_send ~self ~cmd:(selector "removeColumnAtIn
 let removeViewAtUnknownColumn x self = msg_send ~self ~cmd:(selector "removeViewAtUnknownColumn:") ~typ:(id @-> returning void) x
 let secondarySelectedControlColor self = msg_send ~self ~cmd:(selector "secondarySelectedControlColor") ~typ:(returning id)
 let selectionAlpha self = msg_send ~self ~cmd:(selector "selectionAlpha") ~typ:(returning double)
-let selectionBlendingMode self = msg_send ~self ~cmd:(selector "selectionBlendingMode") ~typ:(returning llong)
-let selectionHighlightStyle self = msg_send ~self ~cmd:(selector "selectionHighlightStyle") ~typ:(returning llong)
+let selectionBlendingMode self = msg_send ~self ~cmd:(selector "selectionBlendingMode") ~typ:(returning llong) |> LLong.to_int
+let selectionHighlightStyle self = msg_send ~self ~cmd:(selector "selectionHighlightStyle") ~typ:(returning llong) |> LLong.to_int
 let separatorColor self = msg_send ~self ~cmd:(selector "separatorColor") ~typ:(returning id)
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning void) x
 let setCanUseSelectionMaterialWithRegularHighlights x self = msg_send ~self ~cmd:(selector "setCanUseSelectionMaterialWithRegularHighlights:") ~typ:(bool @-> returning void) x

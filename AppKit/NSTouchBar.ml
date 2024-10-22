@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -11,6 +11,7 @@ open CoreAnimation
 
 let self = get_class "NSTouchBar"
 
+let addViewServiceTouchBarControllerObservers self = msg_send ~self ~cmd:(selector "addViewServiceTouchBarControllerObservers") ~typ:(returning void)
 let animationDuration self = msg_send ~self ~cmd:(selector "animationDuration") ~typ:(returning double)
 let animationForKey x self = msg_send ~self ~cmd:(selector "animationForKey:") ~typ:(id @-> returning id) x
 let animationTimingFunction self = msg_send ~self ~cmd:(selector "animationTimingFunction") ~typ:(returning id)
@@ -40,6 +41,7 @@ let itemIdentifiers self = msg_send ~self ~cmd:(selector "itemIdentifiers") ~typ
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)
 let minWidthGivenVisualCenterX x self = msg_send ~self ~cmd:(selector "minWidthGivenVisualCenterX:") ~typ:(double @-> returning double) x
 let principalItemIdentifier self = msg_send ~self ~cmd:(selector "principalItemIdentifier") ~typ:(returning id)
+let removeViewServiceTouchBarControllerObservers self = msg_send ~self ~cmd:(selector "removeViewServiceTouchBarControllerObservers") ~typ:(returning void)
 let setAnimations x self = msg_send ~self ~cmd:(selector "setAnimations:") ~typ:(id @-> returning void) x
 let setCustomizationAllowedItemIdentifiers x self = msg_send ~self ~cmd:(selector "setCustomizationAllowedItemIdentifiers:") ~typ:(id @-> returning void) x
 let setCustomizationDefaultItemIdentifiers x self = msg_send ~self ~cmd:(selector "setCustomizationDefaultItemIdentifiers:") ~typ:(id @-> returning void) x
@@ -58,7 +60,11 @@ let setSuppressesLessFocusedBars x self = msg_send ~self ~cmd:(selector "setSupp
 let setSuppressesMoreFocusedBars x self = msg_send ~self ~cmd:(selector "setSuppressesMoreFocusedBars:") ~typ:(bool @-> returning void) x
 let setTemplateItems x self = msg_send ~self ~cmd:(selector "setTemplateItems:") ~typ:(id @-> returning void) x
 let setTouchBarLayoutDirection x self = msg_send ~self ~cmd:(selector "setTouchBarLayoutDirection:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setViewServiceTouchBarControllerIdentifier x self = msg_send ~self ~cmd:(selector "setViewServiceTouchBarControllerIdentifier:") ~typ:(id @-> returning void) x
 let suppressesLessFocusedBars self = msg_send ~self ~cmd:(selector "suppressesLessFocusedBars") ~typ:(returning bool)
 let suppressesMoreFocusedBars self = msg_send ~self ~cmd:(selector "suppressesMoreFocusedBars") ~typ:(returning bool)
+let swizzledDealloc self = msg_send ~self ~cmd:(selector "swizzledDealloc") ~typ:(returning void)
 let templateItems self = msg_send ~self ~cmd:(selector "templateItems") ~typ:(returning id)
-let touchBarLayoutDirection self = msg_send ~self ~cmd:(selector "touchBarLayoutDirection") ~typ:(returning llong)
+let touchBarLayoutDirection self = msg_send ~self ~cmd:(selector "touchBarLayoutDirection") ~typ:(returning llong) |> LLong.to_int
+let viewServiceTouchBarControllerDescription self = msg_send ~self ~cmd:(selector "viewServiceTouchBarControllerDescription") ~typ:(returning id)
+let viewServiceTouchBarControllerIdentifier self = msg_send ~self ~cmd:(selector "viewServiceTouchBarControllerIdentifier") ~typ:(returning id)

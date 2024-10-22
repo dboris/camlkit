@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -29,9 +29,9 @@ let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRec
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let borderColor self = msg_send ~self ~cmd:(selector "borderColor") ~typ:(returning id)
 let borderRect self = msg_send_stret ~self ~cmd:(selector "borderRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let borderType self = msg_send ~self ~cmd:(selector "borderType") ~typ:(returning ullong)
+let borderType self = msg_send ~self ~cmd:(selector "borderType") ~typ:(returning ullong) |> ULLong.to_int
 let borderWidth self = msg_send ~self ~cmd:(selector "borderWidth") ~typ:(returning double)
-let boxType self = msg_send ~self ~cmd:(selector "boxType") ~typ:(returning ullong)
+let boxType self = msg_send ~self ~cmd:(selector "boxType") ~typ:(returning ullong) |> ULLong.to_int
 let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(returning id)
 let contentViewMargins self = msg_send_stret ~self ~cmd:(selector "contentViewMargins") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let cornerRadius self = msg_send ~self ~cmd:(selector "cornerRadius") ~typ:(returning double)
@@ -66,7 +66,7 @@ let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning 
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titleCell self = msg_send ~self ~cmd:(selector "titleCell") ~typ:(returning id)
 let titleFont self = msg_send ~self ~cmd:(selector "titleFont") ~typ:(returning id)
-let titlePosition self = msg_send ~self ~cmd:(selector "titlePosition") ~typ:(returning ullong)
+let titlePosition self = msg_send ~self ~cmd:(selector "titlePosition") ~typ:(returning ullong) |> ULLong.to_int
 let titleRect self = msg_send_stret ~self ~cmd:(selector "titleRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let updateConstraints self = msg_send ~self ~cmd:(selector "updateConstraints") ~typ:(returning void)
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning void)

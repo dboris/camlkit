@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -17,7 +17,7 @@ let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning CG
 let frameAutosaveName self = msg_send ~self ~cmd:(selector "frameAutosaveName") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isVisible self = msg_send ~self ~cmd:(selector "isVisible") ~typ:(returning bool)
-let mediaLibraries self = msg_send ~self ~cmd:(selector "mediaLibraries") ~typ:(returning ullong)
+let mediaLibraries self = msg_send ~self ~cmd:(selector "mediaLibraries") ~typ:(returning ullong) |> ULLong.to_int
 let orderFront x self = msg_send ~self ~cmd:(selector "orderFront:") ~typ:(id @-> returning void) x
 let orderOut x self = msg_send ~self ~cmd:(selector "orderOut:") ~typ:(id @-> returning void) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning void) x

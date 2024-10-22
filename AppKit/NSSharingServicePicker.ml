@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -34,4 +34,4 @@ let setShareKitInfo x self = msg_send ~self ~cmd:(selector "setShareKitInfo:") ~
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let shareKitInfo self = msg_send ~self ~cmd:(selector "shareKitInfo") ~typ:(returning id)
 let showRelativeToRect x ~ofView ~preferredEdge self = msg_send ~self ~cmd:(selector "showRelativeToRect:ofView:preferredEdge:") ~typ:(CGRect.t @-> id @-> ullong @-> returning void) x ofView (ULLong.of_int preferredEdge)
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int

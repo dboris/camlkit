@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -27,8 +27,8 @@ let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRec
 let allowsVibrancy self = msg_send ~self ~cmd:(selector "allowsVibrancy") ~typ:(returning bool)
 let animate x self = msg_send ~self ~cmd:(selector "animate:") ~typ:(id @-> returning void) x
 let animationDelay self = msg_send ~self ~cmd:(selector "animationDelay") ~typ:(returning double)
-let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong)
-let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong)
+let controlSize self = msg_send ~self ~cmd:(selector "controlSize") ~typ:(returning ullong) |> ULLong.to_int
+let controlTint self = msg_send ~self ~cmd:(selector "controlTint") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let doubleValue self = msg_send ~self ~cmd:(selector "doubleValue") ~typ:(returning double)
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
@@ -62,10 +62,10 @@ let setSpinningTint x self = msg_send ~self ~cmd:(selector "setSpinningTint:") ~
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setUsesThreadedAnimation x self = msg_send ~self ~cmd:(selector "setUsesThreadedAnimation:") ~typ:(bool @-> returning void) x
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning void)
-let spinningTint self = msg_send ~self ~cmd:(selector "spinningTint") ~typ:(returning llong)
+let spinningTint self = msg_send ~self ~cmd:(selector "spinningTint") ~typ:(returning llong) |> LLong.to_int
 let startAnimation x self = msg_send ~self ~cmd:(selector "startAnimation:") ~typ:(id @-> returning void) x
 let stopAnimation x self = msg_send ~self ~cmd:(selector "stopAnimation:") ~typ:(id @-> returning void) x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning ullong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning ullong) |> ULLong.to_int
 let updateLayer self = msg_send ~self ~cmd:(selector "updateLayer") ~typ:(returning void)
 let usesThreadedAnimation self = msg_send ~self ~cmd:(selector "usesThreadedAnimation") ~typ:(returning bool)
 let viewDidHide self = msg_send ~self ~cmd:(selector "viewDidHide") ~typ:(returning void)

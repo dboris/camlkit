@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -19,7 +19,7 @@ let initWithIdentifier x self = msg_send ~self ~cmd:(selector "initWithIdentifie
 let makeViewForCustomizationPalette self = msg_send ~self ~cmd:(selector "makeViewForCustomizationPalette") ~typ:(returning id)
 let makeViewForCustomizationPreview self = msg_send ~self ~cmd:(selector "makeViewForCustomizationPreview") ~typ:(returning id)
 let preferredPopoverTransposerClass self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerClass") ~typ:(returning _Class)
-let preferredPopoverTransposerPriority self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerPriority") ~typ:(returning llong)
+let preferredPopoverTransposerPriority self = msg_send ~self ~cmd:(selector "preferredPopoverTransposerPriority") ~typ:(returning llong) |> LLong.to_int
 let preferredSizeForCustomizationPalette self = msg_send_stret ~self ~cmd:(selector "preferredSizeForCustomizationPalette") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let preferredZOrder self = msg_send ~self ~cmd:(selector "preferredZOrder") ~typ:(returning double)
 let setCustomizationLabel x self = msg_send ~self ~cmd:(selector "setCustomizationLabel:") ~typ:(id @-> returning void) x

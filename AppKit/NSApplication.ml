@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -66,7 +66,7 @@ let accessibilityWorkaroundAddExtraWindow x self = msg_send ~self ~cmd:(selector
 let accessibilityWorkaroundRemoveExtraWindow x self = msg_send ~self ~cmd:(selector "accessibilityWorkaroundRemoveExtraWindow:") ~typ:(id @-> returning void) x
 let activateContextHelpMode x self = msg_send ~self ~cmd:(selector "activateContextHelpMode:") ~typ:(id @-> returning void) x
 let activateIgnoringOtherApps x self = msg_send ~self ~cmd:(selector "activateIgnoringOtherApps:") ~typ:(bool @-> returning void) x
-let activationPolicy self = msg_send ~self ~cmd:(selector "activationPolicy") ~typ:(returning llong)
+let activationPolicy self = msg_send ~self ~cmd:(selector "activationPolicy") ~typ:(returning llong) |> LLong.to_int
 let activeSpaceChanged x self = msg_send ~self ~cmd:(selector "activeSpaceChanged:") ~typ:(id @-> returning void) x
 let addIdleMonitorUsingHandler x self = msg_send ~self ~cmd:(selector "addIdleMonitorUsingHandler:") ~typ:((ptr void) @-> returning id) x
 let addMemoryPressureMonitorUsingHandler x self = msg_send ~self ~cmd:(selector "addMemoryPressureMonitorUsingHandler:") ~typ:((ptr void) @-> returning id) x
@@ -89,7 +89,7 @@ let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let contextID self = msg_send ~self ~cmd:(selector "contextID") ~typ:(returning uint)
 let copyScriptingValue x ~forKey ~withProperties self = msg_send ~self ~cmd:(selector "copyScriptingValue:forKey:withProperties:") ~typ:(id @-> id @-> id @-> returning id) x forKey withProperties
 let currentEvent self = msg_send ~self ~cmd:(selector "currentEvent") ~typ:(returning id)
-let currentSystemPresentationOptions self = msg_send ~self ~cmd:(selector "currentSystemPresentationOptions") ~typ:(returning ullong)
+let currentSystemPresentationOptions self = msg_send ~self ~cmd:(selector "currentSystemPresentationOptions") ~typ:(returning ullong) |> ULLong.to_int
 let deactivate self = msg_send ~self ~cmd:(selector "deactivate") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delayWindowOrdering self = msg_send ~self ~cmd:(selector "delayWindowOrdering") ~typ:(returning id)
@@ -104,7 +104,7 @@ let effectiveAppearance self = msg_send ~self ~cmd:(selector "effectiveAppearanc
 let enableAutomaticTermination self = msg_send ~self ~cmd:(selector "enableAutomaticTermination") ~typ:(returning void)
 let enableCursorRects self = msg_send ~self ~cmd:(selector "enableCursorRects") ~typ:(returning void)
 let enableRelaunchOnLogin self = msg_send ~self ~cmd:(selector "enableRelaunchOnLogin") ~typ:(returning void)
-let enabledRemoteNotificationTypes self = msg_send ~self ~cmd:(selector "enabledRemoteNotificationTypes") ~typ:(returning ullong)
+let enabledRemoteNotificationTypes self = msg_send ~self ~cmd:(selector "enabledRemoteNotificationTypes") ~typ:(returning ullong) |> ULLong.to_int
 let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let endModalSession x self = msg_send ~self ~cmd:(selector "endModalSession:") ~typ:((ptr NSModalSession.t) @-> returning void) x
@@ -130,7 +130,7 @@ let finishedTest4 x ~waitForCommit ~extraResults self = msg_send ~self ~cmd:(sel
 let finishedTest5 x ~extraResults ~waitForNotification ~withTeardownBlock self = msg_send ~self ~cmd:(selector "finishedTest:extraResults:waitForNotification:withTeardownBlock:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x extraResults waitForNotification withTeardownBlock
 let finishedTest6 x ~waitForCommit ~extraResults ~withTeardownBlock self = msg_send ~self ~cmd:(selector "finishedTest:waitForCommit:extraResults:withTeardownBlock:") ~typ:(id @-> bool @-> id @-> (ptr void) @-> returning void) x waitForCommit extraResults withTeardownBlock
 let frontWindow self = msg_send ~self ~cmd:(selector "frontWindow") ~typ:(returning id)
-let gestureEventMask self = msg_send ~self ~cmd:(selector "gestureEventMask") ~typ:(returning ullong)
+let gestureEventMask self = msg_send ~self ~cmd:(selector "gestureEventMask") ~typ:(returning ullong) |> ULLong.to_int
 let getValue x ~forSafeApertureCompatibilityDefaultsKey self = msg_send ~self ~cmd:(selector "getValue:forSafeApertureCompatibilityDefaultsKey:") ~typ:((ptr bool) @-> id @-> returning bool) x forSafeApertureCompatibilityDefaultsKey
 let getValue' x ~forSafeApertureCompatibilityURLResourceKey self = msg_send ~self ~cmd:(selector "getValue:forSafeApertureCompatibilityURLResourceKey:") ~typ:((ptr bool) @-> id @-> returning bool) x forSafeApertureCompatibilityURLResourceKey
 let handleOpenScriptCommand x self = msg_send ~self ~cmd:(selector "handleOpenScriptCommand:") ~typ:(id @-> returning id) x
@@ -168,7 +168,7 @@ let mainMenu self = msg_send ~self ~cmd:(selector "mainMenu") ~typ:(returning id
 let mainWindow self = msg_send ~self ~cmd:(selector "mainWindow") ~typ:(returning id)
 let makeWindowsPerform x ~inOrder self = msg_send ~self ~cmd:(selector "makeWindowsPerform:inOrder:") ~typ:(_SEL @-> bool @-> returning id) x inOrder
 let markAppLaunchComplete self = msg_send ~self ~cmd:(selector "markAppLaunchComplete") ~typ:(returning void)
-let memoryStatus self = msg_send ~self ~cmd:(selector "memoryStatus") ~typ:(returning llong)
+let memoryStatus self = msg_send ~self ~cmd:(selector "memoryStatus") ~typ:(returning llong) |> LLong.to_int
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let miniaturizeAll x self = msg_send ~self ~cmd:(selector "miniaturizeAll:") ~typ:(id @-> returning void) x
 let modalWindow self = msg_send ~self ~cmd:(selector "modalWindow") ~typ:(returning id)
@@ -176,10 +176,10 @@ let modeAndOptions x ~forPresentationOptions ~usingForFullScreen self = msg_send
 let newScriptingObjectOfClass x ~forValueForKey ~withContentsValue ~properties self = msg_send ~self ~cmd:(selector "newScriptingObjectOfClass:forValueForKey:withContentsValue:properties:") ~typ:(_Class @-> id @-> id @-> id @-> returning id) x forValueForKey withContentsValue properties
 let nextEventMatchingMask x ~untilDate ~inMode ~dequeue self = msg_send ~self ~cmd:(selector "nextEventMatchingMask:untilDate:inMode:dequeue:") ~typ:(ullong @-> id @-> id @-> bool @-> returning id) (ULLong.of_int x) untilDate inMode dequeue
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
-let occlusionState self = msg_send ~self ~cmd:(selector "occlusionState") ~typ:(returning ullong)
+let occlusionState self = msg_send ~self ~cmd:(selector "occlusionState") ~typ:(returning ullong) |> ULLong.to_int
 let onFirstEvent self = msg_send ~self ~cmd:(selector "onFirstEvent") ~typ:(returning void)
-let openFile x ~ok self = msg_send ~self ~cmd:(selector "openFile:ok:") ~typ:(id @-> (ptr llong) @-> returning llong) x ok
-let openTempFile x ~ok self = msg_send ~self ~cmd:(selector "openTempFile:ok:") ~typ:(id @-> (ptr llong) @-> returning llong) x ok
+let openFile x ~ok self = msg_send ~self ~cmd:(selector "openFile:ok:") ~typ:(id @-> (ptr llong) @-> returning llong) x ok |> LLong.to_int
+let openTempFile x ~ok self = msg_send ~self ~cmd:(selector "openTempFile:ok:") ~typ:(id @-> (ptr llong) @-> returning llong) x ok |> LLong.to_int
 let orderFrontCharacterPalette x self = msg_send ~self ~cmd:(selector "orderFrontCharacterPalette:") ~typ:(id @-> returning void) x
 let orderFrontColorPanel x self = msg_send ~self ~cmd:(selector "orderFrontColorPanel:") ~typ:(id @-> returning void) x
 let orderFrontFontPanel x self = msg_send ~self ~cmd:(selector "orderFrontFontPanel:") ~typ:(id @-> returning void) x
@@ -195,7 +195,7 @@ let performScrollTestOnScrollView x ~usingTestName ~completionHandler self = msg
 let postEvent x ~atStart self = msg_send ~self ~cmd:(selector "postEvent:atStart:") ~typ:(id @-> bool @-> returning void) x atStart
 let presentError x self = msg_send ~self ~cmd:(selector "presentError:") ~typ:(id @-> returning bool) x
 let presentError' x ~modalForWindow ~delegate ~didPresentSelector ~contextInfo self = msg_send ~self ~cmd:(selector "presentError:modalForWindow:delegate:didPresentSelector:contextInfo:") ~typ:(id @-> id @-> id @-> _SEL @-> (ptr void) @-> returning void) x modalForWindow delegate didPresentSelector contextInfo
-let presentationOptions self = msg_send ~self ~cmd:(selector "presentationOptions") ~typ:(returning ullong)
+let presentationOptions self = msg_send ~self ~cmd:(selector "presentationOptions") ~typ:(returning ullong) |> ULLong.to_int
 let preventWindowOrdering self = msg_send ~self ~cmd:(selector "preventWindowOrdering") ~typ:(returning void)
 let pushRegistrationDidFailToRegister x self = msg_send ~self ~cmd:(selector "pushRegistrationDidFailToRegister:") ~typ:(id @-> returning void) x
 let pushRegistrationDidReceiveRemotePush x self = msg_send ~self ~cmd:(selector "pushRegistrationDidReceiveRemotePush:") ~typ:(id @-> returning void) x
@@ -215,16 +215,16 @@ let replaceValueAtIndex x ~inPropertyWithKey ~withValue self = msg_send ~self ~c
 let replyToApplicationShouldTerminate x self = msg_send ~self ~cmd:(selector "replyToApplicationShouldTerminate:") ~typ:(bool @-> returning void) x
 let replyToOpenOrPrint x self = msg_send ~self ~cmd:(selector "replyToOpenOrPrint:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let reportException x self = msg_send ~self ~cmd:(selector "reportException:") ~typ:(id @-> returning void) x
-let requestUserAttention x self = msg_send ~self ~cmd:(selector "requestUserAttention:") ~typ:(ullong @-> returning llong) (ULLong.of_int x)
+let requestUserAttention x self = msg_send ~self ~cmd:(selector "requestUserAttention:") ~typ:(ullong @-> returning llong) (ULLong.of_int x) |> LLong.to_int
 let resetAutomaticCustomizeTouchBarMenuItemEnabled self = msg_send ~self ~cmd:(selector "resetAutomaticCustomizeTouchBarMenuItemEnabled") ~typ:(returning void)
 let restoreStateWithCoder x self = msg_send ~self ~cmd:(selector "restoreStateWithCoder:") ~typ:(id @-> returning void) x
 let restoreWindowWithIdentifier x ~state ~completionHandler self = msg_send ~self ~cmd:(selector "restoreWindowWithIdentifier:state:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning bool) x state completionHandler
 let rightMouseDown x self = msg_send ~self ~cmd:(selector "rightMouseDown:") ~typ:(id @-> returning void) x
 let run self = msg_send ~self ~cmd:(selector "run") ~typ:(returning void)
-let runModalForCarbonWindow x self = msg_send ~self ~cmd:(selector "runModalForCarbonWindow:") ~typ:(id @-> returning llong) x
-let runModalForWindow x self = msg_send ~self ~cmd:(selector "runModalForWindow:") ~typ:(id @-> returning llong) x
-let runModalForWindow' x ~relativeToWindow self = msg_send ~self ~cmd:(selector "runModalForWindow:relativeToWindow:") ~typ:(id @-> id @-> returning llong) x relativeToWindow
-let runModalSession x self = msg_send ~self ~cmd:(selector "runModalSession:") ~typ:((ptr NSModalSession.t) @-> returning llong) x
+let runModalForCarbonWindow x self = msg_send ~self ~cmd:(selector "runModalForCarbonWindow:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let runModalForWindow x self = msg_send ~self ~cmd:(selector "runModalForWindow:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let runModalForWindow' x ~relativeToWindow self = msg_send ~self ~cmd:(selector "runModalForWindow:relativeToWindow:") ~typ:(id @-> id @-> returning llong) x relativeToWindow |> LLong.to_int
+let runModalSession x self = msg_send ~self ~cmd:(selector "runModalSession:") ~typ:((ptr NSModalSession.t) @-> returning llong) x |> LLong.to_int
 let runPageLayout x self = msg_send ~self ~cmd:(selector "runPageLayout:") ~typ:(id @-> returning void) x
 let runTest x ~options self = msg_send ~self ~cmd:(selector "runTest:options:") ~typ:(id @-> id @-> returning bool) x options
 let searchString x ~inUserInterfaceItemString ~searchRange ~foundRange self = msg_send ~self ~cmd:(selector "searchString:inUserInterfaceItemString:searchRange:foundRange:") ~typ:(id @-> id @-> NSRange.t @-> (ptr NSRange.t) @-> returning bool) x inUserInterfaceItemString searchRange foundRange
@@ -288,7 +288,7 @@ let unregisterServiceProviderNamed x self = msg_send ~self ~cmd:(selector "unreg
 let unregisterUserInterfaceItemSearchHandler x self = msg_send ~self ~cmd:(selector "unregisterUserInterfaceItemSearchHandler:") ~typ:(id @-> returning void) x
 let updateWindows self = msg_send ~self ~cmd:(selector "updateWindows") ~typ:(returning void)
 let updateWindowsItem x self = msg_send ~self ~cmd:(selector "updateWindowsItem:") ~typ:(id @-> returning void) x
-let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong)
+let userInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let validRequestorForSendType x ~returnType self = msg_send ~self ~cmd:(selector "validRequestorForSendType:returnType:") ~typ:(id @-> id @-> returning id) x returnType
 let validateMenuItem x self = msg_send ~self ~cmd:(selector "validateMenuItem:") ~typ:(id @-> returning bool) x
 let validateUserInterfaceItem x self = msg_send ~self ~cmd:(selector "validateUserInterfaceItem:") ~typ:(id @-> returning bool) x

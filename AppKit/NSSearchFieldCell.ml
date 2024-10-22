@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -41,9 +41,9 @@ let endEditing x self = msg_send ~self ~cmd:(selector "endEditing:") ~typ:(id @-
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initTextCell x self = msg_send ~self ~cmd:(selector "initTextCell:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
-let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong)
+let interiorBackgroundStyle self = msg_send ~self ~cmd:(selector "interiorBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let isCenteredLook self = msg_send ~self ~cmd:(selector "isCenteredLook") ~typ:(returning bool)
-let maximumRecents self = msg_send ~self ~cmd:(selector "maximumRecents") ~typ:(returning llong)
+let maximumRecents self = msg_send ~self ~cmd:(selector "maximumRecents") ~typ:(returning llong) |> LLong.to_int
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
 let recentSearches self = msg_send ~self ~cmd:(selector "recentSearches") ~typ:(returning id)
 let recentsAutosaveName self = msg_send ~self ~cmd:(selector "recentsAutosaveName") ~typ:(returning id)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -15,7 +15,7 @@ let addLinksInSelection x self = msg_send ~self ~cmd:(selector "addLinksInSelect
 let annotatedSubstringForProposedRange x ~completionHandler self = msg_send ~self ~cmd:(selector "annotatedSubstringForProposedRange:completionHandler:") ~typ:(NSRange.t @-> (ptr void) @-> returning void) x completionHandler
 let annotatedSubstringForProposedRange' x ~wrap ~completionHandler ~failureHandler self = msg_send ~self ~cmd:(selector "annotatedSubstringForProposedRange:wrap:completionHandler:failureHandler:") ~typ:(NSRange.t @-> bool @-> (ptr void) @-> (ptr void) @-> returning void) x wrap completionHandler failureHandler
 let annotatedSubstringForSelectedRangeWithCompletionHandler x self = msg_send ~self ~cmd:(selector "annotatedSubstringForSelectedRangeWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
-let autocorrectionType self = msg_send ~self ~cmd:(selector "autocorrectionType") ~typ:(returning llong)
+let autocorrectionType self = msg_send ~self ~cmd:(selector "autocorrectionType") ~typ:(returning llong) |> LLong.to_int
 let cancelCorrectionIndicator self = msg_send ~self ~cmd:(selector "cancelCorrectionIndicator") ~typ:(returning void)
 let candidateListTouchBarItem self = msg_send ~self ~cmd:(selector "candidateListTouchBarItem") ~typ:(returning id)
 let changeSpelling x self = msg_send ~self ~cmd:(selector "changeSpelling:") ~typ:(id @-> returning void) x
@@ -30,15 +30,15 @@ let convertFromStringAnnotatedString x self = msg_send ~self ~cmd:(selector "con
 let convertFromStringAnnotationDictionary x self = msg_send ~self ~cmd:(selector "convertFromStringAnnotationDictionary:") ~typ:(id @-> returning id) x
 let convertToStringAnnotatedString x self = msg_send ~self ~cmd:(selector "convertToStringAnnotatedString:") ~typ:(id @-> returning id) x
 let convertToStringAnnotationDictionary x self = msg_send ~self ~cmd:(selector "convertToStringAnnotationDictionary:") ~typ:(id @-> returning id) x
-let dataDetectionType self = msg_send ~self ~cmd:(selector "dataDetectionType") ~typ:(returning llong)
+let dataDetectionType self = msg_send ~self ~cmd:(selector "dataDetectionType") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let didChangeSelectedRange self = msg_send ~self ~cmd:(selector "didChangeSelectedRange") ~typ:(returning void)
 let didChangeSelectionFromRange x self = msg_send ~self ~cmd:(selector "didChangeSelectionFromRange:") ~typ:(NSRange.t @-> returning void) x
 let didChangeText self = msg_send ~self ~cmd:(selector "didChangeText") ~typ:(returning void)
 let didChangeTextInRange x self = msg_send ~self ~cmd:(selector "didChangeTextInRange:") ~typ:(NSRange.t @-> returning void) x
 let dismissCorrectionIndicator self = msg_send ~self ~cmd:(selector "dismissCorrectionIndicator") ~typ:(returning void)
-let enabledTextCheckingTypes self = msg_send ~self ~cmd:(selector "enabledTextCheckingTypes") ~typ:(returning ullong)
-let grammarCheckingType self = msg_send ~self ~cmd:(selector "grammarCheckingType") ~typ:(returning llong)
+let enabledTextCheckingTypes self = msg_send ~self ~cmd:(selector "enabledTextCheckingTypes") ~typ:(returning ullong) |> ULLong.to_int
+let grammarCheckingType self = msg_send ~self ~cmd:(selector "grammarCheckingType") ~typ:(returning llong) |> LLong.to_int
 let handleCandidates x ~sequenceNumber self = msg_send ~self ~cmd:(selector "handleCandidates:sequenceNumber:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int sequenceNumber)
 let handleTextCheckingResults x ~forRange ~types ~options ~orthography ~wordCount self = msg_send ~self ~cmd:(selector "handleTextCheckingResults:forRange:types:options:orthography:wordCount:") ~typ:(id @-> NSRange.t @-> ullong @-> id @-> id @-> llong @-> returning void) x forRange (ULLong.of_int types) options orthography (LLong.of_int wordCount)
 let handleTextCheckingResults' x ~forRange ~inAnnotatedString ~offset ~types ~options ~orthography ~wordCount self = msg_send ~self ~cmd:(selector "handleTextCheckingResults:forRange:inAnnotatedString:offset:types:options:orthography:wordCount:") ~typ:(id @-> NSRange.t @-> id @-> llong @-> ullong @-> id @-> id @-> llong @-> returning void) x forRange inAnnotatedString (LLong.of_int offset) (ULLong.of_int types) options orthography (LLong.of_int wordCount)
@@ -60,8 +60,8 @@ let isGrammarCheckingEnabled self = msg_send ~self ~cmd:(selector "isGrammarChec
 let isRichText self = msg_send ~self ~cmd:(selector "isRichText") ~typ:(returning bool)
 let isSelectable self = msg_send ~self ~cmd:(selector "isSelectable") ~typ:(returning bool)
 let lacksAnnotatedString self = msg_send ~self ~cmd:(selector "lacksAnnotatedString") ~typ:(returning bool)
-let layoutOrientation self = msg_send ~self ~cmd:(selector "layoutOrientation") ~typ:(returning llong)
-let linkDetectionType self = msg_send ~self ~cmd:(selector "linkDetectionType") ~typ:(returning llong)
+let layoutOrientation self = msg_send ~self ~cmd:(selector "layoutOrientation") ~typ:(returning llong) |> LLong.to_int
+let linkDetectionType self = msg_send ~self ~cmd:(selector "linkDetectionType") ~typ:(returning llong) |> LLong.to_int
 let menuAtIndex x ~clickedOnSelection ~effectiveRange self = msg_send ~self ~cmd:(selector "menuAtIndex:clickedOnSelection:effectiveRange:") ~typ:(ullong @-> bool @-> (ptr NSRange.t) @-> returning id) (ULLong.of_int x) clickedOnSelection effectiveRange
 let needsLinkAnnotations self = msg_send ~self ~cmd:(selector "needsLinkAnnotations") ~typ:(returning bool)
 let orderFrontSubstitutionsPanel x self = msg_send ~self ~cmd:(selector "orderFrontSubstitutionsPanel:") ~typ:(id @-> returning void) x
@@ -93,10 +93,10 @@ let setTextCompletionType x self = msg_send ~self ~cmd:(selector "setTextComplet
 let setTextReplacementType x self = msg_send ~self ~cmd:(selector "setTextReplacementType:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setUsesStringAnnotations x self = msg_send ~self ~cmd:(selector "setUsesStringAnnotations:") ~typ:(bool @-> returning void) x
 let showGuessPanel x self = msg_send ~self ~cmd:(selector "showGuessPanel:") ~typ:(id @-> returning void) x
-let smartDashesType self = msg_send ~self ~cmd:(selector "smartDashesType") ~typ:(returning llong)
+let smartDashesType self = msg_send ~self ~cmd:(selector "smartDashesType") ~typ:(returning llong) |> LLong.to_int
 let smartInsertDeleteEnabled self = msg_send ~self ~cmd:(selector "smartInsertDeleteEnabled") ~typ:(returning bool)
-let smartInsertDeleteType self = msg_send ~self ~cmd:(selector "smartInsertDeleteType") ~typ:(returning llong)
-let smartQuotesType self = msg_send ~self ~cmd:(selector "smartQuotesType") ~typ:(returning llong)
+let smartInsertDeleteType self = msg_send ~self ~cmd:(selector "smartInsertDeleteType") ~typ:(returning llong) |> LLong.to_int
+let smartQuotesType self = msg_send ~self ~cmd:(selector "smartQuotesType") ~typ:(returning llong) |> LLong.to_int
 let spellCheckerDidChangeCompletion x self = msg_send ~self ~cmd:(selector "spellCheckerDidChangeCompletion:") ~typ:(id @-> returning void) x
 let spellCheckerDidChangeCorrection x self = msg_send ~self ~cmd:(selector "spellCheckerDidChangeCorrection:") ~typ:(id @-> returning void) x
 let spellCheckerDidChangeDashSubstitution x self = msg_send ~self ~cmd:(selector "spellCheckerDidChangeDashSubstitution:") ~typ:(id @-> returning void) x
@@ -105,11 +105,11 @@ let spellCheckerDidChangeQuoteSubstitution x self = msg_send ~self ~cmd:(selecto
 let spellCheckerDidChangeReplacement x self = msg_send ~self ~cmd:(selector "spellCheckerDidChangeReplacement:") ~typ:(id @-> returning void) x
 let spellCheckerDidLearnWord x self = msg_send ~self ~cmd:(selector "spellCheckerDidLearnWord:") ~typ:(id @-> returning void) x
 let spellCheckerDidUnlearnWord x self = msg_send ~self ~cmd:(selector "spellCheckerDidUnlearnWord:") ~typ:(id @-> returning void) x
-let spellCheckerDocumentTag self = msg_send ~self ~cmd:(selector "spellCheckerDocumentTag") ~typ:(returning llong)
-let spellCheckingType self = msg_send ~self ~cmd:(selector "spellCheckingType") ~typ:(returning llong)
+let spellCheckerDocumentTag self = msg_send ~self ~cmd:(selector "spellCheckerDocumentTag") ~typ:(returning llong) |> LLong.to_int
+let spellCheckingType self = msg_send ~self ~cmd:(selector "spellCheckingType") ~typ:(returning llong) |> LLong.to_int
 let suppressTextCheckingAdaptation self = msg_send ~self ~cmd:(selector "suppressTextCheckingAdaptation") ~typ:(returning bool)
-let textCompletionType self = msg_send ~self ~cmd:(selector "textCompletionType") ~typ:(returning llong)
-let textReplacementType self = msg_send ~self ~cmd:(selector "textReplacementType") ~typ:(returning llong)
+let textCompletionType self = msg_send ~self ~cmd:(selector "textCompletionType") ~typ:(returning llong) |> LLong.to_int
+let textReplacementType self = msg_send ~self ~cmd:(selector "textReplacementType") ~typ:(returning llong) |> LLong.to_int
 let updateCandidates self = msg_send ~self ~cmd:(selector "updateCandidates") ~typ:(returning void)
 let updateSpellingPanel self = msg_send ~self ~cmd:(selector "updateSpellingPanel") ~typ:(returning void)
 let usesStringAnnotations self = msg_send ~self ~cmd:(selector "usesStringAnnotations") ~typ:(returning bool)

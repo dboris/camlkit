@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -37,7 +37,7 @@ let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~t
 let debugReasonForLayoutMode self = msg_send ~self ~cmd:(selector "debugReasonForLayoutMode") ~typ:(returning id)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let dividerColor self = msg_send ~self ~cmd:(selector "dividerColor") ~typ:(returning id)
-let dividerStyle self = msg_send ~self ~cmd:(selector "dividerStyle") ~typ:(returning llong)
+let dividerStyle self = msg_send ~self ~cmd:(selector "dividerStyle") ~typ:(returning llong) |> LLong.to_int
 let dividerThickness self = msg_send ~self ~cmd:(selector "dividerThickness") ~typ:(returning double)
 let drawDividerInRect x self = msg_send ~self ~cmd:(selector "drawDividerInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
@@ -61,7 +61,7 @@ let minPossiblePositionOfDividerAtIndex x self = msg_send ~self ~cmd:(selector "
 let mouseDown x self = msg_send ~self ~cmd:(selector "mouseDown:") ~typ:(id @-> returning void) x
 let mouseDownCanMoveWindow self = msg_send ~self ~cmd:(selector "mouseDownCanMoveWindow") ~typ:(returning bool)
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong) |> LLong.to_int
 let positionOfDividerAtIndex x self = msg_send ~self ~cmd:(selector "positionOfDividerAtIndex:") ~typ:(llong @-> returning double) (LLong.of_int x)
 let preservesContentDuringLiveResize self = msg_send ~self ~cmd:(selector "preservesContentDuringLiveResize") ~typ:(returning bool)
 let removeArrangedSubview x self = msg_send ~self ~cmd:(selector "removeArrangedSubview:") ~typ:(id @-> returning void) x

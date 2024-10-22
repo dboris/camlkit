@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returnin
 let isMenuBarVisible self = msg_send ~self ~cmd:(selector "isMenuBarVisible") ~typ:(returning bool)
 let menuBarHeight self = msg_send ~self ~cmd:(selector "menuBarHeight") ~typ:(returning double)
 let menuBarVisible self = msg_send ~self ~cmd:(selector "menuBarVisible") ~typ:(returning bool)
-let menuTypeForEvent x self = msg_send ~self ~cmd:(selector "menuTypeForEvent:") ~typ:(id @-> returning llong) x
+let menuTypeForEvent x self = msg_send ~self ~cmd:(selector "menuTypeForEvent:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let menuZone self = msg_send ~self ~cmd:(selector "menuZone") ~typ:(returning (ptr void))
 let popUpContextMenu x ~withEvent ~forView self = msg_send ~self ~cmd:(selector "popUpContextMenu:withEvent:forView:") ~typ:(id @-> id @-> id @-> returning void) x withEvent forView
 let popUpContextMenu' x ~withEvent ~forView ~withFont self = msg_send ~self ~cmd:(selector "popUpContextMenu:withEvent:forView:withFont:") ~typ:(id @-> id @-> id @-> id @-> returning void) x withEvent forView withFont

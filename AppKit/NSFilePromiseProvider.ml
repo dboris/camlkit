@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -14,7 +14,7 @@ let self = get_class "NSFilePromiseProvider"
 let alternateFileTypes self = msg_send ~self ~cmd:(selector "alternateFileTypes") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
-let dragggingSequenceNumber self = msg_send ~self ~cmd:(selector "dragggingSequenceNumber") ~typ:(returning llong)
+let dragggingSequenceNumber self = msg_send ~self ~cmd:(selector "dragggingSequenceNumber") ~typ:(returning llong) |> LLong.to_int
 let draggingCancelled x self = msg_send ~self ~cmd:(selector "draggingCancelled:") ~typ:(id @-> returning void) x
 let draggingEnded x self = msg_send ~self ~cmd:(selector "draggingEnded:") ~typ:(id @-> returning void) x
 let fileType self = msg_send ~self ~cmd:(selector "fileType") ~typ:(returning id)
@@ -35,4 +35,4 @@ let setString x ~forType self = msg_send ~self ~cmd:(selector "setString:forType
 let setUserInfo x self = msg_send ~self ~cmd:(selector "setUserInfo:") ~typ:(id @-> returning void) x
 let userInfo self = msg_send ~self ~cmd:(selector "userInfo") ~typ:(returning id)
 let writableTypesForPasteboard x self = msg_send ~self ~cmd:(selector "writableTypesForPasteboard:") ~typ:(id @-> returning id) x
-let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard
+let writingOptionsForType x ~pasteboard self = msg_send ~self ~cmd:(selector "writingOptionsForType:pasteboard:") ~typ:(id @-> id @-> returning ullong) x pasteboard |> ULLong.to_int

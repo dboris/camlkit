@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -13,7 +13,7 @@ let self = get_class "NSAlert"
 
 let accessoryView self = msg_send ~self ~cmd:(selector "accessoryView") ~typ:(returning id)
 let addButtonWithTitle x self = msg_send ~self ~cmd:(selector "addButtonWithTitle:") ~typ:(id @-> returning id) x
-let alertStyle self = msg_send ~self ~cmd:(selector "alertStyle") ~typ:(returning ullong)
+let alertStyle self = msg_send ~self ~cmd:(selector "alertStyle") ~typ:(returning ullong) |> ULLong.to_int
 let attributedInformativeText self = msg_send ~self ~cmd:(selector "attributedInformativeText") ~typ:(returning id)
 let attributedMessageText self = msg_send ~self ~cmd:(selector "attributedMessageText") ~typ:(returning id)
 let beginSheetModalForWindow x ~completionHandler self = msg_send ~self ~cmd:(selector "beginSheetModalForWindow:completionHandler:") ~typ:(id @-> (ptr void) @-> returning void) x completionHandler
@@ -35,7 +35,7 @@ let messageText self = msg_send ~self ~cmd:(selector "messageText") ~typ:(return
 let messageWidthForMessage x self = msg_send ~self ~cmd:(selector "messageWidthForMessage:") ~typ:(id @-> returning double) x
 let placeButtons x ~firstWidth ~secondWidth ~thirdWidth self = msg_send ~self ~cmd:(selector "placeButtons:firstWidth:secondWidth:thirdWidth:") ~typ:(llong @-> double @-> double @-> double @-> returning void) (LLong.of_int x) firstWidth secondWidth thirdWidth
 let prepare self = msg_send ~self ~cmd:(selector "prepare") ~typ:(returning void)
-let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong)
+let runModal self = msg_send ~self ~cmd:(selector "runModal") ~typ:(returning llong) |> LLong.to_int
 let setAccessoryView x self = msg_send ~self ~cmd:(selector "setAccessoryView:") ~typ:(id @-> returning void) x
 let setAlertStyle x self = msg_send ~self ~cmd:(selector "setAlertStyle:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setAttributedInformativeText x self = msg_send ~self ~cmd:(selector "setAttributedInformativeText:") ~typ:(id @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 
@@ -17,8 +17,8 @@ let alternateImage self = msg_send ~self ~cmd:(selector "alternateImage") ~typ:(
 let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning id)
 let attributedTitle self = msg_send ~self ~cmd:(selector "attributedTitle") ~typ:(returning id)
 let autosaveName self = msg_send ~self ~cmd:(selector "autosaveName") ~typ:(returning id)
-let backgroundStyleForHighlight x self = msg_send ~self ~cmd:(selector "backgroundStyleForHighlight:") ~typ:(bool @-> returning llong) x
-let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning ullong)
+let backgroundStyleForHighlight x self = msg_send ~self ~cmd:(selector "backgroundStyleForHighlight:") ~typ:(bool @-> returning llong) x |> LLong.to_int
+let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning ullong) |> ULLong.to_int
 let button self = msg_send ~self ~cmd:(selector "button") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -33,7 +33,7 @@ let length self = msg_send ~self ~cmd:(selector "length") ~typ:(returning double
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let popUpStatusItemMenu x self = msg_send ~self ~cmd:(selector "popUpStatusItemMenu:") ~typ:(id @-> returning void) x
 let screen self = msg_send ~self ~cmd:(selector "screen") ~typ:(returning id)
-let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning llong) (ULLong.of_int x)
+let sendActionOn x self = msg_send ~self ~cmd:(selector "sendActionOn:") ~typ:(ullong @-> returning llong) (ULLong.of_int x) |> LLong.to_int
 let setAction x self = msg_send ~self ~cmd:(selector "setAction:") ~typ:(_SEL @-> returning void) x
 let setAllowsVibrancy x self = msg_send ~self ~cmd:(selector "setAllowsVibrancy:") ~typ:(bool @-> returning void) x
 let setAlternateImage x self = msg_send ~self ~cmd:(selector "setAlternateImage:") ~typ:(id @-> returning void) x
