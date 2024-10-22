@@ -95,6 +95,7 @@ module NSDiffableDataSourceTableViewUpdater = NSDiffableDataSourceTableViewUpdat
 module NSDockTile = NSDockTile
 module NSDocument = NSDocument
 module NSDocumentClass = NSDocumentClass
+module NSDocumentClassMethods = NSDocumentClassMethods
 module NSDocumentController = NSDocumentController
 module NSDocumentControllerClass = NSDocumentControllerClass
 module NSDocumentControllerSubMenuDelegate = NSDocumentControllerSubMenuDelegate
