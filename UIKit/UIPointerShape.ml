@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,7 +19,7 @@ let cornerRadius self = msg_send ~self ~cmd:(selector "cornerRadius") ~typ:(retu
 let defaultCornerRadius self = msg_send ~self ~cmd:(selector "defaultCornerRadius") ~typ:(returning double)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let effectiveCornerRadius self = msg_send ~self ~cmd:(selector "effectiveCornerRadius") ~typ:(returning double)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let inherentConstrainedSlip self = msg_send_stret ~self ~cmd:(selector "inherentConstrainedSlip") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isCircle self = msg_send ~self ~cmd:(selector "isCircle") ~typ:(returning bool)

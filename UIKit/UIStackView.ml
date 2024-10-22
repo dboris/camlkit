@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,11 +13,11 @@ open CoreText
 let self = get_class "UIStackView"
 
 let addArrangedSubview x self = msg_send ~self ~cmd:(selector "addArrangedSubview:") ~typ:(id @-> returning void) x
-let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong)
+let alignment self = msg_send ~self ~cmd:(selector "alignment") ~typ:(returning llong) |> LLong.to_int
 let arrangedSubviews self = msg_send ~self ~cmd:(selector "arrangedSubviews") ~typ:(returning id)
-let axis self = msg_send ~self ~cmd:(selector "axis") ~typ:(returning llong)
+let axis self = msg_send ~self ~cmd:(selector "axis") ~typ:(returning llong) |> LLong.to_int
 let customSpacingAfterView x self = msg_send ~self ~cmd:(selector "customSpacingAfterView:") ~typ:(id @-> returning double) x
-let distribution self = msg_send ~self ~cmd:(selector "distribution") ~typ:(returning llong)
+let distribution self = msg_send ~self ~cmd:(selector "distribution") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithArrangedSubviews x self = msg_send ~self ~cmd:(selector "initWithArrangedSubviews:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x

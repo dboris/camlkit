@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,7 +19,7 @@ let canGoBack self = msg_send ~self ~cmd:(selector "canGoBack") ~typ:(returning 
 let canGoForward self = msg_send ~self ~cmd:(selector "canGoForward") ~typ:(returning bool)
 let canPerformAction x ~withSender self = msg_send ~self ~cmd:(selector "canPerformAction:withSender:") ~typ:(_SEL @-> id @-> returning bool) x withSender
 let copy x self = msg_send ~self ~cmd:(selector "copy:") ~typ:(id @-> returning void) x
-let dataDetectorTypes self = msg_send ~self ~cmd:(selector "dataDetectorTypes") ~typ:(returning ullong)
+let dataDetectorTypes self = msg_send ~self ~cmd:(selector "dataDetectorTypes") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -40,10 +40,10 @@ let loadRequest x self = msg_send ~self ~cmd:(selector "loadRequest:") ~typ:(id 
 let mediaPlaybackAllowsAirPlay self = msg_send ~self ~cmd:(selector "mediaPlaybackAllowsAirPlay") ~typ:(returning bool)
 let mediaPlaybackRequiresUserAction self = msg_send ~self ~cmd:(selector "mediaPlaybackRequiresUserAction") ~typ:(returning bool)
 let newSnapshotWithRect x self = msg_send ~self ~cmd:(selector "newSnapshotWithRect:") ~typ:(CGRect.t @-> returning (ptr CGImage.t)) x
-let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning ullong)
+let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning ullong) |> ULLong.to_int
 let pageLength self = msg_send ~self ~cmd:(selector "pageLength") ~typ:(returning double)
-let paginationBreakingMode self = msg_send ~self ~cmd:(selector "paginationBreakingMode") ~typ:(returning llong)
-let paginationMode self = msg_send ~self ~cmd:(selector "paginationMode") ~typ:(returning llong)
+let paginationBreakingMode self = msg_send ~self ~cmd:(selector "paginationBreakingMode") ~typ:(returning llong) |> LLong.to_int
+let paginationMode self = msg_send ~self ~cmd:(selector "paginationMode") ~typ:(returning llong) |> LLong.to_int
 let reload self = msg_send ~self ~cmd:(selector "reload") ~typ:(returning void)
 let request self = msg_send ~self ~cmd:(selector "request") ~typ:(returning id)
 let restoreStateFromHistoryItem x ~forWebView self = msg_send ~self ~cmd:(selector "restoreStateFromHistoryItem:forWebView:") ~typ:(id @-> id @-> returning void) x forWebView

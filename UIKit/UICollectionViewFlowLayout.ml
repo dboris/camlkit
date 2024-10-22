@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UICollectionViewFlowLayout"
 
 let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
-let developmentLayoutDirection self = msg_send ~self ~cmd:(selector "developmentLayoutDirection") ~typ:(returning llong)
+let developmentLayoutDirection self = msg_send ~self ~cmd:(selector "developmentLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let estimatedItemSize self = msg_send_stret ~self ~cmd:(selector "estimatedItemSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let finalLayoutAttributesForDeletedItemAtIndexPath x self = msg_send ~self ~cmd:(selector "finalLayoutAttributesForDeletedItemAtIndexPath:") ~typ:(id @-> returning id) x
@@ -46,11 +46,11 @@ let layoutAttributesForSupplementaryViewOfKind x ~atIndexPath self = msg_send ~s
 let minimumInteritemSpacing self = msg_send ~self ~cmd:(selector "minimumInteritemSpacing") ~typ:(returning double)
 let minimumLineSpacing self = msg_send ~self ~cmd:(selector "minimumLineSpacing") ~typ:(returning double)
 let prepareLayout self = msg_send ~self ~cmd:(selector "prepareLayout") ~typ:(returning void)
-let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning llong)
+let scrollDirection self = msg_send ~self ~cmd:(selector "scrollDirection") ~typ:(returning llong) |> LLong.to_int
 let sectionFootersPinToVisibleBounds self = msg_send ~self ~cmd:(selector "sectionFootersPinToVisibleBounds") ~typ:(returning bool)
 let sectionHeadersPinToVisibleBounds self = msg_send ~self ~cmd:(selector "sectionHeadersPinToVisibleBounds") ~typ:(returning bool)
 let sectionInset self = msg_send_stret ~self ~cmd:(selector "sectionInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
-let sectionInsetReference self = msg_send ~self ~cmd:(selector "sectionInsetReference") ~typ:(returning llong)
+let sectionInsetReference self = msg_send ~self ~cmd:(selector "sectionInsetReference") ~typ:(returning llong) |> LLong.to_int
 let setEstimatedItemSize x self = msg_send ~self ~cmd:(selector "setEstimatedItemSize:") ~typ:(CGSize.t @-> returning void) x
 let setFooterReferenceSize x self = msg_send ~self ~cmd:(selector "setFooterReferenceSize:") ~typ:(CGSize.t @-> returning void) x
 let setHeaderReferenceSize x self = msg_send ~self ~cmd:(selector "setHeaderReferenceSize:") ~typ:(CGSize.t @-> returning void) x

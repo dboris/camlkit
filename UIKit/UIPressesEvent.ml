@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,5 +16,5 @@ let allPresses self = msg_send ~self ~cmd:(selector "allPresses") ~typ:(returnin
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let physicalButtonsForWindow x self = msg_send ~self ~cmd:(selector "physicalButtonsForWindow:") ~typ:(id @-> returning id) x
 let pressesForGestureRecognizer x self = msg_send ~self ~cmd:(selector "pressesForGestureRecognizer:") ~typ:(id @-> returning id) x
-let subtype self = msg_send ~self ~cmd:(selector "subtype") ~typ:(returning llong)
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let subtype self = msg_send ~self ~cmd:(selector "subtype") ~typ:(returning llong) |> LLong.to_int
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int

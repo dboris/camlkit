@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -40,4 +40,4 @@ let setStiffness x self = msg_send ~self ~cmd:(selector "setStiffness:") ~typ:(d
 let settlingDuration self = msg_send ~self ~cmd:(selector "settlingDuration") ~typ:(returning double)
 let springTimingParameters self = msg_send ~self ~cmd:(selector "springTimingParameters") ~typ:(returning id)
 let stiffness self = msg_send ~self ~cmd:(selector "stiffness") ~typ:(returning double)
-let timingCurveType self = msg_send ~self ~cmd:(selector "timingCurveType") ~typ:(returning llong)
+let timingCurveType self = msg_send ~self ~cmd:(selector "timingCurveType") ~typ:(returning llong) |> LLong.to_int

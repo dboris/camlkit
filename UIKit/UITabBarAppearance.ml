@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -25,7 +25,7 @@ let setStackedItemPositioning x self = msg_send ~self ~cmd:(selector "setStacked
 let setStackedItemSpacing x self = msg_send ~self ~cmd:(selector "setStackedItemSpacing:") ~typ:(double @-> returning void) x
 let setStackedItemWidth x self = msg_send ~self ~cmd:(selector "setStackedItemWidth:") ~typ:(double @-> returning void) x
 let setStackedLayoutAppearance x self = msg_send ~self ~cmd:(selector "setStackedLayoutAppearance:") ~typ:(id @-> returning void) x
-let stackedItemPositioning self = msg_send ~self ~cmd:(selector "stackedItemPositioning") ~typ:(returning llong)
+let stackedItemPositioning self = msg_send ~self ~cmd:(selector "stackedItemPositioning") ~typ:(returning llong) |> LLong.to_int
 let stackedItemSpacing self = msg_send ~self ~cmd:(selector "stackedItemSpacing") ~typ:(returning double)
 let stackedItemWidth self = msg_send ~self ~cmd:(selector "stackedItemWidth") ~typ:(returning double)
 let stackedLayoutAppearance self = msg_send ~self ~cmd:(selector "stackedLayoutAppearance") ~typ:(returning id)

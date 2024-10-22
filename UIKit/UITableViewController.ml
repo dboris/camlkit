@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -20,7 +20,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning id) x bundle
 let initWithStyle x self = msg_send ~self ~cmd:(selector "initWithStyle:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning void)
-let numberOfSectionsInTableView x self = msg_send ~self ~cmd:(selector "numberOfSectionsInTableView:") ~typ:(id @-> returning llong) x
+let numberOfSectionsInTableView x self = msg_send ~self ~cmd:(selector "numberOfSectionsInTableView:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let previewViewControllerForLocation x ~inSourceView self = msg_send ~self ~cmd:(selector "previewViewControllerForLocation:inSourceView:") ~typ:(CGPoint.t @-> id @-> returning id) x inSourceView
 let previewViewControllerForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "previewViewControllerForRowAtIndexPath:") ~typ:(id @-> returning id) x
 let previewingContext x ~commitViewController self = msg_send ~self ~cmd:(selector "previewingContext:commitViewController:") ~typ:(id @-> id @-> returning void) x commitViewController
@@ -38,8 +38,8 @@ let tableView2 x ~didEndEditingRowAtIndexPath self = msg_send ~self ~cmd:(select
 let tableView3 x ~heightForFooterInSection self = msg_send ~self ~cmd:(selector "tableView:heightForFooterInSection:") ~typ:(id @-> llong @-> returning double) x (LLong.of_int heightForFooterInSection)
 let tableView4 x ~heightForHeaderInSection self = msg_send ~self ~cmd:(selector "tableView:heightForHeaderInSection:") ~typ:(id @-> llong @-> returning double) x (LLong.of_int heightForHeaderInSection)
 let tableView5 x ~heightForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:heightForRowAtIndexPath:") ~typ:(id @-> id @-> returning double) x heightForRowAtIndexPath
-let tableView6 x ~indentationLevelForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:indentationLevelForRowAtIndexPath:") ~typ:(id @-> id @-> returning llong) x indentationLevelForRowAtIndexPath
-let tableView7 x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfRowsInSection)
+let tableView6 x ~indentationLevelForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:indentationLevelForRowAtIndexPath:") ~typ:(id @-> id @-> returning llong) x indentationLevelForRowAtIndexPath |> LLong.to_int
+let tableView7 x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfRowsInSection) |> LLong.to_int
 let tableView8 x ~titleForFooterInSection self = msg_send ~self ~cmd:(selector "tableView:titleForFooterInSection:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int titleForFooterInSection)
 let tableView9 x ~titleForHeaderInSection self = msg_send ~self ~cmd:(selector "tableView:titleForHeaderInSection:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int titleForHeaderInSection)
 let tableView10 x ~viewForFooterInSection self = msg_send ~self ~cmd:(selector "tableView:viewForFooterInSection:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int viewForFooterInSection)

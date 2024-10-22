@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,7 +14,7 @@ let self = get_class "UINavigationItem"
 
 let appearance x ~categoriesChanged self = msg_send ~self ~cmd:(selector "appearance:categoriesChanged:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int categoriesChanged)
 let backBarButtonItem self = msg_send ~self ~cmd:(selector "backBarButtonItem") ~typ:(returning id)
-let backButtonDisplayMode self = msg_send ~self ~cmd:(selector "backButtonDisplayMode") ~typ:(returning llong)
+let backButtonDisplayMode self = msg_send ~self ~cmd:(selector "backButtonDisplayMode") ~typ:(returning llong) |> LLong.to_int
 let backButtonTitle self = msg_send ~self ~cmd:(selector "backButtonTitle") ~typ:(returning id)
 let backButtonView self = msg_send ~self ~cmd:(selector "backButtonView") ~typ:(returning id)
 let compactAppearance self = msg_send ~self ~cmd:(selector "compactAppearance") ~typ:(returning id)
@@ -35,7 +35,7 @@ let hidesSearchBarWhenScrolling self = msg_send ~self ~cmd:(selector "hidesSearc
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithTitle x self = msg_send ~self ~cmd:(selector "initWithTitle:") ~typ:(id @-> returning id) x
-let largeTitleDisplayMode self = msg_send ~self ~cmd:(selector "largeTitleDisplayMode") ~typ:(returning llong)
+let largeTitleDisplayMode self = msg_send ~self ~cmd:(selector "largeTitleDisplayMode") ~typ:(returning llong) |> LLong.to_int
 let largeTitleInsets self = msg_send_stret ~self ~cmd:(selector "largeTitleInsets") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let leftBarButtonItem self = msg_send ~self ~cmd:(selector "leftBarButtonItem") ~typ:(returning id)
 let leftBarButtonItems self = msg_send ~self ~cmd:(selector "leftBarButtonItems") ~typ:(returning id)
@@ -86,7 +86,7 @@ let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> re
 let setTitleView x self = msg_send ~self ~cmd:(selector "setTitleView:") ~typ:(id @-> returning void) x
 let setUseRelativeLargeTitleInsets x self = msg_send ~self ~cmd:(selector "setUseRelativeLargeTitleInsets:") ~typ:(bool @-> returning void) x
 let standardAppearance self = msg_send ~self ~cmd:(selector "standardAppearance") ~typ:(returning id)
-let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong)
+let tag self = msg_send ~self ~cmd:(selector "tag") ~typ:(returning llong) |> LLong.to_int
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titleView self = msg_send ~self ~cmd:(selector "titleView") ~typ:(returning id)
 let updateNavigationBarButtonsAnimated x self = msg_send ~self ~cmd:(selector "updateNavigationBarButtonsAnimated:") ~typ:(bool @-> returning void) x

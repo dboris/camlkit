@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIScene"
 
 let activationConditions self = msg_send ~self ~cmd:(selector "activationConditions") ~typ:(returning id)
-let activationState self = msg_send ~self ~cmd:(selector "activationState") ~typ:(returning llong)
+let activationState self = msg_send ~self ~cmd:(selector "activationState") ~typ:(returning llong) |> LLong.to_int
 let completeStateRestoration self = msg_send ~self ~cmd:(selector "completeStateRestoration") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)

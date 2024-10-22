@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -37,7 +37,7 @@ let preferredCornerRadius self = msg_send ~self ~cmd:(selector "preferredCornerR
 let prefersEdgeAttachedInCompactHeight self = msg_send ~self ~cmd:(selector "prefersEdgeAttachedInCompactHeight") ~typ:(returning bool)
 let prefersGrabberVisible self = msg_send ~self ~cmd:(selector "prefersGrabberVisible") ~typ:(returning bool)
 let prefersScrollingExpandsWhenScrolledToEdge self = msg_send ~self ~cmd:(selector "prefersScrollingExpandsWhenScrolledToEdge") ~typ:(returning bool)
-let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong)
+let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong) |> LLong.to_int
 let presentationTransitionDidEnd x self = msg_send ~self ~cmd:(selector "presentationTransitionDidEnd:") ~typ:(bool @-> returning void) x
 let presentationTransitionWillBegin self = msg_send ~self ~cmd:(selector "presentationTransitionWillBegin") ~typ:(returning void)
 let presentedView self = msg_send ~self ~cmd:(selector "presentedView") ~typ:(returning id)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,7 +18,7 @@ let allowedUTIs self = msg_send ~self ~cmd:(selector "allowedUTIs") ~typ:(return
 let auxiliaryOptions self = msg_send ~self ~cmd:(selector "auxiliaryOptions") ~typ:(returning id)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let dismissDelegateCalled self = msg_send ~self ~cmd:(selector "dismissDelegateCalled") ~typ:(returning bool)
-let documentPickerMode self = msg_send ~self ~cmd:(selector "documentPickerMode") ~typ:(returning ullong)
+let documentPickerMode self = msg_send ~self ~cmd:(selector "documentPickerMode") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithDocumentTypes x ~inMode self = msg_send ~self ~cmd:(selector "initWithDocumentTypes:inMode:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int inMode)
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning id) x bundle

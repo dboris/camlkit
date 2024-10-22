@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,13 +12,13 @@ open CoreText
 
 let self = get_class "UIPointerHoverEffect"
 
-let constrainedAxes self = msg_send ~self ~cmd:(selector "constrainedAxes") ~typ:(returning ullong)
+let constrainedAxes self = msg_send ~self ~cmd:(selector "constrainedAxes") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
-let preferredTintMode self = msg_send ~self ~cmd:(selector "preferredTintMode") ~typ:(returning llong)
+let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong) |> ULLong.to_int
+let preferredTintMode self = msg_send ~self ~cmd:(selector "preferredTintMode") ~typ:(returning llong) |> LLong.to_int
 let prefersScaledContent self = msg_send ~self ~cmd:(selector "prefersScaledContent") ~typ:(returning bool)
 let prefersShadow self = msg_send ~self ~cmd:(selector "prefersShadow") ~typ:(returning bool)
 let setPreferredTintMode x self = msg_send ~self ~cmd:(selector "setPreferredTintMode:") ~typ:(llong @-> returning void) (LLong.of_int x)

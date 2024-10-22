@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -15,7 +15,7 @@ let self = get_class "UITrackingLayoutGuide"
 let animatesChanges self = msg_send ~self ~cmd:(selector "animatesChanges") ~typ:(returning bool)
 let animatingConstraintsChange self = msg_send ~self ~cmd:(selector "animatingConstraintsChange") ~typ:(returning bool)
 let animationDuration self = msg_send ~self ~cmd:(selector "animationDuration") ~typ:(returning double)
-let animationOptions self = msg_send ~self ~cmd:(selector "animationOptions") ~typ:(returning ullong)
+let animationOptions self = msg_send ~self ~cmd:(selector "animationOptions") ~typ:(returning ullong) |> ULLong.to_int
 let awayFromConstraintsByEdge self = msg_send ~self ~cmd:(selector "awayFromConstraintsByEdge") ~typ:(returning id)
 let changeOffsetConstants x self = msg_send ~self ~cmd:(selector "changeOffsetConstants:") ~typ:(UIOffset.t @-> returning void) x
 let changeSizingConstants x self = msg_send ~self ~cmd:(selector "changeSizingConstants:") ~typ:(CGSize.t @-> returning void) x
@@ -26,10 +26,10 @@ let edgeConstraints self = msg_send ~self ~cmd:(selector "edgeConstraints") ~typ
 let enableAnimations x self = msg_send ~self ~cmd:(selector "enableAnimations:") ~typ:(bool @-> returning void) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let nearEdgeConstraintsByEdge self = msg_send ~self ~cmd:(selector "nearEdgeConstraintsByEdge") ~typ:(returning id)
-let overlappingEdges self = msg_send ~self ~cmd:(selector "overlappingEdges") ~typ:(returning ullong)
-let owningViewInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "owningViewInterfaceLayoutDirection") ~typ:(returning llong)
+let overlappingEdges self = msg_send ~self ~cmd:(selector "overlappingEdges") ~typ:(returning ullong) |> ULLong.to_int
+let owningViewInterfaceLayoutDirection self = msg_send ~self ~cmd:(selector "owningViewInterfaceLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let pauseUpdatingConstraintsForEdges x self = msg_send ~self ~cmd:(selector "pauseUpdatingConstraintsForEdges:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
-let pausedEdges self = msg_send ~self ~cmd:(selector "pausedEdges") ~typ:(returning ullong)
+let pausedEdges self = msg_send ~self ~cmd:(selector "pausedEdges") ~typ:(returning ullong) |> ULLong.to_int
 let removeAllTrackedConstraints self = msg_send ~self ~cmd:(selector "removeAllTrackedConstraints") ~typ:(returning void)
 let resetAnimationOptions self = msg_send ~self ~cmd:(selector "resetAnimationOptions") ~typ:(returning void)
 let setAnimatesChanges x self = msg_send ~self ~cmd:(selector "setAnimatesChanges:") ~typ:(bool @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -21,7 +21,7 @@ let akPasteboardContainsAnnotations self = msg_send ~self ~cmd:(selector "akPast
 let akPasteboardSetAnnotations x self = msg_send ~self ~cmd:(selector "akPasteboardSetAnnotations:") ~typ:(id @-> returning void) x
 let availableTypes self = msg_send ~self ~cmd:(selector "availableTypes") ~typ:(returning id)
 let canInstantiateObjectsOfClass x self = msg_send ~self ~cmd:(selector "canInstantiateObjectsOfClass:") ~typ:(_Class @-> returning bool) x
-let changeCount self = msg_send ~self ~cmd:(selector "changeCount") ~typ:(returning llong)
+let changeCount self = msg_send ~self ~cmd:(selector "changeCount") ~typ:(returning llong) |> LLong.to_int
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
 let colors self = msg_send ~self ~cmd:(selector "colors") ~typ:(returning id)
 let containsPasteboardTypes x self = msg_send ~self ~cmd:(selector "containsPasteboardTypes:") ~typ:(id @-> returning bool) x
@@ -44,7 +44,7 @@ let itemProvidersForInstantiatingObjectsOfClass x self = msg_send ~self ~cmd:(se
 let itemSetWithPasteboardTypes x self = msg_send ~self ~cmd:(selector "itemSetWithPasteboardTypes:") ~typ:(id @-> returning id) x
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
-let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong)
+let numberOfItems self = msg_send ~self ~cmd:(selector "numberOfItems") ~typ:(returning llong) |> LLong.to_int
 let pasteboardTypes self = msg_send ~self ~cmd:(selector "pasteboardTypes") ~typ:(returning id)
 let pasteboardTypesForItemSet x self = msg_send ~self ~cmd:(selector "pasteboardTypesForItemSet:") ~typ:(id @-> returning id) x
 let setColor x self = msg_send ~self ~cmd:(selector "setColor:") ~typ:(id @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -52,7 +52,7 @@ let hasBaseline self = msg_send ~self ~cmd:(selector "hasBaseline") ~typ:(return
 let hasContentInsets self = msg_send ~self ~cmd:(selector "hasContentInsets") ~typ:(returning bool)
 let hasMidline self = msg_send ~self ~cmd:(selector "hasMidline") ~typ:(returning bool)
 let hasPadding self = msg_send ~self ~cmd:(selector "hasPadding") ~typ:(returning bool)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let imageAsset self = msg_send ~self ~cmd:(selector "imageAsset") ~typ:(returning id)
 let imageByAddingContentInsets x self = msg_send ~self ~cmd:(selector "imageByAddingContentInsets:") ~typ:(UIEdgeInsets.t @-> returning id) x
 let imageByAddingPadding x self = msg_send ~self ~cmd:(selector "imageByAddingPadding:") ~typ:(UIEdgeInsets.t @-> returning id) x
@@ -60,7 +60,7 @@ let imageByApplyingSymbolConfiguration x self = msg_send ~self ~cmd:(selector "i
 let imageByPreparingForDisplay self = msg_send ~self ~cmd:(selector "imageByPreparingForDisplay") ~typ:(returning id)
 let imageByPreparingThumbnailOfSize x self = msg_send ~self ~cmd:(selector "imageByPreparingThumbnailOfSize:") ~typ:(CGSize.t @-> returning id) x
 let imageFlippedForRightToLeftLayoutDirection self = msg_send ~self ~cmd:(selector "imageFlippedForRightToLeftLayoutDirection") ~typ:(returning id)
-let imageOrientation self = msg_send ~self ~cmd:(selector "imageOrientation") ~typ:(returning llong)
+let imageOrientation self = msg_send ~self ~cmd:(selector "imageOrientation") ~typ:(returning llong) |> LLong.to_int
 let imageRef self = msg_send ~self ~cmd:(selector "imageRef") ~typ:(returning (ptr CGImage.t))
 let imageRendererFormat self = msg_send ~self ~cmd:(selector "imageRendererFormat") ~typ:(returning id)
 let imageToDisplayWithScreenScale x ~nightMode self = msg_send ~self ~cmd:(selector "imageToDisplayWithScreenScale:nightMode:") ~typ:(double @-> bool @-> returning id) x nightMode
@@ -100,7 +100,7 @@ let ioSurface self = msg_send ~self ~cmd:(selector "ioSurface") ~typ:(returning 
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isFromStatusBarImageProvider self = msg_send ~self ~cmd:(selector "isFromStatusBarImageProvider") ~typ:(returning bool)
 let isSymbolImage self = msg_send ~self ~cmd:(selector "isSymbolImage") ~typ:(returning bool)
-let leftCapWidth self = msg_send ~self ~cmd:(selector "leftCapWidth") ~typ:(returning llong)
+let leftCapWidth self = msg_send ~self ~cmd:(selector "leftCapWidth") ~typ:(returning llong) |> LLong.to_int
 let loadDataWithTypeIdentifier x ~forItemProviderCompletionHandler self = msg_send ~self ~cmd:(selector "loadDataWithTypeIdentifier:forItemProviderCompletionHandler:") ~typ:(id @-> (ptr void) @-> returning id) x forItemProviderCompletionHandler
 let midlineOffsetFromCenter self = msg_send ~self ~cmd:(selector "midlineOffsetFromCenter") ~typ:(returning double)
 let padding self = msg_send_stret ~self ~cmd:(selector "padding") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
@@ -108,15 +108,15 @@ let patternColor self = msg_send ~self ~cmd:(selector "patternColor") ~typ:(retu
 let preferredPresentationSizeForItemProvider self = msg_send_stret ~self ~cmd:(selector "preferredPresentationSizeForItemProvider") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let prepareForDisplayWithCompletionHandler x self = msg_send ~self ~cmd:(selector "prepareForDisplayWithCompletionHandler:") ~typ:((ptr void) @-> returning void) x
 let prepareThumbnailOfSize x ~completionHandler self = msg_send ~self ~cmd:(selector "prepareThumbnailOfSize:completionHandler:") ~typ:(CGSize.t @-> (ptr void) @-> returning void) x completionHandler
-let renderingMode self = msg_send ~self ~cmd:(selector "renderingMode") ~typ:(returning llong)
+let renderingMode self = msg_send ~self ~cmd:(selector "renderingMode") ~typ:(returning llong) |> LLong.to_int
 let resizableImageWithCapInsets x self = msg_send ~self ~cmd:(selector "resizableImageWithCapInsets:") ~typ:(UIEdgeInsets.t @-> returning id) x
 let resizableImageWithCapInsets' x ~resizingMode self = msg_send ~self ~cmd:(selector "resizableImageWithCapInsets:resizingMode:") ~typ:(UIEdgeInsets.t @-> llong @-> returning id) x (LLong.of_int resizingMode)
-let resizingMode self = msg_send ~self ~cmd:(selector "resizingMode") ~typ:(returning llong)
+let resizingMode self = msg_send ~self ~cmd:(selector "resizingMode") ~typ:(returning llong) |> LLong.to_int
 let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning double)
 let setFlipsForRightToLeftLayoutDirection x self = msg_send ~self ~cmd:(selector "setFlipsForRightToLeftLayoutDirection:") ~typ:(bool @-> returning void) x
 let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let stretchableImageWithLeftCapWidth x ~topCapHeight self = msg_send ~self ~cmd:(selector "stretchableImageWithLeftCapWidth:topCapHeight:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int topCapHeight)
 let symbolConfiguration self = msg_send ~self ~cmd:(selector "symbolConfiguration") ~typ:(returning id)
-let topCapHeight self = msg_send ~self ~cmd:(selector "topCapHeight") ~typ:(returning llong)
+let topCapHeight self = msg_send ~self ~cmd:(selector "topCapHeight") ~typ:(returning llong) |> LLong.to_int
 let traitCollection self = msg_send ~self ~cmd:(selector "traitCollection") ~typ:(returning id)
 let writeToCPBitmapFile x ~flags self = msg_send ~self ~cmd:(selector "writeToCPBitmapFile:flags:") ~typ:(id @-> int @-> returning bool) x flags

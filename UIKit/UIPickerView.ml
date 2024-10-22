@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIPickerView"
 
 let allowsMultipleSelection self = msg_send ~self ~cmd:(selector "allowsMultipleSelection") ~typ:(returning bool)
-let columnForTableView x self = msg_send ~self ~cmd:(selector "columnForTableView:") ~typ:(id @-> returning llong) x
+let columnForTableView x self = msg_send ~self ~cmd:(selector "columnForTableView:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let dataSource self = msg_send ~self ~cmd:(selector "dataSource") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defaultSize self = msg_send_stret ~self ~cmd:(selector "defaultSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
@@ -27,10 +27,10 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let isAccessibilityElementByDefault self = msg_send ~self ~cmd:(selector "isAccessibilityElementByDefault") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong)
-let numberOfComponents self = msg_send ~self ~cmd:(selector "numberOfComponents") ~typ:(returning llong)
-let numberOfRowsInColumn x self = msg_send ~self ~cmd:(selector "numberOfRowsInColumn:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let numberOfRowsInComponent x self = msg_send ~self ~cmd:(selector "numberOfRowsInComponent:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let numberOfColumns self = msg_send ~self ~cmd:(selector "numberOfColumns") ~typ:(returning llong) |> LLong.to_int
+let numberOfComponents self = msg_send ~self ~cmd:(selector "numberOfComponents") ~typ:(returning llong) |> LLong.to_int
+let numberOfRowsInColumn x self = msg_send ~self ~cmd:(selector "numberOfRowsInColumn:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let numberOfRowsInComponent x self = msg_send ~self ~cmd:(selector "numberOfRowsInComponent:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let pickerImageNamePrefix self = msg_send ~self ~cmd:(selector "pickerImageNamePrefix") ~typ:(returning id)
 let reload self = msg_send ~self ~cmd:(selector "reload") ~typ:(returning void)
 let reloadAllComponents self = msg_send ~self ~cmd:(selector "reloadAllComponents") ~typ:(returning void)
@@ -43,7 +43,7 @@ let scrollAnimationDuration self = msg_send ~self ~cmd:(selector "scrollAnimatio
 let selectRow x ~inColumn ~animated self = msg_send ~self ~cmd:(selector "selectRow:inColumn:animated:") ~typ:(int @-> int @-> bool @-> returning void) x inColumn animated
 let selectRow' x ~inComponent ~animated self = msg_send ~self ~cmd:(selector "selectRow:inComponent:animated:") ~typ:(llong @-> llong @-> bool @-> returning void) (LLong.of_int x) (LLong.of_int inComponent) animated
 let selectedRowForColumn x self = msg_send ~self ~cmd:(selector "selectedRowForColumn:") ~typ:(int @-> returning int) x
-let selectedRowInComponent x self = msg_send ~self ~cmd:(selector "selectedRowInComponent:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let selectedRowInComponent x self = msg_send ~self ~cmd:(selector "selectedRowInComponent:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let setAllowsMultipleSelection x self = msg_send ~self ~cmd:(selector "setAllowsMultipleSelection:") ~typ:(bool @-> returning void) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning void) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning void) x
@@ -56,7 +56,7 @@ let setSoundsEnabled x self = msg_send ~self ~cmd:(selector "setSoundsEnabled:")
 let showsSelectionIndicator self = msg_send ~self ~cmd:(selector "showsSelectionIndicator") ~typ:(returning bool)
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let tableView x ~cellForRowAtIndexPath self = msg_send ~self ~cmd:(selector "tableView:cellForRowAtIndexPath:") ~typ:(id @-> id @-> returning id) x cellForRowAtIndexPath
-let tableView' x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfRowsInSection)
+let tableView' x ~numberOfRowsInSection self = msg_send ~self ~cmd:(selector "tableView:numberOfRowsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfRowsInSection) |> LLong.to_int
 let tableViewForColumn x self = msg_send ~self ~cmd:(selector "tableViewForColumn:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning void) x
 let viewForRow x ~forComponent self = msg_send ~self ~cmd:(selector "viewForRow:forComponent:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int forComponent)

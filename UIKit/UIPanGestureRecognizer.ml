@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIPanGestureRecognizer"
 
-let allowedScrollTypesMask self = msg_send ~self ~cmd:(selector "allowedScrollTypesMask") ~typ:(returning llong)
+let allowedScrollTypesMask self = msg_send ~self ~cmd:(selector "allowedScrollTypesMask") ~typ:(returning llong) |> LLong.to_int
 let clearMultitouchTimer self = msg_send ~self ~cmd:(selector "clearMultitouchTimer") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let failsPastMaxTouches self = msg_send ~self ~cmd:(selector "failsPastMaxTouches") ~typ:(returning bool)
@@ -21,10 +21,10 @@ let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarge
 let isIOSMacScrollingEnabled self = msg_send ~self ~cmd:(selector "isIOSMacScrollingEnabled") ~typ:(returning bool)
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locationOfTouch:inView:") ~typ:(ullong @-> id @-> returning CGPoint.t) ~return_type:CGPoint.t (ULLong.of_int x) inView
-let maximumNumberOfTouches self = msg_send ~self ~cmd:(selector "maximumNumberOfTouches") ~typ:(returning ullong)
-let minimumNumberOfTouches self = msg_send ~self ~cmd:(selector "minimumNumberOfTouches") ~typ:(returning ullong)
+let maximumNumberOfTouches self = msg_send ~self ~cmd:(selector "maximumNumberOfTouches") ~typ:(returning ullong) |> ULLong.to_int
+let minimumNumberOfTouches self = msg_send ~self ~cmd:(selector "minimumNumberOfTouches") ~typ:(returning ullong) |> ULLong.to_int
 let multitouchExpired x self = msg_send ~self ~cmd:(selector "multitouchExpired:") ~typ:(id @-> returning void) x
-let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong)
+let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong) |> ULLong.to_int
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let setAllowedScrollTypesMask x self = msg_send ~self ~cmd:(selector "setAllowedScrollTypesMask:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x

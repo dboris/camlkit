@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIDeferredMenuElement"
 
-let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning ullong)
+let attributes self = msg_send ~self ~cmd:(selector "attributes") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
@@ -32,4 +32,4 @@ let setDiscoverabilityTitle x self = msg_send ~self ~cmd:(selector "setDiscovera
 let setElementProvider x self = msg_send ~self ~cmd:(selector "setElementProvider:") ~typ:((ptr void) @-> returning void) x
 let setMetadata x self = msg_send ~self ~cmd:(selector "setMetadata:") ~typ:(id @-> returning void) x
 let setState x self = msg_send ~self ~cmd:(selector "setState:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int

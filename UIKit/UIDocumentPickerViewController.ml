@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,7 +18,7 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let directoryURL self = msg_send ~self ~cmd:(selector "directoryURL") ~typ:(returning id)
 let dismissViewControllerAnimated x ~completion self = msg_send ~self ~cmd:(selector "dismissViewControllerAnimated:completion:") ~typ:(bool @-> (ptr void) @-> returning void) x completion
-let documentPickerMode self = msg_send ~self ~cmd:(selector "documentPickerMode") ~typ:(returning ullong)
+let documentPickerMode self = msg_send ~self ~cmd:(selector "documentPickerMode") ~typ:(returning ullong) |> ULLong.to_int
 let documentTypes self = msg_send ~self ~cmd:(selector "documentTypes") ~typ:(returning id)
 let initForExportingURLs x self = msg_send ~self ~cmd:(selector "initForExportingURLs:") ~typ:(id @-> returning id) x
 let initForExportingURLs' x ~asCopy self = msg_send ~self ~cmd:(selector "initForExportingURLs:asCopy:") ~typ:(id @-> bool @-> returning id) x asCopy
@@ -29,8 +29,8 @@ let initWithDocumentTypes x ~inMode self = msg_send ~self ~cmd:(selector "initWi
 let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibName:bundle:") ~typ:(id @-> id @-> returning id) x bundle
 let initWithURL x ~inMode self = msg_send ~self ~cmd:(selector "initWithURL:inMode:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int inMode)
 let initWithURLs x ~inMode self = msg_send ~self ~cmd:(selector "initWithURLs:inMode:") ~typ:(id @-> ullong @-> returning id) x (ULLong.of_int inMode)
-let modalPresentationStyle self = msg_send ~self ~cmd:(selector "modalPresentationStyle") ~typ:(returning llong)
-let pickerUserInterfaceStyle self = msg_send ~self ~cmd:(selector "pickerUserInterfaceStyle") ~typ:(returning ullong)
+let modalPresentationStyle self = msg_send ~self ~cmd:(selector "modalPresentationStyle") ~typ:(returning llong) |> LLong.to_int
+let pickerUserInterfaceStyle self = msg_send ~self ~cmd:(selector "pickerUserInterfaceStyle") ~typ:(returning ullong) |> ULLong.to_int
 let setAllowsMultipleSelection x self = msg_send ~self ~cmd:(selector "setAllowsMultipleSelection:") ~typ:(bool @-> returning void) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let setDirectoryURL x self = msg_send ~self ~cmd:(selector "setDirectoryURL:") ~typ:(id @-> returning void) x

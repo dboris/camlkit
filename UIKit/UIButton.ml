@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -22,8 +22,8 @@ let autosizesToFit self = msg_send ~self ~cmd:(selector "autosizesToFit") ~typ:(
 let backgroundImageForState x self = msg_send ~self ~cmd:(selector "backgroundImageForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let backgroundRectForBounds x self = msg_send_stret ~self ~cmd:(selector "backgroundRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let beginTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "beginTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
-let behavioralStyle self = msg_send ~self ~cmd:(selector "behavioralStyle") ~typ:(returning ullong)
-let buttonType self = msg_send ~self ~cmd:(selector "buttonType") ~typ:(returning llong)
+let behavioralStyle self = msg_send ~self ~cmd:(selector "behavioralStyle") ~typ:(returning ullong) |> ULLong.to_int
+let buttonType self = msg_send ~self ~cmd:(selector "buttonType") ~typ:(returning llong) |> LLong.to_int
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning bool)
 let changesSelectionAsPrimaryAction self = msg_send ~self ~cmd:(selector "changesSelectionAsPrimaryAction") ~typ:(returning bool)
 let configuration self = msg_send ~self ~cmd:(selector "configuration") ~typ:(returning id)
@@ -44,7 +44,7 @@ let currentTitleShadowColor self = msg_send ~self ~cmd:(selector "currentTitleSh
 let cursorInteraction x ~regionForLocation ~defaultRegion self = msg_send ~self ~cmd:(selector "cursorInteraction:regionForLocation:defaultRegion:") ~typ:(id @-> CGPoint.t @-> id @-> returning id) x regionForLocation defaultRegion
 let cursorStyleProvider self = msg_send ~self ~cmd:(selector "cursorStyleProvider") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong)
+let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong) |> ULLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning id)
@@ -69,7 +69,7 @@ let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(
 let largeContentImage self = msg_send ~self ~cmd:(selector "largeContentImage") ~typ:(returning id)
 let largeContentTitle self = msg_send ~self ~cmd:(selector "largeContentTitle") ~typ:(returning id)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong)
+let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong) |> LLong.to_int
 let menu self = msg_send ~self ~cmd:(selector "menu") ~typ:(returning id)
 let menuAttachmentPointForConfiguration x self = msg_send_stret ~self ~cmd:(selector "menuAttachmentPointForConfiguration:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
 let pointerInteraction x ~styleForRegion self = msg_send ~self ~cmd:(selector "pointerInteraction:styleForRegion:") ~typ:(id @-> id @-> returning id) x styleForRegion
@@ -77,14 +77,14 @@ let pointerInteraction1 x ~regionForRequest ~defaultRegion self = msg_send ~self
 let pointerInteraction2 x ~willEnterRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willEnterRegion:animator:") ~typ:(id @-> id @-> id @-> returning void) x willEnterRegion animator
 let pointerInteraction3 x ~willExitRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willExitRegion:animator:") ~typ:(id @-> id @-> id @-> returning void) x willExitRegion animator
 let pointerStyleProvider self = msg_send ~self ~cmd:(selector "pointerStyleProvider") ~typ:(returning (ptr void))
-let preferredBehavioralStyle self = msg_send ~self ~cmd:(selector "preferredBehavioralStyle") ~typ:(returning ullong)
+let preferredBehavioralStyle self = msg_send ~self ~cmd:(selector "preferredBehavioralStyle") ~typ:(returning ullong) |> ULLong.to_int
 let preferredSymbolConfigurationForImageInState x self = msg_send ~self ~cmd:(selector "preferredSymbolConfigurationForImageInState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let pressFeedbackPosition self = msg_send_stret ~self ~cmd:(selector "pressFeedbackPosition") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCancelled:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesEnded x ~withEvent self = msg_send ~self ~cmd:(selector "pressesEnded:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let reversesTitleShadowWhenHighlighted self = msg_send ~self ~cmd:(selector "reversesTitleShadowWhenHighlighted") ~typ:(returning bool)
-let role self = msg_send ~self ~cmd:(selector "role") ~typ:(returning llong)
+let role self = msg_send ~self ~cmd:(selector "role") ~typ:(returning llong) |> LLong.to_int
 let scalesLargeContentImage self = msg_send ~self ~cmd:(selector "scalesLargeContentImage") ~typ:(returning bool)
 let setAdjustsImageSizeForAccessibilityContentSizeCategory x self = msg_send ~self ~cmd:(selector "setAdjustsImageSizeForAccessibilityContentSizeCategory:") ~typ:(bool @-> returning void) x
 let setAdjustsImageWhenDisabled x self = msg_send ~self ~cmd:(selector "setAdjustsImageWhenDisabled:") ~typ:(bool @-> returning void) x

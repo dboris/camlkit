@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -21,7 +21,7 @@ let didEndSplitTransition self = msg_send ~self ~cmd:(selector "didEndSplitTrans
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let initWithFrame' x ~inputViewStyle self = msg_send ~self ~cmd:(selector "initWithFrame:inputViewStyle:") ~typ:(CGRect.t @-> llong @-> returning id) x (LLong.of_int inputViewStyle)
-let inputViewStyle self = msg_send ~self ~cmd:(selector "inputViewStyle") ~typ:(returning llong)
+let inputViewStyle self = msg_send ~self ~cmd:(selector "inputViewStyle") ~typ:(returning llong) |> LLong.to_int
 let layoutMergedSubviews self = msg_send ~self ~cmd:(selector "layoutMergedSubviews") ~typ:(returning void)
 let layoutSplitSubviewsWithLeftContentSize x ~rightContentSize self = msg_send ~self ~cmd:(selector "layoutSplitSubviewsWithLeftContentSize:rightContentSize:") ~typ:(CGSize.t @-> CGSize.t @-> returning void) x rightContentSize
 let leftContentView self = msg_send ~self ~cmd:(selector "leftContentView") ~typ:(returning id)

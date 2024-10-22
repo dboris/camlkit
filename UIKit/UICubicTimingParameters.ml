@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UICubicTimingParameters"
 
-let animationCurve self = msg_send ~self ~cmd:(selector "animationCurve") ~typ:(returning llong)
+let animationCurve self = msg_send ~self ~cmd:(selector "animationCurve") ~typ:(returning llong) |> LLong.to_int
 let controlPoint1 self = msg_send_stret ~self ~cmd:(selector "controlPoint1") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let controlPoint2 self = msg_send_stret ~self ~cmd:(selector "controlPoint2") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
@@ -28,5 +28,5 @@ let initWithCustomCurve x self = msg_send ~self ~cmd:(selector "initWithCustomCu
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let setSpringTimingParameters x self = msg_send ~self ~cmd:(selector "setSpringTimingParameters:") ~typ:(id @-> returning void) x
 let springTimingParameters self = msg_send ~self ~cmd:(selector "springTimingParameters") ~typ:(returning id)
-let timingCurveType self = msg_send ~self ~cmd:(selector "timingCurveType") ~typ:(returning llong)
+let timingCurveType self = msg_send ~self ~cmd:(selector "timingCurveType") ~typ:(returning llong) |> LLong.to_int
 let timingFunction self = msg_send ~self ~cmd:(selector "timingFunction") ~typ:(returning id)

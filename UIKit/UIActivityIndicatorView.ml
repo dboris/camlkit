@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIActivityIndicatorView"
 
-let activityIndicatorViewStyle self = msg_send ~self ~cmd:(selector "activityIndicatorViewStyle") ~typ:(returning llong)
+let activityIndicatorViewStyle self = msg_send ~self ~cmd:(selector "activityIndicatorViewStyle") ~typ:(returning llong) |> LLong.to_int
 let animationDuration self = msg_send ~self ~cmd:(selector "animationDuration") ~typ:(returning double)
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

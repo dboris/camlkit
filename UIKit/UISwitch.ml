@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -15,7 +15,7 @@ let self = get_class "UISwitch"
 let accessibilityActivationPoint self = msg_send_stret ~self ~cmd:(selector "accessibilityActivationPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong)
+let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong) |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -31,7 +31,7 @@ let pointerInteraction x ~styleForRegion self = msg_send ~self ~cmd:(selector "p
 let pointerInteraction1 x ~regionForRequest ~defaultRegion self = msg_send ~self ~cmd:(selector "pointerInteraction:regionForRequest:defaultRegion:") ~typ:(id @-> id @-> id @-> returning id) x regionForRequest defaultRegion
 let pointerInteraction2 x ~willEnterRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willEnterRegion:animator:") ~typ:(id @-> id @-> id @-> returning void) x willEnterRegion animator
 let pointerInteraction3 x ~willExitRegion ~animator self = msg_send ~self ~cmd:(selector "pointerInteraction:willExitRegion:animator:") ~typ:(id @-> id @-> id @-> returning void) x willExitRegion animator
-let preferredStyle self = msg_send ~self ~cmd:(selector "preferredStyle") ~typ:(returning llong)
+let preferredStyle self = msg_send ~self ~cmd:(selector "preferredStyle") ~typ:(returning llong) |> LLong.to_int
 let setEnabled x self = msg_send ~self ~cmd:(selector "setEnabled:") ~typ:(bool @-> returning void) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning void) x
 let setOffImage x self = msg_send ~self ~cmd:(selector "setOffImage:") ~typ:(id @-> returning void) x
@@ -48,8 +48,8 @@ let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(i
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
 let setVisualElement x self = msg_send ~self ~cmd:(selector "setVisualElement:") ~typ:(id @-> returning void) x
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
-let switchStyle self = msg_send ~self ~cmd:(selector "switchStyle") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
+let switchStyle self = msg_send ~self ~cmd:(selector "switchStyle") ~typ:(returning llong) |> LLong.to_int
 let thumbTintColor self = msg_send ~self ~cmd:(selector "thumbTintColor") ~typ:(returning id)
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning id)
 let tintColorDidChange self = msg_send ~self ~cmd:(selector "tintColorDidChange") ~typ:(returning void)

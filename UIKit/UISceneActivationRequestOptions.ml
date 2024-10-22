@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UISceneActivationRequestOptions"
 
-let collectionJoinBehavior self = msg_send ~self ~cmd:(selector "collectionJoinBehavior") ~typ:(returning llong)
+let collectionJoinBehavior self = msg_send ~self ~cmd:(selector "collectionJoinBehavior") ~typ:(returning llong) |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let preserveLayout self = msg_send ~self ~cmd:(selector "preserveLayout") ~typ:(returning bool)

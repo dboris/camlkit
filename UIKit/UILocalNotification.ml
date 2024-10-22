@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UILocalNotification"
 
-let compareFireDates x self = msg_send ~self ~cmd:(selector "compareFireDates:") ~typ:(id @-> returning llong) x
+let compareFireDates x self = msg_send ~self ~cmd:(selector "compareFireDates:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

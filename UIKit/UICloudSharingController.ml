@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UICloudSharingController"
 
 let activityItemSource self = msg_send ~self ~cmd:(selector "activityItemSource") ~typ:(returning id)
-let availablePermissions self = msg_send ~self ~cmd:(selector "availablePermissions") ~typ:(returning ullong)
+let availablePermissions self = msg_send ~self ~cmd:(selector "availablePermissions") ~typ:(returning ullong) |> ULLong.to_int
 let bridgedCloudSharingController self = msg_send ~self ~cmd:(selector "bridgedCloudSharingController") ~typ:(returning id)
 let cloudSharingController x ~failedToSaveShareWithError self = msg_send ~self ~cmd:(selector "cloudSharingController:failedToSaveShareWithError:") ~typ:(id @-> id @-> returning void) x failedToSaveShareWithError
 let cloudSharingControllerDidCompleteShare x self = msg_send ~self ~cmd:(selector "cloudSharingControllerDidCompleteShare:") ~typ:(id @-> returning void) x
@@ -31,7 +31,7 @@ let internalDelegate self = msg_send ~self ~cmd:(selector "internalDelegate") ~t
 let itemThumbnailDataForCloudSharingController x self = msg_send ~self ~cmd:(selector "itemThumbnailDataForCloudSharingController:") ~typ:(id @-> returning id) x
 let itemTitleForCloudSharingController x self = msg_send ~self ~cmd:(selector "itemTitleForCloudSharingController:") ~typ:(id @-> returning id) x
 let itemTypeForCloudSharingController x self = msg_send ~self ~cmd:(selector "itemTypeForCloudSharingController:") ~typ:(id @-> returning id) x
-let modalPresentationStyle self = msg_send ~self ~cmd:(selector "modalPresentationStyle") ~typ:(returning llong)
+let modalPresentationStyle self = msg_send ~self ~cmd:(selector "modalPresentationStyle") ~typ:(returning llong) |> LLong.to_int
 let preparationHandler self = msg_send ~self ~cmd:(selector "preparationHandler") ~typ:(returning (ptr void))
 let presentationTransitionWillBeginNotification x self = msg_send ~self ~cmd:(selector "presentationTransitionWillBeginNotification:") ~typ:(id @-> returning void) x
 let setAvailablePermissions x self = msg_send ~self ~cmd:(selector "setAvailablePermissions:") ~typ:(ullong @-> returning void) (ULLong.of_int x)

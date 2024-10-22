@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -62,9 +62,9 @@ let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~
 let systemLayoutSizeFittingSize x ~withHorizontalFittingPriority ~verticalFittingPriority self = msg_send_stret ~self ~cmd:(selector "systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:") ~typ:(CGSize.t @-> float @-> float @-> returning CGSize.t) ~return_type:CGSize.t x withHorizontalFittingPriority verticalFittingPriority
 let table self = msg_send ~self ~cmd:(selector "table") ~typ:(returning id)
 let tableView self = msg_send ~self ~cmd:(selector "tableView") ~typ:(returning id)
-let tableViewStyle self = msg_send ~self ~cmd:(selector "tableViewStyle") ~typ:(returning llong)
+let tableViewStyle self = msg_send ~self ~cmd:(selector "tableViewStyle") ~typ:(returning llong) |> LLong.to_int
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning id)
-let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong)
+let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong) |> LLong.to_int
 let textLabel self = msg_send ~self ~cmd:(selector "textLabel") ~typ:(returning id)
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning void) x
 let updateConfigurationUsingState x self = msg_send ~self ~cmd:(selector "updateConfigurationUsingState:") ~typ:(id @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,14 +18,14 @@ let center self = msg_send_stret ~self ~cmd:(selector "center") ~typ:(returning 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let indexPath self = msg_send ~self ~cmd:(selector "indexPath") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initialLayoutAttributesForInsertedDecorationElementOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "initialLayoutAttributesForInsertedDecorationElementOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isHidden self = msg_send ~self ~cmd:(selector "isHidden") ~typ:(returning bool)
 let isSizeEqualForPreferredFittingAttributes x self = msg_send ~self ~cmd:(selector "isSizeEqualForPreferredFittingAttributes:") ~typ:(id @-> returning bool) x
-let representedElementCategory self = msg_send ~self ~cmd:(selector "representedElementCategory") ~typ:(returning ullong)
+let representedElementCategory self = msg_send ~self ~cmd:(selector "representedElementCategory") ~typ:(returning ullong) |> ULLong.to_int
 let representedElementKind self = msg_send ~self ~cmd:(selector "representedElementKind") ~typ:(returning id)
 let setAlpha x self = msg_send ~self ~cmd:(selector "setAlpha:") ~typ:(double @-> returning void) x
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning void) x
@@ -41,4 +41,4 @@ let setZIndex x self = msg_send ~self ~cmd:(selector "setZIndex:") ~typ:(llong @
 let size self = msg_send_stret ~self ~cmd:(selector "size") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let transform self = msg_send_stret ~self ~cmd:(selector "transform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
 let transform3D self = msg_send_stret ~self ~cmd:(selector "transform3D") ~typ:(returning CATransform3D.t) ~return_type:CATransform3D.t
-let zIndex self = msg_send ~self ~cmd:(selector "zIndex") ~typ:(returning llong)
+let zIndex self = msg_send ~self ~cmd:(selector "zIndex") ~typ:(returning llong) |> LLong.to_int

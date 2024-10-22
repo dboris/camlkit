@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let addBehavior x self = msg_send ~self ~cmd:(selector "addBehavior:") ~typ:(id 
 let behaviors self = msg_send ~self ~cmd:(selector "behaviors") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugAnimationSpeed self = msg_send ~self ~cmd:(selector "debugAnimationSpeed") ~typ:(returning double)
-let debugFrameInterval self = msg_send ~self ~cmd:(selector "debugFrameInterval") ~typ:(returning ullong)
+let debugFrameInterval self = msg_send ~self ~cmd:(selector "debugFrameInterval") ~typ:(returning ullong) |> ULLong.to_int
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let didBeginContact x self = msg_send ~self ~cmd:(selector "didBeginContact:") ~typ:(id @-> returning void) x

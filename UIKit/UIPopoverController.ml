@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,8 +12,8 @@ open CoreText
 
 let self = get_class "UIPopoverController"
 
-let adaptivePresentationStyleForPresentationController x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:") ~typ:(id @-> returning llong) x
-let adaptivePresentationStyleForPresentationController' x ~traitCollection self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:traitCollection:") ~typ:(id @-> id @-> returning llong) x traitCollection
+let adaptivePresentationStyleForPresentationController x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let adaptivePresentationStyleForPresentationController' x ~traitCollection self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:traitCollection:") ~typ:(id @-> id @-> returning llong) x traitCollection |> LLong.to_int
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let contentViewController self = msg_send ~self ~cmd:(selector "contentViewController") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -27,7 +27,7 @@ let initWithContentViewController x self = msg_send ~self ~cmd:(selector "initWi
 let isPopoverVisible self = msg_send ~self ~cmd:(selector "isPopoverVisible") ~typ:(returning bool)
 let isPresentingOrDismissing self = msg_send ~self ~cmd:(selector "isPresentingOrDismissing") ~typ:(returning bool)
 let passthroughViews self = msg_send ~self ~cmd:(selector "passthroughViews") ~typ:(returning id)
-let popoverArrowDirection self = msg_send ~self ~cmd:(selector "popoverArrowDirection") ~typ:(returning ullong)
+let popoverArrowDirection self = msg_send ~self ~cmd:(selector "popoverArrowDirection") ~typ:(returning ullong) |> ULLong.to_int
 let popoverBackgroundViewClass self = msg_send ~self ~cmd:(selector "popoverBackgroundViewClass") ~typ:(returning _Class)
 let popoverContentSize self = msg_send_stret ~self ~cmd:(selector "popoverContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let popoverLayoutMargins self = msg_send_stret ~self ~cmd:(selector "popoverLayoutMargins") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIProgressView"
 
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
@@ -24,7 +24,7 @@ let observedProgress self = msg_send ~self ~cmd:(selector "observedProgress") ~t
 let progress self = msg_send ~self ~cmd:(selector "progress") ~typ:(returning float)
 let progressImage self = msg_send ~self ~cmd:(selector "progressImage") ~typ:(returning id)
 let progressTintColor self = msg_send ~self ~cmd:(selector "progressTintColor") ~typ:(returning id)
-let progressViewStyle self = msg_send ~self ~cmd:(selector "progressViewStyle") ~typ:(returning llong)
+let progressViewStyle self = msg_send ~self ~cmd:(selector "progressViewStyle") ~typ:(returning llong) |> LLong.to_int
 let setBarStyle x self = msg_send ~self ~cmd:(selector "setBarStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setBounds x self = msg_send ~self ~cmd:(selector "setBounds:") ~typ:(CGRect.t @-> returning void) x
 let setFrame x self = msg_send ~self ~cmd:(selector "setFrame:") ~typ:(CGRect.t @-> returning void) x

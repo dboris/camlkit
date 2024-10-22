@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIPress"
 
-let clickCount self = msg_send ~self ~cmd:(selector "clickCount") ~typ:(returning ullong)
+let clickCount self = msg_send ~self ~cmd:(selector "clickCount") ~typ:(returning ullong) |> ULLong.to_int
 let contextID self = msg_send ~self ~cmd:(selector "contextID") ~typ:(returning uint)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let force self = msg_send ~self ~cmd:(selector "force") ~typ:(returning double)
@@ -20,8 +20,8 @@ let gestureRecognizers self = msg_send ~self ~cmd:(selector "gestureRecognizers"
 let isDelayed self = msg_send ~self ~cmd:(selector "isDelayed") ~typ:(returning bool)
 let isLongClick self = msg_send ~self ~cmd:(selector "isLongClick") ~typ:(returning bool)
 let key self = msg_send ~self ~cmd:(selector "key") ~typ:(returning id)
-let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning llong)
-let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning llong)
+let modifierFlags self = msg_send ~self ~cmd:(selector "modifierFlags") ~typ:(returning llong) |> LLong.to_int
+let phase self = msg_send ~self ~cmd:(selector "phase") ~typ:(returning llong) |> LLong.to_int
 let responder self = msg_send ~self ~cmd:(selector "responder") ~typ:(returning id)
 let sentPressesEnded self = msg_send ~self ~cmd:(selector "sentPressesEnded") ~typ:(returning bool)
 let setClickCount x self = msg_send ~self ~cmd:(selector "setClickCount:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
@@ -38,5 +38,5 @@ let setTimestamp x self = msg_send ~self ~cmd:(selector "setTimestamp:") ~typ:(d
 let setType x self = msg_send ~self ~cmd:(selector "setType:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setWindow x self = msg_send ~self ~cmd:(selector "setWindow:") ~typ:(id @-> returning void) x
 let timestamp self = msg_send ~self ~cmd:(selector "timestamp") ~typ:(returning double)
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int
 let window self = msg_send ~self ~cmd:(selector "window") ~typ:(returning id)

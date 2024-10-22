@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIPointerInteraction"
 
-let currentModifiers self = msg_send ~self ~cmd:(selector "currentModifiers") ~typ:(returning llong)
+let currentModifiers self = msg_send ~self ~cmd:(selector "currentModifiers") ~typ:(returning llong) |> LLong.to_int
 let currentRegion self = msg_send ~self ~cmd:(selector "currentRegion") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defaultRegion self = msg_send ~self ~cmd:(selector "defaultRegion") ~typ:(returning id)

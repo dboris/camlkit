@@ -1,15 +1,16 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
 
 (** Apple docs: {{:https://developer.apple.com/documentation/uikit/uitraitcollection?language=objc}UITraitCollection} *)
 
+let appearanceClassForType x self = msg_send ~self ~cmd:(selector "appearanceClassForType:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let currentTraitCollection self = msg_send ~self ~cmd:(selector "currentTraitCollection") ~typ:(returning id)
 let setCurrentTraitCollection x self = msg_send ~self ~cmd:(selector "setCurrentTraitCollection:") ~typ:(id @-> returning void) x
 let supportsSecureCoding self = msg_send ~self ~cmd:(selector "supportsSecureCoding") ~typ:(returning bool)

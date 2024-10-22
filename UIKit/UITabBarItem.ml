@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -70,7 +70,7 @@ let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "set
 let setUnselectedImage x self = msg_send ~self ~cmd:(selector "setUnselectedImage:") ~typ:(id @-> returning void) x
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let standardAppearance self = msg_send ~self ~cmd:(selector "standardAppearance") ~typ:(returning id)
-let systemItem self = msg_send ~self ~cmd:(selector "systemItem") ~typ:(returning llong)
+let systemItem self = msg_send ~self ~cmd:(selector "systemItem") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
 let titlePositionAdjustment self = msg_send_stret ~self ~cmd:(selector "titlePositionAdjustment") ~typ:(returning UIOffset.t) ~return_type:UIOffset.t

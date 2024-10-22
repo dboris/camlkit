@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let opaque self = msg_send ~self ~cmd:(selector "opaque") ~typ:(returning bool)
-let preferredRange self = msg_send ~self ~cmd:(selector "preferredRange") ~typ:(returning llong)
+let preferredRange self = msg_send ~self ~cmd:(selector "preferredRange") ~typ:(returning llong) |> LLong.to_int
 let prefersExtendedRange self = msg_send ~self ~cmd:(selector "prefersExtendedRange") ~typ:(returning bool)
 let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning double)
 let setOpaque x self = msg_send ~self ~cmd:(selector "setOpaque:") ~typ:(bool @-> returning void) x

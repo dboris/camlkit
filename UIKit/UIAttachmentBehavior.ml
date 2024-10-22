@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIAttachmentBehavior"
 
 let anchorPoint self = msg_send_stret ~self ~cmd:(selector "anchorPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
-let attachedBehaviorType self = msg_send ~self ~cmd:(selector "attachedBehaviorType") ~typ:(returning llong)
+let attachedBehaviorType self = msg_send ~self ~cmd:(selector "attachedBehaviorType") ~typ:(returning llong) |> LLong.to_int
 let attachmentRange self = msg_send ~self ~cmd:(selector "attachmentRange") ~typ:(returning void)
 let damping self = msg_send ~self ~cmd:(selector "damping") ~typ:(returning double)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
@@ -34,4 +34,4 @@ let setDamping x self = msg_send ~self ~cmd:(selector "setDamping:") ~typ:(doubl
 let setFrequency x self = msg_send ~self ~cmd:(selector "setFrequency:") ~typ:(double @-> returning void) x
 let setFrictionTorque x self = msg_send ~self ~cmd:(selector "setFrictionTorque:") ~typ:(double @-> returning void) x
 let setLength x self = msg_send ~self ~cmd:(selector "setLength:") ~typ:(double @-> returning void) x
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int

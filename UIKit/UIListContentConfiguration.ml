@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,12 +13,12 @@ open CoreText
 let self = get_class "UIListContentConfiguration"
 
 let attributedText self = msg_send ~self ~cmd:(selector "attributedText") ~typ:(returning id)
-let axesPreservingSuperviewLayoutMargins self = msg_send ~self ~cmd:(selector "axesPreservingSuperviewLayoutMargins") ~typ:(returning ullong)
+let axesPreservingSuperviewLayoutMargins self = msg_send ~self ~cmd:(selector "axesPreservingSuperviewLayoutMargins") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let directionalLayoutMargins self = msg_send_stret ~self ~cmd:(selector "directionalLayoutMargins") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageProperties self = msg_send ~self ~cmd:(selector "imageProperties") ~typ:(returning id)
 let imageToTextPadding self = msg_send ~self ~cmd:(selector "imageToTextPadding") ~typ:(returning double)

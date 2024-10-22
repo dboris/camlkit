@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,7 +14,7 @@ let self = get_class "UIEventAttribution"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let destinationURL self = msg_send ~self ~cmd:(selector "destinationURL") ~typ:(returning id)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithSourceIdentifier x ~destinationURL ~sourceDescription ~purchaser self = msg_send ~self ~cmd:(selector "initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:") ~typ:(uchar @-> id @-> id @-> id @-> returning id) x destinationURL sourceDescription purchaser
 let initWithSourceIdentifier' x ~destinationURL ~reportEndpoint ~sourceDescription ~purchaser self = msg_send ~self ~cmd:(selector "initWithSourceIdentifier:destinationURL:reportEndpoint:sourceDescription:purchaser:") ~typ:(uchar @-> id @-> id @-> id @-> id @-> returning id) x destinationURL reportEndpoint sourceDescription purchaser
 let initWithUISClickAttribution x self = msg_send ~self ~cmd:(selector "initWithUISClickAttribution:") ~typ:(id @-> returning id) x

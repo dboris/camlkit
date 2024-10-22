@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -17,7 +17,7 @@ let akMinimumValue self = msg_send ~self ~cmd:(selector "akMinimumValue") ~typ:(
 let akValue self = msg_send ~self ~cmd:(selector "akValue") ~typ:(returning double)
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let beginTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "beginTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
-let behavioralStyle self = msg_send ~self ~cmd:(selector "behavioralStyle") ~typ:(returning ullong)
+let behavioralStyle self = msg_send ~self ~cmd:(selector "behavioralStyle") ~typ:(returning ullong) |> ULLong.to_int
 let cancelMouseTracking self = msg_send ~self ~cmd:(selector "cancelMouseTracking") ~typ:(returning bool)
 let cancelTouchTracking self = msg_send ~self ~cmd:(selector "cancelTouchTracking") ~typ:(returning bool)
 let continueTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "continueTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
@@ -49,7 +49,7 @@ let minimumTrackTintColor self = msg_send ~self ~cmd:(selector "minimumTrackTint
 let minimumValue self = msg_send ~self ~cmd:(selector "minimumValue") ~typ:(returning float)
 let minimumValueImage self = msg_send ~self ~cmd:(selector "minimumValueImage") ~typ:(returning id)
 let minimumValueImageRectForBounds x self = msg_send_stret ~self ~cmd:(selector "minimumValueImageRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let preferredBehavioralStyle self = msg_send ~self ~cmd:(selector "preferredBehavioralStyle") ~typ:(returning ullong)
+let preferredBehavioralStyle self = msg_send ~self ~cmd:(selector "preferredBehavioralStyle") ~typ:(returning ullong) |> ULLong.to_int
 let setAkMaximumValue x self = msg_send ~self ~cmd:(selector "setAkMaximumValue:") ~typ:(double @-> returning void) x
 let setAkMinimumValue x self = msg_send ~self ~cmd:(selector "setAkMinimumValue:") ~typ:(double @-> returning void) x
 let setAkValue x self = msg_send ~self ~cmd:(selector "setAkValue:") ~typ:(double @-> returning void) x

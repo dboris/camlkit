@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -25,7 +25,7 @@ let initWithSearchBar x ~contentsController self = msg_send ~self ~cmd:(selector
 let initWithSearchBar' x ~contentsController ~searchResultsTableViewStyle self = msg_send ~self ~cmd:(selector "initWithSearchBar:contentsController:searchResultsTableViewStyle:") ~typ:(id @-> id @-> llong @-> returning id) x contentsController (LLong.of_int searchResultsTableViewStyle)
 let isActive self = msg_send ~self ~cmd:(selector "isActive") ~typ:(returning bool)
 let isNavigationBarHidingEnabled self = msg_send ~self ~cmd:(selector "isNavigationBarHidingEnabled") ~typ:(returning bool)
-let navigationBarSearchFieldSizing self = msg_send ~self ~cmd:(selector "navigationBarSearchFieldSizing") ~typ:(returning ullong)
+let navigationBarSearchFieldSizing self = msg_send ~self ~cmd:(selector "navigationBarSearchFieldSizing") ~typ:(returning ullong) |> ULLong.to_int
 let navigationControllerDidCancelShowingViewController x self = msg_send ~self ~cmd:(selector "navigationControllerDidCancelShowingViewController:") ~typ:(id @-> returning void) x
 let navigationControllerDidShowViewController x self = msg_send ~self ~cmd:(selector "navigationControllerDidShowViewController:") ~typ:(id @-> returning void) x
 let navigationControllerWillShowViewController x self = msg_send ~self ~cmd:(selector "navigationControllerWillShowViewController:") ~typ:(id @-> returning void) x

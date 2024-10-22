@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIMenuController"
 
-let arrowDirection self = msg_send ~self ~cmd:(selector "arrowDirection") ~typ:(returning llong)
+let arrowDirection self = msg_send ~self ~cmd:(selector "arrowDirection") ~typ:(returning llong) |> LLong.to_int
 let calloutBar x ~didFinishAnimation self = msg_send ~self ~cmd:(selector "calloutBar:didFinishAnimation:") ~typ:(id @-> id @-> returning void) x didFinishAnimation
 let calloutBar' x ~willStartAnimation self = msg_send ~self ~cmd:(selector "calloutBar:willStartAnimation:") ~typ:(id @-> id @-> returning void) x willStartAnimation
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)

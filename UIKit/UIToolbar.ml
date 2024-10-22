@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,8 +16,8 @@ let autoHidesToolbarInFullscreen self = msg_send ~self ~cmd:(selector "autoHides
 let backdropView x ~didChangeToGraphicsQuality self = msg_send ~self ~cmd:(selector "backdropView:didChangeToGraphicsQuality:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int didChangeToGraphicsQuality)
 let backgroundEffects self = msg_send ~self ~cmd:(selector "backgroundEffects") ~typ:(returning id)
 let backgroundImageForToolbarPosition x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForToolbarPosition:barMetrics:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int barMetrics)
-let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong)
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong) |> LLong.to_int
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let barTintColor self = msg_send ~self ~cmd:(selector "barTintColor") ~typ:(returning id)
 let centerItem self = msg_send ~self ~cmd:(selector "centerItem") ~typ:(returning id)
 let centerTextButtons self = msg_send ~self ~cmd:(selector "centerTextButtons") ~typ:(returning bool)

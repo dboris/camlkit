@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,5 +19,5 @@ let hasLearnedWord x self = msg_send ~self ~cmd:(selector "hasLearnedWord:") ~ty
 let learnWord x self = msg_send ~self ~cmd:(selector "learnWord:") ~typ:(id @-> returning void) x
 let openUserDictionary x self = msg_send ~self ~cmd:(selector "openUserDictionary:") ~typ:(id @-> returning id) x
 let setString x ~isExemptFromChecker self = msg_send ~self ~cmd:(selector "setString:isExemptFromChecker:") ~typ:(id @-> bool @-> returning void) x isExemptFromChecker
-let uniqueSpellDocumentTag self = msg_send ~self ~cmd:(selector "uniqueSpellDocumentTag") ~typ:(returning llong)
+let uniqueSpellDocumentTag self = msg_send ~self ~cmd:(selector "uniqueSpellDocumentTag") ~typ:(returning llong) |> LLong.to_int
 let unlearnWord x self = msg_send ~self ~cmd:(selector "unlearnWord:") ~typ:(id @-> returning void) x

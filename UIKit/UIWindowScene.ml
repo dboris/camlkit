@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,7 +19,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let focusSystem self = msg_send ~self ~cmd:(selector "focusSystem") ~typ:(returning id)
 let initWithSession x ~connectionOptions self = msg_send ~self ~cmd:(selector "initWithSession:connectionOptions:") ~typ:(id @-> id @-> returning id) x connectionOptions
 let inputResponderController self = msg_send ~self ~cmd:(selector "inputResponderController") ~typ:(returning id)
-let interfaceOrientation self = msg_send ~self ~cmd:(selector "interfaceOrientation") ~typ:(returning llong)
+let interfaceOrientation self = msg_send ~self ~cmd:(selector "interfaceOrientation") ~typ:(returning llong) |> LLong.to_int
 let isExcludedFromWindowsMenu self = msg_send ~self ~cmd:(selector "isExcludedFromWindowsMenu") ~typ:(returning bool)
 let isKeyCanvas self = msg_send ~self ~cmd:(selector "isKeyCanvas") ~typ:(returning bool)
 let keyWindow self = msg_send ~self ~cmd:(selector "keyWindow") ~typ:(returning id)
@@ -31,7 +31,7 @@ let setActivityItemsConfigurationSource x self = msg_send ~self ~cmd:(selector "
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
 let setExcludedFromWindowsMenu x self = msg_send ~self ~cmd:(selector "setExcludedFromWindowsMenu:") ~typ:(bool @-> returning void) x
 let sizeRestrictions self = msg_send ~self ~cmd:(selector "sizeRestrictions") ~typ:(returning id)
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let statusBarManager self = msg_send ~self ~cmd:(selector "statusBarManager") ~typ:(returning id)
 let titlebar self = msg_send ~self ~cmd:(selector "titlebar") ~typ:(returning id)
 let traitCollection self = msg_send ~self ~cmd:(selector "traitCollection") ~typ:(returning id)

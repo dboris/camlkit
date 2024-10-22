@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -33,7 +33,7 @@ let message self = msg_send ~self ~cmd:(selector "message") ~typ:(returning id)
 let performsViewControllerCommitTransitionForPreviewInteractionController x self = msg_send ~self ~cmd:(selector "performsViewControllerCommitTransitionForPreviewInteractionController:") ~typ:(id @-> returning bool) x
 let preferredAction self = msg_send ~self ~cmd:(selector "preferredAction") ~typ:(returning id)
 let preferredContentSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "preferredContentSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
-let preferredStyle self = msg_send ~self ~cmd:(selector "preferredStyle") ~typ:(returning llong)
+let preferredStyle self = msg_send ~self ~cmd:(selector "preferredStyle") ~typ:(returning llong) |> LLong.to_int
 let previewInteractionController x ~performCommitForPreviewViewController ~committedViewController self = msg_send ~self ~cmd:(selector "previewInteractionController:performCommitForPreviewViewController:committedViewController:") ~typ:(id @-> id @-> id @-> returning void) x performCommitForPreviewViewController committedViewController
 let previewInteractionController1 x ~viewControllerForPreviewingAtPosition ~inView ~presentingViewController self = msg_send ~self ~cmd:(selector "previewInteractionController:viewControllerForPreviewingAtPosition:inView:presentingViewController:") ~typ:(id @-> CGPoint.t @-> id @-> (ptr id) @-> returning id) x viewControllerForPreviewingAtPosition inView presentingViewController
 let previewInteractionController2 x ~willPresentViewController ~forPosition ~inSourceView self = msg_send ~self ~cmd:(selector "previewInteractionController:willPresentViewController:forPosition:inSourceView:") ~typ:(id @-> id @-> CGPoint.t @-> id @-> returning void) x willPresentViewController forPosition inSourceView
@@ -50,7 +50,7 @@ let setTemporaryAnimationCoordinator x self = msg_send ~self ~cmd:(selector "set
 let setTextFieldsCanBecomeFirstResponder x self = msg_send ~self ~cmd:(selector "setTextFieldsCanBecomeFirstResponder:") ~typ:(bool @-> returning void) x
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
 let shouldAutorotate self = msg_send ~self ~cmd:(selector "shouldAutorotate") ~typ:(returning bool)
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
 let targetHostWindow self = msg_send ~self ~cmd:(selector "targetHostWindow") ~typ:(returning id)
 let temporaryAnimationCoordinator self = msg_send ~self ~cmd:(selector "temporaryAnimationCoordinator") ~typ:(returning id)
 let textFields self = msg_send ~self ~cmd:(selector "textFields") ~typ:(returning id)

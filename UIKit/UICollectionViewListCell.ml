@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -17,7 +17,7 @@ let canBeEdited self = msg_send ~self ~cmd:(selector "canBeEdited") ~typ:(return
 let configurationState self = msg_send ~self ~cmd:(selector "configurationState") ~typ:(returning id)
 let defaultContentConfiguration self = msg_send ~self ~cmd:(selector "defaultContentConfiguration") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let indentationLevel self = msg_send ~self ~cmd:(selector "indentationLevel") ~typ:(returning llong)
+let indentationLevel self = msg_send ~self ~cmd:(selector "indentationLevel") ~typ:(returning llong) |> LLong.to_int
 let indentationWidth self = msg_send ~self ~cmd:(selector "indentationWidth") ~typ:(returning double)
 let indentsAccessories self = msg_send ~self ~cmd:(selector "indentsAccessories") ~typ:(returning bool)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -27,7 +27,7 @@ let leadingAccessoryConfigurations self = msg_send ~self ~cmd:(selector "leading
 let leadingEditingAccessoryConfigurations self = msg_send ~self ~cmd:(selector "leadingEditingAccessoryConfigurations") ~typ:(returning id)
 let prepareForReuse self = msg_send ~self ~cmd:(selector "prepareForReuse") ~typ:(returning void)
 let safeAreaInsetsDidChange self = msg_send ~self ~cmd:(selector "safeAreaInsetsDidChange") ~typ:(returning void)
-let selectionStyle self = msg_send ~self ~cmd:(selector "selectionStyle") ~typ:(returning llong)
+let selectionStyle self = msg_send ~self ~cmd:(selector "selectionStyle") ~typ:(returning llong) |> LLong.to_int
 let separatorLayoutGuide self = msg_send ~self ~cmd:(selector "separatorLayoutGuide") ~typ:(returning id)
 let setAccessories x self = msg_send ~self ~cmd:(selector "setAccessories:") ~typ:(id @-> returning void) x
 let setEditing x self = msg_send ~self ~cmd:(selector "setEditing:") ~typ:(bool @-> returning void) x

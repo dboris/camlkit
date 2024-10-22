@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -17,10 +17,10 @@ let adjustsImageWhenAncestorFocused self = msg_send ~self ~cmd:(selector "adjust
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let animationDuration self = msg_send ~self ~cmd:(selector "animationDuration") ~typ:(returning double)
 let animationImages self = msg_send ~self ~cmd:(selector "animationImages") ~typ:(returning id)
-let animationRepeatCount self = msg_send ~self ~cmd:(selector "animationRepeatCount") ~typ:(returning llong)
+let animationRepeatCount self = msg_send ~self ~cmd:(selector "animationRepeatCount") ~typ:(returning llong) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
-let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong)
+let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong) |> ULLong.to_int
 let displayLayer x self = msg_send ~self ~cmd:(selector "displayLayer:") ~typ:(id @-> returning void) x
 let drawMode self = msg_send ~self ~cmd:(selector "drawMode") ~typ:(returning uint)
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,8 +18,8 @@ let calendar self = msg_send ~self ~cmd:(selector "calendar") ~typ:(returning id
 let countDownDuration self = msg_send ~self ~cmd:(selector "countDownDuration") ~typ:(returning double)
 let date self = msg_send ~self ~cmd:(selector "date") ~typ:(returning id)
 let dateComponents self = msg_send ~self ~cmd:(selector "dateComponents") ~typ:(returning id)
-let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning llong)
-let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning llong)
+let datePickerMode self = msg_send ~self ~cmd:(selector "datePickerMode") ~typ:(returning llong) |> LLong.to_int
+let datePickerStyle self = msg_send ~self ~cmd:(selector "datePickerStyle") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning id) x withEvent
 let hour self = msg_send ~self ~cmd:(selector "hour") ~typ:(returning int)
@@ -31,8 +31,8 @@ let locale self = msg_send ~self ~cmd:(selector "locale") ~typ:(returning id)
 let maximumDate self = msg_send ~self ~cmd:(selector "maximumDate") ~typ:(returning id)
 let minimumDate self = msg_send ~self ~cmd:(selector "minimumDate") ~typ:(returning id)
 let minute self = msg_send ~self ~cmd:(selector "minute") ~typ:(returning int)
-let minuteInterval self = msg_send ~self ~cmd:(selector "minuteInterval") ~typ:(returning llong)
-let preferredDatePickerStyle self = msg_send ~self ~cmd:(selector "preferredDatePickerStyle") ~typ:(returning llong)
+let minuteInterval self = msg_send ~self ~cmd:(selector "minuteInterval") ~typ:(returning llong) |> LLong.to_int
+let preferredDatePickerStyle self = msg_send ~self ~cmd:(selector "preferredDatePickerStyle") ~typ:(returning llong) |> LLong.to_int
 let resignFirstResponder self = msg_send ~self ~cmd:(selector "resignFirstResponder") ~typ:(returning bool)
 let roundsToMinuteInterval self = msg_send ~self ~cmd:(selector "roundsToMinuteInterval") ~typ:(returning bool)
 let second self = msg_send ~self ~cmd:(selector "second") ~typ:(returning int)

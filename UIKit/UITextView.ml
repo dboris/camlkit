@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -31,7 +31,7 @@ let attributedPlaceholder self = msg_send ~self ~cmd:(selector "attributedPlaceh
 let attributedText self = msg_send ~self ~cmd:(selector "attributedText") ~typ:(returning id)
 let attributedTextInRange x self = msg_send ~self ~cmd:(selector "attributedTextInRange:") ~typ:(id @-> returning id) x
 let automaticallySelectedOverlay self = msg_send ~self ~cmd:(selector "automaticallySelectedOverlay") ~typ:(returning id)
-let baseWritingDirectionForPosition x ~inDirection self = msg_send ~self ~cmd:(selector "baseWritingDirectionForPosition:inDirection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int inDirection)
+let baseWritingDirectionForPosition x ~inDirection self = msg_send ~self ~cmd:(selector "baseWritingDirectionForPosition:inDirection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int inDirection) |> LLong.to_int
 let becomeDropResponder self = msg_send ~self ~cmd:(selector "becomeDropResponder") ~typ:(returning void)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let becomesEditableWithGestures self = msg_send ~self ~cmd:(selector "becomesEditableWithGestures") ~typ:(returning bool)
@@ -54,12 +54,12 @@ let characterRangeByExtendingPosition x ~inDirection self = msg_send ~self ~cmd:
 let clearsOnInsertion self = msg_send ~self ~cmd:(selector "clearsOnInsertion") ~typ:(returning bool)
 let closestPositionToPoint x self = msg_send ~self ~cmd:(selector "closestPositionToPoint:") ~typ:(CGPoint.t @-> returning id) x
 let closestPositionToPoint' x ~withinRange self = msg_send ~self ~cmd:(selector "closestPositionToPoint:withinRange:") ~typ:(CGPoint.t @-> id @-> returning id) x withinRange
-let comparePosition x ~toPosition self = msg_send ~self ~cmd:(selector "comparePosition:toPosition:") ~typ:(id @-> id @-> returning llong) x toPosition
+let comparePosition x ~toPosition self = msg_send ~self ~cmd:(selector "comparePosition:toPosition:") ~typ:(id @-> id @-> returning llong) x toPosition |> LLong.to_int
 let contentOffsetForSameViewDrops self = msg_send_stret ~self ~cmd:(selector "contentOffsetForSameViewDrops") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let copy x self = msg_send ~self ~cmd:(selector "copy:") ~typ:(id @-> returning void) x
 let copyFont x self = msg_send ~self ~cmd:(selector "copyFont:") ~typ:(id @-> returning void) x
 let cut x self = msg_send ~self ~cmd:(selector "cut:") ~typ:(id @-> returning void) x
-let dataDetectorTypes self = msg_send ~self ~cmd:(selector "dataDetectorTypes") ~typ:(returning ullong)
+let dataDetectorTypes self = msg_send ~self ~cmd:(selector "dataDetectorTypes") ~typ:(returning ullong) |> ULLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~typ:(returning id)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
@@ -140,12 +140,12 @@ let lowercaseWord x self = msg_send ~self ~cmd:(selector "lowercaseWord:") ~typ:
 let makeTextWritingDirectionLeftToRight x self = msg_send ~self ~cmd:(selector "makeTextWritingDirectionLeftToRight:") ~typ:(id @-> returning void) x
 let makeTextWritingDirectionNatural x self = msg_send ~self ~cmd:(selector "makeTextWritingDirectionNatural:") ~typ:(id @-> returning void) x
 let makeTextWritingDirectionRightToLeft x self = msg_send ~self ~cmd:(selector "makeTextWritingDirectionRightToLeft:") ~typ:(id @-> returning void) x
-let marginTop self = msg_send ~self ~cmd:(selector "marginTop") ~typ:(returning ullong)
+let marginTop self = msg_send ~self ~cmd:(selector "marginTop") ~typ:(returning ullong) |> ULLong.to_int
 let markedTextRange self = msg_send ~self ~cmd:(selector "markedTextRange") ~typ:(returning id)
 let markedTextStyle self = msg_send ~self ~cmd:(selector "markedTextStyle") ~typ:(returning id)
 let maxTileHeight self = msg_send ~self ~cmd:(selector "maxTileHeight") ~typ:(returning double)
 let methodSignatureForSelector x self = msg_send ~self ~cmd:(selector "methodSignatureForSelector:") ~typ:(_SEL @-> returning id) x
-let offsetFromPosition x ~toPosition self = msg_send ~self ~cmd:(selector "offsetFromPosition:toPosition:") ~typ:(id @-> id @-> returning llong) x toPosition
+let offsetFromPosition x ~toPosition self = msg_send ~self ~cmd:(selector "offsetFromPosition:toPosition:") ~typ:(id @-> id @-> returning llong) x toPosition |> LLong.to_int
 let paperTexture self = msg_send ~self ~cmd:(selector "paperTexture") ~typ:(returning id)
 let paste x self = msg_send ~self ~cmd:(selector "paste:") ~typ:(id @-> returning void) x
 let pasteAndMatchStyle x self = msg_send ~self ~cmd:(selector "pasteAndMatchStyle:") ~typ:(id @-> returning void) x
@@ -177,7 +177,7 @@ let selectedRange self = msg_send_stret ~self ~cmd:(selector "selectedRange") ~t
 let selectedRangeForTextContainerView x self = msg_send_stret ~self ~cmd:(selector "selectedRangeForTextContainerView:") ~typ:(id @-> returning NSRange.t) ~return_type:NSRange.t x
 let selectedText self = msg_send ~self ~cmd:(selector "selectedText") ~typ:(returning id)
 let selectedTextRange self = msg_send ~self ~cmd:(selector "selectedTextRange") ~typ:(returning id)
-let selectionAffinity self = msg_send ~self ~cmd:(selector "selectionAffinity") ~typ:(returning llong)
+let selectionAffinity self = msg_send ~self ~cmd:(selector "selectionAffinity") ~typ:(returning llong) |> LLong.to_int
 let selectionContainerView self = msg_send ~self ~cmd:(selector "selectionContainerView") ~typ:(returning id)
 let selectionRectsForRange x self = msg_send ~self ~cmd:(selector "selectionRectsForRange:") ~typ:(id @-> returning id) x
 let selectionView self = msg_send ~self ~cmd:(selector "selectionView") ~typ:(returning id)
@@ -252,7 +252,7 @@ let startAutoscroll x self = msg_send ~self ~cmd:(selector "startAutoscroll:") ~
 let startInteractionWithLinkAtPoint x self = msg_send ~self ~cmd:(selector "startInteractionWithLinkAtPoint:") ~typ:(CGPoint.t @-> returning void) x
 let takeTraitsFrom x self = msg_send ~self ~cmd:(selector "takeTraitsFrom:") ~typ:(id @-> returning void) x
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning id)
-let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong)
+let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong) |> LLong.to_int
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning id)
 let textContainer self = msg_send ~self ~cmd:(selector "textContainer") ~typ:(returning id)
 let textContainerInset self = msg_send_stret ~self ~cmd:(selector "textContainerInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
@@ -260,7 +260,7 @@ let textContainerView x ~cuiCatalogForTextEffectName self = msg_send ~self ~cmd:
 let textContainerView' x ~linkTextAttributesForLink ~forCharacterAtIndex self = msg_send ~self ~cmd:(selector "textContainerView:linkTextAttributesForLink:forCharacterAtIndex:") ~typ:(id @-> id @-> ullong @-> returning id) x linkTextAttributesForLink (ULLong.of_int forCharacterAtIndex)
 let textDragDelegate self = msg_send ~self ~cmd:(selector "textDragDelegate") ~typ:(returning id)
 let textDragInteraction self = msg_send ~self ~cmd:(selector "textDragInteraction") ~typ:(returning id)
-let textDragOptions self = msg_send ~self ~cmd:(selector "textDragOptions") ~typ:(returning llong)
+let textDragOptions self = msg_send ~self ~cmd:(selector "textDragOptions") ~typ:(returning llong) |> LLong.to_int
 let textDropDelegate self = msg_send ~self ~cmd:(selector "textDropDelegate") ~typ:(returning id)
 let textDropInteraction self = msg_send ~self ~cmd:(selector "textDropInteraction") ~typ:(returning id)
 let textInRange x self = msg_send ~self ~cmd:(selector "textInRange:") ~typ:(id @-> returning id) x

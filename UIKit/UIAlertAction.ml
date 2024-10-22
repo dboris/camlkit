@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -26,5 +26,5 @@ let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @->
 let setTitle x self = msg_send ~self ~cmd:(selector "setTitle:") ~typ:(id @-> returning void) x
 let shouldDismissHandler self = msg_send ~self ~cmd:(selector "shouldDismissHandler") ~typ:(returning (ptr void))
 let simpleHandler self = msg_send ~self ~cmd:(selector "simpleHandler") ~typ:(returning (ptr void))
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)

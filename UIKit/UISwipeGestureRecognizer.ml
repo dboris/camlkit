@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UISwipeGestureRecognizer"
 
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning ullong)
+let direction self = msg_send ~self ~cmd:(selector "direction") ~typ:(returning ullong) |> ULLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithTarget x ~action self = msg_send ~self ~cmd:(selector "initWithTarget:action:") ~typ:(id @-> _SEL @-> returning id) x action
@@ -25,8 +25,8 @@ let maximumSecondaryMovement self = msg_send ~self ~cmd:(selector "maximumSecond
 let minimumPrimaryMovement self = msg_send ~self ~cmd:(selector "minimumPrimaryMovement") ~typ:(returning double)
 let minimumPrimaryMovementRate self = msg_send ~self ~cmd:(selector "minimumPrimaryMovementRate") ~typ:(returning double)
 let minimumSecondaryMovement self = msg_send ~self ~cmd:(selector "minimumSecondaryMovement") ~typ:(returning double)
-let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong)
-let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning ullong)
+let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong) |> ULLong.to_int
+let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning ullong) |> ULLong.to_int
 let rateOfMaximumMovementDecay self = msg_send ~self ~cmd:(selector "rateOfMaximumMovementDecay") ~typ:(returning double)
 let rateOfMinimumMovementDecay self = msg_send ~self ~cmd:(selector "rateOfMinimumMovementDecay") ~typ:(returning double)
 let setMaximumDuration x self = msg_send ~self ~cmd:(selector "setMaximumDuration:") ~typ:(double @-> returning void) x

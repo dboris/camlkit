@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,7 +19,7 @@ let imagePDFAnnotations self = msg_send ~self ~cmd:(selector "imagePDFAnnotation
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let maximumContentHeight self = msg_send ~self ~cmd:(selector "maximumContentHeight") ~typ:(returning double)
 let maximumContentWidth self = msg_send ~self ~cmd:(selector "maximumContentWidth") ~typ:(returning double)
-let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong)
+let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong) |> LLong.to_int
 let perPageContentInsets self = msg_send_stret ~self ~cmd:(selector "perPageContentInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let printPageRenderer self = msg_send ~self ~cmd:(selector "printPageRenderer") ~typ:(returning id)
 let rectForPageAtIndex x self = msg_send_stret ~self ~cmd:(selector "rectForPageAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
@@ -31,4 +31,4 @@ let setMaximumContentWidth x self = msg_send ~self ~cmd:(selector "setMaximumCon
 let setPerPageContentInsets x self = msg_send ~self ~cmd:(selector "setPerPageContentInsets:") ~typ:(UIEdgeInsets.t @-> returning void) x
 let setPrintPageRenderer x self = msg_send ~self ~cmd:(selector "setPrintPageRenderer:") ~typ:(id @-> returning void) x
 let setStartPage x self = msg_send ~self ~cmd:(selector "setStartPage:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let startPage self = msg_send ~self ~cmd:(selector "startPage") ~typ:(returning llong)
+let startPage self = msg_send ~self ~cmd:(selector "startPage") ~typ:(returning llong) |> LLong.to_int

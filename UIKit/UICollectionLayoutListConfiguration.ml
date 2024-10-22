@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,11 +12,11 @@ open CoreText
 
 let self = get_class "UICollectionLayoutListConfiguration"
 
-let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning llong)
+let appearance self = msg_send ~self ~cmd:(selector "appearance") ~typ:(returning llong) |> LLong.to_int
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let footerMode self = msg_send ~self ~cmd:(selector "footerMode") ~typ:(returning llong)
-let headerMode self = msg_send ~self ~cmd:(selector "headerMode") ~typ:(returning llong)
+let footerMode self = msg_send ~self ~cmd:(selector "footerMode") ~typ:(returning llong) |> LLong.to_int
+let headerMode self = msg_send ~self ~cmd:(selector "headerMode") ~typ:(returning llong) |> LLong.to_int
 let headerTopPadding self = msg_send ~self ~cmd:(selector "headerTopPadding") ~typ:(returning double)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithAppearance x self = msg_send ~self ~cmd:(selector "initWithAppearance:") ~typ:(llong @-> returning id) (LLong.of_int x)

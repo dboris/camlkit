@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -34,6 +34,7 @@ let containsPoint x self = msg_send ~self ~cmd:(selector "containsPoint:") ~typ:
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let currentPoint self = msg_send_stret ~self ~cmd:(selector "currentPoint") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let debugQuickLookObject self = msg_send ~self ~cmd:(selector "debugQuickLookObject") ~typ:(returning id)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let fill self = msg_send ~self ~cmd:(selector "fill") ~typ:(returning void)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -68,12 +68,13 @@ let isModalInPopover self = msg_send ~self ~cmd:(selector "isModalInPopover") ~t
 let isNavigationBarHidden self = msg_send ~self ~cmd:(selector "isNavigationBarHidden") ~typ:(returning bool)
 let isShown self = msg_send ~self ~cmd:(selector "isShown") ~typ:(returning bool)
 let isToolbarHidden self = msg_send ~self ~cmd:(selector "isToolbarHidden") ~typ:(returning bool)
-let lastOperation self = msg_send ~self ~cmd:(selector "lastOperation") ~typ:(returning llong)
+let lastOperation self = msg_send ~self ~cmd:(selector "lastOperation") ~typ:(returning llong) |> LLong.to_int
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning void)
-let modalTransitionStyle self = msg_send ~self ~cmd:(selector "modalTransitionStyle") ~typ:(returning llong)
+let modalTransitionStyle self = msg_send ~self ~cmd:(selector "modalTransitionStyle") ~typ:(returning llong) |> LLong.to_int
 let moreListImage self = msg_send ~self ~cmd:(selector "moreListImage") ~typ:(returning id)
 let moreListSelectedImage self = msg_send ~self ~cmd:(selector "moreListSelectedImage") ~typ:(returning id)
 let moreListTableCell self = msg_send ~self ~cmd:(selector "moreListTableCell") ~typ:(returning id)
+let navigateToDestination x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "navigateToDestination:options:completionHandler:") ~typ:(id @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int options) completionHandler
 let navigationBar self = msg_send ~self ~cmd:(selector "navigationBar") ~typ:(returning id)
 let navigationBar' x ~shouldPopItem self = msg_send ~self ~cmd:(selector "navigationBar:shouldPopItem:") ~typ:(id @-> id @-> returning bool) x shouldPopItem
 let navigationBarClass self = msg_send ~self ~cmd:(selector "navigationBarClass") ~typ:(returning _Class)
@@ -85,6 +86,7 @@ let navigationTransitionView1 x ~didStartTransition self = msg_send ~self ~cmd:(
 let navigationTransitionView2 x ~durationForTransition self = msg_send ~self ~cmd:(selector "navigationTransitionView:durationForTransition:") ~typ:(id @-> llong @-> returning double) x (LLong.of_int durationForTransition)
 let navigationTransitionView3 x ~didEndTransition ~fromView ~toView self = msg_send ~self ~cmd:(selector "navigationTransitionView:didEndTransition:fromView:toView:") ~typ:(id @-> llong @-> id @-> id @-> returning void) x (LLong.of_int didEndTransition) fromView toView
 let needsDeferredTransition self = msg_send ~self ~cmd:(selector "needsDeferredTransition") ~typ:(returning bool)
+let nextExistingParticipantOnRouteToDestination x self = msg_send ~self ~cmd:(selector "nextExistingParticipantOnRouteToDestination:") ~typ:(id @-> returning id) x
 let paletteForEdge x ~size self = msg_send ~self ~cmd:(selector "paletteForEdge:size:") ~typ:(ullong @-> CGSize.t @-> returning id) (ULLong.of_int x) size
 let popToRootViewControllerAnimated x self = msg_send ~self ~cmd:(selector "popToRootViewControllerAnimated:") ~typ:(bool @-> returning id) x
 let popToRootViewControllerWithTransition x self = msg_send ~self ~cmd:(selector "popToRootViewControllerWithTransition:") ~typ:(int @-> returning id) x
@@ -98,8 +100,8 @@ let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredCo
 let preferredContentSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "preferredContentSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
-let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong)
-let preferredStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredStatusBarStyle") ~typ:(returning llong)
+let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong) |> LLong.to_int
+let preferredStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredStatusBarStyle") ~typ:(returning llong) |> LLong.to_int
 let pretendNavBarHidden self = msg_send ~self ~cmd:(selector "pretendNavBarHidden") ~typ:(returning bool)
 let previousViewController self = msg_send ~self ~cmd:(selector "previousViewController") ~typ:(returning id)
 let pushViewController x ~animated self = msg_send ~self ~cmd:(selector "pushViewController:animated:") ~typ:(id @-> bool @-> returning void) x animated
@@ -109,6 +111,7 @@ let removeChildViewController x ~notifyDidMove self = msg_send ~self ~cmd:(selec
 let rotatingFooterView self = msg_send ~self ~cmd:(selector "rotatingFooterView") ~typ:(returning id)
 let rotatingHeaderView self = msg_send ~self ~cmd:(selector "rotatingHeaderView") ~typ:(returning id)
 let rotatingSnapshotViewForWindow x self = msg_send ~self ~cmd:(selector "rotatingSnapshotViewForWindow:") ~typ:(id @-> returning id) x
+let routingOptionsForDestination x self = msg_send ~self ~cmd:(selector "routingOptionsForDestination:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let searchBarHidNavBar self = msg_send ~self ~cmd:(selector "searchBarHidNavBar") ~typ:(returning bool)
 let segueForUnwindingToViewController x ~fromViewController ~identifier self = msg_send ~self ~cmd:(selector "segueForUnwindingToViewController:fromViewController:identifier:") ~typ:(id @-> id @-> id @-> returning id) x fromViewController identifier
 let separateSecondaryViewControllerForSplitViewController x self = msg_send ~self ~cmd:(selector "separateSecondaryViewControllerForSplitViewController:") ~typ:(id @-> returning id) x
@@ -145,7 +148,7 @@ let setViewControllers' x ~animated self = msg_send ~self ~cmd:(selector "setVie
 let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning bool) (LLong.of_int x)
 let showViewController x ~sender self = msg_send ~self ~cmd:(selector "showViewController:sender:") ~typ:(id @-> id @-> returning void) x sender
 let sizeForChildContentContainer x ~withParentContainerSize self = msg_send_stret ~self ~cmd:(selector "sizeForChildContentContainer:withParentContainerSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x withParentContainerSize
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
 let tabBarItem self = msg_send ~self ~cmd:(selector "tabBarItem") ~typ:(returning id)
 let toolbar self = msg_send ~self ~cmd:(selector "toolbar") ~typ:(returning id)
 let topViewController self = msg_send ~self ~cmd:(selector "topViewController") ~typ:(returning id)

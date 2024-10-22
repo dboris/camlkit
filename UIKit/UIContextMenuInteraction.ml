@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UIContextMenuInteraction"
 
-let activationStyleForClickPresentationInteraction x self = msg_send ~self ~cmd:(selector "activationStyleForClickPresentationInteraction:") ~typ:(id @-> returning ullong) x
+let activationStyleForClickPresentationInteraction x self = msg_send ~self ~cmd:(selector "activationStyleForClickPresentationInteraction:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
 let actualPlatterContainerViewForPresentationController x self = msg_send ~self ~cmd:(selector "actualPlatterContainerViewForPresentationController:") ~typ:(id @-> returning id) x
 let allowSimultaneousRecognition self = msg_send ~self ~cmd:(selector "allowSimultaneousRecognition") ~typ:(returning bool)
 let clickPresentationInteraction x ~presentationForPresentingViewController self = msg_send ~self ~cmd:(selector "clickPresentationInteraction:presentationForPresentingViewController:") ~typ:(id @-> id @-> returning id) x presentationForPresentingViewController
@@ -28,7 +28,7 @@ let gestureRecognizerForExclusionRelationships self = msg_send ~self ~cmd:(selec
 let gestureRecognizerForFailureRelationships self = msg_send ~self ~cmd:(selector "gestureRecognizerForFailureRelationships") ~typ:(returning id)
 let initWithDelegate x self = msg_send ~self ~cmd:(selector "initWithDelegate:") ~typ:(id @-> returning id) x
 let locationInView x self = msg_send_stret ~self ~cmd:(selector "locationInView:") ~typ:(id @-> returning CGPoint.t) ~return_type:CGPoint.t x
-let menuAppearance self = msg_send ~self ~cmd:(selector "menuAppearance") ~typ:(returning llong)
+let menuAppearance self = msg_send ~self ~cmd:(selector "menuAppearance") ~typ:(returning llong) |> LLong.to_int
 let pendingCommitAnimator self = msg_send ~self ~cmd:(selector "pendingCommitAnimator") ~typ:(returning id)
 let pendingConfiguration self = msg_send ~self ~cmd:(selector "pendingConfiguration") ~typ:(returning id)
 let presentationInteraction self = msg_send ~self ~cmd:(selector "presentationInteraction") ~typ:(returning id)

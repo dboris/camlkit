@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -34,7 +34,7 @@ let statusBarFrameForStatusBarHeight' x ~inOrientation self = msg_send_stret ~se
 let statusBarHeight self = msg_send ~self ~cmd:(selector "statusBarHeight") ~typ:(returning double)
 let statusBarHidden self = msg_send ~self ~cmd:(selector "statusBarHidden") ~typ:(returning bool)
 let statusBarPartStyles self = msg_send ~self ~cmd:(selector "statusBarPartStyles") ~typ:(returning id)
-let statusBarStyle self = msg_send ~self ~cmd:(selector "statusBarStyle") ~typ:(returning llong)
+let statusBarStyle self = msg_send ~self ~cmd:(selector "statusBarStyle") ~typ:(returning llong) |> LLong.to_int
 let updateLocalStatusBars self = msg_send ~self ~cmd:(selector "updateLocalStatusBars") ~typ:(returning void)
 let updateStatusBarAppearance self = msg_send ~self ~cmd:(selector "updateStatusBarAppearance") ~typ:(returning void)
 let updateStatusBarAppearanceWithAnimationParameters x self = msg_send ~self ~cmd:(selector "updateStatusBarAppearanceWithAnimationParameters:") ~typ:(id @-> returning void) x

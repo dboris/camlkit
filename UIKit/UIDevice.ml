@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIDevice"
 
 let batteryLevel self = msg_send ~self ~cmd:(selector "batteryLevel") ~typ:(returning float)
-let batteryState self = msg_send ~self ~cmd:(selector "batteryState") ~typ:(returning llong)
+let batteryState self = msg_send ~self ~cmd:(selector "batteryState") ~typ:(returning llong) |> LLong.to_int
 let beginGeneratingDeviceOrientationNotifications self = msg_send ~self ~cmd:(selector "beginGeneratingDeviceOrientationNotifications") ~typ:(returning void)
 let buildVersion self = msg_send ~self ~cmd:(selector "buildVersion") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -27,7 +27,7 @@ let isProximityMonitoringEnabled self = msg_send ~self ~cmd:(selector "isProximi
 let localizedModel self = msg_send ~self ~cmd:(selector "localizedModel") ~typ:(returning id)
 let model self = msg_send ~self ~cmd:(selector "model") ~typ:(returning id)
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong) |> LLong.to_int
 let playInputClick self = msg_send ~self ~cmd:(selector "playInputClick") ~typ:(returning void)
 let proximityState self = msg_send ~self ~cmd:(selector "proximityState") ~typ:(returning bool)
 let setBatteryMonitoringEnabled x self = msg_send ~self ~cmd:(selector "setBatteryMonitoringEnabled:") ~typ:(bool @-> returning void) x
@@ -36,4 +36,4 @@ let setOrientation' x ~animated self = msg_send ~self ~cmd:(selector "setOrienta
 let setProximityMonitoringEnabled x self = msg_send ~self ~cmd:(selector "setProximityMonitoringEnabled:") ~typ:(bool @-> returning void) x
 let systemName self = msg_send ~self ~cmd:(selector "systemName") ~typ:(returning id)
 let systemVersion self = msg_send ~self ~cmd:(selector "systemVersion") ~typ:(returning id)
-let userInterfaceIdiom self = msg_send ~self ~cmd:(selector "userInterfaceIdiom") ~typ:(returning llong)
+let userInterfaceIdiom self = msg_send ~self ~cmd:(selector "userInterfaceIdiom") ~typ:(returning llong) |> LLong.to_int

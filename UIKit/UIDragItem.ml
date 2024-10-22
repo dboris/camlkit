@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let dragPreviewBlockProvider self = msg_send ~self ~cmd:(selector "dragPreviewBl
 let initWithItemProvider x self = msg_send ~self ~cmd:(selector "initWithItemProvider:") ~typ:(id @-> returning id) x
 let itemProvider self = msg_send ~self ~cmd:(selector "itemProvider") ~typ:(returning id)
 let localObject self = msg_send ~self ~cmd:(selector "localObject") ~typ:(returning id)
-let preferredPreviewType self = msg_send ~self ~cmd:(selector "preferredPreviewType") ~typ:(returning ullong)
+let preferredPreviewType self = msg_send ~self ~cmd:(selector "preferredPreviewType") ~typ:(returning ullong) |> ULLong.to_int
 let previewProvider self = msg_send ~self ~cmd:(selector "previewProvider") ~typ:(returning (ptr void))
 let setDragPreviewBlockProvider x self = msg_send ~self ~cmd:(selector "setDragPreviewBlockProvider:") ~typ:(id @-> returning void) x
 let setItemProvider x self = msg_send ~self ~cmd:(selector "setItemProvider:") ~typ:(id @-> returning void) x
@@ -25,4 +25,4 @@ let setPreferredPreviewType x self = msg_send ~self ~cmd:(selector "setPreferred
 let setPreviewProvider x self = msg_send ~self ~cmd:(selector "setPreviewProvider:") ~typ:((ptr void) @-> returning void) x
 let setTargetedLiftPreview x self = msg_send ~self ~cmd:(selector "setTargetedLiftPreview:") ~typ:(id @-> returning void) x
 let setUpdatedPreviewType x self = msg_send ~self ~cmd:(selector "setUpdatedPreviewType:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
-let updatedPreviewType self = msg_send ~self ~cmd:(selector "updatedPreviewType") ~typ:(returning ullong)
+let updatedPreviewType self = msg_send ~self ~cmd:(selector "updatedPreviewType") ~typ:(returning ullong) |> ULLong.to_int

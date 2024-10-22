@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,15 +13,15 @@ open CoreText
 let self = get_class "UIPointerEffect"
 
 let allowsSanitization self = msg_send ~self ~cmd:(selector "allowsSanitization") ~typ:(returning bool)
-let constrainedAxes self = msg_send ~self ~cmd:(selector "constrainedAxes") ~typ:(returning ullong)
+let constrainedAxes self = msg_send ~self ~cmd:(selector "constrainedAxes") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dampedAnimationDampingRatio self = msg_send ~self ~cmd:(selector "dampedAnimationDampingRatio") ~typ:(returning double)
 let dampedAnimationResponse self = msg_send ~self ~cmd:(selector "dampedAnimationResponse") ~typ:(returning double)
 let defaultPointerCornerRadius self = msg_send ~self ~cmd:(selector "defaultPointerCornerRadius") ~typ:(returning double)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let maxSlip self = msg_send ~self ~cmd:(selector "maxSlip") ~typ:(returning double)
-let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
+let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong) |> ULLong.to_int
 let overrideSlipPoints self = msg_send ~self ~cmd:(selector "overrideSlipPoints") ~typ:(returning id)
 let parallaxAmount self = msg_send ~self ~cmd:(selector "parallaxAmount") ~typ:(returning double)
 let preview self = msg_send ~self ~cmd:(selector "preview") ~typ:(returning id)

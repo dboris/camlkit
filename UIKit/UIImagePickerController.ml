@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,9 +14,9 @@ let self = get_class "UIImagePickerController"
 
 let allowsEditing self = msg_send ~self ~cmd:(selector "allowsEditing") ~typ:(returning bool)
 let allowsImageEditing self = msg_send ~self ~cmd:(selector "allowsImageEditing") ~typ:(returning bool)
-let cameraCaptureMode self = msg_send ~self ~cmd:(selector "cameraCaptureMode") ~typ:(returning llong)
-let cameraDevice self = msg_send ~self ~cmd:(selector "cameraDevice") ~typ:(returning llong)
-let cameraFlashMode self = msg_send ~self ~cmd:(selector "cameraFlashMode") ~typ:(returning llong)
+let cameraCaptureMode self = msg_send ~self ~cmd:(selector "cameraCaptureMode") ~typ:(returning llong) |> LLong.to_int
+let cameraDevice self = msg_send ~self ~cmd:(selector "cameraDevice") ~typ:(returning llong) |> LLong.to_int
+let cameraFlashMode self = msg_send ~self ~cmd:(selector "cameraFlashMode") ~typ:(returning llong) |> LLong.to_int
 let cameraOverlayView self = msg_send ~self ~cmd:(selector "cameraOverlayView") ~typ:(returning id)
 let cameraViewTransform self = msg_send_stret ~self ~cmd:(selector "cameraViewTransform") ~typ:(returning CGAffineTransform.t) ~return_type:CGAffineTransform.t
 let cancelPhotoPicker self = msg_send ~self ~cmd:(selector "cancelPhotoPicker") ~typ:(returning void)
@@ -26,7 +26,7 @@ let didSelectMediaWithInfoDictionary x self = msg_send ~self ~cmd:(selector "did
 let didSelectMultipleMediaItemsWithInfoDictionaries x self = msg_send ~self ~cmd:(selector "didSelectMultipleMediaItemsWithInfoDictionaries:") ~typ:(id @-> returning void) x
 let dismissCurrentViewControllerFromPhotoPickerAnimated x self = msg_send ~self ~cmd:(selector "dismissCurrentViewControllerFromPhotoPickerAnimated:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let imageExportPreset self = msg_send ~self ~cmd:(selector "imageExportPreset") ~typ:(returning llong)
+let imageExportPreset self = msg_send ~self ~cmd:(selector "imageExportPreset") ~typ:(returning llong) |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let mediaTypes self = msg_send ~self ~cmd:(selector "mediaTypes") ~typ:(returning id)
@@ -51,14 +51,14 @@ let setVideoMaximumDuration x self = msg_send ~self ~cmd:(selector "setVideoMaxi
 let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning bool) (LLong.of_int x)
 let showsCameraControls self = msg_send ~self ~cmd:(selector "showsCameraControls") ~typ:(returning bool)
-let sourceType self = msg_send ~self ~cmd:(selector "sourceType") ~typ:(returning llong)
+let sourceType self = msg_send ~self ~cmd:(selector "sourceType") ~typ:(returning llong) |> LLong.to_int
 let startVideoCapture self = msg_send ~self ~cmd:(selector "startVideoCapture") ~typ:(returning bool)
 let stopVideoCapture self = msg_send ~self ~cmd:(selector "stopVideoCapture") ~typ:(returning void)
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
 let takePicture self = msg_send ~self ~cmd:(selector "takePicture") ~typ:(returning void)
 let videoExportPreset self = msg_send ~self ~cmd:(selector "videoExportPreset") ~typ:(returning id)
 let videoMaximumDuration self = msg_send ~self ~cmd:(selector "videoMaximumDuration") ~typ:(returning double)
-let videoQuality self = msg_send ~self ~cmd:(selector "videoQuality") ~typ:(returning llong)
+let videoQuality self = msg_send ~self ~cmd:(selector "videoQuality") ~typ:(returning llong) |> LLong.to_int
 let viewDidDisappear x self = msg_send ~self ~cmd:(selector "viewDidDisappear:") ~typ:(bool @-> returning void) x
 let viewWillAppear x self = msg_send ~self ~cmd:(selector "viewWillAppear:") ~typ:(bool @-> returning void) x
 let viewWillDisappear x self = msg_send ~self ~cmd:(selector "viewWillDisappear:") ~typ:(bool @-> returning void) x

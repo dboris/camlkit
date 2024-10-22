@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -40,9 +40,11 @@ let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibN
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning void)
 let moreChildViewControllers self = msg_send ~self ~cmd:(selector "moreChildViewControllers") ~typ:(returning id)
 let moreNavigationController self = msg_send ~self ~cmd:(selector "moreNavigationController") ~typ:(returning id)
+let navigateToDestination x ~options ~completionHandler self = msg_send ~self ~cmd:(selector "navigateToDestination:options:completionHandler:") ~typ:(id @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int options) completionHandler
+let nextExistingParticipantOnRouteToDestination x self = msg_send ~self ~cmd:(selector "nextExistingParticipantOnRouteToDestination:") ~typ:(id @-> returning id) x
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
-let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong)
+let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong) |> LLong.to_int
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCancelled:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesChanged:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
@@ -51,7 +53,8 @@ let revealTabBarSelection self = msg_send ~self ~cmd:(selector "revealTabBarSele
 let rotatingFooterView self = msg_send ~self ~cmd:(selector "rotatingFooterView") ~typ:(returning id)
 let rotatingHeaderView self = msg_send ~self ~cmd:(selector "rotatingHeaderView") ~typ:(returning id)
 let rotatingSnapshotViewForWindow x self = msg_send ~self ~cmd:(selector "rotatingSnapshotViewForWindow:") ~typ:(id @-> returning id) x
-let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning ullong)
+let routingOptionsForDestination x self = msg_send ~self ~cmd:(selector "routingOptionsForDestination:") ~typ:(id @-> returning ullong) x |> ULLong.to_int
+let selectedIndex self = msg_send ~self ~cmd:(selector "selectedIndex") ~typ:(returning ullong) |> ULLong.to_int
 let selectedViewController self = msg_send ~self ~cmd:(selector "selectedViewController") ~typ:(returning id)
 let setCustomizableViewControllers x self = msg_send ~self ~cmd:(selector "setCustomizableViewControllers:") ~typ:(id @-> returning void) x
 let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
@@ -72,7 +75,7 @@ let showBarWithTransition x self = msg_send ~self ~cmd:(selector "showBarWithTra
 let showBarWithTransition' x ~duration self = msg_send ~self ~cmd:(selector "showBarWithTransition:duration:") ~typ:(int @-> double @-> returning void) x duration
 let showsEditButtonOnLeft self = msg_send ~self ~cmd:(selector "showsEditButtonOnLeft") ~typ:(returning bool)
 let sizeForChildContentContainer x ~withParentContainerSize self = msg_send_stret ~self ~cmd:(selector "sizeForChildContentContainer:withParentContainerSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x withParentContainerSize
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
 let tabBar self = msg_send ~self ~cmd:(selector "tabBar") ~typ:(returning id)
 let tabBar1 x ~willBeginCustomizingItems self = msg_send ~self ~cmd:(selector "tabBar:willBeginCustomizingItems:") ~typ:(id @-> id @-> returning void) x willBeginCustomizingItems
 let tabBar2 x ~didEndCustomizingItems ~changed self = msg_send ~self ~cmd:(selector "tabBar:didEndCustomizingItems:changed:") ~typ:(id @-> id @-> bool @-> returning void) x didEndCustomizingItems changed

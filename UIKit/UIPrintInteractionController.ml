@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,7 +13,7 @@ open CoreText
 let self = get_class "UIPrintInteractionController"
 
 let activePrintInfo self = msg_send ~self ~cmd:(selector "activePrintInfo") ~typ:(returning id)
-let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong)
+let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong) |> LLong.to_int
 let currentRange self = msg_send_stret ~self ~cmd:(selector "currentRange") ~typ:(returning NSRange.t) ~return_type:NSRange.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -24,10 +24,10 @@ let hostingWindowScene self = msg_send ~self ~cmd:(selector "hostingWindowScene"
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let isContentManaged self = msg_send ~self ~cmd:(selector "isContentManaged") ~typ:(returning bool)
 let manualPrintPageEnabled self = msg_send ~self ~cmd:(selector "manualPrintPageEnabled") ~typ:(returning bool)
-let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong)
-let pageCountWithRanges self = msg_send ~self ~cmd:(selector "pageCountWithRanges") ~typ:(returning llong)
+let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong) |> LLong.to_int
+let pageCountWithRanges self = msg_send ~self ~cmd:(selector "pageCountWithRanges") ~typ:(returning llong) |> LLong.to_int
 let pageRanges self = msg_send ~self ~cmd:(selector "pageRanges") ~typ:(returning id)
-let pagesDrawn self = msg_send ~self ~cmd:(selector "pagesDrawn") ~typ:(returning llong)
+let pagesDrawn self = msg_send ~self ~cmd:(selector "pagesDrawn") ~typ:(returning llong) |> LLong.to_int
 let paper self = msg_send ~self ~cmd:(selector "paper") ~typ:(returning id)
 let pdfPassword self = msg_send ~self ~cmd:(selector "pdfPassword") ~typ:(returning id)
 let presentAnimated x ~completionHandler self = msg_send ~self ~cmd:(selector "presentAnimated:completionHandler:") ~typ:(bool @-> (ptr void) @-> returning bool) x completionHandler

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,9 +12,9 @@ open CoreText
 
 let self = get_class "UITapGestureRecognizer"
 
-let akNumberOfTapsRequired self = msg_send ~self ~cmd:(selector "akNumberOfTapsRequired") ~typ:(returning ullong)
+let akNumberOfTapsRequired self = msg_send ~self ~cmd:(selector "akNumberOfTapsRequired") ~typ:(returning ullong) |> ULLong.to_int
 let allowableMovement self = msg_send ~self ~cmd:(selector "allowableMovement") ~typ:(returning double)
-let buttonMaskRequired self = msg_send ~self ~cmd:(selector "buttonMaskRequired") ~typ:(returning llong)
+let buttonMaskRequired self = msg_send ~self ~cmd:(selector "buttonMaskRequired") ~typ:(returning llong) |> LLong.to_int
 let canPreventGestureRecognizer x self = msg_send ~self ~cmd:(selector "canPreventGestureRecognizer:") ~typ:(id @-> returning bool) x
 let centroid self = msg_send_stret ~self ~cmd:(selector "centroid") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -28,9 +28,9 @@ let locationOfTouch x ~inView self = msg_send_stret ~self ~cmd:(selector "locati
 let maximumIntervalBetweenSuccessiveTaps self = msg_send ~self ~cmd:(selector "maximumIntervalBetweenSuccessiveTaps") ~typ:(returning double)
 let maximumSingleTapDuration self = msg_send ~self ~cmd:(selector "maximumSingleTapDuration") ~typ:(returning double)
 let maximumTapDuration self = msg_send ~self ~cmd:(selector "maximumTapDuration") ~typ:(returning double)
-let numberOfTapsRequired self = msg_send ~self ~cmd:(selector "numberOfTapsRequired") ~typ:(returning ullong)
-let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong)
-let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning ullong)
+let numberOfTapsRequired self = msg_send ~self ~cmd:(selector "numberOfTapsRequired") ~typ:(returning ullong) |> ULLong.to_int
+let numberOfTouches self = msg_send ~self ~cmd:(selector "numberOfTouches") ~typ:(returning ullong) |> ULLong.to_int
+let numberOfTouchesRequired self = msg_send ~self ~cmd:(selector "numberOfTouchesRequired") ~typ:(returning ullong) |> ULLong.to_int
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCancelled:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesChanged:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent

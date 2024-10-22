@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,33 +12,33 @@ open CoreText
 
 let self = get_class "UIPrintInfo"
 
-let coat self = msg_send ~self ~cmd:(selector "coat") ~typ:(returning llong)
-let copies self = msg_send ~self ~cmd:(selector "copies") ~typ:(returning llong)
+let coat self = msg_send ~self ~cmd:(selector "coat") ~typ:(returning llong) |> LLong.to_int
+let copies self = msg_send ~self ~cmd:(selector "copies") ~typ:(returning llong) |> LLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let dictionaryRepresentation self = msg_send ~self ~cmd:(selector "dictionaryRepresentation") ~typ:(returning id)
-let duplex self = msg_send ~self ~cmd:(selector "duplex") ~typ:(returning llong)
+let duplex self = msg_send ~self ~cmd:(selector "duplex") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let finishingTemplate self = msg_send ~self ~cmd:(selector "finishingTemplate") ~typ:(returning id)
-let fold self = msg_send ~self ~cmd:(selector "fold") ~typ:(returning llong)
+let fold self = msg_send ~self ~cmd:(selector "fold") ~typ:(returning llong) |> LLong.to_int
 let imagePDFAnnotations self = msg_send ~self ~cmd:(selector "imagePDFAnnotations") ~typ:(returning bool)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let inputSlot self = msg_send ~self ~cmd:(selector "inputSlot") ~typ:(returning id)
 let jobAccountID self = msg_send ~self ~cmd:(selector "jobAccountID") ~typ:(returning id)
 let jobName self = msg_send ~self ~cmd:(selector "jobName") ~typ:(returning id)
-let laminate self = msg_send ~self ~cmd:(selector "laminate") ~typ:(returning llong)
+let laminate self = msg_send ~self ~cmd:(selector "laminate") ~typ:(returning llong) |> LLong.to_int
 let mediaType self = msg_send ~self ~cmd:(selector "mediaType") ~typ:(returning id)
-let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong)
+let orientation self = msg_send ~self ~cmd:(selector "orientation") ~typ:(returning llong) |> LLong.to_int
 let outputBin self = msg_send ~self ~cmd:(selector "outputBin") ~typ:(returning id)
-let outputType self = msg_send ~self ~cmd:(selector "outputType") ~typ:(returning llong)
-let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong)
+let outputType self = msg_send ~self ~cmd:(selector "outputType") ~typ:(returning llong) |> LLong.to_int
+let pageCount self = msg_send ~self ~cmd:(selector "pageCount") ~typ:(returning llong) |> LLong.to_int
 let pageRanges self = msg_send ~self ~cmd:(selector "pageRanges") ~typ:(returning id)
 let pageStackOrder self = msg_send ~self ~cmd:(selector "pageStackOrder") ~typ:(returning id)
 let pdfAnnotationsAvailable self = msg_send ~self ~cmd:(selector "pdfAnnotationsAvailable") ~typ:(returning bool)
 let pdfPassword self = msg_send ~self ~cmd:(selector "pdfPassword") ~typ:(returning id)
 let printerID self = msg_send ~self ~cmd:(selector "printerID") ~typ:(returning id)
-let punch self = msg_send ~self ~cmd:(selector "punch") ~typ:(returning llong)
-let quality self = msg_send ~self ~cmd:(selector "quality") ~typ:(returning llong)
+let punch self = msg_send ~self ~cmd:(selector "punch") ~typ:(returning llong) |> LLong.to_int
+let quality self = msg_send ~self ~cmd:(selector "quality") ~typ:(returning llong) |> LLong.to_int
 let scaleDownOnly self = msg_send ~self ~cmd:(selector "scaleDownOnly") ~typ:(returning bool)
 let scaleToFit self = msg_send ~self ~cmd:(selector "scaleToFit") ~typ:(returning bool)
 let scaleUp self = msg_send ~self ~cmd:(selector "scaleUp") ~typ:(returning bool)
@@ -69,6 +69,6 @@ let setScaleToFit x self = msg_send ~self ~cmd:(selector "setScaleToFit:") ~typ:
 let setScaleUp x self = msg_send ~self ~cmd:(selector "setScaleUp:") ~typ:(bool @-> returning void) x
 let setStaple x self = msg_send ~self ~cmd:(selector "setStaple:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setTrim x self = msg_send ~self ~cmd:(selector "setTrim:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let staple self = msg_send ~self ~cmd:(selector "staple") ~typ:(returning llong)
-let trim self = msg_send ~self ~cmd:(selector "trim") ~typ:(returning llong)
+let staple self = msg_send ~self ~cmd:(selector "staple") ~typ:(returning llong) |> LLong.to_int
+let trim self = msg_send ~self ~cmd:(selector "trim") ~typ:(returning llong) |> LLong.to_int
 let updateWithDictionary x self = msg_send ~self ~cmd:(selector "updateWithDictionary:") ~typ:(id @-> returning void) x

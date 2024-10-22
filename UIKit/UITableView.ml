@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -42,7 +42,7 @@ let contextualActionForDeletingRowAtIndexPath x self = msg_send ~self ~cmd:(sele
 let currentTouch self = msg_send ~self ~cmd:(selector "currentTouch") ~typ:(returning id)
 let dataSource self = msg_send ~self ~cmd:(selector "dataSource") ~typ:(returning id)
 let dataSourceIndexPathForPresentationIndexPath x self = msg_send ~self ~cmd:(selector "dataSourceIndexPathForPresentationIndexPath:") ~typ:(id @-> returning id) x
-let dataSourceSectionIndexForPresentationSectionIndex x self = msg_send ~self ~cmd:(selector "dataSourceSectionIndexForPresentationSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let dataSourceSectionIndexForPresentationSectionIndex x self = msg_send ~self ~cmd:(selector "dataSourceSectionIndexForPresentationSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
@@ -71,7 +71,7 @@ let fillerRowHeight self = msg_send ~self ~cmd:(selector "fillerRowHeight") ~typ
 let flashScrollIndicators self = msg_send ~self ~cmd:(selector "flashScrollIndicators") ~typ:(returning void)
 let footerViewForSection x self = msg_send ~self ~cmd:(selector "footerViewForSection:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let gestureRecognizerViewForSwipeActionController x self = msg_send ~self ~cmd:(selector "gestureRecognizerViewForSwipeActionController:") ~typ:(id @-> returning id) x
-let globalRowForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "globalRowForRowAtIndexPath:") ~typ:(id @-> returning llong) x
+let globalRowForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "globalRowForRowAtIndexPath:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let hasActiveDrag self = msg_send ~self ~cmd:(selector "hasActiveDrag") ~typ:(returning bool)
 let hasActiveDrop self = msg_send ~self ~cmd:(selector "hasActiveDrop") ~typ:(returning bool)
 let hasUncommittedUpdates self = msg_send ~self ~cmd:(selector "hasUncommittedUpdates") ~typ:(returning bool)
@@ -79,7 +79,7 @@ let headerViewForSection x self = msg_send ~self ~cmd:(selector "headerViewForSe
 let heightForAutohidingTableHeaderView self = msg_send ~self ~cmd:(selector "heightForAutohidingTableHeaderView") ~typ:(returning double)
 let heightForTableHeaderViewHiding self = msg_send ~self ~cmd:(selector "heightForTableHeaderViewHiding") ~typ:(returning double)
 let highlightRowAtIndexPath x ~animated ~scrollPosition self = msg_send ~self ~cmd:(selector "highlightRowAtIndexPath:animated:scrollPosition:") ~typ:(id @-> bool @-> llong @-> returning bool) x animated (LLong.of_int scrollPosition)
-let highlightedGlobalRow self = msg_send ~self ~cmd:(selector "highlightedGlobalRow") ~typ:(returning llong)
+let highlightedGlobalRow self = msg_send ~self ~cmd:(selector "highlightedGlobalRow") ~typ:(returning llong) |> LLong.to_int
 let hitTest x ~forEvent self = msg_send ~self ~cmd:(selector "hitTest:forEvent:") ~typ:(CGPoint.t @-> (ptr void) @-> returning id) x forEvent
 let hitTest' x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent:") ~typ:(CGPoint.t @-> id @-> returning id) x withEvent
 let ignorePinnedTableHeaderUpdates self = msg_send ~self ~cmd:(selector "ignorePinnedTableHeaderUpdates") ~typ:(returning bool)
@@ -105,26 +105,26 @@ let isPrefetchingEnabled self = msg_send ~self ~cmd:(selector "isPrefetchingEnab
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning bool)
 let itemContainerViewForSwipeActionController x self = msg_send ~self ~cmd:(selector "itemContainerViewForSwipeActionController:") ~typ:(id @-> returning id) x
 let keyCommands self = msg_send ~self ~cmd:(selector "keyCommands") ~typ:(returning id)
-let layoutDirectionForSwipeActionController x self = msg_send ~self ~cmd:(selector "layoutDirectionForSwipeActionController:") ~typ:(id @-> returning llong) x
+let layoutDirectionForSwipeActionController x self = msg_send ~self ~cmd:(selector "layoutDirectionForSwipeActionController:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let layoutMarginsFollowReadableWidth self = msg_send ~self ~cmd:(selector "layoutMarginsFollowReadableWidth") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
 let longPress x self = msg_send ~self ~cmd:(selector "longPress:") ~typ:(id @-> returning void) x
 let longPressGestureWithinAutoscrollZone self = msg_send ~self ~cmd:(selector "longPressGestureWithinAutoscrollZone") ~typ:(returning bool)
-let maximumGlobalRowIndex self = msg_send ~self ~cmd:(selector "maximumGlobalRowIndex") ~typ:(returning llong)
-let maximumNumberOfSectionIndexTitlesWithoutTruncation self = msg_send ~self ~cmd:(selector "maximumNumberOfSectionIndexTitlesWithoutTruncation") ~typ:(returning ullong)
+let maximumGlobalRowIndex self = msg_send ~self ~cmd:(selector "maximumGlobalRowIndex") ~typ:(returning llong) |> LLong.to_int
+let maximumNumberOfSectionIndexTitlesWithoutTruncation self = msg_send ~self ~cmd:(selector "maximumNumberOfSectionIndexTitlesWithoutTruncation") ~typ:(returning ullong) |> ULLong.to_int
 let moveRowAtIndexPath x ~toIndexPath self = msg_send ~self ~cmd:(selector "moveRowAtIndexPath:toIndexPath:") ~typ:(id @-> id @-> returning void) x toIndexPath
 let moveSection x ~toSection self = msg_send ~self ~cmd:(selector "moveSection:toSection:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toSection)
 let multiselectCheckmarkColor self = msg_send ~self ~cmd:(selector "multiselectCheckmarkColor") ~typ:(returning id)
 let noteNumberOfRowsChanged self = msg_send ~self ~cmd:(selector "noteNumberOfRowsChanged") ~typ:(returning void)
-let numberOfRowsInSection x self = msg_send ~self ~cmd:(selector "numberOfRowsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong)
+let numberOfRowsInSection x self = msg_send ~self ~cmd:(selector "numberOfRowsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong) |> LLong.to_int
 let overlapsSectionHeaderViews self = msg_send ~self ~cmd:(selector "overlapsSectionHeaderViews") ~typ:(returning bool)
 let performBatchUpdates x ~completion self = msg_send ~self ~cmd:(selector "performBatchUpdates:completion:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x completion
 let performUsingPresentationValues x self = msg_send ~self ~cmd:(selector "performUsingPresentationValues:") ~typ:((ptr void) @-> returning void) x
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
 let prefetchDataSource self = msg_send ~self ~cmd:(selector "prefetchDataSource") ~typ:(returning id)
 let presentationIndexPathForDataSourceIndexPath x self = msg_send ~self ~cmd:(selector "presentationIndexPathForDataSourceIndexPath:") ~typ:(id @-> returning id) x
-let presentationSectionIndexForDataSourceSectionIndex x self = msg_send ~self ~cmd:(selector "presentationSectionIndexForDataSourceSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let presentationSectionIndexForDataSourceSectionIndex x self = msg_send ~self ~cmd:(selector "presentationSectionIndexForDataSourceSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCancelled:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesChanged:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
@@ -153,7 +153,7 @@ let sectionHeaderHeight self = msg_send ~self ~cmd:(selector "sectionHeaderHeigh
 let sectionHeaderTopPadding self = msg_send ~self ~cmd:(selector "sectionHeaderTopPadding") ~typ:(returning double)
 let sectionIndexBackgroundColor self = msg_send ~self ~cmd:(selector "sectionIndexBackgroundColor") ~typ:(returning id)
 let sectionIndexColor self = msg_send ~self ~cmd:(selector "sectionIndexColor") ~typ:(returning id)
-let sectionIndexMinimumDisplayRowCount self = msg_send ~self ~cmd:(selector "sectionIndexMinimumDisplayRowCount") ~typ:(returning llong)
+let sectionIndexMinimumDisplayRowCount self = msg_send ~self ~cmd:(selector "sectionIndexMinimumDisplayRowCount") ~typ:(returning llong) |> LLong.to_int
 let sectionIndexTrackingBackgroundColor self = msg_send ~self ~cmd:(selector "sectionIndexTrackingBackgroundColor") ~typ:(returning id)
 let selectRowAtIndexPath x ~animated ~scrollPosition self = msg_send ~self ~cmd:(selector "selectRowAtIndexPath:animated:scrollPosition:") ~typ:(id @-> bool @-> llong @-> returning void) x animated (LLong.of_int scrollPosition)
 let selectedCell self = msg_send ~self ~cmd:(selector "selectedCell") ~typ:(returning id)
@@ -163,8 +163,8 @@ let separatorBottomShadowColor self = msg_send ~self ~cmd:(selector "separatorBo
 let separatorColor self = msg_send ~self ~cmd:(selector "separatorColor") ~typ:(returning id)
 let separatorEffect self = msg_send ~self ~cmd:(selector "separatorEffect") ~typ:(returning id)
 let separatorInset self = msg_send_stret ~self ~cmd:(selector "separatorInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
-let separatorInsetReference self = msg_send ~self ~cmd:(selector "separatorInsetReference") ~typ:(returning llong)
-let separatorStyle self = msg_send ~self ~cmd:(selector "separatorStyle") ~typ:(returning llong)
+let separatorInsetReference self = msg_send ~self ~cmd:(selector "separatorInsetReference") ~typ:(returning llong) |> LLong.to_int
+let separatorStyle self = msg_send ~self ~cmd:(selector "separatorStyle") ~typ:(returning llong) |> LLong.to_int
 let separatorTopShadowColor self = msg_send ~self ~cmd:(selector "separatorTopShadowColor") ~typ:(returning id)
 let setAllowsFocus x self = msg_send ~self ~cmd:(selector "setAllowsFocus:") ~typ:(bool @-> returning void) x
 let setAllowsFocusDuringEditing x self = msg_send ~self ~cmd:(selector "setAllowsFocusDuringEditing:") ~typ:(bool @-> returning void) x
@@ -240,7 +240,7 @@ let setTableHeaderViewShouldAutoHide x self = msg_send ~self ~cmd:(selector "set
 let setUsesVariableMargins x self = msg_send ~self ~cmd:(selector "setUsesVariableMargins:") ~typ:(bool @-> returning void) x
 let shouldDisplayTopSeparatorForRowAtIndexPath x self = msg_send ~self ~cmd:(selector "shouldDisplayTopSeparatorForRowAtIndexPath:") ~typ:(id @-> returning bool) x
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let swipeActionController x ~backgroundColorForItemAtIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:backgroundColorForItemAtIndexPath:") ~typ:(id @-> id @-> returning id) x backgroundColorForItemAtIndexPath
 let swipeActionController1 x ~didEndSwipeForItemAtIndexPath self = msg_send ~self ~cmd:(selector "swipeActionController:didEndSwipeForItemAtIndexPath:") ~typ:(id @-> id @-> returning void) x didEndSwipeForItemAtIndexPath
 let swipeActionController2 x ~extraInsetsForItemAtIndexPath self = msg_send_stret ~self ~cmd:(selector "swipeActionController:extraInsetsForItemAtIndexPath:") ~typ:(id @-> id @-> returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t x extraInsetsForItemAtIndexPath

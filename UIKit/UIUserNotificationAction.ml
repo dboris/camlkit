@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,14 +12,14 @@ open CoreText
 
 let self = get_class "UIUserNotificationAction"
 
-let activationMode self = msg_send ~self ~cmd:(selector "activationMode") ~typ:(returning ullong)
+let activationMode self = msg_send ~self ~cmd:(selector "activationMode") ~typ:(returning ullong) |> ULLong.to_int
 let activationModeString self = msg_send ~self ~cmd:(selector "activationModeString") ~typ:(returning id)
-let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning ullong)
+let behavior self = msg_send ~self ~cmd:(selector "behavior") ~typ:(returning ullong) |> ULLong.to_int
 let behaviorString self = msg_send ~self ~cmd:(selector "behaviorString") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,8 +13,8 @@ open CoreText
 let self = get_class "UIPrintPageRenderer"
 
 let addPrintFormatter x ~startingAtPageAtIndex self = msg_send ~self ~cmd:(selector "addPrintFormatter:startingAtPageAtIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int startingAtPageAtIndex)
-let currentRenderingQuality self = msg_send ~self ~cmd:(selector "currentRenderingQuality") ~typ:(returning llong)
-let currentRenderingQualityForRequestedRenderingQuality x self = msg_send ~self ~cmd:(selector "currentRenderingQualityForRequestedRenderingQuality:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let currentRenderingQuality self = msg_send ~self ~cmd:(selector "currentRenderingQuality") ~typ:(returning llong) |> LLong.to_int
+let currentRenderingQualityForRequestedRenderingQuality x self = msg_send ~self ~cmd:(selector "currentRenderingQualityForRequestedRenderingQuality:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let drawContentForPageAtIndex x ~inRect self = msg_send ~self ~cmd:(selector "drawContentForPageAtIndex:inRect:") ~typ:(llong @-> CGRect.t @-> returning void) (LLong.of_int x) inRect
 let drawFooterForPageAtIndex x ~inRect self = msg_send ~self ~cmd:(selector "drawFooterForPageAtIndex:inRect:") ~typ:(llong @-> CGRect.t @-> returning void) (LLong.of_int x) inRect
@@ -23,13 +23,13 @@ let drawPageAtIndex x ~inRect self = msg_send ~self ~cmd:(selector "drawPageAtIn
 let drawPrintFormatter x ~forPageAtIndex self = msg_send ~self ~cmd:(selector "drawPrintFormatter:forPageAtIndex:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int forPageAtIndex)
 let footerHeight self = msg_send ~self ~cmd:(selector "footerHeight") ~typ:(returning double)
 let headerHeight self = msg_send ~self ~cmd:(selector "headerHeight") ~typ:(returning double)
-let numberOfPages self = msg_send ~self ~cmd:(selector "numberOfPages") ~typ:(returning llong)
+let numberOfPages self = msg_send ~self ~cmd:(selector "numberOfPages") ~typ:(returning llong) |> LLong.to_int
 let paperRect self = msg_send_stret ~self ~cmd:(selector "paperRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let prepareForDrawingPages x self = msg_send ~self ~cmd:(selector "prepareForDrawingPages:") ~typ:(NSRange.t @-> returning void) x
 let printFormatters self = msg_send ~self ~cmd:(selector "printFormatters") ~typ:(returning id)
 let printFormattersForPageAtIndex x self = msg_send ~self ~cmd:(selector "printFormattersForPageAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let printableRect self = msg_send_stret ~self ~cmd:(selector "printableRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
-let requestedRenderingQuality self = msg_send ~self ~cmd:(selector "requestedRenderingQuality") ~typ:(returning llong)
+let requestedRenderingQuality self = msg_send ~self ~cmd:(selector "requestedRenderingQuality") ~typ:(returning llong) |> LLong.to_int
 let setCurrentRenderingQuality x self = msg_send ~self ~cmd:(selector "setCurrentRenderingQuality:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setFooterHeight x self = msg_send ~self ~cmd:(selector "setFooterHeight:") ~typ:(double @-> returning void) x
 let setHeaderHeight x self = msg_send ~self ~cmd:(selector "setHeaderHeight:") ~typ:(double @-> returning void) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -36,16 +36,16 @@ let focusItemContainer self = msg_send ~self ~cmd:(selector "focusItemContainer"
 let focusItemsInRect x self = msg_send ~self ~cmd:(selector "focusItemsInRect:") ~typ:(CGRect.t @-> returning id) x
 let focusedItem self = msg_send ~self ~cmd:(selector "focusedItem") ~typ:(returning id)
 let focusedView self = msg_send ~self ~cmd:(selector "focusedView") ~typ:(returning id)
-let gamut self = msg_send ~self ~cmd:(selector "gamut") ~typ:(returning llong)
+let gamut self = msg_send ~self ~cmd:(selector "gamut") ~typ:(returning llong) |> LLong.to_int
 let initWithDisplayConfiguration x self = msg_send ~self ~cmd:(selector "initWithDisplayConfiguration:") ~typ:(id @-> returning id) x
 let initWithDisplayConfiguration' x ~forceMainScreen self = msg_send ~self ~cmd:(selector "initWithDisplayConfiguration:forceMainScreen:") ~typ:(id @-> bool @-> returning id) x forceMainScreen
 let isCaptured self = msg_send ~self ~cmd:(selector "isCaptured") ~typ:(returning bool)
-let maximumFramesPerSecond self = msg_send ~self ~cmd:(selector "maximumFramesPerSecond") ~typ:(returning llong)
+let maximumFramesPerSecond self = msg_send ~self ~cmd:(selector "maximumFramesPerSecond") ~typ:(returning llong) |> LLong.to_int
 let mirroredScreen self = msg_send ~self ~cmd:(selector "mirroredScreen") ~typ:(returning id)
 let nativeBounds self = msg_send_stret ~self ~cmd:(selector "nativeBounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let nativeScale self = msg_send ~self ~cmd:(selector "nativeScale") ~typ:(returning double)
 let observeValueForKeyPath x ~ofObject ~change ~context self = msg_send ~self ~cmd:(selector "observeValueForKeyPath:ofObject:change:context:") ~typ:(id @-> id @-> id @-> (ptr void) @-> returning void) x ofObject change context
-let overscanCompensation self = msg_send ~self ~cmd:(selector "overscanCompensation") ~typ:(returning llong)
+let overscanCompensation self = msg_send ~self ~cmd:(selector "overscanCompensation") ~typ:(returning llong) |> LLong.to_int
 let overscanCompensationInsets self = msg_send_stret ~self ~cmd:(selector "overscanCompensationInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let parentFocusEnvironment self = msg_send ~self ~cmd:(selector "parentFocusEnvironment") ~typ:(returning id)
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)

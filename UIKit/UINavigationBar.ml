@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,7 +14,7 @@ let self = get_class "UINavigationBar"
 
 let addConstraint x self = msg_send ~self ~cmd:(selector "addConstraint:") ~typ:(id @-> returning void) x
 let alwaysUseDefaultMetrics self = msg_send ~self ~cmd:(selector "alwaysUseDefaultMetrics") ~typ:(returning bool)
-let animationDisabledCount self = msg_send ~self ~cmd:(selector "animationDisabledCount") ~typ:(returning llong)
+let animationDisabledCount self = msg_send ~self ~cmd:(selector "animationDisabledCount") ~typ:(returning llong) |> LLong.to_int
 let animationFactory self = msg_send ~self ~cmd:(selector "animationFactory") ~typ:(returning id)
 let availableTitleArea self = msg_send_stret ~self ~cmd:(selector "availableTitleArea") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let backButtonViewAtPoint x self = msg_send ~self ~cmd:(selector "backButtonViewAtPoint:") ~typ:(CGPoint.t @-> returning id) x
@@ -24,8 +24,8 @@ let backItem self = msg_send ~self ~cmd:(selector "backItem") ~typ:(returning id
 let backgroundEffects self = msg_send ~self ~cmd:(selector "backgroundEffects") ~typ:(returning id)
 let backgroundImageForBarMetrics x self = msg_send ~self ~cmd:(selector "backgroundImageForBarMetrics:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let backgroundImageForBarPosition x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForBarPosition:barMetrics:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int barMetrics)
-let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong)
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong) |> LLong.to_int
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let barTintColor self = msg_send ~self ~cmd:(selector "barTintColor") ~typ:(returning id)
 let buttonItemShadowColor self = msg_send ~self ~cmd:(selector "buttonItemShadowColor") ~typ:(returning id)
 let buttonItemTextColor self = msg_send ~self ~cmd:(selector "buttonItemTextColor") ~typ:(returning id)
@@ -33,7 +33,7 @@ let compactAppearance self = msg_send ~self ~cmd:(selector "compactAppearance") 
 let compactScrollEdgeAppearance self = msg_send ~self ~cmd:(selector "compactScrollEdgeAppearance") ~typ:(returning id)
 let createButtonWithContents x ~width ~barStyle ~buttonStyle ~isRight self = msg_send ~self ~cmd:(selector "createButtonWithContents:width:barStyle:buttonStyle:isRight:") ~typ:(id @-> double @-> llong @-> int @-> bool @-> returning id) x width (LLong.of_int barStyle) buttonStyle isRight
 let currentBackButton self = msg_send ~self ~cmd:(selector "currentBackButton") ~typ:(returning id)
-let currentContentSize self = msg_send ~self ~cmd:(selector "currentContentSize") ~typ:(returning llong)
+let currentContentSize self = msg_send ~self ~cmd:(selector "currentContentSize") ~typ:(returning llong) |> LLong.to_int
 let currentLeftView self = msg_send ~self ~cmd:(selector "currentLeftView") ~typ:(returning id)
 let currentRightView self = msg_send ~self ~cmd:(selector "currentRightView") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
@@ -48,7 +48,7 @@ let didMoveToWindow self = msg_send ~self ~cmd:(selector "didMoveToWindow") ~typ
 let disableAnimation self = msg_send ~self ~cmd:(selector "disableAnimation") ~typ:(returning void)
 let drawBackButtonBackgroundInRect x ~withStyle ~pressed self = msg_send ~self ~cmd:(selector "drawBackButtonBackgroundInRect:withStyle:pressed:") ~typ:(CGRect.t @-> llong @-> bool @-> returning void) x (LLong.of_int withStyle) pressed
 let drawBackgroundInRect x ~withStyle self = msg_send ~self ~cmd:(selector "drawBackgroundInRect:withStyle:") ~typ:(CGRect.t @-> llong @-> returning void) x (LLong.of_int withStyle)
-let effectiveInterfaceOrientation self = msg_send ~self ~cmd:(selector "effectiveInterfaceOrientation") ~typ:(returning llong)
+let effectiveInterfaceOrientation self = msg_send ~self ~cmd:(selector "effectiveInterfaceOrientation") ~typ:(returning llong) |> LLong.to_int
 let enableAnimation self = msg_send ~self ~cmd:(selector "enableAnimation") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let forceFullHeightInLandscape self = msg_send ~self ~cmd:(selector "forceFullHeightInLandscape") ~typ:(returning bool)
@@ -85,7 +85,7 @@ let pushNavigationItem x self = msg_send ~self ~cmd:(selector "pushNavigationIte
 let pushNavigationItem' x ~animated self = msg_send ~self ~cmd:(selector "pushNavigationItem:animated:") ~typ:(id @-> bool @-> returning void) x animated
 let refreshControlHost self = msg_send ~self ~cmd:(selector "refreshControlHost") ~typ:(returning id)
 let removeConstraint x self = msg_send ~self ~cmd:(selector "removeConstraint:") ~typ:(id @-> returning void) x
-let requestedContentSize self = msg_send ~self ~cmd:(selector "requestedContentSize") ~typ:(returning llong)
+let requestedContentSize self = msg_send ~self ~cmd:(selector "requestedContentSize") ~typ:(returning llong) |> LLong.to_int
 let safeAreaInsetsDidChange self = msg_send ~self ~cmd:(selector "safeAreaInsetsDidChange") ~typ:(returning void)
 let scrollEdgeAppearance self = msg_send ~self ~cmd:(selector "scrollEdgeAppearance") ~typ:(returning id)
 let setBackIndicatorImage x self = msg_send ~self ~cmd:(selector "setBackIndicatorImage:") ~typ:(id @-> returning void) x

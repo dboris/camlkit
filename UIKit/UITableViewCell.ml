@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let accessoryAction self = msg_send ~self ~cmd:(selector "accessoryAction") ~typ
 let accessoryActionPreviewingSegueTemplateStorage self = msg_send ~self ~cmd:(selector "accessoryActionPreviewingSegueTemplateStorage") ~typ:(returning id)
 let accessoryActionSegueTemplate self = msg_send ~self ~cmd:(selector "accessoryActionSegueTemplate") ~typ:(returning id)
 let accessoryRectForBounds x self = msg_send_stret ~self ~cmd:(selector "accessoryRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
-let accessoryType self = msg_send ~self ~cmd:(selector "accessoryType") ~typ:(returning llong)
+let accessoryType self = msg_send ~self ~cmd:(selector "accessoryType") ~typ:(returning llong) |> LLong.to_int
 let accessoryView self = msg_send ~self ~cmd:(selector "accessoryView") ~typ:(returning id)
 let automaticallyUpdatesBackgroundConfiguration self = msg_send ~self ~cmd:(selector "automaticallyUpdatesBackgroundConfiguration") ~typ:(returning bool)
 let automaticallyUpdatesContentConfiguration self = msg_send ~self ~cmd:(selector "automaticallyUpdatesContentConfiguration") ~typ:(returning bool)
@@ -37,7 +37,7 @@ let contentRectForBounds x self = msg_send_stret ~self ~cmd:(selector "contentRe
 let contentRectForState x self = msg_send_stret ~self ~cmd:(selector "contentRectForState:") ~typ:(ullong @-> returning CGRect.t) ~return_type:CGRect.t (ULLong.of_int x)
 let contentView self = msg_send ~self ~cmd:(selector "contentView") ~typ:(returning id)
 let copy x self = msg_send ~self ~cmd:(selector "copy:") ~typ:(id @-> returning void) x
-let currentStateMask self = msg_send ~self ~cmd:(selector "currentStateMask") ~typ:(returning ullong)
+let currentStateMask self = msg_send ~self ~cmd:(selector "currentStateMask") ~typ:(returning ullong) |> ULLong.to_int
 let cut x self = msg_send ~self ~cmd:(selector "cut:") ~typ:(id @-> returning void) x
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defaultContentConfiguration self = msg_send ~self ~cmd:(selector "defaultContentConfiguration") ~typ:(returning id)
@@ -50,13 +50,13 @@ let drawingEnabled self = msg_send ~self ~cmd:(selector "drawingEnabled") ~typ:(
 let editAction self = msg_send ~self ~cmd:(selector "editAction") ~typ:(returning _SEL)
 let editControlWasClicked x self = msg_send ~self ~cmd:(selector "editControlWasClicked:") ~typ:(id @-> returning void) x
 let editableTextField self = msg_send ~self ~cmd:(selector "editableTextField") ~typ:(returning id)
-let editingAccessoryType self = msg_send ~self ~cmd:(selector "editingAccessoryType") ~typ:(returning llong)
+let editingAccessoryType self = msg_send ~self ~cmd:(selector "editingAccessoryType") ~typ:(returning llong) |> LLong.to_int
 let editingAccessoryView self = msg_send ~self ~cmd:(selector "editingAccessoryView") ~typ:(returning id)
 let editingData x self = msg_send ~self ~cmd:(selector "editingData:") ~typ:(bool @-> returning id) x
-let editingStyle self = msg_send ~self ~cmd:(selector "editingStyle") ~typ:(returning llong)
+let editingStyle self = msg_send ~self ~cmd:(selector "editingStyle") ~typ:(returning llong) |> LLong.to_int
 let effectiveSeparatorHeight self = msg_send ~self ~cmd:(selector "effectiveSeparatorHeight") ~typ:(returning double)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let focusStyle self = msg_send ~self ~cmd:(selector "focusStyle") ~typ:(returning llong)
+let focusStyle self = msg_send ~self ~cmd:(selector "focusStyle") ~typ:(returning llong) |> LLong.to_int
 let font self = msg_send ~self ~cmd:(selector "font") ~typ:(returning id)
 let frame self = msg_send_stret ~self ~cmd:(selector "frame") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let hidesAccessoryWhenEditing self = msg_send ~self ~cmd:(selector "hidesAccessoryWhenEditing") ~typ:(returning bool)
@@ -64,7 +64,7 @@ let hitTest x ~withEvent self = msg_send ~self ~cmd:(selector "hitTest:withEvent
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageRectForContentRect x self = msg_send_stret ~self ~cmd:(selector "imageRectForContentRect:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let imageView self = msg_send ~self ~cmd:(selector "imageView") ~typ:(returning id)
-let indentationLevel self = msg_send ~self ~cmd:(selector "indentationLevel") ~typ:(returning llong)
+let indentationLevel self = msg_send ~self ~cmd:(selector "indentationLevel") ~typ:(returning llong) |> LLong.to_int
 let indentationWidth self = msg_send ~self ~cmd:(selector "indentationWidth") ~typ:(returning double)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
@@ -78,7 +78,7 @@ let isHighlighted self = msg_send ~self ~cmd:(selector "isHighlighted") ~typ:(re
 let isSelected self = msg_send ~self ~cmd:(selector "isSelected") ~typ:(returning bool)
 let layoutManager self = msg_send ~self ~cmd:(selector "layoutManager") ~typ:(returning id)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong)
+let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong) |> LLong.to_int
 let multipleSelectionBackgroundView self = msg_send ~self ~cmd:(selector "multipleSelectionBackgroundView") ~typ:(returning id)
 let paste x self = msg_send ~self ~cmd:(selector "paste:") ~typ:(id @-> returning void) x
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
@@ -97,12 +97,12 @@ let selectedTextColor self = msg_send ~self ~cmd:(selector "selectedTextColor") 
 let selectionFadeDuration self = msg_send ~self ~cmd:(selector "selectionFadeDuration") ~typ:(returning double)
 let selectionPercent self = msg_send ~self ~cmd:(selector "selectionPercent") ~typ:(returning float)
 let selectionSegueTemplate self = msg_send ~self ~cmd:(selector "selectionSegueTemplate") ~typ:(returning id)
-let selectionStyle self = msg_send ~self ~cmd:(selector "selectionStyle") ~typ:(returning llong)
+let selectionStyle self = msg_send ~self ~cmd:(selector "selectionStyle") ~typ:(returning llong) |> LLong.to_int
 let selectionTintColor self = msg_send ~self ~cmd:(selector "selectionTintColor") ~typ:(returning id)
 let sendSubviewToBack x self = msg_send ~self ~cmd:(selector "sendSubviewToBack:") ~typ:(id @-> returning void) x
 let separatorColor self = msg_send ~self ~cmd:(selector "separatorColor") ~typ:(returning id)
 let separatorInset self = msg_send_stret ~self ~cmd:(selector "separatorInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
-let separatorStyle self = msg_send ~self ~cmd:(selector "separatorStyle") ~typ:(returning llong)
+let separatorStyle self = msg_send ~self ~cmd:(selector "separatorStyle") ~typ:(returning llong) |> LLong.to_int
 let setAccessoryAction x self = msg_send ~self ~cmd:(selector "setAccessoryAction:") ~typ:(_SEL @-> returning void) x
 let setAccessoryActionPreviewingSegueTemplateStorage x self = msg_send ~self ~cmd:(selector "setAccessoryActionPreviewingSegueTemplateStorage:") ~typ:(id @-> returning void) x
 let setAccessoryActionSegueTemplate x self = msg_send ~self ~cmd:(selector "setAccessoryActionSegueTemplate:") ~typ:(id @-> returning void) x
@@ -178,12 +178,12 @@ let showSelectedBackgroundView x ~animated self = msg_send ~self ~cmd:(selector 
 let showingDeleteConfirmation self = msg_send ~self ~cmd:(selector "showingDeleteConfirmation") ~typ:(returning bool)
 let showsReorderControl self = msg_send ~self ~cmd:(selector "showsReorderControl") ~typ:(returning bool)
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let systemLayoutSizeFittingSize x ~withHorizontalFittingPriority ~verticalFittingPriority self = msg_send_stret ~self ~cmd:(selector "systemLayoutSizeFittingSize:withHorizontalFittingPriority:verticalFittingPriority:") ~typ:(CGSize.t @-> float @-> float @-> returning CGSize.t) ~return_type:CGSize.t x withHorizontalFittingPriority verticalFittingPriority
-let tableViewStyle self = msg_send ~self ~cmd:(selector "tableViewStyle") ~typ:(returning llong)
+let tableViewStyle self = msg_send ~self ~cmd:(selector "tableViewStyle") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning id)
-let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong)
+let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong) |> LLong.to_int
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning id)
 let textFieldDidBecomeFirstResponder x self = msg_send ~self ~cmd:(selector "textFieldDidBecomeFirstResponder:") ~typ:(id @-> returning void) x
 let textFieldOffset self = msg_send ~self ~cmd:(selector "textFieldOffset") ~typ:(returning double)

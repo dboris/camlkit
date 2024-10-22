@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -23,9 +23,9 @@ let initWithNibName x ~bundle self = msg_send ~self ~cmd:(selector "initWithNibN
 let initWithTransitionStyle x ~navigationOrientation ~options self = msg_send ~self ~cmd:(selector "initWithTransitionStyle:navigationOrientation:options:") ~typ:(llong @-> llong @-> id @-> returning id) (LLong.of_int x) (LLong.of_int navigationOrientation) options
 let isDoubleSided self = msg_send ~self ~cmd:(selector "isDoubleSided") ~typ:(returning bool)
 let loadView self = msg_send ~self ~cmd:(selector "loadView") ~typ:(returning void)
-let navigationOrientation self = msg_send ~self ~cmd:(selector "navigationOrientation") ~typ:(returning llong)
+let navigationOrientation self = msg_send ~self ~cmd:(selector "navigationOrientation") ~typ:(returning llong) |> LLong.to_int
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
-let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong)
+let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong) |> LLong.to_int
 let queuingScrollView x ~attemptToPageInDirection self = msg_send ~self ~cmd:(selector "queuingScrollView:attemptToPageInDirection:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int attemptToPageInDirection)
 let queuingScrollView1 x ~didBailoutOfScrollAndRevealedView self = msg_send ~self ~cmd:(selector "queuingScrollView:didBailoutOfScrollAndRevealedView:") ~typ:(id @-> id @-> returning void) x didBailoutOfScrollAndRevealedView
 let queuingScrollView2 x ~viewAfterView self = msg_send ~self ~cmd:(selector "queuingScrollView:viewAfterView:") ~typ:(id @-> id @-> returning id) x viewAfterView
@@ -43,9 +43,9 @@ let setViewControllers x ~direction ~animated ~completion self = msg_send ~self 
 let shouldAutomaticallyForwardAppearanceMethods self = msg_send ~self ~cmd:(selector "shouldAutomaticallyForwardAppearanceMethods") ~typ:(returning bool)
 let shouldAutomaticallyForwardRotationMethods self = msg_send ~self ~cmd:(selector "shouldAutomaticallyForwardRotationMethods") ~typ:(returning bool)
 let shouldAutorotateToInterfaceOrientation x self = msg_send ~self ~cmd:(selector "shouldAutorotateToInterfaceOrientation:") ~typ:(llong @-> returning bool) (LLong.of_int x)
-let spineLocation self = msg_send ~self ~cmd:(selector "spineLocation") ~typ:(returning llong)
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
-let transitionStyle self = msg_send ~self ~cmd:(selector "transitionStyle") ~typ:(returning llong)
+let spineLocation self = msg_send ~self ~cmd:(selector "spineLocation") ~typ:(returning llong) |> LLong.to_int
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
+let transitionStyle self = msg_send ~self ~cmd:(selector "transitionStyle") ~typ:(returning llong) |> LLong.to_int
 let viewControllers self = msg_send ~self ~cmd:(selector "viewControllers") ~typ:(returning id)
 let viewDidAppear x self = msg_send ~self ~cmd:(selector "viewDidAppear:") ~typ:(bool @-> returning void) x
 let viewDidDisappear x self = msg_send ~self ~cmd:(selector "viewDidDisappear:") ~typ:(bool @-> returning void) x

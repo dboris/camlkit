@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,7 +12,7 @@ open CoreText
 
 let self = get_class "UITextChecker"
 
-let adjustOffsetToNextWordBoundaryInString x ~startingAt self = msg_send ~self ~cmd:(selector "adjustOffsetToNextWordBoundaryInString:startingAt:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int startingAt)
+let adjustOffsetToNextWordBoundaryInString x ~startingAt self = msg_send ~self ~cmd:(selector "adjustOffsetToNextWordBoundaryInString:startingAt:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int startingAt) |> LLong.to_int
 let alternativesForPinyinInputString x self = msg_send ~self ~cmd:(selector "alternativesForPinyinInputString:") ~typ:(id @-> returning id) x
 let canChangeCaseOfFirstLetterInString x ~toUpperCase ~language self = msg_send ~self ~cmd:(selector "canChangeCaseOfFirstLetterInString:toUpperCase:language:") ~typ:(id @-> bool @-> id @-> returning bool) x toUpperCase language
 let checkGrammarOfString x ~startingAt ~language ~wrap ~details self = msg_send_stret ~self ~cmd:(selector "checkGrammarOfString:startingAt:language:wrap:details:") ~typ:(id @-> llong @-> id @-> bool @-> (ptr id) @-> returning NSRange.t) ~return_type:NSRange.t x (LLong.of_int startingAt) language wrap details

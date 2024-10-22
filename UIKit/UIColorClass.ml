@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -34,10 +34,12 @@ let blueColor self = msg_send ~self ~cmd:(selector "blueColor") ~typ:(returning 
 let brownColor self = msg_send ~self ~cmd:(selector "brownColor") ~typ:(returning id)
 let classFallbacksForKeyedArchiver self = msg_send ~self ~cmd:(selector "classFallbacksForKeyedArchiver") ~typ:(returning id)
 let clearColor self = msg_send ~self ~cmd:(selector "clearColor") ~typ:(returning id)
+let color x self = msg_send ~self ~cmd:(selector "color::::") ~typ:(double @-> double @-> double @-> double @-> returning id) x
 let colorNamed x self = msg_send ~self ~cmd:(selector "colorNamed:") ~typ:(id @-> returning id) x
 let colorNamed' x ~inBundle ~compatibleWithTraitCollection self = msg_send ~self ~cmd:(selector "colorNamed:inBundle:compatibleWithTraitCollection:") ~typ:(id @-> id @-> id @-> returning id) x inBundle compatibleWithTraitCollection
 let colorWithCGColor x self = msg_send ~self ~cmd:(selector "colorWithCGColor:") ~typ:((ptr CGColor.t) @-> returning id) x
 let colorWithCIColor x self = msg_send ~self ~cmd:(selector "colorWithCIColor:") ~typ:(id @-> returning id) x
+let colorWithComponentRGBA x self = msg_send ~self ~cmd:(selector "colorWithComponentRGBA:") ~typ:(void @-> returning id) x
 let colorWithDisplayP3Red x ~green ~blue ~alpha self = msg_send ~self ~cmd:(selector "colorWithDisplayP3Red:green:blue:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning id) x green blue alpha
 let colorWithDynamicProvider x self = msg_send ~self ~cmd:(selector "colorWithDynamicProvider:") ~typ:((ptr void) @-> returning id) x
 let colorWithHue x ~saturation ~brightness ~alpha self = msg_send ~self ~cmd:(selector "colorWithHue:saturation:brightness:alpha:") ~typ:(double @-> double @-> double @-> double @-> returning id) x saturation brightness alpha

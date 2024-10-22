@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,9 +13,9 @@ open CoreText
 let self = get_class "UIPageControl"
 
 let allowsContinuousInteraction self = msg_send ~self ~cmd:(selector "allowsContinuousInteraction") ~typ:(returning bool)
-let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong)
+let backgroundStyle self = msg_send ~self ~cmd:(selector "backgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning bool)
-let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong)
+let currentPage self = msg_send ~self ~cmd:(selector "currentPage") ~typ:(returning llong) |> LLong.to_int
 let currentPageIndicatorTintColor self = msg_send ~self ~cmd:(selector "currentPageIndicatorTintColor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let defersCurrentPageDisplay self = msg_send ~self ~cmd:(selector "defersCurrentPageDisplay") ~typ:(returning bool)
@@ -26,14 +26,14 @@ let hidesForSinglePage self = msg_send ~self ~cmd:(selector "hidesForSinglePage"
 let indicatorImageForPage x self = msg_send ~self ~cmd:(selector "indicatorImageForPage:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
-let interactionState self = msg_send ~self ~cmd:(selector "interactionState") ~typ:(returning llong)
+let interactionState self = msg_send ~self ~cmd:(selector "interactionState") ~typ:(returning llong) |> LLong.to_int
 let intrinsicContentSize self = msg_send_stret ~self ~cmd:(selector "intrinsicContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let isElementAccessibilityExposedToInterfaceBuilder self = msg_send ~self ~cmd:(selector "isElementAccessibilityExposedToInterfaceBuilder") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let numberOfPages self = msg_send ~self ~cmd:(selector "numberOfPages") ~typ:(returning llong)
+let numberOfPages self = msg_send ~self ~cmd:(selector "numberOfPages") ~typ:(returning llong) |> LLong.to_int
 let pageIndicatorTintColor self = msg_send ~self ~cmd:(selector "pageIndicatorTintColor") ~typ:(returning id)
 let preferredIndicatorImage self = msg_send ~self ~cmd:(selector "preferredIndicatorImage") ~typ:(returning id)
-let previousPage self = msg_send ~self ~cmd:(selector "previousPage") ~typ:(returning llong)
+let previousPage self = msg_send ~self ~cmd:(selector "previousPage") ~typ:(returning llong) |> LLong.to_int
 let setAllowsContinuousInteraction x self = msg_send ~self ~cmd:(selector "setAllowsContinuousInteraction:") ~typ:(bool @-> returning void) x
 let setBackgroundStyle x self = msg_send ~self ~cmd:(selector "setBackgroundStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let setCurrentPage x self = msg_send ~self ~cmd:(selector "setCurrentPage:") ~typ:(llong @-> returning void) (LLong.of_int x)

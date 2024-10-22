@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -21,7 +21,7 @@ let initWithItems x self = msg_send ~self ~cmd:(selector "initWithItems:") ~typ:
 let initWithItems' x ~mode self = msg_send ~self ~cmd:(selector "initWithItems:mode:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int mode)
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)
 let magnitude self = msg_send ~self ~cmd:(selector "magnitude") ~typ:(returning double)
-let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong)
+let mode self = msg_send ~self ~cmd:(selector "mode") ~typ:(returning llong) |> LLong.to_int
 let pushDirection self = msg_send_stret ~self ~cmd:(selector "pushDirection") ~typ:(returning CGVector.t) ~return_type:CGVector.t
 let removeItem x self = msg_send ~self ~cmd:(selector "removeItem:") ~typ:(id @-> returning void) x
 let setActive x self = msg_send ~self ~cmd:(selector "setActive:") ~typ:(bool @-> returning void) x

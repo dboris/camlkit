@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -24,7 +24,7 @@ let differenceDueToRecentChanges self = msg_send ~self ~cmd:(selector "differenc
 let differenceSincePreservingPreviousVersion self = msg_send ~self ~cmd:(selector "differenceSincePreservingPreviousVersion") ~typ:(returning id)
 let differenceSinceSaving self = msg_send ~self ~cmd:(selector "differenceSinceSaving") ~typ:(returning id)
 let disableEditing self = msg_send ~self ~cmd:(selector "disableEditing") ~typ:(returning void)
-let documentState self = msg_send ~self ~cmd:(selector "documentState") ~typ:(returning ullong)
+let documentState self = msg_send ~self ~cmd:(selector "documentState") ~typ:(returning ullong) |> ULLong.to_int
 let enableEditing self = msg_send ~self ~cmd:(selector "enableEditing") ~typ:(returning void)
 let fileAttributesToWriteToURL x ~forSaveOperation ~error self = msg_send ~self ~cmd:(selector "fileAttributesToWriteToURL:forSaveOperation:error:") ~typ:(id @-> llong @-> (ptr id) @-> returning id) x (LLong.of_int forSaveOperation) error
 let fileModificationDate self = msg_send ~self ~cmd:(selector "fileModificationDate") ~typ:(returning id)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,8 +12,8 @@ open CoreText
 
 let self = get_class "UIPresentationController"
 
-let adaptivePresentationStyle self = msg_send ~self ~cmd:(selector "adaptivePresentationStyle") ~typ:(returning llong)
-let adaptivePresentationStyleForTraitCollection x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForTraitCollection:") ~typ:(id @-> returning llong) x
+let adaptivePresentationStyle self = msg_send ~self ~cmd:(selector "adaptivePresentationStyle") ~typ:(returning llong) |> LLong.to_int
+let adaptivePresentationStyleForTraitCollection x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForTraitCollection:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let barButtonItem self = msg_send ~self ~cmd:(selector "barButtonItem") ~typ:(returning id)
 let completeCurrentTransitionImmediately self = msg_send ~self ~cmd:(selector "completeCurrentTransitionImmediately") ~typ:(returning void)
 let containerView self = msg_send ~self ~cmd:(selector "containerView") ~typ:(returning id)
@@ -37,7 +37,7 @@ let preferredContentSize self = msg_send_stret ~self ~cmd:(selector "preferredCo
 let preferredContentSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "preferredContentSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
-let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong)
+let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong) |> LLong.to_int
 let presentationTransitionDidEnd x self = msg_send ~self ~cmd:(selector "presentationTransitionDidEnd:") ~typ:(bool @-> returning void) x
 let presentationTransitionWillBegin self = msg_send ~self ~cmd:(selector "presentationTransitionWillBegin") ~typ:(returning void)
 let presented self = msg_send ~self ~cmd:(selector "presented") ~typ:(returning bool)
@@ -61,7 +61,7 @@ let shouldUpdateFocusInContext x self = msg_send ~self ~cmd:(selector "shouldUpd
 let sizeForChildContentContainer x ~withParentContainerSize self = msg_send_stret ~self ~cmd:(selector "sizeForChildContentContainer:withParentContainerSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x withParentContainerSize
 let sourceRect self = msg_send_stret ~self ~cmd:(selector "sourceRect") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let sourceView self = msg_send ~self ~cmd:(selector "sourceView") ~typ:(returning id)
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let systemLayoutFittingSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "systemLayoutFittingSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
 let traitCollection self = msg_send ~self ~cmd:(selector "traitCollection") ~typ:(returning id)
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning void) x

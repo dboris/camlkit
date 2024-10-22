@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let actionsForTarget x ~forControlEvent self = msg_send ~self ~cmd:(selector "ac
 let addAction x ~forControlEvents self = msg_send ~self ~cmd:(selector "addAction:forControlEvents:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forControlEvents)
 let addTarget x ~action ~forControlEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forControlEvents:") ~typ:(id @-> _SEL @-> ullong @-> returning void) x action (ULLong.of_int forControlEvents)
 let addTarget' x ~action ~forEvents self = msg_send ~self ~cmd:(selector "addTarget:action:forEvents:") ~typ:(id @-> _SEL @-> int @-> returning void) x action forEvents
-let allControlEvents self = msg_send ~self ~cmd:(selector "allControlEvents") ~typ:(returning ullong)
+let allControlEvents self = msg_send ~self ~cmd:(selector "allControlEvents") ~typ:(returning ullong) |> ULLong.to_int
 let allTargets self = msg_send ~self ~cmd:(selector "allTargets") ~typ:(returning id)
 let beginTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "beginTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
 let canBecomeFirstResponder self = msg_send ~self ~cmd:(selector "canBecomeFirstResponder") ~typ:(returning bool)
@@ -24,8 +24,8 @@ let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~t
 let cancelMouseTracking self = msg_send ~self ~cmd:(selector "cancelMouseTracking") ~typ:(returning bool)
 let cancelTouchTracking self = msg_send ~self ~cmd:(selector "cancelTouchTracking") ~typ:(returning bool)
 let cancelTrackingWithEvent x self = msg_send ~self ~cmd:(selector "cancelTrackingWithEvent:") ~typ:(id @-> returning void) x
-let contentHorizontalAlignment self = msg_send ~self ~cmd:(selector "contentHorizontalAlignment") ~typ:(returning llong)
-let contentVerticalAlignment self = msg_send ~self ~cmd:(selector "contentVerticalAlignment") ~typ:(returning llong)
+let contentHorizontalAlignment self = msg_send ~self ~cmd:(selector "contentHorizontalAlignment") ~typ:(returning llong) |> LLong.to_int
+let contentVerticalAlignment self = msg_send ~self ~cmd:(selector "contentVerticalAlignment") ~typ:(returning llong) |> LLong.to_int
 let contextMenuInteraction self = msg_send ~self ~cmd:(selector "contextMenuInteraction") ~typ:(returning id)
 let contextMenuInteraction1 x ~configurationForMenuAtLocation self = msg_send ~self ~cmd:(selector "contextMenuInteraction:configurationForMenuAtLocation:") ~typ:(id @-> CGPoint.t @-> returning id) x configurationForMenuAtLocation
 let contextMenuInteraction2 x ~previewForDismissingMenuWithConfiguration self = msg_send ~self ~cmd:(selector "contextMenuInteraction:previewForDismissingMenuWithConfiguration:") ~typ:(id @-> id @-> returning id) x previewForDismissingMenuWithConfiguration
@@ -35,8 +35,8 @@ let contextMenuInteraction5 x ~willEndForConfiguration ~animator self = msg_send
 let contextMenuIsPrimary self = msg_send ~self ~cmd:(selector "contextMenuIsPrimary") ~typ:(returning bool)
 let continueTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "continueTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning bool) x withEvent
 let cursorInteraction self = msg_send ~self ~cmd:(selector "cursorInteraction") ~typ:(returning id)
-let effectiveContentHorizontalAlignment self = msg_send ~self ~cmd:(selector "effectiveContentHorizontalAlignment") ~typ:(returning llong)
-let effectiveContentVerticalAlignment self = msg_send ~self ~cmd:(selector "effectiveContentVerticalAlignment") ~typ:(returning llong)
+let effectiveContentHorizontalAlignment self = msg_send ~self ~cmd:(selector "effectiveContentHorizontalAlignment") ~typ:(returning llong) |> LLong.to_int
+let effectiveContentVerticalAlignment self = msg_send ~self ~cmd:(selector "effectiveContentVerticalAlignment") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let endTrackingWithTouch x ~withEvent self = msg_send ~self ~cmd:(selector "endTrackingWithTouch:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let enumerateEventHandlers x self = msg_send ~self ~cmd:(selector "enumerateEventHandlers:") ~typ:((ptr void) @-> returning void) x
@@ -81,7 +81,7 @@ let setToolTip x self = msg_send ~self ~cmd:(selector "setToolTip:") ~typ:(id @-
 let setTracking x self = msg_send ~self ~cmd:(selector "setTracking:") ~typ:(bool @-> returning void) x
 let shouldTrack self = msg_send ~self ~cmd:(selector "shouldTrack") ~typ:(returning bool)
 let showsMenuAsPrimaryAction self = msg_send ~self ~cmd:(selector "showsMenuAsPrimaryAction") ~typ:(returning bool)
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning ullong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning ullong) |> ULLong.to_int
 let toolTip self = msg_send ~self ~cmd:(selector "toolTip") ~typ:(returning id)
 let toolTipInteraction self = msg_send ~self ~cmd:(selector "toolTipInteraction") ~typ:(returning id)
 let touchDragged self = msg_send ~self ~cmd:(selector "touchDragged") ~typ:(returning bool)

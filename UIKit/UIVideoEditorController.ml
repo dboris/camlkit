@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -21,7 +21,7 @@ let setVideoPath x self = msg_send ~self ~cmd:(selector "setVideoPath:") ~typ:(i
 let setVideoQuality x self = msg_send ~self ~cmd:(selector "setVideoQuality:") ~typ:(llong @-> returning void) (LLong.of_int x)
 let videoMaximumDuration self = msg_send ~self ~cmd:(selector "videoMaximumDuration") ~typ:(returning double)
 let videoPath self = msg_send ~self ~cmd:(selector "videoPath") ~typ:(returning id)
-let videoQuality self = msg_send ~self ~cmd:(selector "videoQuality") ~typ:(returning llong)
+let videoQuality self = msg_send ~self ~cmd:(selector "videoQuality") ~typ:(returning llong) |> LLong.to_int
 let viewDidDisappear x self = msg_send ~self ~cmd:(selector "viewDidDisappear:") ~typ:(bool @-> returning void) x
 let viewWillAppear x self = msg_send ~self ~cmd:(selector "viewWillAppear:") ~typ:(bool @-> returning void) x
 let viewWillDisappear x self = msg_send ~self ~cmd:(selector "viewWillDisappear:") ~typ:(bool @-> returning void) x

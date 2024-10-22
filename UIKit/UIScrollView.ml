@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -37,7 +37,7 @@ let cancelTouchTracking self = msg_send ~self ~cmd:(selector "cancelTouchTrackin
 let contentAreaRectForScrollerImpPair x self = msg_send_stret ~self ~cmd:(selector "contentAreaRectForScrollerImpPair:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let contentFrameForView x self = msg_send_stret ~self ~cmd:(selector "contentFrameForView:") ~typ:(id @-> returning CGRect.t) ~return_type:CGRect.t x
 let contentInset self = msg_send_stret ~self ~cmd:(selector "contentInset") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
-let contentInsetAdjustmentBehavior self = msg_send ~self ~cmd:(selector "contentInsetAdjustmentBehavior") ~typ:(returning llong)
+let contentInsetAdjustmentBehavior self = msg_send ~self ~cmd:(selector "contentInsetAdjustmentBehavior") ~typ:(returning llong) |> LLong.to_int
 let contentLayoutGuide self = msg_send ~self ~cmd:(selector "contentLayoutGuide") ~typ:(returning id)
 let contentOffset self = msg_send_stret ~self ~cmd:(selector "contentOffset") ~typ:(returning CGPoint.t) ~return_type:CGPoint.t
 let contentSize self = msg_send_stret ~self ~cmd:(selector "contentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
@@ -63,8 +63,8 @@ let horizontalScrollDecelerationFactor self = msg_send ~self ~cmd:(selector "hor
 let horizontalScrollIndicatorInsets self = msg_send_stret ~self ~cmd:(selector "horizontalScrollIndicatorInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let inLiveResizeForScrollerImpPair x self = msg_send ~self ~cmd:(selector "inLiveResizeForScrollerImpPair:") ~typ:(id @-> returning bool) x
 let indexBarAccessoryView x ~contentOffsetForEntry ~atIndex self = msg_send_stret ~self ~cmd:(selector "indexBarAccessoryView:contentOffsetForEntry:atIndex:") ~typ:(id @-> id @-> llong @-> returning CGPoint.t) ~return_type:CGPoint.t x contentOffsetForEntry (LLong.of_int atIndex)
-let indexDisplayMode self = msg_send ~self ~cmd:(selector "indexDisplayMode") ~typ:(returning llong)
-let indicatorStyle self = msg_send ~self ~cmd:(selector "indicatorStyle") ~typ:(returning llong)
+let indexDisplayMode self = msg_send ~self ~cmd:(selector "indexDisplayMode") ~typ:(returning llong) |> LLong.to_int
+let indicatorStyle self = msg_send ~self ~cmd:(selector "indicatorStyle") ~typ:(returning llong) |> LLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let isAutomaticContentOffsetAdjustmentsAnimated self = msg_send ~self ~cmd:(selector "isAutomaticContentOffsetAdjustmentsAnimated") ~typ:(returning bool)
@@ -80,7 +80,7 @@ let isZoomBouncing self = msg_send ~self ~cmd:(selector "isZoomBouncing") ~typ:(
 let isZoomEnabled self = msg_send ~self ~cmd:(selector "isZoomEnabled") ~typ:(returning bool)
 let isZooming self = msg_send ~self ~cmd:(selector "isZooming") ~typ:(returning bool)
 let keyboardBottomInsetAdjustmentDelta self = msg_send ~self ~cmd:(selector "keyboardBottomInsetAdjustmentDelta") ~typ:(returning double)
-let keyboardDismissMode self = msg_send ~self ~cmd:(selector "keyboardDismissMode") ~typ:(returning llong)
+let keyboardDismissMode self = msg_send ~self ~cmd:(selector "keyboardDismissMode") ~typ:(returning llong) |> LLong.to_int
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
 let maximumZoomScale self = msg_send ~self ~cmd:(selector "maximumZoomScale") ~typ:(returning double)
 let minimumZoomScale self = msg_send ~self ~cmd:(selector "minimumZoomScale") ~typ:(returning double)

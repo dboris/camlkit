@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -17,5 +17,5 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let initWithText x ~alternativeInterpretations ~style self = msg_send ~self ~cmd:(selector "initWithText:alternativeInterpretations:style:") ~typ:(id @-> id @-> llong @-> returning id) x alternativeInterpretations (LLong.of_int style)
 let setStyle x self = msg_send ~self ~cmd:(selector "setStyle:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning id)

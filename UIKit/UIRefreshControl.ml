@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -23,7 +23,7 @@ let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:
 let initWithFrame x self = msg_send ~self ~cmd:(selector "initWithFrame:") ~typ:(CGRect.t @-> returning id) x
 let initWithStyle x self = msg_send ~self ~cmd:(selector "initWithStyle:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let isRefreshing self = msg_send ~self ~cmd:(selector "isRefreshing") ~typ:(returning bool)
-let refreshControlState self = msg_send ~self ~cmd:(selector "refreshControlState") ~typ:(returning llong)
+let refreshControlState self = msg_send ~self ~cmd:(selector "refreshControlState") ~typ:(returning llong) |> LLong.to_int
 let revealedFraction self = msg_send ~self ~cmd:(selector "revealedFraction") ~typ:(returning double)
 let setAttributedTitle x self = msg_send ~self ~cmd:(selector "setAttributedTitle:") ~typ:(id @-> returning void) x
 let setBackgroundColor x self = msg_send ~self ~cmd:(selector "setBackgroundColor:") ~typ:(id @-> returning void) x
@@ -33,5 +33,5 @@ let setRefreshControlState x self = msg_send ~self ~cmd:(selector "setRefreshCon
 let setTintColor x self = msg_send ~self ~cmd:(selector "setTintColor:") ~typ:(id @-> returning void) x
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let sizeToFit self = msg_send ~self ~cmd:(selector "sizeToFit") ~typ:(returning void)
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning id)

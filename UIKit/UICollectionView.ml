@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -37,7 +37,7 @@ let contextMenuInteraction5 x ~willEndForConfiguration ~animator self = msg_send
 let contextMenuInteraction6 x ~willPerformPreviewActionForMenuWithConfiguration ~animator self = msg_send ~self ~cmd:(selector "contextMenuInteraction:willPerformPreviewActionForMenuWithConfiguration:animator:") ~typ:(id @-> id @-> id @-> returning void) x willPerformPreviewActionForMenuWithConfiguration animator
 let dataSource self = msg_send ~self ~cmd:(selector "dataSource") ~typ:(returning id)
 let dataSourceIndexPathForPresentationIndexPath x self = msg_send ~self ~cmd:(selector "dataSourceIndexPathForPresentationIndexPath:") ~typ:(id @-> returning id) x
-let dataSourceSectionIndexForPresentationSectionIndex x self = msg_send ~self ~cmd:(selector "dataSourceSectionIndexForPresentationSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let dataSourceSectionIndexForPresentationSectionIndex x self = msg_send ~self ~cmd:(selector "dataSourceSectionIndexForPresentationSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let deleteItemsAtIndexPaths x self = msg_send ~self ~cmd:(selector "deleteItemsAtIndexPaths:") ~typ:(id @-> returning void) x
@@ -61,7 +61,7 @@ let finishInteractiveTransition self = msg_send ~self ~cmd:(selector "finishInte
 let hasActiveDrag self = msg_send ~self ~cmd:(selector "hasActiveDrag") ~typ:(returning bool)
 let hasActiveDrop self = msg_send ~self ~cmd:(selector "hasActiveDrop") ~typ:(returning bool)
 let hasUncommittedUpdates self = msg_send ~self ~cmd:(selector "hasUncommittedUpdates") ~typ:(returning bool)
-let highlightedGlobalItem self = msg_send ~self ~cmd:(selector "highlightedGlobalItem") ~typ:(returning llong)
+let highlightedGlobalItem self = msg_send ~self ~cmd:(selector "highlightedGlobalItem") ~typ:(returning llong) |> LLong.to_int
 let horizontalIndexBar x ~selectedEntry self = msg_send ~self ~cmd:(selector "horizontalIndexBar:selectedEntry:") ~typ:(id @-> id @-> returning void) x selectedEntry
 let indexBarAccessoryView x ~contentOffsetForEntry ~atIndex self = msg_send_stret ~self ~cmd:(selector "indexBarAccessoryView:contentOffsetForEntry:atIndex:") ~typ:(id @-> id @-> llong @-> returning CGPoint.t) ~return_type:CGPoint.t x contentOffsetForEntry (LLong.of_int atIndex)
 let indexPathForCell x self = msg_send ~self ~cmd:(selector "indexPathForCell:") ~typ:(id @-> returning id) x
@@ -88,11 +88,12 @@ let layoutAttributesForSupplementaryElementOfKind x ~atIndexPath self = msg_send
 let layoutHorizontalIndexTitleBar self = msg_send ~self ~cmd:(selector "layoutHorizontalIndexTitleBar") ~typ:(returning void)
 let layoutMarginsDidChange self = msg_send ~self ~cmd:(selector "layoutMarginsDidChange") ~typ:(returning void)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let maximumGlobalItemIndex self = msg_send ~self ~cmd:(selector "maximumGlobalItemIndex") ~typ:(returning llong)
+let maximumGlobalItemIndex self = msg_send ~self ~cmd:(selector "maximumGlobalItemIndex") ~typ:(returning llong) |> LLong.to_int
 let moveItemAtIndexPath x ~toIndexPath self = msg_send ~self ~cmd:(selector "moveItemAtIndexPath:toIndexPath:") ~typ:(id @-> id @-> returning void) x toIndexPath
 let moveSection x ~toSection self = msg_send ~self ~cmd:(selector "moveSection:toSection:") ~typ:(llong @-> llong @-> returning void) (LLong.of_int x) (LLong.of_int toSection)
-let numberOfItemsInSection x self = msg_send ~self ~cmd:(selector "numberOfItemsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong)
+let next x ~indexPathFromIndexPath self = msg_send ~self ~cmd:(selector "next:indexPathFromIndexPath:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) indexPathFromIndexPath
+let numberOfItemsInSection x self = msg_send ~self ~cmd:(selector "numberOfItemsInSection:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let numberOfSections self = msg_send ~self ~cmd:(selector "numberOfSections") ~typ:(returning llong) |> LLong.to_int
 let performBatchUpdates x ~completion self = msg_send ~self ~cmd:(selector "performBatchUpdates:completion:") ~typ:((ptr void) @-> (ptr void) @-> returning void) x completion
 let performBatchUpdates' x ~withAnimator self = msg_send ~self ~cmd:(selector "performBatchUpdates:withAnimator:") ~typ:((ptr void) @-> id @-> returning void) x withAnimator
 let performUsingPresentationValues x self = msg_send ~self ~cmd:(selector "performUsingPresentationValues:") ~typ:((ptr void) @-> returning void) x
@@ -101,7 +102,7 @@ let prefetchCompleteForItemAtIndexPath x self = msg_send ~self ~cmd:(selector "p
 let prefetchDataSource self = msg_send ~self ~cmd:(selector "prefetchDataSource") ~typ:(returning id)
 let preparedCells self = msg_send ~self ~cmd:(selector "preparedCells") ~typ:(returning id)
 let presentationIndexPathForDataSourceIndexPath x self = msg_send ~self ~cmd:(selector "presentationIndexPathForDataSourceIndexPath:") ~typ:(id @-> returning id) x
-let presentationSectionIndexForDataSourceSectionIndex x self = msg_send ~self ~cmd:(selector "presentationSectionIndexForDataSourceSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x)
+let presentationSectionIndexForDataSourceSectionIndex x self = msg_send ~self ~cmd:(selector "presentationSectionIndexForDataSourceSectionIndex:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
 let pressesBegan x ~withEvent self = msg_send ~self ~cmd:(selector "pressesBegan:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesCancelled x ~withEvent self = msg_send ~self ~cmd:(selector "pressesCancelled:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
 let pressesChanged x ~withEvent self = msg_send ~self ~cmd:(selector "pressesChanged:withEvent:") ~typ:(id @-> id @-> returning void) x withEvent
@@ -115,7 +116,7 @@ let reloadData self = msg_send ~self ~cmd:(selector "reloadData") ~typ:(returnin
 let reloadItemsAtIndexPaths x self = msg_send ~self ~cmd:(selector "reloadItemsAtIndexPaths:") ~typ:(id @-> returning void) x
 let reloadSections x self = msg_send ~self ~cmd:(selector "reloadSections:") ~typ:(id @-> returning void) x
 let remembersLastFocusedIndexPath self = msg_send ~self ~cmd:(selector "remembersLastFocusedIndexPath") ~typ:(returning bool)
-let reorderingCadence self = msg_send ~self ~cmd:(selector "reorderingCadence") ~typ:(returning llong)
+let reorderingCadence self = msg_send ~self ~cmd:(selector "reorderingCadence") ~typ:(returning llong) |> LLong.to_int
 let safeAreaInsetsDidChange self = msg_send ~self ~cmd:(selector "safeAreaInsetsDidChange") ~typ:(returning void)
 let scrollToItemAtIndexPath x ~atScrollPosition ~animated self = msg_send ~self ~cmd:(selector "scrollToItemAtIndexPath:atScrollPosition:animated:") ~typ:(id @-> ullong @-> bool @-> returning void) x (ULLong.of_int atScrollPosition) animated
 let selectItemAtIndexPath x ~animated ~scrollPosition self = msg_send ~self ~cmd:(selector "selectItemAtIndexPath:animated:scrollPosition:") ~typ:(id @-> bool @-> ullong @-> returning void) x animated (ULLong.of_int scrollPosition)

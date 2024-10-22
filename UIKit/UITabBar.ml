@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -15,8 +15,8 @@ let self = get_class "UITabBar"
 let addConstraint x self = msg_send ~self ~cmd:(selector "addConstraint:") ~typ:(id @-> returning void) x
 let backgroundEffects self = msg_send ~self ~cmd:(selector "backgroundEffects") ~typ:(returning id)
 let backgroundImage self = msg_send ~self ~cmd:(selector "backgroundImage") ~typ:(returning id)
-let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong)
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong) |> LLong.to_int
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let barTintColor self = msg_send ~self ~cmd:(selector "barTintColor") ~typ:(returning id)
 let beginCustomizingItems x self = msg_send ~self ~cmd:(selector "beginCustomizingItems:") ~typ:(id @-> returning void) x
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning bool)
@@ -36,7 +36,7 @@ let isElementAccessibilityExposedToInterfaceBuilder self = msg_send ~self ~cmd:(
 let isLocked self = msg_send ~self ~cmd:(selector "isLocked") ~typ:(returning bool)
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning bool)
 let isTranslucent self = msg_send ~self ~cmd:(selector "isTranslucent") ~typ:(returning bool)
-let itemPositioning self = msg_send ~self ~cmd:(selector "itemPositioning") ~typ:(returning llong)
+let itemPositioning self = msg_send ~self ~cmd:(selector "itemPositioning") ~typ:(returning llong) |> LLong.to_int
 let itemSpacing self = msg_send ~self ~cmd:(selector "itemSpacing") ~typ:(returning double)
 let itemWidth self = msg_send ~self ~cmd:(selector "itemWidth") ~typ:(returning double)
 let items self = msg_send ~self ~cmd:(selector "items") ~typ:(returning id)

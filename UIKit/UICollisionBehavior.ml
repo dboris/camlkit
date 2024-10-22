@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,7 +18,7 @@ let addItem x self = msg_send ~self ~cmd:(selector "addItem:") ~typ:(id @-> retu
 let boundaryIdentifiers self = msg_send ~self ~cmd:(selector "boundaryIdentifiers") ~typ:(returning id)
 let boundaryWithIdentifier x self = msg_send ~self ~cmd:(selector "boundaryWithIdentifier:") ~typ:(id @-> returning id) x
 let collisionDelegate self = msg_send ~self ~cmd:(selector "collisionDelegate") ~typ:(returning id)
-let collisionMode self = msg_send ~self ~cmd:(selector "collisionMode") ~typ:(returning ullong)
+let collisionMode self = msg_send ~self ~cmd:(selector "collisionMode") ~typ:(returning ullong) |> ULLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithItems x self = msg_send ~self ~cmd:(selector "initWithItems:") ~typ:(id @-> returning id) x

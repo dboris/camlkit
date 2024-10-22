@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -64,5 +64,5 @@ let setAnimationsEnabled x self = msg_send ~self ~cmd:(selector "setAnimationsEn
 let throttledFlush self = msg_send ~self ~cmd:(selector "throttledFlush") ~typ:(returning void)
 let transitionFromView x ~toView ~duration ~options ~completion self = msg_send ~self ~cmd:(selector "transitionFromView:toView:duration:options:completion:") ~typ:(id @-> id @-> double @-> ullong @-> (ptr void) @-> returning void) x toView duration (ULLong.of_int options) completion
 let transitionWithView x ~duration ~options ~animations ~completion self = msg_send ~self ~cmd:(selector "transitionWithView:duration:options:animations:completion:") ~typ:(id @-> double @-> ullong @-> (ptr void) @-> (ptr void) @-> returning void) x duration (ULLong.of_int options) animations completion
-let userInterfaceLayoutDirectionForSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirectionForSemanticContentAttribute:") ~typ:(llong @-> returning llong) (LLong.of_int x)
-let userInterfaceLayoutDirectionForSemanticContentAttribute' x ~relativeToLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:") ~typ:(llong @-> llong @-> returning llong) (LLong.of_int x) (LLong.of_int relativeToLayoutDirection)
+let userInterfaceLayoutDirectionForSemanticContentAttribute x self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirectionForSemanticContentAttribute:") ~typ:(llong @-> returning llong) (LLong.of_int x) |> LLong.to_int
+let userInterfaceLayoutDirectionForSemanticContentAttribute' x ~relativeToLayoutDirection self = msg_send ~self ~cmd:(selector "userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:") ~typ:(llong @-> llong @-> returning llong) (LLong.of_int x) (LLong.of_int relativeToLayoutDirection) |> LLong.to_int

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,5 +12,5 @@ open CoreText
 
 let self = get_class "UIPointerLiftEffect"
 
-let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong)
+let options self = msg_send ~self ~cmd:(selector "options") ~typ:(returning ullong) |> ULLong.to_int
 let settings self = msg_send ~self ~cmd:(selector "settings") ~typ:(returning id)

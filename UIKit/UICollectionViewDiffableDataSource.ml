@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -21,12 +21,12 @@ let applySnapshotUsingReloadData' x ~completion self = msg_send ~self ~cmd:(sele
 let collectionView self = msg_send ~self ~cmd:(selector "collectionView") ~typ:(returning id)
 let collectionView1 x ~canMoveItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:canMoveItemAtIndexPath:") ~typ:(id @-> id @-> returning bool) x canMoveItemAtIndexPath
 let collectionView2 x ~cellForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:cellForItemAtIndexPath:") ~typ:(id @-> id @-> returning id) x cellForItemAtIndexPath
-let collectionView3 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfItemsInSection)
+let collectionView3 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfItemsInSection) |> LLong.to_int
 let collectionView4 x ~moveItemAtIndexPath ~toIndexPath self = msg_send ~self ~cmd:(selector "collectionView:moveItemAtIndexPath:toIndexPath:") ~typ:(id @-> id @-> id @-> returning void) x moveItemAtIndexPath toIndexPath
 let collectionView5 x ~viewForSupplementaryElementOfKind ~atIndexPath self = msg_send ~self ~cmd:(selector "collectionView:viewForSupplementaryElementOfKind:atIndexPath:") ~typ:(id @-> id @-> id @-> returning id) x viewForSupplementaryElementOfKind atIndexPath
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let impl self = msg_send ~self ~cmd:(selector "impl") ~typ:(returning id)
-let indexForSectionIdentifier x self = msg_send ~self ~cmd:(selector "indexForSectionIdentifier:") ~typ:(id @-> returning llong) x
+let indexForSectionIdentifier x self = msg_send ~self ~cmd:(selector "indexForSectionIdentifier:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let indexPathForItemIdentifier x self = msg_send ~self ~cmd:(selector "indexPathForItemIdentifier:") ~typ:(id @-> returning id) x
 let initWithCollectionView x ~cellProvider self = msg_send ~self ~cmd:(selector "initWithCollectionView:cellProvider:") ~typ:(id @-> (ptr void) @-> returning id) x cellProvider
 let initWithCollectionView1 x ~itemRenderer self = msg_send ~self ~cmd:(selector "initWithCollectionView:itemRenderer:") ~typ:(id @-> id @-> returning id) x itemRenderer
@@ -34,7 +34,7 @@ let initWithCollectionView2 x ~itemRenderers ~rendererIdentifierProvider self = 
 let initWithCollectionView3 x ~sectionControllers ~rendererIdentifierProvider self = msg_send ~self ~cmd:(selector "initWithCollectionView:sectionControllers:rendererIdentifierProvider:") ~typ:(id @-> id @-> (ptr void) @-> returning id) x sectionControllers rendererIdentifierProvider
 let initWithViewUpdatesSink x self = msg_send ~self ~cmd:(selector "initWithViewUpdatesSink:") ~typ:(id @-> returning id) x
 let itemIdentifierForIndexPath x self = msg_send ~self ~cmd:(selector "itemIdentifierForIndexPath:") ~typ:(id @-> returning id) x
-let numberOfSectionsInCollectionView x self = msg_send ~self ~cmd:(selector "numberOfSectionsInCollectionView:") ~typ:(id @-> returning llong) x
+let numberOfSectionsInCollectionView x self = msg_send ~self ~cmd:(selector "numberOfSectionsInCollectionView:") ~typ:(id @-> returning llong) x |> LLong.to_int
 let reorderingHandlers self = msg_send ~self ~cmd:(selector "reorderingHandlers") ~typ:(returning id)
 let sectionIdentifierForIndex x self = msg_send ~self ~cmd:(selector "sectionIdentifierForIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
 let sectionSnapshotHandlers self = msg_send ~self ~cmd:(selector "sectionSnapshotHandlers") ~typ:(returning id)

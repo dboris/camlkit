@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,7 +14,7 @@ let self = get_class "UIPopoverPresentationController"
 
 let adaptiveSheetPresentationController self = msg_send ~self ~cmd:(selector "adaptiveSheetPresentationController") ~typ:(returning id)
 let arrowBackgroundColor self = msg_send ~self ~cmd:(selector "arrowBackgroundColor") ~typ:(returning id)
-let arrowDirection self = msg_send ~self ~cmd:(selector "arrowDirection") ~typ:(returning ullong)
+let arrowDirection self = msg_send ~self ~cmd:(selector "arrowDirection") ~typ:(returning ullong) |> ULLong.to_int
 let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ:(returning id)
 let canOverlapSourceViewRect self = msg_send ~self ~cmd:(selector "canOverlapSourceViewRect") ~typ:(returning bool)
 let containerViewWillLayoutSubviews self = msg_send ~self ~cmd:(selector "containerViewWillLayoutSubviews") ~typ:(returning void)
@@ -30,8 +30,8 @@ let initWithPresentedViewController x ~presentingViewController self = msg_send 
 let isPopoverVisible self = msg_send ~self ~cmd:(selector "isPopoverVisible") ~typ:(returning bool)
 let isPresentingOrDismissing self = msg_send ~self ~cmd:(selector "isPresentingOrDismissing") ~typ:(returning bool)
 let passthroughViews self = msg_send ~self ~cmd:(selector "passthroughViews") ~typ:(returning id)
-let permittedArrowDirections self = msg_send ~self ~cmd:(selector "permittedArrowDirections") ~typ:(returning ullong)
-let popoverArrowDirection self = msg_send ~self ~cmd:(selector "popoverArrowDirection") ~typ:(returning ullong)
+let permittedArrowDirections self = msg_send ~self ~cmd:(selector "permittedArrowDirections") ~typ:(returning ullong) |> ULLong.to_int
+let popoverArrowDirection self = msg_send ~self ~cmd:(selector "popoverArrowDirection") ~typ:(returning ullong) |> ULLong.to_int
 let popoverBackgroundViewClass self = msg_send ~self ~cmd:(selector "popoverBackgroundViewClass") ~typ:(returning _Class)
 let popoverContentSize self = msg_send_stret ~self ~cmd:(selector "popoverContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let popoverDimmingViewDidReceiveDismissalInteraction x self = msg_send ~self ~cmd:(selector "popoverDimmingViewDidReceiveDismissalInteraction:") ~typ:(id @-> returning bool) x
@@ -40,7 +40,7 @@ let popoverLayoutMargins self = msg_send_stret ~self ~cmd:(selector "popoverLayo
 let popoverView self = msg_send ~self ~cmd:(selector "popoverView") ~typ:(returning id)
 let preferredContentSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "preferredContentSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
 let preferredLayoutInfo self = msg_send ~self ~cmd:(selector "preferredLayoutInfo") ~typ:(returning id)
-let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong)
+let presentationStyle self = msg_send ~self ~cmd:(selector "presentationStyle") ~typ:(returning llong) |> LLong.to_int
 let presentationTransitionDidEnd x self = msg_send ~self ~cmd:(selector "presentationTransitionDidEnd:") ~typ:(bool @-> returning void) x
 let presentationTransitionWillBegin self = msg_send ~self ~cmd:(selector "presentationTransitionWillBegin") ~typ:(returning void)
 let presentedView self = msg_send ~self ~cmd:(selector "presentedView") ~typ:(returning id)

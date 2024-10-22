@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -26,13 +26,13 @@ let debugDescription self = msg_send ~self ~cmd:(selector "debugDescription") ~t
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let fixedPointSize self = msg_send ~self ~cmd:(selector "fixedPointSize") ~typ:(returning double)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
 let isEqualToConfiguration x self = msg_send ~self ~cmd:(selector "isEqualToConfiguration:") ~typ:(id @-> returning bool) x
 let isEquivalentToConfiguration x self = msg_send ~self ~cmd:(selector "isEquivalentToConfiguration:") ~typ:(id @-> returning bool) x
 let isSimilarToConfiguration x self = msg_send ~self ~cmd:(selector "isSimilarToConfiguration:") ~typ:(id @-> returning bool) x
 let pointSizeForScalingWithTextStyle self = msg_send ~self ~cmd:(selector "pointSizeForScalingWithTextStyle") ~typ:(returning double)
-let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning llong)
+let scale self = msg_send ~self ~cmd:(selector "scale") ~typ:(returning llong) |> LLong.to_int
 let textStyle self = msg_send ~self ~cmd:(selector "textStyle") ~typ:(returning id)
-let weight self = msg_send ~self ~cmd:(selector "weight") ~typ:(returning llong)
+let weight self = msg_send ~self ~cmd:(selector "weight") ~typ:(returning llong) |> LLong.to_int

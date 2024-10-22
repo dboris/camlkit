@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,13 +18,14 @@ let adjustsLetterSpacingToFitWidth self = msg_send ~self ~cmd:(selector "adjusts
 let allowsDefaultTighteningForTruncation self = msg_send ~self ~cmd:(selector "allowsDefaultTighteningForTruncation") ~typ:(returning bool)
 let attributedText self = msg_send ~self ~cmd:(selector "attributedText") ~typ:(returning id)
 let autotrackTextToFit self = msg_send ~self ~cmd:(selector "autotrackTextToFit") ~typ:(returning bool)
-let baselineAdjustment self = msg_send ~self ~cmd:(selector "baselineAdjustment") ~typ:(returning llong)
+let baselineAdjustment self = msg_send ~self ~cmd:(selector "baselineAdjustment") ~typ:(returning llong) |> LLong.to_int
+let boundingRectForCharacterRange x self = msg_send_stret ~self ~cmd:(selector "boundingRectForCharacterRange:") ~typ:(NSRange.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let canUseFastLayoutSizeCalulation self = msg_send ~self ~cmd:(selector "canUseFastLayoutSizeCalulation") ~typ:(returning bool)
 let centersHorizontally self = msg_send ~self ~cmd:(selector "centersHorizontally") ~typ:(returning bool)
 let color self = msg_send ~self ~cmd:(selector "color") ~typ:(returning id)
 let currentTextColor self = msg_send ~self ~cmd:(selector "currentTextColor") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
-let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong)
+let defaultAccessibilityTraits self = msg_send ~self ~cmd:(selector "defaultAccessibilityTraits") ~typ:(returning ullong) |> ULLong.to_int
 let drawContentsInRect x self = msg_send ~self ~cmd:(selector "drawContentsInRect:") ~typ:(CGRect.t @-> returning void) x
 let drawRect x self = msg_send ~self ~cmd:(selector "drawRect:") ~typ:(CGRect.t @-> returning void) x
 let drawTextInRect x self = msg_send ~self ~cmd:(selector "drawTextInRect:") ~typ:(CGRect.t @-> returning void) x
@@ -44,14 +45,14 @@ let isHighlighted self = msg_send ~self ~cmd:(selector "isHighlighted") ~typ:(re
 let isLayoutSizeDependentOnPerpendicularAxis self = msg_send ~self ~cmd:(selector "isLayoutSizeDependentOnPerpendicularAxis") ~typ:(returning bool)
 let largeContentTitle self = msg_send ~self ~cmd:(selector "largeContentTitle") ~typ:(returning id)
 let layerWillDraw x self = msg_send ~self ~cmd:(selector "layerWillDraw:") ~typ:(id @-> returning void) x
-let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong)
-let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong)
-let lineSpacing self = msg_send ~self ~cmd:(selector "lineSpacing") ~typ:(returning llong)
+let lineBreakMode self = msg_send ~self ~cmd:(selector "lineBreakMode") ~typ:(returning llong) |> LLong.to_int
+let lineBreakStrategy self = msg_send ~self ~cmd:(selector "lineBreakStrategy") ~typ:(returning ullong) |> ULLong.to_int
+let lineSpacing self = msg_send ~self ~cmd:(selector "lineSpacing") ~typ:(returning llong) |> LLong.to_int
 let marqueeEnabled self = msg_send ~self ~cmd:(selector "marqueeEnabled") ~typ:(returning bool)
 let marqueeRunning self = msg_send ~self ~cmd:(selector "marqueeRunning") ~typ:(returning bool)
 let minimumFontSize self = msg_send ~self ~cmd:(selector "minimumFontSize") ~typ:(returning double)
 let minimumScaleFactor self = msg_send ~self ~cmd:(selector "minimumScaleFactor") ~typ:(returning double)
-let numberOfLines self = msg_send ~self ~cmd:(selector "numberOfLines") ~typ:(returning llong)
+let numberOfLines self = msg_send ~self ~cmd:(selector "numberOfLines") ~typ:(returning llong) |> LLong.to_int
 let preferredMaxLayoutWidth self = msg_send ~self ~cmd:(selector "preferredMaxLayoutWidth") ~typ:(returning double)
 let rawSize self = msg_send_stret ~self ~cmd:(selector "rawSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let setAdjustsFontForContentSizeCategory x self = msg_send ~self ~cmd:(selector "setAdjustsFontForContentSizeCategory:") ~typ:(bool @-> returning void) x
@@ -98,7 +99,7 @@ let shadowOffset self = msg_send_stret ~self ~cmd:(selector "shadowOffset") ~typ
 let showsExpansionTextWhenTruncated self = msg_send ~self ~cmd:(selector "showsExpansionTextWhenTruncated") ~typ:(returning bool)
 let sizeThatFits x self = msg_send_stret ~self ~cmd:(selector "sizeThatFits:") ~typ:(CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x
 let text self = msg_send ~self ~cmd:(selector "text") ~typ:(returning id)
-let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong)
+let textAlignment self = msg_send ~self ~cmd:(selector "textAlignment") ~typ:(returning llong) |> LLong.to_int
 let textColor self = msg_send ~self ~cmd:(selector "textColor") ~typ:(returning id)
 let textRectForBounds x self = msg_send_stret ~self ~cmd:(selector "textRectForBounds:") ~typ:(CGRect.t @-> returning CGRect.t) ~return_type:CGRect.t x
 let textRectForBounds' x ~limitedToNumberOfLines self = msg_send_stret ~self ~cmd:(selector "textRectForBounds:limitedToNumberOfLines:") ~typ:(CGRect.t @-> llong @-> returning CGRect.t) ~return_type:CGRect.t x (LLong.of_int limitedToNumberOfLines)

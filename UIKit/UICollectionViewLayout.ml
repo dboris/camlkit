@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -18,7 +18,7 @@ let collectionView self = msg_send ~self ~cmd:(selector "collectionView") ~typ:(
 let collectionViewContentSize self = msg_send_stret ~self ~cmd:(selector "collectionViewContentSize") ~typ:(returning CGSize.t) ~return_type:CGSize.t
 let convertRect x ~fromLayout self = msg_send_stret ~self ~cmd:(selector "convertRect:fromLayout:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x fromLayout
 let convertRect' x ~toLayout self = msg_send_stret ~self ~cmd:(selector "convertRect:toLayout:") ~typ:(CGRect.t @-> id @-> returning CGRect.t) ~return_type:CGRect.t x toLayout
-let developmentLayoutDirection self = msg_send ~self ~cmd:(selector "developmentLayoutDirection") ~typ:(returning llong)
+let developmentLayoutDirection self = msg_send ~self ~cmd:(selector "developmentLayoutDirection") ~typ:(returning llong) |> LLong.to_int
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let finalLayoutAttributesForDisappearingDecorationElementOfKind x ~atIndexPath self = msg_send ~self ~cmd:(selector "finalLayoutAttributesForDisappearingDecorationElementOfKind:atIndexPath:") ~typ:(id @-> id @-> returning id) x atIndexPath
 let finalLayoutAttributesForDisappearingItemAtIndexPath x self = msg_send ~self ~cmd:(selector "finalLayoutAttributesForDisappearingItemAtIndexPath:") ~typ:(id @-> returning id) x

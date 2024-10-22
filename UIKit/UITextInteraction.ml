@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -58,8 +58,8 @@ let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> retu
 let shouldAllowWithTouchTypes x ~atPoint ~toBegin self = msg_send ~self ~cmd:(selector "shouldAllowWithTouchTypes:atPoint:toBegin:") ~typ:(id @-> CGPoint.t @-> bool @-> returning bool) x atPoint toBegin
 let shouldHandleFormGestureAtLocation x self = msg_send ~self ~cmd:(selector "shouldHandleFormGestureAtLocation:") ~typ:(CGPoint.t @-> returning bool) x
 let textInput self = msg_send ~self ~cmd:(selector "textInput") ~typ:(returning id)
-let textInteractionMode self = msg_send ~self ~cmd:(selector "textInteractionMode") ~typ:(returning llong)
-let textInteractionSet self = msg_send ~self ~cmd:(selector "textInteractionSet") ~typ:(returning llong)
+let textInteractionMode self = msg_send ~self ~cmd:(selector "textInteractionMode") ~typ:(returning llong) |> LLong.to_int
+let textInteractionSet self = msg_send ~self ~cmd:(selector "textInteractionSet") ~typ:(returning llong) |> LLong.to_int
 let updateTextInputSourceForScribbleGesture x self = msg_send ~self ~cmd:(selector "updateTextInputSourceForScribbleGesture:") ~typ:(id @-> returning void) x
 let view self = msg_send ~self ~cmd:(selector "view") ~typ:(returning id)
 let willMoveToView x self = msg_send ~self ~cmd:(selector "willMoveToView:") ~typ:(id @-> returning void) x

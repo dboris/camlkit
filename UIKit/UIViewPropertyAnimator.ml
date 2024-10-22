@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -66,7 +66,7 @@ let shouldLayoutSubviews self = msg_send ~self ~cmd:(selector "shouldLayoutSubvi
 let startAnimation self = msg_send ~self ~cmd:(selector "startAnimation") ~typ:(returning void)
 let startAnimationAfterDelay x self = msg_send ~self ~cmd:(selector "startAnimationAfterDelay:") ~typ:(double @-> returning void) x
 let startAnimationAsPaused x self = msg_send ~self ~cmd:(selector "startAnimationAsPaused:") ~typ:(bool @-> returning void) x
-let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong)
+let state self = msg_send ~self ~cmd:(selector "state") ~typ:(returning llong) |> LLong.to_int
 let stopAnimation x self = msg_send ~self ~cmd:(selector "stopAnimation:") ~typ:(bool @-> returning void) x
 let timingFunctionForPause self = msg_send ~self ~cmd:(selector "timingFunctionForPause") ~typ:(returning id)
 let timingParameters self = msg_send ~self ~cmd:(selector "timingParameters") ~typ:(returning id)

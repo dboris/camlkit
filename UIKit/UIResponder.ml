@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -24,7 +24,7 @@ let captureTextFromCamera x self = msg_send ~self ~cmd:(selector "captureTextFro
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let doesNotRecognizeSelector x self = msg_send ~self ~cmd:(selector "doesNotRecognizeSelector:") ~typ:(_SEL @-> returning void) x
-let editingInteractionConfiguration self = msg_send ~self ~cmd:(selector "editingInteractionConfiguration") ~typ:(returning llong)
+let editingInteractionConfiguration self = msg_send ~self ~cmd:(selector "editingInteractionConfiguration") ~typ:(returning llong) |> LLong.to_int
 let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let endSelectionChange self = msg_send ~self ~cmd:(selector "endSelectionChange") ~typ:(returning void)
 let firstResponder self = msg_send ~self ~cmd:(selector "firstResponder") ~typ:(returning id)
@@ -61,7 +61,7 @@ let resignFirstResponder self = msg_send ~self ~cmd:(selector "resignFirstRespon
 let restorationIdentifier self = msg_send ~self ~cmd:(selector "restorationIdentifier") ~typ:(returning id)
 let restoreUserActivityState x self = msg_send ~self ~cmd:(selector "restoreUserActivityState:") ~typ:(id @-> returning void) x
 let scrollWheel x self = msg_send ~self ~cmd:(selector "scrollWheel:") ~typ:((ptr void) @-> returning void) x
-let selectionAffinity self = msg_send ~self ~cmd:(selector "selectionAffinity") ~typ:(returning llong)
+let selectionAffinity self = msg_send ~self ~cmd:(selector "selectionAffinity") ~typ:(returning llong) |> LLong.to_int
 let setActivityItemsConfiguration x self = msg_send ~self ~cmd:(selector "setActivityItemsConfiguration:") ~typ:(id @-> returning void) x
 let setPasteConfiguration x self = msg_send ~self ~cmd:(selector "setPasteConfiguration:") ~typ:(id @-> returning void) x
 let setRestorationIdentifier x self = msg_send ~self ~cmd:(selector "setRestorationIdentifier:") ~typ:(id @-> returning void) x

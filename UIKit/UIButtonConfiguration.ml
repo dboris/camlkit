@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -19,21 +19,21 @@ let automaticallyUpdateForSelection self = msg_send ~self ~cmd:(selector "automa
 let background self = msg_send ~self ~cmd:(selector "background") ~typ:(returning id)
 let baseBackgroundColor self = msg_send ~self ~cmd:(selector "baseBackgroundColor") ~typ:(returning id)
 let baseForegroundColor self = msg_send ~self ~cmd:(selector "baseForegroundColor") ~typ:(returning id)
-let buttonSize self = msg_send ~self ~cmd:(selector "buttonSize") ~typ:(returning llong)
+let buttonSize self = msg_send ~self ~cmd:(selector "buttonSize") ~typ:(returning llong) |> LLong.to_int
 let contentInsets self = msg_send_stret ~self ~cmd:(selector "contentInsets") ~typ:(returning NSDirectionalEdgeInsets.t) ~return_type:NSDirectionalEdgeInsets.t
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let cornerStyle self = msg_send ~self ~cmd:(selector "cornerStyle") ~typ:(returning llong)
+let cornerStyle self = msg_send ~self ~cmd:(selector "cornerStyle") ~typ:(returning llong) |> LLong.to_int
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageColorTransformer self = msg_send ~self ~cmd:(selector "imageColorTransformer") ~typ:(returning (ptr void))
 let imagePadding self = msg_send ~self ~cmd:(selector "imagePadding") ~typ:(returning double)
-let imagePlacement self = msg_send ~self ~cmd:(selector "imagePlacement") ~typ:(returning ullong)
+let imagePlacement self = msg_send ~self ~cmd:(selector "imagePlacement") ~typ:(returning ullong) |> ULLong.to_int
 let imageReservation self = msg_send ~self ~cmd:(selector "imageReservation") ~typ:(returning double)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
 let isEqual x self = msg_send ~self ~cmd:(selector "isEqual:") ~typ:(id @-> returning bool) x
-let macIdiomStyle self = msg_send ~self ~cmd:(selector "macIdiomStyle") ~typ:(returning llong)
+let macIdiomStyle self = msg_send ~self ~cmd:(selector "macIdiomStyle") ~typ:(returning llong) |> LLong.to_int
 let preferredSymbolConfigurationForImage self = msg_send ~self ~cmd:(selector "preferredSymbolConfigurationForImage") ~typ:(returning id)
 let setActivityIndicatorColorTransformer x self = msg_send ~self ~cmd:(selector "setActivityIndicatorColorTransformer:") ~typ:((ptr void) @-> returning void) x
 let setAttributedSubtitle x self = msg_send ~self ~cmd:(selector "setAttributedSubtitle:") ~typ:(id @-> returning void) x
@@ -64,11 +64,11 @@ let setTitlePadding x self = msg_send ~self ~cmd:(selector "setTitlePadding:") ~
 let setTitleTextAttributesTransformer x self = msg_send ~self ~cmd:(selector "setTitleTextAttributesTransformer:") ~typ:((ptr void) @-> returning void) x
 let showsActivityIndicator self = msg_send ~self ~cmd:(selector "showsActivityIndicator") ~typ:(returning bool)
 let subtitle self = msg_send ~self ~cmd:(selector "subtitle") ~typ:(returning id)
-let subtitleLineBreakMode self = msg_send ~self ~cmd:(selector "subtitleLineBreakMode") ~typ:(returning llong)
+let subtitleLineBreakMode self = msg_send ~self ~cmd:(selector "subtitleLineBreakMode") ~typ:(returning llong) |> LLong.to_int
 let subtitleTextAttributesTransformer self = msg_send ~self ~cmd:(selector "subtitleTextAttributesTransformer") ~typ:(returning (ptr void))
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)
-let titleAlignment self = msg_send ~self ~cmd:(selector "titleAlignment") ~typ:(returning llong)
-let titleLineBreakMode self = msg_send ~self ~cmd:(selector "titleLineBreakMode") ~typ:(returning llong)
+let titleAlignment self = msg_send ~self ~cmd:(selector "titleAlignment") ~typ:(returning llong) |> LLong.to_int
+let titleLineBreakMode self = msg_send ~self ~cmd:(selector "titleLineBreakMode") ~typ:(returning llong) |> LLong.to_int
 let titlePadding self = msg_send ~self ~cmd:(selector "titlePadding") ~typ:(returning double)
 let titleTextAttributesTransformer self = msg_send ~self ~cmd:(selector "titleTextAttributesTransformer") ~typ:(returning (ptr void))
 let updatedConfigurationForButton x self = msg_send ~self ~cmd:(selector "updatedConfigurationForButton:") ~typ:(id @-> returning id) x

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let backgroundColor self = msg_send ~self ~cmd:(selector "backgroundColor") ~typ
 let backgroundEffect self = msg_send ~self ~cmd:(selector "backgroundEffect") ~typ:(returning id)
 let backgroundEffects self = msg_send ~self ~cmd:(selector "backgroundEffects") ~typ:(returning id)
 let backgroundImage self = msg_send ~self ~cmd:(selector "backgroundImage") ~typ:(returning id)
-let backgroundImageContentMode self = msg_send ~self ~cmd:(selector "backgroundImageContentMode") ~typ:(returning llong)
+let backgroundImageContentMode self = msg_send ~self ~cmd:(selector "backgroundImageContentMode") ~typ:(returning llong) |> LLong.to_int
 let configureWithDefaultBackground self = msg_send ~self ~cmd:(selector "configureWithDefaultBackground") ~typ:(returning void)
 let configureWithDefaultShadow self = msg_send ~self ~cmd:(selector "configureWithDefaultShadow") ~typ:(returning void)
 let configureWithOpaqueBackground self = msg_send ~self ~cmd:(selector "configureWithOpaqueBackground") ~typ:(returning void)
@@ -26,8 +26,8 @@ let copy self = msg_send ~self ~cmd:(selector "copy") ~typ:(returning id)
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
-let idiom self = msg_send ~self ~cmd:(selector "idiom") ~typ:(returning llong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
+let idiom self = msg_send ~self ~cmd:(selector "idiom") ~typ:(returning llong) |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithBarAppearance x self = msg_send ~self ~cmd:(selector "initWithBarAppearance:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x

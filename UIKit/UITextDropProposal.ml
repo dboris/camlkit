@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,9 +13,9 @@ open CoreText
 let self = get_class "UITextDropProposal"
 
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
-let dropAction self = msg_send ~self ~cmd:(selector "dropAction") ~typ:(returning ullong)
-let dropPerformer self = msg_send ~self ~cmd:(selector "dropPerformer") ~typ:(returning ullong)
-let dropProgressMode self = msg_send ~self ~cmd:(selector "dropProgressMode") ~typ:(returning ullong)
+let dropAction self = msg_send ~self ~cmd:(selector "dropAction") ~typ:(returning ullong) |> ULLong.to_int
+let dropPerformer self = msg_send ~self ~cmd:(selector "dropPerformer") ~typ:(returning ullong) |> ULLong.to_int
+let dropProgressMode self = msg_send ~self ~cmd:(selector "dropProgressMode") ~typ:(returning ullong) |> ULLong.to_int
 let initWithDropOperation x self = msg_send ~self ~cmd:(selector "initWithDropOperation:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let setDropAction x self = msg_send ~self ~cmd:(selector "setDropAction:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setDropPerformer x self = msg_send ~self ~cmd:(selector "setDropPerformer:") ~typ:(ullong @-> returning void) (ULLong.of_int x)

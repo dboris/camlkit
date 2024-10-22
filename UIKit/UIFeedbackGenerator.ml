@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,13 +13,13 @@ open CoreText
 let self = get_class "UIFeedbackGenerator"
 
 let activateWithCompletionBlock x self = msg_send ~self ~cmd:(selector "activateWithCompletionBlock:") ~typ:((ptr void) @-> returning void) x
-let activationCount self = msg_send ~self ~cmd:(selector "activationCount") ~typ:(returning llong)
+let activationCount self = msg_send ~self ~cmd:(selector "activationCount") ~typ:(returning llong) |> LLong.to_int
 let coordinateSpace self = msg_send ~self ~cmd:(selector "coordinateSpace") ~typ:(returning id)
 let deactivate self = msg_send ~self ~cmd:(selector "deactivate") ~typ:(returning void)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let engines self = msg_send ~self ~cmd:(selector "engines") ~typ:(returning id)
-let externalActivationCount self = msg_send ~self ~cmd:(selector "externalActivationCount") ~typ:(returning llong)
+let externalActivationCount self = msg_send ~self ~cmd:(selector "externalActivationCount") ~typ:(returning llong) |> LLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithConfiguration x self = msg_send ~self ~cmd:(selector "initWithConfiguration:") ~typ:(id @-> returning id) x
 let initWithConfiguration' x ~coordinateSpace self = msg_send ~self ~cmd:(selector "initWithConfiguration:coordinateSpace:") ~typ:(id @-> id @-> returning id) x coordinateSpace

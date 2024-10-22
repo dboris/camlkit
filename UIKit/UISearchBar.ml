@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -14,8 +14,8 @@ let self = get_class "UISearchBar"
 
 let backgroundImage self = msg_send ~self ~cmd:(selector "backgroundImage") ~typ:(returning id)
 let backgroundImageForBarPosition x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForBarPosition:barMetrics:") ~typ:(llong @-> llong @-> returning id) (LLong.of_int x) (LLong.of_int barMetrics)
-let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong)
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barPosition self = msg_send ~self ~cmd:(selector "barPosition") ~typ:(returning llong) |> LLong.to_int
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let barTintColor self = msg_send ~self ~cmd:(selector "barTintColor") ~typ:(returning id)
 let becomeFirstResponder self = msg_send ~self ~cmd:(selector "becomeFirstResponder") ~typ:(returning bool)
 let bringSubviewToFront x self = msg_send ~self ~cmd:(selector "bringSubviewToFront:") ~typ:(id @-> returning void) x
@@ -69,14 +69,14 @@ let scopeBarButtonBackgroundImageForState x self = msg_send ~self ~cmd:(selector
 let scopeBarButtonDividerImageForLeftSegmentState x ~rightSegmentState self = msg_send ~self ~cmd:(selector "scopeBarButtonDividerImageForLeftSegmentState:rightSegmentState:") ~typ:(ullong @-> ullong @-> returning id) (ULLong.of_int x) (ULLong.of_int rightSegmentState)
 let scopeBarButtonTitleTextAttributesForState x self = msg_send ~self ~cmd:(selector "scopeBarButtonTitleTextAttributesForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let scopeButtonTitles self = msg_send ~self ~cmd:(selector "scopeButtonTitles") ~typ:(returning id)
-let searchBarStyle self = msg_send ~self ~cmd:(selector "searchBarStyle") ~typ:(returning ullong)
+let searchBarStyle self = msg_send ~self ~cmd:(selector "searchBarStyle") ~typ:(returning ullong) |> ULLong.to_int
 let searchField self = msg_send ~self ~cmd:(selector "searchField") ~typ:(returning id)
 let searchFieldBackgroundImageForState x self = msg_send ~self ~cmd:(selector "searchFieldBackgroundImageForState:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let searchFieldBackgroundPositionAdjustment self = msg_send_stret ~self ~cmd:(selector "searchFieldBackgroundPositionAdjustment") ~typ:(returning UIOffset.t) ~return_type:UIOffset.t
-let searchFieldLeftViewMode self = msg_send ~self ~cmd:(selector "searchFieldLeftViewMode") ~typ:(returning llong)
+let searchFieldLeftViewMode self = msg_send ~self ~cmd:(selector "searchFieldLeftViewMode") ~typ:(returning llong) |> LLong.to_int
 let searchTextField self = msg_send ~self ~cmd:(selector "searchTextField") ~typ:(returning id)
 let searchTextPositionAdjustment self = msg_send_stret ~self ~cmd:(selector "searchTextPositionAdjustment") ~typ:(returning UIOffset.t) ~return_type:UIOffset.t
-let selectedScopeButtonIndex self = msg_send ~self ~cmd:(selector "selectedScopeButtonIndex") ~typ:(returning llong)
+let selectedScopeButtonIndex self = msg_send ~self ~cmd:(selector "selectedScopeButtonIndex") ~typ:(returning llong) |> LLong.to_int
 let sendSubviewToBack x self = msg_send ~self ~cmd:(selector "sendSubviewToBack:") ~typ:(id @-> returning void) x
 let setBackgroundImage x self = msg_send ~self ~cmd:(selector "setBackgroundImage:") ~typ:(id @-> returning void) x
 let setBackgroundImage1 x ~forBarMetrics self = msg_send ~self ~cmd:(selector "setBackgroundImage:forBarMetrics:") ~typ:(id @-> llong @-> returning void) x (LLong.of_int forBarMetrics)

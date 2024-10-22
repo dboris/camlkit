@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -15,7 +15,7 @@ let self = get_class "UICollectionViewController"
 let clearsSelectionOnViewWillAppear self = msg_send ~self ~cmd:(selector "clearsSelectionOnViewWillAppear") ~typ:(returning bool)
 let collectionView self = msg_send ~self ~cmd:(selector "collectionView") ~typ:(returning id)
 let collectionView1 x ~cellForItemAtIndexPath self = msg_send ~self ~cmd:(selector "collectionView:cellForItemAtIndexPath:") ~typ:(id @-> id @-> returning id) x cellForItemAtIndexPath
-let collectionView2 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfItemsInSection)
+let collectionView2 x ~numberOfItemsInSection self = msg_send ~self ~cmd:(selector "collectionView:numberOfItemsInSection:") ~typ:(id @-> llong @-> returning llong) x (LLong.of_int numberOfItemsInSection) |> LLong.to_int
 let collectionViewLayout self = msg_send ~self ~cmd:(selector "collectionViewLayout") ~typ:(returning id)
 let contentScrollViewForEdge x self = msg_send ~self ~cmd:(selector "contentScrollViewForEdge:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let dataSource self = msg_send ~self ~cmd:(selector "dataSource") ~typ:(returning id)

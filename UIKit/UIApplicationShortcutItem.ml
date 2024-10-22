@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -12,11 +12,11 @@ open CoreText
 
 let self = get_class "UIApplicationShortcutItem"
 
-let activationMode self = msg_send ~self ~cmd:(selector "activationMode") ~typ:(returning ullong)
+let activationMode self = msg_send ~self ~cmd:(selector "activationMode") ~typ:(returning ullong) |> ULLong.to_int
 let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((ptr void) @-> returning id) x
 let description self = msg_send ~self ~cmd:(selector "description") ~typ:(returning id)
 let encodeWithXPCDictionary x self = msg_send ~self ~cmd:(selector "encodeWithXPCDictionary:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let icon self = msg_send ~self ~cmd:(selector "icon") ~typ:(returning id)
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithType x ~localizedTitle self = msg_send ~self ~cmd:(selector "initWithType:localizedTitle:") ~typ:(id @-> id @-> returning id) x localizedTitle

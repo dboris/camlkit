@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -31,7 +31,7 @@ let forcedSelectionOfMenu x ~willChangeTo self = msg_send ~self ~cmd:(selector "
 let groupRepresentative self = msg_send ~self ~cmd:(selector "groupRepresentative") ~typ:(returning bool)
 let hasImage self = msg_send ~self ~cmd:(selector "hasImage") ~typ:(returning bool)
 let hasTitle self = msg_send ~self ~cmd:(selector "hasTitle") ~typ:(returning bool)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let image self = msg_send ~self ~cmd:(selector "image") ~typ:(returning id)
 let imageInsets self = msg_send_stret ~self ~cmd:(selector "imageInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
@@ -102,8 +102,8 @@ let setTitlePositionAdjustment x ~forBarMetrics self = msg_send ~self ~cmd:(sele
 let setTitleTextAttributes x ~forState self = msg_send ~self ~cmd:(selector "setTitleTextAttributes:forState:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forState)
 let setView x self = msg_send ~self ~cmd:(selector "setView:") ~typ:(id @-> returning void) x
 let setWidth x self = msg_send ~self ~cmd:(selector "setWidth:") ~typ:(double @-> returning void) x
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
-let systemItem self = msg_send ~self ~cmd:(selector "systemItem") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
+let systemItem self = msg_send ~self ~cmd:(selector "systemItem") ~typ:(returning llong) |> LLong.to_int
 let target self = msg_send ~self ~cmd:(selector "target") ~typ:(returning id)
 let tintColor self = msg_send ~self ~cmd:(selector "tintColor") ~typ:(returning id)
 let title self = msg_send ~self ~cmd:(selector "title") ~typ:(returning id)

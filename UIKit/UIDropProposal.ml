@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let copyWithZone x self = msg_send ~self ~cmd:(selector "copyWithZone:") ~typ:((
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithDropOperation x self = msg_send ~self ~cmd:(selector "initWithDropOperation:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
 let isPrecise self = msg_send ~self ~cmd:(selector "isPrecise") ~typ:(returning bool)
-let operation self = msg_send ~self ~cmd:(selector "operation") ~typ:(returning ullong)
+let operation self = msg_send ~self ~cmd:(selector "operation") ~typ:(returning ullong) |> ULLong.to_int
 let prefersFullSizePreview self = msg_send ~self ~cmd:(selector "prefersFullSizePreview") ~typ:(returning bool)
 let setOperation x self = msg_send ~self ~cmd:(selector "setOperation:") ~typ:(ullong @-> returning void) (ULLong.of_int x)
 let setPrecise x self = msg_send ~self ~cmd:(selector "setPrecise:") ~typ:(bool @-> returning void) x

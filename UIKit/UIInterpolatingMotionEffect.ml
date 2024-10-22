@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -20,4 +20,4 @@ let maximumRelativeValue self = msg_send ~self ~cmd:(selector "maximumRelativeVa
 let minimumRelativeValue self = msg_send ~self ~cmd:(selector "minimumRelativeValue") ~typ:(returning id)
 let setMaximumRelativeValue x self = msg_send ~self ~cmd:(selector "setMaximumRelativeValue:") ~typ:(id @-> returning void) x
 let setMinimumRelativeValue x self = msg_send ~self ~cmd:(selector "setMinimumRelativeValue:") ~typ:(id @-> returning void) x
-let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong)
+let type_ self = msg_send ~self ~cmd:(selector "type") ~typ:(returning llong) |> LLong.to_int

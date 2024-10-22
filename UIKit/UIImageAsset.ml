@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let assetName self = msg_send ~self ~cmd:(selector "assetName") ~typ:(returning 
 let creationBlock self = msg_send ~self ~cmd:(selector "creationBlock") ~typ:(returning (ptr void))
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let imageWithConfiguration x self = msg_send ~self ~cmd:(selector "imageWithConfiguration:") ~typ:(id @-> returning id) x
 let imageWithTraitCollection x self = msg_send ~self ~cmd:(selector "imageWithTraitCollection:") ~typ:(id @-> returning id) x
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)

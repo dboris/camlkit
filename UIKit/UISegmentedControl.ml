@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -13,8 +13,8 @@ open CoreText
 let self = get_class "UISegmentedControl"
 
 let actionForSegmentAtIndex x self = msg_send ~self ~cmd:(selector "actionForSegmentAtIndex:") ~typ:(ullong @-> returning id) (ULLong.of_int x)
-let adaptivePresentationStyleForPresentationController x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:") ~typ:(id @-> returning llong) x
-let adaptivePresentationStyleForPresentationController' x ~traitCollection self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:traitCollection:") ~typ:(id @-> id @-> returning llong) x traitCollection
+let adaptivePresentationStyleForPresentationController x self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let adaptivePresentationStyleForPresentationController' x ~traitCollection self = msg_send ~self ~cmd:(selector "adaptivePresentationStyleForPresentationController:traitCollection:") ~typ:(id @-> id @-> returning llong) x traitCollection |> LLong.to_int
 let addSegmentWithTitle x self = msg_send ~self ~cmd:(selector "addSegmentWithTitle:") ~typ:(id @-> returning void) x
 let adjustsForContentSizeCategory self = msg_send ~self ~cmd:(selector "adjustsForContentSizeCategory") ~typ:(returning bool)
 let alignmentRectInsets self = msg_send_stret ~self ~cmd:(selector "alignmentRectInsets") ~typ:(returning UIEdgeInsets.t) ~return_type:UIEdgeInsets.t
@@ -22,7 +22,7 @@ let animationDidStop x ~finished self = msg_send ~self ~cmd:(selector "animation
 let apportionsSegmentWidthsByContent self = msg_send ~self ~cmd:(selector "apportionsSegmentWidthsByContent") ~typ:(returning bool)
 let axLongPressGestureRecognizer self = msg_send ~self ~cmd:(selector "axLongPressGestureRecognizer") ~typ:(returning id)
 let backgroundImageForState x ~barMetrics self = msg_send ~self ~cmd:(selector "backgroundImageForState:barMetrics:") ~typ:(ullong @-> llong @-> returning id) (ULLong.of_int x) (LLong.of_int barMetrics)
-let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong)
+let barStyle self = msg_send ~self ~cmd:(selector "barStyle") ~typ:(returning llong) |> LLong.to_int
 let bounds self = msg_send_stret ~self ~cmd:(selector "bounds") ~typ:(returning CGRect.t) ~return_type:CGRect.t
 let canBecomeFocused self = msg_send ~self ~cmd:(selector "canBecomeFocused") ~typ:(returning bool)
 let contentOffsetForSegment x self = msg_send_stret ~self ~cmd:(selector "contentOffsetForSegment:") ~typ:(ullong @-> returning CGSize.t) ~return_type:CGSize.t (ULLong.of_int x)
@@ -55,7 +55,7 @@ let isEnabledForSegmentAtIndex x self = msg_send ~self ~cmd:(selector "isEnabled
 let isMomentary self = msg_send ~self ~cmd:(selector "isMomentary") ~typ:(returning bool)
 let isSpringLoaded self = msg_send ~self ~cmd:(selector "isSpringLoaded") ~typ:(returning bool)
 let layoutSubviews self = msg_send ~self ~cmd:(selector "layoutSubviews") ~typ:(returning void)
-let numberOfSegments self = msg_send ~self ~cmd:(selector "numberOfSegments") ~typ:(returning ullong)
+let numberOfSegments self = msg_send ~self ~cmd:(selector "numberOfSegments") ~typ:(returning ullong) |> ULLong.to_int
 let pointMostlyInside x ~withEvent self = msg_send ~self ~cmd:(selector "pointMostlyInside:withEvent:") ~typ:(CGPoint.t @-> id @-> returning bool) x withEvent
 let pointerInteraction x ~styleForRegion self = msg_send ~self ~cmd:(selector "pointerInteraction:styleForRegion:") ~typ:(id @-> id @-> returning id) x styleForRegion
 let pointerInteraction1 x ~regionForRequest ~defaultRegion self = msg_send ~self ~cmd:(selector "pointerInteraction:regionForRequest:defaultRegion:") ~typ:(id @-> id @-> id @-> returning id) x regionForRequest defaultRegion
@@ -69,12 +69,12 @@ let removeAllSegments self = msg_send ~self ~cmd:(selector "removeAllSegments") 
 let removeSegment x ~animated self = msg_send ~self ~cmd:(selector "removeSegment:animated:") ~typ:(ullong @-> bool @-> returning void) (ULLong.of_int x) animated
 let removeSegmentAtIndex x ~animated self = msg_send ~self ~cmd:(selector "removeSegmentAtIndex:animated:") ~typ:(ullong @-> bool @-> returning void) (ULLong.of_int x) animated
 let removedSegment self = msg_send ~self ~cmd:(selector "removedSegment") ~typ:(returning id)
-let segmentControlStyle self = msg_send ~self ~cmd:(selector "segmentControlStyle") ~typ:(returning llong)
-let segmentIndexForActionIdentifier x self = msg_send ~self ~cmd:(selector "segmentIndexForActionIdentifier:") ~typ:(id @-> returning llong) x
-let segmentedControlStyle self = msg_send ~self ~cmd:(selector "segmentedControlStyle") ~typ:(returning llong)
+let segmentControlStyle self = msg_send ~self ~cmd:(selector "segmentControlStyle") ~typ:(returning llong) |> LLong.to_int
+let segmentIndexForActionIdentifier x self = msg_send ~self ~cmd:(selector "segmentIndexForActionIdentifier:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let segmentedControlStyle self = msg_send ~self ~cmd:(selector "segmentedControlStyle") ~typ:(returning llong) |> LLong.to_int
 let selectSegment x self = msg_send ~self ~cmd:(selector "selectSegment:") ~typ:(int @-> returning void) x
-let selectedSegment self = msg_send ~self ~cmd:(selector "selectedSegment") ~typ:(returning llong)
-let selectedSegmentIndex self = msg_send ~self ~cmd:(selector "selectedSegmentIndex") ~typ:(returning llong)
+let selectedSegment self = msg_send ~self ~cmd:(selector "selectedSegment") ~typ:(returning llong) |> LLong.to_int
+let selectedSegmentIndex self = msg_send ~self ~cmd:(selector "selectedSegmentIndex") ~typ:(returning llong) |> LLong.to_int
 let selectedSegmentTintColor self = msg_send ~self ~cmd:(selector "selectedSegmentTintColor") ~typ:(returning id)
 let setAction x ~forSegmentAtIndex self = msg_send ~self ~cmd:(selector "setAction:forSegmentAtIndex:") ~typ:(id @-> ullong @-> returning void) x (ULLong.of_int forSegmentAtIndex)
 let setAdjustsForContentSizeCategory x self = msg_send ~self ~cmd:(selector "setAdjustsForContentSizeCategory:") ~typ:(bool @-> returning void) x

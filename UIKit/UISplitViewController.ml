@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
 open CoreAnimation
 open CoreText
@@ -16,7 +16,7 @@ let addChildViewController x self = msg_send ~self ~cmd:(selector "addChildViewC
 let canPerformAction x ~withSender self = msg_send ~self ~cmd:(selector "canPerformAction:withSender:") ~typ:(_SEL @-> id @-> returning bool) x withSender
 let childViewControllerForStatusBarStyle self = msg_send ~self ~cmd:(selector "childViewControllerForStatusBarStyle") ~typ:(returning id)
 let childViewControllerForTouchBar self = msg_send ~self ~cmd:(selector "childViewControllerForTouchBar") ~typ:(returning id)
-let composition self = msg_send ~self ~cmd:(selector "composition") ~typ:(returning llong)
+let composition self = msg_send ~self ~cmd:(selector "composition") ~typ:(returning llong) |> LLong.to_int
 let configuration self = msg_send ~self ~cmd:(selector "configuration") ~typ:(returning id)
 let currentState self = msg_send ~self ~cmd:(selector "currentState") ~typ:(returning id)
 let decodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "decodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
@@ -25,9 +25,9 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let detailViewController self = msg_send ~self ~cmd:(selector "detailViewController") ~typ:(returning id)
 let didMoveToParentViewController x self = msg_send ~self ~cmd:(selector "didMoveToParentViewController:") ~typ:(id @-> returning void) x
 let didRotateFromInterfaceOrientation x self = msg_send ~self ~cmd:(selector "didRotateFromInterfaceOrientation:") ~typ:(llong @-> returning void) (LLong.of_int x)
-let displayMode self = msg_send ~self ~cmd:(selector "displayMode") ~typ:(returning llong)
+let displayMode self = msg_send ~self ~cmd:(selector "displayMode") ~typ:(returning llong) |> LLong.to_int
 let displayModeButtonItem self = msg_send ~self ~cmd:(selector "displayModeButtonItem") ~typ:(returning id)
-let displayModeButtonVisibility self = msg_send ~self ~cmd:(selector "displayModeButtonVisibility") ~typ:(returning llong)
+let displayModeButtonVisibility self = msg_send ~self ~cmd:(selector "displayModeButtonVisibility") ~typ:(returning llong) |> LLong.to_int
 let encodeRestorableStateWithCoder x self = msg_send ~self ~cmd:(selector "encodeRestorableStateWithCoder:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let gutterWidth self = msg_send ~self ~cmd:(selector "gutterWidth") ~typ:(returning float)
@@ -47,25 +47,25 @@ let minimumPrimaryColumnWidth self = msg_send ~self ~cmd:(selector "minimumPrima
 let minimumSupplementalColumnWidth self = msg_send ~self ~cmd:(selector "minimumSupplementalColumnWidth") ~typ:(returning double)
 let minimumSupplementaryColumnWidth self = msg_send ~self ~cmd:(selector "minimumSupplementaryColumnWidth") ~typ:(returning double)
 let possibleStates self = msg_send ~self ~cmd:(selector "possibleStates") ~typ:(returning id)
-let preferredCenterStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredCenterStatusBarStyle") ~typ:(returning llong)
+let preferredCenterStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredCenterStatusBarStyle") ~typ:(returning llong) |> LLong.to_int
 let preferredContentSizeDidChangeForChildContentContainer x self = msg_send ~self ~cmd:(selector "preferredContentSizeDidChangeForChildContentContainer:") ~typ:(id @-> returning void) x
-let preferredDisplayMode self = msg_send ~self ~cmd:(selector "preferredDisplayMode") ~typ:(returning llong)
+let preferredDisplayMode self = msg_send ~self ~cmd:(selector "preferredDisplayMode") ~typ:(returning llong) |> LLong.to_int
 let preferredFocusEnvironments self = msg_send ~self ~cmd:(selector "preferredFocusEnvironments") ~typ:(returning id)
 let preferredFocusedView self = msg_send ~self ~cmd:(selector "preferredFocusedView") ~typ:(returning id)
-let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong)
-let preferredLeadingStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredLeadingStatusBarStyle") ~typ:(returning llong)
+let preferredInterfaceOrientationForPresentation self = msg_send ~self ~cmd:(selector "preferredInterfaceOrientationForPresentation") ~typ:(returning llong) |> LLong.to_int
+let preferredLeadingStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredLeadingStatusBarStyle") ~typ:(returning llong) |> LLong.to_int
 let preferredPrimaryColumnWidth self = msg_send ~self ~cmd:(selector "preferredPrimaryColumnWidth") ~typ:(returning double)
 let preferredPrimaryColumnWidthFraction self = msg_send ~self ~cmd:(selector "preferredPrimaryColumnWidthFraction") ~typ:(returning double)
-let preferredSplitBehavior self = msg_send ~self ~cmd:(selector "preferredSplitBehavior") ~typ:(returning llong)
+let preferredSplitBehavior self = msg_send ~self ~cmd:(selector "preferredSplitBehavior") ~typ:(returning llong) |> LLong.to_int
 let preferredSupplementalColumnWidthFraction self = msg_send ~self ~cmd:(selector "preferredSupplementalColumnWidthFraction") ~typ:(returning double)
 let preferredSupplementaryColumnWidth self = msg_send ~self ~cmd:(selector "preferredSupplementaryColumnWidth") ~typ:(returning double)
 let preferredSupplementaryColumnWidthFraction self = msg_send ~self ~cmd:(selector "preferredSupplementaryColumnWidthFraction") ~typ:(returning double)
-let preferredTrailingStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredTrailingStatusBarStyle") ~typ:(returning llong)
+let preferredTrailingStatusBarStyle self = msg_send ~self ~cmd:(selector "preferredTrailingStatusBarStyle") ~typ:(returning llong) |> LLong.to_int
 let prefersSecondaryOnlyShortcutButtonVisible self = msg_send ~self ~cmd:(selector "prefersSecondaryOnlyShortcutButtonVisible") ~typ:(returning bool)
 let presentsWithGesture self = msg_send ~self ~cmd:(selector "presentsWithGesture") ~typ:(returning bool)
-let primaryBackgroundStyle self = msg_send ~self ~cmd:(selector "primaryBackgroundStyle") ~typ:(returning llong)
+let primaryBackgroundStyle self = msg_send ~self ~cmd:(selector "primaryBackgroundStyle") ~typ:(returning llong) |> LLong.to_int
 let primaryColumnWidth self = msg_send ~self ~cmd:(selector "primaryColumnWidth") ~typ:(returning double)
-let primaryEdge self = msg_send ~self ~cmd:(selector "primaryEdge") ~typ:(returning llong)
+let primaryEdge self = msg_send ~self ~cmd:(selector "primaryEdge") ~typ:(returning llong) |> LLong.to_int
 let removeChildViewController x self = msg_send ~self ~cmd:(selector "removeChildViewController:") ~typ:(id @-> returning void) x
 let removeFromParentViewController self = msg_send ~self ~cmd:(selector "removeFromParentViewController") ~typ:(returning void)
 let setAutomaticallyAdjustsScrollViewInsets x self = msg_send ~self ~cmd:(selector "setAutomaticallyAdjustsScrollViewInsets:") ~typ:(bool @-> returning void) x
@@ -118,12 +118,12 @@ let showViewController x ~sender self = msg_send ~self ~cmd:(selector "showViewC
 let showsFullScreenShortcutButtonIfApplicable self = msg_send ~self ~cmd:(selector "showsFullScreenShortcutButtonIfApplicable") ~typ:(returning bool)
 let showsSecondaryOnlyButton self = msg_send ~self ~cmd:(selector "showsSecondaryOnlyButton") ~typ:(returning bool)
 let sizeForChildContentContainer x ~withParentContainerSize self = msg_send_stret ~self ~cmd:(selector "sizeForChildContentContainer:withParentContainerSize:") ~typ:(id @-> CGSize.t @-> returning CGSize.t) ~return_type:CGSize.t x withParentContainerSize
-let splitBehavior self = msg_send ~self ~cmd:(selector "splitBehavior") ~typ:(returning llong)
+let splitBehavior self = msg_send ~self ~cmd:(selector "splitBehavior") ~typ:(returning llong) |> LLong.to_int
 let stateRequest self = msg_send ~self ~cmd:(selector "stateRequest") ~typ:(returning id)
-let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong)
+let style self = msg_send ~self ~cmd:(selector "style") ~typ:(returning llong) |> LLong.to_int
 let supplementalColumnWidth self = msg_send ~self ~cmd:(selector "supplementalColumnWidth") ~typ:(returning double)
 let supplementaryColumnWidth self = msg_send ~self ~cmd:(selector "supplementaryColumnWidth") ~typ:(returning double)
-let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong)
+let supportedInterfaceOrientations self = msg_send ~self ~cmd:(selector "supportedInterfaceOrientations") ~typ:(returning ullong) |> ULLong.to_int
 let toggleMasterVisible x self = msg_send ~self ~cmd:(selector "toggleMasterVisible:") ~typ:(id @-> returning void) x
 let toggleSidebar x self = msg_send ~self ~cmd:(selector "toggleSidebar:") ~typ:(id @-> returning void) x
 let traitCollectionDidChange x self = msg_send ~self ~cmd:(selector "traitCollectionDidChange:") ~typ:(id @-> returning void) x
