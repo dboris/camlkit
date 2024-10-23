@@ -271,7 +271,7 @@ module Property = struct
     and imp self _cmd =
       !@ (ivar_ptr ~self ~ivar_name |> from_voidp typ)
     in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~enc imp
   ;;
 
   (** Setter for non-object values. *)
@@ -287,7 +287,7 @@ module Property = struct
       if notify_change then
         msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~enc imp
   ;;
 
   (** Getter for object values. *)
@@ -300,7 +300,7 @@ module Property = struct
       in
       Object.get_ivar ~self ~ivar
     in
-    method_spec ~cmd ~typ: (returning typ) ~imp ~enc
+    method_spec ~cmd ~typ: (returning typ) imp ~enc
   ;;
 
   (** Setter for object values. *)
@@ -333,7 +333,7 @@ module Property = struct
       if notify_change then
         msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
-    method_spec ~cmd ~typ: (typ @-> returning void) ~imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) imp ~enc
 
   (** Define a property getter and setter (unless [readonly] is [true]). *)
   let accessor_methods :
@@ -406,10 +406,16 @@ module Class = struct
     create_instance cls extra_bytes
 
   (** Adds a new method to a class with a given name and implementation. *)
-  let add_method ~self ~cmd ~typ ~imp ~enc =
+  let add_method ~self ~cmd ~typ ~enc
+    ?(runtime_lock = false)
+    ?(thread_registration = false)
+    imp
+    =
     let method_t = id @-> _SEL @-> typ in
     let ty =
-      _Class @-> _SEL @-> funptr method_t @-> _Enc @-> returning bool in
+      _Class @-> _SEL @-> funptr ~runtime_lock ~thread_registration method_t
+      @-> _Enc @-> returning bool
+    in
     foreign "class_addMethod" ty self cmd imp enc
 
   (** Adds a new instance variable to a class. *)
@@ -429,13 +435,15 @@ module Class = struct
     name
   =
     let self = C.Functions.Objc.allocate_class ~superclass name in
-    let add_method' (Define.MethodSpec {cmd; typ; imp; enc}) =
+    let add_method' (Define.MethodSpec
+      {cmd; typ; imp; enc; runtime_lock; thread_registration})
+      =
       (match Platform.current with
       | GNUStep ->
         let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+        assert (add_method ~self ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration)
       | _ ->
-        assert (add_method ~self ~cmd ~typ ~imp ~enc));
+        assert (add_method ~self ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration));
       defined_methods := Root.create imp :: !defined_methods
     in
     assert (not (is_null self));
@@ -466,8 +474,11 @@ module Class = struct
     if (List.length class_methods > 0) then begin
       let metaclass = C.Functions.Objc.get_meta_class name in
       assert (not (is_null metaclass));
-      class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
-        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc);
+      class_methods |> List.iter (fun (Define.MethodSpec
+        {cmd; typ; imp; enc; runtime_lock; thread_registration})
+        ->
+        assert (add_method ~self: metaclass
+          ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration);
         defined_methods := Root.create imp :: !defined_methods)
     end;
 
@@ -540,11 +551,15 @@ module Method = struct
   let invoke ~typ ~self m =
     foreign "method_invoke" (id @-> _Method @-> typ) self m
 
-  let define imp ~cmd ~args ~return =
+  let define ~cmd ~args ~return
+    ?(runtime_lock = false)
+    ?(thread_registration = false)
+    imp
+    =
     let typ = Objc_t.method_typ ~args return
     and enc = Objc_t.Encode._method_ ~args return
     in
-    Define.method_spec ~cmd ~typ ~imp ~enc
+    Define.method_spec ~cmd ~typ ~enc ~runtime_lock ~thread_registration imp
 end
 
 module Ivar = struct

@@ -20,8 +20,8 @@ let test_add_method () =
       ~self: (get_class "NSObject")
       ~cmd: (selector "addOneTo:")
       ~typ: (int @-> returning int)
-      ~imp: (fun _self _cmd x -> x + 1)
       ~enc: Objc_t.(Encode._method_ ~args: [int] int)
+      (fun _self _cmd x -> x + 1)
   in
   A.check A.bool "true result" added true
 
@@ -53,7 +53,7 @@ let test_define_class_with_methods () =
   and imp _self _cmd x = x * 2
   and enc = Objc_t.(Encode._method_ ~args: [int] int)
   in
-  let methods = [method_spec ~cmd ~typ ~imp ~enc]
+  let methods = [method_spec ~cmd ~typ imp ~enc]
   and x = 5
   in
   let c = Class.define name ~methods in
@@ -73,7 +73,7 @@ let dealloc_spec called_flag =
   method_spec
     ~cmd: (selector "dealloc")
     ~typ: (returning void)
-    ~imp
+    imp
     ~enc: Objc_t.(Encode._method_ ~args: [] void)
 
 let test_gc_autorelease () =
@@ -98,13 +98,13 @@ let test_add_protocol () =
     method_spec
       ~cmd: (selector "encodeWithCoder:")
       ~typ: (id @-> returning void)
-      ~imp: (fun _self _cmd _coder -> ())
       ~enc: Objc_t.(Encode._method_ ~args: [id] void)
+      (fun _self _cmd _coder -> ())
   ; method_spec
       ~cmd: (selector "initWithCoder:")
       ~typ: (id @-> returning id)
-      ~imp: (fun self _cmd _coder -> self)
       ~enc: Objc_t.(Encode._method_ ~args: [id] id)
+      (fun self _cmd _coder -> self)
   ]
   in
   let c = Class.define ~protocols ~methods name

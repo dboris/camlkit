@@ -46,14 +46,14 @@ end
 let test_class = Class.define "TestClass" ~methods:
   [ method_spec
     ~cmd: (selector "getSmallStruct")
-    ~imp: (fun _ _ -> SmallStruct.make ~x: 5. ~y: 22.)
     ~typ: (returning SmallStruct.t)
     ~enc: "@:{SmallStruct=dd}"
+    (fun _ _ -> SmallStruct.make ~x: 5. ~y: 22.)
   ; method_spec
     ~cmd: (selector "getLargeStruct")
-    ~imp: (fun _ _ -> LargeStruct.make ~x: 5. ~y: 22. ~z: 42. ~s: "Hello")
     ~typ: (returning LargeStruct.t)
     ~enc: "@:{LargeStruct=ddd*}"
+    (fun _ _ -> LargeStruct.make ~x: 5. ~y: 22. ~z: 42. ~s: "Hello")
   ]
 
 let test_object = new_object "TestClass"
