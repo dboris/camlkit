@@ -389,6 +389,9 @@ end
 module Class = struct
   include C.Functions.Class
 
+  (* keep alive OCaml closures for defined methods *)
+  let defined_methods = ref []
+
   let alignment_of_size size =
     let open Float in
     Size_t.to_int size
@@ -427,12 +430,13 @@ module Class = struct
   =
     let self = C.Functions.Objc.allocate_class ~superclass name in
     let add_method' (Define.MethodSpec {cmd; typ; imp; enc}) =
-      match Platform.current with
+      (match Platform.current with
       | GNUStep ->
         let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
         assert (add_method ~self ~cmd ~typ ~imp ~enc)
       | _ ->
-        assert (add_method ~self ~cmd ~typ ~imp ~enc)
+        assert (add_method ~self ~cmd ~typ ~imp ~enc));
+      defined_methods := Root.create imp :: !defined_methods
     in
     assert (not (is_null self));
 
@@ -463,7 +467,8 @@ module Class = struct
       let metaclass = C.Functions.Objc.get_meta_class name in
       assert (not (is_null metaclass));
       class_methods |> List.iter (fun (Define.MethodSpec {cmd; typ; imp; enc}) ->
-        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc))
+        assert (add_method ~self: metaclass ~cmd ~typ ~imp ~enc);
+        defined_methods := Root.create imp :: !defined_methods)
     end;
 
     self
