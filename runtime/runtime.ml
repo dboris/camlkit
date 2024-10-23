@@ -574,16 +574,11 @@ end
 
 (* Exception handling *)
 
-exception NSException of string * string
-exception SymbolNotFound of string
-
-let foreign_fun name ty =
-  try foreign name ty
-  with _ -> fun _ -> raise (SymbolNotFound name)
+exception CamlNSException of string * string
 
 (** Changes the top-level error handler. *)
 let set_uncaught_exception_handler =
-  foreign_fun "NSSetUncaughtExceptionHandler"
+  foreign ~stub:true "NSSetUncaughtExceptionHandler"
     (funptr (id @-> returning void) @-> returning void)
 
 let default_uncaught_exception_handler ex =
@@ -595,14 +590,13 @@ let default_uncaught_exception_handler ex =
   and to_string self =
     msg_send ~self ~cmd: (selector "UTF8String") ~typ: (returning string)
   in
-  Printf.eprintf "NSException: %s -- %s\n%!"
+  Printf.eprintf "CamlNSException: %s -- %s\n%!"
     (to_string name) (to_string reason);
-  raise @@ NSException (to_string name, to_string reason)
+  raise @@ CamlNSException (to_string name, to_string reason)
 
 let () =
   match Sys.backend_type with
   | Native ->
-    begin try
-      set_uncaught_exception_handler default_uncaught_exception_handler
-    with SymbolNotFound _ -> () end
+    (try set_uncaught_exception_handler default_uncaught_exception_handler
+    with _ -> ())
   | _ -> ()
