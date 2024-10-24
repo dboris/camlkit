@@ -1,5 +1,5 @@
 open Ctypes
-include C.Types
+open C.Types
 
 (** Represents an Objective-C type. *)
 type _ t =
@@ -27,9 +27,10 @@ type _ t =
   | Proto : protocol_t t
   | Ivar : ivar_t t
 
-type (_, _) hlist =
-  | [] : ('r, 'r) hlist
-  | (::) : 'a t * ('b, 'r) hlist -> ('a -> 'b, 'r) hlist
+(** Represents a list of Objective-C types. *)
+type (_, _) tlist =
+  | [] : ('r, 'r) tlist
+  | (::) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist
 
 let rec ctype_of_t : type a. a t -> a typ =
   function
@@ -56,6 +57,8 @@ let rec ctype_of_t : type a. a t -> a typ =
   | Ivar -> _Ivar
   | Struc _ | Union _ -> invalid_arg "not implemented"
 
+(* Convenience constructors *)
+
 let id = Id
 let _Class = Class
 let _SEL = Sel
@@ -80,7 +83,25 @@ let array ty = Arr ty
 let struc ty = Struc ty
 let union ty = Union ty
 
+let rec fn_of_tlist : type a b. b fn -> (a, b) tlist -> a fn =
+  fun r ->
+    function
+    | [] -> r
+    | t :: xs -> ctype_of_t t @-> fn_of_tlist r xs
+
+(** Returns the ctypes fn corresponding to the method type. *)
+let method_typ ~args return =
+  fn_of_tlist (returning (ctype_of_t return)) args
+
+(** Returns the ctypes value typ corresponding to the value type. *)
+let value_typ = ctype_of_t
+
+(** The method accepts only the implicit [self] and [cmd] arguments. *)
+let noargs = []
+
 module Encode = struct
+  (** Functions dealing with the encoding of types in the Objective-C runtime. *)
+
   let byte_size_of_t : type a. a t -> int =
     let open Ctypes in
     function
@@ -121,38 +142,26 @@ module Encode = struct
     | Union ty -> "(" ^ enc_of_t ty ^ ")"
     | Imp | Enc | Proto | Ivar -> "?"
 
-  let rec fold_enc : type a b. int -> (a, b) hlist -> string =
+  let rec enc_of_tlist : type a b. int -> (a, b) tlist -> string =
     fun arg_offset ->
       function
       | [] -> ""
       | t :: xs ->
         enc_of_t t ^
         string_of_int arg_offset ^
-        fold_enc (arg_offset + byte_size_of_t t) xs
+        enc_of_tlist (arg_offset + byte_size_of_t t) xs
 
-  let rec fold_size : type a b. (a, b) hlist -> int =
+  let rec byte_size_of_tlist : type a b. (a, b) tlist -> int =
     function
     | [] -> 0
-    | t :: xs -> byte_size_of_t t + fold_size xs
+    | t :: xs -> byte_size_of_t t + byte_size_of_tlist xs
 
+  (** Returns the encoding of a method type in the Objective-C runtime. *)
   let _method_ ~args return =
     let args = id :: _SEL :: args in
-    let size_of_args = fold_size args in
-    enc_of_t return ^ string_of_int size_of_args ^ fold_enc 0 args
+    let size_of_args = byte_size_of_tlist args in
+    enc_of_t return ^ string_of_int size_of_args ^ enc_of_tlist 0 args
 
+  (** Returns the encoding of a value type in the Objective-C runtime. *)
   let value = enc_of_t
 end
-
-let rec fold_fn : type a b. b fn -> (a, b) hlist -> a fn =
-  fun r ->
-    function
-    | [] -> r
-    | t :: xs -> ctype_of_t t @-> fold_fn r xs
-
-let method_typ ~args return =
-  fold_fn (returning (ctype_of_t return)) args
-
-let value_typ = ctype_of_t
-
-(** The method accepts only the implicit [self] and [cmd] arguments. *)
-let noargs = []

@@ -69,7 +69,7 @@ module CamlProxy = struct
     val class_name : string
     val ivars : Define.ivar_spec' list
     val init : object_t -> object_t
-    val method_signature_for_selector : string -> Objc_t._Enc
+    val method_signature_for_selector : string -> _Enc
     val handle_invocation : object_t -> object_t -> unit
   end
 
@@ -111,7 +111,7 @@ end
 module CamlObjectProxy = struct
   module type S = sig
     val class_name : string
-    val method_signature_for_selector : string -> Objc_t._Enc
+    val method_signature_for_selector : string -> _Enc
     val handle_invocation : object_t -> object_t -> unit
     val responds_to_selector : string -> bool
   end
