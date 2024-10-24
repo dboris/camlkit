@@ -27,7 +27,7 @@ type _ t =
   | Proto : protocol_t t
   | Ivar : ivar_t t
 
-(** Represents a list of Objective-C types. *)
+(** Represents a tuple of Objective-C types. *)
 type (_, _) tlist =
   | [] : ('r, 'r) tlist
   | (::) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist

@@ -250,7 +250,7 @@ All books on iOS and macOS development in Objective-C are directly applicable.
 
 Some usefull sources you may wish to examine include:
 * [Objective-C runtime bindings and basic functionality](https://github.com/dboris/camlkit/blob/main/runtime/runtime.ml)
-* [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/objc_t.ml)
+* [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/objc_t.mli)
 * [Usage examples](https://github.com/dboris/camlkit-examples/)
 * [The Ctypes documentation](https://ocaml.org/p/ctypes/latest/doc/Ctypes/index.html)
 
