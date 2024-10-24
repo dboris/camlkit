@@ -300,7 +300,7 @@ module Property = struct
       in
       Object.get_ivar ~self ~ivar
     in
-    method_spec ~cmd ~typ: (returning typ) imp ~enc
+    method_spec ~cmd ~typ: (returning typ) ~enc imp
   ;;
 
   (** Setter for object values. *)
@@ -333,7 +333,7 @@ module Property = struct
       if notify_change then
         msg_send_ov ~self ~cmd: (selector "didChangeValueForKey:") key
     in
-    method_spec ~cmd ~typ: (typ @-> returning void) imp ~enc
+    method_spec ~cmd ~typ: (typ @-> returning void) ~enc imp
 
   (** Define a property getter and setter (unless [readonly] is [true]). *)
   let accessor_methods :
@@ -390,7 +390,7 @@ module Class = struct
   include C.Functions.Class
 
   (* keep alive OCaml closures for defined methods *)
-  let defined_methods = ref []
+  let defined_method_roots = ref []
 
   let alignment_of_size size =
     let open Float in
@@ -441,10 +441,14 @@ module Class = struct
       (match Platform.current with
       | GNUStep ->
         let cmd = Sel.register_typed_name (Sel.get_name cmd) enc in
-        assert (add_method ~self ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration)
+        assert (
+          add_method ~self ~runtime_lock ~thread_registration
+            ~cmd ~typ ~enc imp)
       | _ ->
-        assert (add_method ~self ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration));
-      defined_methods := Root.create imp :: !defined_methods
+        assert (
+          add_method ~self ~runtime_lock ~thread_registration
+            ~cmd ~typ ~enc imp));
+      defined_method_roots := Root.create imp :: !defined_method_roots
     in
     assert (not (is_null self));
 
@@ -474,12 +478,13 @@ module Class = struct
     if (List.length class_methods > 0) then begin
       let metaclass = C.Functions.Objc.get_meta_class name in
       assert (not (is_null metaclass));
-      class_methods |> List.iter (fun (Define.MethodSpec
-        {cmd; typ; imp; enc; runtime_lock; thread_registration})
-        ->
-        assert (add_method ~self: metaclass
-          ~cmd ~typ imp ~enc ~runtime_lock ~thread_registration);
-        defined_methods := Root.create imp :: !defined_methods)
+      class_methods |> List.iter @@ fun (Define.MethodSpec
+        {cmd; typ; imp; enc; runtime_lock; thread_registration}) ->
+          assert (
+            add_method ~self:metaclass
+              ~runtime_lock ~thread_registration
+              ~cmd ~typ ~enc imp);
+          defined_method_roots := Root.create imp :: !defined_method_roots
     end;
 
     self
