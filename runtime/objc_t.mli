@@ -1,7 +1,7 @@
 (** Represents an Objective-C type. *)
 type _ t =
-    Id : unit Ctypes.ptr t
-  | Class : unit Ctypes.ptr t
+    Id : C.Types.object_t t
+  | Class : C.Types.object_t t
   | Sel : C.Types.selector_t t
   | Void : unit t
   | Str : string t
@@ -47,9 +47,9 @@ val encode_value : 'a t -> string
 val noargs : ('a, 'a) tlist
 
 (** A reference to any Objective-C object regardless of its class. *)
-val id : unit Ctypes.ptr t
+val id : C.Types.object_t t
 
-val _Class : unit Ctypes.ptr t
+val _Class : C.Types.object_t t
 val _SEL : C.Types.selector_t t
 val _IMP : unit Ctypes.ptr t
 val _Enc : C.Types._Enc t

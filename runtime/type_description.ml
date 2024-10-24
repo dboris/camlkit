@@ -22,8 +22,8 @@ module Types = struct
   type objc_protocol
   let objc_protocol : objc_protocol structure typ = structure "objc_protocol"
 
-  type class_t = unit ptr
-  type object_t = unit ptr
+  type class_t = objc_object structure ptr
+  type object_t = objc_object structure ptr
   type imp_t = unit ptr
   type selector_t = objc_selector structure ptr
   type protocol_t = objc_object structure ptr
@@ -52,8 +52,8 @@ module Types = struct
     let value t = getf t value
   end
 
-  let id = ptr void
-  let _Class = ptr void
+  let id = ptr objc_object
+  let _Class = ptr objc_object
   let _SEL = ptr objc_selector
   let _IMP = ptr void
   let _Enc = string

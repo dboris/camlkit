@@ -51,7 +51,7 @@ module Object = struct
     C.Functions.Class.get_instance_variable (get_class self) ivar_name
     |> C.Functions.Ivar.get_offset
     |> Ptrdiff.to_nativeint
-    |> Nativeint.add (raw_address_of_ptr self)
+    |> Nativeint.add (self |> to_voidp |> raw_address_of_ptr)
     |> ptr_of_raw_address
   ;;
 
@@ -148,7 +148,7 @@ end
 
 let nsstring_class = Objc.get_class "NSString"
 
-let nil = null
+let nil = coerce (ptr void) Objc.id null
 let is_nil = is_null
 
 (** Returns a new instance of the receiving class. *)
@@ -222,11 +222,11 @@ let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
       let ivar =
         C.Functions.Class.get_instance_variable
           (Object.get_class self) ivar_name
-      in
-      Object.get_ivar ~self ~ivar
+      and typ = Objc_t.value_typ t in
+      Object.get_ivar ~self ~ivar |> coerce id typ
     | _ ->
       let typ = Objc_t.value_typ t in
-      !@ (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ)
+      !@ (Object.ivar_ptr ~self ~ivar_name |> coerce (ptr void) (ptr typ))
 ;;
 
 (** Sets the value of an ivar writing it directly. *)
@@ -237,8 +237,8 @@ let set_ivar : type a. string -> a -> a Objc_t.t -> object_t -> unit =
       let ivar =
         C.Functions.Class.get_instance_variable
           (Object.get_class self) ivar_name
-      in
-      Object.set_ivar ~self ~ivar value
+      and typ = Objc_t.value_typ t in
+      Object.set_ivar ~self ~ivar (coerce typ id value)
     | _ ->
       let typ = Objc_t.value_typ t in
       (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
@@ -353,11 +353,10 @@ module Property = struct
     ivar_name
     t
   ->
-    let typ = Objc_t.value_typ t
-    and enc = Objc_t.encode_value t
-    in
+    let enc = Objc_t.encode_value t in
     match t with
     | Objc_t.Id ->
+      let typ = id in
       if readonly then
         [ obj_getter ~typ ~enc ivar_name ]
       else
@@ -365,6 +364,7 @@ module Property = struct
         ; obj_setter ~assign ~copy ~notify_change ~typ ~enc ivar_name
         ]
     | _ ->
+      let typ = Objc_t.value_typ t in
       if readonly then
         [ getter ~typ ~enc ivar_name ]
       else
@@ -522,7 +522,7 @@ module Block = struct
   type t
 
   let t : t structure typ = structure "Block_literal_1"
-  let isa = field t "isa" (ptr void)
+  let isa = field t "isa" _Class
   let flags = field t "flags" int
   let reserved = field t "reserved" int
   let invoke = field t "invoke" (ptr void)

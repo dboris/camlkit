@@ -3,8 +3,8 @@ open C.Types
 
 (** Represents an Objective-C type. *)
 type _ t =
-  | Id : unit ptr t
-  | Class : unit ptr t
+  | Id : object_t t
+  | Class : object_t t
   | Sel : selector_t t
   | Void : unit t
   | Str : string t
