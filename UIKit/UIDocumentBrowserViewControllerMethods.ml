@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let activityViewController imp = Define.method_spec ~cmd:(selector "activityViewController") ~typ:(returning (id)) ~enc:"@16@0:8" imp
 let adaptivePresentationController imp = Define.method_spec ~cmd:(selector "adaptivePresentationController") ~typ:(returning (id)) ~enc:"@16@0:8" imp

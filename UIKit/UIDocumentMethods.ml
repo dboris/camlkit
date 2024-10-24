@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let accommodatePresentedItemDeletionWithCompletionHandler' imp = Define.method_spec ~cmd:(selector "accommodatePresentedItemDeletionWithCompletionHandler:") ~typ:((ptr void) @-> returning (void)) ~enc:"v24@0:8@?16" imp
 let accommodatePresentedSubitemDeletionAtURL'completionHandler' imp = Define.method_spec ~cmd:(selector "accommodatePresentedSubitemDeletionAtURL:completionHandler:") ~typ:(id @-> (ptr void) @-> returning (void)) ~enc:"v32@0:8@16@?24" imp

@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let tabBar'didSelectItem' imp = Define.method_spec ~cmd:(selector "tabBar:didSelectItem:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp
 let tabBar'willBeginCustomizingItems' imp = Define.method_spec ~cmd:(selector "tabBar:willBeginCustomizingItems:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp

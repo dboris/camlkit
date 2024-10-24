@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let scrollViewDidScroll' imp = Define.method_spec ~cmd:(selector "scrollViewDidScroll:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp
 let scrollViewDidZoom' imp = Define.method_spec ~cmd:(selector "scrollViewDidZoom:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp

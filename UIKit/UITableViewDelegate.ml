@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let tableView'willDisplayCell'forRowAtIndexPath' imp = Define.method_spec ~cmd:(selector "tableView:willDisplayCell:forRowAtIndexPath:") ~typ:(id @-> id @-> id @-> returning (void)) ~enc:"v40@0:8@16@24@32" imp
 let tableView'willDisplayHeaderView'forSection' imp = Define.method_spec ~cmd:(selector "tableView:willDisplayHeaderView:forSection:") ~typ:(id @-> id @-> llong @-> returning (void)) ~enc:"v40@0:8@16@24q32" imp

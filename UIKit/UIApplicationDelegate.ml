@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let applicationDidFinishLaunching' imp = Define.method_spec ~cmd:(selector "applicationDidFinishLaunching:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp
 let applicationDidBecomeActive' imp = Define.method_spec ~cmd:(selector "applicationDidBecomeActive:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp

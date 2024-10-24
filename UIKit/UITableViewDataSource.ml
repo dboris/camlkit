@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let numberOfSectionsInTableView' imp = Define.method_spec ~cmd:(selector "numberOfSectionsInTableView:") ~typ:(id @-> returning (llong)) ~enc:"q24@0:8@16" imp
 let tableView'titleForHeaderInSection' imp = Define.method_spec ~cmd:(selector "tableView:titleForHeaderInSection:") ~typ:(id @-> llong @-> returning (id)) ~enc:"@32@0:8@16q24" imp

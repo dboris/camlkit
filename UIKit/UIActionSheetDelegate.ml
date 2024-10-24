@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let actionSheet'willDismissWithButtonIndex' imp = Define.method_spec ~cmd:(selector "actionSheet:willDismissWithButtonIndex:") ~typ:(id @-> llong @-> returning (void)) ~enc:"v32@0:8@16q24" imp
 let actionSheet'didDismissWithButtonIndex' imp = Define.method_spec ~cmd:(selector "actionSheet:didDismissWithButtonIndex:") ~typ:(id @-> llong @-> returning (void)) ~enc:"v32@0:8@16q24" imp

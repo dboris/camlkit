@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let actionSheetPresentationControllerDidDismissActionSheet' imp = Define.method_spec ~cmd:(selector "actionSheetPresentationControllerDidDismissActionSheet:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp

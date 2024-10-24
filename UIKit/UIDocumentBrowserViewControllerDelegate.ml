@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let documentBrowser'didRequestDocumentCreationWithHandler' imp = Define.method_spec ~cmd:(selector "documentBrowser:didRequestDocumentCreationWithHandler:") ~typ:(id @-> (ptr void) @-> returning (void)) ~enc:"v32@0:8@16@?24" imp
 let documentBrowser'didPickDocumentURLs' imp = Define.method_spec ~cmd:(selector "documentBrowser:didPickDocumentURLs:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp

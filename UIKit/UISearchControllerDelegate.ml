@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let willPresentSearchController' imp = Define.method_spec ~cmd:(selector "willPresentSearchController:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp
 let didPresentSearchController' imp = Define.method_spec ~cmd:(selector "didPresentSearchController:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp

@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let splitViewController'shouldHideViewController'inOrientation' imp = Define.method_spec ~cmd:(selector "splitViewController:shouldHideViewController:inOrientation:") ~typ:(id @-> id @-> llong @-> returning (bool)) ~enc:"c40@0:8@16@24q32" imp
 let splitViewController'willShowViewController'invalidatingBarButtonItem' imp = Define.method_spec ~cmd:(selector "splitViewController:willShowViewController:invalidatingBarButtonItem:") ~typ:(id @-> id @-> id @-> returning (void)) ~enc:"v40@0:8@16@24@32" imp

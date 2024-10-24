@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let windowScene'userDidAcceptCloudKitShareWithMetadata' imp = Define.method_spec ~cmd:(selector "windowScene:userDidAcceptCloudKitShareWithMetadata:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp
 let windowScene'performActionForShortcutItem'completionHandler' imp = Define.method_spec ~cmd:(selector "windowScene:performActionForShortcutItem:completionHandler:") ~typ:(id @-> id @-> (ptr void) @-> returning (void)) ~enc:"v40@0:8@16@24@?32" imp

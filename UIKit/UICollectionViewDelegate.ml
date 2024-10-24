@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let collectionView'willDisplaySupplementaryView'forElementKind'atIndexPath' imp = Define.method_spec ~cmd:(selector "collectionView:willDisplaySupplementaryView:forElementKind:atIndexPath:") ~typ:(id @-> id @-> id @-> id @-> returning (void)) ~enc:"v48@0:8@16@24@32@40" imp
 let collectionView'didEndDisplayingSupplementaryView'forElementOfKind'atIndexPath' imp = Define.method_spec ~cmd:(selector "collectionView:didEndDisplayingSupplementaryView:forElementOfKind:atIndexPath:") ~typ:(id @-> id @-> id @-> id @-> returning (void)) ~enc:"v48@0:8@16@24@32@40" imp

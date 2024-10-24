@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let searchBar'textDidChange' imp = Define.method_spec ~cmd:(selector "searchBar:textDidChange:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp
 let searchBarShouldBeginEditing' imp = Define.method_spec ~cmd:(selector "searchBarShouldBeginEditing:") ~typ:(id @-> returning (bool)) ~enc:"c24@0:8@16" imp

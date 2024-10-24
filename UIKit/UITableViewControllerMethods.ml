@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let clearsSelectionOnViewWillAppear imp = Define.method_spec ~cmd:(selector "clearsSelectionOnViewWillAppear") ~typ:(returning (bool)) ~enc:"c16@0:8" imp
 let dealloc imp = Define.method_spec ~cmd:(selector "dealloc") ~typ:(returning (void)) ~enc:"v16@0:8" imp

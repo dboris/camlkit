@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let rotatingSnapshotViewForWindow' imp = Define.method_spec ~cmd:(selector "rotatingSnapshotViewForWindow:") ~typ:(id @-> returning (id)) ~enc:"@24@0:8@16" imp
 let rotatingContentViewForWindow' imp = Define.method_spec ~cmd:(selector "rotatingContentViewForWindow:") ~typ:(id @-> returning (id)) ~enc:"@24@0:8@16" imp

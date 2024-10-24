@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let accessibilityIdentifier imp = Define.method_spec ~cmd:(selector "accessibilityIdentifier") ~typ:(returning (id)) ~enc:"@16@0:8" imp
 let accessibilityLargeTextDidChange imp = Define.method_spec ~cmd:(selector "accessibilityLargeTextDidChange") ~typ:(returning (void)) ~enc:"v16@0:8" imp

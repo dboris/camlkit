@@ -4,7 +4,7 @@
 open Runtime
 open Objc
 
-open CoreFoundation
+open Foundation
 
 let _PDFKitEnclosingScrollView imp = Define.method_spec ~cmd:(selector "PDFKitEnclosingScrollView") ~typ:(returning (id)) ~enc:"@16@0:8" imp
 let abSetLayoutDebuggingColor' imp = Define.method_spec ~cmd:(selector "abSetLayoutDebuggingColor:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp

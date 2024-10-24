@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let pageViewController'willTransitionToViewControllers' imp = Define.method_spec ~cmd:(selector "pageViewController:willTransitionToViewControllers:") ~typ:(id @-> id @-> returning (void)) ~enc:"v32@0:8@16@24" imp
 let pageViewController'didFinishAnimating'previousViewControllers'transitionCompleted' imp = Define.method_spec ~cmd:(selector "pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:") ~typ:(id @-> bool @-> id @-> bool @-> returning (void)) ~enc:"v40@0:8@16c24@28c36" imp

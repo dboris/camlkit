@@ -4,8 +4,8 @@
 open Runtime
 open Objc
 
-open CoreFoundation
-open CoreGraphics
+open Foundation
+
 
 let scene'willConnectToSession'options' imp = Define.method_spec ~cmd:(selector "scene:willConnectToSession:options:") ~typ:(id @-> id @-> id @-> returning (void)) ~enc:"v40@0:8@16@24@32" imp
 let sceneDidDisconnect' imp = Define.method_spec ~cmd:(selector "sceneDidDisconnect:") ~typ:(id @-> returning (void)) ~enc:"v24@0:8@16" imp
