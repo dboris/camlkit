@@ -20,7 +20,7 @@ let test_add_method () =
       ~self: (get_class "NSObject")
       ~cmd: (selector "addOneTo:")
       ~typ: (int @-> returning int)
-      ~enc: Objc_t.(Encode._method_ ~args: [int] int)
+      ~enc: Objc_t.(encode_method ~args: [int] int)
       (fun _self _cmd x -> x + 1)
   in
   A.check A.bool "true result" added true
@@ -51,7 +51,7 @@ let test_define_class_with_methods () =
   and cmd = selector "doubleOf:"
   and typ = int @-> returning int
   and imp _self _cmd x = x * 2
-  and enc = Objc_t.(Encode._method_ ~args: [int] int)
+  and enc = Objc_t.(encode_method ~args: [int] int)
   in
   let methods = [method_spec ~cmd ~typ imp ~enc]
   and x = 5
@@ -74,7 +74,7 @@ let dealloc_spec called_flag =
     ~cmd: (selector "dealloc")
     ~typ: (returning void)
     imp
-    ~enc: Objc_t.(Encode._method_ ~args: [] void)
+    ~enc: Objc_t.(encode_method ~args: [] void)
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -98,12 +98,12 @@ let test_add_protocol () =
     method_spec
       ~cmd: (selector "encodeWithCoder:")
       ~typ: (id @-> returning void)
-      ~enc: Objc_t.(Encode._method_ ~args: [id] void)
+      ~enc: Objc_t.(encode_method ~args: [id] void)
       (fun _self _cmd _coder -> ())
   ; method_spec
       ~cmd: (selector "initWithCoder:")
       ~typ: (id @-> returning id)
-      ~enc: Objc_t.(Encode._method_ ~args: [id] id)
+      ~enc: Objc_t.(encode_method ~args: [id] id)
       (fun self _cmd _coder -> self)
   ]
   in
@@ -115,14 +115,14 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_t.(Encode.value int)]
+    [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_t.(encode_value int)]
   and methods =
     [ Property.getter "myVar"
         ~typ: int
-        ~enc: Objc_t.(Encode.value int)
+        ~enc: Objc_t.(encode_value int)
     ; Property.setter "myVar"
         ~typ: int
-        ~enc: Objc_t.(Encode._method_ ~args: [int] void)
+        ~enc: Objc_t.(encode_method ~args: [int] void)
     ]
   in
   let o = _new_ (Class.define name ~ivars ~methods) in
@@ -203,14 +203,14 @@ let test_object_accessors ~name x () =
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_t.(Encode.value int)]
+    [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_t.(encode_value int)]
   and methods =
     [ Property.getter "myVar"
         ~typ:id
-        ~enc: Objc_t.(Encode.value id)
+        ~enc: Objc_t.(encode_value id)
     ; Property.setter "myVar"
         ~typ:id
-        ~enc: Objc_t.(Encode._method_ ~args: [id] void)
+        ~enc: Objc_t.(encode_method ~args: [id] void)
     ]
   in
   let o = _new_ (Class.define name ~ivars ~methods) in
@@ -230,7 +230,7 @@ let test_add_obj_ivar ~name x () =
 
 let test_kvc ~class_name x () =
   let ivars =
-    [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_t.(Encode.value id)]
+    [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_t.(encode_value id)]
   in
   let obj = _new_ (Class.define class_name ~ivars) in
   obj |> NSObject.setValue (new_string x) ~forKey: (new_string "myVar");

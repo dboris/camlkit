@@ -354,7 +354,7 @@ module Property = struct
     t
   ->
     let typ = Objc_t.value_typ t
-    and enc = Objc_t.Encode.value t
+    and enc = Objc_t.encode_value t
     in
     match t with
     | Objc_t.Id ->
@@ -454,7 +454,7 @@ module Class = struct
     |> List.iter (fun (Define.PropSpec
         {name; typ = t; retain; copy; readonly; notify_change}) ->
       let typ = Objc_t.value_typ t
-      and enc = Objc_t.Encode.value t
+      and enc = Objc_t.encode_value t
       and assign = not retain in
       let size = Size_t.of_int (sizeof typ) in
       assert (add_ivar ~self ~name ~size ~enc);
@@ -557,7 +557,7 @@ module Method = struct
     imp
     =
     let typ = Objc_t.method_typ ~args return
-    and enc = Objc_t.Encode._method_ ~args return
+    and enc = Objc_t.encode_method ~args return
     in
     Define.method_spec ~cmd ~typ ~enc ~runtime_lock ~thread_registration imp
 end
@@ -566,8 +566,8 @@ module Ivar = struct
   include C.Functions.Ivar
 
   let define name typ =
-    let typ = Objc_t.(value_typ typ)
-    and enc = Objc_t.(Encode.value typ)
+    let typ = Objc_t.value_typ typ
+    and enc = Objc_t.encode_value typ
     in
     Define.ivar_spec ~name ~typ ~enc
 end

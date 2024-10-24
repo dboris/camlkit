@@ -89,6 +89,29 @@ let rec fn_of_tlist : type a b. b fn -> (a, b) tlist -> a fn =
     | [] -> r
     | t :: xs -> ctype_of_t t @-> fn_of_tlist r xs
 
+let byte_size_of_t : type a. a t -> int =
+  let open Ctypes in
+  function
+  | Void -> sizeof void
+  | Str -> sizeof string
+  | Char -> sizeof char
+  | Bool -> sizeof bool
+  | Int -> sizeof int
+  | Short -> sizeof short
+  | Long -> sizeof long
+  | LLong -> sizeof llong
+  | ULLong -> sizeof ullong
+  | Float -> sizeof float
+  | Double -> sizeof double
+  | Id | Class | Sel | Ptr _ | Imp | Enc | Proto | Ivar | Unknown ->
+    sizeof (ptr void)
+  | Arr _ | Struc _ | Union _ -> invalid_arg "not implemented"
+
+let rec byte_size_of_tlist : type a b. (a, b) tlist -> int =
+  function
+  | [] -> 0
+  | t :: xs -> byte_size_of_t t + byte_size_of_tlist xs
+
 (** Returns the ctypes fn corresponding to the method type. *)
 let method_typ ~args return =
   fn_of_tlist (returning (ctype_of_t return)) args
@@ -99,69 +122,44 @@ let value_typ = ctype_of_t
 (** The method accepts only the implicit [self] and [cmd] arguments. *)
 let noargs = []
 
-module Encode = struct
-  (** Functions dealing with the encoding of types in the Objective-C runtime. *)
+(* Functions dealing with the encoding of types in the Objective-C runtime. *)
 
-  let byte_size_of_t : type a. a t -> int =
-    let open Ctypes in
+let rec enc_of_t : type a. a t -> string = function
+  | Id -> "@"
+  | Class -> "#"
+  | Sel -> ":"
+  | Void -> "v"
+  | Str -> "*"
+  | Char -> "c"
+  | Bool -> "C"
+  | Int -> "i"
+  | Short -> "s"
+  | Long -> "l"
+  | LLong -> "q"
+  | ULLong -> "Q"
+  | Float -> "f"
+  | Double -> "d"
+  | Unknown -> "?"
+  | Ptr ty -> "^" ^ enc_of_t ty
+  | Arr ty -> "[" ^ enc_of_t ty ^ "]"
+  | Struc ty -> "{" ^ enc_of_t ty ^ "}"
+  | Union ty -> "(" ^ enc_of_t ty ^ ")"
+  | Imp | Enc | Proto | Ivar -> "?"
+
+let rec enc_of_tlist : type a b. int -> (a, b) tlist -> string =
+  fun arg_offset ->
     function
-    | Void -> sizeof void
-    | Str -> sizeof string
-    | Char -> sizeof char
-    | Bool -> sizeof bool
-    | Int -> sizeof int
-    | Short -> sizeof short
-    | Long -> sizeof long
-    | LLong -> sizeof llong
-    | ULLong -> sizeof ullong
-    | Float -> sizeof float
-    | Double -> sizeof double
-    | Id | Class | Sel | Ptr _ | Imp | Enc | Proto | Ivar | Unknown ->
-      sizeof (ptr void)
-    | Arr _ | Struc _ | Union _ -> invalid_arg "not implemented"
+    | [] -> ""
+    | t :: xs ->
+      enc_of_t t ^
+      string_of_int arg_offset ^
+      enc_of_tlist (arg_offset + byte_size_of_t t) xs
 
-  let rec enc_of_t : type a. a t -> string = function
-    | Id -> "@"
-    | Class -> "#"
-    | Sel -> ":"
-    | Void -> "v"
-    | Str -> "*"
-    | Char -> "c"
-    | Bool -> "C"
-    | Int -> "i"
-    | Short -> "s"
-    | Long -> "l"
-    | LLong -> "q"
-    | ULLong -> "Q"
-    | Float -> "f"
-    | Double -> "d"
-    | Unknown -> "?"
-    | Ptr ty -> "^" ^ enc_of_t ty
-    | Arr ty -> "[" ^ enc_of_t ty ^ "]"
-    | Struc ty -> "{" ^ enc_of_t ty ^ "}"
-    | Union ty -> "(" ^ enc_of_t ty ^ ")"
-    | Imp | Enc | Proto | Ivar -> "?"
+(** Returns the encoding of a method type in the Objective-C runtime. *)
+let encode_method ~args return =
+  enc_of_t return ^
+  string_of_int (byte_size_of_tlist args) ^
+  enc_of_tlist 0 (id :: _SEL :: args)
 
-  let rec enc_of_tlist : type a b. int -> (a, b) tlist -> string =
-    fun arg_offset ->
-      function
-      | [] -> ""
-      | t :: xs ->
-        enc_of_t t ^
-        string_of_int arg_offset ^
-        enc_of_tlist (arg_offset + byte_size_of_t t) xs
-
-  let rec byte_size_of_tlist : type a b. (a, b) tlist -> int =
-    function
-    | [] -> 0
-    | t :: xs -> byte_size_of_t t + byte_size_of_tlist xs
-
-  (** Returns the encoding of a method type in the Objective-C runtime. *)
-  let _method_ ~args return =
-    let args = id :: _SEL :: args in
-    let size_of_args = byte_size_of_tlist args in
-    enc_of_t return ^ string_of_int size_of_args ^ enc_of_tlist 0 args
-
-  (** Returns the encoding of a value type in the Objective-C runtime. *)
-  let value = enc_of_t
-end
+(** Returns the encoding of a value type in the Objective-C runtime. *)
+let encode_value = enc_of_t
