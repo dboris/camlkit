@@ -222,8 +222,8 @@ let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
       let ivar =
         C.Functions.Class.get_instance_variable
           (Object.get_class self) ivar_name
-      and typ = Objc_t.value_typ t in
-      Object.get_ivar ~self ~ivar |> coerce id typ
+      in
+      Object.get_ivar ~self ~ivar
     | _ ->
       let typ = Objc_t.value_typ t in
       !@ (Object.ivar_ptr ~self ~ivar_name |> coerce (ptr void) (ptr typ))
