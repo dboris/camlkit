@@ -5,6 +5,6 @@
   camlkit-base.runtime
   camlkit-base.Foundation
   camlkit-base.CoreAnimation
-  camlkit-gui.CoreAutoLayout))
+  camlkit-base.CoreAutoLayout))
 
 (documentation (package camlkit-gui))
