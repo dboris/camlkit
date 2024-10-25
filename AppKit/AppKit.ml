@@ -1,4 +1,5 @@
 include AppKit_globals
+include Foundation
 
 module NSAccessibilityCustomAction = NSAccessibilityCustomAction
 module NSAccessibilityCustomRotor = NSAccessibilityCustomRotor

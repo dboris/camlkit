@@ -19,6 +19,8 @@ API changes:
 * Some runtime functions have changed signatures due to adding/removing labels
   for some params.
 * Added bindings for _CoreData_, _CloudKit_, and _NaturalLanguage_ frameworks.
+* AppKit and UIKit now include Foundation which doesn't need to be opened
+  separately.
 
 
 ## v0.2.2

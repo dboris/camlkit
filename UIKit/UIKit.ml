@@ -1,4 +1,5 @@
 include UIKit_globals
+include Foundation
 
 module NSDiffableDataSourceSectionSnapshot = NSDiffableDataSourceSectionSnapshot
 module NSDiffableDataSourceSectionTransaction = NSDiffableDataSourceSectionTransaction

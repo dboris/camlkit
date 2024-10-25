@@ -1,5 +1,6 @@
 include CoreFoundation
 include CoreGraphics
+include CoreAutoLayout
 include Foundation_globals
 
 module NSAEDescriptorTranslator = NSAEDescriptorTranslator
