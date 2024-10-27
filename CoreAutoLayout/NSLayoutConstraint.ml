@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -21,7 +21,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let descriptionAccessory self = msg_send ~self ~cmd:(selector "descriptionAccessory") ~typ:(returning id)
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let firstAnchor self = msg_send ~self ~cmd:(selector "firstAnchor") ~typ:(returning id)
-let firstAttribute self = msg_send ~self ~cmd:(selector "firstAttribute") ~typ:(returning llong)
+let firstAttribute self = msg_send ~self ~cmd:(selector "firstAttribute") ~typ:(returning llong) |> LLong.to_int
 let firstItem self = msg_send ~self ~cmd:(selector "firstItem") ~typ:(returning id)
 let hasBeenLowered self = msg_send ~self ~cmd:(selector "hasBeenLowered") ~typ:(returning bool)
 let identifier self = msg_send ~self ~cmd:(selector "identifier") ~typ:(returning id)
@@ -31,9 +31,9 @@ let isActive self = msg_send ~self ~cmd:(selector "isActive") ~typ:(returning bo
 let multiplier self = msg_send ~self ~cmd:(selector "multiplier") ~typ:(returning double)
 let priority self = msg_send ~self ~cmd:(selector "priority") ~typ:(returning float)
 let priorityForVariable x self = msg_send ~self ~cmd:(selector "priorityForVariable:") ~typ:(id @-> returning double) x
-let relation self = msg_send ~self ~cmd:(selector "relation") ~typ:(returning llong)
+let relation self = msg_send ~self ~cmd:(selector "relation") ~typ:(returning llong) |> LLong.to_int
 let secondAnchor self = msg_send ~self ~cmd:(selector "secondAnchor") ~typ:(returning id)
-let secondAttribute self = msg_send ~self ~cmd:(selector "secondAttribute") ~typ:(returning llong)
+let secondAttribute self = msg_send ~self ~cmd:(selector "secondAttribute") ~typ:(returning llong) |> LLong.to_int
 let secondItem self = msg_send ~self ~cmd:(selector "secondItem") ~typ:(returning id)
 let setActive x self = msg_send ~self ~cmd:(selector "setActive:") ~typ:(bool @-> returning void) x
 let setAnimations x self = msg_send ~self ~cmd:(selector "setAnimations:") ~typ:(id @-> returning void) x

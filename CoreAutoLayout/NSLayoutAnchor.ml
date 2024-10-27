@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -26,7 +26,7 @@ let description self = msg_send ~self ~cmd:(selector "description") ~typ:(return
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let equationDescription self = msg_send ~self ~cmd:(selector "equationDescription") ~typ:(returning id)
 let hasAmbiguousLayout self = msg_send ~self ~cmd:(selector "hasAmbiguousLayout") ~typ:(returning bool)
-let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong)
+let hash self = msg_send ~self ~cmd:(selector "hash") ~typ:(returning ullong) |> ULLong.to_int
 let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let initWithAnchor x self = msg_send ~self ~cmd:(selector "initWithAnchor:") ~typ:(id @-> returning id) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
