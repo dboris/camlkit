@@ -1,6 +1,7 @@
 (library
  (name NaturalLanguage)
  (public_name camlkit-base.NaturalLanguage)
+ (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework NaturalLanguage")
  (libraries
   camlkit-base.runtime

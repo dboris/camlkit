@@ -1,6 +1,7 @@
 (library
  (name CloudKit)
  (public_name camlkit-base.CloudKit)
+ (enabled_if (= %{system} macosx))
 ;  (flags :standard -ccopt "-framework CloudKit")
  (libraries
   camlkit-base.runtime
