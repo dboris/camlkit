@@ -305,13 +305,13 @@ module Property = struct
 
   (** Setter for object values. *)
   let obj_setter
-    ?(assign = false)
-    ?(copy = false)
-    ?(notify_change = false)
-    ~typ
-    ~enc
-    ivar_name
-  =
+      ?(assign = false)
+      ?(copy = false)
+      ?(notify_change = false)
+      ~typ
+      ~enc
+      ivar_name
+    =
     let cmd = selector (setter_name_of_ivar ivar_name)
     and key = new_string ivar_name in
     let imp self _cmd value =
@@ -337,26 +337,27 @@ module Property = struct
 
   (** Define a property getter and setter (unless [readonly] is [true]). *)
   let accessor_methods :
-    type a.
-    ?assign:bool ->
-    ?copy:bool ->
-    ?readonly:bool ->
-    ?notify_change:bool ->
-    string ->
-    a Objc_t.t ->
-    method_spec' list
-  = fun
-    ?(assign = false)
-    ?(copy = false)
-    ?(readonly = false)
-    ?(notify_change = false)
-    ivar_name
-    t
-  ->
-    let enc = Objc_t.encode_value t in
+      type a.
+      ?assign:bool ->
+      ?copy:bool ->
+      ?readonly:bool ->
+      ?notify_change:bool ->
+      string ->
+      a Objc_t.t ->
+      method_spec' list
+    = fun
+      ?(assign = false)
+      ?(copy = false)
+      ?(readonly = false)
+      ?(notify_change = false)
+      ivar_name
+      t
+    ->
+    let typ = Objc_t.value_typ t
+    and enc = Objc_t.encode_value t
+    in
     match t with
     | Objc_t.Id ->
-      let typ = id in
       if readonly then
         [ obj_getter ~typ ~enc ivar_name ]
       else
@@ -364,7 +365,6 @@ module Property = struct
         ; obj_setter ~assign ~copy ~notify_change ~typ ~enc ivar_name
         ]
     | _ ->
-      let typ = Objc_t.value_typ t in
       if readonly then
         [ getter ~typ ~enc ivar_name ]
       else
@@ -376,14 +376,13 @@ module Property = struct
   (** Define a property with an ivar, getter, and setter
       (unless [readonly] is [true]). *)
   let define
-    ?(retain = true)
-    ?(copy = false)
-    ?(readonly = false)
-    ?(notify_change = false)
-    name
-    typ
-    =
-    prop_spec ~retain ~copy ~readonly ~notify_change ~typ name
+      ?(retain = true)
+      ?(copy = false)
+      ?(readonly = false)
+      ?(notify_change = false)
+      name
+      typ
+    = prop_spec ~retain ~copy ~readonly ~notify_change ~typ name
 end
 
 module Class = struct
@@ -407,9 +406,9 @@ module Class = struct
 
   (** Adds a new method to a class with a given name and implementation. *)
   let add_method ~self ~cmd ~typ ~enc
-    ?(runtime_lock = false)
-    ?(thread_registration = false)
-    imp
+      ?(runtime_lock = false)
+      ?(thread_registration = false)
+      imp
     =
     let method_t = id @-> _SEL @-> typ in
     let ty =
@@ -426,17 +425,17 @@ module Class = struct
 
   (** Defines a new class and registers it with the Objective-C runtime. *)
   let define
-    ?(superclass = C.Functions.Objc.get_class "NSObject")
-    ?(protocols = [])
-    ?(ivars = [])
-    ?(properties = [])
-    ?(methods = [])
-    ?(class_methods = [])
-    name
-  =
+      ?(superclass = C.Functions.Objc.get_class "NSObject")
+      ?(protocols = [])
+      ?(ivars = [])
+      ?(properties = [])
+      ?(methods = [])
+      ?(class_methods = [])
+      name
+    =
     let self = C.Functions.Objc.allocate_class ~superclass name in
     let add_method' (Define.MethodSpec
-      {cmd; typ; imp; enc; runtime_lock; thread_registration})
+        {cmd; typ; imp; enc; runtime_lock; thread_registration})
       =
       (match Platform.current with
       | GNUStep ->
@@ -557,9 +556,9 @@ module Method = struct
     foreign "method_invoke" (id @-> _Method @-> typ) self m
 
   let define ~cmd ~args ~return
-    ?(runtime_lock = false)
-    ?(thread_registration = false)
-    imp
+      ?(runtime_lock = false)
+      ?(thread_registration = false)
+      imp
     =
     let typ = Objc_t.method_typ ~args return
     and enc = Objc_t.encode_method ~args return

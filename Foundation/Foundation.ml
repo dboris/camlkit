@@ -2,7 +2,6 @@ include Foundation_globals
 include CoreFoundation
 include CoreGraphics
 
-module CLLocationCoordinate2D = CLLocationCoordinate2D
 module NSAffineTransformStruct = NSAffineTransformStruct
 module NSAssertionHandler = NSAssertionHandler
 module NSAssertionHandlerClass = NSAssertionHandlerClass
@@ -200,5 +199,7 @@ module NSXPCListener = NSXPCListener
 module NSXPCListenerClass = NSXPCListenerClass
 module NSXPCListenerEndpoint = NSXPCListenerEndpoint
 module NSXPCListenerEndpointClass = NSXPCListenerEndpointClass
+
+module CLLocationCoordinate2D = CLLocationCoordinate2D
 module UIEdgeInsets = UIEdgeInsets
 module UIOffset = UIOffset
