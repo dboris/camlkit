@@ -178,3 +178,4 @@ module CGPoint = CGPoint
 module CGRect = CGRect
 module CGSize = CGSize
 module CGVector = CGVector
+module CATransform3D = CATransform3D
