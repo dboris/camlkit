@@ -2,9 +2,9 @@
 
 API changes:
 
-* AppKit and UIKit now include only modules corresponding to "public" classes.
-  The private/internal class modules have been moved to _AppKit_extra_ and
-  _UIKit_extra_ for reference purposes.
+* Foundation, AppKit and UIKit now include only modules corresponding to
+  "public" classes. The private/internal class modules have been moved to
+  _Foundation_extra_, _AppKit_extra_ and _UIKit_extra_ for reference purposes.
 * Some frequently subclassed classes and some common delegate protocols now
   have method definitions available, eg
   `NSObjectMethods`, `UIViewControllerMethods`/`NSViewControllerMethods`,
