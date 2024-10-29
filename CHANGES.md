@@ -20,9 +20,7 @@ API changes:
   for some params.
 * Added bindings for _CoreData_, _CloudKit_, and _NaturalLanguage_ frameworks.
 * AppKit and UIKit now include Foundation which doesn't need to be opened
-  separately. Foundation includes CoreFoundation and CoreGraphics. As a result,
-  GNUstep users will need to build and link the [CoreBase](https://github.com/gnustep/libs-corebase)
-  and [Quartz 2D/CoreGraphics](https://github.com/gnustep/libs-opal) libs.
+  separately, and Foundation includes CoreFoundation and CoreGraphics.
 
 
 ## v0.2.2

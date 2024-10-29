@@ -8,7 +8,7 @@ module A = Alcotest
 let test_CFString () =
   let str =
     _CFStringCreateWithCString
-      kCFAllocatorDefault
+      (!@ kCFAllocatorDefault)
       "Hello"
       (UInt.of_int kCFStringEncodingUTF8)
   in
