@@ -144,6 +144,13 @@ module Objc = struct
         foreign "objc_msgSend_stret" (id @-> _SEL @-> typ) self cmd
       end
     | Arm64 -> msg_send ~self ~cmd ~typ
+  ;;
+
+  (** Returns a pointer to the C value named by [name] or [null] if
+      the symbol cannot be resolved. *)
+  let foreign_value_or_null name ty =
+    try foreign_value name ty
+    with _ -> from_voidp ty null
 end
 
 let nsstring_class = Objc.get_class "NSString"
