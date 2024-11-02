@@ -182,7 +182,7 @@ module Label = struct
     match Platform.current with
     | GNUStep ->
       let self = new_object "NSTextField" in
-      self |> Property.set "stringValue" (new_string title) Objc_t.id;
+      self |> Property.set "stringValue" (new_string title) Objc_type.id;
       msg_send ~self
         ~cmd: (selector "setBezeled:")
         ~typ: (bool @-> returning void)

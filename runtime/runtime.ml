@@ -6,7 +6,7 @@ open Unsigned
 module Platform = Platform
 module Protocol = C.Functions.Protocol
 module Inspect = Inspect
-module Objc_t = Objc_t
+module Objc_type = Objc_type
 module Define = Define
 
 module Sel = struct
@@ -210,44 +210,44 @@ let new_string str =
 
 (** Sends a message with a simple return value to an instance of a class. *)
 let msg_send cmd ~self ~args ~return =
-  let typ = Objc_t.method_typ ~args return in
+  let typ = Objc_type.method_typ ~args return in
   Objc.msg_send ~self ~cmd ~typ
 ;;
 
 (** Sends a message with a simple return value to the superclass of an instance
     of a class. *)
 let msg_super cmd ~self ~args ~return =
-  let typ = Objc_t.method_typ ~args return in
+  let typ = Objc_type.method_typ ~args return in
   Objc.msg_send_super ~self ~cmd ~typ
 ;;
 
 (** Returns the value of an ivar reading it directly. *)
-let get_ivar : type a. string -> a Objc_t.t -> object_t -> a =
+let get_ivar : type a. string -> a Objc_type.t -> object_t -> a =
   fun ivar_name t self ->
     match t with
-    | Objc_t.Id ->
+    | Objc_type.Id ->
       let ivar =
         C.Functions.Class.get_instance_variable
           (Object.get_class self) ivar_name
       in
       Object.get_ivar ~self ~ivar
     | _ ->
-      let typ = Objc_t.value_typ t in
+      let typ = Objc_type.value_typ t in
       !@ (Object.ivar_ptr ~self ~ivar_name |> coerce (ptr void) (ptr typ))
 ;;
 
 (** Sets the value of an ivar writing it directly. *)
-let set_ivar : type a. string -> a -> a Objc_t.t -> object_t -> unit =
+let set_ivar : type a. string -> a -> a Objc_type.t -> object_t -> unit =
   fun ivar_name value t self ->
     match t with
-    | Objc_t.Id ->
+    | Objc_type.Id ->
       let ivar =
         C.Functions.Class.get_instance_variable
           (Object.get_class self) ivar_name
-      and typ = Objc_t.value_typ t in
+      and typ = Objc_type.value_typ t in
       Object.set_ivar ~self ~ivar (coerce typ id value)
     | _ ->
-      let typ = Objc_t.value_typ t in
+      let typ = Objc_type.value_typ t in
       (Object.ivar_ptr ~self ~ivar_name |> from_voidp typ) <-@ value
 ;;
 
@@ -266,11 +266,11 @@ module Property = struct
   open Define
 
   (** Get the value of a property. *)
-  let get prop_name typ = get_property prop_name (Objc_t.value_typ typ)
+  let get prop_name typ = get_property prop_name (Objc_type.value_typ typ)
 
   (** Set the value of a property. *)
   let set prop_name value typ =
-    set_property prop_name value (Objc_t.value_typ typ)
+    set_property prop_name value (Objc_type.value_typ typ)
 
   (** Getter for non-object values. *)
   let getter ~typ ~enc ivar_name =
@@ -350,7 +350,7 @@ module Property = struct
       ?readonly:bool ->
       ?notify_change:bool ->
       string ->
-      a Objc_t.t ->
+      a Objc_type.t ->
       method_spec' list
     = fun
       ?(assign = false)
@@ -360,11 +360,11 @@ module Property = struct
       ivar_name
       t
     ->
-    let typ = Objc_t.value_typ t
-    and enc = Objc_t.encode_value t
+    let typ = Objc_type.value_typ t
+    and enc = Objc_type.encode_value t
     in
     match t with
-    | Objc_t.Id ->
+    | Objc_type.Id ->
       if readonly then
         [ obj_getter ~typ ~enc ivar_name ]
       else
@@ -463,8 +463,8 @@ module Class = struct
     properties
     |> List.iter (fun (Define.PropSpec
         {name; typ = t; retain; copy; readonly; notify_change}) ->
-      let typ = Objc_t.value_typ t
-      and enc = Objc_t.encode_value t
+      let typ = Objc_type.value_typ t
+      and enc = Objc_type.encode_value t
       and assign = not retain in
       let size = Size_t.of_int (sizeof typ) in
       assert (add_ivar ~self ~name ~size ~enc);
@@ -552,7 +552,7 @@ module Block = struct
   (** Create a global block which encapsulates the code for execution
       at a later time. *)
   let make f ~args ~return =
-    let typ = Objc_t.method_typ ~args: (Objc_t.id :: args) return in
+    let typ = Objc_type.method_typ ~args: (Objc_type.id :: args) return in
     make' f ~typ
 end
 
@@ -567,8 +567,8 @@ module Method = struct
       ?(thread_registration = false)
       imp
     =
-    let typ = Objc_t.method_typ ~args return
-    and enc = Objc_t.encode_method ~args return
+    let typ = Objc_type.method_typ ~args return
+    and enc = Objc_type.encode_method ~args return
     in
     Define.method_spec ~cmd ~typ ~enc ~runtime_lock ~thread_registration imp
 end
@@ -577,8 +577,8 @@ module Ivar = struct
   include C.Functions.Ivar
 
   let define name typ =
-    let typ = Objc_t.value_typ typ
-    and enc = Objc_t.encode_value typ
+    let typ = Objc_type.value_typ typ
+    and enc = Objc_type.encode_value typ
     in
     Define.ivar_spec ~name ~typ ~enc
 end

@@ -2,6 +2,7 @@
 
 API changes:
 
+* Module `Objc_t` is renamed to `Objc_type`.
 * Foundation, AppKit and UIKit now include only modules corresponding to
   "public" classes. The private/internal class modules have been moved to
   _Foundation_extra_, _AppKit_extra_ and _UIKit_extra_ for reference purposes.
@@ -20,7 +21,7 @@ API changes:
   for some params.
 * Added bindings for _CoreData_, _CloudKit_, and _NaturalLanguage_ frameworks.
 * AppKit and UIKit now include Foundation which doesn't need to be opened
-  separately, and Foundation includes CoreFoundation and CoreGraphics.
+  separately. Foundation includes CoreFoundation and CoreGraphics.
 
 
 ## v0.2.2

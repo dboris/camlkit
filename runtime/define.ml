@@ -22,7 +22,7 @@ type ivar_spec' = IvarSpec : 'a ivar_spec -> ivar_spec'
 
 type 'a prop_spec =
   { name : string
-  ; typ : 'a Objc_t.t
+  ; typ : 'a Objc_type.t
   ; retain : bool
   ; copy : bool
   ; readonly : bool

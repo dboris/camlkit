@@ -20,7 +20,7 @@ let test_add_method () =
       ~self: (get_class "NSObject")
       ~cmd: (selector "addOneTo:")
       ~typ: (int @-> returning int)
-      ~enc: Objc_t.(encode_method ~args: [int] int)
+      ~enc: Objc_type.(encode_method ~args: [int] int)
       (fun _self _cmd x -> x + 1)
   in
   A.check A.bool "true result" added true
@@ -51,7 +51,7 @@ let test_define_class_with_methods () =
   and cmd = selector "doubleOf:"
   and typ = int @-> returning int
   and imp _self _cmd x = x * 2
-  and enc = Objc_t.(encode_method ~args: [int] int)
+  and enc = Objc_type.(encode_method ~args: [int] int)
   in
   let methods = [method_spec ~cmd ~typ imp ~enc]
   and x = 5
@@ -74,7 +74,7 @@ let dealloc_spec called_flag =
     ~cmd: (selector "dealloc")
     ~typ: (returning void)
     imp
-    ~enc: Objc_t.(encode_method ~args: [] void)
+    ~enc: Objc_type.(encode_method ~args: [] void)
 
 let test_gc_autorelease () =
   let dealloc_called = ref false in
@@ -98,12 +98,12 @@ let test_add_protocol () =
     method_spec
       ~cmd: (selector "encodeWithCoder:")
       ~typ: (id @-> returning void)
-      ~enc: Objc_t.(encode_method ~args: [id] void)
+      ~enc: Objc_type.(encode_method ~args: [id] void)
       (fun _self _cmd _coder -> ())
   ; method_spec
       ~cmd: (selector "initWithCoder:")
       ~typ: (id @-> returning id)
-      ~enc: Objc_t.(encode_method ~args: [id] id)
+      ~enc: Objc_type.(encode_method ~args: [id] id)
       (fun self _cmd _coder -> self)
   ]
   in
@@ -115,14 +115,14 @@ let test_add_protocol () =
 
 let test_add_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_t.(encode_value int)]
+    [ivar_spec ~name: "myVar" ~typ: int ~enc: Objc_type.(encode_value int)]
   and methods =
     [ Property.getter "myVar"
         ~typ: int
-        ~enc: Objc_t.(encode_value int)
+        ~enc: Objc_type.(encode_value int)
     ; Property.setter "myVar"
         ~typ: int
-        ~enc: Objc_t.(encode_method ~args: [int] void)
+        ~enc: Objc_type.(encode_method ~args: [int] void)
     ]
   in
   let o = _new_ (Class.define name ~ivars ~methods) in
@@ -138,8 +138,8 @@ let test_add_ivar ~name x () =
   A.check A.int "set value and get same value" x v
 
 let test_value_accessors ~name x () =
-  let ivars = [Ivar.define "myVar" Objc_t.int]
-  and methods = Property.accessor_methods "myVar" Objc_t.int
+  let ivars = [Ivar.define "myVar" Objc_type.int]
+  and methods = Property.accessor_methods "myVar" Objc_type.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send
@@ -157,25 +157,25 @@ let test_value_accessors ~name x () =
 ;;
 
 let test_value_property ~name x () =
-  let ivars = [Ivar.define "myVar" Objc_t.int]
-  and methods = Property.accessor_methods "myVar" Objc_t.int
+  let ivars = [Ivar.define "myVar" Objc_type.int]
+  and methods = Property.accessor_methods "myVar" Objc_type.int
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
-  self |> Property.set "myVar" x Objc_t.int;
+  self |> Property.set "myVar" x Objc_type.int;
   let v =
-    self |> Property.get "myVar" Objc_t.int
+    self |> Property.get "myVar" Objc_type.int
   in
   A.check A.int "set property value and get same value" x v
 ;;
 
 let test_object_property ~name x () =
-  let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.accessor_methods "myVar" Objc_t.id
+  let ivars = [Ivar.define "myVar" Objc_type.id]
+  and methods = Property.accessor_methods "myVar" Objc_type.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
-  self |> Property.set "myVar" x Objc_t.id;
+  self |> Property.set "myVar" x Objc_type.id;
   let v =
-    self |> Property.get "myVar" Objc_t.id
+    self |> Property.get "myVar" Objc_type.id
   in
   A.check A.string "set property value and get same value"
     (NSString._UTF8String x)
@@ -183,8 +183,8 @@ let test_object_property ~name x () =
 ;;
 
 let test_object_accessors ~name x () =
-  let ivars = [Ivar.define "myVar" Objc_t.id]
-  and methods = Property.accessor_methods "myVar" Objc_t.id
+  let ivars = [Ivar.define "myVar" Objc_type.id]
+  and methods = Property.accessor_methods "myVar" Objc_type.id
   in
   let self = _new_ (Class.define name ~ivars ~methods) in
   Objc.msg_send ~self
@@ -203,14 +203,14 @@ let test_object_accessors ~name x () =
 
 let test_add_obj_ivar ~name x () =
   let ivars =
-    [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_t.(encode_value int)]
+    [ivar_spec ~name:"myVar" ~typ:int ~enc: Objc_type.(encode_value int)]
   and methods =
     [ Property.getter "myVar"
         ~typ:id
-        ~enc: Objc_t.(encode_value id)
+        ~enc: Objc_type.(encode_value id)
     ; Property.setter "myVar"
         ~typ:id
-        ~enc: Objc_t.(encode_method ~args: [id] void)
+        ~enc: Objc_type.(encode_method ~args: [id] void)
     ]
   in
   let o = _new_ (Class.define name ~ivars ~methods) in
@@ -230,7 +230,7 @@ let test_add_obj_ivar ~name x () =
 
 let test_kvc ~class_name x () =
   let ivars =
-    [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_t.(encode_value id)]
+    [ivar_spec ~name: "myVar" ~typ: id ~enc: Objc_type.(encode_value id)]
   in
   let obj = _new_ (Class.define class_name ~ivars) in
   obj |> NSObject.setValue (new_string x) ~forKey: (new_string "myVar");
@@ -255,8 +255,8 @@ let test_block () =
   let block =
     Block.make
       (* ~typ: (id @-> id @-> ullong @-> bool @-> returning void) *)
-      ~args: Objc_t.[id; ullong; bool]
-      ~return: Objc_t.void
+      ~args: Objc_type.[id; ullong; bool]
+      ~return: Objc_type.void
       (fun _self obj idx _stop ->
         actual :=
           Printf.sprintf "%d: %s"
@@ -275,8 +275,8 @@ let test_msg_send_super () =
       ~methods:
         [ Method.define
           ~cmd: (selector "someMethod")
-          ~args: Objc_t.[]
-          ~return: Objc_t.void
+          ~args: Objc_type.[]
+          ~return: Objc_type.void
           (fun _self _cmd -> actual := true)
         ]
   in
@@ -286,38 +286,38 @@ let test_msg_send_super () =
       ~methods:
         [ Method.define
           ~cmd: (selector "someMethod")
-          ~args: Objc_t.[]
-          ~return: Objc_t.void
+          ~args: Objc_type.[]
+          ~return: Objc_type.void
           (fun self cmd ->
-            msg_super cmd ~self ~args: Objc_t.[] ~return: Objc_t.void)
+            msg_super cmd ~self ~args: Objc_type.[] ~return: Objc_type.void)
         ]
   and expected = true
   in
   let self = alloc class_b |> NSObject.init in
-  R.msg_send (selector "someMethod") ~self ~args: Objc_t.[] ~return: Objc_t.void;
+  R.msg_send (selector "someMethod") ~self ~args: Objc_type.[] ~return: Objc_type.void;
   A.check A.bool "same bool" expected !actual
 ;;
 
 let test_value_property_def ~name x () =
-  let properties = [Property.define "myProp" Objc_t.int] in
+  let properties = [Property.define "myProp" Objc_type.int] in
   let self = _new_ (Class.define name ~properties) in
-  self |> Property.set "myProp" x Objc_t.int;
-  let v = self |> Property.get "myProp" Objc_t.int in
+  self |> Property.set "myProp" x Objc_type.int;
+  let v = self |> Property.get "myProp" Objc_type.int in
   A.check A.int "set value and get same value" x v
 ;;
 
 let test_object_property_def ~name x () =
-  let properties = [Property.define "myProp" Objc_t.id] in
+  let properties = [Property.define "myProp" Objc_type.id] in
   let self = _new_ (Class.define name ~properties) in
-  self |> Property.set "myProp" x Objc_t.id;
-  let v = self |> Property.get "myProp" Objc_t.id in
+  self |> Property.set "myProp" x Objc_type.id;
+  let v = self |> Property.get "myProp" Objc_type.id in
   A.check A.string "set property value and get same value"
     (NSString._UTF8String x)
     (NSString._UTF8String v)
 ;;
 
 let test_set_and_get_ivar ~name x () =
-  let ivar_name = "myVar" and ivar_t = Objc_t.int in
+  let ivar_name = "myVar" and ivar_t = Objc_type.int in
   let o = _new_ (Class.define name ~ivars: [Ivar.define ivar_name ivar_t ]) in
   o |> set_ivar ivar_name x ivar_t;
   let v = o |> get_ivar ivar_name ivar_t in
@@ -325,7 +325,7 @@ let test_set_and_get_ivar ~name x () =
 ;;
 
 let test_set_and_get_object_ivar ~name x () =
-  let ivar_name = "myVar" and ivar_t = Objc_t.id in
+  let ivar_name = "myVar" and ivar_t = Objc_type.id in
   let o = _new_ (Class.define name ~ivars: [Ivar.define ivar_name ivar_t ]) in
   o |> set_ivar ivar_name x ivar_t;
   let v = o |> get_ivar ivar_name ivar_t in

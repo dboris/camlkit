@@ -3,7 +3,7 @@ open Objc
 open Define
 
 module A = Alcotest
-module T = Objc_t
+module T = Objc_type
 
 [@@@ocaml.warning "-32"]
 

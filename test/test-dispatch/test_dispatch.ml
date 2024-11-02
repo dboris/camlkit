@@ -15,7 +15,7 @@ let test_dispatch_queue_concurrent () =
 let test_dispatch_queue_concurrent_with_block () =
   let handler_called = ref false in
   let handler_block =
-    Block.make ~args: Objc_t.[] ~return: Objc_t.void
+    Block.make ~args: Objc_type.[] ~return: Objc_type.void
       (fun _self -> handler_called := true)
   in
   dispatch_sync concur_queue handler_block;

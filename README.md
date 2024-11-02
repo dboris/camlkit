@@ -145,13 +145,13 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   OCaml:
   ```ocaml
   Class.define "MyClass"
-    ~ivars: [ Ivar.define "myVar" Objc_t.id ]
-    ~properties: [ Property.define "myProp" Objc_t.id ]
+    ~ivars: [ Ivar.define "myVar" Objc_type.id ]
+    ~properties: [ Property.define "myProp" Objc_type.id ]
     ~methods: [
       Method.define
         ~cmd: (selector "myMethodWithArg1:arg2:")
-        ~args: Objc_t.[id; id]
-        ~return: Objc_t.void @@
+        ~args: Objc_type.[id; id]
+        ~return: Objc_type.void @@
         fun self cmd arg1 arg2 -> (* method implementation *)
       ]
   ```
@@ -160,7 +160,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   The `~args` parameter includes only the explicit argument types.
   The number of arguments is the same as the number of `:` in the selector.
   If your method does not accept arguments, the `~args` parameter still
-  has to be provided: `Objc_t.[]`
+  has to be provided: `Objc_type.[]`
 
 * Memory management
 
@@ -192,8 +192,8 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   msg_send
     (selector "anArbitrarySelector")
     ~self: an_instance
-    ~args: Objc_t.[]
-    ~return: Objc_t.void
+    ~args: Objc_type.[]
+    ~return: Objc_type.void
   ```
 
 * Sending a message to the superclass
@@ -211,7 +211,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   OCaml:
   ```OCaml
   let viewDidLoad self cmd =
-    msg_super ~self cmd ~args: Objc_t.[] ~return: Objc_t.void;
+    msg_super ~self cmd ~args: Objc_type.[] ~return: Objc_type.void;
     ...
   ```
 
@@ -227,7 +227,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   a `UIAction` with a block handler:
 
   ```OCaml
-  Block.make ~args: Objc_t.[id] ~return: Objc_t.void
+  Block.make ~args: Objc_type.[id] ~return: Objc_type.void
     (fun block action -> (* block implementation *))
   |> (UIAction.self |> UIActionClass.actionWithHandler)
   |> (UIButton.self |> UIButtonClass.systemButtonWithPrimaryAction)
@@ -250,7 +250,7 @@ All books on iOS and macOS development in Objective-C are directly applicable.
 
 Some usefull sources you may wish to examine include:
 * [Objective-C runtime bindings and basic functionality](https://github.com/dboris/camlkit/blob/main/runtime/runtime.ml)
-* [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/objc_t.mli)
+* [Representation of Objective-C types in OCaml](https://github.com/dboris/camlkit/blob/main/runtime/Objc_type.mli)
 * [Usage examples](https://github.com/dboris/camlkit-examples/)
 * [The Ctypes documentation](https://ocaml.org/p/ctypes/latest/doc/Ctypes/index.html)
 

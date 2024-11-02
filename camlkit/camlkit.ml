@@ -35,29 +35,29 @@ module Appkit_AppDelegate = struct
       ~methods:
         [ Method.define
           ~cmd: (selector "applicationWillFinishLaunching:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.void
+          ~args: Objc_type.[id]
+          ~return: Objc_type.void
           (fun _self _cmd notification ->
             D.on_before_start notification)
 
         ; Method.define
           ~cmd: (selector "applicationDidFinishLaunching:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.void
+          ~args: Objc_type.[id]
+          ~return: Objc_type.void
           (fun _self _cmd notification ->
             D.on_started notification)
 
         ; Method.define
           ~cmd: (selector "applicationWillTerminate:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.void
+          ~args: Objc_type.[id]
+          ~return: Objc_type.void
           (fun _self _cmd notification ->
             D.on_before_terminate notification)
 
         ; Method.define
           ~cmd: (selector "applicationShouldTerminateAfterLastWindowClosed:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.bool
+          ~args: Objc_type.[id]
+          ~return: Objc_type.bool
           (fun _self _cmd notification ->
             D.terminate_on_windows_closed notification)
         ]
@@ -77,19 +77,19 @@ module CamlProxy = struct
     let methods =
       [ Method.define (fun self _cmd -> D.init self)
         ~cmd: (selector "init")
-        ~args: Objc_t.[]
-        ~return: Objc_t.id
+        ~args: Objc_type.[]
+        ~return: Objc_type.id
 
       ; Method.define
         (fun self _cmd invocation -> D.handle_invocation invocation self)
         ~cmd: (selector "forwardInvocation:")
-        ~args: Objc_t.[id]
-        ~return: Objc_t.void
+        ~args: Objc_type.[id]
+        ~return: Objc_type.void
 
       ; Method.define
         ~cmd: (selector "methodSignatureForSelector:")
-        ~args: Objc_t.[_SEL]
-        ~return: Objc_t.id
+        ~args: Objc_type.[_SEL]
+        ~return: Objc_type.id
         (fun _self _cmd sel ->
           NSMethodSignature.self
           |> NSMethodSignatureClass.signatureWithObjCTypes
@@ -98,8 +98,8 @@ module CamlProxy = struct
     let class_methods =
       [ Method.define (fun self _cmd -> self |> alloc |> init)
         ~cmd: (selector "new")
-        ~args: Objc_t.[]
-        ~return: Objc_t.id
+        ~args: Objc_type.[]
+        ~return: Objc_type.id
       ]
 
     let self =
@@ -159,35 +159,35 @@ module CamlObjectProxy = struct
             sel
       in
       let methods =
-        Property.accessor_methods ivar_name Objc_t.id @
+        Property.accessor_methods ivar_name Objc_type.id @
         [ Method.define
           ~cmd: (selector "initWithTargetObject:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.id
+          ~args: Objc_type.[id]
+          ~return: Objc_type.id
           (fun self _cmd target ->
             self |> set_property ivar_name target id;
             self)
 
         ; Method.define
           ~cmd: (selector "forwardInvocation:")
-          ~args: Objc_t.[id]
-          ~return: Objc_t.void
+          ~args: Objc_type.[id]
+          ~return: Objc_type.void
           forward_invocation_imp
 
         ; Method.define
           ~cmd: (selector "methodSignatureForSelector:")
-          ~args: Objc_t.[_SEL]
-          ~return: Objc_t.id
+          ~args: Objc_type.[_SEL]
+          ~return: Objc_type.id
           method_signature_for_selector_imp
         ]
       and class_methods =
         [ Method.define
           ~cmd: (selector "respondsToSelector:")
-          ~args: Objc_t.[_SEL]
-          ~return: Objc_t.bool
+          ~args: Objc_type.[_SEL]
+          ~return: Objc_type.bool
           responds_to_selector_imp
         ]
-      and ivars = [ Ivar.define ivar_name Objc_t.id ]
+      and ivars = [ Ivar.define ivar_name Objc_type.id ]
       in
         Class.define D.class_name
           ~superclass: NSProxy.self ~ivars ~methods ~class_methods

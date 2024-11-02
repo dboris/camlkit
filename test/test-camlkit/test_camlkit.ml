@@ -36,9 +36,9 @@ let test_define_custom_class () =
 
       let method_signature_for_selector sel =
         if String.equal sel my_sel then
-          Objc_t.(encode_method ~args: [int] int)
+          Objc_type.(encode_method ~args: [int] int)
         else
-          Objc_t.(encode_value unknown)
+          Objc_type.(encode_value unknown)
       ;;
 
       let handle_invocation inv _ =
@@ -74,8 +74,8 @@ let test_define_CamlObjectProxy_class () =
       | _ -> false
 
       let method_signature_for_selector = function
-      | "multByThree:" -> Objc_t.(encode_method ~args: [int] int)
-      | _ -> Objc_t.(encode_value unknown)
+      | "multByThree:" -> Objc_type.(encode_method ~args: [int] int)
+      | _ -> Objc_type.(encode_value unknown)
 
       let handle_invocation inv _self =
         match inv |> NSInvocation.selector_ |> string_of_selector with
