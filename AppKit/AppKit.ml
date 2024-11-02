@@ -1,5 +1,6 @@
 include AppKit_globals
 include Foundation
+include CoreAutoLayout
 
 module NSAccessibilityCustomAction = NSAccessibilityCustomAction
 module NSAccessibilityCustomRotor = NSAccessibilityCustomRotor
@@ -93,6 +94,7 @@ module NSDatePickerClass = NSDatePickerClass
 module NSDictionaryController = NSDictionaryController
 module NSDictionaryControllerKeyValuePair = NSDictionaryControllerKeyValuePair
 module NSDiffableDataSourceTableViewUpdater = NSDiffableDataSourceTableViewUpdater
+module NSDirectionalEdgeInsets = NSDirectionalEdgeInsets
 module NSDockTile = NSDockTile
 module NSDocument = NSDocument
 module NSDocumentClass = NSDocumentClass
@@ -167,6 +169,7 @@ module NSMenuItemCell = NSMenuItemCell
 module NSMenuItemCellClass = NSMenuItemCellClass
 module NSMenuItemClass = NSMenuItemClass
 module NSMenuToolbarItem = NSMenuToolbarItem
+module NSModalSession = NSModalSession
 module NSMovie = NSMovie
 module NSMultiProxyDelegate = NSMultiProxyDelegate
 module NSNib = NSNib
@@ -406,6 +409,7 @@ module NSViewClass = NSViewClass
 module NSViewController = NSViewController
 module NSViewControllerClass = NSViewControllerClass
 module NSViewControllerMethods = NSViewControllerMethods
+module NSViewMethods = NSViewMethods
 module NSVisualEffectView = NSVisualEffectView
 module NSVisualEffectViewClass = NSVisualEffectViewClass
 module NSWindow = NSWindow

@@ -160,7 +160,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   The `~args` parameter includes only the explicit argument types.
   The number of arguments is the same as the number of `:` in the selector.
   If your method does not accept arguments, the `~args` parameter still
-  has to be provided: `Objc_type.[]`
+  has to be provided: `Objc_type.[]` (or its synonym `Objc_type.noargs`).
 
 * Memory management
 
