@@ -69,7 +69,8 @@ let selector = Sel.register_name
 (** Returns the selector name as string. *)
 let string_of_selector = Sel.get_name
 
-let to_selector = coerce (ptr void) _SEL
+let to_selector p =
+  to_voidp p |> coerce (ptr void) _SEL
 
 module Objc = struct
   include C.Functions.Objc
