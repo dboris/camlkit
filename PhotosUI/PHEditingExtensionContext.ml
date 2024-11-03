@@ -1,11 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open Foundation
-open UIKit
 
 (** Apple docs: {{:https://developer.apple.com/documentation/photosui/pheditingextensioncontext?language=objc}PHEditingExtensionContext} *)
 
@@ -20,6 +19,7 @@ let queryHandlingCapabilityForAdjustmentData x ~withResponseHandler self = msg_s
 let querySDKVersionWithResponseHandler x self = msg_send ~self ~cmd:(selector "querySDKVersionWithResponseHandler:") ~typ:((ptr void) @-> returning void) x
 let queryShouldShowCancelConfirmationWithResponseHandler x self = msg_send ~self ~cmd:(selector "queryShouldShowCancelConfirmationWithResponseHandler:") ~typ:((ptr void) @-> returning void) x
 let setAttemptUndoManagerAutoSetup x self = msg_send ~self ~cmd:(selector "setAttemptUndoManagerAutoSetup:") ~typ:(bool @-> returning void) x
+let setHideNavigationController x self = msg_send ~self ~cmd:(selector "setHideNavigationController:") ~typ:(bool @-> returning void) x
 let setUndoAdapter x self = msg_send ~self ~cmd:(selector "setUndoAdapter:") ~typ:(id @-> returning void) x
 let setUndoManagerForBarButtons x self = msg_send ~self ~cmd:(selector "setUndoManagerForBarButtons:") ~typ:(id @-> returning void) x
 let setupUndoProxyWithXPCListenerEndpoint x ~attemptUndoManagerAutoSetup self = msg_send ~self ~cmd:(selector "setupUndoProxyWithXPCListenerEndpoint:attemptUndoManagerAutoSetup:") ~typ:(id @-> bool @-> returning void) x attemptUndoManagerAutoSetup
