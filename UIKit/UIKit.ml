@@ -1,6 +1,7 @@
 include UIKit_globals
 include Foundation
 include CoreAutoLayout
+include Runtime
 
 module NSDiffableDataSourceSectionSnapshot = NSDiffableDataSourceSectionSnapshot
 module NSDiffableDataSourceSectionTransaction = NSDiffableDataSourceSectionTransaction

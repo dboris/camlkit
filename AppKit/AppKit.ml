@@ -1,6 +1,7 @@
 include AppKit_globals
 include Foundation
 include CoreAutoLayout
+include Runtime
 
 module NSAccessibilityCustomAction = NSAccessibilityCustomAction
 module NSAccessibilityCustomRotor = NSAccessibilityCustomRotor
