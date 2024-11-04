@@ -2,7 +2,7 @@
 ; (using ctypes 0.3)
 
 (name camlkit)
-(version 0.2.2)
+(version 0.3.0)
 
 (generate_opam_files false)
 

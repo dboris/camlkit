@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Sel (camlkit-base.Runtime.Sel)</title><meta charset="utf-8"/><link rel="stylesheet" href="../../../odoc.support/odoc.css"/><meta name="generator" content="odoc 2.4.3"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><script src="../../../odoc.support/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script></head><body class="odoc"><nav class="odoc-nav"><a href="../index.html">Up</a> – <a href="../../index.html">camlkit-base</a> &#x00BB; <a href="../index.html">Runtime</a> &#x00BB; Sel</nav><header class="odoc-preamble"><h1>Module <code><span>Runtime.Sel</span></code></h1></header><div class="odoc-content"><div class="odoc-spec"><div class="spec value anchored" id="val-register_name"><a href="#val-register_name" class="anchor"></a><code><span><span class="keyword">val</span> register_name : 
+  <span>string <span class="arrow">&#45;&gt;</span></span>
+  <span><span><span class="xref-unresolved">Runtime__.Type_description.Types.objc_selector</span> <span class="xref-unresolved">Ctypes</span>.structure</span>
+    <span class="xref-unresolved">Ctypes_static</span>.ptr</span></span></code></div><div class="spec-doc"><p>Registers a method with the Objective-C runtime system, maps the method name to a selector, and returns the selector value. If the method name has already been registered, this function simply returns the selector.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-get_name"><a href="#val-get_name" class="anchor"></a><code><span><span class="keyword">val</span> get_name : 
+  <span><span><span><span class="xref-unresolved">Runtime__.Type_description.Types.objc_selector</span> <span class="xref-unresolved">Ctypes</span>.structure</span>
+    <span class="xref-unresolved">Ctypes_static</span>.ptr</span> <span class="arrow">&#45;&gt;</span></span>
+  string</span></code></div><div class="spec-doc"><p>Returns the name of the method specified by a given selector.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-is_equal"><a href="#val-is_equal" class="anchor"></a><code><span><span class="keyword">val</span> is_equal : 
+  <span><span><span><span class="xref-unresolved">Runtime__.Type_description.Types.objc_selector</span> <span class="xref-unresolved">Ctypes</span>.structure</span>
+    <span class="xref-unresolved">Ctypes_static</span>.ptr</span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span><span><span class="xref-unresolved">Runtime__.Type_description.Types.objc_selector</span> <span class="xref-unresolved">Ctypes</span>.structure</span>
+    <span class="xref-unresolved">Ctypes_static</span>.ptr</span> <span class="arrow">&#45;&gt;</span></span>
+  bool</span></code></div><div class="spec-doc"><p>Returns a Boolean value that indicates whether two selectors are equal.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-register_typed_name"><a href="#val-register_typed_name" class="anchor"></a><code><span><span class="keyword">val</span> register_typed_name : 
+  <span>string <span class="arrow">&#45;&gt;</span></span>
+  <span>string <span class="arrow">&#45;&gt;</span></span>
+  <span><span><span class="xref-unresolved">Runtime__.Type_description.Types.objc_selector</span> <span class="xref-unresolved">Ctypes</span>.structure</span>
+    <span class="xref-unresolved">Ctypes_static</span>.ptr</span></span></code></div></div></div></body></html>
