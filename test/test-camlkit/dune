@@ -2,7 +2,7 @@
  (name test_camlkit)
  (package camlkit)
  (build_if (= %{context_name} "default"))
- (flags :standard -ccopt %{read:flags.txt})
+ (flags :standard -cclib %{read:flags.txt})
  (libraries camlkit-base.Foundation camlkit-base.runtime camlkit alcotest))
 
 (rule
@@ -15,4 +15,4 @@
  (enabled_if (<> %{system} macosx))
  (target flags.txt)
  (action (with-stdout-to %{target}
-  (echo ""))))
+  (echo "-L/usr/GNUstep/System/Library/Libraries -lgnustep-base -lobjc"))))
