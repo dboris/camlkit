@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -17,6 +17,6 @@ let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void
 let encodeWithCAMLWriter x self = msg_send ~self ~cmd:(selector "encodeWithCAMLWriter:") ~typ:(id @-> returning void) x
 let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
-let inputCount self = msg_send ~self ~cmd:(selector "inputCount") ~typ:(returning ullong)
+let inputCount self = msg_send ~self ~cmd:(selector "inputCount") ~typ:(returning ullong) |> ULLong.to_int
 let name self = msg_send ~self ~cmd:(selector "name") ~typ:(returning id)
-let outputCount self = msg_send ~self ~cmd:(selector "outputCount") ~typ:(returning ullong)
+let outputCount self = msg_send ~self ~cmd:(selector "outputCount") ~typ:(returning ullong) |> ULLong.to_int

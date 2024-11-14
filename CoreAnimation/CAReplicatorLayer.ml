@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -17,7 +17,7 @@ let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
 let instanceAlphaOffset self = msg_send ~self ~cmd:(selector "instanceAlphaOffset") ~typ:(returning float)
 let instanceBlueOffset self = msg_send ~self ~cmd:(selector "instanceBlueOffset") ~typ:(returning float)
 let instanceColor self = msg_send ~self ~cmd:(selector "instanceColor") ~typ:(returning (ptr CGColor.t))
-let instanceCount self = msg_send ~self ~cmd:(selector "instanceCount") ~typ:(returning llong)
+let instanceCount self = msg_send ~self ~cmd:(selector "instanceCount") ~typ:(returning llong) |> LLong.to_int
 let instanceDelay self = msg_send ~self ~cmd:(selector "instanceDelay") ~typ:(returning double)
 let instanceGreenOffset self = msg_send ~self ~cmd:(selector "instanceGreenOffset") ~typ:(returning float)
 let instanceRedOffset self = msg_send ~self ~cmd:(selector "instanceRedOffset") ~typ:(returning float)

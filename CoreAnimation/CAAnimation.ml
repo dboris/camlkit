@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -31,6 +31,7 @@ let fillMode self = msg_send ~self ~cmd:(selector "fillMode") ~typ:(returning id
 let frameInterval self = msg_send ~self ~cmd:(selector "frameInterval") ~typ:(returning double)
 let highFrameRateReason self = msg_send ~self ~cmd:(selector "highFrameRateReason") ~typ:(returning uint)
 let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let isCompleteForTime x self = msg_send ~self ~cmd:(selector "isCompleteForTime:") ~typ:(double @-> returning bool) x
 let isEnabled self = msg_send ~self ~cmd:(selector "isEnabled") ~typ:(returning bool)
 let isRemovedOnCompletion self = msg_send ~self ~cmd:(selector "isRemovedOnCompletion") ~typ:(returning bool)
 let mutableCopyWithZone x self = msg_send ~self ~cmd:(selector "mutableCopyWithZone:") ~typ:((ptr void) @-> returning id) x
@@ -38,7 +39,7 @@ let preferredFrameRateRange self = msg_send_stret ~self ~cmd:(selector "preferre
 let preferredFrameRateRangeMaximum self = msg_send ~self ~cmd:(selector "preferredFrameRateRangeMaximum") ~typ:(returning float)
 let preferredFrameRateRangeMinimum self = msg_send ~self ~cmd:(selector "preferredFrameRateRangeMinimum") ~typ:(returning float)
 let preferredFrameRateRangePreferred self = msg_send ~self ~cmd:(selector "preferredFrameRateRangePreferred") ~typ:(returning float)
-let preferredFramesPerSecond self = msg_send ~self ~cmd:(selector "preferredFramesPerSecond") ~typ:(returning llong)
+let preferredFramesPerSecond self = msg_send ~self ~cmd:(selector "preferredFramesPerSecond") ~typ:(returning llong) |> LLong.to_int
 let removedOnCompletion self = msg_send ~self ~cmd:(selector "removedOnCompletion") ~typ:(returning bool)
 let repeatCount self = msg_send ~self ~cmd:(selector "repeatCount") ~typ:(returning float)
 let repeatDuration self = msg_send ~self ~cmd:(selector "repeatDuration") ~typ:(returning double)

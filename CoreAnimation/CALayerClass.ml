@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -19,6 +19,8 @@ let defaultValueForKey x self = msg_send ~self ~cmd:(selector "defaultValueForKe
 let initialize self = msg_send ~self ~cmd:(selector "initialize") ~typ:(returning void)
 let layer self = msg_send ~self ~cmd:(selector "layer") ~typ:(returning id)
 let layerWithRemoteClientId x self = msg_send ~self ~cmd:(selector "layerWithRemoteClientId:") ~typ:(uint @-> returning id) x
+let layerWithRenderLayer x self = msg_send ~self ~cmd:(selector "layerWithRenderLayer:") ~typ:((ptr void) @-> returning id) x
+let layerWithRenderLayer' x ~options self = msg_send ~self ~cmd:(selector "layerWithRenderLayer:options:") ~typ:((ptr void) @-> id @-> returning id) x options
 let needsDisplayForKey x self = msg_send ~self ~cmd:(selector "needsDisplayForKey:") ~typ:(id @-> returning bool) x
 let needsLayoutForKey x self = msg_send ~self ~cmd:(selector "needsLayoutForKey:") ~typ:(id @-> returning bool) x
 let properties self = msg_send ~self ~cmd:(selector "properties") ~typ:(returning id)

@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -24,7 +24,7 @@ let invalidateContents self = msg_send ~self ~cmd:(selector "invalidateContents"
 let isAsynchronous self = msg_send ~self ~cmd:(selector "isAsynchronous") ~typ:(returning bool)
 let layerDidBecomeVisible x self = msg_send ~self ~cmd:(selector "layerDidBecomeVisible:") ~typ:(bool @-> returning void) x
 let layerDidChangeDisplay x self = msg_send ~self ~cmd:(selector "layerDidChangeDisplay:") ~typ:(uint @-> returning void) x
-let maximumDrawableCount self = msg_send ~self ~cmd:(selector "maximumDrawableCount") ~typ:(returning ullong)
+let maximumDrawableCount self = msg_send ~self ~cmd:(selector "maximumDrawableCount") ~typ:(returning ullong) |> ULLong.to_int
 let maximumFrameRate self = msg_send ~self ~cmd:(selector "maximumFrameRate") ~typ:(returning float)
 let releaseCGLContext x self = msg_send ~self ~cmd:(selector "releaseCGLContext:") ~typ:((ptr CGLContextObject.t) @-> returning void) x
 let releaseCGLPixelFormat x self = msg_send ~self ~cmd:(selector "releaseCGLPixelFormat:") ~typ:((ptr CGLPixelFormatObject.t) @-> returning void) x

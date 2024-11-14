@@ -1,7 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
+
+open CoreGraphics
 
 let t : [`CAFrameRateRange] structure typ = structure "CAFrameRateRange"
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/caframeraterange?language=objc}CAFrameRateRange} *)

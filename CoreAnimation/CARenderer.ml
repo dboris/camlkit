@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -18,7 +18,6 @@ let context self = msg_send ~self ~cmd:(selector "context") ~typ:(returning id)
 let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
 let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
 let endFrame self = msg_send ~self ~cmd:(selector "endFrame") ~typ:(returning void)
-let hasMissingContent self = msg_send ~self ~cmd:(selector "hasMissingContent") ~typ:(returning bool)
 let layer self = msg_send ~self ~cmd:(selector "layer") ~typ:(returning id)
 let nextFrameTime self = msg_send ~self ~cmd:(selector "nextFrameTime") ~typ:(returning double)
 let render self = msg_send ~self ~cmd:(selector "render") ~typ:(returning void)

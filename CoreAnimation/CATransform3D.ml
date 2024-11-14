@@ -1,7 +1,10 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
+
+open CoreGraphics
 
 let t : [`CATransform3D] structure typ = structure "CATransform3D"
 (** Apple docs: {{:https://developer.apple.com/documentation/coreanimation/catransform3d?language=objc}CATransform3D} *)

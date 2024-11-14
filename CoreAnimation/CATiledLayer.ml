@@ -1,9 +1,9 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-[@@@ocaml.warning "-33"]
 open CoreFoundation
 open CoreGraphics
 
@@ -18,8 +18,8 @@ let displayInRect x ~levelOfDetail ~options self = msg_send ~self ~cmd:(selector
 let fillColor self = msg_send ~self ~cmd:(selector "fillColor") ~typ:(returning (ptr CGColor.t))
 let invalidateContents self = msg_send ~self ~cmd:(selector "invalidateContents") ~typ:(returning void)
 let isDrawingEnabled self = msg_send ~self ~cmd:(selector "isDrawingEnabled") ~typ:(returning bool)
-let levelsOfDetail self = msg_send ~self ~cmd:(selector "levelsOfDetail") ~typ:(returning ullong)
-let levelsOfDetailBias self = msg_send ~self ~cmd:(selector "levelsOfDetailBias") ~typ:(returning ullong)
+let levelsOfDetail self = msg_send ~self ~cmd:(selector "levelsOfDetail") ~typ:(returning ullong) |> ULLong.to_int
+let levelsOfDetailBias self = msg_send ~self ~cmd:(selector "levelsOfDetailBias") ~typ:(returning ullong) |> ULLong.to_int
 let maximumTileScale self = msg_send ~self ~cmd:(selector "maximumTileScale") ~typ:(returning double)
 let setContents x self = msg_send ~self ~cmd:(selector "setContents:") ~typ:(id @-> returning void) x
 let setDrawingEnabled x self = msg_send ~self ~cmd:(selector "setDrawingEnabled:") ~typ:(bool @-> returning void) x
