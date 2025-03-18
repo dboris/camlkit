@@ -45,7 +45,9 @@ a selection of core Cocoa frameworks.")
 (package
  (name camlkit-dispatch)
  (synopsis "OCaml bindings to libdispatch")
- (description "Cross-platform OCaml bindings to libdispatch (aka Grand Central Dispatch).")
+ (description "\
+Grand Central Dispatch (GCD or libdispatch) provides comprehensive support for \
+concurrent code execution on multicore hardware.")
  (depends
   ctypes
   ctypes-foreign

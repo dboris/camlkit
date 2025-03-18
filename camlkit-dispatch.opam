@@ -1,0 +1,32 @@
+opam-version: "2.0"
+synopsis: "OCaml bindings to libdispatch"
+description:
+  "Grand Central Dispatch (GCD or libdispatch) provides comprehensive support for concurrent code execution on multicore hardware."
+maintainer: ["Boris D. <borisd@gmx.com>"]
+authors: ["Boris D. <borisd@gmx.com>"]
+license: "ISC"
+tags: ["dispatch" "gcd" "bindings" "cocoa" "macos" "gnustep"]
+homepage: "https://github.com/dboris/camlkit"
+bug-reports: "https://github.com/dboris/camlkit/issues"
+depends: [
+  "dune" {>= "3.13"}
+  "ctypes"
+  "ctypes-foreign"
+  "alcotest" {with-test}
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/dboris/camlkit.git"

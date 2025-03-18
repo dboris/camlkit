@@ -174,23 +174,23 @@ module Types (F : Ctypes.TYPE) = struct
       thread with background status as per setpriority(2) (i.e. disk I/O is
       throttled and the thread's scheduling priority is set to lowest value). *)
   let _QUEUE_PRIORITY_BACKGROUND =
-    constant "DISPATCH_QUEUE_PRIORITY_BACKGROUND" intptr_t
+    constant "DISPATCH_QUEUE_PRIORITY_BACKGROUND" llong
 
   (** Items dispatched to the queue will run at the default priority, i.e. the
       queue will be scheduled for execution after all high priority queues have
       been scheduled, but before any low priority queues have been scheduled. *)
   let _QUEUE_PRIORITY_DEFAULT =
-    constant "DISPATCH_QUEUE_PRIORITY_DEFAULT" intptr_t
+    constant "DISPATCH_QUEUE_PRIORITY_DEFAULT" llong
 
   (** Items dispatched to the queue will run at high priority, i.e. the queue
       will be scheduled for execution before any default priority or low
       priority queue. *)
-  let _QUEUE_PRIORITY_HIGH = constant "DISPATCH_QUEUE_PRIORITY_HIGH" intptr_t
+  let _QUEUE_PRIORITY_HIGH = constant "DISPATCH_QUEUE_PRIORITY_HIGH" llong
 
   (** Items dispatched to the queue will run at low priority, i.e. the queue
       will be scheduled for execution after all default priority and high
       priority queues have been scheduled. *)
-  let _QUEUE_PRIORITY_LOW = constant "DISPATCH_QUEUE_PRIORITY_LOW" intptr_t
+  let _QUEUE_PRIORITY_LOW = constant "DISPATCH_QUEUE_PRIORITY_LOW" llong
 
   type dispatch_queue_attr_s
 

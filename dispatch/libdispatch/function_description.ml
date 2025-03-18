@@ -127,7 +127,7 @@ module Functions (F : Ctypes.FOREIGN) = struct
 
   let dispatch_get_global_queue =
     foreign "dispatch_get_global_queue"
-      (intptr_t @-> uintptr_t @-> returning dispatch_queue_global_t)
+      (llong @-> uintptr_t @-> returning dispatch_queue_global_t)
 
   let dispatch_get_specific =
     foreign "dispatch_get_specific" (ptr void @-> returning (ptr void))
