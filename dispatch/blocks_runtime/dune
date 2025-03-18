@@ -1,0 +1,33 @@
+(library
+ (name blocks_runtime)
+ (public_name camlkit-dispatch.runtime)
+ (libraries ctypes ctypes.foreign)
+ (ctypes
+  (external_library_name libblocksruntime)
+  (build_flags_resolver
+   (vendored
+    (c_flags :standard -fblocks)
+    (c_library_flags :standard %{read:flags.txt})))
+  (headers (include "Block.h" "Block_private.h"))
+  (type_description
+   (instance Types)
+   (functor Type_description))
+  (function_description
+   (concurrency unlocked)
+   (instance Functions)
+   (functor Function_description))
+  (generated_types Types_generated)
+  (generated_entry_point C))
+ (flags :standard -cclib %{read:flags.txt}))
+
+(rule
+ (enabled_if (= %{system} macosx))
+ (target flags.txt)
+ (action
+  (with-stdout-to %{target} (echo ""))))
+
+(rule
+ (enabled_if (<> %{system} macosx))
+ (target flags.txt)
+ (action
+  (with-stdout-to %{target} (echo "-lBlocksRuntime"))))

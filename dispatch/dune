@@ -1,8 +1,0 @@
-(library
- (name dispatch)
- (public_name camlkit-base.dispatch)
- (libraries camlkit-base.runtime)
-;  (foreign_stubs (language c) (names dispatch_inlines))
- )
-
-(documentation (package camlkit-base))

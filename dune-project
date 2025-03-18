@@ -1,5 +1,5 @@
 (lang dune 3.13)
-; (using ctypes 0.3)
+(using ctypes 0.3)
 
 (name camlkit)
 (version 0.3.0)
@@ -41,3 +41,13 @@ a selection of core Cocoa frameworks.")
   (camlkit-gui (= :version))
   (alcotest :with-test))
  (tags (objc cocoa macos gnustep)))
+
+(package
+ (name camlkit-dispatch)
+ (synopsis "OCaml bindings to libdispatch")
+ (description "Cross-platform OCaml bindings to libdispatch (aka Grand Central Dispatch).")
+ (depends
+  ctypes
+  ctypes-foreign
+  (alcotest :with-test))
+ (tags (dispatch gcd bindings cocoa macos gnustep)))

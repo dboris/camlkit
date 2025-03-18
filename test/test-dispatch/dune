@@ -1,10 +1,4 @@
 (test
  (name test_dispatch)
- (package camlkit-base)
- (build_if (and
-  (= %{system} macosx)
-  (= %{context_name} "default")))
- (libraries
-  camlkit-base.runtime
-  camlkit-base.dispatch
-  alcotest))
+ (package camlkit-dispatch)
+ (libraries dispatch alcotest))
