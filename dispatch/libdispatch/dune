@@ -32,7 +32,7 @@
  (action (with-stdout-to %{target} (echo "-L/usr/local/lib -ldispatch"))))
 
 (rule
- (enabled_if (= %{system} macosx))
+;  (enabled_if (= %{system} macosx))
  (target dispatch)
  (action
   (progn
@@ -40,5 +40,5 @@
    (system "cp *.h dispatch"))))
 
 (copy_files
- (enabled_if (= %{system} macosx))
+;  (enabled_if (= %{system} macosx))
  (files "private/*"))

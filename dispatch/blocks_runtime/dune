@@ -6,7 +6,7 @@
   (external_library_name libblocksruntime)
   (build_flags_resolver
    (vendored
-    (c_flags :standard -fblocks -I .)
+    (c_flags :standard -fblocks -I . -I /usr/include/block/)
     (c_library_flags :standard %{read:flags.txt})))
   (headers (include "Block.h" "Block_private.h"))
   (type_description
