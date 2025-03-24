@@ -4,7 +4,7 @@
 
 (context
  (opam
-  (switch 4.14.2-catalyst)
+  (switch default)
   (name catalyst)
   (targets ios)
   (merlin)
