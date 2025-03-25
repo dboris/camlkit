@@ -1,14 +1,14 @@
 (library
  (name dispatch)
- (public_name camlkit-dispatch.dispatch)
+ (public_name camlkit-dispatch)
  (libraries blocks_runtime ctypes ctypes.foreign)
  (ctypes
   (external_library_name libdispatch)
   (build_flags_resolver
    (vendored
-    (c_flags :standard -pthread -fexceptions -fblocks -I .)
+    (c_flags :standard -pthread -fexceptions -fblocks -I../vendor)
     (c_library_flags :standard %{read:flags.txt})))
-  (headers (include "dispatch/dispatch.h" "dispatch/private.h"))
+  (headers (include "dispatch/dispatch.h" "private/private.h"))
   (type_description
    (instance Types)
    (functor Type_description))
@@ -29,16 +29,6 @@
 (rule
  (enabled_if (<> %{system} macosx))
  (target flags.txt)
- (action (with-stdout-to %{target} (echo "-L/usr/local/lib -ldispatch"))))
-
-(rule
-;  (enabled_if (= %{system} macosx))
- (target dispatch)
  (action
-  (progn
-   (system "mkdir dispatch")
-   (system "cp *.h dispatch"))))
-
-(copy_files
-;  (enabled_if (= %{system} macosx))
- (files "private/*"))
+  (with-stdout-to %{target}
+   (echo "-L../build -L/usr/local/lib -ldispatch"))))

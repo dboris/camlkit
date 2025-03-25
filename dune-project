@@ -52,5 +52,6 @@ concurrent code execution on multicore hardware.")
  (depends
   ctypes
   ctypes-foreign
+  (conf-clang (<> :os win32))
   (alcotest :with-test))
  (tags (dispatch gcd bindings cocoa macos gnustep)))

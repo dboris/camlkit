@@ -1,0 +1,3 @@
+[submodule "dispatch/vendor"]
+	path = dispatch/vendor
+	url = https://github.com/swiftlang/swift-corelibs-libdispatch.git

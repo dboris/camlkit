@@ -1,0 +1,11 @@
+(rule
+ (enabled_if (<> %{system} macosx))
+ (deps (source_tree ../vendor))
+ (targets libdispatch.so libBlocksRuntime.so)
+ (action
+  (no-infer
+   (setenv CC %{bin:clang}
+    (setenv CXX %{bin:clang++}
+     (progn
+      (run cmake -DCMAKE_BUILD_TYPE=Release ../vendor)
+      (run make -j 8)))))))
