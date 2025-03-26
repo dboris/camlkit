@@ -1,0 +1,11 @@
+(copy_files
+ (enabled_if (= %{system} macosx))
+ (files ../vendor/private/{benchmark,queue_private,workloop_private,source_private,io_private,layout_private,time_private}.h))
+
+(rule
+ (enabled_if (= %{system} macosx))
+ (targets data_private.h)
+ (deps ../vendor/private/data_private.h)
+ (action
+  (with-stdout-to data_private.h
+   (run sed "s/, *bridgeos(4\\.0)//g" ../vendor/private/data_private.h))))

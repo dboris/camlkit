@@ -6,7 +6,7 @@
   (external_library_name libdispatch)
   (build_flags_resolver
    (vendored
-    (c_flags :standard -pthread -fexceptions -fblocks -I../vendor)
+    (c_flags :standard -pthread -fexceptions -fblocks -I.. -I../vendor)
     (c_library_flags :standard %{read:flags.txt})))
   (headers (include "dispatch/dispatch.h" "private/private.h"))
   (type_description

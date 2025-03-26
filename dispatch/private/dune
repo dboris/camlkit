@@ -1,0 +1,7 @@
+(rule
+ (enabled_if (= %{system} macosx))
+ (targets private.h)
+ (deps ../vendor/private/private.h)
+ (action
+  (with-stdout-to private.h
+   (run sed "s/#error.*/\\/\\/ disabled #error/" ../vendor/private/private.h))))
