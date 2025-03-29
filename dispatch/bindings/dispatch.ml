@@ -1548,8 +1548,17 @@ module Queue = struct
   let get_main = get_main_queue
 end
 
+module Group = struct
+  let create = group_create
+  let enter = group_enter
+  let leave = group_leave
+  let notify = group_notify
+  let async = group_async
+end
+
 module Time = struct
   let now = _TIME_NOW
+  let forever = _TIME_FOREVER
   let after_ns ns = Raw.dispatch_time now (Signed.LLong.of_int ns)
   let after_s s = time now (s *. _NSEC_PER_SEC)
 end
