@@ -2,7 +2,7 @@
 
 (context
  (opam
-  (switch 4.14.2-simulator)
+  (switch simulator)
   (name simulator)
   (targets ios)
   (merlin)

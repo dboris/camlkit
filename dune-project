@@ -1,10 +1,9 @@
-(lang dune 3.13)
+(lang dune 3.16)
 (using ctypes 0.3)
 
 (name camlkit)
-(version 0.3.0)
 
-(generate_opam_files false)
+(generate_opam_files true)
 
 (source (github dboris/camlkit))
 
@@ -19,8 +18,12 @@
 This package provides OCaml bindings to the Objective-C runtime and
 a selection of core Cocoa frameworks.")
  (depends
+  (ocaml (>= 4.13))
   ctypes
   ctypes-foreign
+  (conf-clang (<> :os macos))
+  (conf-libobjc2 (<> :os macos))
+  (conf-gnustep-base (<> :os macos))
   (alcotest :with-test))
  (tags (objc bindings cocoa macos gnustep)))
 
@@ -29,8 +32,9 @@ a selection of core Cocoa frameworks.")
  (synopsis "OCaml bindings to the AppKit framework")
  (description "OCaml bindings to the AppKit framework")
  (depends
-  (camlkit-base (= :version)))
- (tags (objc bindings cocoa macos gnustep)))
+  (camlkit-base (= :version))
+  (conf-gnustep-gui (<> :os macos)))
+ (tags (objc bindings gui cocoa macos gnustep)))
 
 (package
  (name camlkit)
@@ -52,6 +56,6 @@ concurrent code execution on multicore hardware.")
  (depends
   ctypes
   ctypes-foreign
-  (conf-clang (<> :os win32))
+  (conf-clang (<> :os macos))
   (alcotest :with-test))
- (tags (dispatch gcd bindings cocoa macos gnustep)))
+ (tags (dispatch gcd bindings)))

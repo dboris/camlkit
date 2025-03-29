@@ -9,7 +9,7 @@ tags: ["objc" "cocoa" "macos" "gnustep"]
 homepage: "https://github.com/dboris/camlkit"
 bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
-  "dune" {>= "3.13"}
+  "dune" {>= "3.16"}
   "camlkit-base" {= version}
   "camlkit-gui" {= version}
   "camlkit-dispatch" {= version}
@@ -29,8 +29,5 @@ build: [
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
-]
-build-env: [
-  [CC = "clang"]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"

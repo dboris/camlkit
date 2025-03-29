@@ -5,14 +5,14 @@ description: "OCaml bindings to the AppKit framework"
 maintainer: ["Boris D. <borisd@gmx.com>"]
 authors: ["Boris D. <borisd@gmx.com>"]
 license: "ISC"
-tags: ["objc" "bindings" "cocoa" "macos" "gnustep"]
+tags: ["objc" "bindings" "gui" "cocoa" "macos" "gnustep"]
 homepage: "https://github.com/dboris/camlkit"
 bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
-  "dune" {>= "3.13"}
+  "dune" {>= "3.16"}
   "camlkit-base" {= version}
-  "odoc" {with-doc}
   "conf-gnustep-gui" {os != "macos"}
+  "odoc" {with-doc}
 ]
 build: [
   ["dune" "subst"] {dev}
@@ -27,8 +27,5 @@ build: [
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
-]
-build-env: [
-  [CC = "clang"]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"

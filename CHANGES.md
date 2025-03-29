@@ -1,3 +1,9 @@
+## v0.3.1
+
+* Improved libdispatch bindings
+* Renamed `effect` methods in UIKit classes for compatibility with OCaml 5.3
+
+
 ## v0.3.0
 
 API changes:

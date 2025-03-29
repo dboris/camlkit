@@ -13,17 +13,16 @@ tags: ["objc" "bindings" "cocoa" "macos" "gnustep"]
 homepage: "https://github.com/dboris/camlkit"
 bug-reports: "https://github.com/dboris/camlkit/issues"
 depends: [
+  "dune" {>= "3.16"}
   "ocaml" {>= "4.13"}
-  "dune" {>= "3.13"}
-  "ctypes" {>= "0.22.0"}
-  "ctypes-foreign" {>= "0.22.0"}
+  "ctypes"
+  "ctypes-foreign"
+  "conf-clang" {os != "macos"}
+  "conf-libobjc2" {os != "macos"}
+  "conf-gnustep-base" {os != "macos"}
   "alcotest" {with-test}
   "odoc" {with-doc}
-  "conf-gnustep-base" {os != "macos"}
-  "conf-libobjc2" {os != "macos"}
-  "conf-clang" {os != "macos"}
 ]
-available: arch = "arm64" | arch = "x86_64"
 build: [
   ["dune" "subst"] {dev}
   [
@@ -37,8 +36,5 @@ build: [
     "@runtest" {with-test}
     "@doc" {with-doc}
   ]
-]
-build-env: [
-  [CC = "clang"]
 ]
 dev-repo: "git+https://github.com/dboris/camlkit.git"
