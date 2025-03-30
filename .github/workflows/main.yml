@@ -20,10 +20,11 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout tree
+      - name: Checkout tree with submodules
         uses: actions/checkout@v4
         with:
           submodules: recursive
+          fetch-depth: 0
 
       - name: Set-up OCaml
         uses: ocaml/setup-ocaml@v3
