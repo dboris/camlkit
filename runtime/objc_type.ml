@@ -20,7 +20,7 @@ type _ t =
   | Unknown : unit ptr t
   | Ptr : 'a t -> 'a ptr t
   | Arr : 'a t -> 'a carray t
-  | Struc : 'a t -> 'a structure t
+  | Struc : 'a structure typ -> 'a structure t
   | Union : 'a t -> 'a union t
   | Imp : unit ptr t
   | Enc : _Enc t
@@ -55,7 +55,8 @@ let rec ctype_of_t : type a. a t -> a typ =
   | Enc -> _Enc
   | Proto -> _Protocol
   | Ivar -> _Ivar
-  | Struc _ | Union _ -> invalid_arg "not implemented"
+  | Struc s -> s
+  | Union _ -> invalid_arg "not implemented"
 
 (* Convenience constructors *)
 
@@ -105,7 +106,8 @@ let byte_size_of_t : type a. a t -> int =
   | Double -> sizeof double
   | Id | Class | Sel | Ptr _ | Imp | Enc | Proto | Ivar | Unknown ->
     sizeof (ptr void)
-  | Arr _ | Struc _ | Union _ -> invalid_arg "not implemented"
+  | Struc s -> sizeof s
+  | Arr _ | Union _ -> invalid_arg "not implemented"
 
 let rec byte_size_of_tlist : type a b. (a, b) tlist -> int =
   function
@@ -142,7 +144,7 @@ let rec enc_of_t : type a. a t -> string = function
   | Unknown -> "?"
   | Ptr ty -> "^" ^ enc_of_t ty
   | Arr ty -> "[" ^ enc_of_t ty ^ "]"
-  | Struc ty -> "{" ^ enc_of_t ty ^ "}"
+  | Struc _ -> "{?}"
   | Union ty -> "(" ^ enc_of_t ty ^ ")"
   | Imp | Enc | Proto | Ivar -> "?"
 

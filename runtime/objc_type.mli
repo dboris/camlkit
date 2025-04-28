@@ -17,7 +17,7 @@ type _ t =
   | Unknown : unit Ctypes.ptr t
   | Ptr : 'a t -> 'a Ctypes.ptr t
   | Arr : 'a t -> 'a Ctypes.carray t
-  | Struc : 'a t -> 'a Ctypes.structure t
+  | Struc : 'a Ctypes.structure Ctypes.typ -> 'a Ctypes.structure t
   | Union : 'a t -> 'a Ctypes.union t
   | Imp : unit Ctypes.ptr t
   | Enc : C.Types._Enc t
@@ -69,5 +69,5 @@ val double : float t
 val unknown : unit Ctypes.ptr t
 val ptr : 'a t -> 'a Ctypes.ptr t
 val array : 'a t -> 'a Ctypes.carray t
-val struc : 'a t -> 'a Ctypes.structure t
+val struc : 'a Ctypes.structure Ctypes.typ -> 'a Ctypes.structure t
 val union : 'a t -> 'a Ctypes.union t

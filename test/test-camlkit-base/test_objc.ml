@@ -334,6 +334,27 @@ let test_set_and_get_object_ivar ~name x () =
     (NSString._UTF8String v)
 ;;
 
+let test_struct_t () =
+  let x = ref 0. in
+  let my_class =
+    Class.define "StructTest"
+      ~methods:
+        [ Method.define
+          ~cmd: (selector "someMethodWithStruct:")
+          ~args: Objc_type.[struc CGPoint.t]
+          ~return: Objc_type.void
+          (fun _self _cmd rect -> x := CGPoint.x rect)
+        ]
+  in
+  let obj = _new_ my_class
+  and pt = CGPoint.init ~x:42. ~y:20.
+  in
+  R.msg_send (selector "someMethodWithStruct:")
+    ~self:obj ~args:Objc_type.[struc CGPoint.t]
+    ~return:Objc_type.void
+    pt;
+  A.check (A.float 0.0001) "same float" 42. !x
+
 let suite =
   [ "get object description", `Quick, test_object_description
   ; "add method to class", `Quick, test_add_method
@@ -364,6 +385,7 @@ let suite =
     test_set_and_get_ivar ~name:"MyClass14" 53
   ; "set and get object ivar directly", `Quick,
     test_set_and_get_object_ivar ~name:"MyClass15" (new_string "Hola")
+  ; "test_struct_t", `Quick, test_struct_t
   ]
 
 let () = A.run "objc" [ "Objc", suite ]
