@@ -1,3 +1,8 @@
+## dev
+
+* Support struct as method argument or return type
+* Support static blocks in blocks runtime
+
 ## v0.3.1
 
 * Improved libdispatch bindings

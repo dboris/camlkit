@@ -343,7 +343,7 @@ let test_struct_t () =
           ~cmd: (selector "someMethodWithStruct:")
           ~args: Objc_type.[struc CGPoint.t]
           ~return: Objc_type.void
-          (fun _self _cmd rect -> x := CGPoint.x rect)
+          (fun _self _cmd pt -> x := CGPoint.x pt)
         ]
   in
   let obj = _new_ my_class

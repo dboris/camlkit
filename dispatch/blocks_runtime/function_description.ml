@@ -10,6 +10,9 @@ module Functions (F : Ctypes.FOREIGN) = struct
   let _NSConcreteGlobalBlock =
     foreign_value "_NSConcreteGlobalBlock" (array 32 (ptr void))
 
+  let _NSConcreteStackBlock =
+    foreign_value "_NSConcreteStackBlock" (array 32 (ptr void))
+
   (** Create a heap based copy of a Block or simply add a reference to an
       existing one. This must be paired with Block_release to recover memory *)
   let _Block_copy = foreign "_Block_copy" (block_t @-> returning block_t)

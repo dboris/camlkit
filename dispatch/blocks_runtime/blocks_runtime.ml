@@ -12,11 +12,15 @@ let make_descriptor ~size:s =
 let global_block_descriptor =
   make_descriptor ~size:(sizeof Block_layout.t) |> allocate Block_descriptor.t
 
-let make_block ~invoke:f =
+let make_block ?(is_global = true) f =
   let open Block_layout in
-  let b = make t in
-  setf b isa (to_voidp _NSConcreteGlobalBlock);
-  setf b flags _IS_GLOBAL;
+  let b = make t
+  and (btype, bflags) =
+    if is_global then (_NSConcreteGlobalBlock, _IS_GLOBAL)
+    else (_NSConcreteStackBlock, Int32.zero)
+  in
+  setf b isa (to_voidp btype);
+  setf b flags bflags;
   setf b descriptor global_block_descriptor;
   setf b invoke f;
   allocate t b |> to_voidp

@@ -35,7 +35,19 @@ let test_block =
     Alcotest.(check bool "function called" true true))
   @@ fun f ->
   async' ~queue:main_queue
-    (make_block ~invoke:(coerce Block_fun.t (ptr void) f))
+    (make_block (coerce Block_fun.t (ptr void) f))
+
+let test_static_block =
+  "dispatch static block with async'" -: fun () ->
+  let module Block_fun =
+    (val Foreign.dynamic_funptr ~thread_registration:true ~runtime_lock:true
+            (void @-> returning void))
+  in
+  Block_fun.with_fun (fun () ->
+    Alcotest.(check bool "function called" true true))
+  @@ fun f ->
+  async' ~queue:main_queue
+    (make_block ~is_global:false (coerce Block_fun.t (ptr void) f))
 
 let test_dispatch_after =
   "time and after" -: fun () ->
@@ -89,6 +101,7 @@ let () =
         ; test_queue_concurrent
         ; test_queue_serial
         ; test_block
+        ; test_static_block
         ; test_dispatch_after
         ; test_with_delay
         ; test_async_and_wait
