@@ -1,0 +1,130 @@
+(* auto-generated, do not modify *)
+
+[@@@ocaml.warning "-33"]
+open Runtime
+open Objc
+
+open Foundation
+open CoreText
+
+(** Apple docs: {{:https://developer.apple.com/documentation/uifoundation/nstextlayoutmanager?language=objc}NSTextLayoutManager} *)
+
+let self = get_class "NSTextLayoutManager"
+
+let alloc () = msg_send ~self ~cmd:(selector "alloc") ~typ:(returning id)
+
+let addRenderingAttribute x ~value ~forTextRange self = msg_send ~self ~cmd:(selector "addRenderingAttribute:value:forTextRange:") ~typ:(id @-> id @-> id @-> returning void) x value forTextRange
+let addTemporaryAttribute x ~value ~forTextRange self = msg_send ~self ~cmd:(selector "addTemporaryAttribute:value:forTextRange:") ~typ:(id @-> id @-> id @-> returning void) x value forTextRange
+let adjustedTextSelectionsForEditingContextFromTextSelections x self = msg_send ~self ~cmd:(selector "adjustedTextSelectionsForEditingContextFromTextSelections:") ~typ:(id @-> returning id) x
+let allowsAddingTextContainer self = msg_send ~self ~cmd:(selector "allowsAddingTextContainer") ~typ:(returning bool)
+let allowsFontSubstitutionAffectingVerticalMetrics self = msg_send ~self ~cmd:(selector "allowsFontSubstitutionAffectingVerticalMetrics") ~typ:(returning bool)
+let applicationFrameworkContext self = msg_send ~self ~cmd:(selector "applicationFrameworkContext") ~typ:(returning llong) |> LLong.to_int
+let attributedStringForTruncatedRange x ~defaultAttributedString self = msg_send ~self ~cmd:(selector "attributedStringForTruncatedRange:defaultAttributedString:") ~typ:(id @-> id @-> returning id) x defaultAttributedString
+let baseLocation self = msg_send ~self ~cmd:(selector "baseLocation") ~typ:(returning id)
+let baseWritingDirectionAtLocation x self = msg_send ~self ~cmd:(selector "baseWritingDirectionAtLocation:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let breaksLinesForInteractiveText self = msg_send ~self ~cmd:(selector "breaksLinesForInteractiveText") ~typ:(returning bool)
+let companionLayoutManager self = msg_send ~self ~cmd:(selector "companionLayoutManager") ~typ:(returning id)
+let dealloc self = msg_send ~self ~cmd:(selector "dealloc") ~typ:(returning void)
+let delegate self = msg_send ~self ~cmd:(selector "delegate") ~typ:(returning id)
+let documentRange self = msg_send ~self ~cmd:(selector "documentRange") ~typ:(returning id)
+let drawTextHighlightBackgroundForRunTextRanges x ~attributes ~documentRange ~origin ~context self = msg_send ~self ~cmd:(selector "drawTextHighlightBackgroundForRunTextRanges:attributes:documentRange:origin:context:") ~typ:(id @-> id @-> id @-> CGPoint.t @-> (ptr CGContext.t) @-> returning void) x attributes documentRange origin context
+let drawTextHighlightBackgroundForTextRange x ~attributes ~options ~origin ~context self = msg_send ~self ~cmd:(selector "drawTextHighlightBackgroundForTextRange:attributes:options:origin:context:") ~typ:(id @-> id @-> ullong @-> CGPoint.t @-> (ptr CGContext.t) @-> returning void) x attributes (ULLong.of_int options) origin context
+let drawTextHighlightBackgroundForTextRange' x ~highlightStyle ~options ~origin ~context self = msg_send ~self ~cmd:(selector "drawTextHighlightBackgroundForTextRange:highlightStyle:options:origin:context:") ~typ:(id @-> id @-> ullong @-> CGPoint.t @-> (ptr CGContext.t) @-> returning void) x highlightStyle (ULLong.of_int options) origin context
+let encodeWithCoder x self = msg_send ~self ~cmd:(selector "encodeWithCoder:") ~typ:(id @-> returning void) x
+let ensureLayoutForBounds x self = msg_send ~self ~cmd:(selector "ensureLayoutForBounds:") ~typ:(CGRect.t @-> returning void) x
+let ensureLayoutForRange x self = msg_send ~self ~cmd:(selector "ensureLayoutForRange:") ~typ:(id @-> returning void) x
+let enumerateCaretOffsetsInLineFragmentAtLocation x ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateCaretOffsetsInLineFragmentAtLocation:usingBlock:") ~typ:(id @-> (ptr void) @-> returning void) x usingBlock
+let enumerateContainerBoundariesFromLocation x ~reverse ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateContainerBoundariesFromLocation:reverse:usingBlock:") ~typ:(id @-> bool @-> (ptr void) @-> returning void) x reverse usingBlock
+let enumerateRenderingAttributesFromLocation x ~reverse ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateRenderingAttributesFromLocation:reverse:usingBlock:") ~typ:(id @-> bool @-> (ptr void) @-> returning void) x reverse usingBlock
+let enumerateSubstringsFromLocation x ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateSubstringsFromLocation:options:usingBlock:") ~typ:(id @-> ullong @-> (ptr void) @-> returning void) x (ULLong.of_int options) usingBlock
+let enumerateTemporaryAttributesFromLocation x ~reverse ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateTemporaryAttributesFromLocation:reverse:usingBlock:") ~typ:(id @-> bool @-> (ptr void) @-> returning void) x reverse usingBlock
+let enumerateTextLayoutFragmentsFromLocation x ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateTextLayoutFragmentsFromLocation:options:usingBlock:") ~typ:(id @-> ullong @-> (ptr void) @-> returning id) x (ULLong.of_int options) usingBlock
+let enumerateTextLayoutFragmentsInTextRange x ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateTextLayoutFragmentsInTextRange:options:usingBlock:") ~typ:(id @-> ullong @-> (ptr void) @-> returning id) x (ULLong.of_int options) usingBlock
+let enumerateTextSegmentAndCategoryInRange x ~type_ ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateTextSegmentAndCategoryInRange:type:options:usingBlock:") ~typ:(id @-> llong @-> ullong @-> (ptr void) @-> returning void) x (LLong.of_int type_) (ULLong.of_int options) usingBlock
+let enumerateTextSegmentsInRange x ~type_ ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateTextSegmentsInRange:type:options:usingBlock:") ~typ:(id @-> llong @-> ullong @-> (ptr void) @-> returning void) x (LLong.of_int type_) (ULLong.of_int options) usingBlock
+let enumerateViewportElementsFromLocation x ~options ~usingBlock self = msg_send ~self ~cmd:(selector "enumerateViewportElementsFromLocation:options:usingBlock:") ~typ:(id @-> llong @-> (ptr void) @-> returning void) x (LLong.of_int options) usingBlock
+let estimatedSizeForLastTextContainer self = msg_send_stret ~self ~cmd:(selector "estimatedSizeForLastTextContainer") ~typ:(returning CGSize.t) ~return_type:CGSize.t
+let finalizeAndPushLastTextContainer self = msg_send ~self ~cmd:(selector "finalizeAndPushLastTextContainer") ~typ:(returning void)
+let flushTextLayoutFragmentsFromLocation x ~direction self = msg_send ~self ~cmd:(selector "flushTextLayoutFragmentsFromLocation:direction:") ~typ:(id @-> bool @-> returning bool) x direction
+let hasNonSimpleRectangularTextContainer self = msg_send ~self ~cmd:(selector "hasNonSimpleRectangularTextContainer") ~typ:(returning bool)
+let init self = msg_send ~self ~cmd:(selector "init") ~typ:(returning id)
+let initWithCoder x self = msg_send ~self ~cmd:(selector "initWithCoder:") ~typ:(id @-> returning id) x
+let invalidateLayoutForRange x self = msg_send ~self ~cmd:(selector "invalidateLayoutForRange:") ~typ:(id @-> returning void) x
+let invalidateRenderingAttributesForTextRange x self = msg_send ~self ~cmd:(selector "invalidateRenderingAttributesForTextRange:") ~typ:(id @-> returning void) x
+let invalidateTemporaryAttributesForTextRange x self = msg_send ~self ~cmd:(selector "invalidateTemporaryAttributesForTextRange:") ~typ:(id @-> returning void) x
+let isCountableDataSource self = msg_send ~self ~cmd:(selector "isCountableDataSource") ~typ:(returning bool)
+let isSelectionOverridableColor self = msg_send ~self ~cmd:(selector "isSelectionOverridableColor") ~typ:(returning (ptr void))
+let lastContainerFilled self = msg_send ~self ~cmd:(selector "lastContainerFilled") ~typ:(returning bool)
+let layoutQueue self = msg_send ~self ~cmd:(selector "layoutQueue") ~typ:(returning id)
+let limitsLayoutForSuspiciousContents self = msg_send ~self ~cmd:(selector "limitsLayoutForSuspiciousContents") ~typ:(returning bool)
+let lineFragmentRangeForPoint x ~inContainerAtLocation self = msg_send ~self ~cmd:(selector "lineFragmentRangeForPoint:inContainerAtLocation:") ~typ:(CGPoint.t @-> id @-> returning id) x inContainerAtLocation
+let locationFromLocation x ~withOffset self = msg_send ~self ~cmd:(selector "locationFromLocation:withOffset:") ~typ:(id @-> llong @-> returning id) x (LLong.of_int withOffset)
+let markedTextAttributesForRange x ~usingBlock self = msg_send ~self ~cmd:(selector "markedTextAttributesForRange:usingBlock:") ~typ:(id @-> (ptr void) @-> returning void) x usingBlock
+let maximumNumberOfCachedTextLayoutFragments self = msg_send ~self ~cmd:(selector "maximumNumberOfCachedTextLayoutFragments") ~typ:(returning llong) |> LLong.to_int
+let maximumNumberOfLinesForLastContainer self = msg_send ~self ~cmd:(selector "maximumNumberOfLinesForLastContainer") ~typ:(returning llong) |> LLong.to_int
+let offsetFromLocation x ~toLocation self = msg_send ~self ~cmd:(selector "offsetFromLocation:toLocation:") ~typ:(id @-> id @-> returning llong) x toLocation |> LLong.to_int
+let placementOfPoint x ~inContainerAtLocation self = msg_send ~self ~cmd:(selector "placementOfPoint:inContainerAtLocation:") ~typ:(CGPoint.t @-> id @-> returning ullong) x inContainerAtLocation |> ULLong.to_int
+let processLayoutInvalidationForTextRange x ~synchronizing self = msg_send ~self ~cmd:(selector "processLayoutInvalidationForTextRange:synchronizing:") ~typ:(id @-> bool @-> returning void) x synchronizing
+let rangeForTextContainerAtIndex x self = msg_send ~self ~cmd:(selector "rangeForTextContainerAtIndex:") ~typ:(llong @-> returning id) (LLong.of_int x)
+let removeRenderingAttribute x ~forTextRange self = msg_send ~self ~cmd:(selector "removeRenderingAttribute:forTextRange:") ~typ:(id @-> id @-> returning void) x forTextRange
+let removeTemporaryAttribute x ~forTextRange self = msg_send ~self ~cmd:(selector "removeTemporaryAttribute:forTextRange:") ~typ:(id @-> id @-> returning void) x forTextRange
+let renderingAttributesForLink x ~atLocation self = msg_send ~self ~cmd:(selector "renderingAttributesForLink:atLocation:") ~typ:(id @-> id @-> returning id) x atLocation
+let renderingAttributesValidator self = msg_send ~self ~cmd:(selector "renderingAttributesValidator") ~typ:(returning (ptr void))
+let renderingColorForDocumentColor x ~atLocation self = msg_send ~self ~cmd:(selector "renderingColorForDocumentColor:atLocation:") ~typ:(id @-> id @-> returning id) x atLocation
+let rendersBackgroundColorAttribute self = msg_send ~self ~cmd:(selector "rendersBackgroundColorAttribute") ~typ:(returning bool)
+let replaceCharactersInRange x ~withAttributedString self = msg_send ~self ~cmd:(selector "replaceCharactersInRange:withAttributedString:") ~typ:(id @-> id @-> returning void) x withAttributedString
+let replaceCharactersInRange' x ~withElements self = msg_send ~self ~cmd:(selector "replaceCharactersInRange:withElements:") ~typ:(id @-> id @-> returning void) x withElements
+let replaceContentsInRange x ~withAttributedString self = msg_send ~self ~cmd:(selector "replaceContentsInRange:withAttributedString:") ~typ:(id @-> id @-> returning void) x withAttributedString
+let replaceContentsInRange' x ~withTextElements self = msg_send ~self ~cmd:(selector "replaceContentsInRange:withTextElements:") ~typ:(id @-> id @-> returning void) x withTextElements
+let replaceTextContentManager x self = msg_send ~self ~cmd:(selector "replaceTextContentManager:") ~typ:(id @-> returning void) x
+let requiresCTLineRef self = msg_send ~self ~cmd:(selector "requiresCTLineRef") ~typ:(returning bool)
+let setAllowsFontSubstitutionAffectingVerticalMetrics x self = msg_send ~self ~cmd:(selector "setAllowsFontSubstitutionAffectingVerticalMetrics:") ~typ:(bool @-> returning void) x
+let setApplicationFrameworkContext x self = msg_send ~self ~cmd:(selector "setApplicationFrameworkContext:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setBreaksLinesForInteractiveText x self = msg_send ~self ~cmd:(selector "setBreaksLinesForInteractiveText:") ~typ:(bool @-> returning void) x
+let setDelegate x self = msg_send ~self ~cmd:(selector "setDelegate:") ~typ:(id @-> returning void) x
+let setIsSelectionOverridableColor x self = msg_send ~self ~cmd:(selector "setIsSelectionOverridableColor:") ~typ:((ptr void) @-> returning void) x
+let setLayoutQueue x self = msg_send ~self ~cmd:(selector "setLayoutQueue:") ~typ:(id @-> returning void) x
+let setLimitsLayoutForSuspiciousContents x self = msg_send ~self ~cmd:(selector "setLimitsLayoutForSuspiciousContents:") ~typ:(bool @-> returning void) x
+let setMaximumNumberOfCachedTextLayoutFragments x self = msg_send ~self ~cmd:(selector "setMaximumNumberOfCachedTextLayoutFragments:") ~typ:(llong @-> returning void) (LLong.of_int x)
+let setRenderingAttributes x ~forTextRange self = msg_send ~self ~cmd:(selector "setRenderingAttributes:forTextRange:") ~typ:(id @-> id @-> returning void) x forTextRange
+let setRenderingAttributesValidator x self = msg_send ~self ~cmd:(selector "setRenderingAttributesValidator:") ~typ:((ptr void) @-> returning void) x
+let setRendersBackgroundColorAttribute x self = msg_send ~self ~cmd:(selector "setRendersBackgroundColorAttribute:") ~typ:(bool @-> returning void) x
+let setRequiresCTLineRef x self = msg_send ~self ~cmd:(selector "setRequiresCTLineRef:") ~typ:(bool @-> returning void) x
+let setTemplateTextContainer x self = msg_send ~self ~cmd:(selector "setTemplateTextContainer:") ~typ:(id @-> returning void) x
+let setTemporaryAttributes x ~forTextRange self = msg_send ~self ~cmd:(selector "setTemporaryAttributes:forTextRange:") ~typ:(id @-> id @-> returning void) x forTextRange
+let setTextContainer x self = msg_send ~self ~cmd:(selector "setTextContainer:") ~typ:(id @-> returning void) x
+let setTextContentManager x self = msg_send ~self ~cmd:(selector "setTextContentManager:") ~typ:(id @-> returning void) x
+let setTextSelectionNavigation x self = msg_send ~self ~cmd:(selector "setTextSelectionNavigation:") ~typ:(id @-> returning void) x
+let setTextSelections x self = msg_send ~self ~cmd:(selector "setTextSelections:") ~typ:(id @-> returning void) x
+let setUsesDefaultHyphenation x self = msg_send ~self ~cmd:(selector "setUsesDefaultHyphenation:") ~typ:(bool @-> returning void) x
+let setUsesFontLeading x self = msg_send ~self ~cmd:(selector "setUsesFontLeading:") ~typ:(bool @-> returning void) x
+let setUsesHyphenation x self = msg_send ~self ~cmd:(selector "setUsesHyphenation:") ~typ:(bool @-> returning void) x
+let setViewProvider x ~forTextAttachment ~location self = msg_send ~self ~cmd:(selector "setViewProvider:forTextAttachment:location:") ~typ:(id @-> id @-> id @-> returning void) x forTextAttachment location
+let synchronize self = msg_send ~self ~cmd:(selector "synchronize") ~typ:(returning void)
+let templateTextContainer self = msg_send ~self ~cmd:(selector "templateTextContainer") ~typ:(returning id)
+let temporaryAttributesTable self = msg_send ~self ~cmd:(selector "temporaryAttributesTable") ~typ:(returning id)
+let textContainer self = msg_send ~self ~cmd:(selector "textContainer") ~typ:(returning id)
+let textContainerChangedGeometry x self = msg_send ~self ~cmd:(selector "textContainerChangedGeometry:") ~typ:(id @-> returning void) x
+let textContainerForLocation x self = msg_send ~self ~cmd:(selector "textContainerForLocation:") ~typ:(id @-> returning id) x
+let textContainers self = msg_send ~self ~cmd:(selector "textContainers") ~typ:(returning id)
+let textContentManager self = msg_send ~self ~cmd:(selector "textContentManager") ~typ:(returning id)
+let textHighlightRenderingAttributesForTextRange x ~attributes self = msg_send ~self ~cmd:(selector "textHighlightRenderingAttributesForTextRange:attributes:") ~typ:(id @-> id @-> returning id) x attributes
+let textLayoutFragmentForLocation x self = msg_send ~self ~cmd:(selector "textLayoutFragmentForLocation:") ~typ:(id @-> returning id) x
+let textLayoutFragmentForPosition x self = msg_send ~self ~cmd:(selector "textLayoutFragmentForPosition:") ~typ:(CGPoint.t @-> returning id) x
+let textLayoutFragmentForPosition1 x ~inTextContainerAtIndex self = msg_send ~self ~cmd:(selector "textLayoutFragmentForPosition:inTextContainerAtIndex:") ~typ:(CGPoint.t @-> llong @-> returning id) x (LLong.of_int inTextContainerAtIndex)
+let textLayoutFragmentForPosition2 x ~inTextContainerAtIndex ~avoidsAdditionalLayout self = msg_send ~self ~cmd:(selector "textLayoutFragmentForPosition:inTextContainerAtIndex:avoidsAdditionalLayout:") ~typ:(CGPoint.t @-> llong @-> bool @-> returning id) x (LLong.of_int inTextContainerAtIndex) avoidsAdditionalLayout
+let textLayoutOrientationAtLocation x self = msg_send ~self ~cmd:(selector "textLayoutOrientationAtLocation:") ~typ:(id @-> returning llong) x |> LLong.to_int
+let textRangeForSelectionGranularity x ~enclosingLocation self = msg_send ~self ~cmd:(selector "textRangeForSelectionGranularity:enclosingLocation:") ~typ:(llong @-> id @-> returning id) (LLong.of_int x) enclosingLocation
+let textSelectionNavigation self = msg_send ~self ~cmd:(selector "textSelectionNavigation") ~typ:(returning id)
+let textSelections self = msg_send ~self ~cmd:(selector "textSelections") ~typ:(returning id)
+let textViewportLayoutController self = msg_send ~self ~cmd:(selector "textViewportLayoutController") ~typ:(returning id)
+let updateLayoutWithTextLayoutFragment x ~addition self = msg_send ~self ~cmd:(selector "updateLayoutWithTextLayoutFragment:addition:") ~typ:(id @-> bool @-> returning void) x addition
+let usageBoundsForLastTextContainer self = msg_send_stret ~self ~cmd:(selector "usageBoundsForLastTextContainer") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let usageBoundsForTextContainer self = msg_send_stret ~self ~cmd:(selector "usageBoundsForTextContainer") ~typ:(returning CGRect.t) ~return_type:CGRect.t
+let usageBoundsInTextContainerAtIndex x self = msg_send_stret ~self ~cmd:(selector "usageBoundsInTextContainerAtIndex:") ~typ:(llong @-> returning CGRect.t) ~return_type:CGRect.t (LLong.of_int x)
+let usesContiguousLayout self = msg_send ~self ~cmd:(selector "usesContiguousLayout") ~typ:(returning bool)
+let usesDefaultHyphenation self = msg_send ~self ~cmd:(selector "usesDefaultHyphenation") ~typ:(returning bool)
+let usesFontLeading self = msg_send ~self ~cmd:(selector "usesFontLeading") ~typ:(returning bool)
+let usesHyphenation self = msg_send ~self ~cmd:(selector "usesHyphenation") ~typ:(returning bool)
+let viewProviderForTextAttachment x ~location self = msg_send ~self ~cmd:(selector "viewProviderForTextAttachment:location:") ~typ:(id @-> id @-> returning id) x location
+let viewportLayoutController self = msg_send ~self ~cmd:(selector "viewportLayoutController") ~typ:(returning id)

@@ -1,0 +1,10 @@
+(library
+ (name UIFoundation)
+ (public_name camlkit-gui.UIFoundation)
+;  (flags :standard -ccopt "-framework Foundation")
+ (libraries
+  camlkit-base.runtime
+  camlkit-base.Foundation
+  camlkit-gui.CoreText))
+
+(documentation (package camlkit-gui))
