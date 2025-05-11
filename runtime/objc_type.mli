@@ -1,6 +1,6 @@
 (** Represents an Objective-C type. *)
 type _ t =
-    Id : C.Types.object_t t
+  | Id : C.Types.object_t t
   | Class : C.Types.object_t t
   | Sel : C.Types.selector_t t
   | Void : unit t
@@ -26,28 +26,28 @@ type _ t =
 
 (** Represents a tuple of Objective-C types. *)
 type (_, _) tlist =
-    [] : ('r, 'r) tlist
-  | (::) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist
+  | [] : ('r, 'r) tlist
+  | ( :: ) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist
 
-(** Returns the ctypes fn typ corresponding to the Objective-C method type. *)
 val method_typ : args:('a, 'b) tlist -> 'b t -> 'a Ctypes.fn
+(** Returns the ctypes fn typ corresponding to the Objective-C method type. *)
 
-(** Returns the ctypes value typ corresponding to the Objective-C value type. *)
 val value_typ : 'a t -> 'a Ctypes.typ
+(** Returns the ctypes value typ corresponding to the Objective-C value type. *)
 
-(** Returns the encoding of a method type in the Objective-C runtime. *)
 val encode_method : args:('a, 'b) tlist -> 'c t -> string
+(** Returns the encoding of a method type in the Objective-C runtime. *)
 
-(** Returns the encoding of a value type in the Objective-C runtime. *)
 val encode_value : 'a t -> string
+(** Returns the encoding of a value type in the Objective-C runtime. *)
 
 (* Convenience constructors *)
 
-(** The method accepts only the implicit [self] and [cmd] arguments. *)
 val noargs : ('a, 'a) tlist
+(** The method accepts only the implicit [self] and [cmd] arguments. *)
 
-(** A reference to any Objective-C object regardless of its class. *)
 val id : C.Types.object_t t
+(** A reference to any Objective-C object regardless of its class. *)
 
 val _Class : C.Types.object_t t
 val _SEL : C.Types.selector_t t

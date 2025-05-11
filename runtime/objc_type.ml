@@ -30,10 +30,9 @@ type _ t =
 (** Represents a tuple of Objective-C types. *)
 type (_, _) tlist =
   | [] : ('r, 'r) tlist
-  | (::) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist
+  | ( :: ) : 'a t * ('b, 'r) tlist -> ('a -> 'b, 'r) tlist
 
-let rec ctype_of_t : type a. a t -> a typ =
-  function
+let rec ctype_of_t : type a. a t -> a typ = function
   | Id -> id
   | Class -> _Class
   | Sel -> _SEL
@@ -85,10 +84,7 @@ let struc ty = Struc ty
 let union ty = Union ty
 
 let rec fn_of_tlist : type a b. b fn -> (a, b) tlist -> a fn =
-  fun r ->
-    function
-    | [] -> r
-    | t :: xs -> ctype_of_t t @-> fn_of_tlist r xs
+ fun r -> function [] -> r | t :: xs -> ctype_of_t t @-> fn_of_tlist r xs
 
 let byte_size_of_t : type a. a t -> int =
   let open Ctypes in
@@ -105,18 +101,16 @@ let byte_size_of_t : type a. a t -> int =
   | Float -> sizeof float
   | Double -> sizeof double
   | Id | Class | Sel | Ptr _ | Imp | Enc | Proto | Ivar | Unknown ->
-    sizeof (ptr void)
+      sizeof (ptr void)
   | Struc s -> sizeof s
   | Arr _ | Union _ -> invalid_arg "not implemented"
 
-let rec byte_size_of_tlist : type a b. (a, b) tlist -> int =
-  function
+let rec byte_size_of_tlist : type a b. (a, b) tlist -> int = function
   | [] -> 0
   | t :: xs -> byte_size_of_t t + byte_size_of_tlist xs
 
 (** Returns the ctypes fn corresponding to the method type. *)
-let method_typ ~args return =
-  fn_of_tlist (returning (ctype_of_t return)) args
+let method_typ ~args return = fn_of_tlist (returning (ctype_of_t return)) args
 
 (** Returns the ctypes value typ corresponding to the value type. *)
 let value_typ = ctype_of_t
@@ -149,19 +143,17 @@ let rec enc_of_t : type a. a t -> string = function
   | Imp | Enc | Proto | Ivar -> "?"
 
 let rec enc_of_tlist : type a b. int -> (a, b) tlist -> string =
-  fun arg_offset ->
-    function
-    | [] -> ""
-    | t :: xs ->
-      enc_of_t t ^
-      string_of_int arg_offset ^
-      enc_of_tlist (arg_offset + byte_size_of_t t) xs
+ fun arg_offset -> function
+  | [] -> ""
+  | t :: xs ->
+      enc_of_t t ^ string_of_int arg_offset
+      ^ enc_of_tlist (arg_offset + byte_size_of_t t) xs
 
 (** Returns the encoding of a method type in the Objective-C runtime. *)
 let encode_method ~args return =
-  enc_of_t return ^
-  string_of_int (byte_size_of_tlist args) ^
-  enc_of_tlist 0 (id :: _SEL :: args)
+  enc_of_t return
+  ^ string_of_int (byte_size_of_tlist args)
+  ^ enc_of_tlist 0 (id :: _SEL :: args)
 
 (** Returns the encoding of a value type in the Objective-C runtime. *)
 let encode_value = enc_of_t
