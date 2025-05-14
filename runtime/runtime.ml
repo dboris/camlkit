@@ -103,7 +103,9 @@ module Objc = struct
 
   (** Sends a message with a simple return value to an instance of a class. *)
   let msg_send' ?(release_runtime_lock = false) ~self ~typ cmd =
-    foreign ~release_runtime_lock "objc_msgSend" (id @-> _SEL @-> typ) self cmd
+    foreign ~release_runtime_lock "objc_msgSend"
+      (id @-> _SEL @-> typ)
+      self (selector cmd)
 
   (** Sends a message with a simple return value to the superclass of an
       instance of a class. *)
