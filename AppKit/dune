@@ -5,6 +5,8 @@
   camlkit-base.runtime
   camlkit-base.Foundation
   camlkit-base.CoreAnimation
-  camlkit-base.CoreAutoLayout))
+  camlkit-base.CoreAutoLayout
+  camlkit-gui.UIFoundation)
+ (flags :standard -ccopt "-framework AppKit"))
 
 (documentation (package camlkit-gui))

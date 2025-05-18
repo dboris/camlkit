@@ -3,5 +3,5 @@
  (enabled_if (and
   (= %{system} macosx)
   (= %{context_name} default)))
- (flags :standard -ccopt "-framework AppKit")
+;  (flags :standard -ccopt "-framework AppKit")
  (libraries Foundation AppKit WebKit))
