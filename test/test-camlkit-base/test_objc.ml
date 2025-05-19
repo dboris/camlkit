@@ -283,6 +283,14 @@ let test_struct_t () =
     ~return:Objc_type.void pt;
   A.check (A.float 0.0001) "same float" 42. !x
 
+let test_to_string () =
+  let obj = new_object "NSObject" |> to_string
+  and str = new_string "Hola" |> to_string
+  and empty = nil |> to_string in
+  A.check A.string "same string" "<NSObject:" (String.sub obj 0 10);
+  A.check A.string "same string" "Hola" str;
+  A.check A.string "same string" "" empty
+
 let suite =
   [
     ("get object description", `Quick, test_object_description);
@@ -321,6 +329,7 @@ let suite =
       `Quick,
       test_set_and_get_object_ivar ~name:"MyClass15" (new_string "Hola") );
     ("test_struct_t", `Quick, test_struct_t);
+    ("to_string", `Quick, test_to_string);
   ]
 
 let () = A.run "objc" [ ("Objc", suite) ]

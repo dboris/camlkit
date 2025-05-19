@@ -197,6 +197,25 @@ let new_string str =
     str
   |> gc_autorelease
 
+(** Converts a NSString instance to an OCaml string. If the instance is not an
+    NSString, it will be sent the message [NSObject.description] first. Prefer
+    this to [NSString._UTF8String] as sending "UTF8String" to nil will crash
+    your program. *)
+let to_string self =
+  let conv instance =
+    Objc.msg_send ~self:instance ~cmd:(selector "UTF8String")
+      ~typ:(returning string)
+  in
+  if is_nil self then ""
+  else if
+    Objc.msg_send ~self
+      ~cmd:(selector "isKindOfClass:")
+      ~typ:(_Class @-> returning bool)
+      nsstring_class
+  then conv self
+  else
+    conv (Objc.msg_send ~self ~cmd:(selector "description") ~typ:(returning id))
+
 (** Sends a message with a simple return value to an instance of a class. *)
 let msg_send cmd ~self ~args ~return =
   let typ = Objc_type.method_typ ~args return in
