@@ -23,6 +23,7 @@ module CAGradientLayerClass = CAGradientLayerClass
 module CAKeyframeAnimation = CAKeyframeAnimation
 module CALayer = CALayer
 module CALayerClass = CALayerClass
+module CALayerMethods = CALayerMethods
 module CAMediaTimingFunction = CAMediaTimingFunction
 module CAMediaTimingFunctionClass = CAMediaTimingFunctionClass
 module CAMetalDisplayLink = CAMetalDisplayLink
