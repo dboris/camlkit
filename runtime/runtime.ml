@@ -150,6 +150,7 @@ end
 
 let nsstring_class = Objc.get_class "NSString"
 let nil = coerce (ptr void) Objc.id null
+let nil_as ty = coerce (ptr void) ty null
 let is_nil = is_null
 
 (** Returns a new instance of the receiving class. *)
