@@ -140,7 +140,8 @@ let rec enc_of_t : type a. a t -> string = function
   | Arr ty -> "[" ^ enc_of_t ty ^ "]"
   | Struc _ -> "{?}"
   | Union ty -> "(" ^ enc_of_t ty ^ ")"
-  | Imp | Enc | Proto | Ivar -> "?"
+  | Imp -> "^?"
+  | Enc | Proto | Ivar -> "?"
 
 let rec enc_of_tlist : type a b. int -> (a, b) tlist -> string =
  fun arg_offset -> function
