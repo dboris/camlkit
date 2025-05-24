@@ -541,6 +541,9 @@ end
 module Ivar = struct
   include C.Functions.Ivar
 
+  let get = get_ivar
+  let set = set_ivar
+
   let define name typ =
     let typ = Objc_type.value_typ typ and enc = Objc_type.encode_value typ in
     Define.ivar_spec ~name ~typ ~enc
@@ -558,10 +561,7 @@ let set_uncaught_exception_handler =
 let default_uncaught_exception_handler ex =
   let open Objc in
   let name = msg_send ~self:ex ~cmd:(selector "name") ~typ:(returning id)
-  and reason = msg_send ~self:ex ~cmd:(selector "reason") ~typ:(returning id)
-  and to_string self =
-    msg_send ~self ~cmd:(selector "UTF8String") ~typ:(returning string)
-  in
+  and reason = msg_send ~self:ex ~cmd:(selector "reason") ~typ:(returning id) in
   Printf.eprintf "CamlNSException: %s -- %s\n%!" (to_string name)
     (to_string reason);
   raise @@ CamlNSException (to_string name, to_string reason)

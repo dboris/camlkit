@@ -250,8 +250,8 @@ let test_object_property_def ~name x () =
 let test_set_and_get_ivar ~name x () =
   let ivar_name = "myVar" and ivar_t = Objc_type.int in
   let o = _new_ (Class.define name ~ivars:[ Ivar.define ivar_name ivar_t ]) in
-  o |> set_ivar ivar_name x ivar_t;
-  let v = o |> get_ivar ivar_name ivar_t in
+  o |> Ivar.set ivar_name x ivar_t;
+  let v = o |> Ivar.get ivar_name ivar_t in
   A.check A.int "set value and get same value" x v
 
 let test_set_and_get_object_ivar ~name x () =
