@@ -1,23 +1,28 @@
 (* auto-generated, do not modify *)
 
+[@@@ocaml.warning "-33"]
 open Runtime
 open Objc
 
-let t : [`CGVector] structure typ = structure "CGVector"
-(** Apple docs: {{:https://developer.apple.com/documentation/coregraphics/cgvector?language=objc}CGVector} *)
+type t = [`CGVector] structure
+(** Apple docs: {{:https://developer.apple.com/documentation/corefoundation/cgvector?language=objc}CGVector} *)
 
-let dx = field t "dx" double
-let dy = field t "dy" double
+let t : t typ = structure "CGVector"
+let dx_field = field t "dx" double
+let dy_field = field t "dy" double
 
 let () = seal t
 
 let init
-    ~dx:dx_v
-    ~dy:dy_v
-    =
+    ~dx
+    ~dy
+  =
   let t = make t in
-  setf t dx dx_v;
-  setf t dy dy_v;
+  setf t dx_field dx;
+  setf t dy_field dy;
   t
-let dx t = getf t dx
-let dy t = getf t dy
+
+let dx t = getf t dx_field
+let dy t = getf t dy_field
+let setDx t = setf t dx_field
+let setDy t = setf t dy_field
