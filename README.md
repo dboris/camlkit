@@ -189,7 +189,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   ```OCaml
   let a_class = Objc.get_class "AClassThatINeed" in
   let an_instance = alloc a_class |> init in
-  msg_send
+  message_send
     (selector "anArbitrarySelector")
     ~self: an_instance
     ~args: Objc_type.[]
@@ -211,7 +211,7 @@ constructs by comparing the equivalent Objective-C and OCaml code.
   OCaml:
   ```OCaml
   let viewDidLoad self cmd =
-    msg_super ~self cmd ~args: Objc_type.[] ~return: Objc_type.void;
+    message_superclass ~self cmd ~args: Objc_type.[] ~return: Objc_type.void;
     ...
   ```
 

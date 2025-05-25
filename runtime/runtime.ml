@@ -218,13 +218,13 @@ let to_string self =
     conv (Objc.msg_send ~self ~cmd:(selector "description") ~typ:(returning id))
 
 (** Sends a message with a simple return value to an instance of a class. *)
-let msg_send cmd ~self ~args ~return =
+let message_send cmd ~self ~args ~return =
   let typ = Objc_type.method_typ ~args return in
   Objc.msg_send ~self ~cmd ~typ
 
 (** Sends a message with a simple return value to the superclass of an instance
     of a class. *)
-let msg_super cmd ~self ~args ~return =
+let message_superclass cmd ~self ~args ~return =
   let typ = Objc_type.method_typ ~args return in
   Objc.msg_send_super ~self ~cmd ~typ
 

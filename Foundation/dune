@@ -1,11 +1,11 @@
 (library
  (name Foundation)
  (public_name camlkit-base.Foundation)
-;  (flags :standard -ccopt "-framework Foundation")
  (libraries
   camlkit-base.runtime
   camlkit-base.CoreFoundation
   camlkit-base.CoreAnimation
-  camlkit-base.CoreAutoLayout))
+  camlkit-base.CoreAutoLayout)
+ (library_flags :standard -ccopt "-framework Foundation"))
 
 (documentation (package camlkit-base))

@@ -1,6 +1,7 @@
 include Foundation_globals
 include CoreFoundation
 include CoreGraphics
+include Runtime
 
 module NSAffineTransform = NSAffineTransform
 module NSAffineTransformClass = NSAffineTransformClass

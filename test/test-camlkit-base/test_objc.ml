@@ -223,11 +223,13 @@ let test_msg_send_super () =
             ~args:Objc_type.[]
             ~return:Objc_type.void
             (fun self cmd ->
-              msg_super cmd ~self ~args:Objc_type.[] ~return:Objc_type.void);
+              message_superclass cmd ~self
+                ~args:Objc_type.[]
+                ~return:Objc_type.void);
         ]
   and expected = true in
   let self = alloc class_b |> NSObject.init in
-  R.msg_send (selector "someMethod") ~self
+  R.message_send (selector "someMethod") ~self
     ~args:Objc_type.[]
     ~return:Objc_type.void;
   A.check A.bool "same bool" expected !actual
@@ -276,7 +278,7 @@ let test_struct_t () =
         ]
   in
   let obj = _new_ my_class and pt = CGPoint.init ~x:42. ~y:20. in
-  R.msg_send
+  R.message_send
     (selector "someMethodWithStruct:")
     ~self:obj
     ~args:Objc_type.[ struc CGPoint.t ]
