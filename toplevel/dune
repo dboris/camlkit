@@ -11,13 +11,4 @@
  (libraries
   compiler-libs.toplevel
   runtime
-  dispatch
-  Foundation
-  CoreData
-  CoreFoundation
-  CoreGraphics
-  CoreAnimation
-  CoreText
-  CoreImage
-  AppKit
-  WebKit))
+  Foundation))
