@@ -1,6 +1,6 @@
 (library
  (name camlkit)
- (public_name camlkit.camlkit)
+ (public_name camlkit)
  (libraries
   camlkit-base.Foundation
   camlkit-base.CoreFoundation))
