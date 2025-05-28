@@ -43,7 +43,6 @@ a selection of core Cocoa frameworks.")
  (depends
   (camlkit-base (= :version))
   (camlkit-gui (= :version))
-  (camlkit-dispatch (= :version))
   (alcotest :with-test))
  (tags (objc cocoa macos gnustep)))
 
