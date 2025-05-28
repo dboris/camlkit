@@ -1,7 +1,10 @@
 ## dev
 
-* Support struct as method argument or return type
-* Support static blocks in blocks runtime
+* Support struct as method argument or return type.
+* Support static blocks in blocks runtime.
+* Added functions to convert NSArray and NSDictionary to/from OCaml List and Seq.
+* Added `to_string` to Runtime that can be applied to instances of NSString
+  or any NSObject subclass.
 
 ## v0.3.1
 
