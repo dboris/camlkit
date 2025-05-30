@@ -495,35 +495,20 @@ module Block = struct
       objects, which means they can be added to collections like [NSArray] or
       [NSDictionary]. *)
 
-  type t
+  type t = Blocks_runtime.Block_layout.t
 
-  let t : t structure typ = structure "Block_literal_1"
-  let isa = field t "isa" _Class
-  let flags = field t "flags" int
-  let reserved = field t "reserved" int
-  let invoke = field t "invoke" (ptr void)
-  let descriptor = field t "descriptor" (ptr Block_descriptor.t)
-  let () = seal t
-  let size = sizeof t
-  let desc_ptr = allocate Block_descriptor.t (Block_descriptor.make size)
-  let block_is_global = Int.(shift_left one 28)
-  let self = Objc.get_class "__NSGlobalBlock"
-
-  let make' f =
-    let b = make t in
-    setf b isa self;
-    setf b descriptor desc_ptr;
-    setf b invoke f;
-    setf b flags block_is_global;
-    allocate t b |> coerce (ptr t) (ptr void)
+  let t = Blocks_runtime.Block_layout.t
 
   (** Create a global block which encapsulates the code for execution at a later
       time. *)
-  let make ?(thread_registration = false) ?(runtime_lock = false) f ~args
-      ~return =
+  let make ?(thread_registration = false) ?(runtime_lock = false)
+      ?(is_global = true) f ~args ~return =
     let typ = Objc_type.method_typ ~args:(Objc_type.id :: args) return in
-    make' (coerce (funptr ~thread_registration ~runtime_lock typ) (ptr void) f)
+    Blocks_runtime.make_block ~is_global
+      (coerce (funptr ~thread_registration ~runtime_lock typ) (ptr void) f)
 end
+
+let make_block = Block.make
 
 module Method = struct
   include C.Functions.Method
